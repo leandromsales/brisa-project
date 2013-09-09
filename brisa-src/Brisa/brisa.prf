@@ -1,0 +1,39 @@
+
+mylibrary {
+	BRISA_BASEDIR = $${PWD}$$dirname($${_FILE_})
+
+	INCLUDEPATH *=  $$quote($${BRISA_BASEDIR}/include)
+	DEPENDPATH *=  $$quote($${BRISA_BASEDIR}/include)
+	
+	BRISA_LIBS = -lbrisa -lcpp
+	device {
+		profile {
+		    LIBS += -L$${BRISA_BASEDIR}/arm/so.le-v7-g $${BRISA_LIBS}
+		    PRE_TARGETDEPS +=  $$quote($${BRISA_BASEDIR}/arm/so.le-v7-g/libBrisa.so)		
+		}
+		else {
+		    CONFIG(debug, debug|release) {
+		        # Device-Debug custom configuration
+		        LIBS += -L$${BRISA_BASEDIR}/arm/so.le-v7-g $${BRISA_LIBS}
+		        PRE_TARGETDEPS +=  $$quote($${BRISA_BASEDIR}/arm/so.le-v7-g/libBrisa.so)
+		    }
+		
+		    CONFIG(release, debug|release) {
+		        # Device-Release custom configuration
+		        LIBS += -L$${BRISA_BASEDIR}/arm/so.le-v7 $${BRISA_LIBS}
+		        PRE_TARGETDEPS +=  $$quote($${BRISA_BASEDIR}/arm/so.le-v7/libBrisa.so)
+		    }
+	    }
+	}
+	
+	simulator {
+	    CONFIG(debug, debug|release) {
+	        # Simulator-Debug custom configuration
+	        LIBS += -L$${BRISA_BASEDIR}/x86/so-g $${BRISA_LIBS}
+	        PRE_TARGETDEPS +=  $$quote($${BRISA_BASEDIR}/x86/so-g/libBrisa.so)
+	    }
+	}
+	
+	INCLUDEPATH += $${BRISA_INCLUDES}
+	DEPENDPATH += $${BRISA_INCLUDES}
+}
