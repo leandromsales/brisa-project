@@ -1,0 +1,30 @@
+<RCC>
+    <qresource prefix="/">
+        <file>gui/playbook/qml/images/bg.png</file>
+        <file>gui/playbook/qml/images/bt_pause.png</file>
+        <file>gui/playbook/qml/images/bt_play.png</file>
+        <file>gui/playbook/qml/images/bt_view.png</file>
+        <file>gui/playbook/qml/images/bt_volume.png</file>
+        <file>gui/playbook/qml/images/controls_player.png</file>
+        <file>gui/playbook/qml/images/ic_back_pressed.png</file>
+        <file>gui/playbook/qml/images/ic_back.png</file>
+        <file>gui/playbook/qml/images/ic_folder.png</file>
+        <file>gui/playbook/qml/images/ic_renderer_default.png</file>
+        <file>gui/playbook/qml/images/ic_renderer_selected.png</file>
+        <file>gui/playbook/qml/images/ic_server_default.png</file>
+        <file>gui/playbook/qml/images/ic_server_selected.png</file>
+        <file>gui/playbook/qml/images/bt_stop_default.png</file>
+        <file>gui/playbook/qml/images/bt_stop_pressed.png</file>
+        <file>gui/playbook/qml/globals.js</file>
+        <file>gui/playbook/qml/ContentList.qml</file>
+        <file>gui/playbook/qml/main.qml</file>
+        <file>gui/playbook/qml/MediaControlBar.qml</file>
+        <file>gui/playbook/qml/Mygrid.qml</file>
+        <file>gui/playbook/qml/HorizontalSeparator.qml</file>
+        <file>gui/playbook/qml/VerticalSeparator.qml</file>
+        <file>gui/playbook/qml/FolderNavigator.qml</file>
+        <file>gui/playbook/qml/MediaPanel.qml</file>
+        <file>gui/playbook/qml/VideoView.qml</file>
+        <file>upnp/device/av_device/TVOperations.xml</file>
+    </qresource>
+</RCC>
