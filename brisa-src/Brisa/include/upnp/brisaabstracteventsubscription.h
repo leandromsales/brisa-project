@@ -17,7 +17,7 @@ namespace Brisa {
  *
  * \brief Abstract class that represents an event subscription
  */
-class BrisaAbstractEventSubscription: virtual public WebService {
+class BrisaAbstractEventSubscription: public WebService {
     Q_OBJECT
 public:
 

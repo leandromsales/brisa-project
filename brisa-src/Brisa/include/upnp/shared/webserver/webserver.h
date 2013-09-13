@@ -3,6 +3,7 @@
 
 #include <QtCore>
 #include <QtNetwork>
+//#include "brisaglobal.h"
 
 #include "http/httpserver.h"
 

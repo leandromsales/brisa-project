@@ -20,6 +20,13 @@ device {
                  $$quote($$BASEDIR/src/controlpoint/av_controlpoint/mediacontrolpoint.cpp) \
                  $$quote($$BASEDIR/src/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.cpp) \
                  $$quote($$BASEDIR/src/controlpoint/av_controlpoint/mediaservercontrolpointdevice.cpp) \
+                 $$quote($$BASEDIR/src/controlpoint/brisacontrolpoint.cpp) \
+                 $$quote($$BASEDIR/src/controlpoint/brisacontrolpointdevice.cpp) \
+                 $$quote($$BASEDIR/src/controlpoint/brisacontrolpointservice.cpp) \
+                 $$quote($$BASEDIR/src/controlpoint/brisadevicexmlhandlercp.cpp) \
+                 $$quote($$BASEDIR/src/controlpoint/brisaeventproxy.cpp) \
+                 $$quote($$BASEDIR/src/controlpoint/brisamsearchclientcp.cpp) \
+                 $$quote($$BASEDIR/src/controlpoint/brisamulticasteventreceiver.cpp) \
                  $$quote($$BASEDIR/src/controlpoint/brisaudplistener.cpp) \
                  $$quote($$BASEDIR/src/controlpoint/device.cpp) \
                  $$quote($$BASEDIR/src/controlpoint/icon.cpp) \
@@ -42,6 +49,7 @@ device {
                  $$quote($$BASEDIR/src/shared/soap/qtsoap.cpp) \
                  $$quote($$BASEDIR/src/shared/soap/soap.cpp) \
                  $$quote($$BASEDIR/src/shared/soap/soapenvelope.cpp) \
+                 $$quote($$BASEDIR/src/shared/ssdp/brisassdpclient.cpp) \
                  $$quote($$BASEDIR/src/shared/ssdp/brisassdpserver.cpp) \
                  $$quote($$BASEDIR/src/shared/ssdp/ssdp.cpp) \
                  $$quote($$BASEDIR/src/shared/ssdp/ssdpudpsocket.cpp) \
@@ -62,6 +70,7 @@ device {
                  $$quote($$BASEDIR/include/upnp/brisaabstractservice.h) \
                  $$quote($$BASEDIR/include/upnp/brisaaction.h) \
                  $$quote($$BASEDIR/include/upnp/brisaargument.h) \
+                 $$quote($$BASEDIR/include/upnp/brisaglobal.h) \
                  $$quote($$BASEDIR/include/upnp/brisaicon.h) \
                  $$quote($$BASEDIR/include/upnp/brisaservicexmlhandler.h) \
                  $$quote($$BASEDIR/include/upnp/brisastatevariable.h) \
@@ -76,6 +85,13 @@ device {
                  $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediacontrolpoint.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediaservercontrolpointdevice.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/brisacontrolpoint.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/brisacontrolpointdevice.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/brisacontrolpointservice.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/brisadevicexmlhandlercp.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/brisaeventproxy.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/brisamsearchclientcp.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/brisamulticasteventreceiver.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/brisaudplistener.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/device.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/icon.h) \
@@ -98,6 +114,7 @@ device {
                  $$quote($$BASEDIR/include/upnp/shared/soap/qtsoap.h) \
                  $$quote($$BASEDIR/include/upnp/shared/soap/soap.h) \
                  $$quote($$BASEDIR/include/upnp/shared/soap/soapenvelope.h) \
+                 $$quote($$BASEDIR/include/upnp/shared/ssdp/brisassdpclient.h) \
                  $$quote($$BASEDIR/include/upnp/shared/ssdp/brisassdpserver.h) \
                  $$quote($$BASEDIR/include/upnp/shared/ssdp/ssdp.h) \
                  $$quote($$BASEDIR/include/upnp/shared/ssdp/ssdpprotocol.h) \
@@ -134,6 +151,13 @@ device {
                  $$quote($$BASEDIR/src/controlpoint/av_controlpoint/mediacontrolpoint.cpp) \
                  $$quote($$BASEDIR/src/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.cpp) \
                  $$quote($$BASEDIR/src/controlpoint/av_controlpoint/mediaservercontrolpointdevice.cpp) \
+                 $$quote($$BASEDIR/src/controlpoint/brisacontrolpoint.cpp) \
+                 $$quote($$BASEDIR/src/controlpoint/brisacontrolpointdevice.cpp) \
+                 $$quote($$BASEDIR/src/controlpoint/brisacontrolpointservice.cpp) \
+                 $$quote($$BASEDIR/src/controlpoint/brisadevicexmlhandlercp.cpp) \
+                 $$quote($$BASEDIR/src/controlpoint/brisaeventproxy.cpp) \
+                 $$quote($$BASEDIR/src/controlpoint/brisamsearchclientcp.cpp) \
+                 $$quote($$BASEDIR/src/controlpoint/brisamulticasteventreceiver.cpp) \
                  $$quote($$BASEDIR/src/controlpoint/brisaudplistener.cpp) \
                  $$quote($$BASEDIR/src/controlpoint/device.cpp) \
                  $$quote($$BASEDIR/src/controlpoint/icon.cpp) \
@@ -156,6 +180,7 @@ device {
                  $$quote($$BASEDIR/src/shared/soap/qtsoap.cpp) \
                  $$quote($$BASEDIR/src/shared/soap/soap.cpp) \
                  $$quote($$BASEDIR/src/shared/soap/soapenvelope.cpp) \
+                 $$quote($$BASEDIR/src/shared/ssdp/brisassdpclient.cpp) \
                  $$quote($$BASEDIR/src/shared/ssdp/brisassdpserver.cpp) \
                  $$quote($$BASEDIR/src/shared/ssdp/ssdp.cpp) \
                  $$quote($$BASEDIR/src/shared/ssdp/ssdpudpsocket.cpp) \
@@ -176,6 +201,7 @@ device {
                  $$quote($$BASEDIR/include/upnp/brisaabstractservice.h) \
                  $$quote($$BASEDIR/include/upnp/brisaaction.h) \
                  $$quote($$BASEDIR/include/upnp/brisaargument.h) \
+                 $$quote($$BASEDIR/include/upnp/brisaglobal.h) \
                  $$quote($$BASEDIR/include/upnp/brisaicon.h) \
                  $$quote($$BASEDIR/include/upnp/brisaservicexmlhandler.h) \
                  $$quote($$BASEDIR/include/upnp/brisastatevariable.h) \
@@ -190,6 +216,13 @@ device {
                  $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediacontrolpoint.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediaservercontrolpointdevice.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/brisacontrolpoint.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/brisacontrolpointdevice.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/brisacontrolpointservice.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/brisadevicexmlhandlercp.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/brisaeventproxy.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/brisamsearchclientcp.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/brisamulticasteventreceiver.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/brisaudplistener.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/device.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/icon.h) \
@@ -212,6 +245,7 @@ device {
                  $$quote($$BASEDIR/include/upnp/shared/soap/qtsoap.h) \
                  $$quote($$BASEDIR/include/upnp/shared/soap/soap.h) \
                  $$quote($$BASEDIR/include/upnp/shared/soap/soapenvelope.h) \
+                 $$quote($$BASEDIR/include/upnp/shared/ssdp/brisassdpclient.h) \
                  $$quote($$BASEDIR/include/upnp/shared/ssdp/brisassdpserver.h) \
                  $$quote($$BASEDIR/include/upnp/shared/ssdp/ssdp.h) \
                  $$quote($$BASEDIR/include/upnp/shared/ssdp/ssdpprotocol.h) \
@@ -250,6 +284,13 @@ simulator {
                  $$quote($$BASEDIR/src/controlpoint/av_controlpoint/mediacontrolpoint.cpp) \
                  $$quote($$BASEDIR/src/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.cpp) \
                  $$quote($$BASEDIR/src/controlpoint/av_controlpoint/mediaservercontrolpointdevice.cpp) \
+                 $$quote($$BASEDIR/src/controlpoint/brisacontrolpoint.cpp) \
+                 $$quote($$BASEDIR/src/controlpoint/brisacontrolpointdevice.cpp) \
+                 $$quote($$BASEDIR/src/controlpoint/brisacontrolpointservice.cpp) \
+                 $$quote($$BASEDIR/src/controlpoint/brisadevicexmlhandlercp.cpp) \
+                 $$quote($$BASEDIR/src/controlpoint/brisaeventproxy.cpp) \
+                 $$quote($$BASEDIR/src/controlpoint/brisamsearchclientcp.cpp) \
+                 $$quote($$BASEDIR/src/controlpoint/brisamulticasteventreceiver.cpp) \
                  $$quote($$BASEDIR/src/controlpoint/brisaudplistener.cpp) \
                  $$quote($$BASEDIR/src/controlpoint/device.cpp) \
                  $$quote($$BASEDIR/src/controlpoint/icon.cpp) \
@@ -272,6 +313,7 @@ simulator {
                  $$quote($$BASEDIR/src/shared/soap/qtsoap.cpp) \
                  $$quote($$BASEDIR/src/shared/soap/soap.cpp) \
                  $$quote($$BASEDIR/src/shared/soap/soapenvelope.cpp) \
+                 $$quote($$BASEDIR/src/shared/ssdp/brisassdpclient.cpp) \
                  $$quote($$BASEDIR/src/shared/ssdp/brisassdpserver.cpp) \
                  $$quote($$BASEDIR/src/shared/ssdp/ssdp.cpp) \
                  $$quote($$BASEDIR/src/shared/ssdp/ssdpudpsocket.cpp) \
@@ -292,6 +334,7 @@ simulator {
                  $$quote($$BASEDIR/include/upnp/brisaabstractservice.h) \
                  $$quote($$BASEDIR/include/upnp/brisaaction.h) \
                  $$quote($$BASEDIR/include/upnp/brisaargument.h) \
+                 $$quote($$BASEDIR/include/upnp/brisaglobal.h) \
                  $$quote($$BASEDIR/include/upnp/brisaicon.h) \
                  $$quote($$BASEDIR/include/upnp/brisaservicexmlhandler.h) \
                  $$quote($$BASEDIR/include/upnp/brisastatevariable.h) \
@@ -306,6 +349,13 @@ simulator {
                  $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediacontrolpoint.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediaservercontrolpointdevice.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/brisacontrolpoint.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/brisacontrolpointdevice.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/brisacontrolpointservice.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/brisadevicexmlhandlercp.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/brisaeventproxy.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/brisamsearchclientcp.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/brisamulticasteventreceiver.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/brisaudplistener.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/device.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/icon.h) \
@@ -328,6 +378,7 @@ simulator {
                  $$quote($$BASEDIR/include/upnp/shared/soap/qtsoap.h) \
                  $$quote($$BASEDIR/include/upnp/shared/soap/soap.h) \
                  $$quote($$BASEDIR/include/upnp/shared/soap/soapenvelope.h) \
+                 $$quote($$BASEDIR/include/upnp/shared/ssdp/brisassdpclient.h) \
                  $$quote($$BASEDIR/include/upnp/shared/ssdp/brisassdpserver.h) \
                  $$quote($$BASEDIR/include/upnp/shared/ssdp/ssdp.h) \
                  $$quote($$BASEDIR/include/upnp/shared/ssdp/ssdpprotocol.h) \
