@@ -15,7 +15,7 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app)
 	//m_model = new GroupDataModel();
     // create scene document from main.qml asset
     // set parent to created document to ensure it exists for the whole application lifetime
-    QmlDocument *qml = QmlDocument::create("qrc:///gui/bb10/qml/main.qml").parent(this);
+    QmlDocument *qml = QmlDocument::create("qrc:///assets/qml/main.qml").parent(this);
 
     // create root object for the UI
     AbstractPane *root = qml->createRootObject<AbstractPane>();

@@ -65,27 +65,27 @@
     </initialWindow>
     
     <!--  The category where the application appears. Either core.games or core.media. -->
-    <category>core.games</category>
+    <category>core.media</category>
     <name>Universal Control Point</name>
     <configuration name="Device-Debug">
        <platformArchitecture>armle-v7</platformArchitecture>
-       <asset path="arm/o.le-v7-g/universal-control-point" entry="true" type="Qnx/Elf">upnplayer</asset>
+       <asset path="arm/o.le-v7-g/universal-control-point" entry="true" type="Qnx/Elf">universal-control-point</asset>
        <asset path="${workspace_loc:/Brisa/arm/so.le-v7-g/libBrisa.so.1.0.0}" type="Qnx/Elf">lib/libBrisa.so.1</asset>
     </configuration>
     <configuration name="Device-Release">
        <entryPointType>Qnx/Cascades</entryPointType>
        <platformArchitecture>armle-v7</platformArchitecture>
-       <asset path="arm/o.le-v7/universal-control-point.so" entry="true" type="Qnx/Elf">upnplayer.so</asset>
+       <asset path="arm/o.le-v7/universal-control-point.so" entry="true" type="Qnx/Elf">universal-control-point.so</asset>
        <asset path="${workspace_loc:/Brisa/arm/so.le-v7-g/libBrisa.so.1.0.0}" type="Qnx/Elf">lib/libBrisa.so.1</asset>
     </configuration>
     <configuration name="Device-Profile">
        <platformArchitecture>armle-v7</platformArchitecture>
-       <asset path="arm-p/o.le-v7-g/universal-control-point" entry="true" type="Qnx/Elf">upnplayer</asset>
+       <asset path="arm-p/o.le-v7-g/universal-control-point" entry="true" type="Qnx/Elf">universal-control-point</asset>
        <asset path="${workspace_loc:/Brisa/arm/so.le-v7-g/libBrisa.so.1.0.0}" type="Qnx/Elf">lib/libBrisa.so.1</asset>
     </configuration>
     <configuration name="Simulator-Debug">
        <platformArchitecture>x86</platformArchitecture>
-       <asset path="x86/o-g/universal-control-point" entry="true" type="Qnx/Elf">upnplayer</asset>
+       <asset path="x86/o-g/universal-control-point" entry="true" type="Qnx/Elf">universal-control-point</asset>
        <asset path="libBrisa.so" type="Qnx/Elf">lib/libBrisa.so</asset>
     </configuration>
     

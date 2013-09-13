@@ -8,20 +8,18 @@ QT += network core xml multimedia
 MOBILITY += multimedia
 LIBS += -lbbmultimedia -lbbplatform -lbbcascadesmaps -lQtLocationSubset -lGLESv1_CM -lbbsystem -lbbcascadespickers
 
-QML_IMPORT_PATH = gui/$${DEVICE_TARGET}/qml/
+QML_IMPORT_PATH = assets/qml/
 
-gui.source = gui/$${DEVICE_TARGET}/qml
-gui.target = gui
+#gui.source = gui/$${DEVICE_TARGET}/qml
+#gui.target = gui
 
-SOURCES += \
-    viewcontroller.cpp
+#SOURCES += \
+    #viewcontroller.cpp
 
-HEADERS += \
-    viewcontroller.h
+#HEADERS += \
+    #viewcontroller.h
     
 include(config.pri)
-
-include(gui/gui.pri)
 
 VPATH += $$INCLUDEPATH
 
