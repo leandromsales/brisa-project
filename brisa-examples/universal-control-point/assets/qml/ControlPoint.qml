@@ -5,13 +5,13 @@ NavigationPane {
     Page {
         Container {
             Label {
-                text: "Media renderer"
+                text: "Devices"
                 horizontalAlignment: HorizontalAlignment.Center
                 verticalAlignment: VerticalAlignment.Center
             }
             ListView {
                 id: listView
-                objectName: "media_renderer_listview"
+                objectName: "control_point_listview"
                 horizontalAlignment: HorizontalAlignment.Fill
                 verticalAlignment: VerticalAlignment.Fill
                 
@@ -24,11 +24,24 @@ NavigationPane {
                     }
                 
                 }
+                onTriggered: {
+//						dataModel.data(indexPath)
+                    var openServices = services.createObject()
+                    navPane.push(openServices)
+                }
                 contextActions: ActionSet {
                     ActionItem {
                         title: "Remove"
                     }
                 }
+                attachedObjects: [
+                    ComponentDefinition {
+                        id: services
+                        Services {
+                            
+                        }
+                    }
+                ]
             }
         }
     }

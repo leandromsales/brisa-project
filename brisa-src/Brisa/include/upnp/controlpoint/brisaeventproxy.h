@@ -28,9 +28,9 @@
 #ifndef _BRISAEVENTPROXY_H
 #define _BRISAEVENTPROXY_H
 
-#include "brisaabstracteventsubscription.h"
-#include "brisaglobal.h"
-#include "webserver.h"
+#include "upnp/brisaabstracteventsubscription.h"
+#include "upnp/brisaglobal.h"
+#include "upnp/shared/webserver/webserver.h"
 #include <QDateTime>
 #include <QList>
 #include <QString>

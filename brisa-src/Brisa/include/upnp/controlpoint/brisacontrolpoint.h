@@ -31,11 +31,11 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QMap>
-#include "brisanetwork.h"
-#include "brisacontrolpointdevice.h"
-#include "brisaeventproxy.h"
+#include "upnp/network/brisanetwork.h"
+#include "upnp/controlpoint/brisacontrolpointdevice.h"
+#include "upnp/controlpoint/brisaeventproxy.h"
 #include "brisamulticasteventreceiver.h"
-#include "brisaglobal.h"
+#include "upnp/brisaglobal.h"
 
 namespace Brisa {
 

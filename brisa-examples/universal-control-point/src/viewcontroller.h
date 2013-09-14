@@ -4,79 +4,75 @@
 #include <QObject>
 #include <QDebug>
 #include <QStringList>
+#include <QVariantMap>
 #include <qdeclarativecontext.h>
 #include <bb/cascades/QmlDocument>
-#include <bb/cascades/QListDataModel>
 #include <bb/cascades/GroupDataModel>
 
-
-#include "mediaitem.h"
-#include "mediaitemlocal.h"
-#include "mediacontentitem.h"
-#include "mediaplayermodel.h"
-#include "upnp/device/av_device/mediarendererdevice.h"
-#include "upnp/controlpoint/av_controlpoint/mediacontrolpoint.h"
+#include "upnp/controlpoint/brisacontrolpoint.h"
+#include "upnp/controlpoint/brisacontrolpointdevice.h"
 
 using namespace bb::cascades;
+using namespace Brisa;
 
-class ViewController : public QObject
-{
-    Q_OBJECT
+
+class ViewController: public QObject {
+Q_OBJECT
+
 public:
-    explicit ViewController(QmlDocument * context, QObject *parent = 0);
-    QmlDocument * uiCtx;
-    ~ViewController();
-    void executeBrowse(Service *service, const QString &objectId);
-    void executeSetAVTransportURI(Service *service);
-    void executePlay(Service *service);
-    void executeStop(Service *service);
-    void executePause(Service *service);
-    void executeSetVolume(Service *service, const QString &desiredVolume);
-    void executeGetTransportInfo(Service *service);
-    void init();
-    void goesToQML();
-    void playLocal();
-    GroupDataModel * getMediaServerModel();
-    ListModel * getMediaServerContentModel();
-    GroupDataModel * getMediaRendererModel();
-    ListModel * getNavigationContentModel();
+	explicit ViewController(QmlDocument * context, QObject *parent = 0);
+	~ViewController();
+	void goesToQML();
+	GroupDataModel *getControlPointModel();
+	QmlDocument * uiCtx;
+
 signals:
-    void emptyMediaServerContentList();
-    void changeStatusToPlay(bool toPlay);
 
 public slots:
-void changeVolume(int value);
-    void onPlayPausePressed(bool isPlaying);
-    void onStopButtonPressed();
-    void onBackButtonPressed();
-    void onChangeSelectionForServerList(QString uuid);
-    void onChangeSelectionForRendererList(QString uuid);
-    void onChangeSelectionForServerContentList(QString objectId);
-    void onSelectionChangedFolderNavigator(QString objectId);
-    void positionChanged(qint64 position);
-    void newMediaServerDevice(const MediaServerControlPointDevice *);
-    void newMediaRendererDevice(const MediaRendererControlPointDevice *);
-    void leaveMediaServerDevice(const QString &);
-    void leaveMediaRendererDevice(const QString &);
-    void handleExecutionActionReply(QString actionName,
-                                    QHash<QString, ActionArgument *> response,
-                                    Service *service);
+	void onReadyDownloadIcons(BrisaControlPointDevice* device);
+//	void lineEnabled(QTreeWidgetItem * item, int collumn);
+	void deviceFoundDump(BrisaControlPointDevice *device);
+	void serviceCall(BrisaOutArgument, QString);
+	void requestError(QString errorMessage, QString methodName);
+	void removeDevice(QString usn);
+	void callMethod();
+	void expandItems();
+	void collapseItems();
+	void aboutControlPoint();
+	void aboutUpnp();
+	void aboutBrisa();
+	void processSplashScreen();
+	void call();//QTreeWidgetItem * item, int collumn);
+	void mountControlDialog();
+	void changeEventLog(BrisaEventProxy *subscription,
+			QMap<QString, QString> eventVariables);
+	void clearEventLog();
+	void multicastEventReceived(QString variableName, QString newValue);
+	void multicastEventRawReceived(BrisaOutArgument raw);
 
 private:
-    MediaControlPoint * mediaControlPoint;
-    MediaRendererDevice * mediaRendererDevice;
-    //ListModel * mediaServerModel;
-    bb::cascades::GroupDataModel * mediaServerModel;
-    //ListModel * mediaRendererModel;
-    bb::cascades::GroupDataModel * mediaRendererModel;
-    ListModel * mediaServerContentModel;
-    ListModel * navigationContentModel;
+	BrisaControlPointDevice* getDeviceByUDN(QString UDN);
+	void createDeviceItem();
+	void createActions();
+	void createMenus();
+	void createToolBars();
+	void setUpTableWidget();
+//	void addItem(QTreeWidgetItem *deviceItem);
 
-    Device * currentMediaServer;
-    Device * currentMediaRenderer;
-    QString currentURI;
-    MediaPlayerModel * mediaPlayerModel;
-    bool m_playlocal;
+	GroupDataModel *controlPointDataModel;
+
+	QList<BrisaControlPointDevice*> devices;
+//	QList<QTreeWidgetItem*> items; //Mudar isso para uma interface mobile
+
+	BrisaControlPoint *controlPoint;
+	BrisaControlPointDevice *currentDev;
+	QList<BrisaControlPointDevice *> currentDeviceItem; //Mudar isso para uma interface mobile
+
+//	QDialog *dialog; //Mudar isso para uma interface mobile
+	QList<QLineEdit*> editors;
+	QList<QLabel*> labels;
+	QMap<int, QList<QString> > eventToDevice;
+
 };
 
 #endif // VIEWCONTROLLER_H

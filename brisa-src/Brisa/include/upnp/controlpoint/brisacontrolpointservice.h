@@ -29,8 +29,8 @@
 #ifndef _BRISASERVICE_H
 #define _BRISASERVICE_H
 
-#include "brisaabstractservice.h"
-#include "brisaglobal.h"
+#include "upnp/brisaabstractservice.h"
+#include "upnp/brisaglobal.h"
 
 namespace Brisa {
 

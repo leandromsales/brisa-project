@@ -7,18 +7,18 @@ TabbedPane {
     
     tabs: [
         Tab {
-            title: "Media Servers"
+            title: "Universal Control Point"
             description: "Select media server"
-            imageSource: "qrc:///gui/bb10/qml/images/media_server_ic.png" 
-            content: MediaServerScreen {
-                
+            imageSource: "qrc:///assets/images/media_server_ic.png" 
+            content: ControlPoint {
+            	
             }
         },
         Tab {
-         	title: "Media Renderers"   
+         	title: "Others"   
          	description: "Select media renderer"
-            imageSource: "qrc:///gui/bb10/qml/images/media_renderer_ic.png"
-            content: MediaRendererScreen {
+            imageSource: "qrc:///assets/images/media_renderer_ic.png"
+            content: MediaServerScreen {
                 
             }
         }      

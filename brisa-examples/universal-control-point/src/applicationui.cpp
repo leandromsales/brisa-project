@@ -20,13 +20,20 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app)
     // create root object for the UI
     AbstractPane *root = qml->createRootObject<AbstractPane>();
 
+//    qml->setContextProperty("nomeVariavavel", this);
+
+    QmlDocument *qmlServices = QmlDocument::create("qrc:///assets/qml/Services.qml").parent(this);
+
+    // create root object for the UI
+    AbstractPane *rootServices = qmlServices->createRootObject<AbstractPane>();
+
     // Create ViewController controller. It must be a pointer.
     ViewController *vc = new ViewController(qml);
     vc->goesToQML();
-    ListView *ms_listview = root->findChild<ListView*>("media_server_listview");
-    ms_listview->setDataModel(vc->getMediaServerModel());
-    ListView *mr_listview = root->findChild<ListView*>("media_renderer_listview");
-    mr_listview->setDataModel(vc->getMediaRendererModel());
+    ListView *cp_listview = root->findChild<ListView*>("control_point_listview");
+    cp_listview->setDataModel(vc->getControlPointModel());
+    ListView *sv_listview = rootServices->findChild<ListView*>("services_listview");
+    sv_listview->setDataModel(vc->getControlPointModel());
     // set created root object as a scene
     app->setScene(root);
 }

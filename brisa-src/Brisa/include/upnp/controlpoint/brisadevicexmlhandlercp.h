@@ -42,8 +42,8 @@
 #include <QNetworkRequest>
 #include <QTemporaryFile>
 
-#include "brisaicon.h"
-#include "brisacontrolpointservice.h"
+#include "upnp/brisaicon.h"
+#include "upnp/controlpoint/brisacontrolpointservice.h"
 //#include "brisaglobal.h"
 
 namespace Brisa {

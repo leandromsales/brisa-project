@@ -4,8 +4,7 @@
         <file>assets/images/media_server_ic.png</file>
         <file>assets/qml/main.qml</file>
         <file>assets/qml/MediaServerScreen.qml</file>
-        <file>assets/qml/ControlPoint.qml</file>
-        <file>assets/qml/Services.qml</file>
+        <file>assets/qml/MediaRendererScreen.qml</file>
         <file>TVOperations.xml</file>
     </qresource>
 </RCC>

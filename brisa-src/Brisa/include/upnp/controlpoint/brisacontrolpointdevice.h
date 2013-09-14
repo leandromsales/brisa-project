@@ -38,10 +38,10 @@
 #include <QtDebug>
 #include <QObject>
 
-#include "brisaicon.h"
-#include "brisacontrolpointservice.h"
-#include "brisadevicexmlhandlercp.h"
-#include "brisaglobal.h"
+#include "upnp/brisaicon.h"
+#include "upnp/controlpoint/brisacontrolpointservice.h"
+#include "upnp/controlpoint/brisadevicexmlhandlercp.h"
+#include "upnp/brisaglobal.h"
 
 namespace Brisa {
 
