@@ -4,14 +4,16 @@ ViewController::ViewController(QmlDocument *context, QObject *parent) :
 		QObject(parent) {
 	this->uiCtx = context;
 
-//	this->currentDev = 0;
-//	this->currentDeviceItem = 0;
+	this->currentDev = 0;
+	this->currentDeviceItem = 0;
 
+	devices = DeviceList::getDeviceListInstance();
 
-
-	controlPointDataModel = new GroupDataModel();
+	controlPointDataModel = new QListDataModel<QVariantMap>();
 
 	controlPoint = new BrisaControlPoint();
+
+    uiCtx->setContextProperty("serviceController", new ServiceController(context, controlPoint));
 
 	connect(controlPoint, SIGNAL(deviceGone(QString)), this, SLOT(removeDevice(
 					QString)));
@@ -46,31 +48,31 @@ void ViewController::goesToQML() {
 	this->uiCtx->setContextProperty("mainViewController", this);
 }
 
-void ViewController::onReadyDownloadIcons(BrisaControlPointDevice* device) {
+void ViewController::onReadyDownloadIcons(BrisaControlPointDevice *device) {
 	//Implementar uso de icones
-//    currentDeviceItem->setIcon(0, dev->getIconList().at(0)->getIcon());
-//    addItem(currentDeviceItem);
+    currentDeviceItem->insert("_icon", device->getIconList().at(0)->getIcon().name());
+    addItem(currentDeviceItem);
 }
 
 //void ViewController::lineEnabled(QTreeWidgetItem* item, int collumn) {
 //}
 
-void ViewController::deviceFoundDump(BrisaControlPointDevice* device) {
+void ViewController::deviceFoundDump(BrisaControlPointDevice *device) {
 	if (device->getAttribute(BrisaControlPointDevice::Udn).compare("") == 0)
 		return;
-	for (int i = 0; i < devices.size(); i++) {
-		if (devices[i]->getAttribute(BrisaControlPointDevice::Udn)
+	for (int i = 0; i < devices->size(); i++) {
+		if ((*devices)[i]->getAttribute(BrisaControlPointDevice::Udn)
 				== device->getAttribute(BrisaControlPointDevice::Udn)) {
 			qDebug()
 					<< device->getAttribute(
 							BrisaControlPointDevice::FriendlyName) + " - "
 							+ device->getAttribute(
 									BrisaControlPointDevice::Udn);
-			devices[i] = device;
+			(*devices)[i] = device;
 			return;
 		}
 	}
-	devices.append(device);
+	devices->append(device);
 	this->currentDev = device;
     createDeviceItem();
 }
@@ -219,25 +221,23 @@ void ViewController::multicastEventReceived(QString variableName,
 
 void ViewController::multicastEventRawReceived(BrisaOutArgument raw) {
 }
+
 void ViewController::createDeviceItem() {
 
-	QVariantMap map;// QTreeWidgetItem(networkItem);
+	currentDeviceItem = new QVariantMap();
 
-//	currentDeviceItem.insert();
+	currentDeviceItem->insert("name", currentDev->getAttribute(BrisaControlPointDevice::FriendlyName));
+	currentDeviceItem->insert("udn", currentDev->getAttribute(BrisaControlPointDevice::Udn));
+	currentDeviceItem->insert("deviceType", currentDev->getAttribute(BrisaControlPointDevice::deviceType));
 
-    map["_title"] = currentDev->getAttribute(
-            BrisaControlPointDevice::FriendlyName) + " - " + currentDev->getAttribute(
-            BrisaControlPointDevice::Udn);
-
-	controlPointDataModel->insert(map);
+	controlPointDataModel->append(*currentDeviceItem);
 // Colocar um item na list
 //    if(currentDev->getIconList().size() > 0){
 //        connect(currentDev, SIGNAL(onReadyDownloadIcons(BrisaControlPointDevice*)),
 //                this, SLOT(onReadyDownloadIcons(BrisaControlPointDevice*)));
 //        currentDev->downloadIcons();
-//
 //    } else {
-//        currentDeviceItem->setIcon(0, QIcon("qrc://assets/images/device.png"));
+////    	(*currentDeviceItem)["_icon"] = "qrc://assets/images/device.png";
 //        addItem(currentDeviceItem);
 //    }
 }
@@ -254,11 +254,47 @@ void ViewController::createToolBars() {
 void ViewController::setUpTableWidget() {
 }
 
-//void ViewController::addItem(QTreeWidgetItem* deviceItem) {
-//}
+void ViewController::addItem(QVariantMap *deviceItem) {
+//    items.append(deviceItem);
+//    deviceItem->insert("_services", new QList<QVariantMap>());
+//    QList<BrisaControlPointService *> listService = currentDev->getServiceList();
+//
+//    for (int i = 0; i < listService.size(); i++) {
+//        BrisaEventProxy *subscription = controlPoint->getSubscriptionProxy(
+//                listService[i]);
+//
+//        connect(subscription,SIGNAL(eventNotification(BrisaEventProxy *,QMap<QString, QString>)),
+//                this, SLOT(changeEventLog(BrisaEventProxy *,QMap<QString, QString>)));
+//        subscription->subscribe(20);
+//
+//        QList<QString> deviceAndService;
+//
+//        deviceAndService.append(currentDev->getAttribute(
+//                BrisaControlPointDevice::FriendlyName));
+//        deviceAndService.append(listService[i]->getAttribute(
+//                BrisaControlPointService::ServiceType));
+//
+//        eventToDevice[subscription->getId()] = deviceAndService;
+//
+//        QVariantMap *serviceItem = new QVariantMap();//new QTreeWidgetItem(deviceItem);
+//        deviceItem->take("_services").toList().append(*serviceItem);
+//        serviceItem->insert("_icon", QIcon("qrc:///assets/images/bt_view.png"));
+//        serviceItem->insert("_title", listService[i]->getAttribute(BrisaControlPointService::ServiceType));
+//        serviceItem->insert("_actions", new QList<QVariantMap>());
+//
+//        QList<BrisaAction *> listAction;
+//        listAction = listService[i]->getActionList();
+//
+//        for (int j = 0; j < listAction.size(); j++) {
+//            QVariantMap *actionItem = new QVariantMap();//new QTreeWidgetItem(serviceItem);
+//            serviceItem->take("_actions").toList().append(*actionItem);
+//            actionItem->insert("_icon", QIcon("qrc:///assets/images/bt_view.png"));
+//            actionItem->insert("_title", listAction[j]->getName());
+//        }
+//    }
+}
 
-BrisaControlPointDevice* ViewController::getDeviceByUDN(QString UDN)
-{
+BrisaControlPointDevice *ViewController::getDeviceByUDN(QString UDN) {
 //    for (int i = 0; i < devices.size(); i++) {
 //        if (UDN.compare(devices[i]->getAttribute(BrisaControlPointDevice::Udn))
 //                == 0)
@@ -267,6 +303,6 @@ BrisaControlPointDevice* ViewController::getDeviceByUDN(QString UDN)
 //    return NULL;
 }
 
-GroupDataModel *ViewController::getControlPointModel() {
+QListDataModel<QVariantMap> *ViewController::getControlPointModel() {
 	return controlPointDataModel;
 }

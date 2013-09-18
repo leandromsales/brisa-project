@@ -1,17 +1,17 @@
-import bb.cascades 1.0
+import bb.cascades 1.2
 
 NavigationPane {
     id: navPane
     Page {
         Container {
             Label {
-                text: "Media servers"
+                text: "Event Log"
                 horizontalAlignment: HorizontalAlignment.Center
                 verticalAlignment: VerticalAlignment.Center
             }
             ListView {
                 id: listView
-                objectName: "media_server_listview"
+                objectName: "event_log_listview"
                 horizontalAlignment: HorizontalAlignment.Fill
                 verticalAlignment: VerticalAlignment.Fill
 

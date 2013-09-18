@@ -1,4 +1,4 @@
-import bb.cascades 1.0
+import bb.cascades 1.2
 
 TabbedPane {
     id: mainScreen
@@ -8,19 +8,29 @@ TabbedPane {
     tabs: [
         Tab {
             title: "Universal Control Point"
-            description: "Select media server"
-            imageSource: "qrc:///assets/images/media_server_ic.png" 
-            content: ControlPoint {
+            description: "Select control point device"
+            imageSource: "asset:///images/media_server_ic.png" 
+            NavigationPane {
+                id: navPane
+                ControlPoint {
             	
+            	}
             }
         },
         Tab {
-         	title: "Others"   
-         	description: "Select media renderer"
-            imageSource: "qrc:///assets/images/media_renderer_ic.png"
-            content: MediaServerScreen {
+         	title: "Event Log"   
+//         	description: "Select others"
+             imageSource: "asset:///images/media_renderer_ic.png"
+            content: EventLog {
                 
             }
-        }      
+        },
+        Tab {
+            title: "Action result"
+            description: ""
+            content: ActionResult {
+                
+            }
+        }
     ]
 }

@@ -1,4 +1,4 @@
-import bb.cascades 1.0
+import bb.cascades 1.2
 
 Page {
     Container {
@@ -13,20 +13,32 @@ Page {
             horizontalAlignment: HorizontalAlignment.Fill
             verticalAlignment: VerticalAlignment.Fill
 
-            listItemComponents: ListItemComponent {
-                type: ""
-                ListItemComponent {
-                    StandardListItem {
-                        title: ListItemData.name
-                    }
-                }
+            dataModel: serviceController.getDataModel()
 
+            listItemComponents: ListItemComponent {
+                StandardListItem {
+                    title: ListItemData.type
+                    //                    description: ListItemData["deviceType"]
+                }
+            }
+            onTriggered: {
+                var openActions = actions.createObject()
+                actionController.setDataModel(dataModel.data(indexPath))
+                navPane.push(openActions)
             }
             contextActions: ActionSet {
                 ActionItem {
                     title: "Remove"
                 }
             }
+            attachedObjects: [
+                ComponentDefinition {
+                    id: actions
+                    Actions {
+
+                    }
+                }
+            ]
         }
     }
 }

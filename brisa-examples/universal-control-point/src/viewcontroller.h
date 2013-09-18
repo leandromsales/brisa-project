@@ -7,10 +7,13 @@
 #include <QVariantMap>
 #include <qdeclarativecontext.h>
 #include <bb/cascades/QmlDocument>
-#include <bb/cascades/GroupDataModel>
+#include <bb/cascades/QListDataModel>
 
 #include "upnp/controlpoint/brisacontrolpoint.h"
 #include "upnp/controlpoint/brisacontrolpointdevice.h"
+
+#include "devicelist.h"
+#include "servicecontroller.h"
 
 using namespace bb::cascades;
 using namespace Brisa;
@@ -20,16 +23,16 @@ class ViewController: public QObject {
 Q_OBJECT
 
 public:
-	explicit ViewController(QmlDocument * context, QObject *parent = 0);
+	explicit ViewController(QmlDocument *context, QObject *parent = 0);
 	~ViewController();
 	void goesToQML();
-	GroupDataModel *getControlPointModel();
-	QmlDocument * uiCtx;
+	QListDataModel<QVariantMap> *getControlPointModel();
+	QmlDocument *uiCtx;
 
 signals:
 
 public slots:
-	void onReadyDownloadIcons(BrisaControlPointDevice* device);
+	void onReadyDownloadIcons(BrisaControlPointDevice *device);
 //	void lineEnabled(QTreeWidgetItem * item, int collumn);
 	void deviceFoundDump(BrisaControlPointDevice *device);
 	void serviceCall(BrisaOutArgument, QString);
@@ -51,26 +54,25 @@ public slots:
 	void multicastEventRawReceived(BrisaOutArgument raw);
 
 private:
-	BrisaControlPointDevice* getDeviceByUDN(QString UDN);
+	BrisaControlPointDevice *getDeviceByUDN(QString UDN);
 	void createDeviceItem();
 	void createActions();
 	void createMenus();
 	void createToolBars();
 	void setUpTableWidget();
-//	void addItem(QTreeWidgetItem *deviceItem);
+	void addItem(QVariantMap *deviceItem); //	void addItem(QTreeWidgetItem *deviceItem);
 
-	GroupDataModel *controlPointDataModel;
 
-	QList<BrisaControlPointDevice*> devices;
-//	QList<QTreeWidgetItem*> items; //Mudar isso para uma interface mobile
+	DeviceList *devices;
+	QListDataModel<QVariantMap> *controlPointDataModel; //Mudar isso para uma interface mobile
 
 	BrisaControlPoint *controlPoint;
 	BrisaControlPointDevice *currentDev;
-	QList<BrisaControlPointDevice *> currentDeviceItem; //Mudar isso para uma interface mobile
+	QVariantMap *currentDeviceItem; //Mudar isso para uma interface mobile
 
 //	QDialog *dialog; //Mudar isso para uma interface mobile
-	QList<QLineEdit*> editors;
-	QList<QLabel*> labels;
+	QList<QLineEdit *> editors;
+	QList<QLabel *> labels;
 	QMap<int, QList<QString> > eventToDevice;
 
 };
