@@ -25,8 +25,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _BRISAEVENTPROXY_H
-#define _BRISAEVENTPROXY_H
+#ifndef BRISAEVENTPROXY_H
+#define BRISAEVENTPROXY_H
 
 #include "upnp/brisaabstracteventsubscription.h"
 #include "upnp/brisaglobal.h"

@@ -26,8 +26,8 @@
  *
  */
 
-#ifndef _BRISAGLOBAL
-#define _BRISAGLOBAL
+#ifndef BRISAGLOBAL
+#define BRISAGLOBAL
 
 #define BRISA_VERSION 0x0000020
 #define BRISA_VERSION_STR "2.0"

@@ -1,5 +1,5 @@
-#ifndef _BRISASTATEVARIABLE_H
-#define _BRISASTATEVARIABLE_H
+#ifndef BRISASTATEVARIABLE_H
+#define BRISASTATEVARIABLE_H
 
 #include <QString>
 #include <QVariant>

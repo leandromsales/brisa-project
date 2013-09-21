@@ -13,8 +13,8 @@
 * limitations under the License.
 */
 
-#ifndef MYLIBRARY_HPP_
-#define MYLIBRARY_HPP_
+#ifndef MYLIBRARY_HPP
+#define MYLIBRARY_HPP
 
 #include <bb/cascades/Page>
 #include <QObject>

@@ -1,5 +1,5 @@
-#ifndef _WEB_FILE_H
-#define _WEB_FILE_H
+#ifndef WEB_FILE_H
+#define WEB_FILE_H
 
 #include <QtCore>
 

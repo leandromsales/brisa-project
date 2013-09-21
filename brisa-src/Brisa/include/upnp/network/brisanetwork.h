@@ -1,5 +1,5 @@
-#ifndef _BRISANETWORK_H
-#define _BRISANETWORK_H
+#ifndef BRISANETWORK_H
+#define BRISANETWORK_H
 
 #include <QString>
 #include <QList>

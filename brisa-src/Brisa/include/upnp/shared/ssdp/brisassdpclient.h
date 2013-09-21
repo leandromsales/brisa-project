@@ -26,8 +26,8 @@
  *
  */
 
-#ifndef _BRISASSDPCLIENT_H
-#define _BRISASSDPCLIENT_H
+#ifndef BRISASSDPCLIENT_H
+#define BRISASSDPCLIENT_H
 
 #include <QObject>
 #include <QHttpRequestHeader>

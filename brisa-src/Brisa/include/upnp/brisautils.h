@@ -1,5 +1,5 @@
-#ifndef _BRISAUTILS_H
-#define _BRISAUTILS_H
+#ifndef BRISAUTILS_H
+#define BRISAUTILS_H
 
 #include <QString>
 #include <QUuid>

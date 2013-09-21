@@ -25,8 +25,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _BRISACONTROLPOINT_H
-#define _BRISACONTROLPOINT_H
+#ifndef BRISACONTROLPOINT_H
+#define BRISACONTROLPOINT_H
 
 #include <QNetworkAccessManager>
 #include <QNetworkReply>

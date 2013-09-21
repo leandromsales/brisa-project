@@ -25,8 +25,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _BRISAMSEARCHCLIENT_H
-#define _BRISAMSEARCHCLIENT_H
+#ifndef BRISAMSEARCHCLIENT_H
+#define BRISAMSEARCHCLIENT_H
 
 #include <QUdpSocket>
 #include <QTimer>

@@ -26,8 +26,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef _BRISADEVICEXMLHANDLER_H
-#define _BRISADEVICEXMLHANDLER_H
+#ifndef BRISADEVICEXMLHANDLER_H
+#define BRISADEVICEXMLHANDLER_H
 
 //#include <QMainWindow>
 #include <QIODevice>

@@ -1,5 +1,5 @@
-#ifndef _WEBSTATICCONTENT_H
-#define _WEBSTATICCONTENT_H
+#ifndef WEBSTATICCONTENT_H
+#define WEBSTATICCONTENT_H
 
 #include <QtCore>
 #include <QtNetwork>

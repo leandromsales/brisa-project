@@ -26,8 +26,8 @@
  *
  */
 
-#ifndef _BRISASERVICE_H
-#define _BRISASERVICE_H
+#ifndef BRISASERVICE_H
+#define BRISASERVICE_H
 
 #include "upnp/brisaabstractservice.h"
 #include "upnp/brisaglobal.h"

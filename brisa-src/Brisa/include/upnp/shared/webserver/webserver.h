@@ -1,5 +1,5 @@
-#ifndef _WEBSERVER_H
-#define _WEBSERVER_H
+#ifndef WEBSERVER_H
+#define WEBSERVER_H
 
 #include <QtCore>
 #include <QtNetwork>
