@@ -26,6 +26,9 @@ developer guide, while the Doxygen is used to automatically generate the api-doc
 
 	The pdf file will be created inside this same directory.
 
+	For editing the text, just start from index.rst to understand the whole structure
+	and then all the folders which contain other .rst files of the documentation.
+
 
 #### Creating BRisa Documentation html format using Sphinx ####
 	
