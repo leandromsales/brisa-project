@@ -1,3 +1,6 @@
+#ifndef _BRISAUTILS_H
+#define _BRISAUTILS_H
+
 #include <QString>
 #include <QUuid>
 
@@ -15,3 +18,4 @@ inline QString getCompleteUuid()
     return QString("uuid:") + getUuid();
 }
 
+#endif
