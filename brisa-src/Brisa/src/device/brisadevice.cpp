@@ -8,6 +8,10 @@
 #include "upnp/shared/ssdp/brisassdpserver.h"
 #include "upnp/shared/webserver/webserver.h"
 
+//#if defined (__QNXNTO__)
+//	#include "upnp/brisautils.h"
+//#endif
+
 using namespace Brisa;
 
 static const QByteArray customWebservicesPath = "/custom/";
@@ -408,9 +412,18 @@ void BrisaDevice::startWebServer()
 void BrisaDevice::buildWebServerTree()
 {
     descriptionFile.open();
+    QString tempFilePath = descriptionFile.fileName();
+
+#if defined (__QNXNTO__) //Blackberry 10
+    QStringList pathSlipt = tempFilePath.split("/");
+    tempFilePath = pathSlipt[pathSlipt.size() - 2] + "/" + pathSlipt[pathSlipt.size() - 1];
+    qDebug() << "DEBUG:: BB10 Temp FILE path: " << tempFilePath;
+#endif
     webserver->addService(fileAddress.toUtf8(),
-                          new WebFile(descriptionFile.fileName(), this));
-    descriptionFile.close();
+                          new WebFile(tempFilePath, this));
+    /*Comment by Rodrigo
+      descriptionFile.close();*/
+
 
     foreach(BrisaService *service, serviceList) {
         service->buildWebServiceTree(webserver);
