@@ -3,8 +3,7 @@ BASEDIR =  $$quote($$_PRO_FILE_PWD_)
 
 device {
     CONFIG(debug, debug|release) {
-        SOURCES +=  $$quote($$BASEDIR/src/MyLibrary.cpp) \
-                 $$quote($$BASEDIR/src/brisaabstracteventsubscription.cpp) \
+        SOURCES +=  $$quote($$BASEDIR/src/brisaabstracteventsubscription.cpp) \
                  $$quote($$BASEDIR/src/brisaabstractservice.cpp) \
                  $$quote($$BASEDIR/src/brisaaction.cpp) \
                  $$quote($$BASEDIR/src/brisaargument.cpp) \
@@ -65,8 +64,7 @@ device {
                  $$quote($$BASEDIR/src/shared/webserver/webservice.cpp) \
                  $$quote($$BASEDIR/src/shared/webserver/webstaticcontent.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/include/MyLibrary.hpp) \
-                 $$quote($$BASEDIR/include/upnp/brisaabstracteventsubscription.h) \
+        HEADERS +=  $$quote($$BASEDIR/include/upnp/brisaabstracteventsubscription.h) \
                  $$quote($$BASEDIR/include/upnp/brisaabstractservice.h) \
                  $$quote($$BASEDIR/include/upnp/brisaaction.h) \
                  $$quote($$BASEDIR/include/upnp/brisaargument.h) \
@@ -134,8 +132,7 @@ device {
     }
 
     CONFIG(release, debug|release) {
-        SOURCES +=  $$quote($$BASEDIR/src/MyLibrary.cpp) \
-                 $$quote($$BASEDIR/src/brisaabstracteventsubscription.cpp) \
+        SOURCES +=  $$quote($$BASEDIR/src/brisaabstracteventsubscription.cpp) \
                  $$quote($$BASEDIR/src/brisaabstractservice.cpp) \
                  $$quote($$BASEDIR/src/brisaaction.cpp) \
                  $$quote($$BASEDIR/src/brisaargument.cpp) \
@@ -196,8 +193,7 @@ device {
                  $$quote($$BASEDIR/src/shared/webserver/webservice.cpp) \
                  $$quote($$BASEDIR/src/shared/webserver/webstaticcontent.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/include/MyLibrary.hpp) \
-                 $$quote($$BASEDIR/include/upnp/brisaabstracteventsubscription.h) \
+        HEADERS +=  $$quote($$BASEDIR/include/upnp/brisaabstracteventsubscription.h) \
                  $$quote($$BASEDIR/include/upnp/brisaabstractservice.h) \
                  $$quote($$BASEDIR/include/upnp/brisaaction.h) \
                  $$quote($$BASEDIR/include/upnp/brisaargument.h) \
@@ -267,8 +263,7 @@ device {
 
 simulator {
     CONFIG(debug, debug|release) {
-        SOURCES +=  $$quote($$BASEDIR/src/MyLibrary.cpp) \
-                 $$quote($$BASEDIR/src/brisaabstracteventsubscription.cpp) \
+        SOURCES +=  $$quote($$BASEDIR/src/brisaabstracteventsubscription.cpp) \
                  $$quote($$BASEDIR/src/brisaabstractservice.cpp) \
                  $$quote($$BASEDIR/src/brisaaction.cpp) \
                  $$quote($$BASEDIR/src/brisaargument.cpp) \
@@ -329,8 +324,7 @@ simulator {
                  $$quote($$BASEDIR/src/shared/webserver/webservice.cpp) \
                  $$quote($$BASEDIR/src/shared/webserver/webstaticcontent.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/include/MyLibrary.hpp) \
-                 $$quote($$BASEDIR/include/upnp/brisaabstracteventsubscription.h) \
+        HEADERS +=  $$quote($$BASEDIR/include/upnp/brisaabstracteventsubscription.h) \
                  $$quote($$BASEDIR/include/upnp/brisaabstractservice.h) \
                  $$quote($$BASEDIR/include/upnp/brisaaction.h) \
                  $$quote($$BASEDIR/include/upnp/brisaargument.h) \
@@ -415,7 +409,6 @@ INCLUDEPATH +=  $$quote($$BASEDIR/src/shared/webserver) \
          $$quote($$BASEDIR/src/device) \
          $$quote($$BASEDIR/src/controlpoint/av_controlpoint) \
          $$quote($$BASEDIR/src/device/av_device) \
-         $$quote($$BASEDIR/include) \
          $$quote($$BASEDIR/include/upnp/controlpoint) \
          $$quote($$BASEDIR/include/upnp/shared/webserver/http) \
          $$quote($$BASEDIR/include/upnp/network) \

@@ -3,16 +3,6 @@ BASEDIR =  $$quote($$_PRO_FILE_PWD_)
 
 device {
     CONFIG(debug, debug|release) {
-        INCLUDEPATH +=  $$quote(/home/wendell/git/brisa-project/brisa-src/Brisa/include)
-
-        DEPENDPATH +=  $$quote(/home/wendell/git/brisa-project/brisa-src/Brisa/include)
-
-        LIBS += -lBrisa
-
-        LIBS +=  $$quote(-L/home/wendell/git/brisa-project/brisa-src/Brisa/arm/so.le-v7-g)
-
-        PRE_TARGETDEPS +=  $$quote(/home/wendell/git/brisa-project/brisa-src/Brisa/arm/so.le-v7-g)
-
         SOURCES +=  $$quote($$BASEDIR/src/MyService.cpp) \
                  $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
@@ -22,16 +12,6 @@ device {
     }
 
     CONFIG(release, debug|release) {
-        INCLUDEPATH +=  $$quote(/home/wendell/git/brisa-project/brisa-src/Brisa/include)
-
-        DEPENDPATH +=  $$quote(/home/wendell/git/brisa-project/brisa-src/Brisa/include)
-
-        LIBS += -lBrisa
-
-        LIBS +=  $$quote(-L/home/wendell/git/brisa-project/brisa-src/Brisa/arm/so.le-v7-g)
-
-        PRE_TARGETDEPS +=  $$quote(/home/wendell/git/brisa-project/brisa-src/Brisa/arm/so.le-v7-g)
-
         SOURCES +=  $$quote($$BASEDIR/src/MyService.cpp) \
                  $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
@@ -43,10 +23,6 @@ device {
 
 simulator {
     CONFIG(debug, debug|release) {
-        INCLUDEPATH +=  $$quote(/home/wendell/git/brisa-project/brisa-src/Brisa/include)
-
-        DEPENDPATH +=  $$quote(/home/wendell/git/brisa-project/brisa-src/Brisa/include)
-
         LIBS += -lBrisa
 
         SOURCES +=  $$quote($$BASEDIR/src/MyService.cpp) \

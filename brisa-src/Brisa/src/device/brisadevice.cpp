@@ -61,7 +61,7 @@ BrisaDevice::BrisaDevice(const QString &deviceType, const QString &friendlyName,
     this->minor = "0";
 
     webserver = new Webserver(QHostAddress(ipAddress), port);
-    qDebug() << "la vai: " << ipAddress;
+    qDebug() << "Current IP: " << ipAddress;
     ssdp = new BrisaSSDPServer();
 
     QObject::connect(ssdp,

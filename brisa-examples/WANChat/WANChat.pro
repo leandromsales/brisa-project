@@ -1,6 +1,6 @@
 APP_NAME = WANChat
 
 CONFIG += qt warn_on cascades10
-QT += network xml
 
+include(brisa.pri)
 include(config.pri)

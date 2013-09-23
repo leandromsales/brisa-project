@@ -27,20 +27,20 @@
 								<option id="com.qnx.qcc.option.compiler.optlevel.1295845373" name="Optimization Level" superClass="com.qnx.qcc.option.compiler.optlevel" value="com.qnx.qcc.option.compiler.optlevel.0" valueType="enumerated"/>
 								<inputType id="com.qnx.qcc.inputType.compiler.2043857019" superClass="com.qnx.qcc.inputType.compiler"/>
 							</tool>
-							<tool id="com.qnx.qcc.tool.assembler.904585319" name="QCC Assembler" superClass="com.qnx.qcc.tool.assembler">
-								<option id="com.qnx.qcc.option.assembler.includePath.1738983226" superClass="com.qnx.qcc.option.assembler.includePath" valueType="includePath">
+							<!--tool id="com.qnx.qcc.tool.assembler.904585319" name="QCC Assembler" superClass="com.qnx.qcc.tool.assembler">
+								<option id="com.qnx.qcc.option.assembler.includePath.1738983226" name="Include Directories (-I)" superClass="com.qnx.qcc.option.assembler.includePath" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Brisa/include}&quot;"/>
 								</option>
 								<inputType id="com.qnx.qcc.inputType.assembler.1242995451" superClass="com.qnx.qcc.inputType.assembler"/>
-							</tool>
-							<tool id="com.qnx.qcc.tool.linker.389798486" name="QCC Linker" superClass="com.qnx.qcc.tool.linker">
+							</tool-->
+							<!--tool id="com.qnx.qcc.tool.linker.389798486" name="QCC Linker" superClass="com.qnx.qcc.tool.linker">
 								<option id="com.qnx.qcc.option.linker.libraries.1440046368" name="Libraries (-l)" superClass="com.qnx.qcc.option.linker.libraries" valueType="libs">
 									<listOptionValue builtIn="false" value="Brisa"/>
 								</option>
 								<option id="com.qnx.qcc.option.linker.libraryPaths.706363586" name="Library Paths (-L)" superClass="com.qnx.qcc.option.linker.libraryPaths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="${workspace_loc:/Brisa/arm/so.le-v7-g}"/>
 								</option>
-							</tool>
+							</tool-->
 							<tool id="com.qnx.qcc.tool.archiver.2035692592" name="QCC Archiver" superClass="com.qnx.qcc.tool.archiver"/>
 						</toolChain>
 					</folderInfo>
@@ -49,9 +49,7 @@
 					</sourceEntries>
 				</configuration>
 			</storageModule>
-			<storageModule moduleId="org.eclipse.cdt.core.externalSettings">
-				<externalSettings containerId="Brisa;com.qnx.qcc.toolChain.1470391118" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier"/>
-			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
 		</cconfiguration>
 		<cconfiguration id="com.qnx.qcc.toolChain.842141991">
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.qnx.qcc.toolChain.842141991" moduleId="org.eclipse.cdt.core.settings" name="Device-Release">
@@ -80,14 +78,14 @@
 							<tool id="com.qnx.qcc.tool.assembler.429226167" name="QCC Assembler" superClass="com.qnx.qcc.tool.assembler">
 								<inputType id="com.qnx.qcc.inputType.assembler.644930205" superClass="com.qnx.qcc.inputType.assembler"/>
 							</tool>
-							<tool id="com.qnx.qcc.tool.linker.2142329396" name="QCC Linker" superClass="com.qnx.qcc.tool.linker">
+							<!--tool id="com.qnx.qcc.tool.linker.2142329396" name="QCC Linker" superClass="com.qnx.qcc.tool.linker">
 								<option id="com.qnx.qcc.option.linker.libraries.510016804" name="Libraries (-l)" superClass="com.qnx.qcc.option.linker.libraries" valueType="libs">
 									<listOptionValue builtIn="false" value="Brisa"/>
 								</option>
 								<option id="com.qnx.qcc.option.linker.libraryPaths.533233450" name="Library Paths (-L)" superClass="com.qnx.qcc.option.linker.libraryPaths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="${workspace_loc:/Brisa/arm/so.le-v7-g}"/>
 								</option>
-							</tool>
+							</tool-->
 							<tool id="com.qnx.qcc.tool.archiver.2084039555" name="QCC Archiver" superClass="com.qnx.qcc.tool.archiver"/>
 						</toolChain>
 					</folderInfo>
@@ -127,14 +125,14 @@
 							<tool id="com.qnx.qcc.tool.assembler.1517382500" name="QCC Assembler" superClass="com.qnx.qcc.tool.assembler">
 								<inputType id="com.qnx.qcc.inputType.assembler.1090088161" superClass="com.qnx.qcc.inputType.assembler"/>
 							</tool>
-							<tool id="com.qnx.qcc.tool.linker.1990899043" name="QCC Linker" superClass="com.qnx.qcc.tool.linker">
+							<!--tool id="com.qnx.qcc.tool.linker.1990899043" name="QCC Linker" superClass="com.qnx.qcc.tool.linker">
 								<option id="com.qnx.qcc.option.linker.libraries.619167966" name="Libraries (-l)" superClass="com.qnx.qcc.option.linker.libraries" valueType="libs">
 									<listOptionValue builtIn="false" value="Brisa"/>
 								</option>
 								<option id="com.qnx.qcc.option.linker.libraryPaths.849918245" name="Library Paths (-L)" superClass="com.qnx.qcc.option.linker.libraryPaths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="${workspace_loc:/Brisa/arm/so.le-v7-g}"/>
 								</option>
-							</tool>
+							</tool-->
 							<tool id="com.qnx.qcc.tool.archiver.1561390974" name="QCC Archiver" superClass="com.qnx.qcc.tool.archiver"/>
 						</toolChain>
 					</folderInfo>
