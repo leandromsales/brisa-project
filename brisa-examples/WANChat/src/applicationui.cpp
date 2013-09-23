@@ -5,26 +5,26 @@
 #include <bb/cascades/AbstractPane>
 #include <bb/cascades/LocaleHandler>
 
-#include <QMetaObject>
-
 #include "MyService.hpp"
+
 using namespace bb::cascades;
 
 ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
         QObject(app)
 {
+
 	QString completeUUID = getCompleteUuid();
-	qDebug() << "This is my complete UUID" << completeUUID;
+	qDebug() << "My UUID" << completeUUID;
 	this->dev = Brisa::BrisaDevice("urn:schemas-upnp-org:device:MyDevice:1",
-								   "Wisland",
-								   "COMPElab",
-								   "http://compelab.org",
-								   "This is the passiva portion of the wisland Chat",
-								   "Test device...",
-								   "0.1",
-								   "http://compelab.org/wislandChat",
-								   "1.0.0",
-								   completeUUID);
+			"Wisland",
+			"COMPElab",
+			"http://compelab.org",
+			"This is the passiva portion of the wisland Chat",
+			"Test device...",
+			"0.1",
+			"http://compelab.org/wislandChat",
+			"1.0.0",
+			completeUUID);
 
 	MyService * service = new MyService();
 	service->setDescriptionFile("app/native/assets/MyService-scpd.xml");
@@ -32,8 +32,7 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
 	this->dev.addService(service);
 	this->dev.start();
 
-	QString ip = getValidIP();
-	qDebug() << "Valid IP: " << ip;
+
     // prepare the localization
     m_pTranslator = new QTranslator(this);
     m_pLocaleHandler = new LocaleHandler(this);
@@ -61,7 +60,7 @@ void ApplicationUI::onSystemLanguageChanged()
     QCoreApplication::instance()->removeTranslator(m_pTranslator);
     // Initiate, load and install the application translation files.
     QString locale_string = QLocale().name();
-    QString file_name = QString("Brisa101_%1").arg(locale_string);
+    QString file_name = QString("WANChat_%1").arg(locale_string);
     if (m_pTranslator->load(file_name, "app/native/qm")) {
         QCoreApplication::instance()->installTranslator(m_pTranslator);
     }

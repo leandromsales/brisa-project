@@ -16,7 +16,9 @@ void myMessageOutput(QtMsgType type, const char* msg){
 Q_DECL_EXPORT int main(int argc, char **argv)
 {
     Application app(argc, argv);
+
     qInstallMsgHandler(myMessageOutput);
+
     // Create the Application UI object, this is where the main.qml file
     // is loaded and the application scene is set.
     new ApplicationUI(&app);

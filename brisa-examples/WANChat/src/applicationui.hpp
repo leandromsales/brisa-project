@@ -2,6 +2,7 @@
 #define ApplicationUI_HPP_
 
 #include <QObject>
+
 #include <upnp/device/brisadevice.h>
 #include <upnp/brisautils.h>
 
@@ -33,7 +34,9 @@ private slots:
 private:
     QTranslator* m_pTranslator;
     bb::cascades::LocaleHandler* m_pLocaleHandler;
+
     Brisa::BrisaDevice dev;
+
 };
 
 #endif /* ApplicationUI_HPP_ */
