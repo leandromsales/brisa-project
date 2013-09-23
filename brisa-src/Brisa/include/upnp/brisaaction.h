@@ -1,5 +1,5 @@
-#ifndef _BRISAACTION_H
-#define _BRISAACTION_H
+#ifndef BRISAACTION_H
+#define BRISAACTION_H
 
 #include "brisaargument.h"
 
@@ -108,7 +108,7 @@ public:
      * Clears this action's argument list.
      */
     void clearArgumentList();
-	 
+
     /*!
      * Remove given \a argument from this action's list of arguments.
      */

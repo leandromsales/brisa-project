@@ -14,7 +14,7 @@ void BrisaServiceXMLHandler::parseService(BrisaAbstractService *service,
     doc.setContent(scpd);
     QDomElement element = doc.documentElement();
     if (element.tagName() != "scpd") {
-        qDebug() << "SAIUUUUUUUUUUUUUUUUUUUUU";
+        qDebug() << "WARNING:BrisaServiceXMLHandler::parseService: tag name different from scpd. Its name is " <<  element.tagName();
         return;
     }
 

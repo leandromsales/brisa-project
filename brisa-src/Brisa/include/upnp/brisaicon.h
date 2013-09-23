@@ -1,5 +1,5 @@
-#ifndef _BRISAICON_H
-#define _BRISAICON_H
+#ifndef BRISAICON_H
+#define BRISAICON_H
 
 #include <QObject>
 #include <QString>

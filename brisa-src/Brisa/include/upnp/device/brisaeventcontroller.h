@@ -1,5 +1,5 @@
-#ifndef _BRISAEVENTCONTROLLER_H
-#define _BRISAEVENTCONTROLLER_H
+#ifndef BRISAEVENTCONTROLLER_H
+#define BRISAEVENTCONTROLLER_H
 
 #include "brisaeventmessage.h"
 #include "brisamulticasteventmessage.h"

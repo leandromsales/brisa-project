@@ -165,7 +165,7 @@ quint8 Service::parseXMLDescription(QTemporaryFile *description) {
     QString nodeName, nodeValue;
 
     domNodeList = domNodeList.item(0).childNodes();
-    for (int i = 0; i < domNodeList.length(); i++) {
+    for (unsigned int i = 0; i < domNodeList.length(); i++) {
         //qDebug() << domNodeList.item(i).nodeName(); // action action action...
         Action *action = new Action();
         domNodeList1 = domNodeList.item(i).childNodes();

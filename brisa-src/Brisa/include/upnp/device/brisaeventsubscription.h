@@ -1,5 +1,5 @@
-#ifndef _BRISAEVENTSUBSCRIPTION_H
-#define _BRISAEVENTSUBSCRIPTION_H
+#ifndef BRISAEVENTSUBSCRIPTION_H
+#define BRISAEVENTSUBSCRIPTION_H
 
 #include "../brisaabstracteventsubscription.h"
 #include "upnp/shared/webserver/http/httpresponse.h"

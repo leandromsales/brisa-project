@@ -1,5 +1,5 @@
-#ifndef _BRISAEVENTMESSAGE_H
-#define _BRISAEVENTMESSAGE_H
+#ifndef BRISAEVENTMESSAGE_H
+#define BRISAEVENTMESSAGE_H
 
 #include <QObject>
 #include <QList>

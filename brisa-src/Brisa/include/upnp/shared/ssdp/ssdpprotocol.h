@@ -1,5 +1,5 @@
-#ifndef __SSDP_PROTOCOL_H__
-#define __SSDP_PROTOCOL_H__
+#ifndef SSDP_PROTOCOL_H
+#define SSDP_PROTOCOL_H
 
 #define SSDP_ADDR "239.255.255.250"
 #define SSDP_PORT 1900

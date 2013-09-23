@@ -1,5 +1,5 @@
-#ifndef _BRISAARGUMENT_H
-#define _BRISAARGUMENT_H
+#ifndef BRISAARGUMENT_H
+#define BRISAARGUMENT_H
 
 #include <QObject>
 #include <QString>

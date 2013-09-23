@@ -1,5 +1,5 @@
-#ifndef _BRISASSDPSERVER_H
-#define _BRISASSDPSERVER_H
+#ifndef BRISASSDPSERVER_H
+#define BRISASSDPSERVER_H
 
 #include "upnp/controlpoint/brisaudplistener.h"
 #include "upnp/network/brisanetwork.h"
