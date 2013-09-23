@@ -38,7 +38,7 @@
 									<listOptionValue builtIn="false" value="Brisa"/>
 								</option>
 								<option id="com.qnx.qcc.option.linker.libraryPaths.134558333" name="Library Paths (-L)" superClass="com.qnx.qcc.option.linker.libraryPaths" valueType="libPaths">
-									<listOptionValue builtIn="false" value="/home/daniel/programming-workspaces/blackberry/blackberry-upnplib/brisa-src/Brisa/arm/so.le-v7-g"/>
+									<listOptionValue builtIn="false" value="/home/daniel/programming-workspaces/blackberry/brisa-project/brisa-src/Brisa/arm/so.le-v7-g"/>
 								</option>
 							</tool>
 							<tool id="com.qnx.qcc.tool.archiver.1449344701" name="QCC Archiver" superClass="com.qnx.qcc.tool.archiver"/>
@@ -88,7 +88,7 @@
 									<listOptionValue builtIn="false" value="Brisa"/>
 								</option>
 								<option id="com.qnx.qcc.option.linker.libraryPaths.256960650" name="Library Paths (-L)" superClass="com.qnx.qcc.option.linker.libraryPaths" valueType="libPaths">
-									<listOptionValue builtIn="false" value="/home/daniel/programming-workspaces/blackberry/blackberry-upnplib/brisa-src/Brisa/arm/so.le-v7-g"/>
+									<listOptionValue builtIn="false" value="/home/daniel/programming-workspaces/blackberry/brisa-project/brisa-src/Brisa/arm/so.le-v7-g"/>
 								</option>
 							</tool>
 							<tool id="com.qnx.qcc.tool.archiver.166399542" name="QCC Archiver" superClass="com.qnx.qcc.tool.archiver"/>
@@ -138,7 +138,7 @@
 									<listOptionValue builtIn="false" value="Brisa"/>
 								</option>
 								<option id="com.qnx.qcc.option.linker.libraryPaths.1472849011" name="Library Paths (-L)" superClass="com.qnx.qcc.option.linker.libraryPaths" valueType="libPaths">
-									<listOptionValue builtIn="false" value="/home/daniel/programming-workspaces/blackberry/blackberry-upnplib/brisa-src/Brisa/arm/so.le-v7-g"/>
+									<listOptionValue builtIn="false" value="/home/daniel/programming-workspaces/blackberry/brisa-project/brisa-src/Brisa/arm/so.le-v7-g"/>
 								</option>
 							</tool>
 							<tool id="com.qnx.qcc.tool.archiver.419846010" name="QCC Archiver" superClass="com.qnx.qcc.tool.archiver"/>

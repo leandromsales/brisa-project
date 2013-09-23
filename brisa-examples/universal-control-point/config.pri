@@ -9,14 +9,34 @@ device {
 
         LIBS += -lBrisa
 
-        LIBS +=  $$quote(-L/home/daniel/programming-workspaces/blackberry/blackberry-upnplib/brisa-src/Brisa/arm/so.le-v7-g)
+        LIBS +=  $$quote(-L/home/daniel/programming-workspaces/blackberry/blackberry-upnplib/brisa-src/Brisa/arm/so.le-v7-g) \
+                 $$quote(-L/home/daniel/programming-workspaces/blackberry/brisa-project/brisa-src/Brisa/arm/so.le-v7-g)
 
-        PRE_TARGETDEPS +=  $$quote(/home/daniel/programming-workspaces/blackberry/blackberry-upnplib/brisa-src/Brisa/arm/so.le-v7-g)
+        PRE_TARGETDEPS +=  $$quote(/home/daniel/programming-workspaces/blackberry/blackberry-upnplib/brisa-src/Brisa/arm/so.le-v7-g) \
+                 $$quote(/home/daniel/programming-workspaces/blackberry/brisa-project/brisa-src/Brisa/arm/so.le-v7-g)
 
-        SOURCES +=  $$quote($$BASEDIR/src/applicationui.cpp) \
-                 $$quote($$BASEDIR/src/main.cpp)
+        SOURCES +=  $$quote($$BASEDIR/src/actioncontroller.cpp) \
+                 $$quote($$BASEDIR/src/applicationui.cpp) \
+                 $$quote($$BASEDIR/src/bb10/listmodel.cpp) \
+                 $$quote($$BASEDIR/src/bb10/mediacontentitem.cpp) \
+                 $$quote($$BASEDIR/src/bb10/mediaitem.cpp) \
+                 $$quote($$BASEDIR/src/bb10/mediaitemlocal.cpp) \
+                 $$quote($$BASEDIR/src/bb10/mediaplayermodel.cpp) \
+                 $$quote($$BASEDIR/src/devicelist.cpp) \
+                 $$quote($$BASEDIR/src/main.cpp) \
+                 $$quote($$BASEDIR/src/servicecontroller.cpp) \
+                 $$quote($$BASEDIR/src/viewcontroller.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/src/applicationui.hpp)
+        HEADERS +=  $$quote($$BASEDIR/src/actioncontroller.h) \
+                 $$quote($$BASEDIR/src/applicationui.hpp) \
+                 $$quote($$BASEDIR/src/bb10/listmodel.h) \
+                 $$quote($$BASEDIR/src/bb10/mediacontentitem.h) \
+                 $$quote($$BASEDIR/src/bb10/mediaitem.h) \
+                 $$quote($$BASEDIR/src/bb10/mediaitemlocal.h) \
+                 $$quote($$BASEDIR/src/bb10/mediaplayermodel.h) \
+                 $$quote($$BASEDIR/src/devicelist.h) \
+                 $$quote($$BASEDIR/src/servicecontroller.h) \
+                 $$quote($$BASEDIR/src/viewcontroller.h)
     }
 
     CONFIG(release, debug|release) {
@@ -26,14 +46,34 @@ device {
 
         LIBS += -lBrisa
 
-        LIBS +=  $$quote(-L/home/daniel/programming-workspaces/blackberry/blackberry-upnplib/brisa-src/Brisa/arm/so.le-v7-g)
+        LIBS +=  $$quote(-L/home/daniel/programming-workspaces/blackberry/blackberry-upnplib/brisa-src/Brisa/arm/so.le-v7-g) \
+                 $$quote(-L/home/daniel/programming-workspaces/blackberry/brisa-project/brisa-src/Brisa/arm/so.le-v7-g)
 
-        PRE_TARGETDEPS +=  $$quote(/home/daniel/programming-workspaces/blackberry/blackberry-upnplib/brisa-src/Brisa/arm/so.le-v7-g)
+        PRE_TARGETDEPS +=  $$quote(/home/daniel/programming-workspaces/blackberry/blackberry-upnplib/brisa-src/Brisa/arm/so.le-v7-g) \
+                 $$quote(/home/daniel/programming-workspaces/blackberry/brisa-project/brisa-src/Brisa/arm/so.le-v7-g)
 
-        SOURCES +=  $$quote($$BASEDIR/src/applicationui.cpp) \
-                 $$quote($$BASEDIR/src/main.cpp)
+        SOURCES +=  $$quote($$BASEDIR/src/actioncontroller.cpp) \
+                 $$quote($$BASEDIR/src/applicationui.cpp) \
+                 $$quote($$BASEDIR/src/bb10/listmodel.cpp) \
+                 $$quote($$BASEDIR/src/bb10/mediacontentitem.cpp) \
+                 $$quote($$BASEDIR/src/bb10/mediaitem.cpp) \
+                 $$quote($$BASEDIR/src/bb10/mediaitemlocal.cpp) \
+                 $$quote($$BASEDIR/src/bb10/mediaplayermodel.cpp) \
+                 $$quote($$BASEDIR/src/devicelist.cpp) \
+                 $$quote($$BASEDIR/src/main.cpp) \
+                 $$quote($$BASEDIR/src/servicecontroller.cpp) \
+                 $$quote($$BASEDIR/src/viewcontroller.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/src/applicationui.hpp)
+        HEADERS +=  $$quote($$BASEDIR/src/actioncontroller.h) \
+                 $$quote($$BASEDIR/src/applicationui.hpp) \
+                 $$quote($$BASEDIR/src/bb10/listmodel.h) \
+                 $$quote($$BASEDIR/src/bb10/mediacontentitem.h) \
+                 $$quote($$BASEDIR/src/bb10/mediaitem.h) \
+                 $$quote($$BASEDIR/src/bb10/mediaitemlocal.h) \
+                 $$quote($$BASEDIR/src/bb10/mediaplayermodel.h) \
+                 $$quote($$BASEDIR/src/devicelist.h) \
+                 $$quote($$BASEDIR/src/servicecontroller.h) \
+                 $$quote($$BASEDIR/src/viewcontroller.h)
     }
 }
 
@@ -45,14 +85,33 @@ simulator {
 
         LIBS += -lBrisa
 
-        SOURCES +=  $$quote($$BASEDIR/src/applicationui.cpp) \
-                 $$quote($$BASEDIR/src/main.cpp)
+        SOURCES +=  $$quote($$BASEDIR/src/actioncontroller.cpp) \
+                 $$quote($$BASEDIR/src/applicationui.cpp) \
+                 $$quote($$BASEDIR/src/bb10/listmodel.cpp) \
+                 $$quote($$BASEDIR/src/bb10/mediacontentitem.cpp) \
+                 $$quote($$BASEDIR/src/bb10/mediaitem.cpp) \
+                 $$quote($$BASEDIR/src/bb10/mediaitemlocal.cpp) \
+                 $$quote($$BASEDIR/src/bb10/mediaplayermodel.cpp) \
+                 $$quote($$BASEDIR/src/devicelist.cpp) \
+                 $$quote($$BASEDIR/src/main.cpp) \
+                 $$quote($$BASEDIR/src/servicecontroller.cpp) \
+                 $$quote($$BASEDIR/src/viewcontroller.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/src/applicationui.hpp)
+        HEADERS +=  $$quote($$BASEDIR/src/actioncontroller.h) \
+                 $$quote($$BASEDIR/src/applicationui.hpp) \
+                 $$quote($$BASEDIR/src/bb10/listmodel.h) \
+                 $$quote($$BASEDIR/src/bb10/mediacontentitem.h) \
+                 $$quote($$BASEDIR/src/bb10/mediaitem.h) \
+                 $$quote($$BASEDIR/src/bb10/mediaitemlocal.h) \
+                 $$quote($$BASEDIR/src/bb10/mediaplayermodel.h) \
+                 $$quote($$BASEDIR/src/devicelist.h) \
+                 $$quote($$BASEDIR/src/servicecontroller.h) \
+                 $$quote($$BASEDIR/src/viewcontroller.h)
     }
 }
 
-INCLUDEPATH +=  $$quote($$BASEDIR/src)
+INCLUDEPATH +=  $$quote($$BASEDIR/src/bb10) \
+         $$quote($$BASEDIR/src)
 
 CONFIG += precompile_header
 

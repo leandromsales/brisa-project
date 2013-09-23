@@ -1,5 +1,5 @@
-#ifndef _BRISAABSTRACTSERVICE_H
-#define _BRISAABSTRACTSERVICE_H
+#ifndef BRISAABSTRACTSERVICE_H
+#define BRISAABSTRACTSERVICE_H
 
 #include <QMap>
 #include <QString>
@@ -153,7 +153,7 @@ public:
     /*!
      * Clears this State variable's list.
      */
-    void clearStateVariableList();	
+    void clearStateVariableList();
 
     /*!
      * \internal
@@ -166,7 +166,7 @@ public:
     /*!
      * \internal
      *
-     * Return string literal for a given upnp error code. 
+     * Return string literal for a given upnp error code.
      */
 	QString errorCodeToString(int errorCode);
 

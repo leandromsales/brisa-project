@@ -1,5 +1,5 @@
-#ifndef _BRISAABSTRACTEVENTSUBSCRIPTION_H
-#define _BRISAABSTRACTEVENTSUBSCRIPTION_H
+#ifndef BRISAABSTRACTEVENTSUBSCRIPTION_H
+#define BRISAABSTRACTEVENTSUBSCRIPTION_H
 
 #include <QDateTime>
 #include <QList>
@@ -17,7 +17,7 @@ namespace Brisa {
  *
  * \brief Abstract class that represents an event subscription
  */
-class BrisaAbstractEventSubscription: virtual public WebService {
+class BrisaAbstractEventSubscription: public WebService {
     Q_OBJECT
 public:
 

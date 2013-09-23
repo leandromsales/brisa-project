@@ -1,5 +1,5 @@
-#ifndef _BRISADEVICE_H
-#define _BRISADEVICE_H
+#ifndef BRISADEVICE_H
+#define BRISADEVICE_H
 
 #include <QXmlDefaultHandler>
 #include <QNetworkInterface>

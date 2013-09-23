@@ -1,5 +1,5 @@
-#ifndef BRISASERVICE_H_
-#define BRISASERVICE_H_
+#ifndef BRISASERVICE_H
+#define BRISASERVICE_H
 
 #include "../brisaabstractservice.h"
 #include "brisaeventcontroller.h"

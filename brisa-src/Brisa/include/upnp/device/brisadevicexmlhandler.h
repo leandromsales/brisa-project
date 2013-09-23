@@ -1,5 +1,5 @@
-#ifndef _BRISADEVICEXMLHANDLER_H
-#define _BRISADEVICEXMLHANDLER_H
+#ifndef BRISADEVICEXMLHANDLER_H
+#define BRISADEVICEXMLHANDLER_H
 
 #include <QXmlStreamWriter>
 #include <QString>
