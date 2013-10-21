@@ -6,14 +6,17 @@
 #include "controlpoint_media_globals.h"
 #include "mediaservercontrolpointdevice.h"
 #include "mediarenderercontrolpointdevice.h"
-#include "upnp/shared/ssdp/ssdp.h"
+//#include "upnp/shared/ssdp/ssdp.h"
+#include "upnp/shared/ssdp/brisassdpclient.h"
+#include "upnp/controlpoint/brisamsearchclientcp.h"
 
 //#include "teste.h"
+using namespace Brisa;
 
 class MediaControlPoint: public QObject {
 Q_OBJECT
 public:
-	explicit MediaControlPoint(QObject *parent = 0);
+	MediaControlPoint(QObject *parent = 0, QString st = "ssdp:all", int mx = 5);
 	~MediaControlPoint();
 
 	const MediaServerControlPointDevice *getMediaServer(const QString &);
@@ -22,15 +25,22 @@ public:
 	QList<MediaRendererControlPointDevice *> getMediaRenderers();
 	uint getMediaServersCount();
 	uint getMediaRenderersCount();
+	void discover();
+	void start();
+	void stop();
+	bool isRunning();
 
 private:
 	uint mediaServerCount;
 	uint mediaRendererCount;
 	//teste *testen;
 
-	SSDP *ssdp;
+//	SSDP *ssdp;
+	BrisaSSDPClient *ssdp;
+	BrisaMSearchClientCP *msearch;
 	QHash<QString, MediaServerControlPointDevice*> mss;
 	QHash<QString, MediaRendererControlPointDevice*> mrs;
+	bool running;
 
 signals:
 
@@ -45,6 +55,7 @@ private slots:
 	void handleMediaServerReady(Device *device);
 	void handleMediaRendererReady(Device * device);
 	void handleErrorParsingDeviceDescription(Device *device, quint8 errorCode);
+
 
 };
 

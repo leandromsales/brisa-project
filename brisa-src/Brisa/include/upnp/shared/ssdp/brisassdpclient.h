@@ -32,8 +32,8 @@
 #include <QObject>
 #include <QHttpRequestHeader>
 
-#include "brisaglobal.h"
-#include "brisaudplistener.h"
+#include "upnp/brisaglobal.h"
+#include "upnp/controlpoint/brisaudplistener.h"
 
 namespace Brisa {
 
@@ -86,6 +86,7 @@ public slots:
      *  \return true if is running
      */
     bool isRunning() const;
+    QMap<QString, QString> getMapFromMessage(QString message);
 
 signals:
     /*!
@@ -111,6 +112,7 @@ signals:
      *  \sa newDeviceEvent()
      */
     void removedDeviceEvent(const QString &usn);
+    void messageReceived(const QString &);
 
 private slots:
     /*!

@@ -1,24 +1,30 @@
 #include "mediacontrolpoint.h"
 
 
-MediaControlPoint::MediaControlPoint(QObject *parent) :
+MediaControlPoint::MediaControlPoint(QObject *parent, QString st, int mx) :
 		QObject(parent) {
 	this->mediaServerCount = 0;
 	this->mediaRendererCount = 0;
+	this->running = false;
 
-    this->ssdp = new SSDP(1, this);
+    this->ssdp = new BrisaSSDPClient(this);
+    msearch = new BrisaMSearchClientCP(this, st, mx);
 
 	bool c = connect(ssdp, SIGNAL(messageReceived(QString)), this,
 			SLOT(handleNewSSDPMessage(QString)));
+	 connect(msearch, SIGNAL(messageReceived(QString)), this,
+				SLOT(handleNewSSDPMessage(QString)));
 	Q_ASSERT(c);
-
-	this->ssdp->start();
 
 	qDebug() << "MediaControlPoint started...";
 }
 
 MediaControlPoint::~MediaControlPoint() {
+	if (!isRunning())
+		this->stop();
+
 	delete this->ssdp;
+	delete this->msearch;
 }
 
 void MediaControlPoint::handleNewSSDPMessage(QString message) {
@@ -146,6 +152,36 @@ void MediaControlPoint::handleNewSSDPMessage(QString message) {
 	}
 }
 
+void MediaControlPoint::start(){
+	 if (isRunning()) {
+	        qDebug() << "Brisa Control Point: already started.";
+	    } else {
+	        this->ssdp->start();
+	        this->msearch->start();
+	        this->running = true;
+	    }
+}
+
+void MediaControlPoint::stop(){
+	 if (!isRunning()) {
+	        qDebug() << "Brisa Control Point: already stopped.";
+	    } else {
+		this->ssdp->stop();
+		this->msearch->stop();
+		this->running = false;
+		this->mediaServerCount = 0;
+		this->mediaRendererCount = 0;
+		this->getMediaRenderers().clear();
+		this->getMediaServers().clear();
+		this->mss.clear();
+		this->mrs.clear();
+	}
+}
+
+bool MediaControlPoint::isRunning() {
+    return this->running;
+}
+
 const MediaServerControlPointDevice * MediaControlPoint::getMediaServer(
 		const QString &uuid) {
 	return this->mss.value(uuid);
@@ -199,5 +235,9 @@ void MediaControlPoint::handleErrorParsingDeviceDescription(Device *device,
 	qDebug() << "Error parsing device description from "
 			<< device->getAttribute("location") << " with error code "
 			<< errorCode;
+}
+
+void MediaControlPoint::discover() {
+    this->msearch->discover();
 }
 
