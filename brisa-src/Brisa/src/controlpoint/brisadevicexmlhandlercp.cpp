@@ -133,7 +133,29 @@ void BrisaDeviceXMLHandlerCP::parseDevice(BrisaControlPointDevice *device,
 
             QDomNodeList deviceList = element.elementsByTagName("deviceList");
             for (int i = 0; i < deviceList.size(); i++) {
-                //TODO parse devices;
+
+            	BrisaControlPointDevice *embDevice = new BrisaControlPointDevice(device);
+            	QDomElement element = deviceList.at(i).toElement();
+
+            	QString friendlyName = element.elementsByTagName("friendlyName").at(0).toElement().text();
+            	QString deviceType = element.elementsByTagName("deviceType").at(0).toElement().text();
+            	QString manufacturer = element.elementsByTagName("manufacturer").at(0).toElement().text();
+            	QString manufacturerURL = element.elementsByTagName("manufacturerURL").at(0).toElement().text();
+            	QString modelName = element.elementsByTagName("manufacturer").at(0).toElement().text();
+            	QString modelNumber = element.elementsByTagName("modelNumber").at(0).toElement().text();
+            	QString modelURL = element.elementsByTagName("modelURL").at(0).toElement().text();
+            	QString serialNumber = element.elementsByTagName("serialNumber").at(0).toElement().text();
+            	embDevice->setAttribute(BrisaControlPointDevice::Udn, udn);
+            	embDevice->setAttribute(BrisaControlPointDevice::FriendlyName, friendlyName);
+            	embDevice->setAttribute(BrisaControlPointDevice::DeviceType, deviceType);
+            	embDevice->setAttribute(BrisaControlPointDevice::Manufacturer, manufacturer);
+            	embDevice->setAttribute(BrisaControlPointDevice::ManufacturerUrl, manufacturerURL);
+            	embDevice->setAttribute(BrisaControlPointDevice::ModelName, modelName);
+            	embDevice->setAttribute(BrisaControlPointDevice::ModelNumber, modelNumber);
+            	embDevice->setAttribute(BrisaControlPointDevice::ModelUrl, modelURL);
+            	embDevice->setAttribute(BrisaControlPointDevice::SerialNumber, serialNumber);
+
+            	device->addDevice(embDevice);
             }
         }
         n = n.nextSibling();
