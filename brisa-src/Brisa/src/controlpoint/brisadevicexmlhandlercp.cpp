@@ -37,7 +37,8 @@ BrisaDeviceXMLHandlerCP::~BrisaDeviceXMLHandlerCP() {
 }
 
 void BrisaDeviceXMLHandlerCP::parseDevice(BrisaControlPointDevice *device,
-        QTemporaryFile *tmp) {
+        QTemporaryFile *tmp)
+{
     QDomDocument document("Device");
     document.setContent(tmp);
     QDomElement element = document.documentElement();
@@ -54,111 +55,116 @@ void BrisaDeviceXMLHandlerCP::parseDevice(BrisaControlPointDevice *device,
             device->setAttribute(BrisaControlPointDevice::Major, major);
             device->setAttribute(BrisaControlPointDevice::Minor, minor);
         } else if (element.tagName() == "device") {
-            QString udn = element.elementsByTagName("UDN").at(0).toElement().text();
-
-            //qDebug() << "\n<UDN_XML>\n\t" << udn <<  "\n</UDN_XML>\n ";
-
-            QString friendlyName = element.elementsByTagName("friendlyName").at(0).toElement().text();
-            QString deviceType = element.elementsByTagName("deviceType").at(0).toElement().text();
-            QString manufacturer = element.elementsByTagName("manufacturer").at(0).toElement().text();
-            QString manufacturerURL = element.elementsByTagName("manufacturerURL").at(0).toElement().text();
-            QString modelName = element.elementsByTagName("manufacturer").at(0).toElement().text();
-            QString modelNumber = element.elementsByTagName("modelNumber").at(0).toElement().text();
-            QString modelURL = element.elementsByTagName("modelURL").at(0).toElement().text();
-            QString serialNumber = element.elementsByTagName("serialNumber").at(0).toElement().text();
-            device->setAttribute(BrisaControlPointDevice::Udn, udn);
-            device->setAttribute(BrisaControlPointDevice::FriendlyName, friendlyName);
-            device->setAttribute(BrisaControlPointDevice::DeviceType, deviceType);
-            device->setAttribute(BrisaControlPointDevice::Manufacturer, manufacturer);
-            device->setAttribute(BrisaControlPointDevice::ManufacturerUrl, manufacturerURL);
-            device->setAttribute(BrisaControlPointDevice::ModelName, modelName);
-            device->setAttribute(BrisaControlPointDevice::ModelNumber, modelNumber);
-            device->setAttribute(BrisaControlPointDevice::ModelUrl, modelURL);
-            device->setAttribute(BrisaControlPointDevice::SerialNumber, serialNumber);
-
-            QDomNodeList serviceList = element.elementsByTagName("serviceList");
-            if (serviceList.size() > 0) {
-                QDomNodeList services = serviceList.at(0).toElement().elementsByTagName("service");
-                for (int i = 0; i < services.size(); i++) {
-                    QString serviceType = services.at(i).toElement().elementsByTagName("serviceType").at(0).toElement().text();
-                    QString serviceId = services.at(i).toElement().elementsByTagName("serviceId").at(0).toElement().text();
-                    QString controlURL = services.at(i).toElement().elementsByTagName("controlURL").at(0).toElement().text();
-                    QString eventSubURL = services.at(i).toElement().elementsByTagName("eventSubURL").at(0).toElement().text();
-                    QString SCPDURL = services.at(i).toElement().elementsByTagName("SCPDURL").at(0).toElement().text();
-
-                    BrisaControlPointService *service = new BrisaControlPointService(serviceType, serviceId, SCPDURL, controlURL, eventSubURL, "");
-
-                    QStringList urlBase = device->getAttribute(BrisaControlPointDevice::UrlBase).split(":");
-                    if (urlBase.size() > PORT_INDEX) {
-                        QString port = urlBase[PORT_INDEX];
-                        QString newPort = "";
-                        quint8 index = 0;
-                        while (port[index].isDigit()) {
-                            newPort.append(port[index]);
-                            index++;
-                        }
-                        urlBase[PORT_INDEX] = newPort;
-                        while (urlBase.size() > PORT_INDEX + 1) urlBase.pop_back();
-                    }
-                    device->setAttribute(BrisaControlPointDevice::UrlBase, urlBase.join(":"));
-
-                    BrisaServiceFetcher f(service, device->
-                                          getAttribute(BrisaControlPointDevice::UrlBase)
-                                          + service->getAttribute(BrisaControlPointService::ScpdUrl));
-
-
-                    if (!f.fetch()) {
-                        device->addService(service);
-                    } else {
-                        // TODO handle error
-                        qWarning() << "Failed to dowload service XML.";
-                    }
-                }
-            }
-
-            QDomNodeList iconList = element.elementsByTagName("iconList");
-            if (iconList.size() > 0) {
-                QDomNodeList icons = iconList.at(0).toElement().elementsByTagName("icon");
-                for (int i = 0; i < icons.size(); i++) {
-                    QString mimetype = icons.at(0).toElement().elementsByTagName("mimetype").at(0).toElement().text();
-                    QString width = icons.at(0).toElement().elementsByTagName("width").at(0).toElement().text();
-                    QString height = icons.at(0).toElement().elementsByTagName("height").at(0).toElement().text();
-                    QString depth = icons.at(0).toElement().elementsByTagName("depth").at(0).toElement().text();
-                    QString url = icons.at(0).toElement().elementsByTagName("url").at(0).toElement().text();
-
-                    device->addIcon(new BrisaIcon(mimetype, width, height, depth, url));
-                }
-            }
-
-
-            QDomNodeList deviceList = element.elementsByTagName("deviceList");
-            for (int i = 0; i < deviceList.size(); i++) {
-
-            	BrisaControlPointDevice *embDevice = new BrisaControlPointDevice(device);
-            	QDomElement element = deviceList.at(i).toElement();
-
-            	QString friendlyName = element.elementsByTagName("friendlyName").at(0).toElement().text();
-            	QString deviceType = element.elementsByTagName("deviceType").at(0).toElement().text();
-            	QString manufacturer = element.elementsByTagName("manufacturer").at(0).toElement().text();
-            	QString manufacturerURL = element.elementsByTagName("manufacturerURL").at(0).toElement().text();
-            	QString modelName = element.elementsByTagName("manufacturer").at(0).toElement().text();
-            	QString modelNumber = element.elementsByTagName("modelNumber").at(0).toElement().text();
-            	QString modelURL = element.elementsByTagName("modelURL").at(0).toElement().text();
-            	QString serialNumber = element.elementsByTagName("serialNumber").at(0).toElement().text();
-            	embDevice->setAttribute(BrisaControlPointDevice::Udn, udn);
-            	embDevice->setAttribute(BrisaControlPointDevice::FriendlyName, friendlyName);
-            	embDevice->setAttribute(BrisaControlPointDevice::DeviceType, deviceType);
-            	embDevice->setAttribute(BrisaControlPointDevice::Manufacturer, manufacturer);
-            	embDevice->setAttribute(BrisaControlPointDevice::ManufacturerUrl, manufacturerURL);
-            	embDevice->setAttribute(BrisaControlPointDevice::ModelName, modelName);
-            	embDevice->setAttribute(BrisaControlPointDevice::ModelNumber, modelNumber);
-            	embDevice->setAttribute(BrisaControlPointDevice::ModelUrl, modelURL);
-            	embDevice->setAttribute(BrisaControlPointDevice::SerialNumber, serialNumber);
-
-            	device->addDevice(embDevice);
-            }
+            parseDevice(device, element);
         }
         n = n.nextSibling();
     }
 }
+
+void BrisaDeviceXMLHandlerCP::parseDevice(BrisaControlPointDevice *device, QDomElement &element)
+{
+    QString udn = element.elementsByTagName("UDN").at(0).toElement().text();
+
+    //qDebug() << "\n<UDN_XML>\n\t" << udn <<  "\n</UDN_XML>\n ";
+
+    QString friendlyName = element.elementsByTagName("friendlyName").at(0).toElement().text();
+    QString deviceType = element.elementsByTagName("deviceType").at(0).toElement().text();
+    QString manufacturer = element.elementsByTagName("manufacturer").at(0).toElement().text();
+    QString manufacturerURL = element.elementsByTagName("manufacturerURL").at(0).toElement().text();
+    QString modelName = element.elementsByTagName("manufacturer").at(0).toElement().text();
+    QString modelNumber = element.elementsByTagName("modelNumber").at(0).toElement().text();
+    QString modelURL = element.elementsByTagName("modelURL").at(0).toElement().text();
+    QString serialNumber = element.elementsByTagName("serialNumber").at(0).toElement().text();
+    device->setAttribute(BrisaControlPointDevice::Udn, udn);
+    device->setAttribute(BrisaControlPointDevice::FriendlyName, friendlyName);
+    device->setAttribute(BrisaControlPointDevice::DeviceType, deviceType);
+    device->setAttribute(BrisaControlPointDevice::Manufacturer, manufacturer);
+    device->setAttribute(BrisaControlPointDevice::ManufacturerUrl, manufacturerURL);
+    device->setAttribute(BrisaControlPointDevice::ModelName, modelName);
+    device->setAttribute(BrisaControlPointDevice::ModelNumber, modelNumber);
+    device->setAttribute(BrisaControlPointDevice::ModelUrl, modelURL);
+    device->setAttribute(BrisaControlPointDevice::SerialNumber, serialNumber);
+
+    QDomNodeList serviceList = element.elementsByTagName("serviceList");
+    if (serviceList.size() > 0) {
+        QDomNodeList services = serviceList.at(0).toElement().elementsByTagName("service");
+        for (int i = 0; i < services.size(); i++) {
+
+            QDomElement serviceElement = services.at(i).toElement();
+            BrisaControlPointService *service = parseService(serviceElement);
+
+            validateURLBase(device);
+
+            BrisaServiceFetcher f(service, device->
+                                  getAttribute(BrisaControlPointDevice::UrlBase)
+                                  + service->getAttribute(BrisaControlPointService::ScpdUrl));
+
+            if (!f.fetch()) {
+                device->addService(service);
+            } else {
+                // TODO handle error
+                qWarning() << "Failed to download service XML.";
+            }
+        }
+    }
+
+    QDomNodeList iconList = element.elementsByTagName("iconList");
+    if (iconList.size() > 0) {
+        QDomNodeList icons = iconList.at(0).toElement().elementsByTagName("icon");
+        for (int i = 0; i < icons.size(); i++) {
+            QDomElement iconElement = icons.at(0).toElement();
+            BrisaIcon *icon = parseIcon(iconElement);
+            device->addIcon(icon);
+        }
+    }
+
+    QDomNodeList deviceList = element.firstChildElement("deviceList").childNodes();
+
+    for (int i = 0; i < deviceList.size(); i++) {
+        BrisaControlPointDevice *embDevice = new BrisaControlPointDevice(device);
+        QDomElement deviceElement = deviceList.at(i).toElement();
+        parseDevice(embDevice, deviceElement);
+        if(!embDevice->getAttribute(BrisaControlPointDevice::FriendlyName).isEmpty())
+            device->addDevice(embDevice);
+    }
+}
+
+BrisaControlPointService *BrisaDeviceXMLHandlerCP::parseService(QDomElement &element)
+{
+    QString serviceType = element.elementsByTagName("serviceType").at(0).toElement().text();
+    QString serviceId = element.elementsByTagName("serviceId").at(0).toElement().text();
+    QString controlURL = element.elementsByTagName("controlURL").at(0).toElement().text();
+    QString eventSubURL = element.elementsByTagName("eventSubURL").at(0).toElement().text();
+    QString SCPDURL = element.elementsByTagName("SCPDURL").at(0).toElement().text();
+
+    return new BrisaControlPointService(serviceType, serviceId, SCPDURL, controlURL, eventSubURL, "");
+}
+
+void BrisaDeviceXMLHandlerCP::validateURLBase(BrisaControlPointDevice *device)
+{
+    QStringList urlBase = device->getAttribute(BrisaControlPointDevice::UrlBase).split(":");
+    if (urlBase.size() > PORT_INDEX) {
+        QString port = urlBase[PORT_INDEX];
+        QString newPort = "";
+        quint8 index = 0;
+        while (port[index].isDigit()) {
+            newPort.append(port[index]);
+            index++;
+        }
+        urlBase[PORT_INDEX] = newPort;
+        while (urlBase.size() > PORT_INDEX + 1) urlBase.pop_back();
+    }
+    device->setAttribute(BrisaControlPointDevice::UrlBase, urlBase.join(":"));
+}
+
+BrisaIcon *BrisaDeviceXMLHandlerCP::parseIcon(QDomElement &element)
+{
+    QString mimetype = element.elementsByTagName("mimetype").at(0).toElement().text();
+    QString width = element.elementsByTagName("width").at(0).toElement().text();
+    QString height = element.elementsByTagName("height").at(0).toElement().text();
+    QString depth = element.elementsByTagName("depth").at(0).toElement().text();
+    QString url = element.elementsByTagName("url").at(0).toElement().text();
+    return new BrisaIcon(mimetype, width, height, depth, url);
+}
+
 

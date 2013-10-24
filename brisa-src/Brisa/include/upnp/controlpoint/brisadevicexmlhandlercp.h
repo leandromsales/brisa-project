@@ -69,6 +69,11 @@ public:
      */
     void parseDevice(BrisaControlPointDevice *device, QTemporaryFile *tmp);
 
+    void parseDevice(BrisaControlPointDevice *device, QDomElement &element);
+    BrisaControlPointService *parseService(QDomElement &element);
+    BrisaIcon *parseIcon(QDomElement &element);
+    void validateURLBase(BrisaControlPointDevice *device);
+
 };
 
 /*!
