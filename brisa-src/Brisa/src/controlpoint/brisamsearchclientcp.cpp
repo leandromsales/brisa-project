@@ -138,6 +138,7 @@ void BrisaMSearchClientCP::datagramReceived() {
         udpListener->readDatagram(Datagram.data(), Datagram.size());
 
         QString temp(Datagram);
+        emit messageReceived(temp);
         QHttpResponseHeader *response = new QHttpResponseHeader(temp);
 
         if (response->statusCode() == 200) {

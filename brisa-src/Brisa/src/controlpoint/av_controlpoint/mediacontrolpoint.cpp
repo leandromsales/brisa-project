@@ -31,7 +31,7 @@ void MediaControlPoint::handleNewSSDPMessage(QString message) {
 	//TODO Comment this
 
 	int headerType = 0; // 1=http; 2=notify
-	qDebug() << message;
+//	qDebug() << message;
 
 	if (message.startsWith("HTTP/1.1 200 OK")) {
 		headerType = 1;

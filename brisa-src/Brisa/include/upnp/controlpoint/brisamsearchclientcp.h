@@ -32,7 +32,7 @@
 #include <QTimer>
 #include <QHttpResponseHeader>
 
-#include "brisaglobal.h"
+#include "upnp/brisaglobal.h"
 
 #define DEFAULT_SEARCH_TIME 600
 #define DEFAULT_SEARCH_TYPE "ssdp:all"
@@ -127,6 +127,7 @@ signals:
     void msearchResponseReceived(const QString &usn, const QString &location,
             const QString &st, const QString &ext, const QString &server,
             const QString &cacheControl);
+    void messageReceived(QString);
 
 private:
     QTimer *timer;
