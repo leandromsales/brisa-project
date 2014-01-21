@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Brisa</name>
+	<name>universal-control-point</name>
 	<comment></comment>
 	<projects>
+		<project>Brisa</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -22,7 +23,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildArguments</key>
-					<value>-j4</value>
+					<value>-j8</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildCommand</key>
