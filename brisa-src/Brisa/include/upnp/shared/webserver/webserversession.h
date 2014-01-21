@@ -5,7 +5,8 @@
 
 class QTimer;
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
 
 class Webserver;
 
@@ -50,5 +51,6 @@ private:
 };
 
 } // namespace Brisa
+}
 
 #endif // WEBSERVERSESSION_H

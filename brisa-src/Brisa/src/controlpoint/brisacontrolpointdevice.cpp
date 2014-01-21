@@ -32,7 +32,9 @@
 
 #include "brisacontrolpointdevice.h"
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
+
 
 BrisaControlPointDevice::BrisaControlPointDevice(QObject *parent) :
     QObject(parent) {
@@ -346,3 +348,5 @@ void BrisaControlPointDevice::clear() {
     this->_fileAddress.clear();
 }
 
+}
+}

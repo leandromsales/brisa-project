@@ -34,7 +34,9 @@
 
 #include "upnp/network/brisanetwork.h"
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
+
 
 class BrisaUdpListener : public QUdpSocket {
     Q_OBJECT
@@ -88,5 +90,5 @@ private:
 };
 
 }
-
+}
 #endif // BRISAUDPLISTENER_H

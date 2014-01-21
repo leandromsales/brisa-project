@@ -7,13 +7,17 @@
 
 #include "BinaryLight.h"
 #include "SwitchPower.hpp"
+#include "upnp/brisautils.h"
+
+using namespace brisa::upnp;
+using namespace brisa::upnp::device;
 
 BinaryLight::BinaryLight(ApplicationUI *ui) {
 
 	m_ui = ui;
 	QString completeUUID = getCompleteUuid();
 	qDebug() << "My UUID" << completeUUID;
-	m_binaryLight = new Brisa::BrisaDevice(DEVICE_TYPE,
+	m_binaryLight = new BrisaDevice(DEVICE_TYPE,
 			DEVICE_FRIENDLY_NAME, DEVICE_MANUFACTURER, DEVICE_MANUFACTURER_URL,
 			DEVICE_MODEL_DESCRIPTION, DEVICE_MODEL_NAME, DEVICE_MODEL_NUMBER,
 			DEVICE_MODEL_URL, DEVICE_SERIAL_NUMBER, completeUUID);

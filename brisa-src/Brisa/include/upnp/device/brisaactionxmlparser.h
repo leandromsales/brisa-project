@@ -4,7 +4,7 @@
 #include <QtCore>
 #include <QDomDocument>
 
-namespace Brisa {
+namespace brisa {
 /*!
  * \class Brisa::BrisaActionXmlParser brisaactionxmlparser.h BrisaUpnp/BrisaActionXmlParser
  * \brief XML parser for SOAP requests.

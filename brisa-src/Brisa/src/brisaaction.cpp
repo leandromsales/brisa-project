@@ -2,7 +2,9 @@
 #include "upnp/device/brisaservice.h"
 #include <QDebug>
 
-using namespace Brisa;
+
+namespace brisa {
+namespace upnp {
 
 BrisaAction::BrisaAction(QString name, BrisaService *service, QObject *parent):
 	QObject(parent),
@@ -143,7 +145,7 @@ bool BrisaAction::call(BrisaInArgument *inArguments, BrisaOutArgument *&outArgum
             return false;
         }
     }
-	
+
     return true;
 }
 
@@ -177,4 +179,7 @@ void BrisaAction::setMethod(const QMetaMethod &method, BrisaService *service)
 QMetaMethod BrisaAction::getMethod() const
 {
     return this->method;
+}
+
+}
 }

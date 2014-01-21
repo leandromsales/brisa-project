@@ -5,7 +5,7 @@
 #include <QFile>
 #include <QHostAddress>
 
-namespace Brisa {
+namespace brisa {
 
 class HttpSession;
 class HttpSessionManager;
@@ -45,7 +45,7 @@ private:
 
 } // namespace Brisa
 
-inline int Brisa::HttpServer::threadsNumber() const
+inline int brisa::HttpServer::threadsNumber() const
 {
     return threads.size();
 }

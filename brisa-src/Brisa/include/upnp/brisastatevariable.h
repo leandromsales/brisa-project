@@ -6,7 +6,10 @@
 #include <QObject>
 #include <QtDebug>
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
+
+
 /*!
  * \class Brisa::BrisaStateVariable brisastatevariable.h BrisaUpnp/BrisaStateVariable
  *
@@ -153,6 +156,7 @@ private:
 
 };
 
+}
 }
 
 #endif /* _BRISASTATEVARIABLE_H */

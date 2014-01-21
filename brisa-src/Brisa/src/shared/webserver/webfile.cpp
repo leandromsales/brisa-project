@@ -4,7 +4,9 @@
 #include "http/httpresponse.h"
 #include <QScopedPointer>
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
+
 
 WebFile::WebFile(const QString &fileName, QObject *parent) :
         WebService(parent),
@@ -105,4 +107,7 @@ void WebFile::onRequest(const HttpRequest &request,
     response.setEntityBody(file.take());
 
     session->respond(response, m_useChunkedEntities);
+}
+
+}
 }

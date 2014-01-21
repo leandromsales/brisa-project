@@ -32,7 +32,9 @@
 #include <QtDebug>
 #include <QIODevice>
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
+
 
 BrisaControlPointService::BrisaControlPointService(QObject *parent) :
     BrisaAbstractService(parent) {
@@ -98,5 +100,8 @@ void BrisaControlPointService::getResponse() {
             }
         }
     emit requestFinished(returnMessage, lastMethod);
+}
+
+}
 }
 

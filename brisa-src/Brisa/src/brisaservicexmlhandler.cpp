@@ -1,7 +1,8 @@
 #include "brisaservicexmlhandler.h"
 #include "brisaabstractservice.h"
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
 
 BrisaServiceXMLHandler::BrisaServiceXMLHandler(QObject *parent) : QObject(parent) { }
 
@@ -85,4 +86,7 @@ void BrisaServiceXMLHandler::parseService(BrisaAbstractService *service,
             return;
         n = n.nextSibling();
     }
+}
+
+}
 }

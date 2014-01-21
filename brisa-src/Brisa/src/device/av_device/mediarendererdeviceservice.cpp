@@ -1,5 +1,9 @@
 #include "mediarendererdeviceservice.h"
 
+namespace brisa {
+namespace upnp {
+
+
 MediaRendererDeviceService::MediaRendererDeviceService(QObject *parent) :
     BrisaService(SERVICE_TYPE,
                  SERVICE_ID,
@@ -48,4 +52,7 @@ int MediaRendererDeviceService::postAction(BrisaInArgument* const inArguments, B
    //errorDescription = "error description";
    //return UPNP_ACTION_FAILED;
    return UPNP_SUCCESS;
+}
+
+}
 }

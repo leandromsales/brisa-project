@@ -2,7 +2,9 @@
 #include "upnp/device/brisadevice.h"
 #include "mediarendererdeviceservice.h"
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
+namespace device {
 
 MediaRendererDevice::MediaRendererDevice(QObject *parent) :
     QObject(parent) {
@@ -36,4 +38,8 @@ void MediaRendererDevice::stop() {
 
 MediaRendererDevice::~MediaRendererDevice() {
     delete this->device;
+}
+
+}
+}
 }

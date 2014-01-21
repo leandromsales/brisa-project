@@ -31,7 +31,9 @@
 
 #define PORT_INDEX 2
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
+
 
 BrisaDeviceXMLHandlerCP::~BrisaDeviceXMLHandlerCP() {
 }
@@ -167,4 +169,6 @@ BrisaIcon *BrisaDeviceXMLHandlerCP::parseIcon(QDomElement &element)
     return new BrisaIcon(mimetype, width, height, depth, url);
 }
 
+}
+}
 

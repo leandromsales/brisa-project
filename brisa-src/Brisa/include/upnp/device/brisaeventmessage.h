@@ -7,7 +7,8 @@
 #include "brisaabstracteventmessage.h"
 #include "brisaeventsubscription.h"
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
 
 /*!
  * \internal
@@ -54,11 +55,12 @@ private:
     BrisaEventSubscription &subscription;
 };
 
-}
-
-inline QString Brisa::BrisaEventMessage::getSid() const
+inline QString BrisaEventMessage::getSid() const
 {
     return subscription.getSid();
+}
+
+}
 }
 
 #endif /* _BRISAEVENTMESSAGE_H */

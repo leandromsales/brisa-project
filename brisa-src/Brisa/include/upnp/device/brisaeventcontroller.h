@@ -8,7 +8,9 @@
 #include "upnp/shared/webserver/webservice.h"
 #include "upnp/shared/webserver/webserver.h"
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
+
     class BrisaEventController: public WebService
     {
     Q_OBJECT
@@ -47,4 +49,5 @@ namespace Brisa {
     };
 }
 
+}
 #endif /* _BRISAEVENTCONTROLLER_H */

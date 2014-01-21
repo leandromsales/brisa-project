@@ -18,7 +18,8 @@
 #define POST_ACTION_OUT "int"
 #define FAILURE_ACTION_OUT "int"
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
 
 static const QString SOAP_ERROR_TEMPLATE =
 		"<?xml version=\"1.0\"  encoding=\"utf-8\"?>\r\n"
@@ -442,4 +443,6 @@ void BrisaService::bindActionsToServiceMethods() {
 					<< method.typeName() << " " << methodName << ACTION_IN;
 		}
 	}*/
+}
+}
 }

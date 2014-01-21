@@ -13,7 +13,8 @@
 #define SESSION_TIMEOUT 180000
 #endif
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
 
 enum State
 {
@@ -293,4 +294,7 @@ bool WebserverSession::keepAlive()
 void WebserverSession::onTimeout()
 {
     writeResponse(HttpResponse(HttpVersion(1, 1), HttpResponse::REQUEST_TIMEOUT, true));
+}
+
+}
 }

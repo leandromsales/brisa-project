@@ -2,7 +2,7 @@
 
 #include <QtDebug>
 
-using namespace Brisa;
+using namespace brisa;
 
 BrisaActionXmlParser::BrisaActionXmlParser() {
     reader = new QDomDocument();

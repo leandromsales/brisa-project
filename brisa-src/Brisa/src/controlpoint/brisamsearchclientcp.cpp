@@ -37,7 +37,9 @@
 #endif
 #include <string.h>
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
+
 
 static const QString UPNP_MSEARCH_DISCOVER = "M-SEARCH * HTTP/1.1\r\n"
                                              "HOST: 239.255.255.250:1900\r\n"
@@ -160,3 +162,7 @@ void BrisaMSearchClientCP::datagramReceived() {
         delete response;
     }
 }
+
+}
+}
+

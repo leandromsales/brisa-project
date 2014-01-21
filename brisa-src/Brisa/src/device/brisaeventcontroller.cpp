@@ -4,7 +4,8 @@
 #include "upnp/shared/webserver/webserversession.h"
 #include "upnp/shared/webserver/webserver.h"
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
 
 BrisaEventController::BrisaEventController(
         Webserver *sessionManager,
@@ -210,4 +211,7 @@ int BrisaEventController::getTimeOut(const QString &timeout) {
     returnTime.remove("Second-");
     bool ok;
     return returnTime.toInt(&ok, 10);
+}
+
+}
 }

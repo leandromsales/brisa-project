@@ -37,7 +37,9 @@
 #define DEFAULT_SEARCH_TIME 600
 #define DEFAULT_SEARCH_TYPE "ssdp:all"
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
+
 
 /*!
  \class Brisa::BrisaMSearchClientCP brisamsearchclientcp.h BrisaUpnp/BrisaMSearchClientCP
@@ -47,7 +49,7 @@ namespace Brisa {
  to begin sending discovery messages to possible devices in the multicast group.
  When a device responds to a msearch request, \a msearchResponseReceived() signal is emmited.
  */
-class BRISA_UPNP_EXPORT BrisaMSearchClientCP: public QObject {
+class BrisaMSearchClientCP: public QObject {
 Q_OBJECT
 
 public:
@@ -143,6 +145,7 @@ private:
     QString S_SSDP_PORT;
 };
 
+}
 }
 
 #endif /* _BrisaMSearchClientCP_H */

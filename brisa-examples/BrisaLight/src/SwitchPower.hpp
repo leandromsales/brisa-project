@@ -21,7 +21,7 @@
 #define SERVICE_CONTROL "/SwitchPower/control"
 #define SERVICE_EVENT_SUB "/SwitchPower/eventSub"
 
-using namespace Brisa;
+using namespace brisa::upnp;
 
 class SwitchPower : public BrisaService
 {
@@ -32,12 +32,12 @@ public:
 //public slots:
 
 	Q_INVOKABLE BrisaOutArgument* GetStatus(BrisaInArgument * const inArguments,
-                                BrisaAction * const action);
+                                brisa::upnp::BrisaAction * const action);
 
 	Q_INVOKABLE BrisaOutArgument* GetTarget(BrisaInArgument * const inArguments,
-                                BrisaAction * const action);
+			brisa::upnp::BrisaAction * const action);
 
-	Q_INVOKABLE BrisaOutArgument* SetTarget(BrisaInArgument*const, BrisaAction *const);
+	Q_INVOKABLE BrisaOutArgument* SetTarget(BrisaInArgument*const, brisa::upnp::BrisaAction *const);
 };
 
 #endif /* SWITCHPOWER_HPP_ */

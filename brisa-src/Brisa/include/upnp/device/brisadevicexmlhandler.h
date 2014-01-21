@@ -6,7 +6,9 @@
 #include <QFile>
 #include <QtDebug>
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
+namespace device {
 
 class BrisaDevice;
 
@@ -20,6 +22,8 @@ private:
     QXmlStreamWriter *writer;
 };
 
+}
+}
 }
 
 #endif /* _BRISADEVICEXMLHANDLER_H */

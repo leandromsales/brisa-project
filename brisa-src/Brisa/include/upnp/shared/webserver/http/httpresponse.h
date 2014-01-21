@@ -4,7 +4,7 @@
 #include "httpmessage.h"
 #include <QHash>
 
-namespace Brisa {
+namespace brisa {
 
 class HttpResponse: public HttpMessage
 {
@@ -97,22 +97,22 @@ private:
 
 } // namespace Brisa
 
-inline int Brisa::HttpResponse::statusCode() const
+inline int brisa::HttpResponse::statusCode() const
 {
     return m_statusCode;
 }
 
-inline QByteArray Brisa::HttpResponse::reasonPhrase() const
+inline QByteArray brisa::HttpResponse::reasonPhrase() const
 {
     return m_reasonPhrase;
 }
 
-inline bool Brisa::HttpResponse::closeConnection() const
+inline bool brisa::HttpResponse::closeConnection() const
 {
     return m_closeConnection;
 }
 
-inline QDebug &operator<<(QDebug dbg, const Brisa::HttpResponse &response)
+inline QDebug &operator<<(QDebug dbg, const brisa::HttpResponse &response)
 {
     dbg.nospace() << "{\n  " << response.httpVersion() << ' ' << response.statusCode() << ' ' << response.reasonPhrase().data() << '\n';
     for (QHash<QByteArray, QByteArray>::const_iterator i = response.headersBeginIterator();i != response.headersEndIterator();++i) {

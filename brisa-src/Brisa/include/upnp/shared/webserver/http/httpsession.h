@@ -8,7 +8,7 @@
 
 class QTcpSocket;
 
-namespace Brisa {
+namespace brisa {
 
 class HttpSessionManager;
 

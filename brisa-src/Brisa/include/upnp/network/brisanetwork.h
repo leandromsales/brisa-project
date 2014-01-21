@@ -9,6 +9,9 @@
 #include <QObject>
 #include <ctime>
 
+namespace brisa {
+namespace upnp {
+
 #define LOCAL_HOST "127.0.0.1"
 
 /*!
@@ -59,6 +62,9 @@ bool isPromiscuousIPv6Address(QString address);
  *  \param timeout \a the timeout to end the test
  */
 bool isPortOpen(QString address, qint16 port, qint16 timeout = 2);
+
+}
+}
 
 #endif /* _BRISANETWORK_H */
 

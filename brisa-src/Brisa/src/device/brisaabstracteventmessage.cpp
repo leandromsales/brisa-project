@@ -1,6 +1,6 @@
 #include "brisaabstracteventmessage.h"
 
-using namespace Brisa;
+using namespace brisa;
 
 BrisaAbstractEventMessage::BrisaAbstractEventMessage(QObject *parent) :
         QObject(parent) { }

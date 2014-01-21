@@ -4,7 +4,7 @@
 #include "httpmessage.h"
 #include "httpversion.h"
 
-namespace Brisa {
+namespace brisa {
 
 class HttpRequest: public HttpMessage
 {
@@ -26,17 +26,17 @@ private:
 
 } // namespace Brisa
 
-inline QByteArray Brisa::HttpRequest::method() const
+inline QByteArray brisa::HttpRequest::method() const
 {
     return m_method;
 }
 
-inline QByteArray Brisa::HttpRequest::uri() const
+inline QByteArray brisa::HttpRequest::uri() const
 {
     return m_uri;
 }
 
-inline QDebug &operator<<(QDebug dbg, const Brisa::HttpRequest &request)
+inline QDebug &operator<<(QDebug dbg, const brisa::HttpRequest &request)
 {
     dbg.nospace() << "{\n  " << request.method().data() << ' ' << request.uri().data() << ' ' << request.httpVersion() << '\n';
     for (QHash<QByteArray, QByteArray>::const_iterator i = request.headersBeginIterator();i != request.headersEndIterator();++i) {

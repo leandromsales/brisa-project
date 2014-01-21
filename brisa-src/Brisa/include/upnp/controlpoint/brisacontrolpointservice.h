@@ -32,7 +32,9 @@
 #include "upnp/brisaabstractservice.h"
 #include "upnp/brisaglobal.h"
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
+
 
 /*!
  *  \class Brisa::BrisaControlPointService brisacontrolpointservice.h BrisaUpnp/BrisaControlPointService
@@ -112,6 +114,7 @@ private:
     QString lastMethod;
 };
 
+}
 }
 
 #endif /* BrisaControlPointService_H_ */

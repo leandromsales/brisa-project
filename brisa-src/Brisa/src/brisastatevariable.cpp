@@ -1,7 +1,8 @@
 #include "brisastatevariable.h"
 #include "brisaabstractservice.h"
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
 
 BrisaStateVariable::BrisaStateVariable(QString sendEvents,
                                        QString name,
@@ -346,4 +347,7 @@ void BrisaStateVariable::setMulticastSvcid(QString svcid)
 QString BrisaStateVariable::getMulticastSvcid()
 {
     return this->multicastSvcid;
+}
+
+}
 }

@@ -9,7 +9,7 @@
 
 using namespace bb::cascades;
 using namespace bb::system;
-using namespace Brisa;
+using namespace brisa;
 
 ViewController::ViewController(QObject *parent) :
 		QObject(parent) {

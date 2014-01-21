@@ -10,7 +10,8 @@
 #include <QNetworkReply>
 #include <QDebug>
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
 
 class BrisaIcon: public QObject {
     Q_OBJECT
@@ -45,6 +46,7 @@ private:
     QIcon icon;
 };
 
+}
 }
 
 #endif /* BRISAICON_H_ */

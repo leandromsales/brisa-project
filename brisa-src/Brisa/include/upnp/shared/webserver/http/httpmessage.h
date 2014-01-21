@@ -6,7 +6,7 @@
 
 class QIODevice;
 
-namespace Brisa {
+namespace brisa {
 
 class HttpMessage
 {
@@ -61,32 +61,32 @@ private:
 
 } // namespace Brisa
 
-inline Brisa::HttpVersion Brisa::HttpMessage::httpVersion() const
+inline brisa::HttpVersion brisa::HttpMessage::httpVersion() const
 {
     return m_httpVersion;
 }
 
-inline QByteArray Brisa::HttpMessage::header(const QByteArray &name) const
+inline QByteArray brisa::HttpMessage::header(const QByteArray &name) const
 {
     return m_headers.value(name.toUpper());
 }
 
-inline QHash<QByteArray, QByteArray> Brisa::HttpMessage::headers() const
+inline QHash<QByteArray, QByteArray> brisa::HttpMessage::headers() const
 {
     return m_headers;
 }
 
-inline QHash<QByteArray, QByteArray>::const_iterator Brisa::HttpMessage::headersBeginIterator() const
+inline QHash<QByteArray, QByteArray>::const_iterator brisa::HttpMessage::headersBeginIterator() const
 {
     return m_headers.begin();
 }
 
-inline QHash<QByteArray, QByteArray>::const_iterator Brisa::HttpMessage::headersEndIterator() const
+inline QHash<QByteArray, QByteArray>::const_iterator brisa::HttpMessage::headersEndIterator() const
 {
     return m_headers.end();
 }
 
-inline qint64 Brisa::HttpMessage::entitySize() const
+inline qint64 brisa::HttpMessage::entitySize() const
 {
     if(m_entityBody) {
         return m_entityBody->size();
@@ -95,17 +95,17 @@ inline qint64 Brisa::HttpMessage::entitySize() const
     }
 }
 
-inline QIODevice *Brisa::HttpMessage::entityBody() const
+inline QIODevice *brisa::HttpMessage::entityBody() const
 {
     return m_entityBody;
 }
 
-inline QPair<qlonglong, qlonglong> Brisa::HttpMessage::range() const
+inline QPair<qlonglong, qlonglong> brisa::HttpMessage::range() const
 {
     return m_range;
 }
 
-inline bool Brisa::HttpMessage::useRange() const
+inline bool brisa::HttpMessage::useRange() const
 {
     return (m_range.second != 0);
 }

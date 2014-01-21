@@ -5,7 +5,8 @@
 
 #include "webservice.h"
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
 
     class WebFile: public WebService
     {
@@ -47,6 +48,7 @@ namespace Brisa {
         return m_useChunkedEntities;
     }
 
+}
 }
 
 #endif /* _WEB_FILE_H */

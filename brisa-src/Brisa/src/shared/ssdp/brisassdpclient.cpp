@@ -28,7 +28,8 @@
 
 #include "brisassdpclient.h"
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
 
 BrisaSSDPClient::BrisaSSDPClient(QObject *parent) :
 	QObject(parent),
@@ -129,5 +130,8 @@ QMap<QString, QString> BrisaSSDPClient::getMapFromMessage(QString message) {
 	}
 
 	return response;
+}
+
+}
 }
 

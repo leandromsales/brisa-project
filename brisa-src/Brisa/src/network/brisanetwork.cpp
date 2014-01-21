@@ -4,6 +4,9 @@
 #include <time.h>
 #include "brisanetwork.h"
 
+namespace brisa {
+namespace upnp {
+
 bool isLoopbackIPv4Address(QString address) {
 	return !address.compare("127.0.0.1");
 }
@@ -120,5 +123,8 @@ quint16 getPort() {
 		randomPort = (49152 + rand() / (RAND_MAX / (65535 - 49152 + 1) + 1));
 	}
 	return randomPort;
+}
+
+}
 }
 

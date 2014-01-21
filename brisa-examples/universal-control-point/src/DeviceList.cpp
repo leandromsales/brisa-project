@@ -7,7 +7,7 @@
 
 #include "DeviceList.hpp"
 
-using namespace Brisa;
+using namespace brisa::upnp;
 
 DeviceList::DeviceList() {
 	m_currentDevice = 0;

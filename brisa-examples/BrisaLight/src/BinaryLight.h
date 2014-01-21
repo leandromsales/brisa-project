@@ -26,8 +26,6 @@
 
 class ApplicationUI;
 
-using namespace Brisa;
-
 class BinaryLight: public QObject {
 	Q_OBJECT
 public:
@@ -41,9 +39,9 @@ public slots:
 
 private:
 	ApplicationUI *m_ui;
-    Brisa::BrisaDevice *m_binaryLight;
-    BrisaStateVariable *m_status;
-    BrisaStateVariable *m_target;
+    brisa::upnp::device::BrisaDevice *m_binaryLight;
+    brisa::upnp::BrisaStateVariable *m_status;
+    brisa::upnp::BrisaStateVariable *m_target;
 };
 
 #endif /* BINARYLIGHT_H_ */

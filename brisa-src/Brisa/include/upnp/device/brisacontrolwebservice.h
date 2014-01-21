@@ -7,7 +7,8 @@
 
 // TODO: use "Class WebService; Class XXX and include their .h in the .cpp
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
 
 class BrisaControlWebService : public WebService {
     Q_OBJECT
@@ -25,6 +26,7 @@ private:
     QString serviceType;
 };
 
+}
 }
 
 #endif // BRISACONTROLWEBSERVICE_H

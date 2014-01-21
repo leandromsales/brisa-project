@@ -4,7 +4,8 @@
 #include <QObject>
 #include <QString>
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
 
 /*!
  * \internal
@@ -64,6 +65,7 @@ private:
     QString relatedStateVariable;
 };
 
+}
 }
 
 #endif /* BRISAARGUMENT_H_ */

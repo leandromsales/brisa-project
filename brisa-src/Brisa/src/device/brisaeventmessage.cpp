@@ -1,6 +1,7 @@
 #include "brisaeventmessage.h"
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
 
 BrisaEventMessage::BrisaEventMessage(BrisaEventSubscription &subscription,
         const QList<BrisaStateVariable *> *variables, QObject *parent) :
@@ -57,4 +58,7 @@ QByteArray BrisaEventMessage::getRequestMessage() const
                               QString::number(SEQ),         // SEQ HEADER
                               body                          // REQUEST BODY
                               ).toLatin1();
+}
+
+}
 }

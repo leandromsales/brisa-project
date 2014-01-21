@@ -1,6 +1,7 @@
 #include "brisaicon.h"
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
 
 BrisaIcon::BrisaIcon(QString mimetype, QString width, QString height,
                      QString depth, QString url,
@@ -95,4 +96,7 @@ QString BrisaIcon::getAttribute(xmlIconTags key)
         return "";
         break;
     }
+}
+
+}
 }

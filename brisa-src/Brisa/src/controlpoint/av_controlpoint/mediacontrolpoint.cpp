@@ -1,5 +1,7 @@
 #include "mediacontrolpoint.h"
 
+namespace brisa {
+namespace upnp {
 
 MediaControlPoint::MediaControlPoint(QObject *parent, QString st, int mx) :
 		QObject(parent) {
@@ -241,3 +243,5 @@ void MediaControlPoint::discover() {
     this->msearch->discover();
 }
 
+}
+}

@@ -11,9 +11,10 @@
 #endif
 #include <string.h>
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
 
-// TODO: Add this three fields commented below in the ALIVE_MESSAGE 
+// TODO: Add this three fields commented below in the ALIVE_MESSAGE
 // as per upnp spec 1.1, section 1.2.2.
 //  - BOOTID.UPNP.ORG
 //  - CONFIGID.UPNP.ORG
@@ -216,4 +217,7 @@ void BrisaSSDPServer::respondMSearch(const QString &senderIp,
                                      senderPort);
 
     qDebug() << "BrisaSSDPServer writing msearch response for " << senderIp << ":" << senderPort;
+}
+
+}
 }

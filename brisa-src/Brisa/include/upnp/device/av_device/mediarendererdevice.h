@@ -4,7 +4,9 @@
 #include "upnp/device/brisadevice.h"
 #include <QObject>
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
+namespace device {
 
 class MediaRendererDevice : public QObject
 {
@@ -19,9 +21,13 @@ private:
     BrisaDevice *device;
 
 signals:
-    
+
 public slots:
-    
+
 };
+
+}
+}
+}
 
 #endif // MEDIARENDERERDEVICE_H

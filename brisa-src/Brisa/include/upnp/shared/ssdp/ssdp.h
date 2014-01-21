@@ -15,6 +15,9 @@
 //#define SSDP_ADDR "239.255.255.250"
 //#define SSDP_PORT 1900
 
+namespace brisa {
+namespace upnp {
+
 class SSDP: public QObject {
 Q_OBJECT
 
@@ -50,5 +53,8 @@ signals:
 	void setupEvent(const QString &);
 
 };
+
+}
+}
 
 #endif // SSDP_H

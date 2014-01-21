@@ -7,7 +7,8 @@
 
 #include "http/httpserver.h"
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
 
 /*!
  *  \brief The Webserver class is a web server implementation.
@@ -47,6 +48,7 @@ namespace Brisa {
         QHash<QByteArray, WebService *> services;
     };
 
+}
 }
 
 #endif /* _WEBSERVER_H */

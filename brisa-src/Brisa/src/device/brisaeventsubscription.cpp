@@ -1,6 +1,7 @@
 #include "brisaeventsubscription.h"
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
 
 BrisaEventSubscription::BrisaEventSubscription(const QString &sid,
         const QStringList &callbackUrls, const int &timeout, QObject *parent) :
@@ -32,4 +33,7 @@ HttpResponse BrisaEventSubscription::getAcceptSubscriptionResponse() const {
 
 HttpResponse BrisaEventSubscription::getAcceptUnsubscriptionResponse() const {
     return HttpResponse(HttpVersion(1, 1), HttpResponse::OK);
+}
+
+}
 }

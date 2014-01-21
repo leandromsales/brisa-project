@@ -1,6 +1,7 @@
 #include "brisaabstractservice.h"
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
 
 BrisaAbstractService::BrisaAbstractService(QObject *parent) : WebService(parent)
 {
@@ -249,4 +250,7 @@ QString BrisaAbstractService::errorCodeToString(int errorCode) {
 void BrisaAbstractService::setUdn(QString udn)
 {
     this->udn = udn;
+}
+
+}
 }

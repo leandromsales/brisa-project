@@ -1,6 +1,7 @@
 #include "brisaabstracteventsubscription.h"
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
 
 BrisaAbstractEventSubscription::BrisaAbstractEventSubscription(
         const QString &sid, const QStringList &callbackUrls,
@@ -51,3 +52,5 @@ QUrl BrisaAbstractEventSubscription::getUrl() {
     return QUrl(callback);
 }
 
+}
+}

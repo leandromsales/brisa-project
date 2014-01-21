@@ -43,7 +43,8 @@
 #include "upnp/controlpoint/brisadevicexmlhandlercp.h"
 #include "upnp/brisaglobal.h"
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
 
 /*!
  *  \class Brisa::BrisaControlPointDevice brisacontrolpointdevice.h BrisaUpnp/BrisaControlPointDevice
@@ -290,6 +291,7 @@ private:
     QString _fileAddress;
 };
 
+}
 }
 
 #endif /* _BRISACONTROLPOINTDEVICE_H */

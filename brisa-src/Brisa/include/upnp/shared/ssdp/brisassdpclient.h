@@ -35,7 +35,8 @@
 #include "upnp/brisaglobal.h"
 #include "upnp/controlpoint/brisaudplistener.h"
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
 
 /*!
  *  \class Brisa::BrisaSSDPClient brisassdpclient.h BrisaUpnp/BrisaSSDPClient
@@ -135,6 +136,7 @@ private:
     BrisaUdpListener *udpListener;
 };
 
+}
 }
 
 #endif /* _BRISASSDPCLIENT_H */

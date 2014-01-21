@@ -38,7 +38,9 @@
 #include <QObject>
 #include <QtXml>
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
+
 
 /*!
  *  \class Brisa::BrisaEventProxy brisaeventproxy.h BrisaUpnp/BrisaEventProxy
@@ -183,6 +185,7 @@ private:
     void setSid(QString &sid);
 };
 
+}
 }
 
 #endif /* _BRISAEVENTPROXY_H */

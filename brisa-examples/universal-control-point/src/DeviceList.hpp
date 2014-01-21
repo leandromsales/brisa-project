@@ -20,7 +20,7 @@
 
 #include "model/ExecutableAction.hpp"
 
-class DeviceList: public QList<Brisa::BrisaControlPointDevice *> {
+class DeviceList: public QList<brisa::upnp::BrisaControlPointDevice *> {
 public:
 	enum types {
 		DEVICE, SERVICE, ACTION
@@ -36,13 +36,13 @@ public:
 	virtual ~DeviceList() {}
 	void popCurrentItem();
 	int setCurrentItemByID(QString ID);
-	Brisa::BrisaControlPointDevice *getDevice(int index);
-	Brisa::BrisaControlPointDevice *getCurrentDevice();
-	Brisa::BrisaControlPointDevice *getDeviceByUDN(QString UDN);
+	brisa::upnp::BrisaControlPointDevice *getDevice(int index);
+	brisa::upnp::BrisaControlPointDevice *getCurrentDevice();
+	brisa::upnp::BrisaControlPointDevice *getDeviceByUDN(QString UDN);
 
 private:
 	DeviceList();
-	Brisa::BrisaControlPointDevice *m_currentDevice;
+	brisa::upnp::BrisaControlPointDevice *m_currentDevice;
 	ExecutableAction *m_executableAction;
 };
 

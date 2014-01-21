@@ -1,6 +1,6 @@
 #include "httpresponse.h"
 
-using namespace Brisa;
+using namespace brisa;
 
 static const QByteArray reasonPhrases[] =
 {

@@ -6,7 +6,8 @@
 
 #include "http/httprequest.h"
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
 
 class WebserverSession;
 
@@ -35,6 +36,7 @@ private:
     friend class Webserver;
 };
 
+}
 }
 
 #endif /* _WEBSERVICE_H */

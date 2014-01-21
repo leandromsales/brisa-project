@@ -1,6 +1,7 @@
 #include "brisamulticasteventmessage.h"
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
 
 BrisaMulticastEventMessage::BrisaMulticastEventMessage(
         BrisaStateVariable *variable, QString LVL, QObject *parent) :
@@ -46,4 +47,7 @@ QByteArray BrisaMulticastEventMessage::getMessageBody() const {
 
 QByteArray BrisaMulticastEventMessage::getRequestMessage() const {
     return (this->getMessageHeader() + this->getMessageBody());
+}
+
+}
 }

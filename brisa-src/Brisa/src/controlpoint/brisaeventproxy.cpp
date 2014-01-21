@@ -29,7 +29,9 @@
 
 #include <webserversession.h>
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
+
 
 BrisaEventProxy::BrisaEventProxy(const QStringList &callbackUrls,
                                  Webserver *webserver,
@@ -167,4 +169,6 @@ void BrisaEventProxy::setSid(QString &sid) {
     this->SID = sid;
 }
 
+}
+}
 

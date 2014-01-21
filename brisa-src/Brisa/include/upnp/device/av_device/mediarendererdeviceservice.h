@@ -10,7 +10,8 @@
 #define SERVICE_CONTROL "/TVOperations/control"
 #define SERVICE_EVENT_SUB "/TVOperations/eventSub"
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
 
 class MediaRendererDeviceService : public BrisaService
 {
@@ -32,11 +33,14 @@ public:
     Q_INVOKABLE
     BrisaOutArgument* setchanel(BrisaInArgument* const inArguments,
                                 BrisaAction* const action);
-    
+
 signals:
-    
+
 public slots:
-    
+
 };
+
+}
+}
 
 #endif // MEDIARENDERERDEVICESERVICE_H

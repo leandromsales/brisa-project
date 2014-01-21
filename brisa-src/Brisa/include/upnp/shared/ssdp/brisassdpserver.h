@@ -7,7 +7,8 @@
 #include <QMap>
 #include <QString>
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
 
 /*! \class Brisa::BrisaSSDPServer brisassdpserver.h BrisaUpnp/BrisaSSDPServer
  *  \brief SSDP stack implementation for UPnP devices.
@@ -151,6 +152,7 @@ private:
     BrisaUdpListener *udpListener;
 };
 
+}
 }
 
 #endif /* _BRISASSDPSERVER_H */

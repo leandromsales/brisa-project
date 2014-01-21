@@ -11,7 +11,8 @@
 
 typedef QMap<QString, QString> BrisaInArgument, BrisaOutArgument;
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
 
 class BrisaService;
 class BrisaStateVariable;
@@ -181,5 +182,5 @@ private:
 };
 
 }
-
+}
 #endif /* _BRISAACTION_H */

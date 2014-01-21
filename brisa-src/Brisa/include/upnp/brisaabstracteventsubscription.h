@@ -10,7 +10,8 @@
 #include "upnp/shared/webserver/webserver.h"
 #include "upnp/shared/webserver/webservice.h"
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
 
 /*!
  * \class Brisa::BrisaAbstractEventSubscription brisaabstracteventsubscription.h BrisaUpnp/BrisaAbstractEventSubscription
@@ -74,5 +75,5 @@ protected:
 };
 
 }
-
+}
 #endif /* _BRISAABSTRACTEVENTSUBSCRIPTION_H */

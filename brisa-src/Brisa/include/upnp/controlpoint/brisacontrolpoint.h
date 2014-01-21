@@ -37,7 +37,8 @@
 #include "brisamulticasteventreceiver.h"
 #include "upnp/brisaglobal.h"
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
 
 class BrisaSSDPClient;
 class BrisaMSearchClientCP;
@@ -285,6 +286,7 @@ private slots:
 
 };
 
+}
 }
 
 #endif /* _BRISACONTROL_POINT_H */

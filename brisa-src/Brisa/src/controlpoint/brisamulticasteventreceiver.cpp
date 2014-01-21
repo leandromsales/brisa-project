@@ -1,6 +1,7 @@
 #include "brisamulticasteventreceiver.h"
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
 
 BrisaMulticastEventReceiver::BrisaMulticastEventReceiver(QObject *parent) :
         QObject(parent)
@@ -90,4 +91,7 @@ void BrisaMulticastEventReceiver::parseBody(QByteArray body)
     this->attributes["xmlns"] = xmlns;
     this->attributes["variableName"] = variableName;
     this->attributes["newValue"] = newValue;
+}
+
+}
 }

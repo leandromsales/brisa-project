@@ -7,7 +7,7 @@
 
 #include "ActionController.hpp"
 
-using namespace Brisa;
+using namespace brisa::upnp;
 using namespace bb::system;
 
 ActionController::ActionController(QObject *parent) :

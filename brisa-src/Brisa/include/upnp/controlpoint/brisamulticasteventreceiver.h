@@ -8,7 +8,8 @@
 #include "upnp/controlpoint/brisaudplistener.h"
 #include "upnp/brisaglobal.h"
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
 
 class BRISA_UPNP_EXPORT BrisaMulticastEventReceiver : public QObject
 {
@@ -79,6 +80,7 @@ private:
 
 };
 
+}
 }
 
 #endif // BRISAMULTICASTEVENTRECEIVER_H

@@ -6,7 +6,7 @@
 
 #include "upnp/brisastatevariable.h"
 
-namespace Brisa {
+namespace brisa {
 
 /*!
  * \internal

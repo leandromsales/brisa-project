@@ -5,7 +5,8 @@
 #include <QtNetwork>
 #include "webservice.h"
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
 
     class WebStaticContent: public WebService
     {
@@ -27,6 +28,8 @@ namespace Brisa {
         QByteArray m_content;
         QByteArray m_contentType;
     };
+
+}
 
 }
 

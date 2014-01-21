@@ -2,7 +2,8 @@
 #include "brisaactionxmlparser.h"
 #include "upnp/shared/webserver/http/httpresponse.h"
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
 
 BrisaControlWebService::BrisaControlWebService(const QString &serviceType, QObject *parent) :
     WebService(parent),
@@ -41,4 +42,7 @@ void BrisaControlWebService::onRequest(const HttpRequest &request, WebserverSess
         qDebug() << "BrisaService: Invalid SOAP xml format.";
         emit invalidRequest(session);
     }
+}
+
+}
 }

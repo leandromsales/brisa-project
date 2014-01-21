@@ -11,6 +11,9 @@
 
 #include "upnp/shared/webserver/webservice.h"
 
+namespace brisa {
+namespace upnp {
+
 enum UPnPErrorCodes {
 	UPNP_SUCCESS = 0,
 	UPNP_INVALID_ACTION = 401,
@@ -24,7 +27,7 @@ enum UPnPErrorCodes {
 	UPNP_STRING_ARGUMENT_TOO_LONG = 605
 };
 
-namespace Brisa {
+
 
 /*!
  * \class Brisa::BrisaAbstractService brisaabstractservice.h BrisaUpnp/BrisaAbstractService
@@ -205,6 +208,7 @@ protected:
     QString udn;
 };
 
+}
 }
 
 #endif /* _BRISAABSTRACTSERVICE_H */

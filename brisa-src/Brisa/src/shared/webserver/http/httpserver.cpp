@@ -3,7 +3,7 @@
 
 #define DBG_PREFIX "HttpContext: "
 
-using namespace Brisa;
+using namespace brisa;
 
 HttpServer::HttpServer(const QHostAddress &address, quint16 port, QObject *parent) :
     QTcpServer(parent),

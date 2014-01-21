@@ -5,7 +5,7 @@
 #include <QMutex>
 #include "httpserver.h"
 
-namespace Brisa {
+namespace brisa {
 
 class HttpSessionManager : public QThread
 {

@@ -36,7 +36,8 @@
 
 #include "webserversession.h"
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
 
 BrisaControlPoint::BrisaControlPoint(QObject *parent, QString st, int mx) :
     QObject(parent) {
@@ -237,4 +238,7 @@ void BrisaControlPoint::receiveMulticast(BrisaOutArgument attributes)
 {
     emit multicastReceived(attributes.value("variableName"), attributes.value("newValue"));
     emit multicastReceivedRaw(attributes);
+}
+
+}
 }

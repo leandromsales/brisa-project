@@ -1,5 +1,8 @@
 #include "networkmanager.h"
 
+namespace brisa {
+namespace upnp {
+
 NetworkManager::NetworkManager(QObject *parent) : QObject(parent) {
 
 }
@@ -68,7 +71,7 @@ QList<SSDPUdpSocket*> NetworkManager::enableMulticastAny(const QString &ipMultic
     QList<SSDPUdpSocket*> sockets;
     foreach (QNetworkInterface interface, interfaces) {
         sockets += this->enableMulticastAny(ipMulticast, port, interface);
-    } 
+    }
     return sockets;
 }
 
@@ -76,7 +79,7 @@ QList<SSDPUdpSocket*> NetworkManager::enableMulticastAny(const QString &ipMultic
     QList<SSDPUdpSocket*> sockets;
     foreach (QNetworkInterface interface, this->getUpIPv4Interfaces()) {
         sockets += this->enableMulticastAny(ipMulticast, port, interface);
-    } 
+    }
     return sockets;
 }
 
@@ -108,7 +111,7 @@ QList<SSDPUdpSocket*> NetworkManager::enableMulticast(const QString &ipMulticast
     QList<SSDPUdpSocket*> sockets;
     foreach (QNetworkInterface interface, userInterfaces) {
         sockets += this->enableMulticast(ipMulticast, port, interface);
-    } 
+    }
     return sockets;
 }
 
@@ -116,7 +119,7 @@ QList<SSDPUdpSocket*> NetworkManager::enableMulticast(const QString &ipMulticast
     QList<SSDPUdpSocket*> sockets;
         foreach (QNetworkInterface interface, this->getUpIPv4Interfaces()) {
 	sockets += this->enableMulticast(ipMulticast, port, interface);
-    } 
+    }
     return sockets;
 }
 
@@ -138,5 +141,8 @@ QList<QHostAddress> NetworkManager::getAddresses(QNetworkInterface *interface) {
         }
     }
     return addresses;
+}
+
+}
 }
 

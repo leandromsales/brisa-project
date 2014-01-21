@@ -40,7 +40,9 @@
 #include <cstring>
 #define MAX_LEN  1024   /* maximum receive string size */
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
+
 
 BrisaUdpListener::BrisaUdpListener(QString address, quint32 port,
                                    QString objectName, QObject *parent) :
@@ -142,6 +144,9 @@ void BrisaUdpListener::start()
           qWarning() << this->objectName << ": could not join MULTICAST group.";
     }
 #endif
+}
+
+}
 }
 
 

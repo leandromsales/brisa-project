@@ -6,7 +6,7 @@
  */
 #include "SwitchPower.hpp"
 
-using namespace Brisa;
+using namespace brisa::upnp;
 
 SwitchPower::SwitchPower() :
         BrisaService(SERVICE_TYPE,

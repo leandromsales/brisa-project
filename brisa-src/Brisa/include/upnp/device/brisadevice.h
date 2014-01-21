@@ -12,10 +12,13 @@
 #include "brisaservice.h"
 #include "upnp/brisaicon.h"
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
 
 class Webserver;
 class BrisaSSDPServer;
+
+namespace device {
 
 /*!
  *  \class Brisa::BrisaDevice brisadevice.h BrisaUpnp/BrisaDevice
@@ -307,6 +310,8 @@ private:
     bool running;
 };
 
+}
+}
 }
 
 #endif /* _BRISADEVICE_H */

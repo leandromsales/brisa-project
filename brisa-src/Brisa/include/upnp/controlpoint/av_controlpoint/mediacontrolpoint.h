@@ -11,7 +11,8 @@
 #include "upnp/controlpoint/brisamsearchclientcp.h"
 
 //#include "teste.h"
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
 
 class MediaControlPoint: public QObject {
 Q_OBJECT
@@ -58,5 +59,8 @@ private slots:
 
 
 };
+
+}
+}
 
 #endif // MEDIACONTROLPOINT_H

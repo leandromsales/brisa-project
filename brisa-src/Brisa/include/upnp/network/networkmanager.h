@@ -13,6 +13,9 @@
 
 #include "upnp/shared/ssdp/ssdpudpsocket.h"
 
+namespace brisa {
+namespace upnp {
+
 class NetworkManager : public QObject {
 	//TODO Verificar a necessidade desta classe.
 	//Aparentemente ela foi criada apenas para conectar multicast, na interface correta, problema atualmente inexistente
@@ -38,4 +41,7 @@ class NetworkManager : public QObject {
     signals:
 
 };
+
+}
+}
 #endif // NETWORKMANAGER_H

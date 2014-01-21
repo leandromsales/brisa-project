@@ -1,6 +1,9 @@
 #include "brisaargument.h"
 
-using namespace Brisa;
+
+namespace brisa {
+namespace upnp {
+
 
 BrisaArgument::BrisaArgument(const BrisaArgument &brisaArgument):
     QObject(),
@@ -54,5 +57,8 @@ void BrisaArgument::clear() {
     this->name.clear();
     this->direction.clear();
     this->relatedStateVariable.clear();
+}
+
+}
 }
 

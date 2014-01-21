@@ -8,7 +8,7 @@
 #define MAPPED_MEMORY_SIZE 64
 #endif
 
-using namespace Brisa;
+using namespace brisa;
 
 enum State
 {

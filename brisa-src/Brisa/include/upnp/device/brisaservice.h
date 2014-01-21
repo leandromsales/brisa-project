@@ -8,7 +8,8 @@
 #include "upnp/shared/webserver/webserversession.h"
 #include "upnp/shared/webserver/webserver.h"
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
 
     class Webserver;
 
@@ -71,6 +72,7 @@ namespace Brisa {
         QMetaMethod handleActionFailureMethod;
     };
 
+}
 }
 
 #endif /* BRISASERVICE_H_ */

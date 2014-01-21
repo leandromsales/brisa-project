@@ -1,6 +1,6 @@
 #include "httprequest.h"
 
-using namespace Brisa;
+using namespace brisa;
 
 HttpRequest::HttpRequest(const QByteArray &method, const QByteArray &uri,
                          const HttpVersion &httpVersion) :

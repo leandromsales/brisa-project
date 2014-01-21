@@ -6,7 +6,8 @@
 
 #include "brisaabstracteventmessage.h"
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
 
 static const QString NOTIFY_EVENT_MESSAGE =
         "NOTIFY *\r\n"
@@ -51,5 +52,6 @@ private:
     QString LVL;
 };
 
+}
 }
 #endif // BRISAMULTICASTEVENTMESSAGE_H

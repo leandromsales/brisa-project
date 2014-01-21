@@ -9,7 +9,8 @@
 #include <QString>
 #include <QObject>
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
 
     class BrisaEventSubscription: public BrisaAbstractEventSubscription {
     Q_OBJECT
@@ -24,6 +25,7 @@ namespace Brisa {
         HttpResponse getAcceptUnsubscriptionResponse() const;
     };
 
+}
 }
 
 #endif /* _BRISAEVENTSUBSCRIPTION_H */

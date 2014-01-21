@@ -4,6 +4,9 @@
 #include <QString>
 #include <QUuid>
 
+namespace brisa {
+namespace upnp {
+
 /*!
  * Generates random uuids.
  */
@@ -14,6 +17,9 @@ inline QString getUuid() {
 
 inline QString getCompleteUuid() {
 	return QString("uuid:") + getUuid();
+}
+
+}
 }
 
 #endif

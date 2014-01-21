@@ -23,7 +23,7 @@
 #include "DeviceList.hpp"
 #include "model/ExecutableAction.hpp"
 
-using namespace Brisa;
+using namespace brisa::upnp;
 
 class ViewController: public QObject {
 Q_OBJECT
@@ -88,8 +88,8 @@ private:
 	bb::cascades::GroupDataModel *m_eventLogModel;
 	bb::cascades::ArrayDataModel *m_devicesModel;
 
-	Brisa::BrisaControlPoint *m_controlPoint;
-	Brisa::BrisaControlPointDevice *m_currentDev;
+	brisa::upnp::BrisaControlPoint *m_controlPoint;
+	brisa::upnp::BrisaControlPointDevice *m_currentDev;
 
 	void createDeviceItem();
 	void createActions();

@@ -1,7 +1,7 @@
 #include "httpsessionmanager.h"
 #include "httpsession.h"
 
-using namespace Brisa;
+using namespace brisa;
 
 HttpSessionManager::HttpSessionManager(HttpServer *parent) :
     QThread(parent),

@@ -3,7 +3,9 @@
 
 #include <QDebug>
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
+namespace device {
 
 void BrisaDeviceXMLHandler::xmlGenerator(BrisaDevice *device, QFile *file) {
     file->open(QIODevice::ReadWrite | QIODevice::Text);
@@ -110,3 +112,6 @@ void BrisaDeviceXMLHandler::writeDevice(BrisaDevice *device) {
     this->writer->writeEndElement(); //device
 }
 
+}
+}
+}

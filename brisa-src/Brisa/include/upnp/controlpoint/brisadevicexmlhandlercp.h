@@ -46,7 +46,9 @@
 #include "upnp/controlpoint/brisacontrolpointservice.h"
 //#include "brisaglobal.h"
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
+
 
 class BrisaControlPointDevice;
 
@@ -206,6 +208,7 @@ private slots:
 
 };
 
+}
 }
 
 #endif /* _BRISADEVICEXMLHANDLER_H */

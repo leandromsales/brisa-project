@@ -1,0 +1,29 @@
+Namespace
+Cada subpasta um (sub) namespace.
+
+brisa
+brisa::device
+brisa::shared::ssdp
+
+Nome das classes
+Todas as classes BrisaAlgumaCoisa renomear para alguma coisa.
+
+BrisaControlPoint -> ControlPoint 
+
+na versão completa, ficaria:
+
+BrisaControlPoint -> brisa::controlpoint::ControlPoint 
+
+Os nomes de classes que são longos apenas para diferenciar de outras classes de outros pacotes, serão modificados:
+
+BrisaDevice -> brisa::device::Device   
+BrisaControlPointDevice -> brisa::controlpoint::Device
+ 
+BrisaService -> brisa::service::Service
+BrisaControlPointService -> brisa::controlpoint::Service
+
+Como diretriz geral, utilizar as convenções e principalmente o estilo do Qt:
+http://qt-project.org/wiki/Coding-Conventions - Convensões
+http://qt-project.org/wiki/Qt_Coding_Style - Estilo
+
+Após modificar cada classe fazer clean e build em dois exemplos da lib para validar 

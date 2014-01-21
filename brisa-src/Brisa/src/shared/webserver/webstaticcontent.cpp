@@ -1,7 +1,8 @@
 #include "webstaticcontent.h"
 #include "webserversession.h"
 
-using namespace Brisa;
+namespace brisa {
+namespace upnp {
 
 WebStaticContent::WebStaticContent(const QByteArray &content,
                                              QObject *parent) :
@@ -42,4 +43,7 @@ void WebStaticContent::onRequest(const HttpRequest &request,
     response.setEntityBody(m_content);
 
     session->respond(response);
+}
+
+}
 }

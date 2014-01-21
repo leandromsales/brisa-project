@@ -1,5 +1,8 @@
 #include "ssdp.h"
 
+namespace brisa {
+namespace upnp {
+
 SSDP::SSDP(int interval, QObject *parent) :
 		QObject(parent) {
 
@@ -101,5 +104,8 @@ QMap<QString, QString> SSDP::getMapFromMessage(QString message) {
 	}
 
 	return response;
+}
+
+}
 }
 

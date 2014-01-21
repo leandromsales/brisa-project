@@ -10,7 +10,8 @@
 #include "brisastatevariable.h"
 #include "brisaabstractservice.h"
 
-namespace Brisa {
+namespace brisa {
+namespace upnp {
 
 class BrisaServiceXMLHandler : public QObject {
     Q_OBJECT
@@ -21,6 +22,7 @@ public:
     void parseService(BrisaAbstractService *service, QIODevice *scpd);
 };
 
+}
 }
 
 #endif /* _BRISAABSTRACTSERVICEXMLHANDLER_H */

@@ -1,4 +1,4 @@
-QMAKE_TARGET  = WANChat
+QMAKE_TARGET  = BrisaLight
 LUPDATE       = $(QNX_HOST)/usr/bin/lupdate
 LRELEASE      = $(QNX_HOST)/usr/bin/lrelease
 

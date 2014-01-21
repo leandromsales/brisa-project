@@ -12,7 +12,10 @@
 //	#include "upnp/brisautils.h"
 //#endif
 
-using namespace Brisa;
+
+namespace brisa {
+namespace upnp {
+namespace device {
 
 static const QByteArray customWebservicesPath = "/custom/";
 
@@ -674,4 +677,8 @@ void BrisaDevice::removeWebservice(const QByteArray &path)
     if (path.startsWith(customWebservicesPath)) {
         webserver->removeService(path);
     }
+}
+
+}
+}
 }

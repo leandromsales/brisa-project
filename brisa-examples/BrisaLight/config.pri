@@ -37,25 +37,6 @@ device {
     }
 }
 
-simulator {
-    CONFIG(debug, debug|release) {
-        LIBS += -lBrisa
-
-        SOURCES +=  $$quote($$BASEDIR/src/BinaryLight.cpp) \
-                 $$quote($$BASEDIR/src/Flashlight.cpp) \
-                 $$quote($$BASEDIR/src/SwitchPower.cpp) \
-                 $$quote($$BASEDIR/src/activeframeqml.cpp) \
-                 $$quote($$BASEDIR/src/applicationui.cpp) \
-                 $$quote($$BASEDIR/src/main.cpp)
-
-        HEADERS +=  $$quote($$BASEDIR/src/BinaryLight.h) \
-                 $$quote($$BASEDIR/src/Flashlight.hpp) \
-                 $$quote($$BASEDIR/src/SwitchPower.hpp) \
-                 $$quote($$BASEDIR/src/activeframeqml.h) \
-                 $$quote($$BASEDIR/src/applicationui.hpp)
-    }
-}
-
 INCLUDEPATH +=  $$quote($$BASEDIR/src)
 
 CONFIG += precompile_header

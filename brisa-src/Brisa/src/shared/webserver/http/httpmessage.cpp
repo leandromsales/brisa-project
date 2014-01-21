@@ -2,7 +2,7 @@
 #include <QBuffer>
 #include <QIODevice>
 
-using namespace Brisa;
+using namespace brisa;
 
 HttpMessage::HttpMessage(HttpVersion httpVersion) :
         m_httpVersion(httpVersion),

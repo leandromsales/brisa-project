@@ -62,23 +62,18 @@
     <configuration name="Device-Debug">
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="arm/o.le-v7-g/BrisaLight" entry="true" type="Qnx/Elf">BrisaLight</asset>
-       <asset path="${workspace_loc:/Brisa/arm/so.le-v7-g/libBrisa.so.1.0.0}" type="Qnx/Elf">lib/libBrisa.so.1</asset>
+       <asset path="${workspace_loc:/Brisa/arm/so.le-v7-g/libBrisa.so}" type="Qnx/Elf">lib/libBrisa.so.1</asset>
     </configuration>
     <configuration name="Device-Release">
        <entryPointType>Qnx/Cascades</entryPointType>
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="arm/o.le-v7/BrisaLight.so" entry="true" type="Qnx/Elf">BrisaLight.so</asset>
-       <asset path="${workspace_loc:/Brisa/arm/so.le-v7-g/libBrisa.so.1.0.0}" type="Qnx/Elf">lib/libBrisa.so.1</asset>
+       <asset path="${workspace_loc:/Brisa/arm/so.le-v7-g/libBrisa.so}" type="Qnx/Elf">lib/libBrisa.so.1</asset>
     </configuration>
     <configuration name="Device-Profile">
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="arm-p/o.le-v7-g/BrisaLight" entry="true" type="Qnx/Elf">BrisaLight</asset>
-       <asset path="${workspace_loc:/Brisa/arm/so.le-v7-g/libBrisa.so.1.0.0}" type="Qnx/Elf">lib/libBrisa.so.1</asset>
-    </configuration>
-    <configuration name="Simulator-Debug">
-       <platformArchitecture>x86</platformArchitecture>
-       <asset path="x86/o-g/BrisaLight" entry="true" type="Qnx/Elf">BrisaLight</asset>
-       <asset path="libBrisa.so" type="Qnx/Elf">lib/libBrisa.so</asset>
+       <asset path="${workspace_loc:/Brisa/arm/so.le-v7-g/libBrisa.so}" type="Qnx/Elf">lib/libBrisa.so.1</asset>
     </configuration>
     
     <!--  Unique author ID assigned by signing authority. Required if using debug tokens. -->
