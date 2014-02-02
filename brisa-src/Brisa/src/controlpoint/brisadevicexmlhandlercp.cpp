@@ -95,9 +95,17 @@ void BrisaDeviceXMLHandlerCP::parseDevice(BrisaControlPointDevice *device, QDomE
 
             validateURLBase(device);
 
-            BrisaServiceFetcher f(service, device->
-                                  getAttribute(BrisaControlPointDevice::UrlBase)
-                                  + service->getAttribute(BrisaControlPointService::ScpdUrl));
+            //Fixes location error: "http://192.168.1.1:1900/http://192.168.1.1:1900/wfc.xml" and "/ipc.xml"
+            QString location("");
+            if (service->getAttribute(BrisaControlPointService::ScpdUrl).startsWith("/http://")) {
+            	location.append(service->getAttribute(BrisaControlPointService::ScpdUrl));
+            	location.remove(0,1);
+            } else
+            	location.append(device->
+                                      getAttribute(BrisaControlPointDevice::UrlBase)
+                                      + service->getAttribute(BrisaControlPointService::ScpdUrl));
+
+        	BrisaServiceFetcher f(service, location);
 
             if (!f.fetch()) {
                 device->addService(service);
@@ -122,6 +130,8 @@ void BrisaDeviceXMLHandlerCP::parseDevice(BrisaControlPointDevice *device, QDomE
 
     for (int i = 0; i < deviceList.size(); i++) {
         BrisaControlPointDevice *embDevice = new BrisaControlPointDevice(device);
+        // Fixes embedded device don't have urlBase
+        embDevice->setAttribute(BrisaControlPointDevice::UrlBase, device->getAttribute(BrisaControlPointDevice::UrlBase));
         QDomElement deviceElement = deviceList.at(i).toElement();
         parseDevice(embDevice, deviceElement);
         if(!embDevice->getAttribute(BrisaControlPointDevice::FriendlyName).isEmpty())

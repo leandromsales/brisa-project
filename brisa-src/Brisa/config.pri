@@ -425,14 +425,126 @@ lupdate_inclusion {
              $$quote($$BASEDIR/../include/*.cc) \
              $$quote($$BASEDIR/../include/*.cpp) \
              $$quote($$BASEDIR/../include/*.cxx) \
+             $$quote($$BASEDIR/../include/upnp/*.c) \
+             $$quote($$BASEDIR/../include/upnp/*.c++) \
+             $$quote($$BASEDIR/../include/upnp/*.cc) \
+             $$quote($$BASEDIR/../include/upnp/*.cpp) \
+             $$quote($$BASEDIR/../include/upnp/*.cxx) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/*.c) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/*.c++) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/*.cc) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/*.cpp) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/*.cxx) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/av_controlpoint/*.c) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/av_controlpoint/*.c++) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/av_controlpoint/*.cc) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/av_controlpoint/*.cpp) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/av_controlpoint/*.cxx) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/av_controlpoint/didl/*.c) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/av_controlpoint/didl/*.c++) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/av_controlpoint/didl/*.cc) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/av_controlpoint/didl/*.cpp) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/av_controlpoint/didl/*.cxx) \
+             $$quote($$BASEDIR/../include/upnp/device/*.c) \
+             $$quote($$BASEDIR/../include/upnp/device/*.c++) \
+             $$quote($$BASEDIR/../include/upnp/device/*.cc) \
+             $$quote($$BASEDIR/../include/upnp/device/*.cpp) \
+             $$quote($$BASEDIR/../include/upnp/device/*.cxx) \
+             $$quote($$BASEDIR/../include/upnp/device/av_device/*.c) \
+             $$quote($$BASEDIR/../include/upnp/device/av_device/*.c++) \
+             $$quote($$BASEDIR/../include/upnp/device/av_device/*.cc) \
+             $$quote($$BASEDIR/../include/upnp/device/av_device/*.cpp) \
+             $$quote($$BASEDIR/../include/upnp/device/av_device/*.cxx) \
+             $$quote($$BASEDIR/../include/upnp/network/*.c) \
+             $$quote($$BASEDIR/../include/upnp/network/*.c++) \
+             $$quote($$BASEDIR/../include/upnp/network/*.cc) \
+             $$quote($$BASEDIR/../include/upnp/network/*.cpp) \
+             $$quote($$BASEDIR/../include/upnp/network/*.cxx) \
+             $$quote($$BASEDIR/../include/upnp/shared/*.c) \
+             $$quote($$BASEDIR/../include/upnp/shared/*.c++) \
+             $$quote($$BASEDIR/../include/upnp/shared/*.cc) \
+             $$quote($$BASEDIR/../include/upnp/shared/*.cpp) \
+             $$quote($$BASEDIR/../include/upnp/shared/*.cxx) \
+             $$quote($$BASEDIR/../include/upnp/shared/soap/*.c) \
+             $$quote($$BASEDIR/../include/upnp/shared/soap/*.c++) \
+             $$quote($$BASEDIR/../include/upnp/shared/soap/*.cc) \
+             $$quote($$BASEDIR/../include/upnp/shared/soap/*.cpp) \
+             $$quote($$BASEDIR/../include/upnp/shared/soap/*.cxx) \
+             $$quote($$BASEDIR/../include/upnp/shared/ssdp/*.c) \
+             $$quote($$BASEDIR/../include/upnp/shared/ssdp/*.c++) \
+             $$quote($$BASEDIR/../include/upnp/shared/ssdp/*.cc) \
+             $$quote($$BASEDIR/../include/upnp/shared/ssdp/*.cpp) \
+             $$quote($$BASEDIR/../include/upnp/shared/ssdp/*.cxx) \
+             $$quote($$BASEDIR/../include/upnp/shared/webserver/*.c) \
+             $$quote($$BASEDIR/../include/upnp/shared/webserver/*.c++) \
+             $$quote($$BASEDIR/../include/upnp/shared/webserver/*.cc) \
+             $$quote($$BASEDIR/../include/upnp/shared/webserver/*.cpp) \
+             $$quote($$BASEDIR/../include/upnp/shared/webserver/*.cxx) \
+             $$quote($$BASEDIR/../include/upnp/shared/webserver/http/*.c) \
+             $$quote($$BASEDIR/../include/upnp/shared/webserver/http/*.c++) \
+             $$quote($$BASEDIR/../include/upnp/shared/webserver/http/*.cc) \
+             $$quote($$BASEDIR/../include/upnp/shared/webserver/http/*.cpp) \
+             $$quote($$BASEDIR/../include/upnp/shared/webserver/http/*.cxx) \
              $$quote($$BASEDIR/../src/*.c) \
              $$quote($$BASEDIR/../src/*.c++) \
              $$quote($$BASEDIR/../src/*.cc) \
              $$quote($$BASEDIR/../src/*.cpp) \
              $$quote($$BASEDIR/../src/*.cxx) \
-             $$quote($$BASEDIR/../assets/*.qml) \
-             $$quote($$BASEDIR/../assets/*.js) \
-             $$quote($$BASEDIR/../assets/*.qs)
+             $$quote($$BASEDIR/../src/controlpoint/*.c) \
+             $$quote($$BASEDIR/../src/controlpoint/*.c++) \
+             $$quote($$BASEDIR/../src/controlpoint/*.cc) \
+             $$quote($$BASEDIR/../src/controlpoint/*.cpp) \
+             $$quote($$BASEDIR/../src/controlpoint/*.cxx) \
+             $$quote($$BASEDIR/../src/controlpoint/av_controlpoint/*.c) \
+             $$quote($$BASEDIR/../src/controlpoint/av_controlpoint/*.c++) \
+             $$quote($$BASEDIR/../src/controlpoint/av_controlpoint/*.cc) \
+             $$quote($$BASEDIR/../src/controlpoint/av_controlpoint/*.cpp) \
+             $$quote($$BASEDIR/../src/controlpoint/av_controlpoint/*.cxx) \
+             $$quote($$BASEDIR/../src/controlpoint/av_controlpoint/didl/*.c) \
+             $$quote($$BASEDIR/../src/controlpoint/av_controlpoint/didl/*.c++) \
+             $$quote($$BASEDIR/../src/controlpoint/av_controlpoint/didl/*.cc) \
+             $$quote($$BASEDIR/../src/controlpoint/av_controlpoint/didl/*.cpp) \
+             $$quote($$BASEDIR/../src/controlpoint/av_controlpoint/didl/*.cxx) \
+             $$quote($$BASEDIR/../src/device/*.c) \
+             $$quote($$BASEDIR/../src/device/*.c++) \
+             $$quote($$BASEDIR/../src/device/*.cc) \
+             $$quote($$BASEDIR/../src/device/*.cpp) \
+             $$quote($$BASEDIR/../src/device/*.cxx) \
+             $$quote($$BASEDIR/../src/device/av_device/*.c) \
+             $$quote($$BASEDIR/../src/device/av_device/*.c++) \
+             $$quote($$BASEDIR/../src/device/av_device/*.cc) \
+             $$quote($$BASEDIR/../src/device/av_device/*.cpp) \
+             $$quote($$BASEDIR/../src/device/av_device/*.cxx) \
+             $$quote($$BASEDIR/../src/network/*.c) \
+             $$quote($$BASEDIR/../src/network/*.c++) \
+             $$quote($$BASEDIR/../src/network/*.cc) \
+             $$quote($$BASEDIR/../src/network/*.cpp) \
+             $$quote($$BASEDIR/../src/network/*.cxx) \
+             $$quote($$BASEDIR/../src/shared/*.c) \
+             $$quote($$BASEDIR/../src/shared/*.c++) \
+             $$quote($$BASEDIR/../src/shared/*.cc) \
+             $$quote($$BASEDIR/../src/shared/*.cpp) \
+             $$quote($$BASEDIR/../src/shared/*.cxx) \
+             $$quote($$BASEDIR/../src/shared/soap/*.c) \
+             $$quote($$BASEDIR/../src/shared/soap/*.c++) \
+             $$quote($$BASEDIR/../src/shared/soap/*.cc) \
+             $$quote($$BASEDIR/../src/shared/soap/*.cpp) \
+             $$quote($$BASEDIR/../src/shared/soap/*.cxx) \
+             $$quote($$BASEDIR/../src/shared/ssdp/*.c) \
+             $$quote($$BASEDIR/../src/shared/ssdp/*.c++) \
+             $$quote($$BASEDIR/../src/shared/ssdp/*.cc) \
+             $$quote($$BASEDIR/../src/shared/ssdp/*.cpp) \
+             $$quote($$BASEDIR/../src/shared/ssdp/*.cxx) \
+             $$quote($$BASEDIR/../src/shared/webserver/*.c) \
+             $$quote($$BASEDIR/../src/shared/webserver/*.c++) \
+             $$quote($$BASEDIR/../src/shared/webserver/*.cc) \
+             $$quote($$BASEDIR/../src/shared/webserver/*.cpp) \
+             $$quote($$BASEDIR/../src/shared/webserver/*.cxx) \
+             $$quote($$BASEDIR/../src/shared/webserver/http/*.c) \
+             $$quote($$BASEDIR/../src/shared/webserver/http/*.c++) \
+             $$quote($$BASEDIR/../src/shared/webserver/http/*.cc) \
+             $$quote($$BASEDIR/../src/shared/webserver/http/*.cpp) \
+             $$quote($$BASEDIR/../src/shared/webserver/http/*.cxx)
 
     HEADERS +=  $$quote($$BASEDIR/../include/*.h) \
              $$quote($$BASEDIR/../include/*.h++) \
