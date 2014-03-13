@@ -2,6 +2,7 @@
 
 namespace brisa {
 namespace upnp {
+namespace device {
 
 BrisaMulticastEventMessage::BrisaMulticastEventMessage(
         BrisaStateVariable *variable, QString LVL, QObject *parent) :
@@ -49,5 +50,6 @@ QByteArray BrisaMulticastEventMessage::getRequestMessage() const {
     return (this->getMessageHeader() + this->getMessageBody());
 }
 
+}
 }
 }

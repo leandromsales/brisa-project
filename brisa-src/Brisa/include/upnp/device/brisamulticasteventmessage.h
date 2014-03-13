@@ -8,6 +8,8 @@
 
 namespace brisa {
 namespace upnp {
+namespace device {
+
 
 static const QString NOTIFY_EVENT_MESSAGE =
         "NOTIFY *\r\n"
@@ -52,6 +54,7 @@ private:
     QString LVL;
 };
 
+}
 }
 }
 #endif // BRISAMULTICASTEVENTMESSAGE_H

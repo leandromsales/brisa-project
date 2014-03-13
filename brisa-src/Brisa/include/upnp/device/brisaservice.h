@@ -11,67 +11,71 @@
 namespace brisa {
 namespace upnp {
 
-    class Webserver;
+class Webserver;
 
-    class BrisaService: public BrisaAbstractService
-    {
-    Q_OBJECT
-    public:
+namespace device {
 
-        BrisaService(QObject *parent = 0);
 
-        BrisaService(const QString &serviceType,
-                     const QString &serviceId = QString(),
-                     const QString &scpdUrl = QString(),
-                     const QString &controlUrl = QString(),
-                     const QString &eventSubUrl = QString(),
-                     const QString &host = QString(),
-                     QObject *parent = 0);
+class BrisaService: public BrisaAbstractService
+{
+	Q_OBJECT
+public:
 
-        BrisaService(BrisaService &service);
+	BrisaService(QObject *parent = 0);
 
-        virtual ~BrisaService();
+	BrisaService(const QString &serviceType,
+			const QString &serviceId = QString(),
+			const QString &scpdUrl = QString(),
+			const QString &controlUrl = QString(),
+			const QString &eventSubUrl = QString(),
+			const QString &host = QString(),
+			QObject *parent = 0);
 
-        BrisaStateVariable *getVariable(const QString &variableName);
+	BrisaService(BrisaService &service);
 
-        void buildWebServiceTree(Webserver *sessionManager);
+	virtual ~BrisaService();
 
-        void setDescriptionFile(const QString &scpdFilePath);
+	BrisaStateVariable *getVariable(const QString &variableName);
 
-        QString getDescriptionFile();
+	void buildWebServiceTree(Webserver *sessionManager);
 
-    protected:
-        void onRequest(const HttpRequest &request, WebserverSession *session);
+	void setDescriptionFile(const QString &scpdFilePath);
 
-    private slots:
-        void call(const QString &method, BrisaInArgument param, WebserverSession *);
-        void onInvalidRequest(WebserverSession *session);
+	QString getDescriptionFile();
 
-    private:
+protected:
+	void onRequest(const HttpRequest &request, WebserverSession *session);
 
-        void respondAction(WebserverSession *session, const BrisaOutArgument *outArgs, const QString &actionName /* = QString() */);
+	private slots:
+	void call(const QString &method, BrisaInArgument param, WebserverSession *);
+	void onInvalidRequest(WebserverSession *session);
 
-        void respondError(WebserverSession *session, int errorCode, QString errorDescription = QString());
+	private:
 
-        void parseDescriptionFile();
+	void respondAction(WebserverSession *session, const BrisaOutArgument *outArgs, const QString &actionName /* = QString() */);
 
-        void connectVariablesEventSignals();
+	void respondError(WebserverSession *session, int errorCode, QString errorDescription = QString());
 
-        void setDefaultValues();
+	void parseDescriptionFile();
 
-        void bindActionsToServiceMethods();
+	void connectVariablesEventSignals();
 
-        QMap<QString, WebService *> childWebServices;
+	void setDefaultValues();
 
-        QString scpdFilePath;
+	void bindActionsToServiceMethods();
 
-        QMetaMethod preActionMethod;
+	QMap<QString, WebService *> childWebServices;
 
-        QMetaMethod postActionMethod;
+	QString scpdFilePath;
 
-        QMetaMethod handleActionFailureMethod;
-    };
+	QMetaMethod preActionMethod;
 
+	QMetaMethod postActionMethod;
+
+	QMetaMethod handleActionFailureMethod;
+};
+
+}
 }
 }
 

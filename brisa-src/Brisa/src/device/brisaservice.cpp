@@ -20,6 +20,7 @@
 
 namespace brisa {
 namespace upnp {
+namespace device {
 
 static const QString SOAP_ERROR_TEMPLATE =
 		"<?xml version=\"1.0\"  encoding=\"utf-8\"?>\r\n"
@@ -443,6 +444,8 @@ void BrisaService::bindActionsToServiceMethods() {
 					<< method.typeName() << " " << methodName << ACTION_IN;
 		}
 	}*/
+}
+
 }
 }
 }

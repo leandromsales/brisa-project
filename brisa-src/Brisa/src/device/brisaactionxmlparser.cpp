@@ -2,7 +2,9 @@
 
 #include <QtDebug>
 
-using namespace brisa;
+namespace brisa {
+namespace upnp {
+namespace device {
 
 BrisaActionXmlParser::BrisaActionXmlParser() {
     reader = new QDomDocument();
@@ -62,3 +64,6 @@ void BrisaActionXmlParser::parseElement(QDomElement &element) {
     }
 }
 
+}
+}
+}

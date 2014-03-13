@@ -4,6 +4,7 @@
 
 namespace brisa {
 namespace upnp {
+namespace device {
 
 BrisaControlWebService::BrisaControlWebService(const QString &serviceType, QObject *parent) :
     WebService(parent),
@@ -44,5 +45,6 @@ void BrisaControlWebService::onRequest(const HttpRequest &request, WebserverSess
     }
 }
 
+}
 }
 }

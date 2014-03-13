@@ -9,6 +9,8 @@
 
 namespace brisa {
 namespace upnp {
+namespace device {
+
 
 /*!
  * \internal
@@ -62,5 +64,5 @@ inline QString BrisaEventMessage::getSid() const
 
 }
 }
-
+}
 #endif /* _BRISAEVENTMESSAGE_H */

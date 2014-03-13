@@ -1,6 +1,12 @@
 #include "brisaabstracteventmessage.h"
 
-using namespace brisa;
+namespace brisa {
+namespace upnp {
+namespace device {
 
 BrisaAbstractEventMessage::BrisaAbstractEventMessage(QObject *parent) :
         QObject(parent) { }
+
+}
+}
+}

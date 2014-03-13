@@ -5,6 +5,10 @@
 #include <QDomDocument>
 
 namespace brisa {
+namespace upnp {
+namespace device {
+
+
 /*!
  * \class Brisa::BrisaActionXmlParser brisaactionxmlparser.h BrisaUpnp/BrisaActionXmlParser
  * \brief XML parser for SOAP requests.
@@ -54,6 +58,8 @@ private:
     QDomNodeList domArgList;
 };
 
+}
+}
 }
 
 #endif /* XMLPARSER_H_ */

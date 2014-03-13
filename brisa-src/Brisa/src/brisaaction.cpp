@@ -6,6 +6,8 @@
 namespace brisa {
 namespace upnp {
 
+using namespace device;
+
 BrisaAction::BrisaAction(QString name, BrisaService *service, QObject *parent):
 	QObject(parent),
     name(name),

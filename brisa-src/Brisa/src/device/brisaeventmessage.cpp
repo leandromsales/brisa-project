@@ -2,6 +2,7 @@
 
 namespace brisa {
 namespace upnp {
+namespace device {
 
 BrisaEventMessage::BrisaEventMessage(BrisaEventSubscription &subscription,
         const QList<BrisaStateVariable *> *variables, QObject *parent) :
@@ -60,5 +61,6 @@ QByteArray BrisaEventMessage::getRequestMessage() const
                               ).toLatin1();
 }
 
+}
 }
 }

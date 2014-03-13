@@ -6,6 +6,7 @@
 
 namespace brisa {
 namespace upnp {
+namespace device {
 
 BrisaEventController::BrisaEventController(
         Webserver *sessionManager,
@@ -213,5 +214,6 @@ int BrisaEventController::getTimeOut(const QString &timeout) {
     return returnTime.toInt(&ok, 10);
 }
 
+}
 }
 }

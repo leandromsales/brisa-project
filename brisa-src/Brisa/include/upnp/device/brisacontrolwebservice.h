@@ -9,6 +9,8 @@
 
 namespace brisa {
 namespace upnp {
+namespace device {
+
 
 class BrisaControlWebService : public WebService {
     Q_OBJECT
@@ -26,6 +28,7 @@ private:
     QString serviceType;
 };
 
+}
 }
 }
 

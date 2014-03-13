@@ -7,6 +7,8 @@
 #include "upnp/brisastatevariable.h"
 
 namespace brisa {
+namespace upnp {
+namespace device {
 
 /*!
  * \internal
@@ -24,6 +26,8 @@ public:
     QByteArray getRequestMessage() const;
 };
 
+}
+}
 }
 
 #endif // BRISAABSTRACTEVENTMESSAGE_H

@@ -11,6 +11,8 @@
 
 namespace brisa {
 namespace upnp {
+namespace device {
+
 
     class BrisaEventSubscription: public BrisaAbstractEventSubscription {
     Q_OBJECT
@@ -25,6 +27,7 @@ namespace upnp {
         HttpResponse getAcceptUnsubscriptionResponse() const;
     };
 
+}
 }
 }
 

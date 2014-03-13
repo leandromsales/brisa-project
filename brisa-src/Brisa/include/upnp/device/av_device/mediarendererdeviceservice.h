@@ -12,6 +12,7 @@
 
 namespace brisa {
 namespace upnp {
+namespace device {
 
 class MediaRendererDeviceService : public BrisaService
 {
@@ -40,6 +41,7 @@ public slots:
 
 };
 
+}
 }
 }
 

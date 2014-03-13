@@ -2,6 +2,7 @@
 
 namespace brisa {
 namespace upnp {
+namespace device {
 
 BrisaEventSubscription::BrisaEventSubscription(const QString &sid,
         const QStringList &callbackUrls, const int &timeout, QObject *parent) :
@@ -35,5 +36,6 @@ HttpResponse BrisaEventSubscription::getAcceptUnsubscriptionResponse() const {
     return HttpResponse(HttpVersion(1, 1), HttpResponse::OK);
 }
 
+}
 }
 }

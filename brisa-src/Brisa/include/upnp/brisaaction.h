@@ -14,7 +14,10 @@ typedef QMap<QString, QString> BrisaInArgument, BrisaOutArgument;
 namespace brisa {
 namespace upnp {
 
+namespace device {
 class BrisaService;
+}
+
 class BrisaStateVariable;
 
 /*!
@@ -41,13 +44,13 @@ public:
     /*!
      * Constructs an action with given \a name, \a parent and \a service that it is related to.
      */
-    BrisaAction(QString name = "", BrisaService *service = 0, QObject *parent = 0);
+    BrisaAction(QString name = "", device::BrisaService *service = 0, QObject *parent = 0);
 
     /*!
      * Constructs an action with given \a name, \a parent and \a service and a method to be invoked
 	 * when the action is executed.
      */
-	BrisaAction(QString name, BrisaService *service, const QMetaMethod &method, QObject *parent);
+	BrisaAction(QString name, device::BrisaService *service, const QMetaMethod &method, QObject *parent);
 
     /*!
      * Constructs a new action based on \a action.
@@ -72,11 +75,11 @@ public:
     /*!
      * Sets a new service for this action.
      */
-    void setService(BrisaService *service);
+    void setService(device::BrisaService *service);
     /*!
      * Returns the service that this action is related to.
      */
-    BrisaService* getService() const;
+    device::BrisaService* getService() const;
 
     /*!
      * Returns the related service's state variable with the given \a name. If it cannot find its
@@ -126,7 +129,7 @@ public:
     /*!
      * Sets the method to be invoked when the action is executed.
      */
-    void setMethod(const QMetaMethod &method, BrisaService *service);
+    void setMethod(const QMetaMethod &method, device::BrisaService *service);
 
     /*!
      * Returns the method to be invoked when the action is executed.
@@ -169,7 +172,7 @@ private:
      *
      * \brief the service that this action is related to
      */
-    BrisaService *service;
+    device::BrisaService *service;
 
     /*!
      * \property method

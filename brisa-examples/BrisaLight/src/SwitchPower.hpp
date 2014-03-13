@@ -21,9 +21,7 @@
 #define SERVICE_CONTROL "/SwitchPower/control"
 #define SERVICE_EVENT_SUB "/SwitchPower/eventSub"
 
-using namespace brisa::upnp;
-
-class SwitchPower : public BrisaService
+class SwitchPower : public brisa::upnp::device::BrisaService
 {
     Q_OBJECT
 public:
