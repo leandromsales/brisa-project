@@ -45,6 +45,7 @@
 
 namespace brisa {
 namespace upnp {
+namespace controlpoint {
 
 /*!
  *  \class Brisa::BrisaControlPointDevice brisacontrolpointdevice.h BrisaUpnp/BrisaControlPointDevice
@@ -291,6 +292,7 @@ private:
     QString _fileAddress;
 };
 
+}
 }
 }
 

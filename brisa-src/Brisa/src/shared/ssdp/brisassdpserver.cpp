@@ -14,6 +14,8 @@
 namespace brisa {
 namespace upnp {
 
+using namespace controlpoint;
+
 // TODO: Add this three fields commented below in the ALIVE_MESSAGE
 // as per upnp spec 1.1, section 1.2.2.
 //  - BOOTID.UPNP.ORG

@@ -5,6 +5,10 @@
 
 #include "container.h"
 
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
 class DIDLLite : public QObject
 {
     Q_OBJECT
@@ -13,9 +17,13 @@ public:
     Container *parse(const QString &);
 
 signals:
-    
+
 public slots:
-    
+
 };
+
+}
+}
+}
 
 #endif // DIDLLITE_H

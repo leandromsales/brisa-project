@@ -31,10 +31,10 @@ public:
 	bool isComplete();
 	brisa::upnp::BrisaAction* getAction();
 	void setAction(brisa::upnp::BrisaAction* action);
-	brisa::upnp::BrisaControlPointDevice* getDevice();
-	void setDevice(brisa::upnp::BrisaControlPointDevice* device);
-	brisa::upnp::BrisaControlPointService* getService();
-	void setService(brisa::upnp::BrisaControlPointService* service);
+	brisa::upnp::controlpoint::BrisaControlPointDevice* getDevice();
+	void setDevice(brisa::upnp::controlpoint::BrisaControlPointDevice* device);
+	brisa::upnp::controlpoint::BrisaControlPointService* getService();
+	void setService(brisa::upnp::controlpoint::BrisaControlPointService* service);
 	Q_INVOKABLE QString getDeviceFriendlyName();
 	Q_INVOKABLE QString getServiceFriendlyName();
 	Q_INVOKABLE QString getActionName();
@@ -45,9 +45,9 @@ public:
 private:
 	ExecutableAction(QObject *parent = 0);
 	brisa::upnp::BrisaAction *m_action;
-	brisa::upnp::BrisaControlPointService *m_service;
-	brisa::upnp::BrisaControlPointDevice *m_currentDevice;
-	QStack<brisa::upnp::BrisaControlPointDevice *> *m_devices;
+	brisa::upnp::controlpoint::BrisaControlPointService *m_service;
+	brisa::upnp::controlpoint::BrisaControlPointDevice *m_currentDevice;
+	QStack<brisa::upnp::controlpoint::BrisaControlPointDevice *> *m_devices;
 };
 
 #endif /* EXECUTABLEACTION_HPP_ */

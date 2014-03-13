@@ -6,6 +6,10 @@
 
 #include "res.h"
 
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
 class Item : public QObject
 {
     Q_OBJECT
@@ -32,9 +36,13 @@ private:
     QHash<QString, QString> properties;
 
 signals:
-    
+
 public slots:
-    
+
 };
+
+}
+}
+}
 
 #endif // ITEM_H

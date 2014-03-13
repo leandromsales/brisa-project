@@ -31,7 +31,7 @@
 
 namespace brisa {
 namespace upnp {
-
+namespace controlpoint {
 
 BrisaEventProxy::BrisaEventProxy(const QStringList &callbackUrls,
                                  Webserver *webserver,
@@ -169,6 +169,7 @@ void BrisaEventProxy::setSid(QString &sid) {
     this->SID = sid;
 }
 
+}
 }
 }
 

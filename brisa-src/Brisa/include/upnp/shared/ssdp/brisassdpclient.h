@@ -133,7 +133,7 @@ private slots:
 private:
     bool running;
 
-    BrisaUdpListener *udpListener;
+    controlpoint::BrisaUdpListener *udpListener;
 };
 
 }

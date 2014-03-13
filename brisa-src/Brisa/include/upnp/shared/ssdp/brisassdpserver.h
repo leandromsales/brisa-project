@@ -149,7 +149,7 @@ private:
     int SSDP_PORT;
     QString S_SSDP_PORT;
 
-    BrisaUdpListener *udpListener;
+    controlpoint::BrisaUdpListener *udpListener;
 };
 
 }

@@ -4,6 +4,10 @@
 #include <QObject>
 #include <QHash>
 
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
 class Res : public QObject
 {
     Q_OBJECT
@@ -12,7 +16,7 @@ public:
     explicit Res(const Res &);
     ~Res();
     Res & operator=(const Res &);
-    
+
     void setValue(const QString &);
     QString getValue();
 
@@ -26,9 +30,13 @@ private:
     QHash<QString, QString> properties;
 
 signals:
-    
+
 public slots:
-    
+
 };
+
+}
+}
+}
 
 #endif // RES_H

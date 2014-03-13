@@ -36,7 +36,7 @@
 
 namespace brisa {
 namespace upnp {
-
+namespace controlpoint {
 
 class BrisaUdpListener : public QUdpSocket {
     Q_OBJECT
@@ -89,6 +89,7 @@ private:
 
 };
 
+}
 }
 }
 #endif // BRISAUDPLISTENER_H

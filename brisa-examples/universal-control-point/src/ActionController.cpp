@@ -8,6 +8,7 @@
 #include "ActionController.hpp"
 
 using namespace brisa::upnp;
+using namespace brisa::upnp::controlpoint;
 using namespace bb::system;
 
 ActionController::ActionController(QObject *parent) :

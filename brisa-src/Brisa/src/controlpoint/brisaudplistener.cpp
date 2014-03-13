@@ -42,7 +42,7 @@
 
 namespace brisa {
 namespace upnp {
-
+namespace controlpoint {
 
 BrisaUdpListener::BrisaUdpListener(QString address, quint32 port,
                                    QString objectName, QObject *parent) :
@@ -148,9 +148,5 @@ void BrisaUdpListener::start()
 
 }
 }
-
-
-
-
-
+}
 

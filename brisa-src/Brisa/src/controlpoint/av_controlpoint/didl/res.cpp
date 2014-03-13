@@ -1,6 +1,10 @@
 #include "res.h"
 #include <QDebug>
 
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
 Res::Res(QObject *parent) : QObject(parent) { }
 
 Res::Res(const Res &res) : QObject(res.parent()) {
@@ -35,4 +39,8 @@ QString Res::getProperty(const QString &name) {
 
 QHash<QString, QString> Res::getProperties() const {
     return this->properties;
+}
+
+}
+}
 }

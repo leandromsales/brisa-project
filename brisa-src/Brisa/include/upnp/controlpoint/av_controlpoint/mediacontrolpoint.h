@@ -13,6 +13,7 @@
 //#include "teste.h"
 namespace brisa {
 namespace upnp {
+namespace controlpoint {
 
 class MediaControlPoint: public QObject {
 Q_OBJECT
@@ -60,6 +61,7 @@ private slots:
 
 };
 
+}
 }
 }
 

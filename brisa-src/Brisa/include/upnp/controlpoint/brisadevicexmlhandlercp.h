@@ -48,7 +48,7 @@
 
 namespace brisa {
 namespace upnp {
-
+namespace controlpoint {
 
 class BrisaControlPointDevice;
 
@@ -208,6 +208,7 @@ private slots:
 
 };
 
+}
 }
 }
 

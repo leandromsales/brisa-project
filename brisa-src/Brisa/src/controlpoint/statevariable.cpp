@@ -1,5 +1,9 @@
 #include "statevariable.h"
 
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
 StateVariable::StateVariable(QObject *parent) : QObject(parent) { }
 
 StateVariable::StateVariable(const QString &name,
@@ -52,4 +56,8 @@ void StateVariable::addAllowedValueList(const QString &allowedValue) {
 
 QList<QString> StateVariable::getAllowedValueList() {
     return this->allowedValueList;
+}
+
+}
+}
 }

@@ -4,6 +4,10 @@
 
 #include "didllite.h"
 
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
 DIDLLite::DIDLLite(QObject *parent) :
     QObject(parent) {
 
@@ -91,4 +95,8 @@ Container *DIDLLite::parse(const QString &content) {
     }
 
     return root;
+}
+
+}
+}
 }

@@ -31,6 +31,8 @@
 namespace brisa {
 namespace upnp {
 
+using namespace controlpoint;
+
 BrisaSSDPClient::BrisaSSDPClient(QObject *parent) :
 	QObject(parent),
     running(false)

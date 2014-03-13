@@ -34,7 +34,7 @@
 
 namespace brisa {
 namespace upnp {
-
+namespace controlpoint {
 
 BrisaControlPointDevice::BrisaControlPointDevice(QObject *parent) :
     QObject(parent) {
@@ -348,5 +348,6 @@ void BrisaControlPointDevice::clear() {
     this->_fileAddress.clear();
 }
 
+}
 }
 }

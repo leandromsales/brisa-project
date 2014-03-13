@@ -8,6 +8,10 @@
 
 #include "device.h"
 
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
 Device::Device(QObject *parent) : QObject(parent) {
     this->downloader = new QNetworkAccessManager(this);
     connect(downloader, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
@@ -231,4 +235,8 @@ Icon *Device::getIcon(const QString &name) {
 
 QList<Device *> Device::getDevices() const {
     return this->embeddedDeviceList;
+}
+
+}
+}
 }

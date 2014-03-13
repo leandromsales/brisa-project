@@ -5,6 +5,10 @@
 
 #include "icon.h"
 
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
 Icon::Icon(QObject *parent) : QObject(parent) {
     this->content = NULL;
     this->downloader = new QNetworkAccessManager(this);
@@ -100,4 +104,8 @@ void Icon::replyFinished(QNetworkReply *reply) {
         emit iconDownloaded(this);
     }
     reply->deleteLater();
+}
+
+}
+}
 }

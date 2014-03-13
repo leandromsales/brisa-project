@@ -6,6 +6,10 @@
 
 #include "item.h"
 
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
 class Container : public QObject
 {
     Q_OBJECT
@@ -36,9 +40,13 @@ private:
     QList<Item*> items;
 
 signals:
-    
+
 public slots:
-    
+
 };
+
+}
+}
+}
 
 #endif // CONTAINER_H

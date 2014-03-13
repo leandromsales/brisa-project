@@ -2,6 +2,7 @@
 
 namespace brisa {
 namespace upnp {
+namespace controlpoint {
 
 BrisaMulticastEventReceiver::BrisaMulticastEventReceiver(QObject *parent) :
         QObject(parent)
@@ -93,5 +94,6 @@ void BrisaMulticastEventReceiver::parseBody(QByteArray body)
     this->attributes["newValue"] = newValue;
 }
 
+}
 }
 }

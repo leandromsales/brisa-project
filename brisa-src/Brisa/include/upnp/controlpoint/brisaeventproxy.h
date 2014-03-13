@@ -40,7 +40,7 @@
 
 namespace brisa {
 namespace upnp {
-
+namespace controlpoint {
 
 /*!
  *  \class Brisa::BrisaEventProxy brisaeventproxy.h BrisaUpnp/BrisaEventProxy
@@ -187,5 +187,5 @@ private:
 
 }
 }
-
+}
 #endif /* _BRISAEVENTPROXY_H */

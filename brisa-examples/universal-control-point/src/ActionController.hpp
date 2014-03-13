@@ -54,7 +54,7 @@ private:
 	QString m_result;
 	QTimer *m_requestTimer;
 	ExecutableAction *m_executableAction;
-	brisa::upnp::BrisaControlPointService *m_currentService;
+	brisa::upnp::controlpoint::BrisaControlPointService *m_currentService;
 };
 
 #endif /* ACTIONCONTROLLER_H_ */

@@ -9,6 +9,10 @@ class QNetworkReply;
 class QNetworkAccessManager;
 class QTemporaryFile;
 
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
 class Icon : public QObject
 {
     Q_OBJECT
@@ -33,7 +37,7 @@ public:
     bool setAttribute(const QString &, const QString &);
     QString getAttribute(const QString &);
     QHash<QString, QString> getAttributes() const;
-    
+
     typedef enum {
         CREATE_TMP_ICON_ERROR = 100
     } errorType;
@@ -51,7 +55,11 @@ signals:
 
 public slots:
     void replyFinished(QNetworkReply *);
-    
+
 };
+
+}
+}
+}
 
 #endif // ICON_H

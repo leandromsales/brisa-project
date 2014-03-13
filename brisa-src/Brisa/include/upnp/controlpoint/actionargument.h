@@ -6,6 +6,10 @@
 
 #include "statevariable.h"
 
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
 class ActionArgument : public QObject
 {
     Q_OBJECT
@@ -25,11 +29,15 @@ public:
 
 private:
     QHash<QString, QString> attributes;
-    
+
 signals:
-    
+
 public slots:
-    
+
 };
+
+}
+}
+}
 
 #endif // ACTIONARGUMENT_H

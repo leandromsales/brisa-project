@@ -38,6 +38,7 @@
 
 namespace brisa {
 namespace upnp {
+namespace controlpoint {
 
 BrisaControlPoint::BrisaControlPoint(QObject *parent, QString st, int mx) :
     QObject(parent) {
@@ -240,5 +241,6 @@ void BrisaControlPoint::receiveMulticast(BrisaOutArgument attributes)
     emit multicastReceivedRaw(attributes);
 }
 
+}
 }
 }

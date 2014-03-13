@@ -6,6 +6,10 @@
 #include "controlpoint_media_globals.h"
 #include "upnp/controlpoint/device.h"
 
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
 class MediaRendererControlPointDevice : public Device
 {
     Q_OBJECT
@@ -14,11 +18,15 @@ public:
     explicit MediaRendererControlPointDevice(const QString & = QString(""),
                                  const QString & = QString(""),
                                  QObject *parent = 0);
-    
+
 signals:
-    
+
 public slots:
-    
+
 };
+
+}
+}
+}
 
 #endif // MEDIARENDERERCONTROLPOINTDEVICE_H

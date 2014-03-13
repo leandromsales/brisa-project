@@ -12,6 +12,10 @@ class QNetworkRequest;
 class QNetworkAccessManager;
 class QTemporaryFile;
 
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
 class Device : public QObject
 {
     Q_OBJECT
@@ -23,7 +27,7 @@ public:
     explicit Device(const Device &);
     ~Device();
     Device & operator=(const Device &);
-    
+
     void setBaseUrl(const QUrl &);
     QUrl getBaseUrl() const;
 
@@ -67,7 +71,7 @@ private:
 signals:
     void deviceDescriptionReady(Device *);
     void errorParsingDeviceDescription(Device *, quint8);
- 
+
 public slots:
     void replyFinished(QNetworkReply *);
     void handleServiceDescriptionReady(Service *);
@@ -76,5 +80,9 @@ public slots:
     void handleErrorDownloadingIcon(Icon *, quint8);
     //void handleExecutionActionReply(QString, QHash<QString, ActionArgument *>);
 };
+
+}
+}
+}
 
 #endif // DEVICE_H

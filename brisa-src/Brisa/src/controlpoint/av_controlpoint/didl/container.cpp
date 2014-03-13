@@ -2,6 +2,10 @@
 
 #include <QDebug>
 
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
 Container::Container(QObject *parent) :
     QObject(parent) { }
 
@@ -66,4 +70,8 @@ bool Container::addItem(Item *item) {
 
 QList<Item*> Container::getItems() const {
     return this->items;
+}
+
+}
+}
 }

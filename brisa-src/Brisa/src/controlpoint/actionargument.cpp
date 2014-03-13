@@ -1,5 +1,9 @@
 #include "actionargument.h"
 
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
 ActionArgument::ActionArgument(QObject *parent) : QObject(parent) { }
 
 ActionArgument::ActionArgument(const QString &name,
@@ -35,4 +39,8 @@ QString ActionArgument::getAttribute(const QString &attributeName) {
 
 QHash<QString, QString> ActionArgument::getAttributes() const {
     return this->attributes;
+}
+
+}
+}
 }

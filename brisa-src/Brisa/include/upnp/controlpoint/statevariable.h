@@ -5,6 +5,10 @@
 #include <QHash>
 #include <QList>
 
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
 class StateVariable : public QObject
 {
     Q_OBJECT
@@ -35,9 +39,13 @@ private:
     QList<QString> allowedValueList;
 
 signals:
-    
+
 public slots:
-    
+
 };
+
+}
+}
+}
 
 #endif // STATEVARIABLE_H

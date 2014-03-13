@@ -39,7 +39,7 @@
 
 namespace brisa {
 namespace upnp {
-
+namespace controlpoint {
 
 /*!
  \class Brisa::BrisaMSearchClientCP brisamsearchclientcp.h BrisaUpnp/BrisaMSearchClientCP
@@ -145,6 +145,7 @@ private:
     QString S_SSDP_PORT;
 };
 
+}
 }
 }
 

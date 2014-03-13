@@ -10,6 +10,7 @@
 
 namespace brisa {
 namespace upnp {
+namespace controlpoint {
 
 class BRISA_UPNP_EXPORT BrisaMulticastEventReceiver : public QObject
 {
@@ -80,6 +81,7 @@ private:
 
 };
 
+}
 }
 }
 

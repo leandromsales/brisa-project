@@ -23,8 +23,6 @@
 #include "DeviceList.hpp"
 #include "model/ExecutableAction.hpp"
 
-using namespace brisa::upnp;
-
 class ViewController: public QObject {
 Q_OBJECT
 Q_PROPERTY(bool searching READ searching NOTIFY onSearching FINAL)
@@ -61,12 +59,12 @@ signals:
 	void onEventLogModelChanged();
 
 public slots:
-	void onReadyDownloadIcons(BrisaControlPointDevice *device);
-	void deviceFoundDump(BrisaControlPointDevice *device);
+	void onReadyDownloadIcons(brisa::upnp::controlpoint::BrisaControlPointDevice *device);
+	void deviceFoundDump(brisa::upnp::controlpoint::BrisaControlPointDevice *device);
 	void removeDevice(QString udn);
 	void multicastEventReceived(QString variableName, QString newValue);
 	void multicastEventRawReceived(BrisaOutArgument raw);
-	void unicastEventReceived(BrisaEventProxy *subscription,
+	void unicastEventReceived(brisa::upnp::controlpoint::BrisaEventProxy *subscription,
 			QMap<QString, QString> eventVariables);
 
 private slots:
@@ -88,8 +86,8 @@ private:
 	bb::cascades::GroupDataModel *m_eventLogModel;
 	bb::cascades::ArrayDataModel *m_devicesModel;
 
-	brisa::upnp::BrisaControlPoint *m_controlPoint;
-	brisa::upnp::BrisaControlPointDevice *m_currentDev;
+	brisa::upnp::controlpoint::BrisaControlPoint *m_controlPoint;
+	brisa::upnp::controlpoint::BrisaControlPointDevice *m_currentDev;
 
 	void createDeviceItem();
 	void createActions();

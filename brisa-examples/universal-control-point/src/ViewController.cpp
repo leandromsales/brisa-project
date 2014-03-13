@@ -9,7 +9,10 @@
 
 using namespace bb::cascades;
 using namespace bb::system;
+
 using namespace brisa;
+using namespace brisa::upnp;
+using namespace brisa::upnp::controlpoint;
 
 ViewController::ViewController(QObject *parent) :
 		QObject(parent) {

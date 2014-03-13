@@ -34,7 +34,7 @@
 
 namespace brisa {
 namespace upnp {
-
+namespace controlpoint {
 
 BrisaControlPointService::BrisaControlPointService(QObject *parent) :
     BrisaAbstractService(parent) {
@@ -102,6 +102,7 @@ void BrisaControlPointService::getResponse() {
     emit requestFinished(returnMessage, lastMethod);
 }
 
+}
 }
 }
 

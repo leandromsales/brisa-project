@@ -34,7 +34,7 @@
 
 namespace brisa {
 namespace upnp {
-
+namespace controlpoint {
 
 /*!
  *  \class Brisa::BrisaControlPointService brisacontrolpointservice.h BrisaUpnp/BrisaControlPointService
@@ -114,6 +114,7 @@ private:
     QString lastMethod;
 };
 
+}
 }
 }
 

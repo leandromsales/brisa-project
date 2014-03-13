@@ -6,6 +6,10 @@
 
 #include "actionargument.h"
 
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
 class Action : public QObject
 {
     Q_OBJECT
@@ -29,9 +33,13 @@ private:
     QHash<QString, ActionArgument*> argumentList;
 
 signals:
-    
+
 public slots:
-    
+
 };
+
+}
+}
+}
 
 #endif // ACTION_H

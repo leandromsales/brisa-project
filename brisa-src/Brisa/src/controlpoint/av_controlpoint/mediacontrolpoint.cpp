@@ -2,6 +2,7 @@
 
 namespace brisa {
 namespace upnp {
+namespace controlpoint {
 
 MediaControlPoint::MediaControlPoint(QObject *parent, QString st, int mx) :
 		QObject(parent) {
@@ -243,5 +244,6 @@ void MediaControlPoint::discover() {
     this->msearch->discover();
 }
 
+}
 }
 }

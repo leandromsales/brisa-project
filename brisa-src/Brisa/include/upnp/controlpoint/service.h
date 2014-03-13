@@ -13,6 +13,10 @@ class QNetworkRequest;
 class QNetworkAccessManager;
 class QTemporaryFile;
 
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
 class Service : public QObject
 {
     Q_OBJECT
@@ -80,4 +84,7 @@ public slots:
 
 };
 
+}
+}
+}
 #endif // SERVICE_H

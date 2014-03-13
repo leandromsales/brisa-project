@@ -8,6 +8,7 @@
 #include "ExecutableAction.hpp"
 
 using namespace brisa::upnp;
+using namespace brisa::upnp::controlpoint;
 
 ExecutableAction::ExecutableAction(QObject *parent) :
 		QObject(parent) {

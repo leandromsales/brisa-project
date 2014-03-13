@@ -41,6 +41,9 @@ namespace brisa {
 namespace upnp {
 
 class BrisaSSDPClient;
+
+namespace controlpoint {
+
 class BrisaMSearchClientCP;
 class BrisaControlPointService;
 
@@ -286,6 +289,7 @@ private slots:
 
 };
 
+}
 }
 }
 

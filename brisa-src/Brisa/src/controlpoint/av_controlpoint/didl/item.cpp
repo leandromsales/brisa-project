@@ -1,6 +1,10 @@
 #include "item.h"
 #include <QDebug>
 
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
 Item::Item(QObject *parent) :
     QObject(parent) { }
 
@@ -52,4 +56,8 @@ QString Item::getProperty(const QString &name) {
 
 QHash<QString, QString> Item::getProperties() const {
     return this->properties;
+}
+
+}
+}
 }

@@ -9,6 +9,10 @@
 #include "service.h"
 #include "shared/soap/soap.h"
 
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
 Service::Service(QObject *parent) : QObject(parent) {
     this->downloader = new QNetworkAccessManager(this);
     connect(downloader, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
@@ -270,4 +274,8 @@ void Service::handleResponseReady() {
 
 void Service::handleRequestError(QNetworkReply::NetworkError code, const QString &errorMsg) {
     qDebug() << "It occurred an error while executing request. Error(" << code << ") " << errorMsg;
+}
+
+}
+}
 }

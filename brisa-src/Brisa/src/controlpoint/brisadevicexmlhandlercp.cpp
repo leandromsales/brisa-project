@@ -33,7 +33,7 @@
 
 namespace brisa {
 namespace upnp {
-
+namespace controlpoint {
 
 BrisaDeviceXMLHandlerCP::~BrisaDeviceXMLHandlerCP() {
 }
@@ -169,6 +169,7 @@ BrisaIcon *BrisaDeviceXMLHandlerCP::parseIcon(QDomElement &element)
     return new BrisaIcon(mimetype, width, height, depth, url);
 }
 
+}
 }
 }
 

@@ -39,7 +39,7 @@
 
 namespace brisa {
 namespace upnp {
-
+namespace controlpoint {
 
 static const QString UPNP_MSEARCH_DISCOVER = "M-SEARCH * HTTP/1.1\r\n"
                                              "HOST: 239.255.255.250:1900\r\n"
@@ -163,6 +163,7 @@ void BrisaMSearchClientCP::datagramReceived() {
     }
 }
 
+}
 }
 }
 

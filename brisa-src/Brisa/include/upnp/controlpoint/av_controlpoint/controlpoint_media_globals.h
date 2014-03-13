@@ -5,6 +5,10 @@
 #include <QList>
 #include <QString>
 
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
 static QList<QString> MEDIA_SERVERS_URN = QList<QString>()
         << "urn:schemas-upnp-org:device:MediaServer:"
         << "urn:schemas-upnp-org:service:ContentDirectory:"
@@ -14,5 +18,9 @@ static QList<QString> MEDIA_RENDERER_URN = QList<QString>()
         << "urn:schemas-upnp-org:device:MediaRenderer:"
         << "urn:schemas-upnp-org:service:RenderingControl:"
         << "urn:schemas-upnp-org:service:AVTransport:";
+
+}
+}
+}
 
 #endif // CONTROLPOINT_MEDIA_GLOBALS_H
