@@ -11,6 +11,9 @@ class QUrl;
 class QByteArray;
 class QNetworkAccessManager;
 
+namespace brisa {
+namespace soap {
+
 class SOAP : public QObject
 {
     Q_OBJECT
@@ -38,7 +41,7 @@ private:
     QUrl url;
     QHash<QString, QString> *response;
     QNetworkReply *reply;
-    
+
 signals:
     void responseReady();
     void requestError(QNetworkReply::NetworkError, const QString &);
@@ -48,7 +51,9 @@ public slots:
 private slots:
     void finished(QNetworkReply *);
     void handleError(QNetworkReply::NetworkError);
-    
+
 };
 
+}
+}
 #endif // SOAP_H

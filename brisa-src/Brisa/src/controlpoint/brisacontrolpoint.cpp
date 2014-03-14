@@ -37,6 +37,10 @@
 #include "webserversession.h"
 
 namespace brisa {
+
+using namespace network;
+using namespace ssdp;
+
 namespace upnp {
 namespace controlpoint {
 

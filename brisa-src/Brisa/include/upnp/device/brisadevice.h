@@ -8,15 +8,18 @@
 
 #include "upnp/network/brisanetwork.h"
 #include "upnp/shared/webserver/webserver.h"
+#include "upnp/shared/ssdp/brisassdpserver.h"
 #include "brisadevicexmlhandler.h"
 #include "brisaservice.h"
 #include "upnp/brisaicon.h"
 
 namespace brisa {
+
+class ssdp::BrisaSSDPServer;
+
 namespace upnp {
 
 class Webserver;
-class BrisaSSDPServer;
 
 namespace device {
 
@@ -305,7 +308,7 @@ private:
 
     QTemporaryFile descriptionFile;
 
-    BrisaSSDPServer *ssdp;
+    ssdp::BrisaSSDPServer *ssdp;
     Webserver *webserver;
     bool running;
 };

@@ -5,7 +5,7 @@
 #include "brisanetwork.h"
 
 namespace brisa {
-namespace upnp {
+namespace network {
 
 bool isLoopbackIPv4Address(QString address) {
 	return !address.compare("127.0.0.1");

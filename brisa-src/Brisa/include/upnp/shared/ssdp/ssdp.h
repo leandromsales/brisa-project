@@ -16,7 +16,7 @@
 //#define SSDP_PORT 1900
 
 namespace brisa {
-namespace upnp {
+namespace ssdp {
 
 class SSDP: public QObject {
 Q_OBJECT

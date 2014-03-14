@@ -1,7 +1,10 @@
 #include "networkmanager.h"
 
 namespace brisa {
-namespace upnp {
+
+using namespace ssdp;
+
+namespace network {
 
 NetworkManager::NetworkManager(QObject *parent) : QObject(parent) {
 
@@ -22,37 +25,6 @@ QList<SSDPUdpSocket*> NetworkManager::enableMulticastAny(const QString &ipMultic
         qDebug() << "cannot bind unicast socket in ANY";
         // try bind each ip individualy
     }
-//Marden// mudei AnyIPv4 para Any
-//    if (!socket_MULTICAST->bind(/*QHostAddress::*/ QHostAddress(ipMulticast), port,
-//                                SSDPUdpSocket::ShareAddress |
-//                                SSDPUdpSocket::ReuseAddressHint)) {
-//        qDebug() << "cannot bind multicast socket in ANY";
-//    }
-
-//    qDebug() << "Multicast address: " << ipMulticast;
-//    qDebug() << "Multicast bind: " << socket_MULTICAST->isValid();
-
-
-//	int fd;
-//	fd = socket_MULTICAST->socketDescriptor();
-//	struct ip_mreq mreq;
-//	memset(&mreq, 0, sizeof(ip_mreq));
-//	mreq.imr_multiaddr.s_addr = inet_addr(socket_MULTICAST->localAddress().toString().toUtf8());
-//	bool boolean = true;
-
-//	QString ip = getValidIP();
-//	QString ip = ipMulticast;
-//	if (ip == LOCAL_HOST) {
-//		mreq.imr_interface.s_addr = inet_addr(ip.toUtf8());
-//	} else {
-//		mreq.imr_interface.s_addr = htons(INADDR_ANY);
-//	}
-
-//	if (setsockopt(fd, IPPROTO_IP, IP_ADD_MEMBERSHIP, &mreq, sizeof(mreq)) < 0
-//			|| setsockopt(fd, IPPROTO_IP, IP_MULTICAST_LOOP, &boolean,
-//					sizeof(boolean)) < 0) {
-//		qDebug() << ": could not join MULTICAST group.";
-//	}
 
     socket_MULTICAST->setMulticastInterface(interface);
     if (socket_MULTICAST->joinMulticastGroup(QHostAddress(ipMulticast), interface)) {

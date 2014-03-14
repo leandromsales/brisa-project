@@ -4,7 +4,7 @@
 #include <QUdpSocket>
 
 namespace brisa {
-namespace upnp {
+namespace ssdp {
 
 class SSDPUdpSocket : public QUdpSocket
 {

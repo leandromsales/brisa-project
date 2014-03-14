@@ -4,6 +4,9 @@
 #include <QObject>
 #include <QHash>
 
+namespace brisa {
+namespace soap {
+
 // %1 - action name - SetAVTransportURI
 // %2 - name space - urn:schemas-upnp-org:service:AVTransport:1
 // %3 - parameters - <parm1></parm1><parm2></parm2>
@@ -21,11 +24,14 @@ public:
     explicit SoapEnvelope(QObject *parent = 0);
     QString get(const QString &, const QString &, const QHash<QString, QString> &);
     QHash<QString, QString> *parse(const QString &);
-    
+
 signals:
-    
+
 public slots:
-    
+
 };
+
+}
+}
 
 #endif // SOAPENVELOPE_H

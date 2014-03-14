@@ -14,6 +14,10 @@
 
 
 namespace brisa {
+
+using namespace ssdp;
+using namespace network;
+
 namespace upnp {
 namespace device {
 

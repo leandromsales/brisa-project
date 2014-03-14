@@ -8,6 +8,9 @@
 #include "soap.h"
 #include "soapenvelope.h"
 
+namespace brisa {
+namespace soap {
+
 //TODO: make it as a singleton?
 
 SOAP::SOAP(QObject *parent) : QObject(parent) {
@@ -91,4 +94,7 @@ void SOAP::finished(QNetworkReply *reply) {
 
 void SOAP::handleError(QNetworkReply::NetworkError code) {
     emit requestError(code, this->reply->errorString());
+}
+
+}
 }

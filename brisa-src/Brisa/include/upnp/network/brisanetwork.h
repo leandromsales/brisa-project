@@ -10,7 +10,7 @@
 #include <ctime>
 
 namespace brisa {
-namespace upnp {
+namespace network {
 
 #define LOCAL_HOST "127.0.0.1"
 

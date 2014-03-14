@@ -36,7 +36,7 @@
 #include "upnp/controlpoint/brisaudplistener.h"
 
 namespace brisa {
-namespace upnp {
+namespace ssdp {
 
 /*!
  *  \class Brisa::BrisaSSDPClient brisassdpclient.h BrisaUpnp/BrisaSSDPClient
@@ -133,7 +133,7 @@ private slots:
 private:
     bool running;
 
-    controlpoint::BrisaUdpListener *udpListener;
+    upnp::controlpoint::BrisaUdpListener *udpListener;
 };
 
 }

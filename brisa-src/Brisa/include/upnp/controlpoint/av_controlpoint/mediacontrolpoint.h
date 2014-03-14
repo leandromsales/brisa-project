@@ -38,7 +38,7 @@ private:
 	//teste *testen;
 
 //	SSDP *ssdp;
-	BrisaSSDPClient *ssdp;
+	brisa::ssdp::BrisaSSDPClient *ssdp;
 	BrisaMSearchClientCP *msearch;
 	QHash<QString, MediaServerControlPointDevice*> mss;
 	QHash<QString, MediaRendererControlPointDevice*> mrs;

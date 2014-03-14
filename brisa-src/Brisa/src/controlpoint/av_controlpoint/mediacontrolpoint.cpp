@@ -1,6 +1,9 @@
 #include "mediacontrolpoint.h"
 
 namespace brisa {
+
+using namespace ssdp;
+
 namespace upnp {
 namespace controlpoint {
 

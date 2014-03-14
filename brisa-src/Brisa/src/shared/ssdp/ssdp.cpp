@@ -1,7 +1,7 @@
 #include "ssdp.h"
 
 namespace brisa {
-namespace upnp {
+namespace ssdp {
 
 SSDP::SSDP(int interval, QObject *parent) :
 		QObject(parent) {

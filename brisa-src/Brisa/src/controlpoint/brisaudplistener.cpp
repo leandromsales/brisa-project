@@ -41,6 +41,9 @@
 #define MAX_LEN  1024   /* maximum receive string size */
 
 namespace brisa {
+
+using namespace network;
+
 namespace upnp {
 namespace controlpoint {
 

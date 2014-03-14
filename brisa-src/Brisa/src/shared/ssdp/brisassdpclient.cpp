@@ -29,9 +29,10 @@
 #include "brisassdpclient.h"
 
 namespace brisa {
-namespace upnp {
 
-using namespace controlpoint;
+using namespace upnp::controlpoint;
+
+namespace ssdp {
 
 BrisaSSDPClient::BrisaSSDPClient(QObject *parent) :
 	QObject(parent),

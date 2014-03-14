@@ -4,6 +4,9 @@
 
 #include "soapenvelope.h"
 
+namespace brisa {
+namespace soap {
+
 SoapEnvelope::SoapEnvelope(QObject *parent) : QObject(parent) {
 //    qDebug() << "TEST construtor soap env";
 }
@@ -59,4 +62,7 @@ QHash<QString, QString> *SoapEnvelope::parse(const QString &content) {
         response->insert(nodeName, nodeValue);
     }
     return response;
+}
+
+}
 }

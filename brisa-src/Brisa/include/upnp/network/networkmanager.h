@@ -14,7 +14,7 @@
 #include "upnp/shared/ssdp/ssdpudpsocket.h"
 
 namespace brisa {
-namespace upnp {
+namespace network {
 
 class NetworkManager : public QObject {
 	//TODO Verificar a necessidade desta classe.
@@ -27,12 +27,12 @@ class NetworkManager : public QObject {
         ~NetworkManager();
         QList<QNetworkInterface> getUpIPv4Interfaces();
         QList<QHostAddress> getAddresses(QNetworkInterface *);
-        QList<SSDPUdpSocket*> enableMulticast(const QString &, quint16);
-        QList<SSDPUdpSocket*> enableMulticast(const QString &, quint16, const QNetworkInterface &);
-        QList<SSDPUdpSocket*> enableMulticast(const QString &, quint16, QList<QNetworkInterface>);
-        QList<SSDPUdpSocket*> enableMulticastAny(const QString &, quint16);
-        QList<SSDPUdpSocket*> enableMulticastAny(const QString &, quint16, const QNetworkInterface &);
-        QList<SSDPUdpSocket*> enableMulticastAny(const QString &, quint16, QList<QNetworkInterface>);
+        QList<ssdp::SSDPUdpSocket*> enableMulticast(const QString &, quint16);
+        QList<ssdp::SSDPUdpSocket*> enableMulticast(const QString &, quint16, const QNetworkInterface &);
+        QList<ssdp::SSDPUdpSocket*> enableMulticast(const QString &, quint16, QList<QNetworkInterface>);
+        QList<ssdp::SSDPUdpSocket*> enableMulticastAny(const QString &, quint16);
+        QList<ssdp::SSDPUdpSocket*> enableMulticastAny(const QString &, quint16, const QNetworkInterface &);
+        QList<ssdp::SSDPUdpSocket*> enableMulticastAny(const QString &, quint16, QList<QNetworkInterface>);
 
     private:
 

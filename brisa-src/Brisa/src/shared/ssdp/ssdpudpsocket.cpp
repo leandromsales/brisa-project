@@ -1,7 +1,7 @@
 #include "ssdpudpsocket.h"
 
 namespace brisa {
-namespace upnp {
+namespace ssdp {
 
 SSDPUdpSocket::SSDPUdpSocket(bool multicast, QUdpSocket *parent) :
     QUdpSocket(parent), multicast(multicast) { }

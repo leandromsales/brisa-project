@@ -12,9 +12,12 @@
 #include <string.h>
 
 namespace brisa {
-namespace upnp {
 
-using namespace controlpoint;
+using namespace upnp::controlpoint;
+
+namespace ssdp {
+
+
 
 // TODO: Add this three fields commented below in the ALIVE_MESSAGE
 // as per upnp spec 1.1, section 1.2.2.

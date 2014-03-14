@@ -5,15 +5,6 @@
 #define SSDP_PORT 1900
 #define SSDP_PORT_STR "1900"
 
-static const QString SSDP_DISCOVERY_REQUEST =
-	"M-SEARCH * HTTP/1.1\r\n"
-	"HOST: 239.255.255.250:1900\r\n"
-	"MAN: \"ssdp:discover\"\r\n"
-	"ST: %1\r\n"
-	"MX: %2\r\n"
-	"USER-AGENT: %3 SSDP/1.0\r\n"
-	"\r\n";
-
 #define SSDP_DISCOVERY_RESPONSE                     \
         "HTTP/1.1 200 OK\r\n"                       \
         "Location: %s\r\n"                          \
@@ -52,5 +43,21 @@ static const QString SSDP_DISCOVERY_REQUEST =
 
 #define SSDP_DEFAULT_MAX_AGE 1800
 #define SSDP_DEFAULT_MX      3
+
+namespace brisa {
+namespace ssdp {
+
+static const QString SSDP_DISCOVERY_REQUEST =
+	"M-SEARCH * HTTP/1.1\r\n"
+	"HOST: 239.255.255.250:1900\r\n"
+	"MAN: \"ssdp:discover\"\r\n"
+	"ST: %1\r\n"
+	"MX: %2\r\n"
+	"USER-AGENT: %3 SSDP/1.0\r\n"
+	"\r\n";
+
+}
+}
+
 
 #endif /* __SSDP_PROTOCOL_H__ */

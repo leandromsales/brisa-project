@@ -10,6 +10,9 @@
 #include "shared/soap/soap.h"
 
 namespace brisa {
+
+using namespace soap;
+
 namespace upnp {
 namespace controlpoint {
 
