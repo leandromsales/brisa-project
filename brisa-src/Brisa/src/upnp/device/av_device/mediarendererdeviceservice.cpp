@@ -3,6 +3,7 @@
 namespace brisa {
 namespace upnp {
 namespace device {
+namespace av {
 
 MediaRendererDeviceService::MediaRendererDeviceService(QObject *parent) :
     BrisaService(SERVICE_TYPE,
@@ -54,6 +55,7 @@ int MediaRendererDeviceService::postAction(BrisaInArgument* const inArguments, B
    return UPNP_SUCCESS;
 }
 
+}  // namespace av
 }
 }
 }

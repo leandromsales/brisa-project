@@ -7,6 +7,8 @@
 namespace brisa {
 namespace upnp {
 namespace controlpoint {
+namespace av {
+namespace didl {
 
 class Res : public QObject
 {
@@ -35,6 +37,8 @@ public slots:
 
 };
 
+}  // namespace didl
+}  // namespace av
 }
 }
 }

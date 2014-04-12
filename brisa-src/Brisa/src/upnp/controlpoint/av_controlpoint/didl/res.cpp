@@ -4,6 +4,8 @@
 namespace brisa {
 namespace upnp {
 namespace controlpoint {
+namespace av {
+namespace didl {
 
 Res::Res(QObject *parent) : QObject(parent) { }
 
@@ -41,6 +43,8 @@ QHash<QString, QString> Res::getProperties() const {
     return this->properties;
 }
 
+}  // namespace didl
+}  // namespace av
 }
 }
 }

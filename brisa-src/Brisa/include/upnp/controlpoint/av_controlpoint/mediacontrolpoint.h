@@ -14,6 +14,7 @@
 namespace brisa {
 namespace upnp {
 namespace controlpoint {
+namespace av {
 
 class MediaControlPoint: public QObject {
 Q_OBJECT
@@ -61,6 +62,7 @@ private slots:
 
 };
 
+}  // namespace av
 }
 }
 }

@@ -7,6 +7,8 @@
 namespace brisa {
 namespace upnp {
 namespace controlpoint {
+namespace av {
+namespace didl {
 
 DIDLLite::DIDLLite(QObject *parent) :
     QObject(parent) {
@@ -97,6 +99,8 @@ Container *DIDLLite::parse(const QString &content) {
     return root;
 }
 
+}  // namespace didl
+}  // namespace av
 }
 }
 }

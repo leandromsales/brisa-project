@@ -9,6 +9,7 @@
 namespace brisa {
 namespace upnp {
 namespace controlpoint {
+namespace av {
 
 class MediaServerControlPointDevice : public Device
 {
@@ -24,6 +25,7 @@ public slots:
 
 };
 
+}  // namespace av
 }
 }
 }

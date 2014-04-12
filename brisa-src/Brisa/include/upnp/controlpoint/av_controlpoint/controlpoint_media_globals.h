@@ -8,6 +8,7 @@
 namespace brisa {
 namespace upnp {
 namespace controlpoint {
+namespace av {
 
 static QList<QString> MEDIA_SERVERS_URN = QList<QString>()
         << "urn:schemas-upnp-org:device:MediaServer:"
@@ -19,6 +20,7 @@ static QList<QString> MEDIA_RENDERER_URN = QList<QString>()
         << "urn:schemas-upnp-org:service:RenderingControl:"
         << "urn:schemas-upnp-org:service:AVTransport:";
 
+}  // namespace av
 }
 }
 }

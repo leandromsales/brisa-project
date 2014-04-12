@@ -5,6 +5,7 @@
 namespace brisa {
 namespace upnp {
 namespace device {
+namespace av {
 
 MediaRendererDevice::MediaRendererDevice(QObject *parent) :
     QObject(parent) {
@@ -40,6 +41,7 @@ MediaRendererDevice::~MediaRendererDevice() {
     delete this->device;
 }
 
+}  // namespace av
 }
 }
 }

@@ -7,6 +7,7 @@
 namespace brisa {
 namespace upnp {
 namespace device {
+namespace av {
 
 class MediaRendererDevice : public QObject
 {
@@ -26,6 +27,7 @@ public slots:
 
 };
 
+}  // namespace av
 }
 }
 }

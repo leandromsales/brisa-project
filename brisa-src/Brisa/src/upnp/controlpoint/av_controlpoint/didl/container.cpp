@@ -5,6 +5,8 @@
 namespace brisa {
 namespace upnp {
 namespace controlpoint {
+namespace av {
+namespace didl {
 
 Container::Container(QObject *parent) :
     QObject(parent) { }
@@ -72,6 +74,8 @@ QList<Item*> Container::getItems() const {
     return this->items;
 }
 
+}  // namespace didl
+}  // namespace av
 }
 }
 }
