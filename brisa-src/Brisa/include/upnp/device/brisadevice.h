@@ -6,21 +6,17 @@
 #include <QNetworkAddressEntry>
 #include <QtDebug>
 
-#include "upnp/network/brisanetwork.h"
-#include "upnp/shared/webserver/webserver.h"
-#include "upnp/shared/ssdp/brisassdpserver.h"
+#include "network/brisanetwork.h"
+#include "shared/webserver/webserver.h"
+#include "shared/ssdp/brisassdpserver.h"
 #include "brisadevicexmlhandler.h"
 #include "brisaservice.h"
 #include "upnp/brisaicon.h"
 
 namespace brisa {
-
-class ssdp::BrisaSSDPServer;
-
+//class shared::ssdp::BrisaSSDPServer;
 namespace upnp {
-
-class Webserver;
-
+//class Webserver;
 namespace device {
 
 /*!
@@ -221,7 +217,7 @@ public:
     int threadsNumber() const;
     void setThreadsNumber(int);
 
-    QByteArray addWebservice(QByteArray pathSuffix, WebService *service);
+    QByteArray addWebservice(QByteArray pathSuffix, brisa::shared::webserver::WebService *service);
     void removeWebservice(const QByteArray &path);
 
 public slots:
@@ -308,8 +304,8 @@ private:
 
     QTemporaryFile descriptionFile;
 
-    ssdp::BrisaSSDPServer *ssdp;
-    Webserver *webserver;
+    brisa::shared::ssdp::BrisaSSDPServer *ssdp;
+    brisa::shared::webserver::Webserver *webserver;
     bool running;
 };
 

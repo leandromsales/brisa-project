@@ -70,7 +70,7 @@ private:
     QHash<QString, StateVariable*> stateVariableList;
 
     QNetworkAccessManager *downloader;
-    brisa::soap::SOAP *soapHttp;
+    brisa::shared::soap::SOAP *soapHttp;
 
 signals:
     void serviceDescriptionReady(Service *);

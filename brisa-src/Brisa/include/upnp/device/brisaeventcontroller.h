@@ -5,31 +5,31 @@
 #include "brisamulticasteventmessage.h"
 #include "brisaeventsubscription.h"
 #include "upnp/brisautils.h"
-#include "upnp/shared/webserver/webservice.h"
-#include "upnp/shared/webserver/webserver.h"
+#include "shared/webserver/webservice.h"
+#include "shared/webserver/webserver.h"
 
 namespace brisa {
 namespace upnp {
 namespace device {
 
-class BrisaEventController: public WebService
+class BrisaEventController: public brisa::shared::webserver::WebService
 {
 	Q_OBJECT
 
 public:
-	BrisaEventController(Webserver *sessionManager,
+	BrisaEventController(brisa::shared::webserver::Webserver *sessionManager,
 			QList<BrisaStateVariable *> *stateVariableList, QObject *parent = 0);
 	virtual ~BrisaEventController();
 
 	public slots:
 	void variableChanged(BrisaStateVariable *variable);
 
-	void subscribe(const HttpRequest &request, WebserverSession *session);
+	void subscribe(const brisa::shared::webserver::http::HttpRequest &request, brisa::shared::webserver::WebserverSession *session);
 
-	void unsubscribe(const HttpRequest &request, WebserverSession *session);
+	void unsubscribe(const brisa::shared::webserver::http::HttpRequest &request, brisa::shared::webserver::WebserverSession *session);
 
 	protected:
-	void onRequest(const HttpRequest &, WebserverSession *session);
+	void onRequest(const brisa::shared::webserver::http::HttpRequest &, brisa::shared::webserver::WebserverSession *session);
 
 	private:
 	BrisaEventController(const BrisaEventController &); // = delete;

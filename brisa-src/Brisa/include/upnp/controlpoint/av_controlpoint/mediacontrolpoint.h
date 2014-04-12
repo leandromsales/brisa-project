@@ -7,8 +7,8 @@
 #include "mediaservercontrolpointdevice.h"
 #include "mediarenderercontrolpointdevice.h"
 //#include "upnp/shared/ssdp/ssdp.h"
-#include "upnp/shared/ssdp/brisassdpclient.h"
-#include "upnp/controlpoint/brisamsearchclientcp.h"
+#include "shared/ssdp/brisassdpclient.h"
+#include "controlpoint/brisamsearchclientcp.h"
 
 //#include "teste.h"
 namespace brisa {
@@ -38,7 +38,7 @@ private:
 	//teste *testen;
 
 //	SSDP *ssdp;
-	brisa::ssdp::BrisaSSDPClient *ssdp;
+	brisa::shared::ssdp::BrisaSSDPClient *ssdp;
 	BrisaMSearchClientCP *msearch;
 	QHash<QString, MediaServerControlPointDevice*> mss;
 	QHash<QString, MediaRendererControlPointDevice*> mrs;

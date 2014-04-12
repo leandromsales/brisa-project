@@ -1,7 +1,10 @@
 #include "httpsessionmanager.h"
 #include "httpsession.h"
 
-using namespace brisa;
+namespace brisa {
+namespace shared {
+namespace webserver {
+namespace http {
 
 HttpSessionManager::HttpSessionManager(HttpServer *parent) :
     QThread(parent),
@@ -49,3 +52,8 @@ void HttpSessionManager::releaseSession(HttpSession *session)
 
     mutex.unlock();
 }
+
+}  // namespace http
+}  // namespace webserver
+}  // namespace shared
+} // namespace Brisa

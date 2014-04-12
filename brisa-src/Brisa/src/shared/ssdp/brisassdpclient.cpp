@@ -29,9 +29,8 @@
 #include "brisassdpclient.h"
 
 namespace brisa {
-
 using namespace upnp::controlpoint;
-
+namespace shared {
 namespace ssdp {
 
 BrisaSSDPClient::BrisaSSDPClient(QObject *parent) :
@@ -136,5 +135,5 @@ QMap<QString, QString> BrisaSSDPClient::getMapFromMessage(QString message) {
 }
 
 }
+}  // namespace shared
 }
-

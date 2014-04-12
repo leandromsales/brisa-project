@@ -1,18 +1,17 @@
 #ifndef BRISASERVICE_H
 #define BRISASERVICE_H
 
-#include "../brisaabstractservice.h"
-#include "brisaeventcontroller.h"
-#include "brisaactionxmlparser.h"
+#include "upnp/brisaabstractservice.h"
+#include "upnp/device/brisaeventcontroller.h"
+#include "upnp/device/brisaactionxmlparser.h"
 
-#include "upnp/shared/webserver/webserversession.h"
-#include "upnp/shared/webserver/webserver.h"
+#include "shared/webserver/webserversession.h"
+#include "shared/webserver/webserver.h"
 
 namespace brisa {
+//class shared::webserver::Webserver;
 namespace upnp {
-
-class Webserver;
-
+//class Webserver;
 namespace device {
 
 
@@ -37,24 +36,24 @@ public:
 
 	BrisaStateVariable *getVariable(const QString &variableName);
 
-	void buildWebServiceTree(Webserver *sessionManager);
+	void buildWebServiceTree(brisa::shared::webserver::Webserver *sessionManager);
 
 	void setDescriptionFile(const QString &scpdFilePath);
 
 	QString getDescriptionFile();
 
 protected:
-	void onRequest(const HttpRequest &request, WebserverSession *session);
+	void onRequest(const brisa::shared::webserver::http::HttpRequest &request, brisa::shared::webserver::WebserverSession *session);
 
 	private slots:
-	void call(const QString &method, BrisaInArgument param, WebserverSession *);
-	void onInvalidRequest(WebserverSession *session);
+	void call(const QString &method, BrisaInArgument param, brisa::shared::webserver::WebserverSession *);
+	void onInvalidRequest(brisa::shared::webserver::WebserverSession *session);
 
 	private:
 
-	void respondAction(WebserverSession *session, const BrisaOutArgument *outArgs, const QString &actionName /* = QString() */);
+	void respondAction(brisa::shared::webserver::WebserverSession *session, const BrisaOutArgument *outArgs, const QString &actionName /* = QString() */);
 
-	void respondError(WebserverSession *session, int errorCode, QString errorDescription = QString());
+	void respondError(brisa::shared::webserver::WebserverSession *session, int errorCode, QString errorDescription = QString());
 
 	void parseDescriptionFile();
 

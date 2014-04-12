@@ -3,47 +3,7 @@ BASEDIR =  $$quote($$_PRO_FILE_PWD_)
 
 device {
     CONFIG(debug, debug|release) {
-        SOURCES +=  $$quote($$BASEDIR/src/brisaabstracteventsubscription.cpp) \
-                 $$quote($$BASEDIR/src/brisaabstractservice.cpp) \
-                 $$quote($$BASEDIR/src/brisaaction.cpp) \
-                 $$quote($$BASEDIR/src/brisaargument.cpp) \
-                 $$quote($$BASEDIR/src/brisaicon.cpp) \
-                 $$quote($$BASEDIR/src/brisaservicexmlhandler.cpp) \
-                 $$quote($$BASEDIR/src/brisastatevariable.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/action.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/actionargument.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/av_controlpoint/didl/container.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/av_controlpoint/didl/didllite.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/av_controlpoint/didl/item.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/av_controlpoint/didl/res.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/av_controlpoint/mediacontrolpoint.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/av_controlpoint/mediaservercontrolpointdevice.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisacontrolpoint.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisacontrolpointdevice.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisacontrolpointservice.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisadevicexmlhandlercp.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisaeventproxy.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisamsearchclientcp.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisamulticasteventreceiver.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisaudplistener.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/device.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/icon.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/service.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/statevariable.cpp) \
-                 $$quote($$BASEDIR/src/device/av_device/mediarendererdevice.cpp) \
-                 $$quote($$BASEDIR/src/device/av_device/mediarendererdeviceservice.cpp) \
-                 $$quote($$BASEDIR/src/device/brisaabstracteventmessage.cpp) \
-                 $$quote($$BASEDIR/src/device/brisaactionxmlparser.cpp) \
-                 $$quote($$BASEDIR/src/device/brisacontrolwebservice.cpp) \
-                 $$quote($$BASEDIR/src/device/brisadevice.cpp) \
-                 $$quote($$BASEDIR/src/device/brisadevicexmlhandler.cpp) \
-                 $$quote($$BASEDIR/src/device/brisaeventcontroller.cpp) \
-                 $$quote($$BASEDIR/src/device/brisaeventmessage.cpp) \
-                 $$quote($$BASEDIR/src/device/brisaeventsubscription.cpp) \
-                 $$quote($$BASEDIR/src/device/brisamulticasteventmessage.cpp) \
-                 $$quote($$BASEDIR/src/device/brisaservice.cpp) \
-                 $$quote($$BASEDIR/src/network/brisanetwork.cpp) \
+        SOURCES +=  $$quote($$BASEDIR/src/network/brisanetwork.cpp) \
                  $$quote($$BASEDIR/src/network/networkmanager.cpp) \
                  $$quote($$BASEDIR/src/shared/soap/qtsoap.cpp) \
                  $$quote($$BASEDIR/src/shared/soap/soap.cpp) \
@@ -62,9 +22,71 @@ device {
                  $$quote($$BASEDIR/src/shared/webserver/webserver.cpp) \
                  $$quote($$BASEDIR/src/shared/webserver/webserversession.cpp) \
                  $$quote($$BASEDIR/src/shared/webserver/webservice.cpp) \
-                 $$quote($$BASEDIR/src/shared/webserver/webstaticcontent.cpp)
+                 $$quote($$BASEDIR/src/shared/webserver/webstaticcontent.cpp) \
+                 $$quote($$BASEDIR/src/upnp/brisaabstracteventsubscription.cpp) \
+                 $$quote($$BASEDIR/src/upnp/brisaabstractservice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/brisaaction.cpp) \
+                 $$quote($$BASEDIR/src/upnp/brisaargument.cpp) \
+                 $$quote($$BASEDIR/src/upnp/brisaicon.cpp) \
+                 $$quote($$BASEDIR/src/upnp/brisaservicexmlhandler.cpp) \
+                 $$quote($$BASEDIR/src/upnp/brisastatevariable.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/action.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/actionargument.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/container.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/didllite.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/item.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/res.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediacontrolpoint.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediaservercontrolpointdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisacontrolpoint.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisacontrolpointdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisacontrolpointservice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisadevicexmlhandlercp.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisaeventproxy.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisamsearchclientcp.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisamulticasteventreceiver.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisaudplistener.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/device.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/icon.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/service.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/statevariable.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/av_device/mediarendererdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/av_device/mediarendererdeviceservice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisaabstracteventmessage.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisaactionxmlparser.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisacontrolwebservice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisadevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisadevicexmlhandler.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisaeventcontroller.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisaeventmessage.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisaeventsubscription.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisamulticasteventmessage.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisaservice.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/include/upnp/brisaabstracteventsubscription.h) \
+        HEADERS +=  $$quote($$BASEDIR/include/network/brisanetwork.h) \
+                 $$quote($$BASEDIR/include/network/networkmanager.h) \
+                 $$quote($$BASEDIR/include/shared/soap/qtsoap.h) \
+                 $$quote($$BASEDIR/include/shared/soap/soap.h) \
+                 $$quote($$BASEDIR/include/shared/soap/soapenvelope.h) \
+                 $$quote($$BASEDIR/include/shared/ssdp/brisassdpclient.h) \
+                 $$quote($$BASEDIR/include/shared/ssdp/brisassdpserver.h) \
+                 $$quote($$BASEDIR/include/shared/ssdp/ssdp.h) \
+                 $$quote($$BASEDIR/include/shared/ssdp/ssdpprotocol.h) \
+                 $$quote($$BASEDIR/include/shared/ssdp/ssdpudpsocket.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/http/httpmessage.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/http/httprequest.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/http/httpresponse.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/http/httpserver.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/http/httpsession.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/http/httpsessionmanager.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/http/httpversion.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/webfile.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/webserver.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/webserversession.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/webservice.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/webstaticcontent.h) \
+                 $$quote($$BASEDIR/include/upnp/brisaabstracteventsubscription.h) \
                  $$quote($$BASEDIR/include/upnp/brisaabstractservice.h) \
                  $$quote($$BASEDIR/include/upnp/brisaaction.h) \
                  $$quote($$BASEDIR/include/upnp/brisaargument.h) \
@@ -106,73 +128,11 @@ device {
                  $$quote($$BASEDIR/include/upnp/device/brisaeventmessage.h) \
                  $$quote($$BASEDIR/include/upnp/device/brisaeventsubscription.h) \
                  $$quote($$BASEDIR/include/upnp/device/brisamulticasteventmessage.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisaservice.h) \
-                 $$quote($$BASEDIR/include/upnp/network/brisanetwork.h) \
-                 $$quote($$BASEDIR/include/upnp/network/networkmanager.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/soap/qtsoap.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/soap/soap.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/soap/soapenvelope.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/ssdp/brisassdpclient.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/ssdp/brisassdpserver.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/ssdp/ssdp.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/ssdp/ssdpprotocol.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/ssdp/ssdpudpsocket.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/http/httpmessage.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/http/httprequest.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/http/httpresponse.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/http/httpserver.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/http/httpsession.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/http/httpsessionmanager.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/http/httpversion.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/webfile.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/webserver.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/webserversession.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/webservice.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/webstaticcontent.h)
+                 $$quote($$BASEDIR/include/upnp/device/brisaservice.h)
     }
 
     CONFIG(release, debug|release) {
-        SOURCES +=  $$quote($$BASEDIR/src/brisaabstracteventsubscription.cpp) \
-                 $$quote($$BASEDIR/src/brisaabstractservice.cpp) \
-                 $$quote($$BASEDIR/src/brisaaction.cpp) \
-                 $$quote($$BASEDIR/src/brisaargument.cpp) \
-                 $$quote($$BASEDIR/src/brisaicon.cpp) \
-                 $$quote($$BASEDIR/src/brisaservicexmlhandler.cpp) \
-                 $$quote($$BASEDIR/src/brisastatevariable.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/action.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/actionargument.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/av_controlpoint/didl/container.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/av_controlpoint/didl/didllite.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/av_controlpoint/didl/item.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/av_controlpoint/didl/res.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/av_controlpoint/mediacontrolpoint.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/av_controlpoint/mediaservercontrolpointdevice.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisacontrolpoint.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisacontrolpointdevice.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisacontrolpointservice.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisadevicexmlhandlercp.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisaeventproxy.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisamsearchclientcp.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisamulticasteventreceiver.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisaudplistener.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/device.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/icon.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/service.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/statevariable.cpp) \
-                 $$quote($$BASEDIR/src/device/av_device/mediarendererdevice.cpp) \
-                 $$quote($$BASEDIR/src/device/av_device/mediarendererdeviceservice.cpp) \
-                 $$quote($$BASEDIR/src/device/brisaabstracteventmessage.cpp) \
-                 $$quote($$BASEDIR/src/device/brisaactionxmlparser.cpp) \
-                 $$quote($$BASEDIR/src/device/brisacontrolwebservice.cpp) \
-                 $$quote($$BASEDIR/src/device/brisadevice.cpp) \
-                 $$quote($$BASEDIR/src/device/brisadevicexmlhandler.cpp) \
-                 $$quote($$BASEDIR/src/device/brisaeventcontroller.cpp) \
-                 $$quote($$BASEDIR/src/device/brisaeventmessage.cpp) \
-                 $$quote($$BASEDIR/src/device/brisaeventsubscription.cpp) \
-                 $$quote($$BASEDIR/src/device/brisamulticasteventmessage.cpp) \
-                 $$quote($$BASEDIR/src/device/brisaservice.cpp) \
-                 $$quote($$BASEDIR/src/network/brisanetwork.cpp) \
+        SOURCES +=  $$quote($$BASEDIR/src/network/brisanetwork.cpp) \
                  $$quote($$BASEDIR/src/network/networkmanager.cpp) \
                  $$quote($$BASEDIR/src/shared/soap/qtsoap.cpp) \
                  $$quote($$BASEDIR/src/shared/soap/soap.cpp) \
@@ -191,9 +151,71 @@ device {
                  $$quote($$BASEDIR/src/shared/webserver/webserver.cpp) \
                  $$quote($$BASEDIR/src/shared/webserver/webserversession.cpp) \
                  $$quote($$BASEDIR/src/shared/webserver/webservice.cpp) \
-                 $$quote($$BASEDIR/src/shared/webserver/webstaticcontent.cpp)
+                 $$quote($$BASEDIR/src/shared/webserver/webstaticcontent.cpp) \
+                 $$quote($$BASEDIR/src/upnp/brisaabstracteventsubscription.cpp) \
+                 $$quote($$BASEDIR/src/upnp/brisaabstractservice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/brisaaction.cpp) \
+                 $$quote($$BASEDIR/src/upnp/brisaargument.cpp) \
+                 $$quote($$BASEDIR/src/upnp/brisaicon.cpp) \
+                 $$quote($$BASEDIR/src/upnp/brisaservicexmlhandler.cpp) \
+                 $$quote($$BASEDIR/src/upnp/brisastatevariable.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/action.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/actionargument.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/container.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/didllite.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/item.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/res.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediacontrolpoint.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediaservercontrolpointdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisacontrolpoint.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisacontrolpointdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisacontrolpointservice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisadevicexmlhandlercp.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisaeventproxy.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisamsearchclientcp.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisamulticasteventreceiver.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisaudplistener.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/device.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/icon.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/service.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/statevariable.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/av_device/mediarendererdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/av_device/mediarendererdeviceservice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisaabstracteventmessage.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisaactionxmlparser.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisacontrolwebservice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisadevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisadevicexmlhandler.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisaeventcontroller.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisaeventmessage.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisaeventsubscription.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisamulticasteventmessage.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisaservice.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/include/upnp/brisaabstracteventsubscription.h) \
+        HEADERS +=  $$quote($$BASEDIR/include/network/brisanetwork.h) \
+                 $$quote($$BASEDIR/include/network/networkmanager.h) \
+                 $$quote($$BASEDIR/include/shared/soap/qtsoap.h) \
+                 $$quote($$BASEDIR/include/shared/soap/soap.h) \
+                 $$quote($$BASEDIR/include/shared/soap/soapenvelope.h) \
+                 $$quote($$BASEDIR/include/shared/ssdp/brisassdpclient.h) \
+                 $$quote($$BASEDIR/include/shared/ssdp/brisassdpserver.h) \
+                 $$quote($$BASEDIR/include/shared/ssdp/ssdp.h) \
+                 $$quote($$BASEDIR/include/shared/ssdp/ssdpprotocol.h) \
+                 $$quote($$BASEDIR/include/shared/ssdp/ssdpudpsocket.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/http/httpmessage.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/http/httprequest.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/http/httpresponse.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/http/httpserver.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/http/httpsession.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/http/httpsessionmanager.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/http/httpversion.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/webfile.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/webserver.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/webserversession.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/webservice.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/webstaticcontent.h) \
+                 $$quote($$BASEDIR/include/upnp/brisaabstracteventsubscription.h) \
                  $$quote($$BASEDIR/include/upnp/brisaabstractservice.h) \
                  $$quote($$BASEDIR/include/upnp/brisaaction.h) \
                  $$quote($$BASEDIR/include/upnp/brisaargument.h) \
@@ -235,75 +257,13 @@ device {
                  $$quote($$BASEDIR/include/upnp/device/brisaeventmessage.h) \
                  $$quote($$BASEDIR/include/upnp/device/brisaeventsubscription.h) \
                  $$quote($$BASEDIR/include/upnp/device/brisamulticasteventmessage.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisaservice.h) \
-                 $$quote($$BASEDIR/include/upnp/network/brisanetwork.h) \
-                 $$quote($$BASEDIR/include/upnp/network/networkmanager.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/soap/qtsoap.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/soap/soap.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/soap/soapenvelope.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/ssdp/brisassdpclient.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/ssdp/brisassdpserver.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/ssdp/ssdp.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/ssdp/ssdpprotocol.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/ssdp/ssdpudpsocket.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/http/httpmessage.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/http/httprequest.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/http/httpresponse.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/http/httpserver.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/http/httpsession.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/http/httpsessionmanager.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/http/httpversion.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/webfile.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/webserver.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/webserversession.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/webservice.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/webstaticcontent.h)
+                 $$quote($$BASEDIR/include/upnp/device/brisaservice.h)
     }
 }
 
 simulator {
     CONFIG(debug, debug|release) {
-        SOURCES +=  $$quote($$BASEDIR/src/brisaabstracteventsubscription.cpp) \
-                 $$quote($$BASEDIR/src/brisaabstractservice.cpp) \
-                 $$quote($$BASEDIR/src/brisaaction.cpp) \
-                 $$quote($$BASEDIR/src/brisaargument.cpp) \
-                 $$quote($$BASEDIR/src/brisaicon.cpp) \
-                 $$quote($$BASEDIR/src/brisaservicexmlhandler.cpp) \
-                 $$quote($$BASEDIR/src/brisastatevariable.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/action.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/actionargument.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/av_controlpoint/didl/container.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/av_controlpoint/didl/didllite.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/av_controlpoint/didl/item.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/av_controlpoint/didl/res.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/av_controlpoint/mediacontrolpoint.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/av_controlpoint/mediaservercontrolpointdevice.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisacontrolpoint.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisacontrolpointdevice.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisacontrolpointservice.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisadevicexmlhandlercp.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisaeventproxy.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisamsearchclientcp.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisamulticasteventreceiver.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/brisaudplistener.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/device.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/icon.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/service.cpp) \
-                 $$quote($$BASEDIR/src/controlpoint/statevariable.cpp) \
-                 $$quote($$BASEDIR/src/device/av_device/mediarendererdevice.cpp) \
-                 $$quote($$BASEDIR/src/device/av_device/mediarendererdeviceservice.cpp) \
-                 $$quote($$BASEDIR/src/device/brisaabstracteventmessage.cpp) \
-                 $$quote($$BASEDIR/src/device/brisaactionxmlparser.cpp) \
-                 $$quote($$BASEDIR/src/device/brisacontrolwebservice.cpp) \
-                 $$quote($$BASEDIR/src/device/brisadevice.cpp) \
-                 $$quote($$BASEDIR/src/device/brisadevicexmlhandler.cpp) \
-                 $$quote($$BASEDIR/src/device/brisaeventcontroller.cpp) \
-                 $$quote($$BASEDIR/src/device/brisaeventmessage.cpp) \
-                 $$quote($$BASEDIR/src/device/brisaeventsubscription.cpp) \
-                 $$quote($$BASEDIR/src/device/brisamulticasteventmessage.cpp) \
-                 $$quote($$BASEDIR/src/device/brisaservice.cpp) \
-                 $$quote($$BASEDIR/src/network/brisanetwork.cpp) \
+        SOURCES +=  $$quote($$BASEDIR/src/network/brisanetwork.cpp) \
                  $$quote($$BASEDIR/src/network/networkmanager.cpp) \
                  $$quote($$BASEDIR/src/shared/soap/qtsoap.cpp) \
                  $$quote($$BASEDIR/src/shared/soap/soap.cpp) \
@@ -322,9 +282,71 @@ simulator {
                  $$quote($$BASEDIR/src/shared/webserver/webserver.cpp) \
                  $$quote($$BASEDIR/src/shared/webserver/webserversession.cpp) \
                  $$quote($$BASEDIR/src/shared/webserver/webservice.cpp) \
-                 $$quote($$BASEDIR/src/shared/webserver/webstaticcontent.cpp)
+                 $$quote($$BASEDIR/src/shared/webserver/webstaticcontent.cpp) \
+                 $$quote($$BASEDIR/src/upnp/brisaabstracteventsubscription.cpp) \
+                 $$quote($$BASEDIR/src/upnp/brisaabstractservice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/brisaaction.cpp) \
+                 $$quote($$BASEDIR/src/upnp/brisaargument.cpp) \
+                 $$quote($$BASEDIR/src/upnp/brisaicon.cpp) \
+                 $$quote($$BASEDIR/src/upnp/brisaservicexmlhandler.cpp) \
+                 $$quote($$BASEDIR/src/upnp/brisastatevariable.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/action.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/actionargument.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/container.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/didllite.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/item.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/res.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediacontrolpoint.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediaservercontrolpointdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisacontrolpoint.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisacontrolpointdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisacontrolpointservice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisadevicexmlhandlercp.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisaeventproxy.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisamsearchclientcp.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisamulticasteventreceiver.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/brisaudplistener.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/device.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/icon.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/service.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/statevariable.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/av_device/mediarendererdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/av_device/mediarendererdeviceservice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisaabstracteventmessage.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisaactionxmlparser.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisacontrolwebservice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisadevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisadevicexmlhandler.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisaeventcontroller.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisaeventmessage.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisaeventsubscription.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisamulticasteventmessage.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/brisaservice.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/include/upnp/brisaabstracteventsubscription.h) \
+        HEADERS +=  $$quote($$BASEDIR/include/network/brisanetwork.h) \
+                 $$quote($$BASEDIR/include/network/networkmanager.h) \
+                 $$quote($$BASEDIR/include/shared/soap/qtsoap.h) \
+                 $$quote($$BASEDIR/include/shared/soap/soap.h) \
+                 $$quote($$BASEDIR/include/shared/soap/soapenvelope.h) \
+                 $$quote($$BASEDIR/include/shared/ssdp/brisassdpclient.h) \
+                 $$quote($$BASEDIR/include/shared/ssdp/brisassdpserver.h) \
+                 $$quote($$BASEDIR/include/shared/ssdp/ssdp.h) \
+                 $$quote($$BASEDIR/include/shared/ssdp/ssdpprotocol.h) \
+                 $$quote($$BASEDIR/include/shared/ssdp/ssdpudpsocket.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/http/httpmessage.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/http/httprequest.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/http/httpresponse.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/http/httpserver.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/http/httpsession.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/http/httpsessionmanager.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/http/httpversion.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/webfile.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/webserver.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/webserversession.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/webservice.h) \
+                 $$quote($$BASEDIR/include/shared/webserver/webstaticcontent.h) \
+                 $$quote($$BASEDIR/include/upnp/brisaabstracteventsubscription.h) \
                  $$quote($$BASEDIR/include/upnp/brisaabstractservice.h) \
                  $$quote($$BASEDIR/include/upnp/brisaaction.h) \
                  $$quote($$BASEDIR/include/upnp/brisaargument.h) \
@@ -366,53 +388,31 @@ simulator {
                  $$quote($$BASEDIR/include/upnp/device/brisaeventmessage.h) \
                  $$quote($$BASEDIR/include/upnp/device/brisaeventsubscription.h) \
                  $$quote($$BASEDIR/include/upnp/device/brisamulticasteventmessage.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisaservice.h) \
-                 $$quote($$BASEDIR/include/upnp/network/brisanetwork.h) \
-                 $$quote($$BASEDIR/include/upnp/network/networkmanager.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/soap/qtsoap.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/soap/soap.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/soap/soapenvelope.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/ssdp/brisassdpclient.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/ssdp/brisassdpserver.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/ssdp/ssdp.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/ssdp/ssdpprotocol.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/ssdp/ssdpudpsocket.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/http/httpmessage.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/http/httprequest.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/http/httpresponse.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/http/httpserver.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/http/httpsession.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/http/httpsessionmanager.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/http/httpversion.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/webfile.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/webserver.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/webserversession.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/webservice.h) \
-                 $$quote($$BASEDIR/include/upnp/shared/webserver/webstaticcontent.h)
+                 $$quote($$BASEDIR/include/upnp/device/brisaservice.h)
     }
 }
 
 INCLUDEPATH +=  $$quote($$BASEDIR/src/shared/webserver) \
-         $$quote($$BASEDIR/include/upnp/shared/soap) \
          $$quote($$BASEDIR/include/upnp/device/av_device) \
          $$quote($$BASEDIR/include/upnp) \
-         $$quote($$BASEDIR/src/network) \
          $$quote($$BASEDIR/include/upnp/device) \
-         $$quote($$BASEDIR/include/upnp/shared/webserver) \
+         $$quote($$BASEDIR/src/network) \
          $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint) \
          $$quote($$BASEDIR/src/shared/soap) \
-         $$quote($$BASEDIR/src/controlpoint) \
          $$quote($$BASEDIR/src/shared/ssdp) \
-         $$quote($$BASEDIR/src) \
-         $$quote($$BASEDIR/src/controlpoint/av_controlpoint/didl) \
+         $$quote($$BASEDIR/include/network) \
+         $$quote($$BASEDIR/src/upnp/controlpoint) \
+         $$quote($$BASEDIR/src/upnp) \
+         $$quote($$BASEDIR/include/shared/webserver) \
          $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/didl) \
-         $$quote($$BASEDIR/src/device) \
-         $$quote($$BASEDIR/src/controlpoint/av_controlpoint) \
-         $$quote($$BASEDIR/src/device/av_device) \
+         $$quote($$BASEDIR/src/upnp/device/av_device) \
+         $$quote($$BASEDIR/include/shared/webserver/http) \
+         $$quote($$BASEDIR/src/upnp/device) \
+         $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint) \
+         $$quote($$BASEDIR/include/shared/soap) \
+         $$quote($$BASEDIR/include/shared/ssdp) \
+         $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl) \
          $$quote($$BASEDIR/include/upnp/controlpoint) \
-         $$quote($$BASEDIR/include/upnp/shared/webserver/http) \
-         $$quote($$BASEDIR/include/upnp/network) \
-         $$quote($$BASEDIR/include/upnp/shared/ssdp) \
          $$quote($$BASEDIR/src/shared/webserver/http)
 
 CONFIG += precompile_header
@@ -425,6 +425,36 @@ lupdate_inclusion {
              $$quote($$BASEDIR/../include/*.cc) \
              $$quote($$BASEDIR/../include/*.cpp) \
              $$quote($$BASEDIR/../include/*.cxx) \
+             $$quote($$BASEDIR/../include/network/*.c) \
+             $$quote($$BASEDIR/../include/network/*.c++) \
+             $$quote($$BASEDIR/../include/network/*.cc) \
+             $$quote($$BASEDIR/../include/network/*.cpp) \
+             $$quote($$BASEDIR/../include/network/*.cxx) \
+             $$quote($$BASEDIR/../include/shared/*.c) \
+             $$quote($$BASEDIR/../include/shared/*.c++) \
+             $$quote($$BASEDIR/../include/shared/*.cc) \
+             $$quote($$BASEDIR/../include/shared/*.cpp) \
+             $$quote($$BASEDIR/../include/shared/*.cxx) \
+             $$quote($$BASEDIR/../include/shared/soap/*.c) \
+             $$quote($$BASEDIR/../include/shared/soap/*.c++) \
+             $$quote($$BASEDIR/../include/shared/soap/*.cc) \
+             $$quote($$BASEDIR/../include/shared/soap/*.cpp) \
+             $$quote($$BASEDIR/../include/shared/soap/*.cxx) \
+             $$quote($$BASEDIR/../include/shared/ssdp/*.c) \
+             $$quote($$BASEDIR/../include/shared/ssdp/*.c++) \
+             $$quote($$BASEDIR/../include/shared/ssdp/*.cc) \
+             $$quote($$BASEDIR/../include/shared/ssdp/*.cpp) \
+             $$quote($$BASEDIR/../include/shared/ssdp/*.cxx) \
+             $$quote($$BASEDIR/../include/shared/webserver/*.c) \
+             $$quote($$BASEDIR/../include/shared/webserver/*.c++) \
+             $$quote($$BASEDIR/../include/shared/webserver/*.cc) \
+             $$quote($$BASEDIR/../include/shared/webserver/*.cpp) \
+             $$quote($$BASEDIR/../include/shared/webserver/*.cxx) \
+             $$quote($$BASEDIR/../include/shared/webserver/http/*.c) \
+             $$quote($$BASEDIR/../include/shared/webserver/http/*.c++) \
+             $$quote($$BASEDIR/../include/shared/webserver/http/*.cc) \
+             $$quote($$BASEDIR/../include/shared/webserver/http/*.cpp) \
+             $$quote($$BASEDIR/../include/shared/webserver/http/*.cxx) \
              $$quote($$BASEDIR/../include/upnp/*.c) \
              $$quote($$BASEDIR/../include/upnp/*.c++) \
              $$quote($$BASEDIR/../include/upnp/*.cc) \
@@ -455,66 +485,11 @@ lupdate_inclusion {
              $$quote($$BASEDIR/../include/upnp/device/av_device/*.cc) \
              $$quote($$BASEDIR/../include/upnp/device/av_device/*.cpp) \
              $$quote($$BASEDIR/../include/upnp/device/av_device/*.cxx) \
-             $$quote($$BASEDIR/../include/upnp/network/*.c) \
-             $$quote($$BASEDIR/../include/upnp/network/*.c++) \
-             $$quote($$BASEDIR/../include/upnp/network/*.cc) \
-             $$quote($$BASEDIR/../include/upnp/network/*.cpp) \
-             $$quote($$BASEDIR/../include/upnp/network/*.cxx) \
-             $$quote($$BASEDIR/../include/upnp/shared/*.c) \
-             $$quote($$BASEDIR/../include/upnp/shared/*.c++) \
-             $$quote($$BASEDIR/../include/upnp/shared/*.cc) \
-             $$quote($$BASEDIR/../include/upnp/shared/*.cpp) \
-             $$quote($$BASEDIR/../include/upnp/shared/*.cxx) \
-             $$quote($$BASEDIR/../include/upnp/shared/soap/*.c) \
-             $$quote($$BASEDIR/../include/upnp/shared/soap/*.c++) \
-             $$quote($$BASEDIR/../include/upnp/shared/soap/*.cc) \
-             $$quote($$BASEDIR/../include/upnp/shared/soap/*.cpp) \
-             $$quote($$BASEDIR/../include/upnp/shared/soap/*.cxx) \
-             $$quote($$BASEDIR/../include/upnp/shared/ssdp/*.c) \
-             $$quote($$BASEDIR/../include/upnp/shared/ssdp/*.c++) \
-             $$quote($$BASEDIR/../include/upnp/shared/ssdp/*.cc) \
-             $$quote($$BASEDIR/../include/upnp/shared/ssdp/*.cpp) \
-             $$quote($$BASEDIR/../include/upnp/shared/ssdp/*.cxx) \
-             $$quote($$BASEDIR/../include/upnp/shared/webserver/*.c) \
-             $$quote($$BASEDIR/../include/upnp/shared/webserver/*.c++) \
-             $$quote($$BASEDIR/../include/upnp/shared/webserver/*.cc) \
-             $$quote($$BASEDIR/../include/upnp/shared/webserver/*.cpp) \
-             $$quote($$BASEDIR/../include/upnp/shared/webserver/*.cxx) \
-             $$quote($$BASEDIR/../include/upnp/shared/webserver/http/*.c) \
-             $$quote($$BASEDIR/../include/upnp/shared/webserver/http/*.c++) \
-             $$quote($$BASEDIR/../include/upnp/shared/webserver/http/*.cc) \
-             $$quote($$BASEDIR/../include/upnp/shared/webserver/http/*.cpp) \
-             $$quote($$BASEDIR/../include/upnp/shared/webserver/http/*.cxx) \
              $$quote($$BASEDIR/../src/*.c) \
              $$quote($$BASEDIR/../src/*.c++) \
              $$quote($$BASEDIR/../src/*.cc) \
              $$quote($$BASEDIR/../src/*.cpp) \
              $$quote($$BASEDIR/../src/*.cxx) \
-             $$quote($$BASEDIR/../src/controlpoint/*.c) \
-             $$quote($$BASEDIR/../src/controlpoint/*.c++) \
-             $$quote($$BASEDIR/../src/controlpoint/*.cc) \
-             $$quote($$BASEDIR/../src/controlpoint/*.cpp) \
-             $$quote($$BASEDIR/../src/controlpoint/*.cxx) \
-             $$quote($$BASEDIR/../src/controlpoint/av_controlpoint/*.c) \
-             $$quote($$BASEDIR/../src/controlpoint/av_controlpoint/*.c++) \
-             $$quote($$BASEDIR/../src/controlpoint/av_controlpoint/*.cc) \
-             $$quote($$BASEDIR/../src/controlpoint/av_controlpoint/*.cpp) \
-             $$quote($$BASEDIR/../src/controlpoint/av_controlpoint/*.cxx) \
-             $$quote($$BASEDIR/../src/controlpoint/av_controlpoint/didl/*.c) \
-             $$quote($$BASEDIR/../src/controlpoint/av_controlpoint/didl/*.c++) \
-             $$quote($$BASEDIR/../src/controlpoint/av_controlpoint/didl/*.cc) \
-             $$quote($$BASEDIR/../src/controlpoint/av_controlpoint/didl/*.cpp) \
-             $$quote($$BASEDIR/../src/controlpoint/av_controlpoint/didl/*.cxx) \
-             $$quote($$BASEDIR/../src/device/*.c) \
-             $$quote($$BASEDIR/../src/device/*.c++) \
-             $$quote($$BASEDIR/../src/device/*.cc) \
-             $$quote($$BASEDIR/../src/device/*.cpp) \
-             $$quote($$BASEDIR/../src/device/*.cxx) \
-             $$quote($$BASEDIR/../src/device/av_device/*.c) \
-             $$quote($$BASEDIR/../src/device/av_device/*.c++) \
-             $$quote($$BASEDIR/../src/device/av_device/*.cc) \
-             $$quote($$BASEDIR/../src/device/av_device/*.cpp) \
-             $$quote($$BASEDIR/../src/device/av_device/*.cxx) \
              $$quote($$BASEDIR/../src/network/*.c) \
              $$quote($$BASEDIR/../src/network/*.c++) \
              $$quote($$BASEDIR/../src/network/*.cc) \
@@ -544,7 +519,37 @@ lupdate_inclusion {
              $$quote($$BASEDIR/../src/shared/webserver/http/*.c++) \
              $$quote($$BASEDIR/../src/shared/webserver/http/*.cc) \
              $$quote($$BASEDIR/../src/shared/webserver/http/*.cpp) \
-             $$quote($$BASEDIR/../src/shared/webserver/http/*.cxx)
+             $$quote($$BASEDIR/../src/shared/webserver/http/*.cxx) \
+             $$quote($$BASEDIR/../src/upnp/*.c) \
+             $$quote($$BASEDIR/../src/upnp/*.c++) \
+             $$quote($$BASEDIR/../src/upnp/*.cc) \
+             $$quote($$BASEDIR/../src/upnp/*.cpp) \
+             $$quote($$BASEDIR/../src/upnp/*.cxx) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/*.c) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/*.c++) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/*.cc) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/*.cpp) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/*.cxx) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/av_controlpoint/*.c) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/av_controlpoint/*.c++) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/av_controlpoint/*.cc) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/av_controlpoint/*.cpp) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/av_controlpoint/*.cxx) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/av_controlpoint/didl/*.c) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/av_controlpoint/didl/*.c++) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/av_controlpoint/didl/*.cc) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/av_controlpoint/didl/*.cpp) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/av_controlpoint/didl/*.cxx) \
+             $$quote($$BASEDIR/../src/upnp/device/*.c) \
+             $$quote($$BASEDIR/../src/upnp/device/*.c++) \
+             $$quote($$BASEDIR/../src/upnp/device/*.cc) \
+             $$quote($$BASEDIR/../src/upnp/device/*.cpp) \
+             $$quote($$BASEDIR/../src/upnp/device/*.cxx) \
+             $$quote($$BASEDIR/../src/upnp/device/av_device/*.c) \
+             $$quote($$BASEDIR/../src/upnp/device/av_device/*.c++) \
+             $$quote($$BASEDIR/../src/upnp/device/av_device/*.cc) \
+             $$quote($$BASEDIR/../src/upnp/device/av_device/*.cpp) \
+             $$quote($$BASEDIR/../src/upnp/device/av_device/*.cxx)
 
     HEADERS +=  $$quote($$BASEDIR/../include/*.h) \
              $$quote($$BASEDIR/../include/*.h++) \

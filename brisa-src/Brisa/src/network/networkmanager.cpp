@@ -1,13 +1,10 @@
 #include "networkmanager.h"
 
 namespace brisa {
-
-using namespace ssdp;
-
+using namespace shared::ssdp;
 namespace network {
 
 NetworkManager::NetworkManager(QObject *parent) : QObject(parent) {
-
 }
 
 NetworkManager::~NetworkManager() { }

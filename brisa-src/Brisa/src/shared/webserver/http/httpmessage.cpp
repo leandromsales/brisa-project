@@ -2,7 +2,10 @@
 #include <QBuffer>
 #include <QIODevice>
 
-using namespace brisa;
+namespace brisa {
+namespace shared {
+namespace webserver {
+namespace http {
 
 HttpMessage::HttpMessage(HttpVersion httpVersion) :
         m_httpVersion(httpVersion),
@@ -90,3 +93,8 @@ void HttpMessage::setRange(const QPair<qlonglong, qlonglong> &range)
 {
     m_range = range;
 }
+
+}  // namespace http
+}  // namespace webserver
+}  // namespace shared
+} // namespace Brisa

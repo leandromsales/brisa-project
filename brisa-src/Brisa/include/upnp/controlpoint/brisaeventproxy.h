@@ -30,7 +30,7 @@
 
 #include "upnp/brisaabstracteventsubscription.h"
 #include "upnp/brisaglobal.h"
-#include "upnp/shared/webserver/webserver.h"
+#include "shared/webserver/webserver.h"
 #include <QDateTime>
 #include <QList>
 #include <QString>
@@ -100,7 +100,7 @@ signals:
 
 
 protected:
-    void onRequest(const HttpRequest &request, WebserverSession *session);
+    void onRequest(const brisa::shared::webserver::http::HttpRequest &request, brisa::shared::webserver::WebserverSession *session);
 
 private:
     /*!
@@ -108,7 +108,7 @@ private:
      *  webService.
      */
     BrisaEventProxy(const QStringList &callbackUrls,
-                    Webserver *webserver,
+    		brisa::shared::webserver::Webserver *webserver,
                     int &deliveryPath,
                     QString host,
                     int port,
@@ -156,7 +156,7 @@ private:
      *  \property webServer
      *  \brief Webserver to receive event responses.
      */
-    Webserver *webServer;
+    brisa::shared::webserver::Webserver *webServer;
 
     /*!
      *  Creates and returns a Http subscription header with the passed \a timeout

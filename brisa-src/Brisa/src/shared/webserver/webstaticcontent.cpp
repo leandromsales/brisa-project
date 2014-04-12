@@ -2,7 +2,10 @@
 #include "webserversession.h"
 
 namespace brisa {
-namespace upnp {
+namespace shared {
+namespace webserver {
+
+using namespace http;
 
 WebStaticContent::WebStaticContent(const QByteArray &content,
                                              QObject *parent) :
@@ -45,5 +48,6 @@ void WebStaticContent::onRequest(const HttpRequest &request,
     session->respond(response);
 }
 
-}
-}
+}  // namespace webserver
+}  // namespace shared
+}  // namespace brisa

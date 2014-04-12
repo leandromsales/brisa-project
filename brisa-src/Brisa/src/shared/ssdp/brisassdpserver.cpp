@@ -12,13 +12,9 @@
 #include <string.h>
 
 namespace brisa {
-
 using namespace upnp::controlpoint;
-
+namespace shared {
 namespace ssdp {
-
-
-
 // TODO: Add this three fields commented below in the ALIVE_MESSAGE
 // as per upnp spec 1.1, section 1.2.2.
 //  - BOOTID.UPNP.ORG
@@ -225,4 +221,5 @@ void BrisaSSDPServer::respondMSearch(const QString &senderIp,
 }
 
 }
+}  // namespace shared
 }

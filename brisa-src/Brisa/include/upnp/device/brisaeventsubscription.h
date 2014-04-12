@@ -1,8 +1,8 @@
 #ifndef BRISAEVENTSUBSCRIPTION_H
 #define BRISAEVENTSUBSCRIPTION_H
 
-#include "../brisaabstracteventsubscription.h"
-#include "upnp/shared/webserver/http/httpresponse.h"
+#include "upnp/brisaabstracteventsubscription.h"
+#include "shared/webserver/http/httpresponse.h"
 
 #include <QDateTime>
 #include <QList>
@@ -13,7 +13,6 @@ namespace brisa {
 namespace upnp {
 namespace device {
 
-
     class BrisaEventSubscription: public BrisaAbstractEventSubscription {
     Q_OBJECT
 
@@ -23,8 +22,8 @@ namespace device {
                 QObject *parent = 0);
 
         void renew(const int &newTimeout = -1); // <0 = infinite
-        HttpResponse getAcceptSubscriptionResponse() const;
-        HttpResponse getAcceptUnsubscriptionResponse() const;
+        brisa::shared::webserver::http::HttpResponse getAcceptSubscriptionResponse() const;
+        brisa::shared::webserver::http::HttpResponse getAcceptUnsubscriptionResponse() const;
     };
 
 }

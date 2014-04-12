@@ -31,20 +31,17 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QMap>
-#include "upnp/network/brisanetwork.h"
+#include "network/brisanetwork.h"
 #include "upnp/controlpoint/brisacontrolpointdevice.h"
 #include "upnp/controlpoint/brisaeventproxy.h"
-#include "upnp/shared/ssdp/brisassdpclient.h"
+#include "shared/ssdp/brisassdpclient.h"
 #include "brisamulticasteventreceiver.h"
 #include "upnp/brisaglobal.h"
 
 namespace brisa {
-
-class ssdp::BrisaSSDPClient;
-
+class shared::ssdp::BrisaSSDPClient;
 namespace upnp {
 namespace controlpoint {
-
 class BrisaMSearchClientCP;
 class BrisaControlPointService;
 
@@ -99,13 +96,13 @@ private:
      *    \property webserver
      *    \brief Webserver to receive event responses.
      */
-    Webserver *webserver;
+    brisa::shared::webserver::Webserver *webserver;
 
     /*!
      *    \property ssdpClient
      *    \brief Listen to notify/bye-bye messages.
      */
-    ssdp::BrisaSSDPClient *ssdpClient;
+    brisa::shared::ssdp::BrisaSSDPClient *ssdpClient;
 
     /*!
      *    \property msearch

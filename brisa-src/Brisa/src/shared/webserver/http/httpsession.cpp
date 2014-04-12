@@ -8,7 +8,10 @@
 #define MAPPED_MEMORY_SIZE 64
 #endif
 
-using namespace brisa;
+namespace brisa {
+namespace shared {
+namespace webserver {
+namespace http {
 
 enum State
 {
@@ -222,3 +225,8 @@ void HttpSession::onConnectionDie()
     else
         deleteLater();
 }
+
+}  // namespace http
+}  // namespace webserver
+}  // namespace shared
+} // namespace Brisa

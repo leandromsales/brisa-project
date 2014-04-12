@@ -5,8 +5,10 @@
 #include <QScopedPointer>
 
 namespace brisa {
-namespace upnp {
+namespace shared {
+namespace webserver {
 
+using namespace http;
 
 WebFile::WebFile(const QString &fileName, QObject *parent) :
         WebService(parent),
@@ -109,5 +111,6 @@ void WebFile::onRequest(const HttpRequest &request,
     session->respond(response, m_useChunkedEntities);
 }
 
-}
-}
+}  // namespace webserver
+}  // namespace shared
+}  // namespace brisa

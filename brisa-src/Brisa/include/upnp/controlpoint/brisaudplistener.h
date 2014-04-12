@@ -32,7 +32,7 @@
 #include <QObject>
 #include <QUdpSocket>
 
-#include "upnp/network/brisanetwork.h"
+#include "network/brisanetwork.h"
 
 namespace brisa {
 namespace upnp {

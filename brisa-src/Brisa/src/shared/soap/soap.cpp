@@ -9,6 +9,7 @@
 #include "soapenvelope.h"
 
 namespace brisa {
+namespace shared {
 namespace soap {
 
 //TODO: make it as a singleton?
@@ -97,4 +98,5 @@ void SOAP::handleError(QNetworkReply::NetworkError code) {
 }
 
 }
+}  // namespace shared
 }

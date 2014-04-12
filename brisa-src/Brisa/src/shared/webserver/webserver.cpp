@@ -7,7 +7,10 @@
 #define DEFAULT_PAGE "<html><body><h1>BRisa WebServer!</h1></body></html>\n"
 
 namespace brisa {
-namespace upnp {
+namespace shared {
+namespace webserver {
+
+using namespace http;
 
 Webserver::Webserver(const QHostAddress &host, quint16 port) :
         HttpServer(host, port),
@@ -80,5 +83,6 @@ HttpSession *Webserver::Factory::generateSessionHandler(HttpSessionManager *pare
     return new WebserverSession(server, parent);
 }
 
-}
-}
+}  // namespace webserver
+}  // namespace shared
+}  // namespace brisa

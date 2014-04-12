@@ -7,8 +7,8 @@
 #include <QObject>
 #include <QtCore>
 
-#include "upnp/shared/webserver/webserver.h"
-#include "upnp/shared/webserver/webservice.h"
+#include "shared/webserver/webserver.h"
+#include "shared/webserver/webservice.h"
 
 namespace brisa {
 namespace upnp {
@@ -18,7 +18,7 @@ namespace upnp {
  *
  * \brief Abstract class that represents an event subscription
  */
-class BrisaAbstractEventSubscription: public WebService {
+class BrisaAbstractEventSubscription: public brisa::shared::webserver::WebService {
     Q_OBJECT
 public:
 

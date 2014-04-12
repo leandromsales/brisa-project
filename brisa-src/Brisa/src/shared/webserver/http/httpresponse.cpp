@@ -1,7 +1,5 @@
 #include "httpresponse.h"
 
-using namespace brisa;
-
 static const QByteArray reasonPhrases[] =
 {
     // 1xx Informational
@@ -117,6 +115,11 @@ inline int statusCodeToReasonPhrasesIndex(int st)
         return -1;
 }
 
+namespace brisa {
+namespace shared {
+namespace webserver {
+namespace http {
+
 HttpResponse::HttpResponse(const HttpVersion &httpVersion, int statusCode,
                            bool closeConnection) :
     HttpMessage(httpVersion),
@@ -164,3 +167,8 @@ void HttpResponse::setCloseConnection(bool close)
 {
     m_closeConnection = close;
 }
+
+}  // namespace http
+}  // namespace webserver
+}  // namespace shared
+} // namespace Brisa

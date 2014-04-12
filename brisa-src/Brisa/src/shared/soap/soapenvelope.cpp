@@ -5,6 +5,7 @@
 #include "soapenvelope.h"
 
 namespace brisa {
+namespace shared {
 namespace soap {
 
 SoapEnvelope::SoapEnvelope(QObject *parent) : QObject(parent) {
@@ -65,4 +66,5 @@ QHash<QString, QString> *SoapEnvelope::parse(const QString &content) {
 }
 
 }
+}  // namespace shared
 }

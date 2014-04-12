@@ -7,9 +7,9 @@
 
 #include "brisastatevariable.h"
 #include "brisaaction.h"
-#include "upnp/shared/soap/qtsoap.h"
+#include "shared/soap/qtsoap.h"
 
-#include "upnp/shared/webserver/webservice.h"
+#include "shared/webserver/webservice.h"
 
 namespace brisa {
 namespace upnp {
@@ -34,7 +34,7 @@ enum UPnPErrorCodes {
  *
  * \brief An abstract class for the control point side and device side service
  */
-class BrisaAbstractService: public WebService {
+class BrisaAbstractService: public brisa::shared::webserver::WebService {
 Q_OBJECT
 
 public:

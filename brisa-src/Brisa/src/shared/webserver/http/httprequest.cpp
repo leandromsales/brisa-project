@@ -1,6 +1,9 @@
 #include "httprequest.h"
 
-using namespace brisa;
+namespace brisa {
+namespace shared {
+namespace webserver {
+namespace http {
 
 HttpRequest::HttpRequest(const QByteArray &method, const QByteArray &uri,
                          const HttpVersion &httpVersion) :
@@ -19,3 +22,8 @@ void HttpRequest::setUri(const QByteArray &uri)
 {
     m_uri = uri;
 }
+
+}  // namespace http
+}  // namespace webserver
+}  // namespace shared
+} // namespace Brisa

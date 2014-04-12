@@ -14,7 +14,10 @@
 #endif
 
 namespace brisa {
-namespace upnp {
+namespace shared {
+namespace webserver {
+
+using namespace http;
 
 enum State
 {
@@ -296,5 +299,6 @@ void WebserverSession::onTimeout()
     writeResponse(HttpResponse(HttpVersion(1, 1), HttpResponse::REQUEST_TIMEOUT, true));
 }
 
-}
-}
+}  // namespace webserver
+}  // namespace shared
+}  // namespace brisa
