@@ -43,7 +43,7 @@ EventProxy::EventProxy(const QStringList &callbackUrls,
                                  QHttp *http,
                                  QString eventSub,
                                  QObject *parent) :
-    BrisaAbstractEventSubscription(QString(), callbackUrls, -1, parent),
+    AbstractEventSubscription(QString(), callbackUrls, -1, parent),
     requestId(-1),
     deliveryPath(deliveryPath),
     host(host),

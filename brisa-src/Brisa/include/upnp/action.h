@@ -1,7 +1,7 @@
 #ifndef ACTION_H
 #define ACTION_H
 
-#include "brisaargument.h"
+#include "upnp/argument.h"
 
 #include <QString>
 #include <QList>

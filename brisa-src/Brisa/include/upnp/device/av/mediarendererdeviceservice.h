@@ -2,7 +2,7 @@
 #define MEDIARENDERERDEVICESERVICE_H
 
 #include "upnp/device/service.h"
-#include "upnp/brisaaction.h"
+#include "upnp/action.h"
 
 #define SERVICE_TYPE "urn:schemas-upnp-org:service:TVOperations:1"
 #define SERVICE_ID "TVOperations"

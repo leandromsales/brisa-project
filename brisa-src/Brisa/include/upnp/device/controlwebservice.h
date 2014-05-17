@@ -3,7 +3,7 @@
 
 #include "shared/webserver/webservice.h"
 #include "shared/webserver/http/httprequest.h"
-#include "upnp/brisaaction.h"
+#include "upnp/action.h"
 
 // TODO: use "Class WebService; Class XXX and include their .h in the .cpp
 

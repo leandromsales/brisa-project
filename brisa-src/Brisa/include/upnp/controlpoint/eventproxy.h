@@ -28,7 +28,7 @@
 #ifndef EVENTPROXY_H
 #define EVENTPROXY_H
 
-#include "upnp/brisaabstracteventsubscription.h"
+#include "upnp/abstracteventsubscription.h"
 #include "upnp/brisaglobal.h"
 #include "shared/webserver/webserver.h"
 #include <QDateTime>

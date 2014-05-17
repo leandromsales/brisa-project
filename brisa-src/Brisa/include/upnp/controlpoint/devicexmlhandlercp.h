@@ -42,7 +42,7 @@
 #include <QNetworkRequest>
 #include <QTemporaryFile>
 
-#include "upnp/brisaicon.h"
+#include "upnp/icon.h"
 #include "upnp/controlpoint/cpservice.h"
 //#include "brisaglobal.h"
 

@@ -7,7 +7,7 @@ namespace device {
 
 EventSubscription::EventSubscription(const QString &sid,
         const QStringList &callbackUrls, const int &timeout, QObject *parent) :
-            BrisaAbstractEventSubscription(sid, callbackUrls, timeout, parent) {
+            AbstractEventSubscription(sid, callbackUrls, timeout, parent) {
 }
 
 void EventSubscription::renew(const int &newTimeout) {

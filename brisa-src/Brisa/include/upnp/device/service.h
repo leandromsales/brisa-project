@@ -1,7 +1,7 @@
 #ifndef SERVICE_H
 #define SERVICE_H
 
-#include "upnp/brisaabstractservice.h"
+#include "upnp/abstractservice.h"
 #include "upnp/device/eventcontroller.h"
 #include "upnp/device/actionxmlparser.h"
 

@@ -1,7 +1,7 @@
 #ifndef EVENTSUBSCRIPTION_H
 #define EVENTSUBSCRIPTION_H
 
-#include "upnp/brisaabstracteventsubscription.h"
+#include "upnp/abstracteventsubscription.h"
 #include "shared/webserver/http/httpresponse.h"
 
 #include <QDateTime>

@@ -7,7 +7,7 @@
 
 // TODO: move the include directive to the begin of the file
 #include "upnp/device/service.h"
-#include "brisaservicexmlhandler.h"
+#include "upnp/servicexmlhandler.h"
 
 #define PRE_ACTION_SIG "preAction(BrisaInArgument*const,BrisaAction*const,QString&)"
 #define POST_ACTION_SIG "postAction(BrisaInArgument*const,BrisaOutArgument*const,BrisaAction*const,QString&)"

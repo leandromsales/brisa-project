@@ -5,8 +5,8 @@
 #include <QString>
 #include <QObject>
 
-#include "brisastatevariable.h"
-#include "brisaaction.h"
+#include "upnp/statevariable.h"
+#include "upnp/action.h"
 #include "shared/soap/qtsoap.h"
 
 #include "shared/webserver/webservice.h"

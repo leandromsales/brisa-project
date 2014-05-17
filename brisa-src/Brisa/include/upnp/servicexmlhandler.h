@@ -5,10 +5,10 @@
 #include <QString>
 #include <QDomDocument>
 
-#include "brisaaction.h"
-#include "brisaargument.h"
-#include "brisastatevariable.h"
-#include "brisaabstractservice.h"
+#include "upnp/action.h"
+#include "upnp/argument.h"
+#include "upnp/statevariable.h"
+#include "upnp/abstractservice.h"
 
 namespace brisa {
 namespace upnp {

@@ -11,7 +11,7 @@
 #include "shared/ssdp/brisassdpserver.h"
 #include "upnp/device/devicexmlhandler.h"
 #include "upnp/device/service.h"
-#include "upnp/brisaicon.h"
+#include "upnp/icon.h"
 
 namespace brisa {
 //class shared::ssdp::BrisaSSDPServer;

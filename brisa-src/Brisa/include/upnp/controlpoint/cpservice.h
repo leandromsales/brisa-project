@@ -29,7 +29,7 @@
 #ifndef CPSERVICE_H
 #define CPSERVICE_H
 
-#include "upnp/brisaabstractservice.h"
+#include "upnp/abstractservice.h"
 #include "upnp/brisaglobal.h"
 
 namespace brisa {

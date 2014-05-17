@@ -38,7 +38,7 @@
 #include <QtDebug>
 #include <QObject>
 
-#include "upnp/brisaicon.h"
+#include "upnp/icon.h"
 #include "upnp/controlpoint/cpservice.h"
 #include "upnp/controlpoint/devicexmlhandlercp.h"
 #include "upnp/brisaglobal.h"

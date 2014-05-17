@@ -23,13 +23,10 @@ device {
                  $$quote($$BASEDIR/src/shared/webserver/webserversession.cpp) \
                  $$quote($$BASEDIR/src/shared/webserver/webservice.cpp) \
                  $$quote($$BASEDIR/src/shared/webserver/webstaticcontent.cpp) \
-                 $$quote($$BASEDIR/src/upnp/brisaabstracteventsubscription.cpp) \
-                 $$quote($$BASEDIR/src/upnp/brisaabstractservice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/brisaaction.cpp) \
-                 $$quote($$BASEDIR/src/upnp/brisaargument.cpp) \
-                 $$quote($$BASEDIR/src/upnp/brisaicon.cpp) \
-                 $$quote($$BASEDIR/src/upnp/brisaservicexmlhandler.cpp) \
-                 $$quote($$BASEDIR/src/upnp/brisastatevariable.cpp) \
+                 $$quote($$BASEDIR/src/upnp/abstracteventsubscription.cpp) \
+                 $$quote($$BASEDIR/src/upnp/abstractservice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/action.cpp) \
+                 $$quote($$BASEDIR/src/upnp/argument.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/actionargument.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/actionsales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/container.cpp) \
@@ -62,7 +59,10 @@ device {
                  $$quote($$BASEDIR/src/upnp/device/eventmessage.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/eventsubscription.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/multicasteventmessage.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/service.cpp)
+                 $$quote($$BASEDIR/src/upnp/device/service.cpp) \
+                 $$quote($$BASEDIR/src/upnp/icon.cpp) \
+                 $$quote($$BASEDIR/src/upnp/servicexmlhandler.cpp) \
+                 $$quote($$BASEDIR/src/upnp/statevariable.cpp)
 
         HEADERS +=  $$quote($$BASEDIR/include/network/brisanetwork.h) \
                  $$quote($$BASEDIR/include/network/networkmanager.h) \
@@ -86,14 +86,11 @@ device {
                  $$quote($$BASEDIR/include/shared/webserver/webserversession.h) \
                  $$quote($$BASEDIR/include/shared/webserver/webservice.h) \
                  $$quote($$BASEDIR/include/shared/webserver/webstaticcontent.h) \
-                 $$quote($$BASEDIR/include/upnp/brisaabstracteventsubscription.h) \
-                 $$quote($$BASEDIR/include/upnp/brisaabstractservice.h) \
-                 $$quote($$BASEDIR/include/upnp/brisaaction.h) \
-                 $$quote($$BASEDIR/include/upnp/brisaargument.h) \
+                 $$quote($$BASEDIR/include/upnp/abstracteventsubscription.h) \
+                 $$quote($$BASEDIR/include/upnp/abstractservice.h) \
+                 $$quote($$BASEDIR/include/upnp/action.h) \
+                 $$quote($$BASEDIR/include/upnp/argument.h) \
                  $$quote($$BASEDIR/include/upnp/brisaglobal.h) \
-                 $$quote($$BASEDIR/include/upnp/brisaicon.h) \
-                 $$quote($$BASEDIR/include/upnp/brisaservicexmlhandler.h) \
-                 $$quote($$BASEDIR/include/upnp/brisastatevariable.h) \
                  $$quote($$BASEDIR/include/upnp/brisautils.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/actionargument.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/actionsales.h) \
@@ -128,7 +125,10 @@ device {
                  $$quote($$BASEDIR/include/upnp/device/eventmessage.h) \
                  $$quote($$BASEDIR/include/upnp/device/eventsubscription.h) \
                  $$quote($$BASEDIR/include/upnp/device/multicasteventmessage.h) \
-                 $$quote($$BASEDIR/include/upnp/device/service.h)
+                 $$quote($$BASEDIR/include/upnp/device/service.h) \
+                 $$quote($$BASEDIR/include/upnp/icon.h) \
+                 $$quote($$BASEDIR/include/upnp/servicexmlhandler.h) \
+                 $$quote($$BASEDIR/include/upnp/statevariable.h)
     }
 
     CONFIG(release, debug|release) {
@@ -152,13 +152,10 @@ device {
                  $$quote($$BASEDIR/src/shared/webserver/webserversession.cpp) \
                  $$quote($$BASEDIR/src/shared/webserver/webservice.cpp) \
                  $$quote($$BASEDIR/src/shared/webserver/webstaticcontent.cpp) \
-                 $$quote($$BASEDIR/src/upnp/brisaabstracteventsubscription.cpp) \
-                 $$quote($$BASEDIR/src/upnp/brisaabstractservice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/brisaaction.cpp) \
-                 $$quote($$BASEDIR/src/upnp/brisaargument.cpp) \
-                 $$quote($$BASEDIR/src/upnp/brisaicon.cpp) \
-                 $$quote($$BASEDIR/src/upnp/brisaservicexmlhandler.cpp) \
-                 $$quote($$BASEDIR/src/upnp/brisastatevariable.cpp) \
+                 $$quote($$BASEDIR/src/upnp/abstracteventsubscription.cpp) \
+                 $$quote($$BASEDIR/src/upnp/abstractservice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/action.cpp) \
+                 $$quote($$BASEDIR/src/upnp/argument.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/actionargument.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/actionsales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/container.cpp) \
@@ -191,7 +188,10 @@ device {
                  $$quote($$BASEDIR/src/upnp/device/eventmessage.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/eventsubscription.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/multicasteventmessage.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/service.cpp)
+                 $$quote($$BASEDIR/src/upnp/device/service.cpp) \
+                 $$quote($$BASEDIR/src/upnp/icon.cpp) \
+                 $$quote($$BASEDIR/src/upnp/servicexmlhandler.cpp) \
+                 $$quote($$BASEDIR/src/upnp/statevariable.cpp)
 
         HEADERS +=  $$quote($$BASEDIR/include/network/brisanetwork.h) \
                  $$quote($$BASEDIR/include/network/networkmanager.h) \
@@ -215,14 +215,11 @@ device {
                  $$quote($$BASEDIR/include/shared/webserver/webserversession.h) \
                  $$quote($$BASEDIR/include/shared/webserver/webservice.h) \
                  $$quote($$BASEDIR/include/shared/webserver/webstaticcontent.h) \
-                 $$quote($$BASEDIR/include/upnp/brisaabstracteventsubscription.h) \
-                 $$quote($$BASEDIR/include/upnp/brisaabstractservice.h) \
-                 $$quote($$BASEDIR/include/upnp/brisaaction.h) \
-                 $$quote($$BASEDIR/include/upnp/brisaargument.h) \
+                 $$quote($$BASEDIR/include/upnp/abstracteventsubscription.h) \
+                 $$quote($$BASEDIR/include/upnp/abstractservice.h) \
+                 $$quote($$BASEDIR/include/upnp/action.h) \
+                 $$quote($$BASEDIR/include/upnp/argument.h) \
                  $$quote($$BASEDIR/include/upnp/brisaglobal.h) \
-                 $$quote($$BASEDIR/include/upnp/brisaicon.h) \
-                 $$quote($$BASEDIR/include/upnp/brisaservicexmlhandler.h) \
-                 $$quote($$BASEDIR/include/upnp/brisastatevariable.h) \
                  $$quote($$BASEDIR/include/upnp/brisautils.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/actionargument.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/actionsales.h) \
@@ -257,7 +254,10 @@ device {
                  $$quote($$BASEDIR/include/upnp/device/eventmessage.h) \
                  $$quote($$BASEDIR/include/upnp/device/eventsubscription.h) \
                  $$quote($$BASEDIR/include/upnp/device/multicasteventmessage.h) \
-                 $$quote($$BASEDIR/include/upnp/device/service.h)
+                 $$quote($$BASEDIR/include/upnp/device/service.h) \
+                 $$quote($$BASEDIR/include/upnp/icon.h) \
+                 $$quote($$BASEDIR/include/upnp/servicexmlhandler.h) \
+                 $$quote($$BASEDIR/include/upnp/statevariable.h)
     }
 }
 
@@ -283,13 +283,10 @@ simulator {
                  $$quote($$BASEDIR/src/shared/webserver/webserversession.cpp) \
                  $$quote($$BASEDIR/src/shared/webserver/webservice.cpp) \
                  $$quote($$BASEDIR/src/shared/webserver/webstaticcontent.cpp) \
-                 $$quote($$BASEDIR/src/upnp/brisaabstracteventsubscription.cpp) \
-                 $$quote($$BASEDIR/src/upnp/brisaabstractservice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/brisaaction.cpp) \
-                 $$quote($$BASEDIR/src/upnp/brisaargument.cpp) \
-                 $$quote($$BASEDIR/src/upnp/brisaicon.cpp) \
-                 $$quote($$BASEDIR/src/upnp/brisaservicexmlhandler.cpp) \
-                 $$quote($$BASEDIR/src/upnp/brisastatevariable.cpp) \
+                 $$quote($$BASEDIR/src/upnp/abstracteventsubscription.cpp) \
+                 $$quote($$BASEDIR/src/upnp/abstractservice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/action.cpp) \
+                 $$quote($$BASEDIR/src/upnp/argument.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/actionargument.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/actionsales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/container.cpp) \
@@ -322,7 +319,10 @@ simulator {
                  $$quote($$BASEDIR/src/upnp/device/eventmessage.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/eventsubscription.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/multicasteventmessage.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/service.cpp)
+                 $$quote($$BASEDIR/src/upnp/device/service.cpp) \
+                 $$quote($$BASEDIR/src/upnp/icon.cpp) \
+                 $$quote($$BASEDIR/src/upnp/servicexmlhandler.cpp) \
+                 $$quote($$BASEDIR/src/upnp/statevariable.cpp)
 
         HEADERS +=  $$quote($$BASEDIR/include/network/brisanetwork.h) \
                  $$quote($$BASEDIR/include/network/networkmanager.h) \
@@ -346,14 +346,11 @@ simulator {
                  $$quote($$BASEDIR/include/shared/webserver/webserversession.h) \
                  $$quote($$BASEDIR/include/shared/webserver/webservice.h) \
                  $$quote($$BASEDIR/include/shared/webserver/webstaticcontent.h) \
-                 $$quote($$BASEDIR/include/upnp/brisaabstracteventsubscription.h) \
-                 $$quote($$BASEDIR/include/upnp/brisaabstractservice.h) \
-                 $$quote($$BASEDIR/include/upnp/brisaaction.h) \
-                 $$quote($$BASEDIR/include/upnp/brisaargument.h) \
+                 $$quote($$BASEDIR/include/upnp/abstracteventsubscription.h) \
+                 $$quote($$BASEDIR/include/upnp/abstractservice.h) \
+                 $$quote($$BASEDIR/include/upnp/action.h) \
+                 $$quote($$BASEDIR/include/upnp/argument.h) \
                  $$quote($$BASEDIR/include/upnp/brisaglobal.h) \
-                 $$quote($$BASEDIR/include/upnp/brisaicon.h) \
-                 $$quote($$BASEDIR/include/upnp/brisaservicexmlhandler.h) \
-                 $$quote($$BASEDIR/include/upnp/brisastatevariable.h) \
                  $$quote($$BASEDIR/include/upnp/brisautils.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/actionargument.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/actionsales.h) \
@@ -388,7 +385,10 @@ simulator {
                  $$quote($$BASEDIR/include/upnp/device/eventmessage.h) \
                  $$quote($$BASEDIR/include/upnp/device/eventsubscription.h) \
                  $$quote($$BASEDIR/include/upnp/device/multicasteventmessage.h) \
-                 $$quote($$BASEDIR/include/upnp/device/service.h)
+                 $$quote($$BASEDIR/include/upnp/device/service.h) \
+                 $$quote($$BASEDIR/include/upnp/icon.h) \
+                 $$quote($$BASEDIR/include/upnp/servicexmlhandler.h) \
+                 $$quote($$BASEDIR/include/upnp/statevariable.h)
     }
 }
 

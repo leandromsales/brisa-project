@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QList>
 
-#include "upnp/brisastatevariable.h"
+#include "upnp/statevariable.h"
 
 namespace brisa {
 namespace upnp {

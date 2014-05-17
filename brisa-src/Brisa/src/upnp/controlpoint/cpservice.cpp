@@ -27,7 +27,7 @@
  */
 
 #include "upnp/controlpoint/cpservice.h"
-#include "brisaservicexmlhandler.h"
+#include "upnp/servicexmlhandler.h"
 
 #include <QtDebug>
 #include <QIODevice>

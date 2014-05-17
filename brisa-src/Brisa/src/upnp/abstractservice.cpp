@@ -1,4 +1,4 @@
-#include "brisaabstractservice.h"
+#include "upnp/abstractservice.h"
 
 namespace brisa {
 namespace upnp {

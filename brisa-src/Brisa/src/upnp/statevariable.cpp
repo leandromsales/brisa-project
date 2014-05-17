@@ -1,5 +1,5 @@
-#include "brisastatevariable.h"
-#include "brisaabstractservice.h"
+#include "upnp/statevariable.h"
+#include "upnp/abstractservice.h"
 
 namespace brisa {
 namespace upnp {
