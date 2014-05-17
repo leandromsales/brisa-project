@@ -32,7 +32,7 @@ WebserverSession::WebserverSession(Webserver *server, HttpSessionManager *parent
     timer(new QTimer)
 {
     lastSupportedHttpVersion = HttpVersion(1, 1);
-    connect(this, SIGNAL(responsePosted(HttpResponse)), this, SLOT(writeResponse(HttpResponse)));
+    connect(this, SIGNAL(responsePosted(const brisa::shared::webserver::http::HttpResponse &)), this, SLOT(writeResponse(brisa::shared::webserver::http::HttpResponse)));
     connect(timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
 }
 

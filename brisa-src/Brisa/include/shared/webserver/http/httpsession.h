@@ -34,7 +34,7 @@ public:
     virtual int isRequestSupported(const HttpRequest &request) const;
 
 protected slots:
-    void writeResponse(HttpResponse);
+    void writeResponse(brisa::shared::webserver::http::HttpResponse);
 
 protected:
     // used to respond BAD_REQUESTs

@@ -21,7 +21,7 @@ public:
     int isRequestSupported(const brisa::shared::webserver::http::HttpRequest &request) const;
 
 signals:
-    void responsePosted(brisa::shared::webserver::http::HttpResponse);
+    void responsePosted(const brisa::shared::webserver::http::HttpResponse &);
     void onEventReceived(brisa::shared::webserver::http::HttpRequest request, WebserverSession* session);
 
 public slots:

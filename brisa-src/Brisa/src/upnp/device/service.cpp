@@ -174,10 +174,10 @@ void Service::buildWebServiceTree(Webserver *sessionManager) {
 	WebService *control = new ControlWebService(serviceType);
 
 	connect(control,
-			SIGNAL(requestReceived(QString,BrisaInArgument,WebserverSession*)),
-			this, SLOT(call(QString,BrisaInArgument,WebserverSession*)));
-	connect(control, SIGNAL(invalidRequest(WebserverSession*)), this,
-			SLOT(onInvalidRequest(WebserverSession*)));
+			SIGNAL(requestReceived(QString,BrisaInArgument,brisa::shared::webserver::WebserverSession*)),
+			this, SLOT(call(QString,BrisaInArgument,brisa::shared::webserver::WebserverSession*)));
+	connect(control, SIGNAL(invalidRequest(brisa::shared::webserver::WebserverSession*)), this,
+			SLOT(onInvalidRequest(brisa::shared::webserver::WebserverSession*)));
 
 	EventController *event = new EventController(sessionManager,
 			&stateVariableList, this);
