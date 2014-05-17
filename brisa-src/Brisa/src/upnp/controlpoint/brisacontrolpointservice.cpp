@@ -36,12 +36,12 @@ namespace brisa {
 namespace upnp {
 namespace controlpoint {
 
-BrisaControlPointService::BrisaControlPointService(QObject *parent) :
+Service::Service(QObject *parent) :
     BrisaAbstractService(parent) {
     connect(http, SIGNAL(responseReady()), this, SLOT(getResponse()));
 }
 
-BrisaControlPointService::BrisaControlPointService(const QString &serviceType,
+Service::Service(const QString &serviceType,
         const QString &serviceId, const QString &scpdUrl,
         const QString &controlUrl, const QString &eventSubUrl,
         const QString &host, QObject *parent) :
@@ -50,21 +50,21 @@ BrisaControlPointService::BrisaControlPointService(const QString &serviceType,
     connect(http, SIGNAL(responseReady()), this, SLOT(getResponse()));
 }
 
-BrisaControlPointService::BrisaControlPointService(
-        BrisaControlPointService &serv) :
+Service::Service(
+        Service &serv) :
     BrisaAbstractService(NULL),
     lastMethod(serv.lastMethod)
 {
     connect(http, SIGNAL(responseReady()), this, SLOT(getResponse()));
 }
 
-void BrisaControlPointService::parseFromXml(QTemporaryFile *xml) {
+void Service::parseFromXml(QTemporaryFile *xml) {
     BrisaServiceXMLHandler handler;
     handler.parseService(this, xml);
     xml->deleteLater();
 }
 
-void BrisaControlPointService::call(const QString &method, BrisaInArgument &param) {
+void Service::call(const QString &method, BrisaInArgument &param) {
     QtSoapMessage request;
 
     http->setAction("\"" + serviceType + "#" + method + "\"");
@@ -80,7 +80,7 @@ void BrisaControlPointService::call(const QString &method, BrisaInArgument &para
     this->http->submitRequest(request, this->controlUrl);
 }
 
-void BrisaControlPointService::getResponse() {
+void Service::getResponse() {
     const QtSoapMessage &message = http->getResponse();
 
     if (message.isFault()) {

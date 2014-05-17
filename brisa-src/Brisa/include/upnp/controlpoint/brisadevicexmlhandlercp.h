@@ -26,8 +26,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef BRISADEVICEXMLHANDLER_H
-#define BRISADEVICEXMLHANDLER_H
+#ifndef DEVICEXMLHANDLER_H
+#define DEVICEXMLHANDLER_H
 
 //#include <QMainWindow>
 #include <QIODevice>
@@ -50,7 +50,7 @@ namespace brisa {
 namespace upnp {
 namespace controlpoint {
 
-class BrisaControlPointDevice;
+class Device;
 
 /*!
  *  \class Brisa::BrisaDeviceXMLHandlerCP brisadevicexmlhandlercp.h BrisaUpnp/BrisaDeviceXMLHandlerCP
@@ -58,23 +58,23 @@ class BrisaControlPointDevice;
  *  \brief BrisaDeviceXMLHandlerCP creates a device from a xml description file, with all it's
  *  attributes, it lets it ready to be used.
  */
-class BRISA_UPNP_EXPORT BrisaDeviceXMLHandlerCP {
+class BRISA_UPNP_EXPORT DeviceXMLHandlerCP {
 public:
 
 
-    virtual ~BrisaDeviceXMLHandlerCP();
+    virtual ~DeviceXMLHandlerCP();
 
     /*!
      *  Method that initializes device attributes from a temporary file.
      *  \param device device
      *  \param tmp temporary file
      */
-    void parseDevice(BrisaControlPointDevice *device, QTemporaryFile *tmp);
+    void parseDevice(Device *device, QTemporaryFile *tmp);
 
-    void parseDevice(BrisaControlPointDevice *device, QDomElement &element);
-    BrisaControlPointService *parseService(QDomElement &element);
+    void parseDevice(Device *device, QDomElement &element);
+    Service *parseService(QDomElement &element);
     BrisaIcon *parseIcon(QDomElement &element);
-    void validateURLBase(BrisaControlPointDevice *device);
+    void validateURLBase(Device *device);
 
 };
 
@@ -97,7 +97,7 @@ public:
      *  \brief BrisaServiceFetcher constructor, receives the \a service that is going to be set, the
      *  \a location to download xml, and a QObject as parent.
      */
-    BrisaServiceFetcher(BrisaControlPointService *service, QString location,
+    BrisaServiceFetcher(Service *service, QString location,
             QObject *parent = 0) :
         QObject(parent), location(location), service(service) {
         eventLoop = new QEventLoop();
@@ -160,7 +160,7 @@ private:
      *  \property BrisaServiceFetcher::service
      *  \brief service that is going to have the parameters set.
      */
-    BrisaControlPointService *service;
+    Service *service;
 
     /*!
      *  \internal
@@ -212,5 +212,5 @@ private slots:
 }
 }
 
-#endif /* _BRISADEVICEXMLHANDLER_H */
+#endif /* _DEVICEXMLHANDLER_H */
 

@@ -134,7 +134,7 @@ private slots:
 private:
     bool running;
 
-    upnp::controlpoint::BrisaUdpListener *udpListener;
+    upnp::controlpoint::UdpListener *udpListener;
 };
 
 }

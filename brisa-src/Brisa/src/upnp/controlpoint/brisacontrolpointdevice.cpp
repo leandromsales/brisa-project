@@ -36,19 +36,19 @@ namespace brisa {
 namespace upnp {
 namespace controlpoint {
 
-BrisaControlPointDevice::BrisaControlPointDevice(QObject *parent) :
+Device::Device(QObject *parent) :
     QObject(parent) {
 }
 
-BrisaControlPointDevice::BrisaControlPointDevice(QTemporaryFile *xml,
+Device::Device(QTemporaryFile *xml,
                                                  QUrl *url,
                                                  QObject *parent) : QObject(parent)
 {
-    this->setAttribute(BrisaControlPointDevice::UrlBase, url->toString(QUrl::RemovePath));
-    BrisaDeviceXMLHandlerCP().parseDevice(this, xml);
+    this->setAttribute(Device::UrlBase, url->toString(QUrl::RemovePath));
+    DeviceXMLHandlerCP().parseDevice(this, xml);
 }
 
-BrisaControlPointDevice::BrisaControlPointDevice(QString udn,
+Device::Device(QString udn,
                                                  QString deviceType,
                                                  QString friendlyName,
                                                  QString manufacturer,
@@ -79,32 +79,32 @@ BrisaControlPointDevice::BrisaControlPointDevice(QString udn,
     this->_fileAddress = friendlyName.remove(QChar(' ')).append(this->_udn).append(".xml");
 }
 
-BrisaControlPointDevice::BrisaControlPointDevice(BrisaControlPointDevice &dev,
+Device::Device(Device &dev,
         QObject *parent) : QObject(parent)
 {
     this->iconList = dev.getIconList();
     this->serviceList = dev.getServiceList();
     this->embeddedDeviceList = dev.getEmbeddedDeviceList();
 
-    this->_udn = dev.getAttribute(BrisaControlPointDevice::Udn);
-    this->_major = dev.getAttribute(BrisaControlPointDevice::Major);
-    this->_minor = dev.getAttribute(BrisaControlPointDevice::Minor);
-    this->_urlBase = dev.getAttribute(BrisaControlPointDevice::UrlBase);
-    this->_deviceType = dev.getAttribute(BrisaControlPointDevice::DeviceType);
-    this->_friendlyName = dev.getAttribute(BrisaControlPointDevice::FriendlyName);
-    this->_manufacturer = dev.getAttribute(BrisaControlPointDevice::Manufacturer);
-    this->_manufacturerUrl = dev.getAttribute(BrisaControlPointDevice::ManufacturerUrl);
-    this->_modelDescription = dev.getAttribute(BrisaControlPointDevice::ModelDescription);
-    this->_modelName = dev.getAttribute(BrisaControlPointDevice::ModelName);
-    this->_modelNumber = dev.getAttribute(BrisaControlPointDevice::ModelNumber);
-    this->_modelUrl = dev.getAttribute(BrisaControlPointDevice::ModelUrl);
-    this->_serialNumber = dev.getAttribute(BrisaControlPointDevice::SerialNumber);
-    this->_upc = dev.getAttribute(BrisaControlPointDevice::Upc);
-    this->_presentationUrl = dev.getAttribute(BrisaControlPointDevice::PresentationUrl);
-    this->_fileAddress = dev.getAttribute(BrisaControlPointDevice::FileAddress);
+    this->_udn = dev.getAttribute(Device::Udn);
+    this->_major = dev.getAttribute(Device::Major);
+    this->_minor = dev.getAttribute(Device::Minor);
+    this->_urlBase = dev.getAttribute(Device::UrlBase);
+    this->_deviceType = dev.getAttribute(Device::DeviceType);
+    this->_friendlyName = dev.getAttribute(Device::FriendlyName);
+    this->_manufacturer = dev.getAttribute(Device::Manufacturer);
+    this->_manufacturerUrl = dev.getAttribute(Device::ManufacturerUrl);
+    this->_modelDescription = dev.getAttribute(Device::ModelDescription);
+    this->_modelName = dev.getAttribute(Device::ModelName);
+    this->_modelNumber = dev.getAttribute(Device::ModelNumber);
+    this->_modelUrl = dev.getAttribute(Device::ModelUrl);
+    this->_serialNumber = dev.getAttribute(Device::SerialNumber);
+    this->_upc = dev.getAttribute(Device::Upc);
+    this->_presentationUrl = dev.getAttribute(Device::PresentationUrl);
+    this->_fileAddress = dev.getAttribute(Device::FileAddress);
 }
 
-BrisaControlPointDevice::~BrisaControlPointDevice()
+Device::~Device()
 {
     qDeleteAll(this->iconList);
     this->iconList.clear();
@@ -114,7 +114,7 @@ BrisaControlPointDevice::~BrisaControlPointDevice()
     this->embeddedDeviceList.clear();
 }
 
-void BrisaControlPointDevice::setAttribute(xmlTags key, QString v)
+void Device::setAttribute(xmlTags key, QString v)
 {
     switch (key) {
     case Major:
@@ -185,7 +185,7 @@ void BrisaControlPointDevice::setAttribute(xmlTags key, QString v)
     }
 }
 
-QString BrisaControlPointDevice::getAttribute(xmlTags key)
+QString Device::getAttribute(xmlTags key)
 {
     switch (key) {
     case Udn:
@@ -258,54 +258,54 @@ QString BrisaControlPointDevice::getAttribute(xmlTags key)
     }
 }
 
-BrisaControlPointService *BrisaControlPointDevice::getServiceById(QString serviceId)
+Service *Device::getServiceById(QString serviceId)
 {
     for (int i = 0; i < this->serviceList.size(); i++) {
-        if (this->serviceList.at(i)->getAttribute(BrisaControlPointService::ServiceId).compare(serviceId) == 0) {
+        if (this->serviceList.at(i)->getAttribute(Service::ServiceId).compare(serviceId) == 0) {
             return serviceList.at(i);
         }
     }
     return NULL;
 }
 
-BrisaControlPointService *BrisaControlPointDevice::getServiceByType(QString serviceType)
+Service *Device::getServiceByType(QString serviceType)
 {
     for (int i = 0; i < this->serviceList.size(); i++) {
     	qDebug() << "########### Brisa : String to Compare " << serviceType;
-    	qDebug() << "########### Brisa : Service Current " << this->serviceList.at(i)->getAttribute(BrisaControlPointService::ServiceType);
-        if (this->serviceList.at(i)->getAttribute(BrisaControlPointService::ServiceType).compare(serviceType) == 0) {
+    	qDebug() << "########### Brisa : Service Current " << this->serviceList.at(i)->getAttribute(Service::ServiceType);
+        if (this->serviceList.at(i)->getAttribute(Service::ServiceType).compare(serviceType) == 0) {
             return serviceList.at(i);
         }
     }
     return NULL;
 }
 
-QList<BrisaIcon*> BrisaControlPointDevice::getIconList()
+QList<BrisaIcon*> Device::getIconList()
 {
     return this->iconList;
 }
 
-QList<BrisaControlPointService*> &BrisaControlPointDevice::getServiceList() {
+QList<Service*> &Device::getServiceList() {
     return this->serviceList;
 }
 
-QList<BrisaControlPointDevice*> BrisaControlPointDevice::getEmbeddedDeviceList() {
+QList<Device*> Device::getEmbeddedDeviceList() {
     return this->embeddedDeviceList;
 }
 
-void BrisaControlPointDevice::addIcon(BrisaIcon *icon) {
+void Device::addIcon(BrisaIcon *icon) {
     iconList.append(icon);
 }
 
-void BrisaControlPointDevice::addService(BrisaControlPointService *serviceSwap) {
+void Device::addService(Service *serviceSwap) {
     serviceList.append(serviceSwap);
 }
 
-void BrisaControlPointDevice::addDevice(BrisaControlPointDevice *device) {
+void Device::addDevice(Device *device) {
     embeddedDeviceList.append(device);
 }
 
-void BrisaControlPointDevice::downloadIcons()
+void Device::downloadIcons()
 {
     downloaded = 0;
 
@@ -317,7 +317,7 @@ void BrisaControlPointDevice::downloadIcons()
     }
 }
 
-void BrisaControlPointDevice::downloadFinished()
+void Device::downloadFinished()
 {
     downloaded++;
     if(downloaded == this->iconList.size())
@@ -326,7 +326,7 @@ void BrisaControlPointDevice::downloadFinished()
     }
 }
 
-void BrisaControlPointDevice::clear() {
+void Device::clear() {
     this->iconList.clear();
     this->serviceList.clear();
     this->embeddedDeviceList.clear();

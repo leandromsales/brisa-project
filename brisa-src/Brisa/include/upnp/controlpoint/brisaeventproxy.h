@@ -25,8 +25,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef BRISAEVENTPROXY_H
-#define BRISAEVENTPROXY_H
+#ifndef EVENTPROXY_H
+#define EVENTPROXY_H
 
 #include "upnp/brisaabstracteventsubscription.h"
 #include "upnp/brisaglobal.h"
@@ -47,17 +47,17 @@ namespace controlpoint {
  *  Class that implements the event part in control point side in Brisa Qt, this class makes the
  *  operations of subscribe, renew subscription and unsubscribe.
  */
-class BRISA_UPNP_EXPORT BrisaEventProxy: public BrisaAbstractEventSubscription
+class BRISA_UPNP_EXPORT EventProxy: public BrisaAbstractEventSubscription
 {
 Q_OBJECT
 
 public:
-    friend class BrisaControlPoint;
+    friend class ControlPoint;
 
     /*!
      *  Destructor
      */
-    virtual ~BrisaEventProxy();
+    virtual ~EventProxy();
 
     /*!
      *  Gets the request id.
@@ -95,7 +95,7 @@ signals:
      *
      *  \brief Signal that is emitted when an event is received.
      */
-    void eventNotification(BrisaEventProxy *subscription,
+    void eventNotification(EventProxy *subscription,
             QMap<QString, QString> eventingVariables);
 
 
@@ -107,7 +107,7 @@ private:
      *  BrisaEventProxy constructor, prepare all the attribute and starts the webServer and the
      *  webService.
      */
-    BrisaEventProxy(const QStringList &callbackUrls,
+    EventProxy(const QStringList &callbackUrls,
     		brisa::shared::webserver::Webserver *webserver,
                     int &deliveryPath,
                     QString host,
@@ -188,4 +188,4 @@ private:
 }
 }
 }
-#endif /* _BRISAEVENTPROXY_H */
+#endif /* _EVENTPROXY_H */

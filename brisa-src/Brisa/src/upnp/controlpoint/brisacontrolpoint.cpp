@@ -45,14 +45,14 @@ using namespace shared::webserver;
 namespace upnp {
 namespace controlpoint {
 
-BrisaControlPoint::BrisaControlPoint(QObject *parent, QString st, int mx) :
+ControlPoint::ControlPoint(QObject *parent, QString st, int mx) :
     QObject(parent) {
     this->discoverNetworkAddress();
     this->buildUrlBase();
     this->deliveryPath = 0;
     this->running = false;
     this->webserver = new Webserver(QHostAddress(ipAddress), port);
-    this->multicastReceiver = new BrisaMulticastEventReceiver(parent);
+    this->multicastReceiver = new MulticastEventReceiver(parent);
 
     /* HTTP protocol implementation for requests */
     this->http = new QHttp();
@@ -61,7 +61,7 @@ BrisaControlPoint::BrisaControlPoint(QObject *parent, QString st, int mx) :
     this->ssdpClient = new BrisaSSDPClient(this);
 
     /* MSearch client */
-    msearch = new BrisaMSearchClientCP(this, st, mx);
+    msearch = new MSearchClientCP(this, st, mx);
 
     /* XML downloader */
     downloader = new QNetworkAccessManager();
@@ -83,7 +83,7 @@ BrisaControlPoint::BrisaControlPoint(QObject *parent, QString st, int mx) :
     this->multicastReceiver->start();
 }
 
-BrisaControlPoint::~BrisaControlPoint() {
+ControlPoint::~ControlPoint() {
     if (!isRunning())
         this->stop();
 
@@ -95,7 +95,7 @@ BrisaControlPoint::~BrisaControlPoint() {
     delete this->multicastReceiver;
 }
 
-void BrisaControlPoint::start() {
+void ControlPoint::start() {
     if (isRunning()) {
         qDebug() << "Brisa Control Point: already started.";
     } else {
@@ -105,7 +105,7 @@ void BrisaControlPoint::start() {
     }
 }
 
-void BrisaControlPoint::stop() {
+void ControlPoint::stop() {
     if (!isRunning()) {
         qDebug() << "Brisa Control Point: already stopped.";
     } else {
@@ -115,15 +115,15 @@ void BrisaControlPoint::stop() {
     }
 }
 
-bool BrisaControlPoint::isRunning() {
+bool ControlPoint::isRunning() {
     return this->running;
 }
 
-void BrisaControlPoint::discover() {
+void ControlPoint::discover() {
     this->msearch->discover();
 }
 
-void BrisaControlPoint::replyFinished(QNetworkReply *reply) {
+void ControlPoint::replyFinished(QNetworkReply *reply) {
     QTemporaryFile *rootXml = new QTemporaryFile();
     if (!rootXml->open()) {
         qWarning() << "Brisa Control Point: Failed to open file for writing root XML.";
@@ -132,13 +132,13 @@ void BrisaControlPoint::replyFinished(QNetworkReply *reply) {
         rootXml->seek(0);
         QUrl *urlBase = new QUrl(reply->url());
 
-        BrisaControlPointDevice *device = new BrisaControlPointDevice(rootXml, urlBase);
+        Device *device = new Device(rootXml, urlBase);
 
         /* Fix embedded devices host/port attributes */
-        QList<BrisaControlPointService*> serviceList = device->getServiceList();
-        foreach(BrisaControlPointService *s, serviceList) {
-                s->setAttribute(BrisaControlPointService::Host, urlBase->host());
-                s->setAttribute(BrisaControlPointService::Port,
+        QList<Service*> serviceList = device->getServiceList();
+        foreach(Service *s, serviceList) {
+                s->setAttribute(Service::Host, urlBase->host());
+                s->setAttribute(Service::Port,
                         QString().setNum(urlBase->port()));
         }
 
@@ -153,38 +153,38 @@ void BrisaControlPoint::replyFinished(QNetworkReply *reply) {
     }
 }
 
-void BrisaControlPoint::deviceFound(QString, QString location, QString,
+void ControlPoint::deviceFound(QString, QString location, QString,
                                     QString, QString, QString) {
     downloader->get(QNetworkRequest(QUrl(location)));
 }
 
-void BrisaControlPoint::deviceRemoved(const QString udn) {
+void ControlPoint::deviceRemoved(const QString udn) {
     emit deviceGone(udn);
 }
 
-void BrisaControlPoint::buildUrlBase() {
+void ControlPoint::buildUrlBase() {
     QString sPort;
     sPort.setNum(this->port);
     this->urlBase = "http://" + ipAddress + ":" + sPort;
 }
 
-void BrisaControlPoint::discoverNetworkAddress() {
+void ControlPoint::discoverNetworkAddress() {
     this->port = getPort();
     this->ipAddress = getValidIP();
     qDebug() << "Brisa Control Point: Acquired Address " << this->ipAddress
             + ":" + QString::number(this->port);
 }
 
-BrisaEventProxy *BrisaControlPoint::getSubscriptionProxy(BrisaControlPointService *service) {
+EventProxy *ControlPoint::getSubscriptionProxy(Service *service) {
     deliveryPath++;
-    BrisaEventProxy *subscription = new BrisaEventProxy(
+    EventProxy *subscription = new EventProxy(
                                             QStringList(this->urlBase),
                                             webserver,
                                             deliveryPath,
-                                            service->getAttribute(BrisaControlPointService::Host),
-                                            service->getAttribute(BrisaControlPointService::Port).toInt(),
+                                            service->getAttribute(Service::Host),
+                                            service->getAttribute(Service::Port).toInt(),
                                             http,
-                                            service->getAttribute(BrisaControlPointService::EventSubUrl));
+                                            service->getAttribute(Service::EventSubUrl));
 
     requests[deliveryPath] = subscription;
 
@@ -193,11 +193,11 @@ BrisaEventProxy *BrisaControlPoint::getSubscriptionProxy(BrisaControlPointServic
     return subscription;
 }
 
-void BrisaControlPoint::httpResponse(int i, bool error) {
+void ControlPoint::httpResponse(int i, bool error) {
     qWarning() << "Brisa Control Point: Http response for request " << i;
 
     // Locate request object
-    BrisaEventProxy *subscription = NULL;
+    EventProxy *subscription = NULL;
 
     foreach(int deliveryPath, requests.keys()) {
         if (requests[deliveryPath]->requestId == i) {
@@ -240,7 +240,7 @@ void BrisaControlPoint::httpResponse(int i, bool error) {
     qDebug() << "Brisa Control Point: Subscribed with SID " << subscription->getSid();
 }
 
-void BrisaControlPoint::receiveMulticast(BrisaOutArgument attributes)
+void ControlPoint::receiveMulticast(BrisaOutArgument attributes)
 {
     emit multicastReceived(attributes.value("variableName"), attributes.value("newValue"));
     emit multicastReceivedRaw(attributes);

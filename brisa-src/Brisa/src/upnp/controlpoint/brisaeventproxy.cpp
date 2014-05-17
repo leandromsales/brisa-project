@@ -35,7 +35,7 @@ using namespace shared::webserver::http;
 namespace upnp {
 namespace controlpoint {
 
-BrisaEventProxy::BrisaEventProxy(const QStringList &callbackUrls,
+EventProxy::EventProxy(const QStringList &callbackUrls,
                                  Webserver *webserver,
                                  int &deliveryPath,
                                  QString host,
@@ -54,10 +54,10 @@ BrisaEventProxy::BrisaEventProxy(const QStringList &callbackUrls,
 {
 }
 
-BrisaEventProxy::~BrisaEventProxy() {
+EventProxy::~EventProxy() {
 }
 
-void BrisaEventProxy::renew(const int &newTimeout) {
+void EventProxy::renew(const int &newTimeout) {
     QHttpRequestHeader *renewReq = getRenewRequest(newTimeout);
     http->setHost(host, port);
     requestId = http->request(*renewReq);
@@ -65,11 +65,11 @@ void BrisaEventProxy::renew(const int &newTimeout) {
     delete renewReq;
 }
 
-int BrisaEventProxy::getId() {
+int EventProxy::getId() {
     return this->requestId;
 }
 
-void BrisaEventProxy::subscribe(const int timeout) {
+void EventProxy::subscribe(const int timeout) {
     QHttpRequestHeader *subscribeReq = getSubscriptionRequest(timeout);
     http->setHost(host, port);
     requestId = http->request(*subscribeReq);
@@ -77,7 +77,7 @@ void BrisaEventProxy::subscribe(const int timeout) {
     delete subscribeReq;
 }
 
-void BrisaEventProxy::unsubscribe(void) {
+void EventProxy::unsubscribe(void) {
     QHttpRequestHeader *unsubscribeReq = getUnsubscriptionRequest();
     http->setHost(host, port);
     int unsubId = http->request(*unsubscribeReq);
@@ -85,7 +85,7 @@ void BrisaEventProxy::unsubscribe(void) {
     delete unsubscribeReq;
 }
 
-QHttpRequestHeader *BrisaEventProxy::getSubscriptionRequest(const int timeout) {
+QHttpRequestHeader *EventProxy::getSubscriptionRequest(const int timeout) {
     QHttpRequestHeader *request = new QHttpRequestHeader("SUBSCRIBE", eventSub);
 
     // Remote host
@@ -110,7 +110,7 @@ QHttpRequestHeader *BrisaEventProxy::getSubscriptionRequest(const int timeout) {
     return request;
 }
 
-QHttpRequestHeader *BrisaEventProxy::getRenewRequest(const int timeout) const {
+QHttpRequestHeader *EventProxy::getRenewRequest(const int timeout) const {
     if (this->getSid().isEmpty()) {
         qWarning() << "Renew failed: SID field not filled.";
         return NULL;
@@ -125,14 +125,14 @@ QHttpRequestHeader *BrisaEventProxy::getRenewRequest(const int timeout) const {
     return request;
 }
 
-QHttpRequestHeader *BrisaEventProxy::getUnsubscriptionRequest() const {
+QHttpRequestHeader *EventProxy::getUnsubscriptionRequest() const {
     QHttpRequestHeader *request = new QHttpRequestHeader("UNSUBSCRIBE", eventSub);
     request->setValue("HOST", this->host + ":" + this->port);
     request->setValue("SID", this->SID);
     return request;
 }
 
-void BrisaEventProxy::onRequest(const HttpRequest &request, WebserverSession *session)
+void EventProxy::onRequest(const HttpRequest &request, WebserverSession *session)
 {
     QByteArray sid = request.header("SID");
 
@@ -167,7 +167,7 @@ void BrisaEventProxy::onRequest(const HttpRequest &request, WebserverSession *se
     session->respond(response);
 }
 
-void BrisaEventProxy::setSid(QString &sid) {
+void EventProxy::setSid(QString &sid) {
     this->SID = sid;
 }
 

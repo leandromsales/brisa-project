@@ -27,8 +27,8 @@
  *
  */
 
-#ifndef BRISACONTROLPOINTDEVICE_H
-#define BRISACONTROLPOINTDEVICE_H
+#ifndef DEVICE_H
+#define DEVICE_H
 
 #include <QString>
 #include <QList>
@@ -52,7 +52,7 @@ namespace controlpoint {
  *
  *  \brief Class that implements the devices that control point part is going to handle.
  */
-class BRISA_UPNP_EXPORT BrisaControlPointDevice: public QObject {
+class BRISA_UPNP_EXPORT Device: public QObject {
 Q_OBJECT
 
 public:
@@ -62,7 +62,7 @@ public:
      *  attributes should be set.
      *  \param parent \a empty
      */
-    BrisaControlPointDevice(QObject *parent = 0);
+    Device(QObject *parent = 0);
 
     /*!
      *  Constructor for BrisaControlPointDevice that receives a xml file containing the device
@@ -71,14 +71,14 @@ public:
      *  \param url \a empty
      *  \param parent \a empty
      */
-    BrisaControlPointDevice(QTemporaryFile *xml, QUrl *url,
+    Device(QTemporaryFile *xml, QUrl *url,
                     QObject *parent = 0);
 
     /*!
      *  Constructor for BrisaControlPointDevice that receives another object of the same type and
      *  copy it's attributes.
      */
-    BrisaControlPointDevice(BrisaControlPointDevice &dev, QObject *parent = 0);
+    Device(Device &dev, QObject *parent = 0);
 
     /*!
      *  Constructor where all device's attributes are passed as parameter.
@@ -96,7 +96,7 @@ public:
      *  \param presentationURL \a empty
      *  \param parent \a empty
      */
-    BrisaControlPointDevice(QString udn,
+    Device(QString udn,
                             QString deviceType = "",
                             QString friendlyName = "",
                             QString manufacturer = "",
@@ -113,7 +113,7 @@ public:
     /*!
      *    Destructor
      */
-    virtual ~BrisaControlPointDevice();
+    virtual ~Device();
 
     /*!
      *  \enum Brisa::BrisaControlPointDevice::xmlTags
@@ -195,13 +195,13 @@ public:
      *  Add service to device's service list.
      *  \param service service to add
      */
-    void addService(BrisaControlPointService *service);
+    void addService(Service *service);
 
     /*!
      *  Add a device to device's embedded device list.
      *  \param device device to add
      */
-    void addDevice(BrisaControlPointDevice *device);
+    void addDevice(Device *device);
 
     /*!
      *  Gets device's icon list
@@ -213,27 +213,27 @@ public:
      *  Gets device's service list
      *  \return service list
      */
-    QList<BrisaControlPointService*> &getServiceList();
+    QList<Service*> &getServiceList();
 
     /*!
      *  Gets device's embedded device list
      *  \return embedded list
      */
-    QList<BrisaControlPointDevice*> getEmbeddedDeviceList();
+    QList<Device*> getEmbeddedDeviceList();
 
     /*!
      *  Gets a service by id.
      *  \param serviceId service id
      *  \return service with corresponding id
      */
-    BrisaControlPointService *getServiceById(QString serviceId);
+    Service *getServiceById(QString serviceId);
 
     /*!
      *  Check the device's service list and return the service that has the passed \serviceType
      *  \param serviceType type of the service
      *  \return service with corresponding type
      */
-    BrisaControlPointService *getServiceByType(QString serviceType);
+    Service *getServiceByType(QString serviceType);
 
     /*!
      *  Clear device's attributes.
@@ -248,7 +248,7 @@ public:
     void downloadIcons();
 
 signals:
-    void onReadyDownloadIcons(BrisaControlPointDevice*);
+    void onReadyDownloadIcons(Device*);
 
 public slots:
     void downloadFinished();
@@ -264,13 +264,13 @@ private:
      *  \property serviceList
      *  \brief Device's service list.
      */
-    QList<BrisaControlPointService*> serviceList;
+    QList<Service*> serviceList;
 
     /*!
      *  \property embeddedDeviceList
      *  \brief Device's embedded device list.
      */
-    QList<BrisaControlPointDevice*> embeddedDeviceList;
+    QList<Device*> embeddedDeviceList;
 
     int downloaded;
 
@@ -296,5 +296,5 @@ private:
 }
 }
 
-#endif /* _BRISACONTROLPOINTDEVICE_H */
+#endif /* _DEVICE_H */
 

@@ -80,7 +80,7 @@ BrisaSSDPServer::BrisaSSDPServer(QObject *parent) :
     SSDP_PORT(1900), // TODO: make this as #define
     S_SSDP_PORT("1900") // TODO: make this as #defin
 {
-    this->udpListener = new BrisaUdpListener(SSDP_ADDR, SSDP_PORT, "Brisa SSDP Server", parent);
+    this->udpListener = new UdpListener(SSDP_ADDR, SSDP_PORT, "Brisa SSDP Server", parent);
     connect(this->udpListener, SIGNAL(readyRead()), this, SLOT(datagramReceived()));
 }
 

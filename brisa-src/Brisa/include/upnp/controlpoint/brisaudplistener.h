@@ -26,8 +26,8 @@
  *
  */
 
-#ifndef BRISAUDPLISTENER_H
-#define BRISAUDPLISTENER_H
+#ifndef UDPLISTENER_H
+#define UDPLISTENER_H
 
 #include <QObject>
 #include <QUdpSocket>
@@ -38,7 +38,7 @@ namespace brisa {
 namespace upnp {
 namespace controlpoint {
 
-class BrisaUdpListener : public QUdpSocket {
+class UdpListener : public QUdpSocket {
     Q_OBJECT
 public:
 
@@ -51,13 +51,13 @@ public:
      * one. Used on warning messages.
      * \param parent parent.
      */
-    BrisaUdpListener(QString address, quint32 port, QString objectName,
+    UdpListener(QString address, quint32 port, QString objectName,
                      QObject *parent = 0);
 
     /*!
      * Destructor
      */
-    virtual ~BrisaUdpListener();
+    virtual ~UdpListener();
 
     /*!
      * Starts listening to the address and port passed on constructor.
@@ -92,4 +92,4 @@ private:
 }
 }
 }
-#endif // BRISAUDPLISTENER_H
+#endif // UDPLISTENER_H

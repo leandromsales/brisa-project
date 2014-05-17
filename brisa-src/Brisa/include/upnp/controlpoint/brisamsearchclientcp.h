@@ -25,8 +25,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef BRISAMSEARCHCLIENT_H
-#define BRISAMSEARCHCLIENT_H
+#ifndef MSEARCHCLIENT_H
+#define MSEARCHCLIENT_H
 
 #include <QUdpSocket>
 #include <QTimer>
@@ -49,7 +49,7 @@ namespace controlpoint {
  to begin sending discovery messages to possible devices in the multicast group.
  When a device responds to a msearch request, \a msearchResponseReceived() signal is emmited.
  */
-class BrisaMSearchClientCP: public QObject {
+class MSearchClientCP: public QObject {
 Q_OBJECT
 
 public:
@@ -58,14 +58,14 @@ public:
      *  \internal
      *  Constructor for BrisaMSearchClientCP.
      */
-    BrisaMSearchClientCP(QObject *parent = 0, const QString &type =
+    MSearchClientCP(QObject *parent = 0, const QString &type =
             DEFAULT_SEARCH_TYPE, int mx = 5);
 
     /*!
      *  \internal
      *  Stops the BrisaMSearchClientCP if running and destroys the object.
      */
-    virtual ~BrisaMSearchClientCP();
+    virtual ~MSearchClientCP();
 
     /*!
      *  \internal
@@ -149,4 +149,4 @@ private:
 }
 }
 
-#endif /* _BrisaMSearchClientCP_H */
+#endif /* _MSEARCHCLIENT */

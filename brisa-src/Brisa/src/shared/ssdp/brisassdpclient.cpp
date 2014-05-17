@@ -48,7 +48,7 @@ BrisaSSDPClient::~BrisaSSDPClient() {
 
 void BrisaSSDPClient::start() {
     if (!isRunning()) {
-        this->udpListener = new BrisaUdpListener("239.255.255.250", 1900,
+        this->udpListener = new UdpListener("239.255.255.250", 1900,
                                                  "BrisaSSDPClient");
         connect(this->udpListener, SIGNAL(readyRead()), this, SLOT(datagramReceived()));
         this->udpListener->start();

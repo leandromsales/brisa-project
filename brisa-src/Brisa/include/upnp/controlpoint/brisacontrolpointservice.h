@@ -26,8 +26,8 @@
  *
  */
 
-#ifndef BRISASERVICE_H
-#define BRISASERVICE_H
+#ifndef SERVICE_H
+#define SERVICE_H
 
 #include "upnp/brisaabstractservice.h"
 #include "upnp/brisaglobal.h"
@@ -47,7 +47,7 @@ namespace controlpoint {
  *
  *  BrisaControlPointService is a BrisaAbstractService.
  */
-class BRISA_UPNP_EXPORT BrisaControlPointService : public BrisaAbstractService {
+class BRISA_UPNP_EXPORT Service : public BrisaAbstractService {
 Q_OBJECT
 
 public:
@@ -57,7 +57,7 @@ public:
      *
      *  \param parent \a empty
      */
-    BrisaControlPointService(QObject *parent = 0);
+    Service(QObject *parent = 0);
 
     /*!
      *  Constructs a BrisaControlPointService with the passed attributes.
@@ -70,7 +70,7 @@ public:
      *  \param host \a empty
      *  \param parent \a empty
      */
-    BrisaControlPointService(const QString &serviceType,
+    Service(const QString &serviceType,
             const QString &serviceId = "", const QString &scpdUrl = "",
             const QString &controlUrl = "", const QString &eventSubUrl = "",
             const QString &host = "", QObject *parent = 0);
@@ -80,7 +80,7 @@ public:
      *
      *  \param serv \a empty
      */
-    BrisaControlPointService(BrisaControlPointService &service);
+    Service(Service &service);
 
     /*!
      *  Initializes the BrisaControlPointService from the parse of \a xml that is a xml description
@@ -118,5 +118,5 @@ private:
 }
 }
 
-#endif /* BrisaControlPointService_H_ */
+#endif /* _SERVICE_H */
 

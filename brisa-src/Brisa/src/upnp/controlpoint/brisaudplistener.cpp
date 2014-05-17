@@ -47,7 +47,7 @@ using namespace network;
 namespace upnp {
 namespace controlpoint {
 
-BrisaUdpListener::BrisaUdpListener(QString address, quint32 port,
+UdpListener::UdpListener(QString address, quint32 port,
                                    QString objectName, QObject *parent) :
         QUdpSocket(parent)
 {
@@ -56,11 +56,11 @@ BrisaUdpListener::BrisaUdpListener(QString address, quint32 port,
     this->address = address;
 }
 
-BrisaUdpListener::~BrisaUdpListener()
+UdpListener::~UdpListener()
 {
 }
 
-void BrisaUdpListener::start()
+void UdpListener::start()
 {
 
 #if defined(Q_OS_UNIX) || defined(Q_OS_ANDROID) || defined(Q_OS_QNX) || defined (Q_OS_MAC)

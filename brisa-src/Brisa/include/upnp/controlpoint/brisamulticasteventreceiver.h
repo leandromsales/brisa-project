@@ -1,5 +1,5 @@
-#ifndef BRISAMULTICASTEVENTRECEIVER_H
-#define BRISAMULTICASTEVENTRECEIVER_H
+#ifndef MULTICASTEVENTRECEIVER_H
+#define MULTICASTEVENTRECEIVER_H
 
 #include <QObject>
 #include <QHttp>
@@ -12,7 +12,7 @@ namespace brisa {
 namespace upnp {
 namespace controlpoint {
 
-class BRISA_UPNP_EXPORT BrisaMulticastEventReceiver : public QObject
+class BRISA_UPNP_EXPORT MulticastEventReceiver : public QObject
 {
     Q_OBJECT
 public:
@@ -22,12 +22,12 @@ public:
      *
      * \param parent parent
      */
-    BrisaMulticastEventReceiver(QObject *parent = 0);
+    MulticastEventReceiver(QObject *parent = 0);
 
     /*!
      * Destructor
      */
-    virtual ~BrisaMulticastEventReceiver();
+    virtual ~MulticastEventReceiver();
 
     /*!
      * Starts receiving the multicast events.
@@ -77,7 +77,7 @@ private:
     /*!
      * Socket listening to 239.255.255.246:7900.
      */
-    BrisaUdpListener *udpListener;
+    UdpListener *udpListener;
 
 };
 
@@ -85,4 +85,4 @@ private:
 }
 }
 
-#endif // BRISAMULTICASTEVENTRECEIVER_H
+#endif // MULTICASTEVENTRECEIVER_H

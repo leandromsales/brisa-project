@@ -13,7 +13,7 @@ MediaControlPoint::MediaControlPoint(QObject *parent, QString st, int mx) :
 	this->running = false;
 
     this->ssdp = new BrisaSSDPClient(this);
-    msearch = new BrisaMSearchClientCP(this, st, mx);
+    msearch = new MSearchClientCP(this, st, mx);
 
 	bool c = connect(ssdp, SIGNAL(messageReceived(QString)), this,
 			SLOT(handleNewSSDPMessage(QString)));

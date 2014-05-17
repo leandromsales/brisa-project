@@ -40,7 +40,7 @@ private:
 
 //	SSDP *ssdp;
 	brisa::shared::ssdp::BrisaSSDPClient *ssdp;
-	BrisaMSearchClientCP *msearch;
+	MSearchClientCP *msearch;
 	QHash<QString, MediaServerControlPointDevice*> mss;
 	QHash<QString, MediaRendererControlPointDevice*> mrs;
 	bool running;

@@ -48,7 +48,7 @@ static const QString UPNP_MSEARCH_DISCOVER = "M-SEARCH * HTTP/1.1\r\n"
                                              "ST: %2\r\n"
                                              "\r\n";
 
-BrisaMSearchClientCP::BrisaMSearchClientCP(QObject *parent,
+MSearchClientCP::MSearchClientCP(QObject *parent,
         const QString &serviceType, int serviceMx) :
     QObject(parent), running(false), type(serviceType), mx(QByteArray::number(
             serviceMx)), SSDP_ADDR("0.0.0.0"), SSDP_PORT(1900), S_SSDP_PORT(
@@ -59,7 +59,7 @@ BrisaMSearchClientCP::BrisaMSearchClientCP(QObject *parent,
     connect(timer, SIGNAL(timeout()), this, SLOT(discover()));
 }
 
-BrisaMSearchClientCP::~BrisaMSearchClientCP() {
+MSearchClientCP::~MSearchClientCP() {
     if (isRunning())
         stop();
     if (this->udpListener) {
@@ -68,7 +68,7 @@ BrisaMSearchClientCP::~BrisaMSearchClientCP() {
     delete this->timer;
 }
 
-void BrisaMSearchClientCP::discover() {
+void MSearchClientCP::discover() {
     QString discoverMessage = UPNP_MSEARCH_DISCOVER.arg(QString(mx), type);
 
     qDebug() << "BrisaMSearch discover message sent";
@@ -79,16 +79,16 @@ void BrisaMSearchClientCP::discover() {
             "239.255.255.250"), 1900);
 }
 
-void BrisaMSearchClientCP::doubleDiscover() {
+void MSearchClientCP::doubleDiscover() {
     discover();
     discover();
 }
 
-bool BrisaMSearchClientCP::isRunning() const {
+bool MSearchClientCP::isRunning() const {
     return running;
 }
 
-void BrisaMSearchClientCP::start(int interval) {
+void MSearchClientCP::start(int interval) {
         if (!this->udpListener) {
             this->udpListener = new QUdpSocket();
             connect(this->udpListener, SIGNAL(readyRead()), this, SLOT(datagramReceived()));
@@ -117,7 +117,7 @@ void BrisaMSearchClientCP::start(int interval) {
     }
 }
 
-void BrisaMSearchClientCP::stop() {
+void MSearchClientCP::stop() {
     if (isRunning()) {
 
         udpListener->disconnectFromHost();
@@ -131,7 +131,7 @@ void BrisaMSearchClientCP::stop() {
     }
 }
 
-void BrisaMSearchClientCP::datagramReceived() {
+void MSearchClientCP::datagramReceived() {
     while (udpListener->hasPendingDatagrams()) {
 
         QByteArray Datagram;

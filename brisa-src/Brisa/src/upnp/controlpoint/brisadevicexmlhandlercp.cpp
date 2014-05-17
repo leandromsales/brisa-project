@@ -35,10 +35,10 @@ namespace brisa {
 namespace upnp {
 namespace controlpoint {
 
-BrisaDeviceXMLHandlerCP::~BrisaDeviceXMLHandlerCP() {
+DeviceXMLHandlerCP::~DeviceXMLHandlerCP() {
 }
 
-void BrisaDeviceXMLHandlerCP::parseDevice(BrisaControlPointDevice *device,
+void DeviceXMLHandlerCP::parseDevice(Device *device,
         QTemporaryFile *tmp)
 {
     QDomDocument document("Device");
@@ -54,8 +54,8 @@ void BrisaDeviceXMLHandlerCP::parseDevice(BrisaControlPointDevice *device,
             QString minor = element.elementsByTagName("minor").at(0).toElement().text();
             if (major.isEmpty() || minor.isEmpty())
                 return;
-            device->setAttribute(BrisaControlPointDevice::Major, major);
-            device->setAttribute(BrisaControlPointDevice::Minor, minor);
+            device->setAttribute(Device::Major, major);
+            device->setAttribute(Device::Minor, minor);
         } else if (element.tagName() == "device") {
             parseDevice(device, element);
         }
@@ -63,7 +63,7 @@ void BrisaDeviceXMLHandlerCP::parseDevice(BrisaControlPointDevice *device,
     }
 }
 
-void BrisaDeviceXMLHandlerCP::parseDevice(BrisaControlPointDevice *device, QDomElement &element)
+void DeviceXMLHandlerCP::parseDevice(Device *device, QDomElement &element)
 {
     QString udn = element.elementsByTagName("UDN").at(0).toElement().text();
 
@@ -77,15 +77,15 @@ void BrisaDeviceXMLHandlerCP::parseDevice(BrisaControlPointDevice *device, QDomE
     QString modelNumber = element.elementsByTagName("modelNumber").at(0).toElement().text();
     QString modelURL = element.elementsByTagName("modelURL").at(0).toElement().text();
     QString serialNumber = element.elementsByTagName("serialNumber").at(0).toElement().text();
-    device->setAttribute(BrisaControlPointDevice::Udn, udn);
-    device->setAttribute(BrisaControlPointDevice::FriendlyName, friendlyName);
-    device->setAttribute(BrisaControlPointDevice::DeviceType, deviceType);
-    device->setAttribute(BrisaControlPointDevice::Manufacturer, manufacturer);
-    device->setAttribute(BrisaControlPointDevice::ManufacturerUrl, manufacturerURL);
-    device->setAttribute(BrisaControlPointDevice::ModelName, modelName);
-    device->setAttribute(BrisaControlPointDevice::ModelNumber, modelNumber);
-    device->setAttribute(BrisaControlPointDevice::ModelUrl, modelURL);
-    device->setAttribute(BrisaControlPointDevice::SerialNumber, serialNumber);
+    device->setAttribute(Device::Udn, udn);
+    device->setAttribute(Device::FriendlyName, friendlyName);
+    device->setAttribute(Device::DeviceType, deviceType);
+    device->setAttribute(Device::Manufacturer, manufacturer);
+    device->setAttribute(Device::ManufacturerUrl, manufacturerURL);
+    device->setAttribute(Device::ModelName, modelName);
+    device->setAttribute(Device::ModelNumber, modelNumber);
+    device->setAttribute(Device::ModelUrl, modelURL);
+    device->setAttribute(Device::SerialNumber, serialNumber);
 
     QDomNodeList serviceList = element.elementsByTagName("serviceList");
     if (serviceList.size() > 0) {
@@ -93,13 +93,13 @@ void BrisaDeviceXMLHandlerCP::parseDevice(BrisaControlPointDevice *device, QDomE
         for (int i = 0; i < services.size(); i++) {
 
             QDomElement serviceElement = services.at(i).toElement();
-            BrisaControlPointService *service = parseService(serviceElement);
+            Service *service = parseService(serviceElement);
 
             validateURLBase(device);
 
             BrisaServiceFetcher f(service, device->
-                                  getAttribute(BrisaControlPointDevice::UrlBase)
-                                  + service->getAttribute(BrisaControlPointService::ScpdUrl));
+                                  getAttribute(Device::UrlBase)
+                                  + service->getAttribute(Service::ScpdUrl));
 
             if (!f.fetch()) {
                 device->addService(service);
@@ -123,15 +123,15 @@ void BrisaDeviceXMLHandlerCP::parseDevice(BrisaControlPointDevice *device, QDomE
     QDomNodeList deviceList = element.firstChildElement("deviceList").childNodes();
 
     for (int i = 0; i < deviceList.size(); i++) {
-        BrisaControlPointDevice *embDevice = new BrisaControlPointDevice(device);
+        Device *embDevice = new Device(device);
         QDomElement deviceElement = deviceList.at(i).toElement();
         parseDevice(embDevice, deviceElement);
-        if(!embDevice->getAttribute(BrisaControlPointDevice::FriendlyName).isEmpty())
+        if(!embDevice->getAttribute(Device::FriendlyName).isEmpty())
             device->addDevice(embDevice);
     }
 }
 
-BrisaControlPointService *BrisaDeviceXMLHandlerCP::parseService(QDomElement &element)
+Service *DeviceXMLHandlerCP::parseService(QDomElement &element)
 {
     QString serviceType = element.elementsByTagName("serviceType").at(0).toElement().text();
     QString serviceId = element.elementsByTagName("serviceId").at(0).toElement().text();
@@ -139,12 +139,12 @@ BrisaControlPointService *BrisaDeviceXMLHandlerCP::parseService(QDomElement &ele
     QString eventSubURL = element.elementsByTagName("eventSubURL").at(0).toElement().text();
     QString SCPDURL = element.elementsByTagName("SCPDURL").at(0).toElement().text();
 
-    return new BrisaControlPointService(serviceType, serviceId, SCPDURL, controlURL, eventSubURL, "");
+    return new Service(serviceType, serviceId, SCPDURL, controlURL, eventSubURL, "");
 }
 
-void BrisaDeviceXMLHandlerCP::validateURLBase(BrisaControlPointDevice *device)
+void DeviceXMLHandlerCP::validateURLBase(Device *device)
 {
-    QStringList urlBase = device->getAttribute(BrisaControlPointDevice::UrlBase).split(":");
+    QStringList urlBase = device->getAttribute(Device::UrlBase).split(":");
     if (urlBase.size() > PORT_INDEX) {
         QString port = urlBase[PORT_INDEX];
         QString newPort = "";
@@ -156,10 +156,10 @@ void BrisaDeviceXMLHandlerCP::validateURLBase(BrisaControlPointDevice *device)
         urlBase[PORT_INDEX] = newPort;
         while (urlBase.size() > PORT_INDEX + 1) urlBase.pop_back();
     }
-    device->setAttribute(BrisaControlPointDevice::UrlBase, urlBase.join(":"));
+    device->setAttribute(Device::UrlBase, urlBase.join(":"));
 }
 
-BrisaIcon *BrisaDeviceXMLHandlerCP::parseIcon(QDomElement &element)
+BrisaIcon *DeviceXMLHandlerCP::parseIcon(QDomElement &element)
 {
     QString mimetype = element.elementsByTagName("mimetype").at(0).toElement().text();
     QString width = element.elementsByTagName("width").at(0).toElement().text();

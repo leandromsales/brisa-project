@@ -25,8 +25,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef BRISACONTROLPOINT_H
-#define BRISACONTROLPOINT_H
+#ifndef CONTROLPOINT_H
+#define CONTROLPOINT_H
 
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -42,8 +42,8 @@ namespace brisa {
 class shared::ssdp::BrisaSSDPClient;
 namespace upnp {
 namespace controlpoint {
-class BrisaMSearchClientCP;
-class BrisaControlPointService;
+class MSearchClientCP;
+class Service;
 
 /*!
  *    \class Brisa::BrisaControlPoint brisacontrolpoint.h BrisaUpnp/BrisaControlPoint
@@ -52,7 +52,7 @@ class BrisaControlPointService;
  *    \brief Create a ControlPoint and start(), then discover() devices will be found in network.
  *    \brief If you don't want to look for more devices then use stop().
  */
-class BRISA_UPNP_EXPORT BrisaControlPoint: public QObject {
+class BRISA_UPNP_EXPORT ControlPoint: public QObject {
 Q_OBJECT
 
 private:
@@ -108,13 +108,13 @@ private:
      *    \property msearch
      *    \brief Send msearch messages to network.
      */
-    BrisaMSearchClientCP *msearch;
+    MSearchClientCP *msearch;
 
     /*!
      *  \property multicastReceiver
      *  \brief Receives the multicast event messages and prepares it to be used.
      */
-    BrisaMulticastEventReceiver *multicastReceiver;
+    MulticastEventReceiver *multicastReceiver;
     /*!
      *    \property deliveryPath
      *    \brief Path to receive each event response.
@@ -125,7 +125,7 @@ private:
      *    \property requests
      *    \brief Map to identify each event proxy to a number.
      */
-    QMap<int, BrisaEventProxy*> requests;
+    QMap<int, EventProxy*> requests;
 
     /*!
      *    \property subscriptions
@@ -158,11 +158,11 @@ public:
      *  \param st service type
      *  \param mx interval
      */
-    BrisaControlPoint(QObject *parent = 0, QString st = "ssdp:all", int mx = 5);
+    ControlPoint(QObject *parent = 0, QString st = "ssdp:all", int mx = 5);
 
     /**  Destructor
      */
-    virtual ~BrisaControlPoint();
+    virtual ~ControlPoint();
 
     /*!
      *  Starts the control point, the ssdpClient and the msearch
@@ -192,7 +192,7 @@ public:
      *  Gets an event proxy to subscribe, usubscribe or renew the events from a \a service.
      *  \param service \a empty
      */
-    BrisaEventProxy *getSubscriptionProxy(BrisaControlPointService *service);
+    EventProxy *getSubscriptionProxy(Service *service);
 
     QString getActiveIpAddress() {
         return ipAddress;
@@ -211,7 +211,7 @@ signals:
      *    \sa deviceGone(QString udn)
      *    \param device the device that has been found
      */
-    void deviceFound(BrisaControlPointDevice *device);
+    void deviceFound(Device *device);
 
     /*!
      *    \fn void BrisaControlPoint::deviceGone(QString udn)
@@ -291,4 +291,4 @@ private slots:
 }
 }
 
-#endif /* _BRISACONTROL_POINT_H */
+#endif /* _CONTROLPOINT_H */

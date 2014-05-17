@@ -4,26 +4,26 @@ namespace brisa {
 namespace upnp {
 namespace controlpoint {
 
-BrisaMulticastEventReceiver::BrisaMulticastEventReceiver(QObject *parent) :
+MulticastEventReceiver::MulticastEventReceiver(QObject *parent) :
         QObject(parent)
 {
-    this->udpListener = new BrisaUdpListener("239.255.255.246", 7900,
-                                       "BrisaMulticastEventReceiver",
+    this->udpListener = new UdpListener("239.255.255.246", 7900,
+                                       "MulticastEventReceiver",
                                        parent);
     connect(this->udpListener, SIGNAL(readyRead()), this, SLOT(read()));
 }
 
-BrisaMulticastEventReceiver::~BrisaMulticastEventReceiver()
+MulticastEventReceiver::~MulticastEventReceiver()
 {
     delete this->udpListener;
 }
 
-void BrisaMulticastEventReceiver::start()
+void MulticastEventReceiver::start()
 {
     this->udpListener->start();
 }
 
-void BrisaMulticastEventReceiver::read()
+void MulticastEventReceiver::read()
 {
     while (this->udpListener->hasPendingDatagrams()) {
         this->message.resize(udpListener->pendingDatagramSize());
@@ -32,7 +32,7 @@ void BrisaMulticastEventReceiver::read()
     }
 }
 
-void BrisaMulticastEventReceiver::formatMessage()
+void MulticastEventReceiver::formatMessage()
 {
     QString newMessage = QString(message);
     QString header = "";
@@ -80,7 +80,7 @@ void BrisaMulticastEventReceiver::formatMessage()
     emit multicastReceived(attributes);
 }
 
-void BrisaMulticastEventReceiver::parseBody(QByteArray body)
+void MulticastEventReceiver::parseBody(QByteArray body)
 {
     QDomDocument doc("body");
     body.replace(":e", "");
