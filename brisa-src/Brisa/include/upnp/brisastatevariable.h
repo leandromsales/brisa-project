@@ -1,5 +1,5 @@
-#ifndef BRISASTATEVARIABLE_H
-#define BRISASTATEVARIABLE_H
+#ifndef STATEVARIABLE_H
+#define STATEVARIABLE_H
 
 #include <QString>
 #include <QVariant>
@@ -15,7 +15,7 @@ namespace upnp {
  *
  * \brief Represents the service's state variables.
  */
-class BrisaStateVariable: public QObject {
+class StateVariable: public QObject {
     Q_OBJECT
 public:
 
@@ -24,7 +24,7 @@ public:
      * \a datatype, \a defaultValue, \a maximum value, \a minimum value, value
      * \a step, and \a parent.
      */
-    BrisaStateVariable(QString sendEvents = "",
+    StateVariable(QString sendEvents = "",
                        QString name = "",
                        QString datatype = "",
                        QString defaultValue = "",
@@ -37,12 +37,12 @@ public:
     /*!
      * Constructs a BrisaStateVariable from the given \a variable.
      */
-    BrisaStateVariable(const BrisaStateVariable &);
+    StateVariable(const StateVariable &);
 
     /*!
      * Sets this variable equals to \a variable.
      */
-    BrisaStateVariable &operator=(const BrisaStateVariable &);
+    StateVariable &operator=(const StateVariable &);
 
     typedef enum {
         Name,
@@ -127,7 +127,7 @@ public:
     void setMulticastSvcid(QString svcid);
 
 signals:
-    void changed(BrisaStateVariable *);
+    void changed(StateVariable *);
 
 private:
 
@@ -159,4 +159,4 @@ private:
 }
 }
 
-#endif /* _BRISASTATEVARIABLE_H */
+#endif /* _STATEVARIABLE_H */

@@ -47,7 +47,7 @@ namespace controlpoint {
  *
  *  BrisaControlPointService is a BrisaAbstractService.
  */
-class BRISA_UPNP_EXPORT Service : public BrisaAbstractService {
+class BRISA_UPNP_EXPORT Service : public AbstractService {
 Q_OBJECT
 
 public:

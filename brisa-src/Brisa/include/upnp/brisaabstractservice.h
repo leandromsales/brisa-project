@@ -1,5 +1,5 @@
-#ifndef BRISAABSTRACTSERVICE_H
-#define BRISAABSTRACTSERVICE_H
+#ifndef ABSTRACTSERVICE_H
+#define ABSTRACTSERVICE_H
 
 #include <QMap>
 #include <QString>
@@ -34,18 +34,18 @@ enum UPnPErrorCodes {
  *
  * \brief An abstract class for the control point side and device side service
  */
-class BrisaAbstractService: public brisa::shared::webserver::WebService {
+class AbstractService: public brisa::shared::webserver::WebService {
 Q_OBJECT
 
 public:
 
-    BrisaAbstractService(QObject *parent = 0);
+    AbstractService(QObject *parent = 0);
     /*!
      *
      * Constructs an abstract service with given \a serviceType, \a serviceId,
      * \a scpdUrl, \a controlUrl, \a eventSubUrl, \a host and \a parent.
      */
-    BrisaAbstractService(const QString &serviceType, const QString &serviceId =
+    AbstractService(const QString &serviceType, const QString &serviceId =
             "", const QString &scpdUrl = "", const QString &controlUrl = "",
             const QString &eventSubUrl = "", const QString &host = "",
             QObject *parent = 0);
@@ -55,14 +55,14 @@ public:
      *
      * Constructs and abstract service from given \a serv.
      */
-    BrisaAbstractService(BrisaAbstractService &service);
+    AbstractService(AbstractService &service);
 
     /*!
      * \internal
      *
      * Destroys the and abstract service.
      */
-    virtual ~BrisaAbstractService();
+    virtual ~AbstractService();
 
     typedef enum {
         Major,
@@ -104,7 +104,7 @@ public:
      *
      * Adds the given \a action to the service's action list.
      */
-    void addAction(BrisaAction *action);
+    void addAction(Action *action);
 
     /*!
      * \internal
@@ -112,14 +112,14 @@ public:
      * Returns the service's action with the given \a name. If it has no action
      * with that name, it returns 0.
      */
-    BrisaAction *getAction(const QString &name);
+    Action *getAction(const QString &name);
 
     /*!
      * \internal
      *
      * Returns the service's action list.
      */
-    QList<BrisaAction *> getActionList();
+    QList<Action *> getActionList();
 
     /*!
      * Clears this Actions's list.
@@ -131,7 +131,7 @@ public:
      *
      * Adds the given \a stateVariable to the service's state variables list.
      */
-    void addStateVariable(BrisaStateVariable *stateVariable);
+    void addStateVariable(StateVariable *stateVariable);
 
     /*!
      * \internal
@@ -151,7 +151,7 @@ public:
      *
      * Returns the service's state variables list.
      */
-    const QList<BrisaStateVariable *> getStateVariableList();
+    const QList<StateVariable *> getStateVariableList();
 
     /*!
      * Clears this State variable's list.
@@ -181,8 +181,8 @@ signals:
     void requestError(QString errorMessage, QString methodName);
 
 protected:
-    QList<BrisaAction *> actionList;
-    QList<BrisaStateVariable *> stateVariableList;
+    QList<Action *> actionList;
+    QList<StateVariable *> stateVariableList;
 
     QString controlUrl;
     QString eventSubUrl;
@@ -211,4 +211,4 @@ protected:
 }
 }
 
-#endif /* _BRISAABSTRACTSERVICE_H */
+#endif /* _ABSTRACTSERVICE_H */

@@ -37,7 +37,7 @@ namespace upnp {
 namespace controlpoint {
 
 Service::Service(QObject *parent) :
-    BrisaAbstractService(parent) {
+    AbstractService(parent) {
     connect(http, SIGNAL(responseReady()), this, SLOT(getResponse()));
 }
 
@@ -45,21 +45,21 @@ Service::Service(const QString &serviceType,
         const QString &serviceId, const QString &scpdUrl,
         const QString &controlUrl, const QString &eventSubUrl,
         const QString &host, QObject *parent) :
-    BrisaAbstractService(serviceType, serviceId, scpdUrl, controlUrl,
+    AbstractService(serviceType, serviceId, scpdUrl, controlUrl,
             eventSubUrl, host, parent) {
     connect(http, SIGNAL(responseReady()), this, SLOT(getResponse()));
 }
 
 Service::Service(
         Service &serv) :
-    BrisaAbstractService(NULL),
+    AbstractService(NULL),
     lastMethod(serv.lastMethod)
 {
     connect(http, SIGNAL(responseReady()), this, SLOT(getResponse()));
 }
 
 void Service::parseFromXml(QTemporaryFile *xml) {
-    BrisaServiceXMLHandler handler;
+    ServiceXMLHandler handler;
     handler.parseService(this, xml);
     xml->deleteLater();
 }
@@ -90,12 +90,12 @@ void Service::getResponse() {
     }
 
     BrisaOutArgument returnMessage;
-    QList<BrisaArgument*> arguments =
+    QList<Argument*> arguments =
             this->getAction(this->lastMethod)->getArgumentList();
-    foreach (BrisaArgument * arg, arguments)
+    foreach (Argument * arg, arguments)
         {
-            if (arg->getAttribute(BrisaArgument::Direction) == "out") {
-                QString argName = arg->getAttribute(BrisaArgument::ArgumentName);
+            if (arg->getAttribute(Argument::Direction) == "out") {
+                QString argName = arg->getAttribute(Argument::ArgumentName);
                 returnMessage.insert(argName, message.method()[argName].toString());
             }
         }

@@ -13,7 +13,7 @@ namespace brisa {
 namespace upnp {
 namespace device {
 
-class EventSubscription: public BrisaAbstractEventSubscription {
+class EventSubscription: public AbstractEventSubscription {
 Q_OBJECT
 
 public:

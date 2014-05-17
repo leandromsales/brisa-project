@@ -1,5 +1,5 @@
-#ifndef BRISAACTION_H
-#define BRISAACTION_H
+#ifndef ACTION_H
+#define ACTION_H
 
 #include "brisaargument.h"
 
@@ -18,7 +18,7 @@ namespace device {
 class Service;
 }
 
-class BrisaStateVariable;
+class StateVariable;
 
 /*!
  * \class Brisa::BrisaAction brisaaction.h BrisaUpnp/BrisaAction
@@ -38,30 +38,30 @@ class BrisaStateVariable;
  * description file, BrisaAction will show an error message at the debug
  * output stream and send an error message to the control point.
  */
-class BrisaAction: public QObject {
+class Action: public QObject {
     Q_OBJECT
 public:
     /*!
      * Constructs an action with given \a name, \a parent and \a service that it is related to.
      */
-    BrisaAction(QString name = "", device::Service *service = 0, QObject *parent = 0);
+    Action(QString name = "", device::Service *service = 0, QObject *parent = 0);
 
     /*!
      * Constructs an action with given \a name, \a parent and \a service and a method to be invoked
 	 * when the action is executed.
      */
-	BrisaAction(QString name, device::Service *service, const QMetaMethod &method, QObject *parent);
+	Action(QString name, device::Service *service, const QMetaMethod &method, QObject *parent);
 
     /*!
      * Constructs a new action based on \a action.
      */
-    BrisaAction(const BrisaAction &action);
+    Action(const Action &action);
 
     /*!
      * Destroys the action. It has to be overridden for properly destroying the
      * derived actions when necessary.
      */
-    virtual ~BrisaAction();
+    virtual ~Action();
 
     /*!
      * Sets a new name to the action.
@@ -85,12 +85,12 @@ public:
      * Returns the related service's state variable with the given \a name. If it cannot find its
      * related service or the state variable, then it returns a null pointer.
      */
-    BrisaStateVariable* getStateVariable(const QString &name) const;
+    StateVariable* getStateVariable(const QString &name) const;
 
     /*!
      * Returns this action's list of arguments.
      */
-    QList<BrisaArgument*> getArgumentList() const;
+    QList<Argument*> getArgumentList() const;
 
     /*!
      * Adds an argument with given \a name, \a direction and \a relatedStateVariable
@@ -101,11 +101,11 @@ public:
     /*!
      * Adds given \a argument to this action's list of arguments.
      */
-    void addArgument(BrisaArgument *argumentA);
+    void addArgument(Argument *argumentA);
     /*!
      * Adds given list of \a arguments to this action's list of arguments.
      */
-    void addArguments(const QList<BrisaArgument*> argumentA);
+    void addArguments(const QList<Argument*> argumentA);
 
 
     /*!
@@ -117,7 +117,7 @@ public:
      * Remove given \a argument from this action's list of arguments.
      */
 
-    bool removeArgument(BrisaArgument* argumentA);
+    bool removeArgument(Argument* argumentA);
 
     /*!
      * Validates \a inArguments, \a outArguments and runs the action. \a outArguments
@@ -141,24 +141,24 @@ private:
     /*!
      * Returns the related input argument with the given \a name.
      */
-    BrisaArgument *getInArgument(const QString &name);
+    Argument *getInArgument(const QString &name);
 
     /*!
      * Returns the related output argument with the given \a name.
      */
-    BrisaArgument *getOutArgument(const QString &name);
+    Argument *getOutArgument(const QString &name);
 
     /*!
      * Returns the related argument with the given \a name and \a direction.
      */
-    BrisaArgument *getArgument(const QString &name, const QString &direction);
+    Argument *getArgument(const QString &name, const QString &direction);
 
     /*!
      * \property argumentList
      *
      * \brief list of related arguments
      */
-    QList<BrisaArgument*> argumentList;
+    QList<Argument*> argumentList;
 
     /*!
      * \property name
@@ -186,4 +186,4 @@ private:
 
 }
 }
-#endif /* _BRISAACTION_H */
+#endif /* _ACTION_H */

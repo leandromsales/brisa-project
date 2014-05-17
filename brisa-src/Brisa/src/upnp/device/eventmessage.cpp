@@ -5,7 +5,7 @@ namespace upnp {
 namespace device {
 
 EventMessage::EventMessage(EventSubscription &subscription,
-        const QList<BrisaStateVariable *> *variables, QObject *parent) :
+        const QList<StateVariable *> *variables, QObject *parent) :
     AbstractEventMessage(parent),
     SEQ(subscription.getNextSeq()),
     VARIABLES(variables),
@@ -30,13 +30,13 @@ QByteArray EventMessage::getRequestMessage() const
     QString body = "<?xml version=\"1.0\"?>\r\n"
                    "<e:propertyset xmlns:e=\"urn:schemas-upnp-org:event-1-0\">\r\n";
 
-    for (QList<BrisaStateVariable *>::const_iterator i =
+    for (QList<StateVariable *>::const_iterator i =
             VARIABLES->begin(); i != VARIABLES->end(); ++i) {
-        QString variableName = (*i)->getAttribute(BrisaStateVariable::Name);
+        QString variableName = (*i)->getAttribute(StateVariable::Name);
 
         body.append("  <e:property>\r\n"
                     "    <" + variableName + ">"
-                    + (*i)->getAttribute(BrisaStateVariable::Value)
+                    + (*i)->getAttribute(StateVariable::Value)
                     + "</" + variableName + ">\r\n"
                     "  </e:property>\r\n"
                     );

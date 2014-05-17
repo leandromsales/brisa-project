@@ -280,7 +280,7 @@ Service *Device::getServiceByType(QString serviceType)
     return NULL;
 }
 
-QList<BrisaIcon*> Device::getIconList()
+QList<Icon*> Device::getIconList()
 {
     return this->iconList;
 }
@@ -293,7 +293,7 @@ QList<Device*> Device::getEmbeddedDeviceList() {
     return this->embeddedDeviceList;
 }
 
-void Device::addIcon(BrisaIcon *icon) {
+void Device::addIcon(Icon *icon) {
     iconList.append(icon);
 }
 
@@ -311,7 +311,7 @@ void Device::downloadIcons()
 
     for (int i = 0; i < this->iconList.size(); i++)
     {
-        BrisaIcon *icon = this->iconList.at(i);
+        Icon *icon = this->iconList.at(i);
         connect(icon, SIGNAL(iconDownloadFinished()), this, SLOT(downloadFinished()));
         icon->downloadIcon(this->getAttribute(UrlBase));
     }

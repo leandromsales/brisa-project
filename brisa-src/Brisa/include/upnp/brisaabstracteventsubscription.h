@@ -1,5 +1,5 @@
-#ifndef BRISAABSTRACTEVENTSUBSCRIPTION_H
-#define BRISAABSTRACTEVENTSUBSCRIPTION_H
+#ifndef ABSTRACTEVENTSUBSCRIPTION_H
+#define ABSTRACTEVENTSUBSCRIPTION_H
 
 #include <QDateTime>
 #include <QList>
@@ -18,7 +18,7 @@ namespace upnp {
  *
  * \brief Abstract class that represents an event subscription
  */
-class BrisaAbstractEventSubscription: public brisa::shared::webserver::WebService {
+class AbstractEventSubscription: public brisa::shared::webserver::WebService {
     Q_OBJECT
 public:
 
@@ -27,7 +27,7 @@ public:
      * \a callbackUrls, \a timeout and \a parent. \a timeout less than 0 means
      * infinite.
      */
-    BrisaAbstractEventSubscription(const QString &sid,
+    AbstractEventSubscription(const QString &sid,
             const QStringList &callbackUrls, const int &timeout = -1, // <0 = infinite
             QObject *parent = 0);
 
@@ -76,4 +76,4 @@ protected:
 
 }
 }
-#endif /* _BRISAABSTRACTEVENTSUBSCRIPTION_H */
+#endif /* _ABSTRACTEVENTSUBSCRIPTION_H */

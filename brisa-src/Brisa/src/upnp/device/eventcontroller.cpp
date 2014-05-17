@@ -12,7 +12,7 @@ namespace device {
 
 EventController::EventController(
         Webserver *sessionManager,
-        QList<BrisaStateVariable *> *stateVariableList,
+        QList<StateVariable *> *stateVariableList,
         QObject *parent) :
         WebService(parent),
         variableList(stateVariableList)
@@ -169,13 +169,13 @@ EventController::~EventController()
     this->subscriptions.clear();
 }
 
-void EventController::variableChanged(BrisaStateVariable *variable)
+void EventController::variableChanged(StateVariable *variable)
 {
     if (variable->multicastEvents()) {
         MulticastEventMessage message(variable, "upnp:/general");
         sendMulticastEvent(message);
     }
-    QList<BrisaStateVariable *> variables;
+    QList<StateVariable *> variables;
     variables.append(variable);
 
     for (QList<EventSubscription *>::iterator i = this->subscriptions.begin(); i != this->subscriptions.end(); ++i) {

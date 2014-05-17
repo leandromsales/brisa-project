@@ -1,5 +1,5 @@
-#ifndef BRISAARGUMENT_H
-#define BRISAARGUMENT_H
+#ifndef ARGUMENT_H
+#define ARGUMENT_H
 
 #include <QObject>
 #include <QString>
@@ -14,7 +14,7 @@ namespace upnp {
  *
  * \brief Represents the action's input and output arguments.
  */
-class BrisaArgument: public QObject {
+class Argument: public QObject {
     Q_OBJECT
 public:
 
@@ -24,7 +24,7 @@ public:
      * Constructs an argument with given \a name, \a direction and
      * \a relatedStateVariable.
      */
-    BrisaArgument(const QString &name = "", const QString &direction = "",
+    Argument(const QString &name = "", const QString &direction = "",
             const QString &relatedStateVariable = "", QObject *parent = 0);
 
     /*!
@@ -32,7 +32,7 @@ public:
      *
      * Constructs an argument with an argument reference.
      */
-    BrisaArgument(const BrisaArgument &brisaArgument);
+    Argument(const Argument &brisaArgument);
 
     typedef enum {
         ArgumentName, Direction, RelatedStateVariable
@@ -68,4 +68,4 @@ private:
 }
 }
 
-#endif /* BRISAARGUMENT_H_ */
+#endif /* ARGUMENT_H_ */

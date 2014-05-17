@@ -27,7 +27,7 @@ public:
      * given \a variables, with the given \a parent object.
      */
     EventMessage(EventSubscription &subscription, const QList<
-            BrisaStateVariable *> *variables, QObject *parent = 0);
+            StateVariable *> *variables, QObject *parent = 0);
 
     QByteArray getRequestMessage() const;
 
@@ -47,7 +47,7 @@ private:
      *
      * \brief the list of state variables related to the event
      */
-    const QList<BrisaStateVariable *> *VARIABLES;
+    const QList<StateVariable *> *VARIABLES;
 
     /*!
      * \property subscription

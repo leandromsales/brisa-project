@@ -73,7 +73,7 @@ public:
 
     void parseDevice(Device *device, QDomElement &element);
     Service *parseService(QDomElement &element);
-    BrisaIcon *parseIcon(QDomElement &element);
+    Icon *parseIcon(QDomElement &element);
     void validateURLBase(Device *device);
 
 };

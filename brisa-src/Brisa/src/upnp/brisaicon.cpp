@@ -3,7 +3,7 @@
 namespace brisa {
 namespace upnp {
 
-BrisaIcon::BrisaIcon(QString mimetype, QString width, QString height,
+Icon::Icon(QString mimetype, QString width, QString height,
                      QString depth, QString url,
                      QObject *parent) : QObject(parent)
 {
@@ -14,7 +14,7 @@ BrisaIcon::BrisaIcon(QString mimetype, QString width, QString height,
     this->url = url;
 }
 
-void BrisaIcon::setAttribute(xmlIconTags key, QString v)
+void Icon::setAttribute(xmlIconTags key, QString v)
 {
     switch (key) {
     case Mimetype:
@@ -35,17 +35,17 @@ void BrisaIcon::setAttribute(xmlIconTags key, QString v)
     }
 }
 
-void BrisaIcon::setIcon(QIcon icon)
+void Icon::setIcon(QIcon icon)
 {
     this->icon = icon;
 }
 
-QIcon BrisaIcon::getIcon()
+QIcon Icon::getIcon()
 {
     return this->icon;
 }
 
-void BrisaIcon::downloadIcon(QString deviceUrl)
+void Icon::downloadIcon(QString deviceUrl)
 {
     QNetworkAccessManager *manager = new QNetworkAccessManager();
     connect(manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(downloadFinished(QNetworkReply*)));
@@ -54,7 +54,7 @@ void BrisaIcon::downloadIcon(QString deviceUrl)
     manager->get(QNetworkRequest(QUrl(iconUrl)));
 }
 
-void BrisaIcon::downloadFinished(QNetworkReply *reply)
+void Icon::downloadFinished(QNetworkReply *reply)
 {
     QByteArray imageData = reply->readAll();
     QPixmap pixmap;
@@ -64,7 +64,7 @@ void BrisaIcon::downloadFinished(QNetworkReply *reply)
     emit iconDownloadFinished();
 }
 
-void BrisaIcon::clear()
+void Icon::clear()
 {
     this->mimetype.clear();
     this->width.clear();
@@ -74,7 +74,7 @@ void BrisaIcon::clear()
     this->attribute.clear();
 }
 
-QString BrisaIcon::getAttribute(xmlIconTags key)
+QString Icon::getAttribute(xmlIconTags key)
 {
     switch (key) {
     case Mimetype:

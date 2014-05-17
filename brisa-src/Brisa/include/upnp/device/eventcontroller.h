@@ -18,11 +18,11 @@ class EventController: public brisa::shared::webserver::WebService
 
 public:
 	EventController(brisa::shared::webserver::Webserver *sessionManager,
-			QList<BrisaStateVariable *> *stateVariableList, QObject *parent = 0);
+			QList<StateVariable *> *stateVariableList, QObject *parent = 0);
 	virtual ~EventController();
 
 	public slots:
-	void variableChanged(BrisaStateVariable *variable);
+	void variableChanged(StateVariable *variable);
 
 	void subscribe(const brisa::shared::webserver::http::HttpRequest &request, brisa::shared::webserver::WebserverSession *session);
 
@@ -44,7 +44,7 @@ public:
 
 	QList<EventSubscription *> subscriptions;
 
-	QList<BrisaStateVariable *> *variableList;
+	QList<StateVariable *> *variableList;
 
 	QUdpSocket udpSocket;
 };

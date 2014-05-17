@@ -115,7 +115,7 @@ void DeviceXMLHandlerCP::parseDevice(Device *device, QDomElement &element)
         QDomNodeList icons = iconList.at(0).toElement().elementsByTagName("icon");
         for (int i = 0; i < icons.size(); i++) {
             QDomElement iconElement = icons.at(0).toElement();
-            BrisaIcon *icon = parseIcon(iconElement);
+            Icon *icon = parseIcon(iconElement);
             device->addIcon(icon);
         }
     }
@@ -159,14 +159,14 @@ void DeviceXMLHandlerCP::validateURLBase(Device *device)
     device->setAttribute(Device::UrlBase, urlBase.join(":"));
 }
 
-BrisaIcon *DeviceXMLHandlerCP::parseIcon(QDomElement &element)
+Icon *DeviceXMLHandlerCP::parseIcon(QDomElement &element)
 {
     QString mimetype = element.elementsByTagName("mimetype").at(0).toElement().text();
     QString width = element.elementsByTagName("width").at(0).toElement().text();
     QString height = element.elementsByTagName("height").at(0).toElement().text();
     QString depth = element.elementsByTagName("depth").at(0).toElement().text();
     QString url = element.elementsByTagName("url").at(0).toElement().text();
-    return new BrisaIcon(mimetype, width, height, depth, url);
+    return new Icon(mimetype, width, height, depth, url);
 }
 
 }

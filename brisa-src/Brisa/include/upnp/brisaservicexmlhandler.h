@@ -1,5 +1,5 @@
-#ifndef BRISAABSTRACTSERVICEXMLHANDLER_H
-#define BRISAABSTRACTSERVICEXMLHANDLER_H
+#ifndef ABSTRACTSERVICEXMLHANDLER_H
+#define ABSTRACTSERVICEXMLHANDLER_H
 
 #include <QIODevice>
 #include <QString>
@@ -13,16 +13,16 @@
 namespace brisa {
 namespace upnp {
 
-class BrisaServiceXMLHandler : public QObject {
+class ServiceXMLHandler : public QObject {
     Q_OBJECT
 public:
-    BrisaServiceXMLHandler(QObject *parent = 0);
-    virtual ~BrisaServiceXMLHandler();
+    ServiceXMLHandler(QObject *parent = 0);
+    virtual ~ServiceXMLHandler();
 
-    void parseService(BrisaAbstractService *service, QIODevice *scpd);
+    void parseService(AbstractService *service, QIODevice *scpd);
 };
 
 }
 }
 
-#endif /* _BRISAABSTRACTSERVICEXMLHANDLER_H */
+#endif /* _ABSTRACTSERVICEXMLHANDLER_H */

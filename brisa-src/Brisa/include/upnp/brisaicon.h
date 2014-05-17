@@ -1,5 +1,5 @@
-#ifndef BRISAICON_H
-#define BRISAICON_H
+#ifndef ICON_H
+#define ICON_H
 
 #include <QObject>
 #include <QString>
@@ -13,10 +13,10 @@
 namespace brisa {
 namespace upnp {
 
-class BrisaIcon: public QObject {
+class Icon: public QObject {
     Q_OBJECT
 public:
-    BrisaIcon(QString mimetype = "", QString width = "", QString height = "",
+    Icon(QString mimetype = "", QString width = "", QString height = "",
             QString depth = "", QString url = "", QObject *parent = 0);
 
     typedef enum {
@@ -49,4 +49,4 @@ private:
 }
 }
 
-#endif /* BRISAICON_H_ */
+#endif /* ICON_H_ */

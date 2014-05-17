@@ -4,7 +4,7 @@
 namespace brisa {
 namespace upnp {
 
-BrisaStateVariable::BrisaStateVariable(QString sendEvents,
+StateVariable::StateVariable(QString sendEvents,
                                        QString name,
                                        QString datatype,
                                        QString defaultValue,
@@ -27,7 +27,7 @@ BrisaStateVariable::BrisaStateVariable(QString sendEvents,
     this->_value = this->defaultValue;
 }
 
-BrisaStateVariable::BrisaStateVariable(const BrisaStateVariable &variable) :
+StateVariable::StateVariable(const StateVariable &variable) :
     QObject(variable.parent())
 {
     this->_sendEvents = variable.sendEventsChange();
@@ -40,7 +40,7 @@ BrisaStateVariable::BrisaStateVariable(const BrisaStateVariable &variable) :
     this->_value = variable.getValue();
 }
 
-BrisaStateVariable &BrisaStateVariable::operator=(const BrisaStateVariable &variable) {
+StateVariable &StateVariable::operator=(const StateVariable &variable) {
     if (this != &variable) {
         this->nextMulticastSeq = 0;
         this->setParent(variable.parent());
@@ -57,7 +57,7 @@ BrisaStateVariable &BrisaStateVariable::operator=(const BrisaStateVariable &vari
     return *this;
 }
 
-void BrisaStateVariable::setAttribute(BrisaStateVariableAttribute attr, QVariant newValue) {
+void StateVariable::setAttribute(BrisaStateVariableAttribute attr, QVariant newValue) {
     switch (attr) {
     case SendEvents:
     case sendEvents:
@@ -109,7 +109,7 @@ void BrisaStateVariable::setAttribute(BrisaStateVariableAttribute attr, QVariant
     }
 }
 
-QString BrisaStateVariable::getAttribute(BrisaStateVariableAttribute attr, int ind) const {
+QString StateVariable::getAttribute(BrisaStateVariableAttribute attr, int ind) const {
     switch (attr) {
     case Name:
     case name:
@@ -153,15 +153,15 @@ QString BrisaStateVariable::getAttribute(BrisaStateVariableAttribute attr, int i
     }
 }
 
-QList<QString> BrisaStateVariable::getAllowedValueList() {
+QList<QString> StateVariable::getAllowedValueList() {
     return this->allowedValueList;
 }
 
-void BrisaStateVariable::addAllowedValue(QString allowedVal) {
+void StateVariable::addAllowedValue(QString allowedVal) {
     allowedValueList.append(allowedVal);
 }
 
-void BrisaStateVariable::clear() {
+void StateVariable::clear() {
     this->allowedValueList.clear();
     this->_name.clear();
     this->_dataType.clear();
@@ -172,19 +172,19 @@ void BrisaStateVariable::clear() {
     this->_value.clear();
 }
 
-QVariant BrisaStateVariable::getValue() const {
+QVariant StateVariable::getValue() const {
     return this->_value;
 }
 
-bool BrisaStateVariable::sendEventsChange() const {
+bool StateVariable::sendEventsChange() const {
     return this->_sendEvents;
 }
 
-bool BrisaStateVariable::multicastEvents() const {
+bool StateVariable::multicastEvents() const {
     return this->_multicast;
 }
 
-bool BrisaStateVariable::validateNewValue(const QVariant &value) {
+bool StateVariable::validateNewValue(const QVariant &value) {
     QVariant::Type type = this->getDataType();
 
     if (!value.canConvert(type)) {
@@ -247,7 +247,7 @@ bool BrisaStateVariable::validateNewValue(const QVariant &value) {
     }
 }
 
-QVariant::Type BrisaStateVariable::getDataType() const {
+QVariant::Type StateVariable::getDataType() const {
     if (this->_dataType == "ui1") {
         return QVariant::UInt;
     } else if (this->_dataType == "ui2") {
@@ -301,12 +301,12 @@ QVariant::Type BrisaStateVariable::getDataType() const {
     }
 }
 
-void BrisaStateVariable::setMulticastSeq(quint32 *seq)
+void StateVariable::setMulticastSeq(quint32 *seq)
 {
     this->nextMulticastSeq = seq;
 }
 
-quint32 BrisaStateVariable::getNextMulticastSeq()
+quint32 StateVariable::getNextMulticastSeq()
 {
     if (*(this->nextMulticastSeq) == 0) {
         (*(this->nextMulticastSeq))++;
@@ -319,32 +319,32 @@ quint32 BrisaStateVariable::getNextMulticastSeq()
     return (*(this->nextMulticastSeq))++;
 }
 
-void BrisaStateVariable::setMulticastUsn(QString usn)
+void StateVariable::setMulticastUsn(QString usn)
 {
     this->multicastUsn = usn;
 }
 
-QString BrisaStateVariable::getMulticastUsn()
+QString StateVariable::getMulticastUsn()
 {
     return this->multicastUsn;
 }
 
-void BrisaStateVariable::setMulticastUdn(QString udn)
+void StateVariable::setMulticastUdn(QString udn)
 {
     this->multicastUdn = udn;
 }
 
-QString BrisaStateVariable::getMulticastUdn()
+QString StateVariable::getMulticastUdn()
 {
     return this->multicastUdn;
 }
 
-void BrisaStateVariable::setMulticastSvcid(QString svcid)
+void StateVariable::setMulticastSvcid(QString svcid)
 {
     this->multicastSvcid = svcid;
 }
 
-QString BrisaStateVariable::getMulticastSvcid()
+QString StateVariable::getMulticastSvcid()
 {
     return this->multicastSvcid;
 }

@@ -147,7 +147,7 @@ Device::~Device()
         stop();
     }
 
-    foreach (BrisaIcon *icon, iconList) {
+    foreach (Icon *icon, iconList) {
         icon->deleteLater();
     }
     iconList.clear();
@@ -314,7 +314,7 @@ QString Device::getAttribute(xmlTags key) const
 void Device::addIcon(const QString &mimetype, const QString &width,
                 const QString &height, const QString &depth, const QString &url)
 {
-        BrisaIcon *iconSwap = new BrisaIcon(mimetype, width, height, depth, url);
+        Icon *iconSwap = new Icon(mimetype, width, height, depth, url);
         iconList.append(iconSwap);
 }
 
@@ -532,7 +532,7 @@ void Device::respondMSearchAll(const QString &senderIp,
         }
 }
 
-QList<BrisaIcon*> Device::getIconList() const
+QList<Icon*> Device::getIconList() const
 {
         return this->iconList;
 }

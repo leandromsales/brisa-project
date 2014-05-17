@@ -189,7 +189,7 @@ public:
      *  Add an icon to device's icon list.
      *  \param icon icon to add
      */
-    void addIcon(BrisaIcon *icon);
+    void addIcon(Icon *icon);
 
     /*!
      *  Add service to device's service list.
@@ -207,7 +207,7 @@ public:
      *  Gets device's icon list
      *  \return icon list
      */
-    QList<BrisaIcon*> getIconList();
+    QList<Icon*> getIconList();
 
     /*!
      *  Gets device's service list
@@ -258,7 +258,7 @@ private:
      *  \property iconList
      *  \brief Device's icon list.
      */
-    QList<BrisaIcon*> iconList;
+    QList<Icon*> iconList;
 
     /*!
      *  \property serviceList

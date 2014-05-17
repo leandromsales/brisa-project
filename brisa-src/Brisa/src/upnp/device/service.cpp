@@ -42,18 +42,18 @@ static const QString SOAP_ERROR_TEMPLATE =
 				"</s:Body>\r\n"
 				"</s:Envelope>\r\n";
 Service::Service(QObject *parent) :
-		BrisaAbstractService(parent) {
+		AbstractService(parent) {
 }
 
 Service::Service(const QString &serviceType, const QString &serviceId,
 		const QString &scpdUrl, const QString &controlUrl,
 		const QString &eventSubUrl, const QString &host, QObject *parent) :
-		BrisaAbstractService(serviceType, serviceId, scpdUrl, controlUrl,
+		AbstractService(serviceType, serviceId, scpdUrl, controlUrl,
 				eventSubUrl, host, parent) {
 }
 
 Service::Service(Service &serv) :
-		BrisaAbstractService(serv) {
+		AbstractService(serv) {
 }
 
 Service::~Service() {
@@ -63,9 +63,9 @@ Service::~Service() {
 
 void Service::call(const QString &method, BrisaInArgument param,
 		WebserverSession *session) {
-	for (QList<BrisaAction *>::iterator i = this->actionList.begin();
+	for (QList<Action *>::iterator i = this->actionList.begin();
 			i != actionList.end(); ++i) {
-		BrisaAction *action = *i;
+		Action *action = *i;
 		if (action->getName() == method) {
 			int prePostActionReturn = 0;
 			QString errorDescription = "";
@@ -74,7 +74,7 @@ void Service::call(const QString &method, BrisaInArgument param,
 				if (!this->preActionMethod.invoke(this, Qt::DirectConnection,
 						Q_RETURN_ARG(int, prePostActionReturn),
 						Q_ARG(BrisaInArgument *, &param),
-						Q_ARG(BrisaAction *, action),
+						Q_ARG(Action *, action),
 						Q_ARG(QString, errorDescription))) {
 					qDebug()
 							<< "Error invoking preAction method. Continuing...";
@@ -101,7 +101,7 @@ void Service::call(const QString &method, BrisaInArgument param,
 								Qt::DirectConnection,
 								Q_RETURN_ARG(int, handleFailureActionMethodReturn),
 								Q_ARG(BrisaInArgument *, &param),
-								Q_ARG(BrisaAction *, action),
+								Q_ARG(Action *, action),
 								Q_ARG(QString, errorDescription))) {
 							qDebug()
 									<< "Error invoking handleActionFailure method. Continuing...";
@@ -132,7 +132,7 @@ void Service::call(const QString &method, BrisaInArgument param,
 							Q_RETURN_ARG(int, prePostActionReturn),
 							Q_ARG(BrisaInArgument *, &param),
 							Q_ARG(BrisaOutArgument *, outArguments),
-							Q_ARG(BrisaAction *, action),
+							Q_ARG(Action *, action),
 							Q_ARG(QString, errorDescription))) {
 						qDebug() << "Error invoking postAction method.";
 					}
@@ -202,11 +202,11 @@ void Service::onInvalidRequest(WebserverSession *session) {
 	respondError(session, UPNP_INVALID_ACTION);
 }
 
-BrisaStateVariable *Service::getVariable(const QString &variableName) {
-	for (QList<BrisaStateVariable *>::iterator i =
+StateVariable *Service::getVariable(const QString &variableName) {
+	for (QList<StateVariable *>::iterator i =
 			this->stateVariableList.begin(); i != this->stateVariableList.end();
 			++i) {
-		if ((*i)->getAttribute(BrisaStateVariable::Name) == variableName)
+		if ((*i)->getAttribute(StateVariable::Name) == variableName)
 			return *i;
 	}
 
@@ -308,8 +308,8 @@ void Service::parseDescriptionFile() {
 			<< this->scpdFilePath;
 	QFile file(this->scpdFilePath);
 	if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		BrisaServiceXMLHandler *serviceXMLHandler =
-				new BrisaServiceXMLHandler();
+		ServiceXMLHandler *serviceXMLHandler =
+				new ServiceXMLHandler();
 		serviceXMLHandler->parseService(this, &file);
 		delete serviceXMLHandler;
 
@@ -334,27 +334,27 @@ void Service::connectVariablesEventSignals() {
 		return;
 	}
 
-	foreach (BrisaStateVariable *stateVar, this->stateVariableList)
+	foreach (StateVariable *stateVar, this->stateVariableList)
 	{
 		if (stateVar->sendEventsChange()) {
-			QObject::connect(stateVar, SIGNAL(changed(BrisaStateVariable *)),
-					event, SLOT(variableChanged(BrisaStateVariable *)));
+			QObject::connect(stateVar, SIGNAL(changed(StateVariable *)),
+					event, SLOT(variableChanged(StateVariable *)));
 		}
 	}
 }
 
 void Service::setDefaultValues() {
-	foreach (BrisaStateVariable *stateVar, this->stateVariableList)
+	foreach (StateVariable *stateVar, this->stateVariableList)
 	{
-		stateVar->setAttribute(BrisaStateVariable::Value,
-				stateVar->getAttribute(BrisaStateVariable::DefaultValue));
+		stateVar->setAttribute(StateVariable::Value,
+				stateVar->getAttribute(StateVariable::DefaultValue));
 	}
 }
 
-BrisaAction * getRelatedActionByName(QList<BrisaAction *> actionList,
+Action * getRelatedActionByName(QList<Action *> actionList,
 		QByteArray methodSignature) {
-	BrisaAction *action = 0;
-	for (QList<BrisaAction *>::iterator i = actionList.begin();
+	Action *action = 0;
+	for (QList<Action *>::iterator i = actionList.begin();
 			i != actionList.end(); ++i) {
 		action = *i;
 		//qDebug() << "Current action:" << action->getName();
@@ -404,7 +404,7 @@ void Service::bindActionsToServiceMethods() {
 	}
 	for(int i = meta->methodOffset(); i < meta->methodCount(); ++i) {
 		method = meta->method(i);
-		BrisaAction * action =  getRelatedActionByName(this->actionList, method.signature());
+		Action * action =  getRelatedActionByName(this->actionList, method.signature());
 		if(action) {
 			action->setMethod(method, this);
 			qDebug() << "Binding method " << method.signature() << " of service ID " << this->serviceId << " to service action " << action->getName();

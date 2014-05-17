@@ -47,7 +47,7 @@ namespace controlpoint {
  *  Class that implements the event part in control point side in Brisa Qt, this class makes the
  *  operations of subscribe, renew subscription and unsubscribe.
  */
-class BRISA_UPNP_EXPORT EventProxy: public BrisaAbstractEventSubscription
+class BRISA_UPNP_EXPORT EventProxy: public AbstractEventSubscription
 {
 Q_OBJECT
 

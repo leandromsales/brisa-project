@@ -5,7 +5,7 @@ namespace upnp {
 namespace device {
 
 MulticastEventMessage::MulticastEventMessage(
-        BrisaStateVariable *variable, QString LVL, QObject *parent) :
+        StateVariable *variable, QString LVL, QObject *parent) :
         AbstractEventMessage(parent),
         variable(variable),
         SEQ(variable->getNextMulticastSeq()),
@@ -34,8 +34,8 @@ QByteArray MulticastEventMessage::getMessageBody() const {
     body.append(
             "<e:propertyset xmlns:e=\"urn:schemas-upnp-org:event-1-0\">\r\n");
 
-    QString variableName = this->variable->getAttribute(BrisaStateVariable::Name);
-    QString variableValue = this->variable->getAttribute(BrisaStateVariable::Value);
+    QString variableName = this->variable->getAttribute(StateVariable::Name);
+    QString variableValue = this->variable->getAttribute(StateVariable::Value);
 
     body.append("  <e:property>\r\n");
     body.append("    <" + variableName + ">" + variableValue + "</"

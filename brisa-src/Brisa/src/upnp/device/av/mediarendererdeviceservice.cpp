@@ -15,20 +15,20 @@ MediaRendererDeviceService::MediaRendererDeviceService(QObject *parent) :
                  parent) { }
 
 BrisaOutArgument* MediaRendererDeviceService::setchanel(BrisaInArgument* const inArguments,
-                                                        BrisaAction* const action) {
-    action->getStateVariable("SelectedChanel")->setAttribute(BrisaStateVariable::Value,inArguments->value("NewChanel"));
+                                                        Action* const action) {
+    action->getStateVariable("SelectedChanel")->setAttribute(StateVariable::Value,inArguments->value("NewChanel"));
     qDebug() << "in setchanel TVoperation";
-    action->getStateVariable("Operation")->setAttribute(BrisaStateVariable::Value, inArguments->value("ChangeChanel"));
+    action->getStateVariable("Operation")->setAttribute(StateVariable::Value, inArguments->value("ChangeChanel"));
 
     BrisaOutArgument* outArgs = new BrisaOutArgument();
 
-    outArgs->insert("Result", action->getStateVariable("Operation")->getAttribute(BrisaStateVariable::Value));
+    outArgs->insert("Result", action->getStateVariable("Operation")->getAttribute(StateVariable::Value));
 
     return outArgs;
 
 }
 
-int MediaRendererDeviceService::preAction(BrisaInArgument* const inArguments, BrisaAction* const action, QString &errorDescription) {
+int MediaRendererDeviceService::preAction(BrisaInArgument* const inArguments, Action* const action, QString &errorDescription) {
    Q_UNUSED(errorDescription);
    qDebug() << "PREACTION METHOD CALLED FOR ACTION " << action->getName();
    qDebug() << "NewStatus IN argument is: " << inArguments->value("OffOnTV");
@@ -37,15 +37,15 @@ int MediaRendererDeviceService::preAction(BrisaInArgument* const inArguments, Br
    return UPNP_SUCCESS;
 }
 
-BrisaOutArgument* MediaRendererDeviceService::offon(BrisaInArgument* const inArguments, BrisaAction* const action){
+BrisaOutArgument* MediaRendererDeviceService::offon(BrisaInArgument* const inArguments, Action* const action){
     qDebug() << "in offon TVoperation";
-    action->getStateVariable("Operation")->setAttribute(BrisaStateVariable::Value, "OffOnTV");
+    action->getStateVariable("Operation")->setAttribute(StateVariable::Value, "OffOnTV");
     BrisaOutArgument* outArgs = new BrisaOutArgument();
-    outArgs->insert("Result", action->getStateVariable("Operation")->getAttribute(BrisaStateVariable::Value));
+    outArgs->insert("Result", action->getStateVariable("Operation")->getAttribute(StateVariable::Value));
     return outArgs;
 }
 
-int MediaRendererDeviceService::postAction(BrisaInArgument* const inArguments, BrisaOutArgument* const outArguments, BrisaAction* const action, QString &errorDescription) {
+int MediaRendererDeviceService::postAction(BrisaInArgument* const inArguments, BrisaOutArgument* const outArguments, Action* const action, QString &errorDescription) {
    Q_UNUSED(errorDescription);
    qDebug() << "POSTACTION METHOD CALLED FOR ACTION " << action->getName();
    qDebug() << "NewStatus IN argument is: " << inArguments->value("NewChanel");

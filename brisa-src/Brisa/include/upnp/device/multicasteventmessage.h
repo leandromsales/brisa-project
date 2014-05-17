@@ -28,7 +28,7 @@ static const QString NOTIFY_EVENT_MESSAGE =
 class MulticastEventMessage : public AbstractEventMessage
 {
 public:
-    MulticastEventMessage(BrisaStateVariable *variable,
+    MulticastEventMessage(StateVariable *variable,
                                QString LVL, QObject *parent = 0);
 
     QByteArray getMessageHeader() const;
@@ -38,7 +38,7 @@ public:
     QByteArray getRequestMessage() const;
 
 private:
-    BrisaStateVariable *variable;
+    StateVariable *variable;
 
     /*!
      * \property SEQ

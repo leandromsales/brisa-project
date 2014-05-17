@@ -15,7 +15,7 @@ namespace upnp {
 namespace device {
 
 
-class Service: public BrisaAbstractService
+class Service: public AbstractService
 {
 	Q_OBJECT
 public:
@@ -34,7 +34,7 @@ public:
 
 	virtual ~Service();
 
-	BrisaStateVariable *getVariable(const QString &variableName);
+	StateVariable *getVariable(const QString &variableName);
 
 	void buildWebServiceTree(brisa::shared::webserver::Webserver *sessionManager);
 

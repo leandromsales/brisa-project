@@ -5,14 +5,14 @@ namespace brisa {
 namespace upnp {
 
 
-BrisaArgument::BrisaArgument(const BrisaArgument &brisaArgument):
+Argument::Argument(const Argument &brisaArgument):
     QObject(),
     name(brisaArgument.name),
     direction(brisaArgument.direction),
     relatedStateVariable(brisaArgument.relatedStateVariable) {
 }
 
-BrisaArgument::BrisaArgument(const QString &name,
+Argument::Argument(const QString &name,
                              const QString &direction,
                              const QString &relatedStateVariable,
                              QObject *parent) :
@@ -22,7 +22,7 @@ BrisaArgument::BrisaArgument(const QString &name,
     relatedStateVariable(relatedStateVariable) {
 }
 
-void BrisaArgument::setAttribute(xmlArgument key, const QString &value) {
+void Argument::setAttribute(xmlArgument key, const QString &value) {
     switch (key) {
     case ArgumentName:
         this->name = value;
@@ -36,7 +36,7 @@ void BrisaArgument::setAttribute(xmlArgument key, const QString &value) {
     }
 }
 
-QString BrisaArgument::getAttribute(xmlArgument key) const {
+QString Argument::getAttribute(xmlArgument key) const {
     switch (key) {
     case ArgumentName:
         return this->name;
@@ -53,7 +53,7 @@ QString BrisaArgument::getAttribute(xmlArgument key) const {
     }
 }
 
-void BrisaArgument::clear() {
+void Argument::clear() {
     this->name.clear();
     this->direction.clear();
     this->relatedStateVariable.clear();
