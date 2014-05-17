@@ -1,4 +1,4 @@
-#include "mediacontrolpoint.h"
+#include "upnp/controlpoint/av/mediacontrolpoint.h"
 
 namespace brisa {
 using namespace shared::ssdp;
@@ -12,7 +12,7 @@ MediaControlPoint::MediaControlPoint(QObject *parent, QString st, int mx) :
 	this->mediaRendererCount = 0;
 	this->running = false;
 
-    this->ssdp = new BrisaSSDPClient(this);
+    this->ssdp = new SSDPClient(this);
     msearch = new MSearchClientCP(this, st, mx);
 
 	bool c = connect(ssdp, SIGNAL(messageReceived(QString)), this,

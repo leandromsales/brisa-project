@@ -1,5 +1,5 @@
-#ifndef BRISASSDPSERVER_H
-#define BRISASSDPSERVER_H
+#ifndef SSDPSERVER_H
+#define SSDPSERVER_H
 
 #include "upnp/controlpoint/udplistener.h"
 #include "network/brisanetwork.h"
@@ -22,7 +22,7 @@ namespace ssdp {
  *  BrisaSSDPServer also implements SSDP notify messages. Call \a doNotify() or \a doByeBye()
  *  when entering or leaving the multicast group.
  */
-class BrisaSSDPServer: public QObject {
+class SSDPServer: public QObject {
     Q_OBJECT
 public:
     /*!
@@ -30,14 +30,14 @@ public:
      *
      *  \param parent parent
      */
-    BrisaSSDPServer(QObject *parent = 0);
+    SSDPServer(QObject *parent = 0);
 
     /*!
      *  Destroys the Object.
      *
      *  Stops the server if running.
      */
-    virtual ~BrisaSSDPServer();
+    virtual ~SSDPServer();
 
 public slots:
     /*!
@@ -157,4 +157,4 @@ private:
 }  // namespace shared
 }
 
-#endif /* _BRISASSDPSERVER_H */
+#endif /* _SSDPSERVER_H */

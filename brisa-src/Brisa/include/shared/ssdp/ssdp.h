@@ -9,7 +9,7 @@
 #include <QStringList>
 #include <QMap>
 
-#include "ssdpprotocol.h"
+#include "shared/ssdp/ssdpprotocol.h"
 #include "network/networkmanager.h"
 
 //#define SSDP_ADDR "239.255.255.250"

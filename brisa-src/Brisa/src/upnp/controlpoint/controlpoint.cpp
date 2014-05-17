@@ -31,7 +31,7 @@
 #include <QtDebug>
 
 #include "upnp/controlpoint/controlpoint.h"
-#include "brisassdpclient.h"
+#include "shared/ssdp/ssdpclient.h"
 #include "upnp/controlpoint/msearchclientcp.h"
 
 #include "webserversession.h"
@@ -58,7 +58,7 @@ ControlPoint::ControlPoint(QObject *parent, QString st, int mx) :
     this->http = new QHttp();
 
     /* SSDP client */
-    this->ssdpClient = new BrisaSSDPClient(this);
+    this->ssdpClient = new SSDPClient(this);
 
     /* MSearch client */
     msearch = new MSearchClientCP(this, st, mx);

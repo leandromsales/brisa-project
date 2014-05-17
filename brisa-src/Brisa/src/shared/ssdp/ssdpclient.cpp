@@ -26,30 +26,30 @@
  *
  */
 
-#include "brisassdpclient.h"
+#include "shared/ssdp/ssdpclient.h"
 
 namespace brisa {
 using namespace upnp::controlpoint;
 namespace shared {
 namespace ssdp {
 
-BrisaSSDPClient::BrisaSSDPClient(QObject *parent) :
+SSDPClient::SSDPClient(QObject *parent) :
 	QObject(parent),
     running(false)
 {
 }
 
-BrisaSSDPClient::~BrisaSSDPClient() {
+SSDPClient::~SSDPClient() {
     if (isRunning())
         stop();
 
     delete this->udpListener;
 }
 
-void BrisaSSDPClient::start() {
+void SSDPClient::start() {
     if (!isRunning()) {
         this->udpListener = new UdpListener("239.255.255.250", 1900,
-                                                 "BrisaSSDPClient");
+                                                 "SSDPClient");
         connect(this->udpListener, SIGNAL(readyRead()), this, SLOT(datagramReceived()));
         this->udpListener->start();
         running = true;
@@ -58,7 +58,7 @@ void BrisaSSDPClient::start() {
     }
 }
 
-void BrisaSSDPClient::stop() {
+void SSDPClient::stop() {
     if (isRunning()) {
         this->udpListener->disconnectFromHost();;
         running = false;
@@ -67,11 +67,11 @@ void BrisaSSDPClient::stop() {
     }
 }
 
-bool BrisaSSDPClient::isRunning() const {
+bool SSDPClient::isRunning() const {
     return running;
 }
 
-void BrisaSSDPClient::datagramReceived() {
+void SSDPClient::datagramReceived() {
     while (this->udpListener->hasPendingDatagrams()) {
         QByteArray *datagram = new QByteArray();
 
@@ -91,7 +91,7 @@ void BrisaSSDPClient::datagramReceived() {
 
 }
 
-void BrisaSSDPClient::notifyReceived(QHttpRequestHeader *datagram) {
+void SSDPClient::notifyReceived(QHttpRequestHeader *datagram) {
 	if (!datagram->hasKey("nts"))
 	        return;
 
@@ -115,7 +115,7 @@ void BrisaSSDPClient::notifyReceived(QHttpRequestHeader *datagram) {
 
 }
 
-QMap<QString, QString> BrisaSSDPClient::getMapFromMessage(QString message) {
+QMap<QString, QString> SSDPClient::getMapFromMessage(QString message) {
 	QStringList messageLines = message.split("\r\n");
 	QMap<QString, QString> response;
 

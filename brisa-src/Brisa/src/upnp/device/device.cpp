@@ -5,7 +5,7 @@
 
 // TODO: put this include at the begin of the file
 #include "upnp/device/device.h"
-#include "shared/ssdp/brisassdpserver.h"
+#include "shared/ssdp/ssdpserver.h"
 #include "shared/webserver/webserver.h"
 
 //#if defined (__QNXNTO__)
@@ -29,7 +29,7 @@ Device::Device(QObject *parent) :
         this->discoverNetworkAddress();
         this->buildUrlBase();
         webserver = new Webserver(QHostAddress(ipAddress), port);
-        ssdp = new BrisaSSDPServer();
+        ssdp = new SSDPServer();
 
         QObject::connect(ssdp,
                         SIGNAL(msearchRequestReceived(QString, QString, quint16)), this,
@@ -68,7 +68,7 @@ Device::Device(const QString &deviceType, const QString &friendlyName,
 
     webserver = new Webserver(QHostAddress(ipAddress), port);
     qDebug() << "Current IP: " << ipAddress;
-    ssdp = new BrisaSSDPServer();
+    ssdp = new SSDPServer();
 
     QObject::connect(ssdp,
                      SIGNAL(msearchRequestReceived(QString, QString, quint16)),
@@ -108,7 +108,7 @@ Device::Device(const Device &dev) :
     // TODO: this is wrong! this will create a new instance in the same ip and port.
     // It is necessary to generate a new port.
     webserver = new Webserver(QHostAddress(ipAddress), port);
-    ssdp = new BrisaSSDPServer();
+    ssdp = new SSDPServer();
 }
 
 Device &Device::operator=(const Device &dev) {

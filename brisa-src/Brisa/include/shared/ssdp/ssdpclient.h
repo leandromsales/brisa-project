@@ -26,8 +26,8 @@
  *
  */
 
-#ifndef BRISASSDPCLIENT_H
-#define BRISASSDPCLIENT_H
+#ifndef SSDPCLIENT_H
+#define SSDPCLIENT_H
 
 #include <QObject>
 #include <QHttpRequestHeader>
@@ -50,21 +50,21 @@ namespace ssdp {
  *  in case of "ssdp:alive" and \a "removedDeviceEvent" in case of "ssdp:byebye".
  *  Other ssdp messages will be ignored.
  */
-class BRISA_UPNP_EXPORT BrisaSSDPClient: public QObject {
+class BRISA_UPNP_EXPORT SSDPClient: public QObject {
 Q_OBJECT
 
 public:
     /*!
      *  Constructs a BrisaSSCPClient with the given parent.
      */
-    BrisaSSDPClient(QObject *parent = 0);
+    SSDPClient(QObject *parent = 0);
 
     /*!
      *  Destroys the client.
      *
      *  Stops the client if it's running.
      */
-    virtual ~BrisaSSDPClient();
+    virtual ~SSDPClient();
 
 public slots:
     /*!
@@ -141,4 +141,4 @@ private:
 }  // namespace shared
 }
 
-#endif /* _BRISASSDPCLIENT_H */
+#endif /* _SSDPCLIENT_H */

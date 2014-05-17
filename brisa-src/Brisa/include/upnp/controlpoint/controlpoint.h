@@ -34,12 +34,12 @@
 #include "network/brisanetwork.h"
 #include "upnp/controlpoint/cpdevice.h"
 #include "upnp/controlpoint/eventproxy.h"
-#include "shared/ssdp/brisassdpclient.h"
+#include "shared/ssdp/ssdpclient.h"
 #include "upnp/controlpoint/multicasteventreceiver.h"
 #include "upnp/brisaglobal.h"
 
 namespace brisa {
-class shared::ssdp::BrisaSSDPClient;
+class shared::ssdp::SSDPClient;
 namespace upnp {
 namespace controlpoint {
 class MSearchClientCP;
@@ -102,7 +102,7 @@ private:
      *    \property ssdpClient
      *    \brief Listen to notify/bye-bye messages.
      */
-    brisa::shared::ssdp::BrisaSSDPClient *ssdpClient;
+    brisa::shared::ssdp::SSDPClient *ssdpClient;
 
     /*!
      *    \property msearch

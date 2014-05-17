@@ -1,4 +1,4 @@
-#include "brisassdpserver.h"
+#include "shared/ssdp/ssdpserver.h"
 
 #include <QStringList>
 #include <QtDebug>
@@ -73,7 +73,7 @@ static const QString UPNP_MSEARCH_RESPONSE = "HTTP/1.1 200 OK\r\n"
                                              "USN: %6\r\n"
                                              "\r\n";
 
-BrisaSSDPServer::BrisaSSDPServer(QObject *parent) :
+SSDPServer::SSDPServer(QObject *parent) :
     QObject(parent),
     running(false),
     SSDP_ADDR("239.255.255.250"), // TODO: make this as #define
@@ -84,14 +84,14 @@ BrisaSSDPServer::BrisaSSDPServer(QObject *parent) :
     connect(this->udpListener, SIGNAL(readyRead()), this, SLOT(datagramReceived()));
 }
 
-BrisaSSDPServer::~BrisaSSDPServer() {
+SSDPServer::~SSDPServer() {
     if (isRunning())
         stop();
 
     delete this->udpListener;
 }
 
-void BrisaSSDPServer::start() {
+void SSDPServer::start() {
     if (!isRunning()) {
         this->udpListener->start();
         qDebug() << "BrisaSSDPServer Started!";
@@ -103,7 +103,7 @@ void BrisaSSDPServer::start() {
     }
 }
 
-void BrisaSSDPServer::stop() {
+void SSDPServer::stop() {
     if (isRunning()) {
         udpListener->disconnectFromHost();
         running = false;
@@ -112,11 +112,11 @@ void BrisaSSDPServer::stop() {
     }
 }
 
-bool BrisaSSDPServer::isRunning() {
+bool SSDPServer::isRunning() {
     return running;
 }
 
-void BrisaSSDPServer::doNotify(const QString &usn,
+void SSDPServer::doNotify(const QString &usn,
                                const QString &location,
                                const QString &st,
                                const QString &server,
@@ -135,7 +135,7 @@ void BrisaSSDPServer::doNotify(const QString &usn,
     qDebug() << "BrisaSSDPServer writing Notify alive for: " << usn << "";
 }
 
-void BrisaSSDPServer::doByeBye(const QString &usn, const QString &st) {
+void SSDPServer::doByeBye(const QString &usn, const QString &st) {
     QString message = UPNP_BYEBYE_MESSAGE.arg(st, usn);
 
     udpListener->writeDatagram(message.toUtf8(),
@@ -149,7 +149,7 @@ void BrisaSSDPServer::doByeBye(const QString &usn, const QString &st) {
     qDebug() << "BrisaSSDPServer writing notify byebye for: " << usn << "";
 }
 
-void BrisaSSDPServer::datagramReceived() {
+void SSDPServer::datagramReceived() {
     while (this->udpListener->hasPendingDatagrams()) {
         QByteArray datagram;
         QHostAddress *senderIP = new QHostAddress();
@@ -167,7 +167,7 @@ void BrisaSSDPServer::datagramReceived() {
     }
 }
 
-void BrisaSSDPServer::msearchReceived(const QByteArray datagram,
+void SSDPServer::msearchReceived(const QByteArray datagram,
                                       QHostAddress *senderIp,
                                       quint16 senderPort)
 {
@@ -202,7 +202,7 @@ void BrisaSSDPServer::msearchReceived(const QByteArray datagram,
     }
 }
 
-void BrisaSSDPServer::respondMSearch(const QString &senderIp,
+void SSDPServer::respondMSearch(const QString &senderIp,
                                      quint16 senderPort,
                                      const QString &cacheControl,
                                      const QString &date,

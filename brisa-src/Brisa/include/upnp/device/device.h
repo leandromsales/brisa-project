@@ -8,7 +8,7 @@
 
 #include "network/brisanetwork.h"
 #include "shared/webserver/webserver.h"
-#include "shared/ssdp/brisassdpserver.h"
+#include "shared/ssdp/ssdpserver.h"
 #include "upnp/device/devicexmlhandler.h"
 #include "upnp/device/service.h"
 #include "upnp/icon.h"
@@ -304,7 +304,7 @@ private:
 
     QTemporaryFile descriptionFile;
 
-    brisa::shared::ssdp::BrisaSSDPServer *ssdp;
+    brisa::shared::ssdp::SSDPServer *ssdp;
     brisa::shared::webserver::Webserver *webserver;
     bool running;
 };

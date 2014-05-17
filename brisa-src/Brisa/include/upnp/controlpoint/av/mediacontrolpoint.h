@@ -7,7 +7,7 @@
 #include "upnp/controlpoint/av/mediaserverdevice.h"
 #include "upnp/controlpoint/av/mediarenderercpdevice.h"
 //#include "upnp/shared/ssdp/ssdp.h"
-#include "shared/ssdp/brisassdpclient.h"
+#include "shared/ssdp/ssdpclient.h"
 #include "upnp/controlpoint/msearchclientcp.h"
 
 //#include "teste.h"
@@ -39,7 +39,7 @@ private:
 	//teste *testen;
 
 //	SSDP *ssdp;
-	brisa::shared::ssdp::BrisaSSDPClient *ssdp;
+	brisa::shared::ssdp::SSDPClient *ssdp;
 	MSearchClientCP *msearch;
 	QHash<QString, MediaServerDevice*> mss;
 	QHash<QString, MediaRendererDevice*> mrs;

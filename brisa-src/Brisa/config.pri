@@ -8,9 +8,9 @@ device {
                  $$quote($$BASEDIR/src/shared/soap/qtsoap.cpp) \
                  $$quote($$BASEDIR/src/shared/soap/soap.cpp) \
                  $$quote($$BASEDIR/src/shared/soap/soapenvelope.cpp) \
-                 $$quote($$BASEDIR/src/shared/ssdp/brisassdpclient.cpp) \
-                 $$quote($$BASEDIR/src/shared/ssdp/brisassdpserver.cpp) \
                  $$quote($$BASEDIR/src/shared/ssdp/ssdp.cpp) \
+                 $$quote($$BASEDIR/src/shared/ssdp/ssdpclient.cpp) \
+                 $$quote($$BASEDIR/src/shared/ssdp/ssdpserver.cpp) \
                  $$quote($$BASEDIR/src/shared/ssdp/ssdpudpsocket.cpp) \
                  $$quote($$BASEDIR/src/shared/webserver/http/httpmessage.cpp) \
                  $$quote($$BASEDIR/src/shared/webserver/http/httprequest.cpp) \
@@ -69,10 +69,10 @@ device {
                  $$quote($$BASEDIR/include/shared/soap/qtsoap.h) \
                  $$quote($$BASEDIR/include/shared/soap/soap.h) \
                  $$quote($$BASEDIR/include/shared/soap/soapenvelope.h) \
-                 $$quote($$BASEDIR/include/shared/ssdp/brisassdpclient.h) \
-                 $$quote($$BASEDIR/include/shared/ssdp/brisassdpserver.h) \
                  $$quote($$BASEDIR/include/shared/ssdp/ssdp.h) \
+                 $$quote($$BASEDIR/include/shared/ssdp/ssdpclient.h) \
                  $$quote($$BASEDIR/include/shared/ssdp/ssdpprotocol.h) \
+                 $$quote($$BASEDIR/include/shared/ssdp/ssdpserver.h) \
                  $$quote($$BASEDIR/include/shared/ssdp/ssdpudpsocket.h) \
                  $$quote($$BASEDIR/include/shared/webserver/http/httpmessage.h) \
                  $$quote($$BASEDIR/include/shared/webserver/http/httprequest.h) \
@@ -137,9 +137,9 @@ device {
                  $$quote($$BASEDIR/src/shared/soap/qtsoap.cpp) \
                  $$quote($$BASEDIR/src/shared/soap/soap.cpp) \
                  $$quote($$BASEDIR/src/shared/soap/soapenvelope.cpp) \
-                 $$quote($$BASEDIR/src/shared/ssdp/brisassdpclient.cpp) \
-                 $$quote($$BASEDIR/src/shared/ssdp/brisassdpserver.cpp) \
                  $$quote($$BASEDIR/src/shared/ssdp/ssdp.cpp) \
+                 $$quote($$BASEDIR/src/shared/ssdp/ssdpclient.cpp) \
+                 $$quote($$BASEDIR/src/shared/ssdp/ssdpserver.cpp) \
                  $$quote($$BASEDIR/src/shared/ssdp/ssdpudpsocket.cpp) \
                  $$quote($$BASEDIR/src/shared/webserver/http/httpmessage.cpp) \
                  $$quote($$BASEDIR/src/shared/webserver/http/httprequest.cpp) \
@@ -198,10 +198,10 @@ device {
                  $$quote($$BASEDIR/include/shared/soap/qtsoap.h) \
                  $$quote($$BASEDIR/include/shared/soap/soap.h) \
                  $$quote($$BASEDIR/include/shared/soap/soapenvelope.h) \
-                 $$quote($$BASEDIR/include/shared/ssdp/brisassdpclient.h) \
-                 $$quote($$BASEDIR/include/shared/ssdp/brisassdpserver.h) \
                  $$quote($$BASEDIR/include/shared/ssdp/ssdp.h) \
+                 $$quote($$BASEDIR/include/shared/ssdp/ssdpclient.h) \
                  $$quote($$BASEDIR/include/shared/ssdp/ssdpprotocol.h) \
+                 $$quote($$BASEDIR/include/shared/ssdp/ssdpserver.h) \
                  $$quote($$BASEDIR/include/shared/ssdp/ssdpudpsocket.h) \
                  $$quote($$BASEDIR/include/shared/webserver/http/httpmessage.h) \
                  $$quote($$BASEDIR/include/shared/webserver/http/httprequest.h) \
@@ -268,9 +268,9 @@ simulator {
                  $$quote($$BASEDIR/src/shared/soap/qtsoap.cpp) \
                  $$quote($$BASEDIR/src/shared/soap/soap.cpp) \
                  $$quote($$BASEDIR/src/shared/soap/soapenvelope.cpp) \
-                 $$quote($$BASEDIR/src/shared/ssdp/brisassdpclient.cpp) \
-                 $$quote($$BASEDIR/src/shared/ssdp/brisassdpserver.cpp) \
                  $$quote($$BASEDIR/src/shared/ssdp/ssdp.cpp) \
+                 $$quote($$BASEDIR/src/shared/ssdp/ssdpclient.cpp) \
+                 $$quote($$BASEDIR/src/shared/ssdp/ssdpserver.cpp) \
                  $$quote($$BASEDIR/src/shared/ssdp/ssdpudpsocket.cpp) \
                  $$quote($$BASEDIR/src/shared/webserver/http/httpmessage.cpp) \
                  $$quote($$BASEDIR/src/shared/webserver/http/httprequest.cpp) \
@@ -329,10 +329,10 @@ simulator {
                  $$quote($$BASEDIR/include/shared/soap/qtsoap.h) \
                  $$quote($$BASEDIR/include/shared/soap/soap.h) \
                  $$quote($$BASEDIR/include/shared/soap/soapenvelope.h) \
-                 $$quote($$BASEDIR/include/shared/ssdp/brisassdpclient.h) \
-                 $$quote($$BASEDIR/include/shared/ssdp/brisassdpserver.h) \
                  $$quote($$BASEDIR/include/shared/ssdp/ssdp.h) \
+                 $$quote($$BASEDIR/include/shared/ssdp/ssdpclient.h) \
                  $$quote($$BASEDIR/include/shared/ssdp/ssdpprotocol.h) \
+                 $$quote($$BASEDIR/include/shared/ssdp/ssdpserver.h) \
                  $$quote($$BASEDIR/include/shared/ssdp/ssdpudpsocket.h) \
                  $$quote($$BASEDIR/include/shared/webserver/http/httpmessage.h) \
                  $$quote($$BASEDIR/include/shared/webserver/http/httprequest.h) \
