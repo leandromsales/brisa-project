@@ -5,17 +5,17 @@ using namespace shared::webserver::http;
 namespace upnp {
 namespace device {
 
-BrisaEventSubscription::BrisaEventSubscription(const QString &sid,
+EventSubscription::EventSubscription(const QString &sid,
         const QStringList &callbackUrls, const int &timeout, QObject *parent) :
             BrisaAbstractEventSubscription(sid, callbackUrls, timeout, parent) {
 }
 
-void BrisaEventSubscription::renew(const int &newTimeout) {
+void EventSubscription::renew(const int &newTimeout) {
     this->date = QDateTime::currentDateTime();
     this->timeout = newTimeout;
 }
 
-HttpResponse BrisaEventSubscription::getAcceptSubscriptionResponse() const {
+HttpResponse EventSubscription::getAcceptSubscriptionResponse() const {
     HttpResponse response(HttpVersion(1, 1), HttpResponse::OK);
 
     response.setHeader("DATE", QDateTime::currentDateTime().toUTC().toString(
@@ -33,7 +33,7 @@ HttpResponse BrisaEventSubscription::getAcceptSubscriptionResponse() const {
     return response;
 }
 
-HttpResponse BrisaEventSubscription::getAcceptUnsubscriptionResponse() const {
+HttpResponse EventSubscription::getAcceptUnsubscriptionResponse() const {
     return HttpResponse(HttpVersion(1, 1), HttpResponse::OK);
 }
 

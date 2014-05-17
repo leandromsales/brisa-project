@@ -1,5 +1,5 @@
-#ifndef BRISAMULTICASTEVENTMESSAGE_H
-#define BRISAMULTICASTEVENTMESSAGE_H
+#ifndef MULTICASTEVENTMESSAGE_H
+#define MULTICASTEVENTMESSAGE_H
 
 #include <QObject>
 #include <QList>
@@ -25,10 +25,10 @@ static const QString NOTIFY_EVENT_MESSAGE =
         "BOOTID.UPNP.ORG: %6\r\n"
         "CONTENT-LENGTH: %7\r\n\r\n";
 
-class BrisaMulticastEventMessage : public BrisaAbstractEventMessage
+class MulticastEventMessage : public AbstractEventMessage
 {
 public:
-    BrisaMulticastEventMessage(BrisaStateVariable *variable,
+    MulticastEventMessage(BrisaStateVariable *variable,
                                QString LVL, QObject *parent = 0);
 
     QByteArray getMessageHeader() const;
@@ -57,4 +57,4 @@ private:
 }
 }
 }
-#endif // BRISAMULTICASTEVENTMESSAGE_H
+#endif // MULTICASTEVENTMESSAGE_H

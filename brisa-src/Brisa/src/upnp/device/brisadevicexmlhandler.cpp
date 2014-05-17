@@ -7,7 +7,7 @@ namespace brisa {
 namespace upnp {
 namespace device {
 
-void BrisaDeviceXMLHandler::xmlGenerator(BrisaDevice *device, QFile *file) {
+void DeviceXMLHandler::xmlGenerator(Device *device, QFile *file) {
     file->open(QIODevice::ReadWrite | QIODevice::Text);
 
     this->writer = new QXmlStreamWriter(file);
@@ -20,13 +20,13 @@ void BrisaDeviceXMLHandler::xmlGenerator(BrisaDevice *device, QFile *file) {
 
     this->writer->writeStartElement("specVersion");
     this->writer->writeTextElement("major", device->getAttribute(
-            BrisaDevice::Major));
+            Device::Major));
     this->writer->writeTextElement("minor", device->getAttribute(
-            BrisaDevice::Minor));
+            Device::Minor));
     this->writer->writeEndElement(); //specversion
 
     this->writer->writeTextElement("URLBase", device->getAttribute(
-            BrisaDevice::UrlBase));
+            Device::UrlBase));
     this->writeDevice(device);
     this->writer->writeEndElement(); //root
 
@@ -36,30 +36,30 @@ void BrisaDeviceXMLHandler::xmlGenerator(BrisaDevice *device, QFile *file) {
     delete this->writer;
 }
 
-void BrisaDeviceXMLHandler::writeDevice(BrisaDevice *device) {
+void DeviceXMLHandler::writeDevice(Device *device) {
     this->writer->writeStartElement("device");
     this->writer->writeTextElement("deviceType", device->getAttribute(
-            BrisaDevice::DeviceType));
+            Device::DeviceType));
     this->writer->writeTextElement("friendlyName", device->getAttribute(
-            BrisaDevice::FriendlyName));
+            Device::FriendlyName));
     this->writer->writeTextElement("manufacturer", device->getAttribute(
-            BrisaDevice::Manufacturer));
+            Device::Manufacturer));
     this->writer->writeTextElement("manufacturerURL", device->getAttribute(
-            BrisaDevice::ManufacturerUrl));
+            Device::ManufacturerUrl));
     this->writer->writeTextElement("modelDescription", device->getAttribute(
-            BrisaDevice::ModelDescription));
+            Device::ModelDescription));
     this->writer->writeTextElement("modelName", device->getAttribute(
-            BrisaDevice::ModelName));
+            Device::ModelName));
     this->writer->writeTextElement("modelNumber", device->getAttribute(
-            BrisaDevice::ModelNumber));
+            Device::ModelNumber));
     this->writer->writeTextElement("modelURL", device->getAttribute(
-            BrisaDevice::ModelUrl));
+            Device::ModelUrl));
     this->writer->writeTextElement("serialNumber", device->getAttribute(
-            BrisaDevice::SerialNumber));
+            Device::SerialNumber));
     this->writer->writeTextElement("UDN",
-            device->getAttribute(BrisaDevice::Udn));
+            device->getAttribute(Device::Udn));
     this->writer->writeTextElement("UPC",
-            device->getAttribute(BrisaDevice::Upc));
+            device->getAttribute(Device::Upc));
     this->writer->writeStartElement("iconList");
     QList<BrisaIcon*> iconList = device->getIconList();
     foreach(BrisaIcon *i, iconList)
@@ -80,34 +80,34 @@ void BrisaDeviceXMLHandler::writeDevice(BrisaDevice *device) {
     this->writer->writeEndElement(); //iconList
 
     this->writer->writeStartElement("serviceList");
-    QList<BrisaService*> serviceList = device->getServiceList();
-    foreach(BrisaService *s, serviceList)
+    QList<Service*> serviceList = device->getServiceList();
+    foreach(Service *s, serviceList)
         {
             this->writer->writeStartElement("service");
             this->writer->writeTextElement("serviceType", s->getAttribute(
-                    BrisaService::ServiceType));
+                    Service::ServiceType));
             this->writer->writeTextElement("serviceId", s->getAttribute(
-                    BrisaService::ServiceId));
+                    Service::ServiceId));
             this->writer->writeTextElement("SCPDURL", s->getAttribute(
-                    BrisaService::ScpdUrl));
+                    Service::ScpdUrl));
             this->writer->writeTextElement("controlURL", s->getAttribute(
-                    BrisaService::ControlUrl));
+                    Service::ControlUrl));
             this->writer->writeTextElement("eventSubURL", s->getAttribute(
-                    BrisaService::EventSubUrl));
+                    Service::EventSubUrl));
             this->writer->writeEndElement(); //service
         }
     this->writer->writeEndElement(); //serviceList
 
     this->writer->writeStartElement("deviceList");
-    QList<BrisaDevice*> embeddedDeviceList = device->getEmbeddedDeviceList();
-    foreach(BrisaDevice *d, embeddedDeviceList)
+    QList<Device*> embeddedDeviceList = device->getEmbeddedDeviceList();
+    foreach(Device *d, embeddedDeviceList)
         {
             writeDevice(d);
         }
     this->writer->writeEndElement(); //deviceList
 
     this->writer->writeTextElement("presentationURL", device->getAttribute(
-            BrisaDevice::PresentationUrl));
+            Device::PresentationUrl));
 
     this->writer->writeEndElement(); //device
 }

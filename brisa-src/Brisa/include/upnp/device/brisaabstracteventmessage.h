@@ -1,5 +1,5 @@
-#ifndef BRISAABSTRACTEVENTMESSAGE_H
-#define BRISAABSTRACTEVENTMESSAGE_H
+#ifndef ABSTRACTEVENTMESSAGE_H
+#define ABSTRACTEVENTMESSAGE_H
 
 #include <QObject>
 #include <QList>
@@ -16,12 +16,12 @@ namespace device {
  *
  * \brief Represents an UPnP event message.
  */
-class BrisaAbstractEventMessage: public QObject {
+class AbstractEventMessage: public QObject {
 Q_OBJECT
 
 public:
 
-    BrisaAbstractEventMessage(QObject *parent = 0);
+    AbstractEventMessage(QObject *parent = 0);
 
     QByteArray getRequestMessage() const;
 };
@@ -30,4 +30,4 @@ public:
 }
 }
 
-#endif // BRISAABSTRACTEVENTMESSAGE_H
+#endif // ABSTRACTEVENTMESSAGE_H

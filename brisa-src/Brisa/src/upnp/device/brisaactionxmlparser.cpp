@@ -6,19 +6,19 @@ namespace brisa {
 namespace upnp {
 namespace device {
 
-BrisaActionXmlParser::BrisaActionXmlParser() {
+ActionXmlParser::ActionXmlParser() {
     reader = new QDomDocument();
 }
 
-BrisaActionXmlParser::~BrisaActionXmlParser() {
+ActionXmlParser::~ActionXmlParser() {
     delete reader;
 }
 
-void BrisaActionXmlParser::setXmlContent(const QByteArray &content) {
+void ActionXmlParser::setXmlContent(const QByteArray &content) {
     reader->setContent(content);
 }
 
-bool BrisaActionXmlParser::parseSOAP() {
+bool ActionXmlParser::parseSOAP() {
 
     QDomElement root = reader->documentElement();
 
@@ -41,7 +41,7 @@ bool BrisaActionXmlParser::parseSOAP() {
     return false;
 }
 
-void BrisaActionXmlParser::parseElement(QDomElement &element) {
+void ActionXmlParser::parseElement(QDomElement &element) {
 
     QDomElement child = element.firstChildElement();
 

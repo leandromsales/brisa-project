@@ -27,8 +27,8 @@
  *
  */
 
-#ifndef DEVICE_H
-#define DEVICE_H
+#ifndef CPDEVICE_H
+#define CPDEVICE_H
 
 #include <QString>
 #include <QList>
@@ -39,7 +39,7 @@
 #include <QObject>
 
 #include "upnp/brisaicon.h"
-#include "upnp/controlpoint/service.h"
+#include "upnp/controlpoint/cpservice.h"
 #include "upnp/controlpoint/devicexmlhandlercp.h"
 #include "upnp/brisaglobal.h"
 
@@ -296,5 +296,5 @@ private:
 }
 }
 
-#endif /* _DEVICE_H */
+#endif /* _CPDEVICE_H */
 

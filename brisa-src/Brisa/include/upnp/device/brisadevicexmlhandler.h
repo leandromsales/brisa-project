@@ -1,5 +1,5 @@
-#ifndef BRISADEVICEXMLHANDLER_H
-#define BRISADEVICEXMLHANDLER_H
+#ifndef DEVICEXMLHANDLER_H
+#define DEVICEXMLHANDLER_H
 
 #include <QXmlStreamWriter>
 #include <QString>
@@ -10,14 +10,14 @@ namespace brisa {
 namespace upnp {
 namespace device {
 
-class BrisaDevice;
+class Device;
 
-class BrisaDeviceXMLHandler {
+class DeviceXMLHandler {
 public:
-    void xmlGenerator(BrisaDevice *device, QFile *file);
+    void xmlGenerator(Device *device, QFile *file);
 
 private:
-    void writeDevice(BrisaDevice *device);
+    void writeDevice(Device *device);
 
     QXmlStreamWriter *writer;
 };
@@ -26,5 +26,5 @@ private:
 }
 }
 
-#endif /* _BRISADEVICEXMLHANDLER_H */
+#endif /* _DEVICEXMLHANDLER_H */
 

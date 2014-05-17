@@ -22,7 +22,7 @@ namespace device {
 
 static const QByteArray customWebservicesPath = "/custom/";
 
-BrisaDevice::BrisaDevice(QObject *parent) :
+Device::Device(QObject *parent) :
         QObject(parent), running(false)
 {
 
@@ -36,7 +36,7 @@ BrisaDevice::BrisaDevice(QObject *parent) :
                         SLOT(respondMSearch(QString, QString, quint16)));
 }
 
-BrisaDevice::BrisaDevice(const QString &deviceType, const QString &friendlyName,
+Device::Device(const QString &deviceType, const QString &friendlyName,
                          const QString &manufacturer, const QString &manufacturerURL,
                          const QString &modelDescription, const QString &modelName,
                          const QString &modelNumber, const QString &modelURL,
@@ -76,34 +76,34 @@ BrisaDevice::BrisaDevice(const QString &deviceType, const QString &friendlyName,
                      SLOT(respondMSearch(QString, QString, quint16)));
 }
 
-BrisaDevice::BrisaDevice(const BrisaDevice &dev) :
+Device::Device(const Device &dev) :
         QObject(dev.parent()),
         iconList(dev.getIconList()),
         serviceList(dev.getServiceList()),
         embeddedDeviceList(dev.getEmbeddedDeviceList()),
-        urlBase(dev.getAttribute(BrisaDevice::UrlBase)),
-        deviceType(dev.getAttribute(BrisaDevice::DeviceType)),
-        friendlyName(dev.getAttribute(BrisaDevice::FriendlyName)),
-        manufacturer(dev.getAttribute(BrisaDevice::Manufacturer)),
-        manufacturerUrl(dev.getAttribute(BrisaDevice::ManufacturerUrl)),
-        modelDescription(dev.getAttribute(BrisaDevice::ModelDescription)),
-        modelName(dev.getAttribute(BrisaDevice::ModelName)),
-        modelNumber(dev.getAttribute(BrisaDevice::ModelNumber)),
-        modelUrl(dev.getAttribute(BrisaDevice::ModelUrl)),
-        serialNumber(dev.getAttribute(BrisaDevice::SerialNumber)),
-        udn(dev.getAttribute(BrisaDevice::Udn)),
-        upc(dev.getAttribute(BrisaDevice::Upc)),
-        presentationUrl(dev.getAttribute(BrisaDevice::PresentationUrl)),
-        location(dev.getAttribute(BrisaDevice::Location)),
-        server(dev.getAttribute(BrisaDevice::Server)),
-        ipAddress(dev.getAttribute(BrisaDevice::IpAddress)),
-        port(dev.getAttribute(BrisaDevice::Port).toInt()),
-        fileAddress(dev.getAttribute(BrisaDevice::FileAddress)),
+        urlBase(dev.getAttribute(Device::UrlBase)),
+        deviceType(dev.getAttribute(Device::DeviceType)),
+        friendlyName(dev.getAttribute(Device::FriendlyName)),
+        manufacturer(dev.getAttribute(Device::Manufacturer)),
+        manufacturerUrl(dev.getAttribute(Device::ManufacturerUrl)),
+        modelDescription(dev.getAttribute(Device::ModelDescription)),
+        modelName(dev.getAttribute(Device::ModelName)),
+        modelNumber(dev.getAttribute(Device::ModelNumber)),
+        modelUrl(dev.getAttribute(Device::ModelUrl)),
+        serialNumber(dev.getAttribute(Device::SerialNumber)),
+        udn(dev.getAttribute(Device::Udn)),
+        upc(dev.getAttribute(Device::Upc)),
+        presentationUrl(dev.getAttribute(Device::PresentationUrl)),
+        location(dev.getAttribute(Device::Location)),
+        server(dev.getAttribute(Device::Server)),
+        ipAddress(dev.getAttribute(Device::IpAddress)),
+        port(dev.getAttribute(Device::Port).toInt()),
+        fileAddress(dev.getAttribute(Device::FileAddress)),
         running(dev.running)
 {
 
-    this->major = dev.getAttribute(BrisaDevice::Major);
-    this->minor = dev.getAttribute(BrisaDevice::Minor);
+    this->major = dev.getAttribute(Device::Major);
+    this->minor = dev.getAttribute(Device::Minor);
 
     // TODO: this is wrong! this will create a new instance in the same ip and port.
     // It is necessary to generate a new port.
@@ -111,37 +111,37 @@ BrisaDevice::BrisaDevice(const BrisaDevice &dev) :
     ssdp = new BrisaSSDPServer();
 }
 
-BrisaDevice &BrisaDevice::operator=(const BrisaDevice &dev) {
+Device &Device::operator=(const Device &dev) {
     if (this != &dev) {
         this->iconList = dev.getIconList();
         this->serviceList = dev.getServiceList();
         this->embeddedDeviceList = dev.getEmbeddedDeviceList();
-        this->major = dev.getAttribute(BrisaDevice::Major);
-        this->minor = dev.getAttribute(BrisaDevice::Minor);
-        this->urlBase = dev.getAttribute(BrisaDevice::UrlBase);
-        this->deviceType = dev.getAttribute(BrisaDevice::DeviceType);
-        this->friendlyName = dev.getAttribute(BrisaDevice::FriendlyName);
-        this->manufacturer = dev.getAttribute(BrisaDevice::Manufacturer);
-        this->manufacturerUrl = dev.getAttribute(BrisaDevice::ManufacturerUrl);
-        this->modelDescription = dev.getAttribute(BrisaDevice::ModelDescription);
-        this->modelName = dev.getAttribute(BrisaDevice::ModelName);
-        this->modelNumber = dev.getAttribute(BrisaDevice::ModelNumber);
-        this->modelUrl = dev.getAttribute(BrisaDevice::ModelUrl);
-        this->serialNumber = dev.getAttribute(BrisaDevice::SerialNumber);
-        this->udn = dev.getAttribute(BrisaDevice::Udn);
-        this->upc = dev.getAttribute(BrisaDevice::Upc);
-        this->presentationUrl = dev.getAttribute(BrisaDevice::PresentationUrl);
-        this->location = dev.getAttribute(BrisaDevice::Location);
-        this->server = dev.getAttribute(BrisaDevice::Server);
-        this->ipAddress = dev.getAttribute(BrisaDevice::IpAddress);
-        this->port = dev.getAttribute(BrisaDevice::Port).toInt();
-        this->fileAddress = dev.getAttribute(BrisaDevice::FileAddress);
+        this->major = dev.getAttribute(Device::Major);
+        this->minor = dev.getAttribute(Device::Minor);
+        this->urlBase = dev.getAttribute(Device::UrlBase);
+        this->deviceType = dev.getAttribute(Device::DeviceType);
+        this->friendlyName = dev.getAttribute(Device::FriendlyName);
+        this->manufacturer = dev.getAttribute(Device::Manufacturer);
+        this->manufacturerUrl = dev.getAttribute(Device::ManufacturerUrl);
+        this->modelDescription = dev.getAttribute(Device::ModelDescription);
+        this->modelName = dev.getAttribute(Device::ModelName);
+        this->modelNumber = dev.getAttribute(Device::ModelNumber);
+        this->modelUrl = dev.getAttribute(Device::ModelUrl);
+        this->serialNumber = dev.getAttribute(Device::SerialNumber);
+        this->udn = dev.getAttribute(Device::Udn);
+        this->upc = dev.getAttribute(Device::Upc);
+        this->presentationUrl = dev.getAttribute(Device::PresentationUrl);
+        this->location = dev.getAttribute(Device::Location);
+        this->server = dev.getAttribute(Device::Server);
+        this->ipAddress = dev.getAttribute(Device::IpAddress);
+        this->port = dev.getAttribute(Device::Port).toInt();
+        this->fileAddress = dev.getAttribute(Device::FileAddress);
         this->running = dev.running;
     }
     return *this;
 }
 
-BrisaDevice::~BrisaDevice()
+Device::~Device()
 {
     if (isRunning()) {
         stop();
@@ -162,13 +162,13 @@ BrisaDevice::~BrisaDevice()
     delete webserver;
 }
 
-void BrisaDevice::xmlGenerator()
+void Device::xmlGenerator()
 {
-        BrisaDeviceXMLHandler handler;
+        DeviceXMLHandler handler;
         handler.xmlGenerator(this, &descriptionFile);
 }
 
-void BrisaDevice::setAttribute(xmlTags key, const QString &v)
+void Device::setAttribute(xmlTags key, const QString &v)
 {
         switch (key) {
         case Major:
@@ -239,7 +239,7 @@ void BrisaDevice::setAttribute(xmlTags key, const QString &v)
         }
 }
 
-QString BrisaDevice::getAttribute(xmlTags key) const
+QString Device::getAttribute(xmlTags key) const
 {
         switch (key) {
         case Major:
@@ -311,69 +311,69 @@ QString BrisaDevice::getAttribute(xmlTags key) const
         }
 }
 
-void BrisaDevice::addIcon(const QString &mimetype, const QString &width,
+void Device::addIcon(const QString &mimetype, const QString &width,
                 const QString &height, const QString &depth, const QString &url)
 {
         BrisaIcon *iconSwap = new BrisaIcon(mimetype, width, height, depth, url);
         iconList.append(iconSwap);
 }
 
-void BrisaDevice::addService(const QString &serviceType,
+void Device::addService(const QString &serviceType,
                 const QString &serviceId, const QString &SCPDURL,
                 const QString &controlURL, const QString &eventSubURL)
 {
-        BrisaService *serviceSwap = new BrisaService(serviceType, serviceId,
+        Service *serviceSwap = new Service(serviceType, serviceId,
                         SCPDURL, controlURL, eventSubURL, this->urlBase);
     this->addService(serviceSwap);
 }
 
-void BrisaDevice::addService(BrisaService *servdev)
+void Device::addService(Service *servdev)
 {
         serviceList.append(servdev);
     servdev->setUdn(this->udn);
 }
 
-void BrisaDevice::addEmbeddedDevice(const QString &deviceType,
+void Device::addEmbeddedDevice(const QString &deviceType,
                 const QString &friendlyName, const QString &manufacturer,
                 const QString &manufacturerURL, const QString &modelDescription,
                 const QString &modelName, const QString &modelNumber,
                 const QString &modelURL, const QString &serialNumber,
                 const QString &UDN, const QString &UPC, const QString &presentationURL)
 {
-        BrisaDevice *deviceSwap = new BrisaDevice(deviceType, friendlyName,
+        Device *deviceSwap = new Device(deviceType, friendlyName,
                         manufacturer, manufacturerURL, modelDescription, modelName,
                         modelNumber, modelURL, serialNumber, UDN, UPC, presentationURL);
         embeddedDeviceList.append(deviceSwap);
 }
 
-void BrisaDevice::addEmbeddedDevice(BrisaDevice *newEmbeddedDevice)
+void Device::addEmbeddedDevice(Device *newEmbeddedDevice)
 {
         embeddedDeviceList.append(newEmbeddedDevice);
 }
 
-BrisaService *BrisaDevice::getServiceById(const QString &serviceId)
+Service *Device::getServiceById(const QString &serviceId)
 {
-        foreach (BrisaService *s, this->serviceList)
+        foreach (Service *s, this->serviceList)
                 {
-                        if (s->getAttribute(BrisaService::ServiceId) == serviceId)
+                        if (s->getAttribute(Service::ServiceId) == serviceId)
                                 return s;
                 }
 
         return 0;
 }
 
-BrisaService *BrisaDevice::getServiceByType(const QString &serviceType)
+Service *Device::getServiceByType(const QString &serviceType)
 {
-        foreach (BrisaService *s, this->serviceList)
+        foreach (Service *s, this->serviceList)
                 {
-                        if (s->getAttribute(BrisaService::ServiceType) == serviceType)
+                        if (s->getAttribute(Service::ServiceType) == serviceType)
                                 return s;
                 }
 
         return 0;
 }
 
-void BrisaDevice::start()
+void Device::start()
 {
         if (isRunning()) {
                 qDebug() << "BrisaDevice already running!";
@@ -387,17 +387,17 @@ void BrisaDevice::start()
         running = true;
 }
 
-int BrisaDevice::threadsNumber() const
+int Device::threadsNumber() const
 {
     return webserver->threadsNumber();
 }
 
-void BrisaDevice::setThreadsNumber(int n)
+void Device::setThreadsNumber(int n)
 {
     webserver->setThreadsNumber(n);
 }
 
-void BrisaDevice::stop()
+void Device::stop()
 {
     if (!isRunning()) {
         qDebug() << "BrisaDevice already stopped!";
@@ -409,13 +409,13 @@ void BrisaDevice::stop()
     running = false;
 }
 
-void BrisaDevice::startWebServer()
+void Device::startWebServer()
 {
         buildWebServerTree();
         this->webserver->start();
 }
 
-void BrisaDevice::buildWebServerTree()
+void Device::buildWebServerTree()
 {
     descriptionFile.open();
     QString tempFilePath = descriptionFile.fileName();
@@ -431,12 +431,12 @@ void BrisaDevice::buildWebServerTree()
       descriptionFile.close();*/
 
 
-    foreach(BrisaService *service, serviceList) {
+    foreach(Service *service, serviceList) {
         service->buildWebServiceTree(webserver);
     }
 }
 
-void BrisaDevice::respondMSearch(const QString &st, const QString &senderIp,
+void Device::respondMSearch(const QString &st, const QString &senderIp,
                 quint16 senderPort)
 {
         QString sDate = QDate::currentDate().toString("dd/MM/yyyy");
@@ -456,9 +456,9 @@ void BrisaDevice::respondMSearch(const QString &st, const QString &senderIp,
                                         server, "upnp:rootdevice", udn + "::upnp:rootdevice");
 
                 for (int k = 0; k < embeddedDeviceList.size(); k++) {
-                        embeddedUdn = embeddedDeviceList[k]->getAttribute(BrisaDevice::Udn);
+                        embeddedUdn = embeddedDeviceList[k]->getAttribute(Device::Udn);
                         embeddedType = embeddedDeviceList[k]->getAttribute(
-                                        BrisaDevice::DeviceType);
+                                        Device::DeviceType);
                         if (st == embeddedUdn)
                                 ssdp->respondMSearch(senderIp, senderPort, "1800", sDate,
                                                 location, server, embeddedUdn, embeddedUdn);
@@ -473,9 +473,9 @@ void BrisaDevice::respondMSearch(const QString &st, const QString &senderIp,
                                         server, "upnp:rootdevice", udn + "::upnp:rootdevice");
 
                 for (int k = 0; k < embeddedDeviceList.size(); k++) {
-                        embeddedUdn = embeddedDeviceList[k]->getAttribute(BrisaDevice::Udn);
+                        embeddedUdn = embeddedDeviceList[k]->getAttribute(Device::Udn);
                         embeddedType = embeddedDeviceList[k]->getAttribute(
-                                        BrisaDevice::DeviceType);
+                                        Device::DeviceType);
                         if (st == embeddedType)
                                 ssdp->respondMSearch(senderIp, senderPort, "1800", sDate,
                                                 location, server, embeddedUdn, embeddedUdn);
@@ -487,7 +487,7 @@ void BrisaDevice::respondMSearch(const QString &st, const QString &senderIp,
 
                 for (int j = 0; j < serviceList.size(); j++) {
                         serviceType = serviceList[j]->getAttribute(
-                                        BrisaService::ServiceType);
+                                        Service::ServiceType);
                         serviceUdn = udn + "::" + serviceType;
                         if (st == serviceType)
                                 ssdp->respondMSearch(senderIp, senderPort, "1800", sDate,
@@ -496,7 +496,7 @@ void BrisaDevice::respondMSearch(const QString &st, const QString &senderIp,
         }
 }
 
-void BrisaDevice::respondMSearchAll(const QString &senderIp,
+void Device::respondMSearchAll(const QString &senderIp,
                 quint16 senderPort, const QString &sDate)
 {
         QString serviceType;
@@ -514,9 +514,9 @@ void BrisaDevice::respondMSearchAll(const QString &senderIp,
 
         //MSearch response for embedded devices
         for (int k = 0; k < embeddedDeviceList.size(); k++) {
-                embeddedUdn = embeddedDeviceList[k]->getAttribute(BrisaDevice::Udn);
+                embeddedUdn = embeddedDeviceList[k]->getAttribute(Device::Udn);
                 embeddedType = embeddedDeviceList[k]->getAttribute(
-                                BrisaDevice::DeviceType);
+                                Device::DeviceType);
                 ssdp->respondMSearch(senderIp, senderPort, "1800", sDate, location,
                                 server, embeddedUdn, embeddedUdn);
                 ssdp->respondMSearch(senderIp, senderPort, "1800", sDate, location,
@@ -525,29 +525,29 @@ void BrisaDevice::respondMSearchAll(const QString &senderIp,
 
         //MSearch response for services
         for (int j = 0; j < serviceList.size(); j++) {
-                serviceType = serviceList[j]->getAttribute(BrisaService::ServiceType);
+                serviceType = serviceList[j]->getAttribute(Service::ServiceType);
                 serviceUdn = udn + "::" + serviceType;
                 ssdp->respondMSearch(senderIp, senderPort, "1800", sDate, location,
                                 server, serviceUdn, serviceType);
         }
 }
 
-QList<BrisaIcon*> BrisaDevice::getIconList() const
+QList<BrisaIcon*> Device::getIconList() const
 {
         return this->iconList;
 }
 
-QList<BrisaDevice*> BrisaDevice::getEmbeddedDeviceList() const
+QList<Device*> Device::getEmbeddedDeviceList() const
 {
         return this->embeddedDeviceList;
 }
 
-QList<BrisaService*> BrisaDevice::getServiceList() const
+QList<Service*> Device::getServiceList() const
 {
         return this->serviceList;
 }
 
-void BrisaDevice::doByeBye()
+void Device::doByeBye()
 {
         QString serviceType;
         QString serviceUdn;
@@ -560,24 +560,24 @@ void BrisaDevice::doByeBye()
         ssdp->doByeBye(udn + "::" + deviceType, deviceType);
 
         //Notify for embedded devices
-        foreach(BrisaDevice* embeddedDevice, embeddedDeviceList)
+        foreach(Device* embeddedDevice, embeddedDeviceList)
                 {
-                        embeddedUdn = embeddedDevice->getAttribute(BrisaDevice::Udn);
+                        embeddedUdn = embeddedDevice->getAttribute(Device::Udn);
                         embeddedType
-                                        = embeddedDevice->getAttribute(BrisaDevice::DeviceType);
+                                        = embeddedDevice->getAttribute(Device::DeviceType);
                         ssdp->doByeBye(embeddedUdn, embeddedUdn);
                         ssdp->doByeBye(embeddedUdn + "::" + embeddedType, embeddedType);
                 }
 
         //Notify for services
         for (int j = 0; j < serviceList.size(); j++) {
-                serviceType = serviceList[j]->getAttribute(BrisaService::ServiceType);
+                serviceType = serviceList[j]->getAttribute(Service::ServiceType);
                 serviceUdn = udn + "::" + serviceType;
                 ssdp->doByeBye(serviceUdn, serviceType);
         }
 }
 
-void BrisaDevice::doNotify()
+void Device::doNotify()
 {
         QString serviceType;
         QString serviceUdn;
@@ -592,10 +592,10 @@ void BrisaDevice::doNotify()
                         "1800");
 
         //Notify for embedded devices
-        foreach(BrisaDevice* embeddedDevice, embeddedDeviceList) {
-                embeddedUdn = embeddedDevice->getAttribute(BrisaDevice::Udn);
+        foreach(Device* embeddedDevice, embeddedDeviceList) {
+                embeddedUdn = embeddedDevice->getAttribute(Device::Udn);
                 embeddedType = embeddedDevice->getAttribute(
-                                BrisaDevice::DeviceType);
+                                Device::DeviceType);
                 ssdp->doNotify(embeddedUdn, location, embeddedUdn, server, "1800");
                 ssdp->doNotify(embeddedUdn + "::" + embeddedType, location,
                                 embeddedType, server, "1800");
@@ -603,18 +603,18 @@ void BrisaDevice::doNotify()
 
         //Notify for services
         for (int j = 0; j < serviceList.size(); j++) {
-                serviceType = serviceList[j]->getAttribute(BrisaService::ServiceType);
+                serviceType = serviceList[j]->getAttribute(Service::ServiceType);
                 serviceUdn = udn + "::" + serviceType;
                 ssdp->doNotify(serviceUdn, location, serviceType, server, "1800");
         }
 }
 
-bool BrisaDevice::isRunning()
+bool Device::isRunning()
 {
         return this->running;
 }
 
-void BrisaDevice::clear()
+void Device::clear()
 {
         iconList.clear();
         serviceList.clear();
@@ -646,14 +646,14 @@ void BrisaDevice::clear()
         port = 0;
 }
 
-void BrisaDevice::buildUrlBase()
+void Device::buildUrlBase()
 {
         QString sPort;
         sPort.setNum(this->port);
         this->urlBase = "http://" + ipAddress + ":" + sPort;
 }
 
-void BrisaDevice::discoverNetworkAddress()
+void Device::discoverNetworkAddress()
 {
     this->port = getPort();
     this->ipAddress = getValidIP();
@@ -665,7 +665,7 @@ void BrisaDevice::discoverNetworkAddress()
                 QString::number(this->port);
 }
 
-QByteArray BrisaDevice::addWebservice(QByteArray pathSuffix,
+QByteArray Device::addWebservice(QByteArray pathSuffix,
                                       WebService *service)
 {
     if (pathSuffix.startsWith('/'))
@@ -675,7 +675,7 @@ QByteArray BrisaDevice::addWebservice(QByteArray pathSuffix,
     return path;
 }
 
-void BrisaDevice::removeWebservice(const QByteArray &path)
+void Device::removeWebservice(const QByteArray &path)
 {
     if (path.startsWith(customWebservicesPath)) {
         webserver->removeService(path);

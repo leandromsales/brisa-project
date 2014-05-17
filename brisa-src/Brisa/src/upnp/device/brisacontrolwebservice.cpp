@@ -8,13 +8,13 @@ using namespace shared::webserver::http;
 namespace upnp {
 namespace device {
 
-BrisaControlWebService::BrisaControlWebService(const QString &serviceType, QObject *parent) :
+ControlWebService::ControlWebService(const QString &serviceType, QObject *parent) :
     WebService(parent),
     serviceType(serviceType)
 {
 }
 
-void BrisaControlWebService::onRequest(const HttpRequest &request, WebserverSession *session)
+void ControlWebService::onRequest(const HttpRequest &request, WebserverSession *session)
 {
     if (request.method() != "POST") {
         // TODO: close connection?
@@ -23,7 +23,7 @@ void BrisaControlWebService::onRequest(const HttpRequest &request, WebserverSess
         return;
     }
 
-    BrisaActionXmlParser actionXmlParser;
+    ActionXmlParser actionXmlParser;
 
     {
         QIODevice *xml = request.entityBody();

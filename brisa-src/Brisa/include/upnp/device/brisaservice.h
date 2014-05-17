@@ -1,5 +1,5 @@
-#ifndef BRISASERVICE_H
-#define BRISASERVICE_H
+#ifndef SERVICE_H
+#define SERVICE_H
 
 #include "upnp/brisaabstractservice.h"
 #include "upnp/device/brisaeventcontroller.h"
@@ -15,14 +15,14 @@ namespace upnp {
 namespace device {
 
 
-class BrisaService: public BrisaAbstractService
+class Service: public BrisaAbstractService
 {
 	Q_OBJECT
 public:
 
-	BrisaService(QObject *parent = 0);
+	Service(QObject *parent = 0);
 
-	BrisaService(const QString &serviceType,
+	Service(const QString &serviceType,
 			const QString &serviceId = QString(),
 			const QString &scpdUrl = QString(),
 			const QString &controlUrl = QString(),
@@ -30,9 +30,9 @@ public:
 			const QString &host = QString(),
 			QObject *parent = 0);
 
-	BrisaService(BrisaService &service);
+	Service(Service &service);
 
-	virtual ~BrisaService();
+	virtual ~Service();
 
 	BrisaStateVariable *getVariable(const QString &variableName);
 
@@ -78,4 +78,4 @@ protected:
 }
 }
 
-#endif /* BRISASERVICE_H_ */
+#endif /* SERVICE_H_ */

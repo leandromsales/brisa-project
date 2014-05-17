@@ -30,7 +30,7 @@
 #include <QtDebug>
 #include <QIODevice>
 
-#include "upnp/controlpoint/device.h"
+#include "upnp/controlpoint/cpdevice.h"
 
 namespace brisa {
 namespace upnp {

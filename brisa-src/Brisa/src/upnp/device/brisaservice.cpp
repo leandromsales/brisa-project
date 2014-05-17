@@ -41,27 +41,27 @@ static const QString SOAP_ERROR_TEMPLATE =
 				"</s:Fault>\r\n"
 				"</s:Body>\r\n"
 				"</s:Envelope>\r\n";
-BrisaService::BrisaService(QObject *parent) :
+Service::Service(QObject *parent) :
 		BrisaAbstractService(parent) {
 }
 
-BrisaService::BrisaService(const QString &serviceType, const QString &serviceId,
+Service::Service(const QString &serviceType, const QString &serviceId,
 		const QString &scpdUrl, const QString &controlUrl,
 		const QString &eventSubUrl, const QString &host, QObject *parent) :
 		BrisaAbstractService(serviceType, serviceId, scpdUrl, controlUrl,
 				eventSubUrl, host, parent) {
 }
 
-BrisaService::BrisaService(BrisaService &serv) :
+Service::Service(Service &serv) :
 		BrisaAbstractService(serv) {
 }
 
-BrisaService::~BrisaService() {
+Service::~Service() {
 	qDeleteAll(this->childWebServices);
 	childWebServices.clear();
 }
 
-void BrisaService::call(const QString &method, BrisaInArgument param,
+void Service::call(const QString &method, BrisaInArgument param,
 		WebserverSession *session) {
 	for (QList<BrisaAction *>::iterator i = this->actionList.begin();
 			i != actionList.end(); ++i) {
@@ -170,8 +170,8 @@ void BrisaService::call(const QString &method, BrisaInArgument param,
 	respondError(session, UPNP_INVALID_ACTION);
 }
 
-void BrisaService::buildWebServiceTree(Webserver *sessionManager) {
-	WebService *control = new BrisaControlWebService(serviceType);
+void Service::buildWebServiceTree(Webserver *sessionManager) {
+	WebService *control = new ControlWebService(serviceType);
 
 	connect(control,
 			SIGNAL(requestReceived(QString,BrisaInArgument,WebserverSession*)),
@@ -179,7 +179,7 @@ void BrisaService::buildWebServiceTree(Webserver *sessionManager) {
 	connect(control, SIGNAL(invalidRequest(WebserverSession*)), this,
 			SLOT(onInvalidRequest(WebserverSession*)));
 
-	BrisaEventController *event = new BrisaEventController(sessionManager,
+	EventController *event = new EventController(sessionManager,
 			&stateVariableList, this);
 
 	sessionManager->addService(
@@ -198,11 +198,11 @@ void BrisaService::buildWebServiceTree(Webserver *sessionManager) {
 	parseDescriptionFile();
 }
 
-void BrisaService::onInvalidRequest(WebserverSession *session) {
+void Service::onInvalidRequest(WebserverSession *session) {
 	respondError(session, UPNP_INVALID_ACTION);
 }
 
-BrisaStateVariable *BrisaService::getVariable(const QString &variableName) {
+BrisaStateVariable *Service::getVariable(const QString &variableName) {
 	for (QList<BrisaStateVariable *>::iterator i =
 			this->stateVariableList.begin(); i != this->stateVariableList.end();
 			++i) {
@@ -213,7 +213,7 @@ BrisaStateVariable *BrisaService::getVariable(const QString &variableName) {
 	return 0;
 }
 
-void BrisaService::onRequest(const HttpRequest &request,
+void Service::onRequest(const HttpRequest &request,
 		WebserverSession *session) {
 
 	// qDebug() << "REQUEST: " << HttpRequest. << endl;
@@ -224,7 +224,7 @@ void BrisaService::onRequest(const HttpRequest &request,
 						true));
 	}
 
-	BrisaActionXmlParser actionXmlParser;
+	ActionXmlParser actionXmlParser;
 
 	{
 		QIODevice *xml = request.entityBody();
@@ -244,7 +244,7 @@ void BrisaService::onRequest(const HttpRequest &request,
 	}
 }
 
-inline void BrisaService::respondAction(WebserverSession *session,
+inline void Service::respondAction(WebserverSession *session,
 		const BrisaOutArgument *outArgs, const QString &actionName) {
 	QByteArray message(
 			"<?xml version=\"1.0\"  encoding=\"utf-8\"?>\r\n"
@@ -271,7 +271,7 @@ inline void BrisaService::respondAction(WebserverSession *session,
 	session->respond(r);
 }
 
-inline void BrisaService::respondError(WebserverSession *session, int errorCode,
+inline void Service::respondError(WebserverSession *session, int errorCode,
 		QString errorDescription) {
 	if (errorDescription == "") {
 		errorDescription = this->errorCodeToString(errorCode);
@@ -286,15 +286,15 @@ inline void BrisaService::respondError(WebserverSession *session, int errorCode,
 	session->respond(r);
 }
 
-void BrisaService::setDescriptionFile(const QString &scpdFilePath) {
+void Service::setDescriptionFile(const QString &scpdFilePath) {
 	this->scpdFilePath = scpdFilePath;
 }
 
-QString BrisaService::getDescriptionFile() {
+QString Service::getDescriptionFile() {
 	return this->scpdFilePath;
 }
 
-void BrisaService::parseDescriptionFile() {
+void Service::parseDescriptionFile() {
 	if (this->scpdFilePath.isEmpty()) {
 		qDebug()
 				<< "WARNING::BrisaService::parseDescriptionFile: scpd filePath is empty";
@@ -325,9 +325,9 @@ void BrisaService::parseDescriptionFile() {
 	}
 }
 
-void BrisaService::connectVariablesEventSignals() {
-	BrisaEventController *event =
-			dynamic_cast<BrisaEventController *>(childWebServices.value(
+void Service::connectVariablesEventSignals() {
+	EventController *event =
+			dynamic_cast<EventController *>(childWebServices.value(
 					eventSubUrl.section('/', -1)));
 
 	if (!event) {
@@ -343,7 +343,7 @@ void BrisaService::connectVariablesEventSignals() {
 	}
 }
 
-void BrisaService::setDefaultValues() {
+void Service::setDefaultValues() {
 	foreach (BrisaStateVariable *stateVar, this->stateVariableList)
 	{
 		stateVar->setAttribute(BrisaStateVariable::Value,
@@ -366,7 +366,7 @@ BrisaAction * getRelatedActionByName(QList<BrisaAction *> actionList,
 	return action;
 }
 
-void BrisaService::bindActionsToServiceMethods() {
+void Service::bindActionsToServiceMethods() {
 	const QMetaObject *meta = this->metaObject();
 	QMetaMethod method;
 

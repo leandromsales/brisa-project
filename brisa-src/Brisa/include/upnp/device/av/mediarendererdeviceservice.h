@@ -15,7 +15,7 @@ namespace upnp {
 namespace device {
 namespace av {
 
-class MediaRendererDeviceService : public BrisaService
+class MediaRendererDeviceService : public Service
 {
     Q_OBJECT
 public:

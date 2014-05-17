@@ -1,5 +1,5 @@
-#ifndef BRISAACTIONXMLPARSER_H_
-#define BRISAACTIONXMLPARSER_H_
+#ifndef ACTIONXMLPARSER_H
+#define ACTIONXMLPARSER_H
 
 #include <QtCore>
 #include <QDomDocument>
@@ -18,18 +18,18 @@ namespace device {
  *
  * BrisaActionXmlParser uses DOM.
  */
-class BrisaActionXmlParser {
+class ActionXmlParser {
 public:
 
     /*!
      * Constructor.
      */
-    BrisaActionXmlParser();
+    ActionXmlParser();
 
     /*!
      * Destructor.
      */
-    virtual ~BrisaActionXmlParser();
+    virtual ~ActionXmlParser();
 
     /*!
      * Call this method to parse the SOAP request set by the setXmlContent method.
@@ -62,4 +62,4 @@ private:
 }
 }
 
-#endif /* XMLPARSER_H_ */
+#endif /* _ACTIONXMLPARSER_H */

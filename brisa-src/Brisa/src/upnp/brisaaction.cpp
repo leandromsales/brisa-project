@@ -8,7 +8,7 @@ namespace upnp {
 
 using namespace device;
 
-BrisaAction::BrisaAction(QString name, BrisaService *service, QObject *parent):
+BrisaAction::BrisaAction(QString name, Service *service, QObject *parent):
 	QObject(parent),
     name(name),
     service(service)
@@ -16,7 +16,7 @@ BrisaAction::BrisaAction(QString name, BrisaService *service, QObject *parent):
 
 }
 
-BrisaAction::BrisaAction(QString name, BrisaService *service, const QMetaMethod &method, QObject *parent):
+BrisaAction::BrisaAction(QString name, Service *service, const QMetaMethod &method, QObject *parent):
 	QObject(parent),
     name(name),
     service(service),
@@ -77,12 +77,12 @@ QString BrisaAction::getName() const
     return this->name;
 }
 
-void BrisaAction::setService(BrisaService *service)
+void BrisaAction::setService(Service *service)
 {
     this->service = service;
 }
 
-BrisaService* BrisaAction::getService() const
+Service* BrisaAction::getService() const
 {
     return this->service;
 }
@@ -172,7 +172,7 @@ BrisaArgument* BrisaAction::getArgument(const QString &name, const QString &dire
     return 0;
 }
 
-void BrisaAction::setMethod(const QMetaMethod &method, BrisaService *service)
+void BrisaAction::setMethod(const QMetaMethod &method, Service *service)
 {
     this->method = method;
 	this->setService(service);

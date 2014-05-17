@@ -4,16 +4,16 @@ namespace brisa {
 namespace upnp {
 namespace device {
 
-BrisaEventMessage::BrisaEventMessage(BrisaEventSubscription &subscription,
+EventMessage::EventMessage(EventSubscription &subscription,
         const QList<BrisaStateVariable *> *variables, QObject *parent) :
-    BrisaAbstractEventMessage(parent),
+    AbstractEventMessage(parent),
     SEQ(subscription.getNextSeq()),
     VARIABLES(variables),
     subscription(subscription)
 {
 }
 
-QByteArray BrisaEventMessage::getRequestMessage() const
+QByteArray EventMessage::getRequestMessage() const
 {
     static const QString genericRequest = "NOTIFY %1 HTTP/1.1\r\n"
                                           "HOST: %2:%3\r\n"

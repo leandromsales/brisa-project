@@ -1,5 +1,5 @@
-#ifndef BRISACONTROLWEBSERVICE_H
-#define BRISACONTROLWEBSERVICE_H
+#ifndef CONTROLWEBSERVICE_H
+#define CONTROLWEBSERVICE_H
 
 #include "shared/webserver/webservice.h"
 #include "shared/webserver/http/httprequest.h"
@@ -11,10 +11,10 @@ namespace brisa {
 namespace upnp {
 namespace device {
 
-class BrisaControlWebService : public brisa::shared::webserver::WebService {
+class ControlWebService : public brisa::shared::webserver::WebService {
     Q_OBJECT
 public:
-    explicit BrisaControlWebService(const QString &serviceType = QString(), QObject *parent = 0);
+    explicit ControlWebService(const QString &serviceType = QString(), QObject *parent = 0);
 
 signals:
     void requestReceived(QString xml, BrisaInArgument args, brisa::shared::webserver::WebserverSession *server);
@@ -31,4 +31,4 @@ private:
 }
 }
 
-#endif // BRISACONTROLWEBSERVICE_H
+#endif // CONTROLWEBSERVICE_H

@@ -40,14 +40,14 @@ device {
                  $$quote($$BASEDIR/src/upnp/controlpoint/av/mediarenderercpdevice.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/av/mediaserverdevice.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/controlpoint.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/device.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/cpdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/cpservice.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/devicesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/devicexmlhandlercp.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/eventproxy.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/iconsales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/msearchclientcp.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/multicasteventreceiver.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/service.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/servicesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/statevariablesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/udplistener.cpp) \
@@ -106,14 +106,14 @@ device {
                  $$quote($$BASEDIR/include/upnp/controlpoint/av/mediarenderercpdevice.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/av/mediaserverdevice.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/controlpoint.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/device.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/cpdevice.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/cpservice.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/devicesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/devicexmlhandlercp.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/eventproxy.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/iconsales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/msearchclientcp.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/multicasteventreceiver.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/service.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/servicesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/statevariablesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/udplistener.h) \
@@ -169,14 +169,14 @@ device {
                  $$quote($$BASEDIR/src/upnp/controlpoint/av/mediarenderercpdevice.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/av/mediaserverdevice.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/controlpoint.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/device.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/cpdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/cpservice.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/devicesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/devicexmlhandlercp.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/eventproxy.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/iconsales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/msearchclientcp.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/multicasteventreceiver.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/service.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/servicesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/statevariablesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/udplistener.cpp) \
@@ -235,14 +235,14 @@ device {
                  $$quote($$BASEDIR/include/upnp/controlpoint/av/mediarenderercpdevice.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/av/mediaserverdevice.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/controlpoint.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/device.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/cpdevice.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/cpservice.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/devicesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/devicexmlhandlercp.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/eventproxy.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/iconsales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/msearchclientcp.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/multicasteventreceiver.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/service.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/servicesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/statevariablesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/udplistener.h) \
@@ -300,14 +300,14 @@ simulator {
                  $$quote($$BASEDIR/src/upnp/controlpoint/av/mediarenderercpdevice.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/av/mediaserverdevice.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/controlpoint.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/device.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/cpdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/cpservice.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/devicesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/devicexmlhandlercp.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/eventproxy.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/iconsales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/msearchclientcp.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/multicasteventreceiver.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/service.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/servicesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/statevariablesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/udplistener.cpp) \
@@ -366,14 +366,14 @@ simulator {
                  $$quote($$BASEDIR/include/upnp/controlpoint/av/mediarenderercpdevice.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/av/mediaserverdevice.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/controlpoint.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/device.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/cpdevice.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/cpservice.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/devicesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/devicexmlhandlercp.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/eventproxy.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/iconsales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/msearchclientcp.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/multicasteventreceiver.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/service.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/servicesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/statevariablesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/udplistener.h) \

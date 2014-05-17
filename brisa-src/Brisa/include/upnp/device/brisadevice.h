@@ -1,5 +1,5 @@
-#ifndef BRISADEVICE_H
-#define BRISADEVICE_H
+#ifndef DEVICE_H
+#define DEVICE_H
 
 #include <QXmlDefaultHandler>
 #include <QNetworkInterface>
@@ -39,24 +39,24 @@ namespace device {
  *
  *  \sa Brisa::BrisaService
  */
-class BrisaDevice: public QObject {
+class Device: public QObject {
 Q_OBJECT
 
 public:
     /*!
      *  Creates a BrisaDevice with the given parent QObject.
      */
-    BrisaDevice(QObject *parent = 0);
+    Device(QObject *parent = 0);
 
     /*!
      *  Copy constructor.
      */
-    BrisaDevice(const BrisaDevice &dev);
+    Device(const Device &dev);
 
     /*!
      *  Creates a BrisaDevice with the given device information.
      */
-    BrisaDevice(const QString &deviceType, const QString &friendlyName = "",
+    Device(const QString &deviceType, const QString &friendlyName = "",
             const QString &manufacturer = "", const QString &manufacturerURL = "",
 	    const QString &modelDescription = "", const QString &modelName = "",
 	    const QString &modelNumber = "", const QString &modelURL = "",
@@ -68,12 +68,12 @@ public:
      *  Destructor for BrisaDevice.
      *  Stops the device if running.
      */
-    virtual ~BrisaDevice();
+    virtual ~Device();
 
     /*!
      *  Assigns dev to this BrisaDevice and returns a copy.
      */
-    BrisaDevice &operator=(const BrisaDevice &dev);
+    Device &operator=(const Device &dev);
 
     typedef enum {
         Major,
@@ -131,7 +131,7 @@ public:
      *  object orientation.
      *  \sa Brisa::BrisaService
      */
-    void addService(BrisaService *serv);
+    void addService(Service *serv);
 
     /*!
      *  Creates and adds a embedded device with the given information to the device.
@@ -150,7 +150,7 @@ public:
      *  Create a new \a BrisaDevice and call this method to add it as a embedded device to a root
      *  device. We recommend using this method for better object orientation.
      */
-    void addEmbeddedDevice(BrisaDevice *newEmbeddedDevice);
+    void addEmbeddedDevice(Device *newEmbeddedDevice);
 
     /*!
      *  Returns the icon list.
@@ -164,24 +164,24 @@ public:
      *
      *  \sa getEmbeddedDeviceList() , getIconList()
      */
-    QList<BrisaService *> getServiceList() const;
+    QList<Service *> getServiceList() const;
 
     /*!
      *  Returns the embedded device list.
      *
      *  \sa getIconList() , getServiceList()
      */
-    QList<BrisaDevice *> getEmbeddedDeviceList() const;
+    QList<Device *> getEmbeddedDeviceList() const;
 
     /*!
      *  Getter for BrisaService in the service list.
      */
-    BrisaService *getServiceById(const QString &serviceId);
+    Service *getServiceById(const QString &serviceId);
 
     /*!
      *  Getter for BrisaService in the service list.
      */
-    BrisaService *getServiceByType(const QString &serviceType);
+    Service *getServiceByType(const QString &serviceType);
 
     /*!
      *  Clears the device information, including services, icons and embedded devices.
@@ -275,8 +275,8 @@ private:
     bool isRunning();
 
     QList<BrisaIcon*> iconList;
-    QList<BrisaService *> serviceList;
-    QList<BrisaDevice *> embeddedDeviceList;
+    QList<Service *> serviceList;
+    QList<Device *> embeddedDeviceList;
 
     QString major;
     QString minor;
@@ -313,5 +313,5 @@ private:
 }
 }
 
-#endif /* _BRISADEVICE_H */
+#endif /* _DEVICE_H */
 

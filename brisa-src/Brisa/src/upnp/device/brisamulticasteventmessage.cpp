@@ -4,9 +4,9 @@ namespace brisa {
 namespace upnp {
 namespace device {
 
-BrisaMulticastEventMessage::BrisaMulticastEventMessage(
+MulticastEventMessage::MulticastEventMessage(
         BrisaStateVariable *variable, QString LVL, QObject *parent) :
-        BrisaAbstractEventMessage(parent),
+        AbstractEventMessage(parent),
         variable(variable),
         SEQ(variable->getNextMulticastSeq()),
         LVL(LVL)
@@ -14,7 +14,7 @@ BrisaMulticastEventMessage::BrisaMulticastEventMessage(
 }
 
 //TODO Use a real value for BOOTID.UPNP.ORG
-QByteArray BrisaMulticastEventMessage::getMessageHeader() const
+QByteArray MulticastEventMessage::getMessageHeader() const
 {
     QString header = NOTIFY_EVENT_MESSAGE.arg(
                         "239.255.255.246:7900",
@@ -27,7 +27,7 @@ QByteArray BrisaMulticastEventMessage::getMessageHeader() const
     return header.toLatin1();
 }
 
-QByteArray BrisaMulticastEventMessage::getMessageBody() const {
+QByteArray MulticastEventMessage::getMessageBody() const {
     QByteArray body;
 
     body.append("<?xml version=\"1.0\"?>\r\n");
@@ -46,7 +46,7 @@ QByteArray BrisaMulticastEventMessage::getMessageBody() const {
     return body;
 }
 
-QByteArray BrisaMulticastEventMessage::getRequestMessage() const {
+QByteArray MulticastEventMessage::getRequestMessage() const {
     return (this->getMessageHeader() + this->getMessageBody());
 }
 

@@ -19,7 +19,7 @@ public:
     void stop();
 
 private:
-    BrisaDevice *device;
+    Device *device;
 
 signals:
 

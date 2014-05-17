@@ -1,5 +1,5 @@
-#ifndef BRISAEVENTCONTROLLER_H
-#define BRISAEVENTCONTROLLER_H
+#ifndef EVENTCONTROLLER_H
+#define EVENTCONTROLLER_H
 
 #include "brisaeventmessage.h"
 #include "brisamulticasteventmessage.h"
@@ -12,14 +12,14 @@ namespace brisa {
 namespace upnp {
 namespace device {
 
-class BrisaEventController: public brisa::shared::webserver::WebService
+class EventController: public brisa::shared::webserver::WebService
 {
 	Q_OBJECT
 
 public:
-	BrisaEventController(brisa::shared::webserver::Webserver *sessionManager,
+	EventController(brisa::shared::webserver::Webserver *sessionManager,
 			QList<BrisaStateVariable *> *stateVariableList, QObject *parent = 0);
-	virtual ~BrisaEventController();
+	virtual ~EventController();
 
 	public slots:
 	void variableChanged(BrisaStateVariable *variable);
@@ -32,17 +32,17 @@ public:
 	void onRequest(const brisa::shared::webserver::http::HttpRequest &, brisa::shared::webserver::WebserverSession *session);
 
 	private:
-	BrisaEventController(const BrisaEventController &); // = delete;
+	EventController(const EventController &); // = delete;
 
-	void sendEvent(const BrisaEventMessage &message, const QUrl &url);
+	void sendEvent(const EventMessage &message, const QUrl &url);
 
-	void sendMulticastEvent(const BrisaMulticastEventMessage &message);
+	void sendMulticastEvent(const MulticastEventMessage &message);
 
 	QStringList getEventUrls(const QString &urls);
 
 	int getTimeOut(const QString &timeout);
 
-	QList<BrisaEventSubscription *> subscriptions;
+	QList<EventSubscription *> subscriptions;
 
 	QList<BrisaStateVariable *> *variableList;
 
@@ -51,4 +51,4 @@ public:
 }
 }
 }
-#endif /* _BRISAEVENTCONTROLLER_H */
+#endif /* _EVENTCONTROLLER_H */

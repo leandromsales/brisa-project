@@ -1,5 +1,5 @@
-#ifndef BRISAEVENTMESSAGE_H
-#define BRISAEVENTMESSAGE_H
+#ifndef EVENTMESSAGE_H
+#define EVENTMESSAGE_H
 
 #include <QObject>
 #include <QList>
@@ -18,7 +18,7 @@ namespace device {
  *
  * \brief Represents an UPnP unicast event message.
  */
-class BrisaEventMessage: public BrisaAbstractEventMessage {
+class EventMessage: public AbstractEventMessage {
 Q_OBJECT
 
 public:
@@ -26,7 +26,7 @@ public:
      * Contructs a new event message to the given \a subscription and related to the
      * given \a variables, with the given \a parent object.
      */
-    BrisaEventMessage(BrisaEventSubscription &subscription, const QList<
+    EventMessage(EventSubscription &subscription, const QList<
             BrisaStateVariable *> *variables, QObject *parent = 0);
 
     QByteArray getRequestMessage() const;
@@ -54,10 +54,10 @@ private:
      *
      * \brief the subscription for which the message will be sent
      */
-    BrisaEventSubscription &subscription;
+    EventSubscription &subscription;
 };
 
-inline QString BrisaEventMessage::getSid() const
+inline QString EventMessage::getSid() const
 {
     return subscription.getSid();
 }
@@ -65,4 +65,4 @@ inline QString BrisaEventMessage::getSid() const
 }
 }
 }
-#endif /* _BRISAEVENTMESSAGE_H */
+#endif /* _EVENTMESSAGE_H */

@@ -10,7 +10,7 @@ namespace av {
 MediaRendererDevice::MediaRendererDevice(QObject *parent) :
     QObject(parent) {
 
-    this->device = new BrisaDevice("urn:schemas-upnp-org:device:MediaRenderer:1", // deviceType
+    this->device = new Device("urn:schemas-upnp-org:device:MediaRenderer:1", // deviceType
                                    "UPnPlayer Renderer", // friendlyName
                                    "COMPE. Federal University of Alagoas. Brazil.", // manufacturer
                                    "http://www.upnplayer.com", // manufacturerURL

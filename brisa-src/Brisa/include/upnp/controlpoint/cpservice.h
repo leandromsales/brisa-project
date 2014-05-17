@@ -26,8 +26,8 @@
  *
  */
 
-#ifndef SERVICE_H
-#define SERVICE_H
+#ifndef CPSERVICE_H
+#define CPSERVICE_H
 
 #include "upnp/brisaabstractservice.h"
 #include "upnp/brisaglobal.h"
@@ -118,5 +118,5 @@ private:
 }
 }
 
-#endif /* _SERVICE_H */
+#endif /* _CPSERVICE_H */
 

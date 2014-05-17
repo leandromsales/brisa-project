@@ -43,7 +43,7 @@
 #include <QTemporaryFile>
 
 #include "upnp/brisaicon.h"
-#include "upnp/controlpoint/service.h"
+#include "upnp/controlpoint/cpservice.h"
 //#include "brisaglobal.h"
 
 namespace brisa {

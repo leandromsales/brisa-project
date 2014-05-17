@@ -4,7 +4,7 @@ namespace brisa {
 namespace upnp {
 namespace device {
 
-BrisaAbstractEventMessage::BrisaAbstractEventMessage(QObject *parent) :
+AbstractEventMessage::AbstractEventMessage(QObject *parent) :
         QObject(parent) { }
 
 }
