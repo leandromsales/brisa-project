@@ -1,5 +1,5 @@
-#ifndef MEDIARENDERERCONTROLPOINTDEVICE_H
-#define MEDIARENDERERCONTROLPOINTDEVICE_H
+#ifndef CP_MEDIARENDERERDEVICE_H
+#define CP_MEDIARENDERERDEVICE_H
 
 #include <QObject>
 
@@ -11,12 +11,12 @@ namespace upnp {
 namespace controlpoint {
 namespace av {
 
-class MediaRendererControlPointDevice : public DeviceSales
+class MediaRendererDevice : public DeviceSales
 {
     Q_OBJECT
 public:
-    explicit MediaRendererControlPointDevice(QObject *parent = 0);
-    explicit MediaRendererControlPointDevice(const QString & = QString(""),
+    explicit MediaRendererDevice(QObject *parent = 0);
+    explicit MediaRendererDevice(const QString & = QString(""),
                                  const QString & = QString(""),
                                  QObject *parent = 0);
 
@@ -31,4 +31,4 @@ public slots:
 }
 }
 
-#endif // MEDIARENDERERCONTROLPOINTDEVICE_H
+#endif // CP_MEDIARENDERERDEVICE_H

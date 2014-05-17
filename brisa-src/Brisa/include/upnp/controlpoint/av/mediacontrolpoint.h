@@ -3,9 +3,9 @@
 
 #include <QObject>
 
-#include "controlpoint_media_globals.h"
-#include "mediaservercontrolpointdevice.h"
-#include "mediarenderercontrolpointdevice.h"
+#include "upnp/controlpoint/av/controlpoint_media_globals.h"
+#include "upnp/controlpoint/av/mediaserverdevice.h"
+#include "upnp/controlpoint/av/mediarenderercpdevice.h"
 //#include "upnp/shared/ssdp/ssdp.h"
 #include "shared/ssdp/brisassdpclient.h"
 #include "upnp/controlpoint/msearchclientcp.h"
@@ -22,10 +22,10 @@ public:
 	MediaControlPoint(QObject *parent = 0, QString st = "ssdp:all", int mx = 5);
 	~MediaControlPoint();
 
-	const MediaServerControlPointDevice *getMediaServer(const QString &);
-	const MediaRendererControlPointDevice *getMediaRenderer(const QString &);
-	QList<MediaServerControlPointDevice *> getMediaServers();
-	QList<MediaRendererControlPointDevice *> getMediaRenderers();
+	const MediaServerDevice *getMediaServer(const QString &);
+	const MediaRendererDevice *getMediaRenderer(const QString &);
+	QList<MediaServerDevice *> getMediaServers();
+	QList<MediaRendererDevice *> getMediaRenderers();
 	uint getMediaServersCount();
 	uint getMediaRenderersCount();
 	void discover();
@@ -41,14 +41,14 @@ private:
 //	SSDP *ssdp;
 	brisa::shared::ssdp::BrisaSSDPClient *ssdp;
 	MSearchClientCP *msearch;
-	QHash<QString, MediaServerControlPointDevice*> mss;
-	QHash<QString, MediaRendererControlPointDevice*> mrs;
+	QHash<QString, MediaServerDevice*> mss;
+	QHash<QString, MediaRendererDevice*> mrs;
 	bool running;
 
 signals:
 
-	void newMediaServerDevice(const MediaServerControlPointDevice *);
-	void newMediaRendererDevice(const MediaRendererControlPointDevice *);
+	void newMediaServerDevice(const MediaServerDevice *);
+	void newMediaRendererDevice(const MediaRendererDevice *);
 	void leaveMediaServerDevice(QString);
 	void leaveMediaRendererDevice(QString);
 

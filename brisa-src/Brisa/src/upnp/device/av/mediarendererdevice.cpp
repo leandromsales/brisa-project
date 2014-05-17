@@ -1,4 +1,4 @@
-#include "mediarendererdevice.h"
+#include "upnp/device/av/mediarendererdevice.h"
 #include "upnp/device/brisadevice.h"
 #include "mediarendererdeviceservice.h"
 

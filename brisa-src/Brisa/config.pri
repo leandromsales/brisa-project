@@ -32,13 +32,13 @@ device {
                  $$quote($$BASEDIR/src/upnp/brisastatevariable.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/actionargument.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/actionsales.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/container.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/didllite.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/item.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/res.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediacontrolpoint.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediaservercontrolpointdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/container.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/didllite.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/item.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/res.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av/mediacontrolpoint.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av/mediarenderercpdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av/mediaserverdevice.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/controlpoint.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/device.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/devicesales.cpp) \
@@ -51,8 +51,8 @@ device {
                  $$quote($$BASEDIR/src/upnp/controlpoint/servicesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/statevariablesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/udplistener.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/av_device/mediarendererdevice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/av_device/mediarendererdeviceservice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/av/mediarendererdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/av/mediarendererdeviceservice.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/brisaabstracteventmessage.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/brisaactionxmlparser.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/brisacontrolwebservice.cpp) \
@@ -97,14 +97,14 @@ device {
                  $$quote($$BASEDIR/include/upnp/brisautils.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/actionargument.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/actionsales.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/controlpoint_media_globals.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/didl/container.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/didl/didllite.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/didl/item.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/didl/res.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediacontrolpoint.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediaservercontrolpointdevice.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/controlpoint_media_globals.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/didl/container.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/didl/didllite.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/didl/item.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/didl/res.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/mediacontrolpoint.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/mediarenderercpdevice.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/mediaserverdevice.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/controlpoint.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/device.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/devicesales.h) \
@@ -117,8 +117,8 @@ device {
                  $$quote($$BASEDIR/include/upnp/controlpoint/servicesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/statevariablesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/udplistener.h) \
-                 $$quote($$BASEDIR/include/upnp/device/av_device/mediarendererdevice.h) \
-                 $$quote($$BASEDIR/include/upnp/device/av_device/mediarendererdeviceservice.h) \
+                 $$quote($$BASEDIR/include/upnp/device/av/mediarendererdevice.h) \
+                 $$quote($$BASEDIR/include/upnp/device/av/mediarendererdeviceservice.h) \
                  $$quote($$BASEDIR/include/upnp/device/brisaabstracteventmessage.h) \
                  $$quote($$BASEDIR/include/upnp/device/brisaactionxmlparser.h) \
                  $$quote($$BASEDIR/include/upnp/device/brisacontrolwebservice.h) \
@@ -161,13 +161,13 @@ device {
                  $$quote($$BASEDIR/src/upnp/brisastatevariable.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/actionargument.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/actionsales.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/container.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/didllite.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/item.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/res.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediacontrolpoint.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediaservercontrolpointdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/container.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/didllite.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/item.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/res.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av/mediacontrolpoint.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av/mediarenderercpdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av/mediaserverdevice.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/controlpoint.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/device.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/devicesales.cpp) \
@@ -180,8 +180,8 @@ device {
                  $$quote($$BASEDIR/src/upnp/controlpoint/servicesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/statevariablesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/udplistener.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/av_device/mediarendererdevice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/av_device/mediarendererdeviceservice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/av/mediarendererdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/av/mediarendererdeviceservice.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/brisaabstracteventmessage.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/brisaactionxmlparser.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/brisacontrolwebservice.cpp) \
@@ -226,14 +226,14 @@ device {
                  $$quote($$BASEDIR/include/upnp/brisautils.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/actionargument.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/actionsales.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/controlpoint_media_globals.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/didl/container.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/didl/didllite.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/didl/item.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/didl/res.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediacontrolpoint.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediaservercontrolpointdevice.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/controlpoint_media_globals.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/didl/container.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/didl/didllite.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/didl/item.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/didl/res.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/mediacontrolpoint.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/mediarenderercpdevice.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/mediaserverdevice.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/controlpoint.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/device.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/devicesales.h) \
@@ -246,8 +246,8 @@ device {
                  $$quote($$BASEDIR/include/upnp/controlpoint/servicesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/statevariablesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/udplistener.h) \
-                 $$quote($$BASEDIR/include/upnp/device/av_device/mediarendererdevice.h) \
-                 $$quote($$BASEDIR/include/upnp/device/av_device/mediarendererdeviceservice.h) \
+                 $$quote($$BASEDIR/include/upnp/device/av/mediarendererdevice.h) \
+                 $$quote($$BASEDIR/include/upnp/device/av/mediarendererdeviceservice.h) \
                  $$quote($$BASEDIR/include/upnp/device/brisaabstracteventmessage.h) \
                  $$quote($$BASEDIR/include/upnp/device/brisaactionxmlparser.h) \
                  $$quote($$BASEDIR/include/upnp/device/brisacontrolwebservice.h) \
@@ -292,13 +292,13 @@ simulator {
                  $$quote($$BASEDIR/src/upnp/brisastatevariable.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/actionargument.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/actionsales.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/container.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/didllite.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/item.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl/res.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediacontrolpoint.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediaservercontrolpointdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/container.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/didllite.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/item.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/res.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av/mediacontrolpoint.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av/mediarenderercpdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/av/mediaserverdevice.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/controlpoint.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/device.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/devicesales.cpp) \
@@ -311,8 +311,8 @@ simulator {
                  $$quote($$BASEDIR/src/upnp/controlpoint/servicesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/statevariablesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/udplistener.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/av_device/mediarendererdevice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/av_device/mediarendererdeviceservice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/av/mediarendererdevice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/av/mediarendererdeviceservice.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/brisaabstracteventmessage.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/brisaactionxmlparser.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/brisacontrolwebservice.cpp) \
@@ -357,14 +357,14 @@ simulator {
                  $$quote($$BASEDIR/include/upnp/brisautils.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/actionargument.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/actionsales.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/controlpoint_media_globals.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/didl/container.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/didl/didllite.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/didl/item.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/didl/res.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediacontrolpoint.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediaservercontrolpointdevice.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/controlpoint_media_globals.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/didl/container.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/didl/didllite.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/didl/item.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/didl/res.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/mediacontrolpoint.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/mediarenderercpdevice.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/av/mediaserverdevice.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/controlpoint.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/device.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/devicesales.h) \
@@ -377,8 +377,8 @@ simulator {
                  $$quote($$BASEDIR/include/upnp/controlpoint/servicesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/statevariablesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/udplistener.h) \
-                 $$quote($$BASEDIR/include/upnp/device/av_device/mediarendererdevice.h) \
-                 $$quote($$BASEDIR/include/upnp/device/av_device/mediarendererdeviceservice.h) \
+                 $$quote($$BASEDIR/include/upnp/device/av/mediarendererdevice.h) \
+                 $$quote($$BASEDIR/include/upnp/device/av/mediarendererdeviceservice.h) \
                  $$quote($$BASEDIR/include/upnp/device/brisaabstracteventmessage.h) \
                  $$quote($$BASEDIR/include/upnp/device/brisaactionxmlparser.h) \
                  $$quote($$BASEDIR/include/upnp/device/brisacontrolwebservice.h) \
@@ -393,26 +393,26 @@ simulator {
 }
 
 INCLUDEPATH +=  $$quote($$BASEDIR/src/shared/webserver) \
-         $$quote($$BASEDIR/include/upnp/device/av_device) \
+         $$quote($$BASEDIR/include/upnp/controlpoint/av/didl) \
          $$quote($$BASEDIR/include/upnp) \
+         $$quote($$BASEDIR/include/upnp/device/av) \
          $$quote($$BASEDIR/include/upnp/device) \
          $$quote($$BASEDIR/src/network) \
-         $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint) \
+         $$quote($$BASEDIR/src/upnp/controlpoint/av) \
          $$quote($$BASEDIR/src/shared/soap) \
          $$quote($$BASEDIR/src/shared/ssdp) \
          $$quote($$BASEDIR/include/network) \
          $$quote($$BASEDIR/src/upnp/controlpoint) \
          $$quote($$BASEDIR/src/upnp) \
+         $$quote($$BASEDIR/include/upnp/controlpoint/av) \
          $$quote($$BASEDIR/include/shared/webserver) \
-         $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/didl) \
-         $$quote($$BASEDIR/src/upnp/device/av_device) \
          $$quote($$BASEDIR/include/shared/webserver/http) \
          $$quote($$BASEDIR/src/upnp/device) \
-         $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint) \
          $$quote($$BASEDIR/include/shared/soap) \
          $$quote($$BASEDIR/include/shared/ssdp) \
-         $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/didl) \
+         $$quote($$BASEDIR/src/upnp/controlpoint/av/didl) \
          $$quote($$BASEDIR/include/upnp/controlpoint) \
+         $$quote($$BASEDIR/src/upnp/device/av) \
          $$quote($$BASEDIR/src/shared/webserver/http)
 
 CONFIG += precompile_header
@@ -465,26 +465,26 @@ lupdate_inclusion {
              $$quote($$BASEDIR/../include/upnp/controlpoint/*.cc) \
              $$quote($$BASEDIR/../include/upnp/controlpoint/*.cpp) \
              $$quote($$BASEDIR/../include/upnp/controlpoint/*.cxx) \
-             $$quote($$BASEDIR/../include/upnp/controlpoint/av_controlpoint/*.c) \
-             $$quote($$BASEDIR/../include/upnp/controlpoint/av_controlpoint/*.c++) \
-             $$quote($$BASEDIR/../include/upnp/controlpoint/av_controlpoint/*.cc) \
-             $$quote($$BASEDIR/../include/upnp/controlpoint/av_controlpoint/*.cpp) \
-             $$quote($$BASEDIR/../include/upnp/controlpoint/av_controlpoint/*.cxx) \
-             $$quote($$BASEDIR/../include/upnp/controlpoint/av_controlpoint/didl/*.c) \
-             $$quote($$BASEDIR/../include/upnp/controlpoint/av_controlpoint/didl/*.c++) \
-             $$quote($$BASEDIR/../include/upnp/controlpoint/av_controlpoint/didl/*.cc) \
-             $$quote($$BASEDIR/../include/upnp/controlpoint/av_controlpoint/didl/*.cpp) \
-             $$quote($$BASEDIR/../include/upnp/controlpoint/av_controlpoint/didl/*.cxx) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/av/*.c) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/av/*.c++) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/av/*.cc) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/av/*.cpp) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/av/*.cxx) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/av/didl/*.c) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/av/didl/*.c++) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/av/didl/*.cc) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/av/didl/*.cpp) \
+             $$quote($$BASEDIR/../include/upnp/controlpoint/av/didl/*.cxx) \
              $$quote($$BASEDIR/../include/upnp/device/*.c) \
              $$quote($$BASEDIR/../include/upnp/device/*.c++) \
              $$quote($$BASEDIR/../include/upnp/device/*.cc) \
              $$quote($$BASEDIR/../include/upnp/device/*.cpp) \
              $$quote($$BASEDIR/../include/upnp/device/*.cxx) \
-             $$quote($$BASEDIR/../include/upnp/device/av_device/*.c) \
-             $$quote($$BASEDIR/../include/upnp/device/av_device/*.c++) \
-             $$quote($$BASEDIR/../include/upnp/device/av_device/*.cc) \
-             $$quote($$BASEDIR/../include/upnp/device/av_device/*.cpp) \
-             $$quote($$BASEDIR/../include/upnp/device/av_device/*.cxx) \
+             $$quote($$BASEDIR/../include/upnp/device/av/*.c) \
+             $$quote($$BASEDIR/../include/upnp/device/av/*.c++) \
+             $$quote($$BASEDIR/../include/upnp/device/av/*.cc) \
+             $$quote($$BASEDIR/../include/upnp/device/av/*.cpp) \
+             $$quote($$BASEDIR/../include/upnp/device/av/*.cxx) \
              $$quote($$BASEDIR/../src/*.c) \
              $$quote($$BASEDIR/../src/*.c++) \
              $$quote($$BASEDIR/../src/*.cc) \
@@ -530,26 +530,26 @@ lupdate_inclusion {
              $$quote($$BASEDIR/../src/upnp/controlpoint/*.cc) \
              $$quote($$BASEDIR/../src/upnp/controlpoint/*.cpp) \
              $$quote($$BASEDIR/../src/upnp/controlpoint/*.cxx) \
-             $$quote($$BASEDIR/../src/upnp/controlpoint/av_controlpoint/*.c) \
-             $$quote($$BASEDIR/../src/upnp/controlpoint/av_controlpoint/*.c++) \
-             $$quote($$BASEDIR/../src/upnp/controlpoint/av_controlpoint/*.cc) \
-             $$quote($$BASEDIR/../src/upnp/controlpoint/av_controlpoint/*.cpp) \
-             $$quote($$BASEDIR/../src/upnp/controlpoint/av_controlpoint/*.cxx) \
-             $$quote($$BASEDIR/../src/upnp/controlpoint/av_controlpoint/didl/*.c) \
-             $$quote($$BASEDIR/../src/upnp/controlpoint/av_controlpoint/didl/*.c++) \
-             $$quote($$BASEDIR/../src/upnp/controlpoint/av_controlpoint/didl/*.cc) \
-             $$quote($$BASEDIR/../src/upnp/controlpoint/av_controlpoint/didl/*.cpp) \
-             $$quote($$BASEDIR/../src/upnp/controlpoint/av_controlpoint/didl/*.cxx) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/av/*.c) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/av/*.c++) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/av/*.cc) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/av/*.cpp) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/av/*.cxx) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/av/didl/*.c) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/av/didl/*.c++) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/av/didl/*.cc) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/av/didl/*.cpp) \
+             $$quote($$BASEDIR/../src/upnp/controlpoint/av/didl/*.cxx) \
              $$quote($$BASEDIR/../src/upnp/device/*.c) \
              $$quote($$BASEDIR/../src/upnp/device/*.c++) \
              $$quote($$BASEDIR/../src/upnp/device/*.cc) \
              $$quote($$BASEDIR/../src/upnp/device/*.cpp) \
              $$quote($$BASEDIR/../src/upnp/device/*.cxx) \
-             $$quote($$BASEDIR/../src/upnp/device/av_device/*.c) \
-             $$quote($$BASEDIR/../src/upnp/device/av_device/*.c++) \
-             $$quote($$BASEDIR/../src/upnp/device/av_device/*.cc) \
-             $$quote($$BASEDIR/../src/upnp/device/av_device/*.cpp) \
-             $$quote($$BASEDIR/../src/upnp/device/av_device/*.cxx)
+             $$quote($$BASEDIR/../src/upnp/device/av/*.c) \
+             $$quote($$BASEDIR/../src/upnp/device/av/*.c++) \
+             $$quote($$BASEDIR/../src/upnp/device/av/*.cc) \
+             $$quote($$BASEDIR/../src/upnp/device/av/*.cpp) \
+             $$quote($$BASEDIR/../src/upnp/device/av/*.cxx)
 
     HEADERS +=  $$quote($$BASEDIR/../include/*.h) \
              $$quote($$BASEDIR/../include/*.h++) \

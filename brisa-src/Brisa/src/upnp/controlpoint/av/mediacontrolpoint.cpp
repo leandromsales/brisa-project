@@ -78,9 +78,9 @@ void MediaControlPoint::handleNewSSDPMessage(QString message) {
 		{
 			if (type.startsWith(acceptedType)) {
 				location = response["location"];
-				device = new MediaServerControlPointDevice(uuid, location);
+				device = new MediaServerDevice(uuid, location);
 				this->mss.insert(uuid,
-						(MediaServerControlPointDevice *) device);
+						(MediaServerDevice *) device);
 				Q_ASSERT(connect(device, SIGNAL(deviceDescriptionReady(DeviceSales *)), this,
 						SLOT(handleMediaServerReady(DeviceSales *))));
 				found = true;
@@ -93,10 +93,10 @@ void MediaControlPoint::handleNewSSDPMessage(QString message) {
 			{
 				if (type.startsWith(acceptedType)) {
 					location = response["location"];
-					device = new MediaRendererControlPointDevice(uuid,
+					device = new MediaRendererDevice(uuid,
 							location);
 					this->mrs.insert(uuid,
-							(MediaRendererControlPointDevice *) device);
+							(MediaRendererDevice *) device);
 					connect(device, SIGNAL(deviceDescriptionReady(DeviceSales *)),
 							this, SLOT(handleMediaRendererReady(DeviceSales *)));
 					found = true;
@@ -187,21 +187,21 @@ bool MediaControlPoint::isRunning() {
     return this->running;
 }
 
-const MediaServerControlPointDevice * MediaControlPoint::getMediaServer(
+const MediaServerDevice * MediaControlPoint::getMediaServer(
 		const QString &uuid) {
 	return this->mss.value(uuid);
 }
 
-const MediaRendererControlPointDevice * MediaControlPoint::getMediaRenderer(
+const MediaRendererDevice * MediaControlPoint::getMediaRenderer(
 		const QString &uuid) {
 	return this->mrs.value(uuid);
 }
 
-QList<MediaServerControlPointDevice *> MediaControlPoint::getMediaServers() {
+QList<MediaServerDevice *> MediaControlPoint::getMediaServers() {
 	return this->mss.values();
 }
 
-QList<MediaRendererControlPointDevice *> MediaControlPoint::getMediaRenderers() {
+QList<MediaRendererDevice *> MediaControlPoint::getMediaRenderers() {
 	return this->mrs.values();
 }
 
@@ -213,7 +213,7 @@ void MediaControlPoint::handleSSDPSetupEvents(QString message) {
 void MediaControlPoint::handleMediaServerReady(DeviceSales * device) {
 	disconnect(device, SIGNAL(deviceDescriptionReady(DeviceSales *)), this,
 			SLOT(handleMediaServerReady(DeviceSales *)));
-	MediaServerControlPointDevice *ms = (MediaServerControlPointDevice *) device;
+	MediaServerDevice *ms = (MediaServerDevice *) device;
 	++this->mediaServerCount;
 	emit newMediaServerDevice(ms);
 }
@@ -221,8 +221,8 @@ void MediaControlPoint::handleMediaServerReady(DeviceSales * device) {
 void MediaControlPoint::handleMediaRendererReady(DeviceSales * device) {
 	disconnect(device, SIGNAL(deviceDescriptionReady(DeviceSales *)), this,
 			SLOT(handleMediaRendererReady(DeviceSales*)));
-	MediaRendererControlPointDevice *mr =
-			(MediaRendererControlPointDevice *) device;
+	MediaRendererDevice *mr =
+			(MediaRendererDevice *) device;
 	++this->mediaRendererCount;
 	emit newMediaRendererDevice(mr);
 }
