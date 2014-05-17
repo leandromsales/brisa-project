@@ -14,7 +14,7 @@ ExecutableAction::ExecutableAction(QObject *parent) :
 		QObject(parent) {
 	m_action = 0;
 	m_service = 0;
-	m_devices = new QStack<BrisaControlPointDevice *>();
+	m_devices = new QStack<Device *>();
 	m_currentDevice = 0;
 }
 
@@ -63,19 +63,19 @@ bool ExecutableAction::isComplete() {
 		return false;
 }
 
-BrisaAction* ExecutableAction::getAction() {
+Action* ExecutableAction::getAction() {
 	return m_action;
 }
 
-void ExecutableAction::setAction(BrisaAction* action) {
+void ExecutableAction::setAction(Action* action) {
 	m_action = action;
 }
 
-BrisaControlPointDevice* ExecutableAction::getDevice() {
+Device* ExecutableAction::getDevice() {
 	return m_currentDevice;
 }
 
-void ExecutableAction::setDevice(BrisaControlPointDevice* device) {
+void ExecutableAction::setDevice(Device* device) {
 	m_action = 0;
 	m_service = 0;
 	if (m_currentDevice)
@@ -83,22 +83,22 @@ void ExecutableAction::setDevice(BrisaControlPointDevice* device) {
 	m_currentDevice = device;
 }
 
-BrisaControlPointService* ExecutableAction::getService() {
+Service* ExecutableAction::getService() {
 	return m_service;
 }
 
-void ExecutableAction::setService(BrisaControlPointService* service) {
+void ExecutableAction::setService(Service* service) {
 	m_action = 0;
 	m_service = service;
 }
 
 QString ExecutableAction::getDeviceFriendlyName() {
-	return m_currentDevice->getAttribute(BrisaControlPointDevice::friendlyName);
+	return m_currentDevice->getAttribute(Device::friendlyName);
 }
 
 QString ExecutableAction::getServiceFriendlyName() {
 	return friendlyNameFromServiceType(
-			m_service->getAttribute(BrisaControlPointService::ServiceType));
+			m_service->getAttribute(Service::ServiceType));
 }
 
 QString ExecutableAction::getActionName() {

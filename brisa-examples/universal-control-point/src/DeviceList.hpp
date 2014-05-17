@@ -14,13 +14,13 @@
 #include <QObject>
 #include <QVariantMap>
 
-#include "upnp/brisaaction.h"
-#include "upnp/controlpoint/brisacontrolpointdevice.h"
-#include "upnp/controlpoint/brisacontrolpointservice.h"
+#include "upnp/action.h"
+#include "upnp/controlpoint/cpdevice.h"
+#include "upnp/controlpoint/cpservice.h"
 
 #include "model/ExecutableAction.hpp"
 
-class DeviceList: public QList<brisa::upnp::controlpoint::BrisaControlPointDevice *> {
+class DeviceList: public QList<brisa::upnp::controlpoint::Device *> {
 public:
 	enum types {
 		DEVICE, SERVICE, ACTION
@@ -36,13 +36,13 @@ public:
 	virtual ~DeviceList() {}
 	void popCurrentItem();
 	int setCurrentItemByID(QString ID);
-	brisa::upnp::controlpoint::BrisaControlPointDevice *getDevice(int index);
-	brisa::upnp::controlpoint::BrisaControlPointDevice *getCurrentDevice();
-	brisa::upnp::controlpoint::BrisaControlPointDevice *getDeviceByUDN(QString UDN);
+	brisa::upnp::controlpoint::Device *getDevice(int index);
+	brisa::upnp::controlpoint::Device *getCurrentDevice();
+	brisa::upnp::controlpoint::Device *getDeviceByUDN(QString UDN);
 
 private:
 	DeviceList();
-	brisa::upnp::controlpoint::BrisaControlPointDevice *m_currentDevice;
+	brisa::upnp::controlpoint::Device *m_currentDevice;
 	ExecutableAction *m_executableAction;
 };
 

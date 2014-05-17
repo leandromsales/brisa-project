@@ -42,12 +42,14 @@ ViewController::ViewController(QObject *parent) :
 
 	m_devicesModel = new ArrayDataModel();
 
-	m_controlPoint = new BrisaControlPoint();
+	m_controlPoint = new ControlPoint();
 
-	connect(m_controlPoint, SIGNAL(deviceGone(QString)), this,
+	bool isOk = connect(m_controlPoint, SIGNAL(deviceGone(QString)), this,
 			SLOT(removeDevice(QString)));
-	connect(m_controlPoint, SIGNAL(deviceFound(BrisaControlPointDevice*)), this,
-			SLOT(deviceFoundDump(BrisaControlPointDevice*)));
+	Q_ASSERT(isOk);
+	isOk = connect(m_controlPoint, SIGNAL(deviceFound(Device*)), this,
+			SLOT(deviceFoundDump(Device*)));
+	Q_ASSERT(isOk);
 
 	m_timer = new QTimer(this);
 	connect(m_timer, SIGNAL(timeout()), this, SLOT(testConnection()));
@@ -64,7 +66,7 @@ ViewController::~ViewController() {
 	delete m_controlPoint;
 }
 
-void ViewController::onReadyDownloadIcons(BrisaControlPointDevice *device) {
+void ViewController::onReadyDownloadIcons(Device *device) {
 	//Implementar uso de icones
 	m_currentDeviceItem->insert("_icon",
 			device->getIconList().at(0)->getIcon().name());
@@ -73,18 +75,18 @@ void ViewController::onReadyDownloadIcons(BrisaControlPointDevice *device) {
 //void ViewController::lineEnabled(QTreeWidgetItem* item, int collumn) {
 //}
 
-void ViewController::deviceFoundDump(BrisaControlPointDevice *device) {
-	if (device->getAttribute(BrisaControlPointDevice::Udn).compare("") == 0)
+void ViewController::deviceFoundDump(Device *device) {
+	if (device->getAttribute(Device::Udn).compare("") == 0)
 		return;
 	// TODO Verificar se podemos usar esse metodo de verificacao de duplicidade
 //	if (m_devices->getDeviceByUDN(
-//			device->getAttribute(BrisaControlPointDevice::Udn))) {
+//			device->getAttribute(Device::Udn))) {
 //		(*m_devices)[i] = device;
 //		return;
 //	}
 	for (int i = 0; i < m_devices->size(); i++) {
-		if ((*m_devices)[i]->getAttribute(BrisaControlPointDevice::Udn)
-				== device->getAttribute(BrisaControlPointDevice::Udn)) {
+		if ((*m_devices)[i]->getAttribute(Device::Udn)
+				== device->getAttribute(Device::Udn)) {
 			(*m_devices)[i] = device;
 			return;
 		}
@@ -100,7 +102,7 @@ void ViewController::deviceFoundDump(BrisaControlPointDevice *device) {
 
 void ViewController::removeDevice(QString udn) {
 	for (int i = 0; i < m_devices->size(); i++) {
-		if (m_devices->at(i)->getAttribute(BrisaControlPointDevice::udn).compare(
+		if (m_devices->at(i)->getAttribute(Device::udn).compare(
 				udn.split("::")[0]) == 0) {
 			m_devices->removeAt(i);
 			m_devicesModel->removeAt(i);
@@ -138,7 +140,7 @@ void ViewController::multicastEventRawReceived(BrisaOutArgument raw) {
 	emit onEventLogModelChanged();
 }
 
-void ViewController::unicastEventReceived(BrisaEventProxy* subscription,
+void ViewController::unicastEventReceived(EventProxy* subscription,
 		QMap<QString, QString> eventVariables) {
 	QList<QString> deviceService = m_eventToDevice[subscription->getId()];
 	qDebug() << "Unicast event message received:";
@@ -237,18 +239,18 @@ void ViewController::createDeviceItem() {
 	m_currentDeviceItem = new QVariantMap();
 
 	m_currentDeviceItem->insert("friendlyName",
-			m_currentDev->getAttribute(BrisaControlPointDevice::FriendlyName));
+			m_currentDev->getAttribute(Device::FriendlyName));
 	m_currentDeviceItem->insert("typeName",
-			m_currentDev->getAttribute(BrisaControlPointDevice::deviceType));
+			m_currentDev->getAttribute(Device::deviceType));
 	m_currentDeviceItem->insert("type", 0);
 	m_currentDeviceItem->insert("id",
-			m_currentDev->getAttribute(BrisaControlPointDevice::Udn));
+			m_currentDev->getAttribute(Device::Udn));
 
 	m_devicesModel->append(*m_currentDeviceItem);
 // TODO Verficiar como colocar um icone remoto no item da lista
 //    if(currentDev->getIconList().size() > 0){
-//        connect(currentDev, SIGNAL(onReadyDownloadIcons(BrisaControlPointDevice*)),
-//                this, SLOT(onReadyDownloadIcons(BrisaControlPointDevice*)));
+//        connect(currentDev, SIGNAL(onReadyDownloadIcons(Device*)),
+//                this, SLOT(onReadyDownloadIcons(Device*)));
 //        currentDev->downloadIcons();
 //    } else {
 ////    	(*currentDeviceItem)["_icon"] = "qrc://assets/images/device.png";
@@ -265,39 +267,39 @@ ArrayDataModel* ViewController::getGenericDataModelByID(QString ID) {
 	qDebug() << "ViewController::getGenericDataModelByID:" << type;
 	switch (type) {
 	case DeviceList::DEVICE: {
-		BrisaControlPointDevice *device = executableAction->getDevice();
+		Device *device = executableAction->getDevice();
 		qDebug() << "ViewController::getGenericDataModelByID => DEVICE:"
-				<< device->getAttribute(BrisaControlPointDevice::friendlyName)
+				<< device->getAttribute(Device::friendlyName)
 				<< "EmbeddedDevices:" << device->getEmbeddedDeviceList().size()
 				<< "Services:" << device->getServiceList().size();
-		foreach (BrisaControlPointDevice *tempDevice, device->getEmbeddedDeviceList())
+		foreach (Device *tempDevice, device->getEmbeddedDeviceList())
 		{
 			qDebug()
 					<< "ViewController::getGenericDataModelByID => DEVICE/DEVICE:"
 					<< tempDevice->getAttribute(
-							BrisaControlPointDevice::friendlyName);
+							Device::friendlyName);
 			QVariantMap map;
 			map.insert("friendlyName",
 					tempDevice->getAttribute(
-							BrisaControlPointDevice::friendlyName));
+							Device::friendlyName));
 			map.insert("typeName",
 					tempDevice->getAttribute(
-							BrisaControlPointDevice::deviceType));
+							Device::deviceType));
 			map.insert("type", 0);
 			map.insert("id",
-					tempDevice->getAttribute(BrisaControlPointDevice::udn));
+					tempDevice->getAttribute(Device::udn));
 			arrayDataModel->append(map);
 		}
-		foreach (BrisaControlPointService *tempService, device->getServiceList())
+		foreach (Service *tempService, device->getServiceList())
 		{
 			qDebug()
 					<< "ViewController::getGenericDataModelByID => DEVICE/SERVICE:"
 					<< ExecutableAction::friendlyNameFromServiceType(
 							tempService->getAttribute(
-									BrisaControlPointService::ServiceType));
+									Service::ServiceType));
 
 			// ==================== Subscription in unicastEvent ====================
-			BrisaEventProxy *subscription =
+			EventProxy *subscription =
 					m_controlPoint->getSubscriptionProxy(tempService);
 			connect(subscription,
 					SIGNAL(eventNotification(BrisaEventProxy *,QMap<QString, QString>)),
@@ -309,10 +311,10 @@ ArrayDataModel* ViewController::getGenericDataModelByID(QString ID) {
 
 			deviceAndService.append(
 					device->getAttribute(
-							BrisaControlPointDevice::FriendlyName));
+							Device::FriendlyName));
 			deviceAndService.append(
 					tempService->getAttribute(
-							BrisaControlPointService::ServiceType));
+							Service::ServiceType));
 
 			m_eventToDevice[subscription->getId()] = deviceAndService;
 
@@ -322,26 +324,26 @@ ArrayDataModel* ViewController::getGenericDataModelByID(QString ID) {
 			map.insert("friendlyName",
 					ExecutableAction::friendlyNameFromServiceType(
 							tempService->getAttribute(
-									BrisaControlPointService::ServiceType)));
+									Service::ServiceType)));
 			map.insert("typeName",
 					tempService->getAttribute(
-							BrisaControlPointService::ServiceType));
+							Service::ServiceType));
 			map.insert("type", 1);
 			map.insert("id",
 					tempService->getAttribute(
-							BrisaControlPointService::ServiceId));
+							Service::ServiceId));
 			arrayDataModel->append(map);
 		}
 		break;
 	}
 	case DeviceList::SERVICE: {
-		BrisaControlPointService *service = executableAction->getService();
+		Service *service = executableAction->getService();
 		qDebug() << "ViewController::getGenericDataModelByID => SERVICE:"
 				<< ExecutableAction::friendlyNameFromServiceType(
 						service->getAttribute(
-								BrisaControlPointService::ServiceType))
+								Service::ServiceType))
 				<< "Actions:" << service->getActionList().size();
-		foreach (BrisaAction *tempAction, service->getActionList())
+		foreach (Action *tempAction, service->getActionList())
 		{
 			qDebug()
 					<< "ViewController::getGenericDataModelByID => SERVICE/ACTION:"

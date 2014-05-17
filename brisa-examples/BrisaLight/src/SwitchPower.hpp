@@ -10,10 +10,10 @@
 
 #include <QObject>
 #include <QtCore>
-#include <upnp/brisaaction.h>
-#include <upnp/device/brisaservice.h>
-#include <upnp/brisaabstractservice.h>
-#include <upnp/brisastatevariable.h>
+#include <upnp/action.h>
+#include <upnp/device/service.h>
+#include <upnp/abstractservice.h>
+#include <upnp/statevariable.h>
 
 #define SERVICE_TYPE "urn:schemas-upnp-org:service:SwitchPower:1"
 #define SERVICE_ID "SwitchPower"
@@ -21,7 +21,7 @@
 #define SERVICE_CONTROL "/SwitchPower/control"
 #define SERVICE_EVENT_SUB "/SwitchPower/eventSub"
 
-class SwitchPower : public brisa::upnp::device::BrisaService
+class SwitchPower : public brisa::upnp::device::Service
 {
     Q_OBJECT
 public:
@@ -30,12 +30,12 @@ public:
 //public slots:
 
 	Q_INVOKABLE BrisaOutArgument* GetStatus(BrisaInArgument * const inArguments,
-                                brisa::upnp::BrisaAction * const action);
+                                brisa::upnp::Action * const action);
 
 	Q_INVOKABLE BrisaOutArgument* GetTarget(BrisaInArgument * const inArguments,
-			brisa::upnp::BrisaAction * const action);
+			brisa::upnp::Action * const action);
 
-	Q_INVOKABLE BrisaOutArgument* SetTarget(BrisaInArgument*const, brisa::upnp::BrisaAction *const);
+	Q_INVOKABLE BrisaOutArgument* SetTarget(BrisaInArgument*const, brisa::upnp::Action *const);
 };
 
 #endif /* SWITCHPOWER_HPP_ */

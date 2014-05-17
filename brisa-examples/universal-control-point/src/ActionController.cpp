@@ -26,16 +26,16 @@ ActionController::~ActionController() {
 
 QVariantMap ActionController::getArguments() {
 	QVariantMap arguments;
-	BrisaAction *currentAction = m_executableAction->getAction();
+	Action *currentAction = m_executableAction->getAction();
 	if (currentAction) {
 		QVariantList inArgs;
 		QVariantList outArgs;
-		QList<BrisaArgument *> inArguments;
-		QList<BrisaArgument *> outArguments;
+		QList<Argument *> inArguments;
+		QList<Argument *> outArguments;
 
 		for (int i = 0; i < currentAction->getArgumentList().size(); i++) {
 			if ((currentAction->getArgumentList()[i])->getAttribute(
-					BrisaArgument::Direction).compare("in") == 0) {
+					Argument::Direction).compare("in") == 0) {
 				inArguments.append(currentAction->getArgumentList()[i]);
 			} else {
 				outArguments.append(currentAction->getArgumentList()[i]);
@@ -46,9 +46,9 @@ QVariantMap ActionController::getArguments() {
 			for (int i = 0; i < inArguments.size(); ++i) {
 				QVariantMap parameter;
 				parameter["name"] = inArguments[i]->getAttribute(
-						BrisaArgument::ArgumentName);
+						Argument::ArgumentName);
 				parameter["related_state"] = inArguments[i]->getAttribute(
-						BrisaArgument::RelatedStateVariable);
+						Argument::RelatedStateVariable);
 				inArgs.append(parameter);
 			}
 		}
@@ -56,9 +56,9 @@ QVariantMap ActionController::getArguments() {
 			for (int i = 0; i < outArguments.size(); ++i) {
 				QVariantMap parameter;
 				parameter["name"] = outArguments[i]->getAttribute(
-						BrisaArgument::ArgumentName);
+						Argument::ArgumentName);
 				parameter["related_state"] = outArguments[i]->getAttribute(
-						BrisaArgument::RelatedStateVariable);
+						Argument::RelatedStateVariable);
 				outArgs.append(parameter);
 			}
 		}

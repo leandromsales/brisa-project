@@ -18,7 +18,7 @@
 #include <bb/system/InvokeRequest>
 #include <bb/system/InvokeTargetReply>
 
-#include <upnp/brisastatevariable.h>
+#include <upnp/statevariable.h>
 
 #include "BinaryLight.h"
 #include "activeframeqml.h"
@@ -84,7 +84,7 @@ signals:
 	void onSwitchStatus(bool);
 
 public slots:
-	void stateChanged(BrisaStateVariable *);
+	void stateChanged(StateVariable *);
 
 private slots:
 	void testConnection();

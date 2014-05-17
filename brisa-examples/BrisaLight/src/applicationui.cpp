@@ -112,7 +112,7 @@ void ApplicationUI::updateSettings() {
 	m_settings->sync();
 }
 
-void ApplicationUI::stateChanged(BrisaStateVariable *var) {
+void ApplicationUI::stateChanged(StateVariable *var) {
 	m_activeLamp = var->getValue().toBool();
 	emit onActiveLamp();
 	qDebug() << "State changed: " << var->getValue().toBool();

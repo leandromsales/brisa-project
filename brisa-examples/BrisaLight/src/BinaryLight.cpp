@@ -17,7 +17,7 @@ BinaryLight::BinaryLight(ApplicationUI *ui) {
 	m_ui = ui;
 	QString completeUUID = getCompleteUuid();
 	qDebug() << "My UUID" << completeUUID;
-	m_binaryLight = new BrisaDevice(DEVICE_TYPE,
+	m_binaryLight = new Device(DEVICE_TYPE,
 			DEVICE_FRIENDLY_NAME, DEVICE_MANUFACTURER, DEVICE_MANUFACTURER_URL,
 			DEVICE_MODEL_DESCRIPTION, DEVICE_MODEL_NAME, DEVICE_MODEL_NUMBER,
 			DEVICE_MODEL_URL, DEVICE_SERIAL_NUMBER, completeUUID);
@@ -39,8 +39,8 @@ void BinaryLight::start() {
 			"urn:schemas-upnp-org:service:SwitchPower:1")->getVariable(
 			"Target");
 
-	bool isOk = connect(m_status, SIGNAL(changed(BrisaStateVariable *)), m_ui,
-			SLOT(stateChanged(BrisaStateVariable *)));
+	bool isOk = connect(m_status, SIGNAL(changed(StateVariable *)), m_ui,
+			SLOT(stateChanged(StateVariable *)));
 	Q_ASSERT(isOk);
 	Q_UNUSED(isOk);
 }
@@ -48,11 +48,11 @@ void BinaryLight::start() {
 void BinaryLight::uiStateChanged(bool check) {
 	if (m_ui->isConnected()) {
 		if (check) {
-			m_status->setAttribute(BrisaStateVariable::Value, "1");
-			m_target->setAttribute(BrisaStateVariable::Value, "1");
+			m_status->setAttribute(StateVariable::Value, "1");
+			m_target->setAttribute(StateVariable::Value, "1");
 		} else {
-			m_status->setAttribute(BrisaStateVariable::Value, "0");
-			m_target->setAttribute(BrisaStateVariable::Value, "0");
+			m_status->setAttribute(StateVariable::Value, "0");
+			m_target->setAttribute(StateVariable::Value, "0");
 		}
 	}
 }

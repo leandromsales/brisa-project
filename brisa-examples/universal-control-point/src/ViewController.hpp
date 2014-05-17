@@ -17,11 +17,13 @@
 #include <bb/system/InvokeRequest>
 #include <bb/system/InvokeTargetReply>
 
-#include "upnp/controlpoint/brisacontrolpoint.h"
-#include "upnp/controlpoint/brisacontrolpointdevice.h"
+#include "upnp/controlpoint/controlpoint.h"
+#include "upnp/controlpoint/cpdevice.h"
 
 #include "DeviceList.hpp"
 #include "model/ExecutableAction.hpp"
+
+using namespace brisa::upnp::controlpoint;
 
 class ViewController: public QObject {
 Q_OBJECT
@@ -59,12 +61,12 @@ signals:
 	void onEventLogModelChanged();
 
 public slots:
-	void onReadyDownloadIcons(brisa::upnp::controlpoint::BrisaControlPointDevice *device);
-	void deviceFoundDump(brisa::upnp::controlpoint::BrisaControlPointDevice *device);
+	void onReadyDownloadIcons(brisa::upnp::controlpoint::Device *device);
+	void deviceFoundDump(Device *device);
 	void removeDevice(QString udn);
 	void multicastEventReceived(QString variableName, QString newValue);
 	void multicastEventRawReceived(BrisaOutArgument raw);
-	void unicastEventReceived(brisa::upnp::controlpoint::BrisaEventProxy *subscription,
+	void unicastEventReceived(brisa::upnp::controlpoint::EventProxy *subscription,
 			QMap<QString, QString> eventVariables);
 
 private slots:
@@ -86,8 +88,8 @@ private:
 	bb::cascades::GroupDataModel *m_eventLogModel;
 	bb::cascades::ArrayDataModel *m_devicesModel;
 
-	brisa::upnp::controlpoint::BrisaControlPoint *m_controlPoint;
-	brisa::upnp::controlpoint::BrisaControlPointDevice *m_currentDev;
+	brisa::upnp::controlpoint::ControlPoint *m_controlPoint;
+	brisa::upnp::controlpoint::Device *m_currentDev;
 
 	void createDeviceItem();
 	void createActions();

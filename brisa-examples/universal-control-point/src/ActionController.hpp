@@ -21,9 +21,9 @@
 #include <bb/system/Clipboard>
 #include <bb/system/SystemToast>
 
-#include "upnp/brisaaction.h"
-#include "upnp/controlpoint/brisacontrolpointdevice.h"
-#include "upnp/controlpoint/brisacontrolpointservice.h"
+#include "upnp/action.h"
+#include "upnp/controlpoint/cpdevice.h"
+#include "upnp/controlpoint/cpservice.h"
 
 #include "model/ExecutableAction.hpp"
 
@@ -54,7 +54,7 @@ private:
 	QString m_result;
 	QTimer *m_requestTimer;
 	ExecutableAction *m_executableAction;
-	brisa::upnp::controlpoint::BrisaControlPointService *m_currentService;
+	brisa::upnp::controlpoint::Service *m_currentService;
 };
 
 #endif /* ACTIONCONTROLLER_H_ */

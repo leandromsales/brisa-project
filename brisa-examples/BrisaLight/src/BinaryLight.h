@@ -21,7 +21,7 @@
 
 #include "applicationui.hpp"
 #include "SwitchPower.hpp"
-#include <upnp/device/brisadevice.h>
+#include <upnp/device/device.h>
 #include <upnp/brisautils.h>
 
 class ApplicationUI;
@@ -39,9 +39,9 @@ public slots:
 
 private:
 	ApplicationUI *m_ui;
-    brisa::upnp::device::BrisaDevice *m_binaryLight;
-    brisa::upnp::BrisaStateVariable *m_status;
-    brisa::upnp::BrisaStateVariable *m_target;
+    brisa::upnp::device::Device *m_binaryLight;
+    brisa::upnp::StateVariable *m_status;
+    brisa::upnp::StateVariable *m_target;
 };
 
 #endif /* BINARYLIGHT_H_ */

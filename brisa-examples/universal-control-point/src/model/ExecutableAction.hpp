@@ -13,9 +13,9 @@
 #include <QString>
 #include <QStringList>
 
-#include "upnp/brisaaction.h"
-#include "upnp/controlpoint/brisacontrolpointdevice.h"
-#include "upnp/controlpoint/brisacontrolpointservice.h"
+#include "upnp/action.h"
+#include "upnp/controlpoint/cpdevice.h"
+#include "upnp/controlpoint/cpservice.h"
 
 class ExecutableAction: public QObject {
 	Q_OBJECT
@@ -29,12 +29,12 @@ public:
 	}
 	virtual ~ExecutableAction();
 	bool isComplete();
-	brisa::upnp::BrisaAction* getAction();
-	void setAction(brisa::upnp::BrisaAction* action);
-	brisa::upnp::controlpoint::BrisaControlPointDevice* getDevice();
-	void setDevice(brisa::upnp::controlpoint::BrisaControlPointDevice* device);
-	brisa::upnp::controlpoint::BrisaControlPointService* getService();
-	void setService(brisa::upnp::controlpoint::BrisaControlPointService* service);
+	brisa::upnp::Action* getAction();
+	void setAction(brisa::upnp::Action* action);
+	brisa::upnp::controlpoint::Device* getDevice();
+	void setDevice(brisa::upnp::controlpoint::Device* device);
+	brisa::upnp::controlpoint::Service* getService();
+	void setService(brisa::upnp::controlpoint::Service* service);
 	Q_INVOKABLE QString getDeviceFriendlyName();
 	Q_INVOKABLE QString getServiceFriendlyName();
 	Q_INVOKABLE QString getActionName();
@@ -44,10 +44,10 @@ public:
 
 private:
 	ExecutableAction(QObject *parent = 0);
-	brisa::upnp::BrisaAction *m_action;
-	brisa::upnp::controlpoint::BrisaControlPointService *m_service;
-	brisa::upnp::controlpoint::BrisaControlPointDevice *m_currentDevice;
-	QStack<brisa::upnp::controlpoint::BrisaControlPointDevice *> *m_devices;
+	brisa::upnp::Action *m_action;
+	brisa::upnp::controlpoint::Service *m_service;
+	brisa::upnp::controlpoint::Device *m_currentDevice;
+	QStack<brisa::upnp::controlpoint::Device *> *m_devices;
 };
 
 #endif /* EXECUTABLEACTION_HPP_ */
