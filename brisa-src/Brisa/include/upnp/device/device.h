@@ -9,8 +9,8 @@
 #include "network/brisanetwork.h"
 #include "shared/webserver/webserver.h"
 #include "shared/ssdp/brisassdpserver.h"
-#include "brisadevicexmlhandler.h"
-#include "brisaservice.h"
+#include "upnp/device/devicexmlhandler.h"
+#include "upnp/device/service.h"
 #include "upnp/brisaicon.h"
 
 namespace brisa {

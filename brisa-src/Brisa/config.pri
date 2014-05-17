@@ -51,18 +51,18 @@ device {
                  $$quote($$BASEDIR/src/upnp/controlpoint/servicesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/statevariablesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/udplistener.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/abstracteventmessage.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/actionxmlparser.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/av/mediarendererdevice.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/av/mediarendererdeviceservice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisaabstracteventmessage.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisaactionxmlparser.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisacontrolwebservice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisadevice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisadevicexmlhandler.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisaeventcontroller.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisaeventmessage.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisaeventsubscription.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisamulticasteventmessage.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisaservice.cpp)
+                 $$quote($$BASEDIR/src/upnp/device/controlwebservice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/device.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/devicexmlhandler.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/eventcontroller.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/eventmessage.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/eventsubscription.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/multicasteventmessage.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/service.cpp)
 
         HEADERS +=  $$quote($$BASEDIR/include/network/brisanetwork.h) \
                  $$quote($$BASEDIR/include/network/networkmanager.h) \
@@ -117,18 +117,18 @@ device {
                  $$quote($$BASEDIR/include/upnp/controlpoint/servicesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/statevariablesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/udplistener.h) \
+                 $$quote($$BASEDIR/include/upnp/device/abstracteventmessage.h) \
+                 $$quote($$BASEDIR/include/upnp/device/actionxmlparser.h) \
                  $$quote($$BASEDIR/include/upnp/device/av/mediarendererdevice.h) \
                  $$quote($$BASEDIR/include/upnp/device/av/mediarendererdeviceservice.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisaabstracteventmessage.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisaactionxmlparser.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisacontrolwebservice.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisadevice.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisadevicexmlhandler.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisaeventcontroller.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisaeventmessage.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisaeventsubscription.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisamulticasteventmessage.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisaservice.h)
+                 $$quote($$BASEDIR/include/upnp/device/controlwebservice.h) \
+                 $$quote($$BASEDIR/include/upnp/device/device.h) \
+                 $$quote($$BASEDIR/include/upnp/device/devicexmlhandler.h) \
+                 $$quote($$BASEDIR/include/upnp/device/eventcontroller.h) \
+                 $$quote($$BASEDIR/include/upnp/device/eventmessage.h) \
+                 $$quote($$BASEDIR/include/upnp/device/eventsubscription.h) \
+                 $$quote($$BASEDIR/include/upnp/device/multicasteventmessage.h) \
+                 $$quote($$BASEDIR/include/upnp/device/service.h)
     }
 
     CONFIG(release, debug|release) {
@@ -180,18 +180,18 @@ device {
                  $$quote($$BASEDIR/src/upnp/controlpoint/servicesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/statevariablesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/udplistener.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/abstracteventmessage.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/actionxmlparser.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/av/mediarendererdevice.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/av/mediarendererdeviceservice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisaabstracteventmessage.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisaactionxmlparser.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisacontrolwebservice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisadevice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisadevicexmlhandler.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisaeventcontroller.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisaeventmessage.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisaeventsubscription.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisamulticasteventmessage.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisaservice.cpp)
+                 $$quote($$BASEDIR/src/upnp/device/controlwebservice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/device.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/devicexmlhandler.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/eventcontroller.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/eventmessage.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/eventsubscription.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/multicasteventmessage.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/service.cpp)
 
         HEADERS +=  $$quote($$BASEDIR/include/network/brisanetwork.h) \
                  $$quote($$BASEDIR/include/network/networkmanager.h) \
@@ -246,18 +246,18 @@ device {
                  $$quote($$BASEDIR/include/upnp/controlpoint/servicesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/statevariablesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/udplistener.h) \
+                 $$quote($$BASEDIR/include/upnp/device/abstracteventmessage.h) \
+                 $$quote($$BASEDIR/include/upnp/device/actionxmlparser.h) \
                  $$quote($$BASEDIR/include/upnp/device/av/mediarendererdevice.h) \
                  $$quote($$BASEDIR/include/upnp/device/av/mediarendererdeviceservice.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisaabstracteventmessage.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisaactionxmlparser.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisacontrolwebservice.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisadevice.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisadevicexmlhandler.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisaeventcontroller.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisaeventmessage.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisaeventsubscription.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisamulticasteventmessage.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisaservice.h)
+                 $$quote($$BASEDIR/include/upnp/device/controlwebservice.h) \
+                 $$quote($$BASEDIR/include/upnp/device/device.h) \
+                 $$quote($$BASEDIR/include/upnp/device/devicexmlhandler.h) \
+                 $$quote($$BASEDIR/include/upnp/device/eventcontroller.h) \
+                 $$quote($$BASEDIR/include/upnp/device/eventmessage.h) \
+                 $$quote($$BASEDIR/include/upnp/device/eventsubscription.h) \
+                 $$quote($$BASEDIR/include/upnp/device/multicasteventmessage.h) \
+                 $$quote($$BASEDIR/include/upnp/device/service.h)
     }
 }
 
@@ -311,18 +311,18 @@ simulator {
                  $$quote($$BASEDIR/src/upnp/controlpoint/servicesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/statevariablesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/udplistener.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/abstracteventmessage.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/actionxmlparser.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/av/mediarendererdevice.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/av/mediarendererdeviceservice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisaabstracteventmessage.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisaactionxmlparser.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisacontrolwebservice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisadevice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisadevicexmlhandler.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisaeventcontroller.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisaeventmessage.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisaeventsubscription.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisamulticasteventmessage.cpp) \
-                 $$quote($$BASEDIR/src/upnp/device/brisaservice.cpp)
+                 $$quote($$BASEDIR/src/upnp/device/controlwebservice.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/device.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/devicexmlhandler.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/eventcontroller.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/eventmessage.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/eventsubscription.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/multicasteventmessage.cpp) \
+                 $$quote($$BASEDIR/src/upnp/device/service.cpp)
 
         HEADERS +=  $$quote($$BASEDIR/include/network/brisanetwork.h) \
                  $$quote($$BASEDIR/include/network/networkmanager.h) \
@@ -377,26 +377,26 @@ simulator {
                  $$quote($$BASEDIR/include/upnp/controlpoint/servicesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/statevariablesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/udplistener.h) \
+                 $$quote($$BASEDIR/include/upnp/device/abstracteventmessage.h) \
+                 $$quote($$BASEDIR/include/upnp/device/actionxmlparser.h) \
                  $$quote($$BASEDIR/include/upnp/device/av/mediarendererdevice.h) \
                  $$quote($$BASEDIR/include/upnp/device/av/mediarendererdeviceservice.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisaabstracteventmessage.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisaactionxmlparser.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisacontrolwebservice.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisadevice.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisadevicexmlhandler.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisaeventcontroller.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisaeventmessage.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisaeventsubscription.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisamulticasteventmessage.h) \
-                 $$quote($$BASEDIR/include/upnp/device/brisaservice.h)
+                 $$quote($$BASEDIR/include/upnp/device/controlwebservice.h) \
+                 $$quote($$BASEDIR/include/upnp/device/device.h) \
+                 $$quote($$BASEDIR/include/upnp/device/devicexmlhandler.h) \
+                 $$quote($$BASEDIR/include/upnp/device/eventcontroller.h) \
+                 $$quote($$BASEDIR/include/upnp/device/eventmessage.h) \
+                 $$quote($$BASEDIR/include/upnp/device/eventsubscription.h) \
+                 $$quote($$BASEDIR/include/upnp/device/multicasteventmessage.h) \
+                 $$quote($$BASEDIR/include/upnp/device/service.h)
     }
 }
 
 INCLUDEPATH +=  $$quote($$BASEDIR/src/shared/webserver) \
          $$quote($$BASEDIR/include/upnp/controlpoint/av/didl) \
          $$quote($$BASEDIR/include/upnp) \
-         $$quote($$BASEDIR/include/upnp/device/av) \
          $$quote($$BASEDIR/include/upnp/device) \
+         $$quote($$BASEDIR/include/upnp/device/av) \
          $$quote($$BASEDIR/src/network) \
          $$quote($$BASEDIR/src/upnp/controlpoint/av) \
          $$quote($$BASEDIR/src/shared/soap) \

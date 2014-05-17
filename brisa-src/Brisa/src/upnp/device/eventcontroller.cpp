@@ -1,6 +1,6 @@
 #include <QDebug>
 
-#include "brisaeventcontroller.h"
+#include "upnp/device/eventcontroller.h"
 #include "shared/webserver/webserversession.h"
 #include "shared/webserver/webserver.h"
 

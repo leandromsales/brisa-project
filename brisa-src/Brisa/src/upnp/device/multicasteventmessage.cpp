@@ -1,4 +1,4 @@
-#include "brisamulticasteventmessage.h"
+#include "upnp/device/multicasteventmessage.h"
 
 namespace brisa {
 namespace upnp {

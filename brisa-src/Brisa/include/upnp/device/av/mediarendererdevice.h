@@ -1,7 +1,7 @@
 #ifndef MEDIARENDERERDEVICE_H
 #define MEDIARENDERERDEVICE_H
 
-#include "upnp/device/brisadevice.h"
+#include "upnp/device/device.h"
 #include <QObject>
 
 namespace brisa {

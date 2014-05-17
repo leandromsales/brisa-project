@@ -4,7 +4,7 @@
 #include "shared/webserver/webfile.h"
 
 // TODO: put this include at the begin of the file
-#include "brisadevice.h"
+#include "upnp/device/device.h"
 #include "shared/ssdp/brisassdpserver.h"
 #include "shared/webserver/webserver.h"
 

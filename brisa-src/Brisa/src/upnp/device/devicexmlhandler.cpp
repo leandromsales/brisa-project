@@ -1,5 +1,5 @@
-#include "brisadevicexmlhandler.h"
-#include "brisadevice.h"
+#include "upnp/device/devicexmlhandler.h"
+#include "upnp/device/device.h"
 
 #include <QDebug>
 

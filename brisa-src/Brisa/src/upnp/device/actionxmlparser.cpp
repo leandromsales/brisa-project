@@ -1,4 +1,4 @@
-#include "brisaactionxmlparser.h"
+#include "upnp/device/actionxmlparser.h"
 
 #include <QtDebug>
 

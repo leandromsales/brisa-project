@@ -2,8 +2,8 @@
 #define SERVICE_H
 
 #include "upnp/brisaabstractservice.h"
-#include "upnp/device/brisaeventcontroller.h"
-#include "upnp/device/brisaactionxmlparser.h"
+#include "upnp/device/eventcontroller.h"
+#include "upnp/device/actionxmlparser.h"
 
 #include "shared/webserver/webserversession.h"
 #include "shared/webserver/webserver.h"

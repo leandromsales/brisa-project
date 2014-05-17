@@ -1,7 +1,7 @@
 #ifndef MEDIARENDERERDEVICESERVICE_H
 #define MEDIARENDERERDEVICESERVICE_H
 
-#include "upnp/device/brisaservice.h"
+#include "upnp/device/service.h"
 #include "upnp/brisaaction.h"
 
 #define SERVICE_TYPE "urn:schemas-upnp-org:service:TVOperations:1"

@@ -4,8 +4,8 @@
 #include <QObject>
 #include <QList>
 
-#include "brisaabstracteventmessage.h"
-#include "brisaeventsubscription.h"
+#include "upnp/device/abstracteventmessage.h"
+#include "upnp/device/eventsubscription.h"
 
 namespace brisa {
 namespace upnp {

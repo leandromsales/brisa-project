@@ -1,5 +1,5 @@
-#include "brisacontrolwebservice.h"
-#include "brisaactionxmlparser.h"
+#include "upnp/device/controlwebservice.h"
+#include "upnp/device/actionxmlparser.h"
 #include "shared/webserver/http/httpresponse.h"
 
 namespace brisa {

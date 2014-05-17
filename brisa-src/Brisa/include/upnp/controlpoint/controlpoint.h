@@ -32,7 +32,7 @@
 #include <QNetworkReply>
 #include <QMap>
 #include "network/brisanetwork.h"
-#include "upnp/controlpoint/device.h"
+#include "upnp/controlpoint/cpdevice.h"
 #include "upnp/controlpoint/eventproxy.h"
 #include "shared/ssdp/brisassdpclient.h"
 #include "upnp/controlpoint/multicasteventreceiver.h"

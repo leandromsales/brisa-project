@@ -1,5 +1,5 @@
 #include "brisaaction.h"
-#include "upnp/device/brisaservice.h"
+#include "upnp/device/service.h"
 #include <QDebug>
 
 

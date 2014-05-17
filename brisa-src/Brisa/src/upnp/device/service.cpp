@@ -2,11 +2,11 @@
 #include <QUrl>
 #include <QMetaMethod>
 #include "shared/webserver/webfile.h"
-#include "brisacontrolwebservice.h"
+#include "upnp/device/controlwebservice.h"
 #include "shared/webserver/webserversession.h"
 
 // TODO: move the include directive to the begin of the file
-#include "brisaservice.h"
+#include "upnp/device/service.h"
 #include "brisaservicexmlhandler.h"
 
 #define PRE_ACTION_SIG "preAction(BrisaInArgument*const,BrisaAction*const,QString&)"

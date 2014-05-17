@@ -1,9 +1,9 @@
 #ifndef EVENTCONTROLLER_H
 #define EVENTCONTROLLER_H
 
-#include "brisaeventmessage.h"
-#include "brisamulticasteventmessage.h"
-#include "brisaeventsubscription.h"
+#include "eventmessage.h"
+#include "upnp/device/multicasteventmessage.h"
+#include "upnp/device/eventsubscription.h"
 #include "upnp/brisautils.h"
 #include "shared/webserver/webservice.h"
 #include "shared/webserver/webserver.h"

@@ -6,7 +6,7 @@ namespace device {
 namespace av {
 
 MediaRendererDeviceService::MediaRendererDeviceService(QObject *parent) :
-    BrisaService(SERVICE_TYPE,
+    Service(SERVICE_TYPE,
                  SERVICE_ID,
                  SERVICE_XML_PATH,
                  SERVICE_CONTROL,

@@ -27,7 +27,7 @@
  *
  */
 #include "upnp/controlpoint/devicexmlhandlercp.h"
-#include "upnp/controlpoint/device.h"
+#include "upnp/controlpoint/cpdevice.h"
 
 #define PORT_INDEX 2
 
