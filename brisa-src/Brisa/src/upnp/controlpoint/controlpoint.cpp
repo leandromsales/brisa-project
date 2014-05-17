@@ -30,9 +30,9 @@
 #include <QtCore>
 #include <QtDebug>
 
-#include "brisacontrolpoint.h"
+#include "upnp/controlpoint/controlpoint.h"
 #include "brisassdpclient.h"
-#include "brisamsearchclientcp.h"
+#include "upnp/controlpoint/msearchclientcp.h"
 
 #include "webserversession.h"
 

@@ -33,7 +33,7 @@
 #include <QHttpRequestHeader>
 
 #include "upnp/brisaglobal.h"
-#include "upnp/controlpoint/brisaudplistener.h"
+#include "upnp/controlpoint/udplistener.h"
 
 namespace brisa {
 namespace shared {

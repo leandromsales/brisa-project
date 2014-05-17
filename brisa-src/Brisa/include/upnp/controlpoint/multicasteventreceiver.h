@@ -5,7 +5,7 @@
 #include <QHttp>
 #include <QDomDocument>
 
-#include "upnp/controlpoint/brisaudplistener.h"
+#include "upnp/controlpoint/udplistener.h"
 #include "upnp/brisaglobal.h"
 
 namespace brisa {

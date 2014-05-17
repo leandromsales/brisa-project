@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "brisaeventproxy.h"
+#include "upnp/controlpoint/eventproxy.h"
 
 #include <webserversession.h>
 

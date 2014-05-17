@@ -39,8 +39,8 @@
 #include <QObject>
 
 #include "upnp/brisaicon.h"
-#include "upnp/controlpoint/brisacontrolpointservice.h"
-#include "upnp/controlpoint/brisadevicexmlhandlercp.h"
+#include "upnp/controlpoint/service.h"
+#include "upnp/controlpoint/devicexmlhandlercp.h"
 #include "upnp/brisaglobal.h"
 
 namespace brisa {

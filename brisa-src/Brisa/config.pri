@@ -39,18 +39,18 @@ device {
                  $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediacontrolpoint.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediaservercontrolpointdevice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisacontrolpoint.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisacontrolpointdevice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisacontrolpointservice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisadevicexmlhandlercp.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisaeventproxy.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisamsearchclientcp.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisamulticasteventreceiver.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisaudplistener.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/controlpoint.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/device.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/devicesales.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/devicexmlhandlercp.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/eventproxy.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/iconsales.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/msearchclientcp.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/multicasteventreceiver.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/service.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/servicesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/statevariablesales.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/udplistener.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/av_device/mediarendererdevice.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/av_device/mediarendererdeviceservice.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/brisaabstracteventmessage.cpp) \
@@ -105,18 +105,18 @@ device {
                  $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediacontrolpoint.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediaservercontrolpointdevice.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisacontrolpoint.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisacontrolpointdevice.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisacontrolpointservice.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisadevicexmlhandlercp.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisaeventproxy.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisamsearchclientcp.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisamulticasteventreceiver.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisaudplistener.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/controlpoint.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/device.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/devicesales.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/devicexmlhandlercp.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/eventproxy.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/iconsales.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/msearchclientcp.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/multicasteventreceiver.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/service.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/servicesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/statevariablesales.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/udplistener.h) \
                  $$quote($$BASEDIR/include/upnp/device/av_device/mediarendererdevice.h) \
                  $$quote($$BASEDIR/include/upnp/device/av_device/mediarendererdeviceservice.h) \
                  $$quote($$BASEDIR/include/upnp/device/brisaabstracteventmessage.h) \
@@ -168,18 +168,18 @@ device {
                  $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediacontrolpoint.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediaservercontrolpointdevice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisacontrolpoint.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisacontrolpointdevice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisacontrolpointservice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisadevicexmlhandlercp.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisaeventproxy.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisamsearchclientcp.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisamulticasteventreceiver.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisaudplistener.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/controlpoint.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/device.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/devicesales.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/devicexmlhandlercp.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/eventproxy.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/iconsales.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/msearchclientcp.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/multicasteventreceiver.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/service.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/servicesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/statevariablesales.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/udplistener.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/av_device/mediarendererdevice.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/av_device/mediarendererdeviceservice.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/brisaabstracteventmessage.cpp) \
@@ -234,18 +234,18 @@ device {
                  $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediacontrolpoint.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediaservercontrolpointdevice.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisacontrolpoint.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisacontrolpointdevice.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisacontrolpointservice.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisadevicexmlhandlercp.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisaeventproxy.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisamsearchclientcp.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisamulticasteventreceiver.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisaudplistener.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/controlpoint.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/device.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/devicesales.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/devicexmlhandlercp.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/eventproxy.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/iconsales.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/msearchclientcp.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/multicasteventreceiver.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/service.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/servicesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/statevariablesales.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/udplistener.h) \
                  $$quote($$BASEDIR/include/upnp/device/av_device/mediarendererdevice.h) \
                  $$quote($$BASEDIR/include/upnp/device/av_device/mediarendererdeviceservice.h) \
                  $$quote($$BASEDIR/include/upnp/device/brisaabstracteventmessage.h) \
@@ -299,18 +299,18 @@ simulator {
                  $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediacontrolpoint.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/av_controlpoint/mediaservercontrolpointdevice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisacontrolpoint.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisacontrolpointdevice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisacontrolpointservice.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisadevicexmlhandlercp.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisaeventproxy.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisamsearchclientcp.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisamulticasteventreceiver.cpp) \
-                 $$quote($$BASEDIR/src/upnp/controlpoint/brisaudplistener.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/controlpoint.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/device.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/devicesales.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/devicexmlhandlercp.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/eventproxy.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/iconsales.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/msearchclientcp.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/multicasteventreceiver.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/service.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/servicesales.cpp) \
                  $$quote($$BASEDIR/src/upnp/controlpoint/statevariablesales.cpp) \
+                 $$quote($$BASEDIR/src/upnp/controlpoint/udplistener.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/av_device/mediarendererdevice.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/av_device/mediarendererdeviceservice.cpp) \
                  $$quote($$BASEDIR/src/upnp/device/brisaabstracteventmessage.cpp) \
@@ -365,18 +365,18 @@ simulator {
                  $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediacontrolpoint.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediarenderercontrolpointdevice.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/av_controlpoint/mediaservercontrolpointdevice.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisacontrolpoint.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisacontrolpointdevice.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisacontrolpointservice.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisadevicexmlhandlercp.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisaeventproxy.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisamsearchclientcp.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisamulticasteventreceiver.h) \
-                 $$quote($$BASEDIR/include/upnp/controlpoint/brisaudplistener.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/controlpoint.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/device.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/devicesales.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/devicexmlhandlercp.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/eventproxy.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/iconsales.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/msearchclientcp.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/multicasteventreceiver.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/service.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/servicesales.h) \
                  $$quote($$BASEDIR/include/upnp/controlpoint/statevariablesales.h) \
+                 $$quote($$BASEDIR/include/upnp/controlpoint/udplistener.h) \
                  $$quote($$BASEDIR/include/upnp/device/av_device/mediarendererdevice.h) \
                  $$quote($$BASEDIR/include/upnp/device/av_device/mediarendererdeviceservice.h) \
                  $$quote($$BASEDIR/include/upnp/device/brisaabstracteventmessage.h) \

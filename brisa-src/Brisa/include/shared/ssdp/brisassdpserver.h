@@ -1,7 +1,7 @@
 #ifndef BRISASSDPSERVER_H
 #define BRISASSDPSERVER_H
 
-#include "upnp/controlpoint/brisaudplistener.h"
+#include "upnp/controlpoint/udplistener.h"
 #include "network/brisanetwork.h"
 
 #include <QMap>

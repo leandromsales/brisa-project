@@ -32,10 +32,10 @@
 #include <QNetworkReply>
 #include <QMap>
 #include "network/brisanetwork.h"
-#include "upnp/controlpoint/brisacontrolpointdevice.h"
-#include "upnp/controlpoint/brisaeventproxy.h"
+#include "upnp/controlpoint/device.h"
+#include "upnp/controlpoint/eventproxy.h"
 #include "shared/ssdp/brisassdpclient.h"
-#include "brisamulticasteventreceiver.h"
+#include "upnp/controlpoint/multicasteventreceiver.h"
 #include "upnp/brisaglobal.h"
 
 namespace brisa {

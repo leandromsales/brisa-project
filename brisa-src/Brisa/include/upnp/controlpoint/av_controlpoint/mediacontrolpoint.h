@@ -8,7 +8,7 @@
 #include "mediarenderercontrolpointdevice.h"
 //#include "upnp/shared/ssdp/ssdp.h"
 #include "shared/ssdp/brisassdpclient.h"
-#include "controlpoint/brisamsearchclientcp.h"
+#include "upnp/controlpoint/msearchclientcp.h"
 
 //#include "teste.h"
 namespace brisa {

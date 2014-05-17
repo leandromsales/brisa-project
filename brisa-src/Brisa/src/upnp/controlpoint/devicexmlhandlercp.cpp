@@ -26,8 +26,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "brisadevicexmlhandlercp.h"
-#include "brisacontrolpointdevice.h"
+#include "upnp/controlpoint/devicexmlhandlercp.h"
+#include "upnp/controlpoint/device.h"
 
 #define PORT_INDEX 2
 

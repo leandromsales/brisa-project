@@ -26,7 +26,7 @@
  *
  */
 
-#include "brisacontrolpointservice.h"
+#include "upnp/controlpoint/service.h"
 #include "brisaservicexmlhandler.h"
 
 #include <QtDebug>
