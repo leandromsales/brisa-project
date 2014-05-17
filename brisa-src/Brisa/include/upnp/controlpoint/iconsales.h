@@ -1,5 +1,5 @@
-#ifndef ICON_H
-#define ICON_H
+#ifndef ICONSALES_H
+#define ICONSALES_H
 
 #include <QObject>
 #include <QUrl>
@@ -13,20 +13,20 @@ namespace brisa {
 namespace upnp {
 namespace controlpoint {
 
-class Icon : public QObject
+class IconSales : public QObject
 {
     Q_OBJECT
 public:
-    explicit Icon(QObject *parent = 0);
-    explicit Icon(const QString &,
+    explicit IconSales(QObject *parent = 0);
+    explicit IconSales(const QString &,
                   const QString &,
                   const QString &,
                   const QString &,
                   const QUrl &,
                   QObject *parent = 0);
-    explicit Icon(const Icon &);
-    ~Icon();
-    Icon & operator=(const Icon &);
+    explicit IconSales(const IconSales &);
+    ~IconSales();
+    IconSales & operator=(const IconSales &);
 
     void setBaseUrl(const QUrl &);
     QUrl getBaseUrl();
@@ -50,8 +50,8 @@ private:
     QNetworkAccessManager *downloader;
 
 signals:
-    void iconDownloaded(Icon *);
-    void errorDownloadingIcon(Icon *, quint8);
+    void iconDownloaded(IconSales *);
+    void errorDownloadingIcon(IconSales *, quint8);
 
 public slots:
     void replyFinished(QNetworkReply *);
@@ -62,4 +62,4 @@ public slots:
 }
 }
 
-#endif // ICON_H
+#endif // ICONSALES_H

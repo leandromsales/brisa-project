@@ -6,19 +6,19 @@
 #include <QDomDocument>
 #include <QDebug>
 
-#include "device.h"
+#include "devicesales.h"
 
 namespace brisa {
 namespace upnp {
 namespace controlpoint {
 
-Device::Device(QObject *parent) : QObject(parent) {
+DeviceSales::DeviceSales(QObject *parent) : QObject(parent) {
     this->downloader = new QNetworkAccessManager(this);
     connect(downloader, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
     this->serviceProcessedCounter = 0;
 }
 
-Device::Device(const QString &uuid,
+DeviceSales::DeviceSales(const QString &uuid,
                const QString &location,
                QObject *parent) : QObject(parent) {
     this->setAttribute("uuid", uuid);
@@ -29,13 +29,13 @@ Device::Device(const QString &uuid,
     connect(downloader, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
 }
 
-Device::Device(const Device &device) : QObject(device.parent()) {
+DeviceSales::DeviceSales(const DeviceSales &device) : QObject(device.parent()) {
     *this = device;
     //this->downloader = new QNetworkAccessManager(this);
     //connect(downloader, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
 }
 
-Device &Device::operator=(const Device &device) {
+DeviceSales &DeviceSales::operator=(const DeviceSales &device) {
     if (this != &device) {
         this->attributes = device.getAttributes();
         this->serviceList = device.getServices();
@@ -44,44 +44,44 @@ Device &Device::operator=(const Device &device) {
     return *this;
 }
 
-Device::~Device() {
+DeviceSales::~DeviceSales() {
     delete this->downloader;
     qDeleteAll(this->iconList.values());
     qDeleteAll(this->serviceList.values());
     qDeleteAll(this->embeddedDeviceList);
 }
 
-bool Device::setAttribute(const QString &attributeName, const QString &attributeValue) {
+bool DeviceSales::setAttribute(const QString &attributeName, const QString &attributeValue) {
     this->attributes[attributeName.toLower()] = attributeValue;
     return true; // use this semantic for future validation
 }
 
-QString Device::getAttribute(const QString &attributeName) const {
+QString DeviceSales::getAttribute(const QString &attributeName) const {
     return this->attributes.value(attributeName.toLower());
 }
 
-QHash<QString, QString> Device::getAttributes() const {
+QHash<QString, QString> DeviceSales::getAttributes() const {
     return this->attributes;
 }
 
-QHash<QString, Service *> Device::getServices() const {
+QHash<QString, ServiceSales *> DeviceSales::getServices() const {
     return this->serviceList;
 }
 
-Service *Device::getService(const QString &serviceId) const {
+ServiceSales *DeviceSales::getService(const QString &serviceId) const {
     return this->serviceList.value(serviceId);
 }
 
-void Device::parseDescription() {
+void DeviceSales::parseDescription() {
     if (this->attributes["location"].isEmpty() || this->attributes["location"].isNull()) { return; }
 
     this->downloader->get(QNetworkRequest(QUrl(this->attributes["location"])));
 }
 
-void Device::replyFinished(QNetworkReply *reply) {
+void DeviceSales::replyFinished(QNetworkReply *reply) {
     QTemporaryFile *descriptionXml = new QTemporaryFile();
     if (!descriptionXml->open()) {
-        emit errorParsingDeviceDescription(this, Device::CREATE_TMP_XML_ERROR);
+        emit errorParsingDeviceDescription(this, DeviceSales::CREATE_TMP_XML_ERROR);
     } else {
         descriptionXml->write(reply->readAll());
         descriptionXml->seek(0);
@@ -100,12 +100,12 @@ void Device::replyFinished(QNetworkReply *reply) {
     reply->deleteLater();
 }
 
-quint8 Device::parseXMLDescription(QTemporaryFile *description) {
+quint8 DeviceSales::parseXMLDescription(QTemporaryFile *description) {
     QDomDocument document("Device");
     document.setContent(description);
     QDomElement element = document.documentElement();
     if (element.tagName() != "root") {
-        return Device::MALFORMED_XML_DESCRIPTION_ERROR;
+        return DeviceSales::MALFORMED_XML_DESCRIPTION_ERROR;
     }
 
     QDomNodeList domNodeList = element.elementsByTagName("specVersion");
@@ -113,7 +113,7 @@ quint8 Device::parseXMLDescription(QTemporaryFile *description) {
         QString major = domNodeList.item(0).toElement().elementsByTagName("major").item(0).toElement().text();
         QString minor = domNodeList.item(0).toElement().elementsByTagName("minor").item(0).toElement().text();
         if (major.isEmpty() || minor.isEmpty()) {
-            return Device::WRONG_MAJOR_MINOR_VERSION_ERROR;
+            return DeviceSales::WRONG_MAJOR_MINOR_VERSION_ERROR;
         }
         this->attributes["major"] = major;
         this->attributes["minor"] = minor;
@@ -129,7 +129,7 @@ quint8 Device::parseXMLDescription(QTemporaryFile *description) {
 
     domNodeList = element.elementsByTagName("device");
     if (domNodeList.length() == 0) {
-        return Device::INCOMPLETED_DEVICE_DESCRIPTION_ERROR;
+        return DeviceSales::INCOMPLETED_DEVICE_DESCRIPTION_ERROR;
     }
 
     QDomNode node;
@@ -143,15 +143,15 @@ quint8 Device::parseXMLDescription(QTemporaryFile *description) {
             QDomNodeList serviceDomNodeList = node.childNodes();
             this->serviceCount = serviceDomNodeList.length();
             for (uint j = 0; j < this->serviceCount; j++) {
-                Service *service = new Service();
+                ServiceSales *service = new ServiceSales();
                 connect(service,
-                        SIGNAL(serviceDescriptionReady(Service*)),
+                        SIGNAL(serviceDescriptionReady(ServiceSales*)),
                         this,
-                        SLOT(handleServiceDescriptionReady(Service*)));
+                        SLOT(handleServiceDescriptionReady(ServiceSales*)));
                 connect(service,
-                        SIGNAL(errorParsingServiceDescription(Service*, quint8)),
+                        SIGNAL(errorParsingServiceDescription(ServiceSales*, quint8)),
                         this,
-                        SLOT(handleErrorParsingServiceDescription(Service*, quint8)));
+                        SLOT(handleErrorParsingServiceDescription(ServiceSales*, quint8)));
                 QDomNodeList serviceAttribDomNodeList = serviceDomNodeList.item(j).childNodes();
                 for (int k = 0; k < serviceAttribDomNodeList.length(); k++) {
                     service->setAttribute(serviceAttribDomNodeList.item(k).nodeName().toLower(),
@@ -164,15 +164,15 @@ quint8 Device::parseXMLDescription(QTemporaryFile *description) {
             QDomNodeList iconDomNodeList = node.childNodes();
             QString iconName = "";
             for (int j = 0; j < iconDomNodeList.length(); j++) {
-                Icon *icon = new Icon();
+                IconSales *icon = new IconSales();
                 connect(icon,
-                        SIGNAL(iconDownloaded(Icon*)),
+                        SIGNAL(iconDownloaded(IconSales*)),
                         this,
-                        SLOT(handleIconDownloaded(Icon*)));
+                        SLOT(handleIconDownloaded(IconSales*)));
                 connect(icon,
-                        SIGNAL(errorDownloadingIcon(Icon*, quint8)),
+                        SIGNAL(errorDownloadingIcon(IconSales*, quint8)),
                         this,
-                        SLOT(handleErrorDownloadingIcon(Icon*, quint8)));
+                        SLOT(handleErrorDownloadingIcon(IconSales*, quint8)));
                 QDomNodeList iconAttribDomNodeList = iconDomNodeList.item(j).childNodes();
                 for (int k = 0; k < iconAttribDomNodeList.length(); k++) {
                     icon->setAttribute(iconAttribDomNodeList.item(k).nodeName().toLower(),
@@ -194,7 +194,7 @@ quint8 Device::parseXMLDescription(QTemporaryFile *description) {
     return true;
 }
 
-void Device::handleServiceDescriptionReady(Service* service) {
+void DeviceSales::handleServiceDescriptionReady(ServiceSales* service) {
     this->serviceProcessedCounter++;
     this->serviceList[service->getAttribute("serviceId")] = service;
     if (this->serviceCount == this->serviceProcessedCounter) {
@@ -204,36 +204,36 @@ void Device::handleServiceDescriptionReady(Service* service) {
     }
 }
 
-void Device::handleErrorParsingServiceDescription(Service* service, quint8 errorCode) {
+void DeviceSales::handleErrorParsingServiceDescription(ServiceSales* service, quint8 errorCode) {
     Q_UNUSED(errorCode);
     //qDebug() << "SERVICE PARSING ERROR: " << errorCode << " parsing service description " << service->getAttribute("serviceId") << "for DEVICE " << this->getAttribute("uuid");
     delete service;
 }
 
-void Device::handleIconDownloaded(Icon* icon) {
+void DeviceSales::handleIconDownloaded(IconSales* icon) {
     QString iconName = icon->getAttribute("name");
     this->iconList[iconName] = icon;
     //qDebug() << "ICON READY: " << iconName;
 }
 
-void Device::handleErrorDownloadingIcon(Icon* icon, quint8 errorCode) {
+void DeviceSales::handleErrorDownloadingIcon(IconSales* icon, quint8 errorCode) {
     Q_UNUSED(errorCode);
     QString iconName = icon->getAttribute("name");
     qDebug() << "ICON DOWNLOADING ERROR: " << errorCode << " from URL " << icon->getBaseUrl() << icon->getAttribute("url") << " name " << iconName;
     delete icon;
 }
 
-QHash<QString, Icon *> Device::getIcons() const {
+QHash<QString, IconSales *> DeviceSales::getIcons() const {
     return this->iconList;
 }
 
-Icon *Device::getIcon(const QString &name) {
+IconSales *DeviceSales::getIcon(const QString &name) {
     return (this->iconList.contains(name))
             ? this->iconList.value(name)
             : NULL;
 }
 
-QList<Device *> Device::getDevices() const {
+QList<DeviceSales *> DeviceSales::getDevices() const {
     return this->embeddedDeviceList;
 }
 

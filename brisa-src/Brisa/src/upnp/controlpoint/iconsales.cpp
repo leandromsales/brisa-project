@@ -3,19 +3,19 @@
 #include <QNetworkReply>
 #include <QTemporaryFile>
 
-#include "icon.h"
+#include "iconsales.h"
 
 namespace brisa {
 namespace upnp {
 namespace controlpoint {
 
-Icon::Icon(QObject *parent) : QObject(parent) {
+IconSales::IconSales(QObject *parent) : QObject(parent) {
     this->content = NULL;
     this->downloader = new QNetworkAccessManager(this);
     connect(downloader, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
 }
 
-Icon::Icon(const QString &mimeType,
+IconSales::IconSales(const QString &mimeType,
            const QString &width,
            const QString &height,
            const QString &depth,
@@ -32,7 +32,7 @@ Icon::Icon(const QString &mimeType,
     connect(downloader, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
 }
 
-Icon::~Icon() {
+IconSales::~IconSales() {
     if (this->content) {
         this->content->remove();
         delete this->content;
@@ -40,45 +40,45 @@ Icon::~Icon() {
     delete this->downloader;
 }
 
-Icon::Icon(const Icon &icon) : QObject(icon.parent()) {
+IconSales::IconSales(const IconSales &icon) : QObject(icon.parent()) {
     *this = icon;
 }
 
-Icon &Icon::operator=(const Icon &icon) {
+IconSales &IconSales::operator=(const IconSales &icon) {
     if (this != &icon) {
         this->attributes = icon.getAttributes();
     }
     return *this;
 }
 
-void Icon::setBaseUrl(const QUrl &baseUrl) {
+void IconSales::setBaseUrl(const QUrl &baseUrl) {
     this->baseUrl = baseUrl;
 }
 
-QUrl Icon::getBaseUrl() {
+QUrl IconSales::getBaseUrl() {
     return this->baseUrl;
 }
 
-bool Icon::setAttribute(const QString &attributeName, const QString &attributeValue) {
+bool IconSales::setAttribute(const QString &attributeName, const QString &attributeValue) {
     this->attributes[attributeName.toLower()] = attributeValue;
     return true; // use this semantic for future validation
 }
 
-QString Icon::getAttribute(const QString &attributeName) {
+QString IconSales::getAttribute(const QString &attributeName) {
     return this->attributes.value(attributeName.toLower());
 }
 
-QHash<QString, QString> Icon::getAttributes() const {
+QHash<QString, QString> IconSales::getAttributes() const {
     return this->attributes;
 }
 
-QUrl Icon::getUrl() {
+QUrl IconSales::getUrl() {
     QUrl url(this->attributes.value("url"));
     url = this->baseUrl.resolved(url);
     return url;
 }
 
-bool Icon::downloadIt() {
+bool IconSales::downloadIt() {
     QUrl url = this->getUrl();
     if (url.isValid()) {
         this->downloader->get(QNetworkRequest(url));
@@ -87,17 +87,17 @@ bool Icon::downloadIt() {
     return false;
 }
 
-QTemporaryFile *Icon::getContent() {
+QTemporaryFile *IconSales::getContent() {
     return this->content;
 }
 
-void Icon::replyFinished(QNetworkReply *reply) {
+void IconSales::replyFinished(QNetworkReply *reply) {
     if (this->content == NULL) {
         this->content = new QTemporaryFile();
     }
 
     if (!this->content->open()) {
-        emit errorDownloadingIcon(this, Icon::CREATE_TMP_ICON_ERROR);
+        emit errorDownloadingIcon(this, IconSales::CREATE_TMP_ICON_ERROR);
     } else {
         this->content->write(reply->readAll());
         this->content->seek(0);

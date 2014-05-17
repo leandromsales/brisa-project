@@ -1,5 +1,5 @@
-#ifndef ACTION_H
-#define ACTION_H
+#ifndef ACTIONSALES_H
+#define ACTIONSALES_H
 
 #include <QObject>
 #include <QHash>
@@ -10,15 +10,15 @@ namespace brisa {
 namespace upnp {
 namespace controlpoint {
 
-class Action : public QObject
+class ActionSales : public QObject
 {
     Q_OBJECT
 public:
-    explicit Action(QObject *parent = 0);
-    explicit Action(const QString &, QObject *parent = 0);
-    explicit Action(const Action &);
-    ~Action();
-    Action & operator=(const Action &);
+    explicit ActionSales(QObject *parent = 0);
+    explicit ActionSales(const QString &, QObject *parent = 0);
+    explicit ActionSales(const ActionSales &);
+    ~ActionSales();
+    ActionSales & operator=(const ActionSales &);
 
     bool setAttribute(const QString &, const QString &);
     QString getAttribute(const QString &);
@@ -42,4 +42,4 @@ public slots:
 }
 }
 
-#endif // ACTION_H
+#endif // ACTIONSALES_H

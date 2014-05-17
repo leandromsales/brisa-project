@@ -1,12 +1,12 @@
-#include "statevariable.h"
+#include "statevariablesales.h"
 
 namespace brisa {
 namespace upnp {
 namespace controlpoint {
 
-StateVariable::StateVariable(QObject *parent) : QObject(parent) { }
+StateVariableSales::StateVariableSales(QObject *parent) : QObject(parent) { }
 
-StateVariable::StateVariable(const QString &name,
+StateVariableSales::StateVariableSales(const QString &name,
                              const QString &dataType,
                              bool sendEvent,
                              QObject *parent) : QObject(parent) {
@@ -15,11 +15,11 @@ StateVariable::StateVariable(const QString &name,
     this->sendEvent = sendEvent;
 }
 
-StateVariable::StateVariable(const StateVariable &stateVariable) : QObject(stateVariable.parent()) {
+StateVariableSales::StateVariableSales(const StateVariableSales &stateVariable) : QObject(stateVariable.parent()) {
     *this = stateVariable;
 }
 
-StateVariable &StateVariable::operator=(const StateVariable &stateVariable) {
+StateVariableSales &StateVariableSales::operator=(const StateVariableSales &stateVariable) {
     if (this != &stateVariable) {
         this->sendEvent = stateVariable.getSendEvent();
         this->attributes = stateVariable.getAttributes();
@@ -27,34 +27,34 @@ StateVariable &StateVariable::operator=(const StateVariable &stateVariable) {
     return *this;
 }
 
-StateVariable::~StateVariable() { }
+StateVariableSales::~StateVariableSales() { }
 
-void StateVariable::setSendEvent(bool sendEvent) {
+void StateVariableSales::setSendEvent(bool sendEvent) {
     this->sendEvent = sendEvent;
 }
 
-bool StateVariable::getSendEvent() const {
+bool StateVariableSales::getSendEvent() const {
     return this->sendEvent;
 }
 
-bool StateVariable::setAttribute(const QString &attributeName, const QString &attributeValue) {
+bool StateVariableSales::setAttribute(const QString &attributeName, const QString &attributeValue) {
     this->attributes[attributeName.toLower()] = attributeValue;
     return true; // use this semantic for future validation
 }
 
-QString StateVariable::getAttribute(const QString &attributeName) {
+QString StateVariableSales::getAttribute(const QString &attributeName) {
     return this->attributes.value(attributeName.toLower());
 }
 
-QHash<QString, QString> StateVariable::getAttributes() const {
+QHash<QString, QString> StateVariableSales::getAttributes() const {
     return this->attributes;
 }
 
-void StateVariable::addAllowedValueList(const QString &allowedValue) {
+void StateVariableSales::addAllowedValueList(const QString &allowedValue) {
     this->allowedValueList.append(allowedValue);
 }
 
-QList<QString> StateVariable::getAllowedValueList() {
+QList<QString> StateVariableSales::getAllowedValueList() {
     return this->allowedValueList;
 }
 

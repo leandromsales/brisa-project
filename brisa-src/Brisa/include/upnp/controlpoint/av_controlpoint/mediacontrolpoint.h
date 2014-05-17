@@ -55,9 +55,9 @@ signals:
 private slots:
 	void handleNewSSDPMessage(QString);
 	void handleSSDPSetupEvents(QString);
-	void handleMediaServerReady(Device *device);
-	void handleMediaRendererReady(Device * device);
-	void handleErrorParsingDeviceDescription(Device *device, quint8 errorCode);
+	void handleMediaServerReady(DeviceSales *device);
+	void handleMediaRendererReady(DeviceSales * device);
+	void handleErrorParsingDeviceDescription(DeviceSales *device, quint8 errorCode);
 
 
 };

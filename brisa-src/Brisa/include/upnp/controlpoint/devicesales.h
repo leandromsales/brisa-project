@@ -1,10 +1,10 @@
-#ifndef DEVICE_H
-#define DEVICE_H
+#ifndef DEVICESALES_H
+#define DEVICESALES_H
 
 #include <QObject>
 
-#include "icon.h"
-#include "service.h"
+#include "iconsales.h"
+#include "servicesales.h"
 
 class QHttp;
 class QNetworkReply;
@@ -16,17 +16,17 @@ namespace brisa {
 namespace upnp {
 namespace controlpoint {
 
-class Device : public QObject
+class DeviceSales : public QObject
 {
     Q_OBJECT
 public:
-    explicit Device(QObject *parent = 0);
-    explicit Device(const QString &,
+    explicit DeviceSales(QObject *parent = 0);
+    explicit DeviceSales(const QString &,
                     const QString &,
                     QObject *parent = 0);
-    explicit Device(const Device &);
-    ~Device();
-    Device & operator=(const Device &);
+    explicit DeviceSales(const DeviceSales &);
+    ~DeviceSales();
+    DeviceSales & operator=(const DeviceSales &);
 
     void setBaseUrl(const QUrl &);
     QUrl getBaseUrl() const;
@@ -37,13 +37,13 @@ public:
     QString getAttribute(const QString &) const;
     QHash<QString, QString> getAttributes() const;
 
-    QHash<QString, Service *> getServices() const;
-    Service *getService(const QString &) const;
+    QHash<QString, ServiceSales *> getServices() const;
+    ServiceSales *getService(const QString &) const;
 
-    QList<Device *> getDevices() const;
+    QList<DeviceSales *> getDevices() const;
 
-    QHash<QString, Icon *> getIcons() const;
-    Icon *getIcon(const QString &);
+    QHash<QString, IconSales *> getIcons() const;
+    IconSales *getIcon(const QString &);
 
     quint8 parseXMLDescription(QTemporaryFile *description);
 
@@ -59,9 +59,9 @@ private:
     QUrl baseUrl;
 
     QHash<QString, QString> attributes;
-    QHash<QString, Icon*> iconList;
-    QHash<QString, Service*> serviceList;
-    QList<Device*> embeddedDeviceList;
+    QHash<QString, IconSales*> iconList;
+    QHash<QString, ServiceSales*> serviceList;
+    QList<DeviceSales*> embeddedDeviceList;
 
     QNetworkAccessManager *downloader;
 
@@ -69,15 +69,15 @@ private:
     uint serviceCount;
 
 signals:
-    void deviceDescriptionReady(Device *);
-    void errorParsingDeviceDescription(Device *, quint8);
+    void deviceDescriptionReady(DeviceSales *);
+    void errorParsingDeviceDescription(DeviceSales *, quint8);
 
 public slots:
     void replyFinished(QNetworkReply *);
-    void handleServiceDescriptionReady(Service *);
-    void handleErrorParsingServiceDescription(Service *, quint8);
-    void handleIconDownloaded(Icon *);
-    void handleErrorDownloadingIcon(Icon *, quint8);
+    void handleServiceDescriptionReady(ServiceSales *);
+    void handleErrorParsingServiceDescription(ServiceSales *, quint8);
+    void handleIconDownloaded(IconSales *);
+    void handleErrorDownloadingIcon(IconSales *, quint8);
     //void handleExecutionActionReply(QString, QHash<QString, ActionArgument *>);
 };
 
@@ -85,4 +85,4 @@ public slots:
 }
 }
 
-#endif // DEVICE_H
+#endif // DEVICESALES_H

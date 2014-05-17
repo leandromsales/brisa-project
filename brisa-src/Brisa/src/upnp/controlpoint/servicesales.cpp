@@ -6,7 +6,7 @@
 #include <QDomDocument>
 #include <QDebug>
 
-#include "service.h"
+#include "servicesales.h"
 #include "shared/soap/soap.h"
 
 namespace brisa {
@@ -14,7 +14,7 @@ using namespace shared::soap;
 namespace upnp {
 namespace controlpoint {
 
-Service::Service(QObject *parent) : QObject(parent) {
+ServiceSales::ServiceSales(QObject *parent) : QObject(parent) {
     this->downloader = new QNetworkAccessManager(this);
     connect(downloader, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
     this->soapHttp = new SOAP(this);
@@ -22,7 +22,7 @@ Service::Service(QObject *parent) : QObject(parent) {
     connect(soapHttp, SIGNAL(requestError(QNetworkReply::NetworkError, QString)), this, SLOT(handleRequestError(QNetworkReply::NetworkError, QString)));
 }
 
-Service::Service(const QString &major,
+ServiceSales::ServiceSales(const QString &major,
                  const QString &minor,
                  const QString &serviceType,
                  const QString &serviceId,
@@ -30,8 +30,8 @@ Service::Service(const QString &major,
                  const QString &controlUrl,
                  const QString &eventSubUrl,
                  const QUrl &baseUrl,
-                 const QHash<QString, Action*> &actionList,
-                 const QHash<QString, StateVariable*> &stateVariableList,
+                 const QHash<QString, ActionSales*> &actionList,
+                 const QHash<QString, StateVariableSales*> &stateVariableList,
                  QObject *parent) : QObject(parent) {
 
     this->setAttribute("major", major);
@@ -51,18 +51,18 @@ Service::Service(const QString &major,
     this->soapHttp = new SOAP(this);
 }
 
-Service::Service(const Service &service) : QObject(service.parent()) {
+ServiceSales::ServiceSales(const ServiceSales &service) : QObject(service.parent()) {
     *this = service;
 }
 
-Service::~Service() {
+ServiceSales::~ServiceSales() {
     delete this->downloader;
     delete this->soapHttp;
     qDeleteAll(this->actionList.values());
     qDeleteAll(this->stateVariableList.values());
 }
 
-Service &Service::operator=(const Service &service) {
+ServiceSales &ServiceSales::operator=(const ServiceSales &service) {
     if (this != &service) {
         // review to see if this is really necessary
         this->attributes = service.getAttributes();
@@ -72,7 +72,7 @@ Service &Service::operator=(const Service &service) {
     return *this;
 }
 
-void Service::setBaseUrl(const QUrl &baseUrl, bool loadDescription) {
+void ServiceSales::setBaseUrl(const QUrl &baseUrl, bool loadDescription) {
     this->baseUrl = baseUrl;
     if (loadDescription) {
         QString scdpPath = this->attributes["scpdurl"];
@@ -84,47 +84,47 @@ void Service::setBaseUrl(const QUrl &baseUrl, bool loadDescription) {
     }
 }
 
-bool Service::setAttribute(const QString &attributeName, const QString &attributeValue) {
+bool ServiceSales::setAttribute(const QString &attributeName, const QString &attributeValue) {
     this->attributes[attributeName.toLower()] = attributeValue;
     return true; // use this semantic for future validation
 }
 
-QString Service::getAttribute(const QString &attributeName) {
+QString ServiceSales::getAttribute(const QString &attributeName) {
     return this->attributes.value(attributeName.toLower());
 }
 
-QHash<QString, QString> Service::getAttributes() const {
+QHash<QString, QString> ServiceSales::getAttributes() const {
     return this->attributes;
 }
 
-void Service::setActions(QHash<QString, Action *> actionList) {
+void ServiceSales::setActions(QHash<QString, ActionSales *> actionList) {
     this->actionList = actionList;
 }
 
-QHash<QString, Action*> Service::getActions() const {
+QHash<QString, ActionSales*> ServiceSales::getActions() const {
     return this->actionList;
 }
 
-Action *Service::getAction(const QString &actionName) {
+ActionSales *ServiceSales::getAction(const QString &actionName) {
     return this->actionList.value(actionName);
 }
 
-void Service::setStateVariables(QHash<QString, StateVariable*> stateVariableList) {
+void ServiceSales::setStateVariables(QHash<QString, StateVariableSales*> stateVariableList) {
     this->stateVariableList = stateVariableList;
 }
 
-QHash<QString, StateVariable *> Service::getStateVariables() const {
+QHash<QString, StateVariableSales *> ServiceSales::getStateVariables() const {
     return this->stateVariableList;
 }
 
-StateVariable *Service::getStateVariable(const QString &stateVariableName) const {
+StateVariableSales *ServiceSales::getStateVariable(const QString &stateVariableName) const {
     return this->stateVariableList.value(stateVariableName);
 }
 
-void Service::replyFinished(QNetworkReply *reply) {
+void ServiceSales::replyFinished(QNetworkReply *reply) {
     QTemporaryFile *descriptionXml = new QTemporaryFile();
     if (!descriptionXml->open()) {
-        emit errorParsingServiceDescription(this, Service::CREATE_TMP_XML_ERROR);
+        emit errorParsingServiceDescription(this, ServiceSales::CREATE_TMP_XML_ERROR);
     } else {
         //qDebug() << reply->readAll();
         descriptionXml->write(reply->readAll());
@@ -143,12 +143,12 @@ void Service::replyFinished(QNetworkReply *reply) {
     reply->deleteLater();
 }
 
-quint8 Service::parseXMLDescription(QTemporaryFile *description) {
+quint8 ServiceSales::parseXMLDescription(QTemporaryFile *description) {
     QDomDocument document("Service");
     document.setContent(description);
     QDomElement element = document.documentElement();
     if (element.tagName() != "scpd") {
-        return Service::MALFORMED_XML_DESCRIPTION_ERROR;
+        return ServiceSales::MALFORMED_XML_DESCRIPTION_ERROR;
     }
 
     QDomNodeList domNodeList = element.elementsByTagName("specVersion");
@@ -156,7 +156,7 @@ quint8 Service::parseXMLDescription(QTemporaryFile *description) {
         QString major = domNodeList.item(0).toElement().elementsByTagName("major").item(0).toElement().text();
         QString minor = domNodeList.item(0).toElement().elementsByTagName("minor").item(0).toElement().text();
         if (major.isEmpty() || minor.isEmpty()) {
-            return Service::WRONG_MAJOR_MINOR_VERSION_ERROR;
+            return ServiceSales::WRONG_MAJOR_MINOR_VERSION_ERROR;
         }
         this->attributes["major"] = major;
         this->attributes["minor"] = minor;
@@ -172,7 +172,7 @@ quint8 Service::parseXMLDescription(QTemporaryFile *description) {
     domNodeList = domNodeList.item(0).childNodes();
     for (unsigned int i = 0; i < domNodeList.length(); i++) {
         //qDebug() << domNodeList.item(i).nodeName(); // action action action...
-        Action *action = new Action();
+        ActionSales *action = new ActionSales();
         domNodeList1 = domNodeList.item(i).childNodes();
         for (int j = 0; j < domNodeList1.length(); j++) {
             //qDebug() << domNodeList1.item(j).nodeName(); // name or argumentList
@@ -204,7 +204,7 @@ quint8 Service::parseXMLDescription(QTemporaryFile *description) {
 
     domNodeList = (element.elementsByTagName("serviceStateTable")).item(0).childNodes();
     for (int i = 0; i < domNodeList.length(); i++) {
-        StateVariable *stateVariable = new StateVariable();
+        StateVariableSales *stateVariable = new StateVariableSales();
         bool sendEvent = (domNodeList.item(i).attributes().item(0).nodeValue() == "yes");
         stateVariable->setSendEvent(sendEvent);
         domNodeList1 = domNodeList.item(i).childNodes();
@@ -227,8 +227,8 @@ quint8 Service::parseXMLDescription(QTemporaryFile *description) {
     return true;
 }
 
-QString Service::executeAction(const QString &actionName, const QHash<QString, QString> &arguments) {
-    Action *action = this->actionList.value(actionName);
+QString ServiceSales::executeAction(const QString &actionName, const QHash<QString, QString> &arguments) {
+    ActionSales *action = this->actionList.value(actionName);
     if (action) {
         QHash<QString, ActionArgument*> args = action->getArguments();
         foreach (QString argument, arguments.keys()) {
@@ -252,7 +252,7 @@ QString Service::executeAction(const QString &actionName, const QHash<QString, Q
     return "Action " + actionName + " not found in service " + this->getAttribute("serviceId");
 }
 
-void Service::handleResponseReady() {
+void ServiceSales::handleResponseReady() {
     QHash<QString, QString> *result = this->soapHttp->getResponse();
     /*if (message.isFault()) {
         //emit requestError("Error: " + message.faultString().toString(), lastMethod);
@@ -262,7 +262,7 @@ void Service::handleResponseReady() {
 
     QHash<QString, ActionArgument *> response;
     QString actionName = this->soapHttp->getActionName();
-    Action *action = this->actionList.value(actionName);
+    ActionSales *action = this->actionList.value(actionName);
     foreach (ActionArgument *actionArgument, action->getArguments().values()) {
         if (actionArgument->getAttribute("direction") == "out") {
             QString name = actionArgument->getAttribute("name");
@@ -273,7 +273,7 @@ void Service::handleResponseReady() {
     emit executionActionReply(actionName, response, this);
 }
 
-void Service::handleRequestError(QNetworkReply::NetworkError code, const QString &errorMsg) {
+void ServiceSales::handleRequestError(QNetworkReply::NetworkError code, const QString &errorMsg) {
     qDebug() << "It occurred an error while executing request. Error(" << code << ") " << errorMsg;
 }
 

@@ -1,5 +1,5 @@
-#ifndef STATEVARIABLE_H
-#define STATEVARIABLE_H
+#ifndef STATEVARIABLESALES_H
+#define STATEVARIABLESALES_H
 
 #include <QObject>
 #include <QHash>
@@ -9,18 +9,18 @@ namespace brisa {
 namespace upnp {
 namespace controlpoint {
 
-class StateVariable : public QObject
+class StateVariableSales : public QObject
 {
     Q_OBJECT
 public:
-    explicit StateVariable(QObject *parent = 0);
-    explicit StateVariable(const QString &,
+    explicit StateVariableSales(QObject *parent = 0);
+    explicit StateVariableSales(const QString &,
                            const QString &,
                            bool,
                            QObject *parent = 0);
-    explicit StateVariable(const StateVariable &);
-    ~StateVariable();
-    StateVariable & operator=(const StateVariable &);
+    explicit StateVariableSales(const StateVariableSales &);
+    ~StateVariableSales();
+    StateVariableSales & operator=(const StateVariableSales &);
 
     void setSendEvent(bool sendEvent);
     bool getSendEvent() const;
@@ -48,4 +48,4 @@ public slots:
 }
 }
 
-#endif // STATEVARIABLE_H
+#endif // STATEVARIABLESALES_H

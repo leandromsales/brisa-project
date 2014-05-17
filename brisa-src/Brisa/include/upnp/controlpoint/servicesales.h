@@ -1,10 +1,10 @@
-#ifndef SERVICE_H
-#define SERVICE_H
+#ifndef SERVICESALES_H
+#define SERVICESALES_H
 
 #include <QObject>
 
-#include "action.h"
-#include "statevariable.h"
+#include "actionsales.h"
+#include "statevariablesales.h"
 #include "../shared/soap/soap.h"
 
 class QHttp;
@@ -17,13 +17,13 @@ namespace brisa {
 namespace upnp {
 namespace controlpoint {
 
-class Service : public QObject
+class ServiceSales : public QObject
 {
     Q_OBJECT
 public:
-    explicit Service(QObject *parent = 0);
+    explicit ServiceSales(QObject *parent = 0);
 
-    explicit Service(const QString &,
+    explicit ServiceSales(const QString &,
                      const QString &,
                      const QString &,
                      const QString &,
@@ -31,13 +31,13 @@ public:
                      const QString &,
                      const QString &,
                      const QUrl &,
-                     const QHash<QString, Action *> &,
-                     const QHash<QString, StateVariable *> &,
+                     const QHash<QString, ActionSales *> &,
+                     const QHash<QString, StateVariableSales *> &,
                      QObject *parent = 0);
 
-    explicit Service(const Service &);
-    ~Service();
-    Service & operator=(const Service &);
+    explicit ServiceSales(const ServiceSales &);
+    ~ServiceSales();
+    ServiceSales & operator=(const ServiceSales &);
 
     void setBaseUrl(const QUrl &, bool = true);
 
@@ -45,13 +45,13 @@ public:
     QString getAttribute(const QString &);
     QHash<QString, QString> getAttributes() const;
 
-    void setActions(QHash<QString, Action*>);
-    QHash<QString, Action *> getActions() const;
-    Action *getAction(const QString &);
+    void setActions(QHash<QString, ActionSales*>);
+    QHash<QString, ActionSales *> getActions() const;
+    ActionSales *getAction(const QString &);
 
-    void setStateVariables(QHash<QString, StateVariable*>);
-    QHash<QString, StateVariable*> getStateVariables() const;
-    StateVariable *getStateVariable(const QString &) const;
+    void setStateVariables(QHash<QString, StateVariableSales*>);
+    QHash<QString, StateVariableSales*> getStateVariables() const;
+    StateVariableSales *getStateVariable(const QString &) const;
 
     quint8 parseXMLDescription(QTemporaryFile *description);
     QString executeAction(const QString &, const QHash<QString, QString> &);
@@ -66,16 +66,16 @@ public:
 private:
     QUrl baseUrl;
     QHash<QString, QString> attributes;
-    QHash<QString, Action*> actionList;
-    QHash<QString, StateVariable*> stateVariableList;
+    QHash<QString, ActionSales*> actionList;
+    QHash<QString, StateVariableSales*> stateVariableList;
 
     QNetworkAccessManager *downloader;
     brisa::shared::soap::SOAP *soapHttp;
 
 signals:
-    void serviceDescriptionReady(Service *);
-    void errorParsingServiceDescription(Service *, quint8);
-    void executionActionReply(QString, QHash<QString, ActionArgument *>, Service *);
+    void serviceDescriptionReady(ServiceSales *);
+    void errorParsingServiceDescription(ServiceSales *, quint8);
+    void executionActionReply(QString, QHash<QString, ActionArgument *>, ServiceSales *);
 
 public slots:
     void replyFinished(QNetworkReply *);
@@ -87,4 +87,4 @@ public slots:
 }
 }
 }
-#endif // SERVICE_H
+#endif // SERVICESALES_H

@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QHash>
 
-#include "statevariable.h"
+#include "statevariablesales.h"
 
 namespace brisa {
 namespace upnp {

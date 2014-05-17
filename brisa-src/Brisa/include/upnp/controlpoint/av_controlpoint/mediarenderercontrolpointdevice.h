@@ -4,14 +4,14 @@
 #include <QObject>
 
 #include "controlpoint_media_globals.h"
-#include "upnp/controlpoint/device.h"
+#include "upnp/controlpoint/devicesales.h"
 
 namespace brisa {
 namespace upnp {
 namespace controlpoint {
 namespace av {
 
-class MediaRendererControlPointDevice : public Device
+class MediaRendererControlPointDevice : public DeviceSales
 {
     Q_OBJECT
 public:

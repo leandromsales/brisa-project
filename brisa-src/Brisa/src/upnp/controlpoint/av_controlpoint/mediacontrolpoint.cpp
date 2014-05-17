@@ -70,7 +70,7 @@ void MediaControlPoint::handleNewSSDPMessage(QString message) {
 
 		bool found = false;
 		QString location;
-		Device *device = NULL;
+		DeviceSales *device = NULL;
 		QString type =
 				(!response.contains("st")) ? response["nt"] : response["st"];
 
@@ -81,8 +81,8 @@ void MediaControlPoint::handleNewSSDPMessage(QString message) {
 				device = new MediaServerControlPointDevice(uuid, location);
 				this->mss.insert(uuid,
 						(MediaServerControlPointDevice *) device);
-				Q_ASSERT(connect(device, SIGNAL(deviceDescriptionReady(Device *)), this,
-						SLOT(handleMediaServerReady(Device *))));
+				Q_ASSERT(connect(device, SIGNAL(deviceDescriptionReady(DeviceSales *)), this,
+						SLOT(handleMediaServerReady(DeviceSales *))));
 				found = true;
 				break;
 			}
@@ -97,8 +97,8 @@ void MediaControlPoint::handleNewSSDPMessage(QString message) {
 							location);
 					this->mrs.insert(uuid,
 							(MediaRendererControlPointDevice *) device);
-					connect(device, SIGNAL(deviceDescriptionReady(Device *)),
-							this, SLOT(handleMediaRendererReady(Device *)));
+					connect(device, SIGNAL(deviceDescriptionReady(DeviceSales *)),
+							this, SLOT(handleMediaRendererReady(DeviceSales *)));
 					found = true;
 					break;
 				}
@@ -107,9 +107,9 @@ void MediaControlPoint::handleNewSSDPMessage(QString message) {
 
 		if (found) {
 			connect(device,
-					SIGNAL(errorParsingDeviceDescription(Device *, quint8)),
+					SIGNAL(errorParsingDeviceDescription(DeviceSales *, quint8)),
 					this,
-					SLOT(handleErrorParsingDeviceDescription(Device *, quint8)));
+					SLOT(handleErrorParsingDeviceDescription(DeviceSales *, quint8)));
 			device->parseDescription();
 		} else {
 			//qDebug() << "DEVICE OF TYPE" << type << " NOT HANDLED LOCATION: " << location;
@@ -126,7 +126,7 @@ void MediaControlPoint::handleNewSSDPMessage(QString message) {
 		QString type =
 				(!response.contains("st")) ? response["nt"] : response["st"];
 
-		Device *device = NULL;
+		DeviceSales *device = NULL;
 		foreach (QString acceptedType, MEDIA_SERVERS_URN)
 		{
 			if (type.startsWith(acceptedType)) {
@@ -210,17 +210,17 @@ void MediaControlPoint::handleSSDPSetupEvents(QString message) {
 	//qDebug() << message;
 }
 
-void MediaControlPoint::handleMediaServerReady(Device * device) {
-	disconnect(device, SIGNAL(deviceDescriptionReady(Device *)), this,
-			SLOT(handleMediaServerReady(Device *)));
+void MediaControlPoint::handleMediaServerReady(DeviceSales * device) {
+	disconnect(device, SIGNAL(deviceDescriptionReady(DeviceSales *)), this,
+			SLOT(handleMediaServerReady(DeviceSales *)));
 	MediaServerControlPointDevice *ms = (MediaServerControlPointDevice *) device;
 	++this->mediaServerCount;
 	emit newMediaServerDevice(ms);
 }
 
-void MediaControlPoint::handleMediaRendererReady(Device * device) {
-	disconnect(device, SIGNAL(deviceDescriptionReady(Device *)), this,
-			SLOT(handleMediaRendererReady(Device*)));
+void MediaControlPoint::handleMediaRendererReady(DeviceSales * device) {
+	disconnect(device, SIGNAL(deviceDescriptionReady(DeviceSales *)), this,
+			SLOT(handleMediaRendererReady(DeviceSales*)));
 	MediaRendererControlPointDevice *mr =
 			(MediaRendererControlPointDevice *) device;
 	++this->mediaRendererCount;
@@ -235,7 +235,7 @@ uint MediaControlPoint::getMediaRenderersCount() {
 	return this->mediaRendererCount;
 }
 
-void MediaControlPoint::handleErrorParsingDeviceDescription(Device *device,
+void MediaControlPoint::handleErrorParsingDeviceDescription(DeviceSales *device,
 		quint8 errorCode) {
 	qDebug() << "Error parsing device description from "
 			<< device->getAttribute("location") << " with error code "
