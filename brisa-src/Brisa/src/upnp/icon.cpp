@@ -1,4 +1,4 @@
-#include "upnp/icon.h"
+#include "icon.h"
 
 namespace brisa {
 namespace upnp {

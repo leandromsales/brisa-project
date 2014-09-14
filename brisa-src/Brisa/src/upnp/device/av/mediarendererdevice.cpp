@@ -1,5 +1,5 @@
-#include "upnp/device/av/mediarendererdevice.h"
-#include "upnp/device/device.h"
+#include "mediarendererdevice.h"
+#include "../device.h"
 #include "mediarendererdeviceservice.h"
 
 namespace brisa {

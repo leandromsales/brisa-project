@@ -94,71 +94,76 @@ config_pri_source_group1 {
         $$quote($$BASEDIR/src/upnp/statevariable.cpp)
 
     HEADERS += \
-        $$quote($$BASEDIR/include/network/brisanetwork.h) \
-        $$quote($$BASEDIR/include/network/networkmanager.h) \
-        $$quote($$BASEDIR/include/shared/soap/qtsoap.h) \
-        $$quote($$BASEDIR/include/shared/soap/soap.h) \
-        $$quote($$BASEDIR/include/shared/soap/soapenvelope.h) \
-        $$quote($$BASEDIR/include/shared/ssdp/ssdp.h) \
-        $$quote($$BASEDIR/include/shared/ssdp/ssdpclient.h) \
-        $$quote($$BASEDIR/include/shared/ssdp/ssdpprotocol.h) \
-        $$quote($$BASEDIR/include/shared/ssdp/ssdpserver.h) \
-        $$quote($$BASEDIR/include/shared/ssdp/ssdpudpsocket.h) \
-        $$quote($$BASEDIR/include/shared/webserver/http/httpmessage.h) \
-        $$quote($$BASEDIR/include/shared/webserver/http/httprequest.h) \
-        $$quote($$BASEDIR/include/shared/webserver/http/httpresponse.h) \
-        $$quote($$BASEDIR/include/shared/webserver/http/httpserver.h) \
-        $$quote($$BASEDIR/include/shared/webserver/http/httpsession.h) \
-        $$quote($$BASEDIR/include/shared/webserver/http/httpsessionmanager.h) \
-        $$quote($$BASEDIR/include/shared/webserver/http/httpversion.h) \
-        $$quote($$BASEDIR/include/shared/webserver/webfile.h) \
-        $$quote($$BASEDIR/include/shared/webserver/webserver.h) \
-        $$quote($$BASEDIR/include/shared/webserver/webserversession.h) \
-        $$quote($$BASEDIR/include/shared/webserver/webservice.h) \
-        $$quote($$BASEDIR/include/shared/webserver/webstaticcontent.h) \
-        $$quote($$BASEDIR/include/upnp/abstracteventsubscription.h) \
-        $$quote($$BASEDIR/include/upnp/abstractservice.h) \
-        $$quote($$BASEDIR/include/upnp/action.h) \
-        $$quote($$BASEDIR/include/upnp/argument.h) \
-        $$quote($$BASEDIR/include/upnp/brisaglobal.h) \
-        $$quote($$BASEDIR/include/upnp/brisautils.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/actionargument.h) \
         $$quote($$BASEDIR/include/upnp/controlpoint/actionsales.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/av/controlpoint_media_globals.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/av/didl/container.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/av/didl/didllite.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/av/didl/item.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/av/didl/res.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/av/mediacontrolpoint.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/av/mediarenderercpdevice.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/av/mediaserverdevice.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/controlpoint.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/cpdevice.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/cpservice.h) \
         $$quote($$BASEDIR/include/upnp/controlpoint/devicesales.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/devicexmlhandlercp.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/eventproxy.h) \
         $$quote($$BASEDIR/include/upnp/controlpoint/iconsales.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/msearchclientcp.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/multicasteventreceiver.h) \
         $$quote($$BASEDIR/include/upnp/controlpoint/servicesales.h) \
         $$quote($$BASEDIR/include/upnp/controlpoint/statevariablesales.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/udplistener.h) \
-        $$quote($$BASEDIR/include/upnp/device/abstracteventmessage.h) \
-        $$quote($$BASEDIR/include/upnp/device/actionxmlparser.h) \
-        $$quote($$BASEDIR/include/upnp/device/av/mediarendererdevice.h) \
-        $$quote($$BASEDIR/include/upnp/device/av/mediarendererdeviceservice.h) \
-        $$quote($$BASEDIR/include/upnp/device/controlwebservice.h) \
-        $$quote($$BASEDIR/include/upnp/device/device.h) \
-        $$quote($$BASEDIR/include/upnp/device/devicexmlhandler.h) \
-        $$quote($$BASEDIR/include/upnp/device/eventcontroller.h) \
-        $$quote($$BASEDIR/include/upnp/device/eventmessage.h) \
-        $$quote($$BASEDIR/include/upnp/device/eventsubscription.h) \
-        $$quote($$BASEDIR/include/upnp/device/multicasteventmessage.h) \
-        $$quote($$BASEDIR/include/upnp/device/service.h) \
-        $$quote($$BASEDIR/include/upnp/icon.h) \
-        $$quote($$BASEDIR/include/upnp/servicexmlhandler.h) \
-        $$quote($$BASEDIR/include/upnp/statevariable.h)
+        $$quote($$BASEDIR/src/network/brisanetwork.h) \
+        $$quote($$BASEDIR/src/network/networkmanager.h) \
+        $$quote($$BASEDIR/src/shared/soap/qtsoap.h) \
+        $$quote($$BASEDIR/src/shared/soap/soap.h) \
+        $$quote($$BASEDIR/src/shared/soap/soapenvelope.h) \
+        $$quote($$BASEDIR/src/shared/ssdp/ssdp.h) \
+        $$quote($$BASEDIR/src/shared/ssdp/ssdpclient.h) \
+        $$quote($$BASEDIR/src/shared/ssdp/ssdpprotocol.h) \
+        $$quote($$BASEDIR/src/shared/ssdp/ssdpserver.h) \
+        $$quote($$BASEDIR/src/shared/ssdp/ssdpudpsocket.h) \
+        $$quote($$BASEDIR/src/shared/webserver/http/httpmessage.h) \
+        $$quote($$BASEDIR/src/shared/webserver/http/httprequest.h) \
+        $$quote($$BASEDIR/src/shared/webserver/http/httpresponse.h) \
+        $$quote($$BASEDIR/src/shared/webserver/http/httpserver.h) \
+        $$quote($$BASEDIR/src/shared/webserver/http/httpsession.h) \
+        $$quote($$BASEDIR/src/shared/webserver/http/httpsessionmanager.h) \
+        $$quote($$BASEDIR/src/shared/webserver/http/httpversion.h) \
+        $$quote($$BASEDIR/src/shared/webserver/webfile.h) \
+        $$quote($$BASEDIR/src/shared/webserver/webserver.h) \
+        $$quote($$BASEDIR/src/shared/webserver/webserversession.h) \
+        $$quote($$BASEDIR/src/shared/webserver/webservice.h) \
+        $$quote($$BASEDIR/src/shared/webserver/webstaticcontent.h) \
+        $$quote($$BASEDIR/src/upnp/abstracteventsubscription.h) \
+        $$quote($$BASEDIR/src/upnp/abstractservice.h) \
+        $$quote($$BASEDIR/src/upnp/action.h) \
+        $$quote($$BASEDIR/src/upnp/argument.h) \
+        $$quote($$BASEDIR/src/upnp/brisaglobal.h) \
+        $$quote($$BASEDIR/src/upnp/brisautils.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/actionargument.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/actionsales.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/av/controlpoint_media_globals.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/container.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/didllite.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/item.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/res.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/av/mediacontrolpoint.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/av/mediarenderercpdevice.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/av/mediaserverdevice.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/controlpoint.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/cpdevice.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/cpservice.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/devicesales.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/devicexmlhandlercp.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/eventproxy.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/iconsales.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/msearchclientcp.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/multicasteventreceiver.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/servicesales.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/statevariablesales.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/udplistener.h) \
+        $$quote($$BASEDIR/src/upnp/device/abstracteventmessage.h) \
+        $$quote($$BASEDIR/src/upnp/device/actionxmlparser.h) \
+        $$quote($$BASEDIR/src/upnp/device/av/mediarendererdevice.h) \
+        $$quote($$BASEDIR/src/upnp/device/av/mediarendererdeviceservice.h) \
+        $$quote($$BASEDIR/src/upnp/device/controlwebservice.h) \
+        $$quote($$BASEDIR/src/upnp/device/device.h) \
+        $$quote($$BASEDIR/src/upnp/device/devicexmlhandler.h) \
+        $$quote($$BASEDIR/src/upnp/device/eventcontroller.h) \
+        $$quote($$BASEDIR/src/upnp/device/eventmessage.h) \
+        $$quote($$BASEDIR/src/upnp/device/eventsubscription.h) \
+        $$quote($$BASEDIR/src/upnp/device/multicasteventmessage.h) \
+        $$quote($$BASEDIR/src/upnp/device/service.h) \
+        $$quote($$BASEDIR/src/upnp/icon.h) \
+        $$quote($$BASEDIR/src/upnp/servicexmlhandler.h) \
+        $$quote($$BASEDIR/src/upnp/statevariable.h)
 }
 
 config_pri_source_group2 {
@@ -225,94 +230,89 @@ config_pri_source_group2 {
         $$quote($$BASEDIR/src/upnp/statevariable.cpp)
 
     HEADERS += \
-        $$quote($$BASEDIR/include/network/brisanetwork.h) \
-        $$quote($$BASEDIR/include/network/networkmanager.h) \
-        $$quote($$BASEDIR/include/shared/soap/qtsoap.h) \
-        $$quote($$BASEDIR/include/shared/soap/soap.h) \
-        $$quote($$BASEDIR/include/shared/soap/soapenvelope.h) \
-        $$quote($$BASEDIR/include/shared/ssdp/ssdp.h) \
-        $$quote($$BASEDIR/include/shared/ssdp/ssdpclient.h) \
-        $$quote($$BASEDIR/include/shared/ssdp/ssdpprotocol.h) \
-        $$quote($$BASEDIR/include/shared/ssdp/ssdpserver.h) \
-        $$quote($$BASEDIR/include/shared/ssdp/ssdpudpsocket.h) \
-        $$quote($$BASEDIR/include/shared/webserver/http/httpmessage.h) \
-        $$quote($$BASEDIR/include/shared/webserver/http/httprequest.h) \
-        $$quote($$BASEDIR/include/shared/webserver/http/httpresponse.h) \
-        $$quote($$BASEDIR/include/shared/webserver/http/httpserver.h) \
-        $$quote($$BASEDIR/include/shared/webserver/http/httpsession.h) \
-        $$quote($$BASEDIR/include/shared/webserver/http/httpsessionmanager.h) \
-        $$quote($$BASEDIR/include/shared/webserver/http/httpversion.h) \
-        $$quote($$BASEDIR/include/shared/webserver/webfile.h) \
-        $$quote($$BASEDIR/include/shared/webserver/webserver.h) \
-        $$quote($$BASEDIR/include/shared/webserver/webserversession.h) \
-        $$quote($$BASEDIR/include/shared/webserver/webservice.h) \
-        $$quote($$BASEDIR/include/shared/webserver/webstaticcontent.h) \
-        $$quote($$BASEDIR/include/upnp/abstracteventsubscription.h) \
-        $$quote($$BASEDIR/include/upnp/abstractservice.h) \
-        $$quote($$BASEDIR/include/upnp/action.h) \
-        $$quote($$BASEDIR/include/upnp/argument.h) \
-        $$quote($$BASEDIR/include/upnp/brisaglobal.h) \
-        $$quote($$BASEDIR/include/upnp/brisautils.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/actionargument.h) \
         $$quote($$BASEDIR/include/upnp/controlpoint/actionsales.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/av/controlpoint_media_globals.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/av/didl/container.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/av/didl/didllite.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/av/didl/item.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/av/didl/res.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/av/mediacontrolpoint.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/av/mediarenderercpdevice.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/av/mediaserverdevice.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/controlpoint.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/cpdevice.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/cpservice.h) \
         $$quote($$BASEDIR/include/upnp/controlpoint/devicesales.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/devicexmlhandlercp.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/eventproxy.h) \
         $$quote($$BASEDIR/include/upnp/controlpoint/iconsales.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/msearchclientcp.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/multicasteventreceiver.h) \
         $$quote($$BASEDIR/include/upnp/controlpoint/servicesales.h) \
         $$quote($$BASEDIR/include/upnp/controlpoint/statevariablesales.h) \
-        $$quote($$BASEDIR/include/upnp/controlpoint/udplistener.h) \
-        $$quote($$BASEDIR/include/upnp/device/abstracteventmessage.h) \
-        $$quote($$BASEDIR/include/upnp/device/actionxmlparser.h) \
-        $$quote($$BASEDIR/include/upnp/device/av/mediarendererdevice.h) \
-        $$quote($$BASEDIR/include/upnp/device/av/mediarendererdeviceservice.h) \
-        $$quote($$BASEDIR/include/upnp/device/controlwebservice.h) \
-        $$quote($$BASEDIR/include/upnp/device/device.h) \
-        $$quote($$BASEDIR/include/upnp/device/devicexmlhandler.h) \
-        $$quote($$BASEDIR/include/upnp/device/eventcontroller.h) \
-        $$quote($$BASEDIR/include/upnp/device/eventmessage.h) \
-        $$quote($$BASEDIR/include/upnp/device/eventsubscription.h) \
-        $$quote($$BASEDIR/include/upnp/device/multicasteventmessage.h) \
-        $$quote($$BASEDIR/include/upnp/device/service.h) \
-        $$quote($$BASEDIR/include/upnp/icon.h) \
-        $$quote($$BASEDIR/include/upnp/servicexmlhandler.h) \
-        $$quote($$BASEDIR/include/upnp/statevariable.h)
+        $$quote($$BASEDIR/src/network/brisanetwork.h) \
+        $$quote($$BASEDIR/src/network/networkmanager.h) \
+        $$quote($$BASEDIR/src/shared/soap/qtsoap.h) \
+        $$quote($$BASEDIR/src/shared/soap/soap.h) \
+        $$quote($$BASEDIR/src/shared/soap/soapenvelope.h) \
+        $$quote($$BASEDIR/src/shared/ssdp/ssdp.h) \
+        $$quote($$BASEDIR/src/shared/ssdp/ssdpclient.h) \
+        $$quote($$BASEDIR/src/shared/ssdp/ssdpprotocol.h) \
+        $$quote($$BASEDIR/src/shared/ssdp/ssdpserver.h) \
+        $$quote($$BASEDIR/src/shared/ssdp/ssdpudpsocket.h) \
+        $$quote($$BASEDIR/src/shared/webserver/http/httpmessage.h) \
+        $$quote($$BASEDIR/src/shared/webserver/http/httprequest.h) \
+        $$quote($$BASEDIR/src/shared/webserver/http/httpresponse.h) \
+        $$quote($$BASEDIR/src/shared/webserver/http/httpserver.h) \
+        $$quote($$BASEDIR/src/shared/webserver/http/httpsession.h) \
+        $$quote($$BASEDIR/src/shared/webserver/http/httpsessionmanager.h) \
+        $$quote($$BASEDIR/src/shared/webserver/http/httpversion.h) \
+        $$quote($$BASEDIR/src/shared/webserver/webfile.h) \
+        $$quote($$BASEDIR/src/shared/webserver/webserver.h) \
+        $$quote($$BASEDIR/src/shared/webserver/webserversession.h) \
+        $$quote($$BASEDIR/src/shared/webserver/webservice.h) \
+        $$quote($$BASEDIR/src/shared/webserver/webstaticcontent.h) \
+        $$quote($$BASEDIR/src/upnp/abstracteventsubscription.h) \
+        $$quote($$BASEDIR/src/upnp/abstractservice.h) \
+        $$quote($$BASEDIR/src/upnp/action.h) \
+        $$quote($$BASEDIR/src/upnp/argument.h) \
+        $$quote($$BASEDIR/src/upnp/brisaglobal.h) \
+        $$quote($$BASEDIR/src/upnp/brisautils.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/actionargument.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/actionsales.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/av/controlpoint_media_globals.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/container.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/didllite.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/item.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/av/didl/res.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/av/mediacontrolpoint.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/av/mediarenderercpdevice.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/av/mediaserverdevice.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/controlpoint.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/cpdevice.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/cpservice.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/devicesales.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/devicexmlhandlercp.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/eventproxy.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/iconsales.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/msearchclientcp.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/multicasteventreceiver.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/servicesales.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/statevariablesales.h) \
+        $$quote($$BASEDIR/src/upnp/controlpoint/udplistener.h) \
+        $$quote($$BASEDIR/src/upnp/device/abstracteventmessage.h) \
+        $$quote($$BASEDIR/src/upnp/device/actionxmlparser.h) \
+        $$quote($$BASEDIR/src/upnp/device/av/mediarendererdevice.h) \
+        $$quote($$BASEDIR/src/upnp/device/av/mediarendererdeviceservice.h) \
+        $$quote($$BASEDIR/src/upnp/device/controlwebservice.h) \
+        $$quote($$BASEDIR/src/upnp/device/device.h) \
+        $$quote($$BASEDIR/src/upnp/device/devicexmlhandler.h) \
+        $$quote($$BASEDIR/src/upnp/device/eventcontroller.h) \
+        $$quote($$BASEDIR/src/upnp/device/eventmessage.h) \
+        $$quote($$BASEDIR/src/upnp/device/eventsubscription.h) \
+        $$quote($$BASEDIR/src/upnp/device/multicasteventmessage.h) \
+        $$quote($$BASEDIR/src/upnp/device/service.h) \
+        $$quote($$BASEDIR/src/upnp/icon.h) \
+        $$quote($$BASEDIR/src/upnp/servicexmlhandler.h) \
+        $$quote($$BASEDIR/src/upnp/statevariable.h)
 }
 
 INCLUDEPATH += $$quote($$BASEDIR/src/shared/webserver) \
-    $$quote($$BASEDIR/include/upnp/controlpoint/av/didl) \
-    $$quote($$BASEDIR/include/upnp) \
-    $$quote($$BASEDIR/include/upnp/device) \
-    $$quote($$BASEDIR/include/upnp/device/av) \
+    $$quote($$BASEDIR/src/upnp/device) \
     $$quote($$BASEDIR/src/network) \
     $$quote($$BASEDIR/src/upnp/controlpoint/av) \
+    $$quote($$BASEDIR/src/upnp/controlpoint/av/didl) \
     $$quote($$BASEDIR/src/shared/soap) \
+    $$quote($$BASEDIR/include/upnp/controlpoint) \
     $$quote($$BASEDIR/src/shared/ssdp) \
-    $$quote($$BASEDIR/include/network) \
+    $$quote($$BASEDIR/src/upnp/device/av) \
     $$quote($$BASEDIR/src/upnp/controlpoint) \
     $$quote($$BASEDIR/src/upnp) \
-    $$quote($$BASEDIR/include/upnp/controlpoint/av) \
-    $$quote($$BASEDIR/include/shared/webserver) \
-    $$quote($$BASEDIR/include/shared/webserver/http) \
-    $$quote($$BASEDIR/src/upnp/device) \
-    $$quote($$BASEDIR/include/shared/soap) \
-    $$quote($$BASEDIR/include/shared/ssdp) \
-    $$quote($$BASEDIR/src/upnp/controlpoint/av/didl) \
-    $$quote($$BASEDIR/include/upnp/controlpoint) \
-    $$quote($$BASEDIR/src/upnp/device/av) \
     $$quote($$BASEDIR/src/shared/webserver/http)
 
 CONFIG += precompile_header

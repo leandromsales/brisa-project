@@ -1,12 +1,12 @@
 #include <QtDebug>
 #include <QIODevice>
 
-#include "shared/webserver/webfile.h"
+#include "../../shared/webserver/webfile.h"
 
 // TODO: put this include at the begin of the file
-#include "upnp/device/device.h"
-#include "shared/ssdp/ssdpserver.h"
-#include "shared/webserver/webserver.h"
+#include "device.h"
+#include "../../shared/ssdp/ssdpserver.h"
+#include "../../shared/webserver/webserver.h"
 
 //#if defined (__QNXNTO__)
 //	#include "upnp/brisautils.h"

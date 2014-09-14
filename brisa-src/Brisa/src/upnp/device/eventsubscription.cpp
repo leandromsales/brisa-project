@@ -1,4 +1,4 @@
-#include "upnp/device/eventsubscription.h"
+#include "eventsubscription.h"
 
 namespace brisa {
 using namespace shared::webserver::http;

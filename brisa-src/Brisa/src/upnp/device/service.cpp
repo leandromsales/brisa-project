@@ -1,13 +1,13 @@
 #include <QtDebug>
 #include <QUrl>
 #include <QMetaMethod>
-#include "shared/webserver/webfile.h"
-#include "upnp/device/controlwebservice.h"
-#include "shared/webserver/webserversession.h"
+#include "controlwebservice.h"
+#include "../../shared/webserver/webfile.h"
+#include "../../shared/webserver/webserversession.h"
 
 // TODO: move the include directive to the begin of the file
-#include "upnp/device/service.h"
-#include "upnp/servicexmlhandler.h"
+#include "service.h"
+#include "servicexmlhandler.h"
 
 #define PRE_ACTION_SIG "preAction(InArgument*const,BrisaAction*const,QString&)"
 #define POST_ACTION_SIG "postAction(InArgument*const,OutArgument*const,BrisaAction*const,QString&)"

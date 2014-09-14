@@ -27,7 +27,7 @@
  */
 
 
-#include "upnp/controlpoint/udplistener.h"
+#include "udplistener.h"
 
 #if defined(Q_OS_UNIX) || defined(Q_OS_ANDROID) || defined(Q_OS_QNX) || defined (Q_OS_MAC)
 #include <arpa/inet.h>

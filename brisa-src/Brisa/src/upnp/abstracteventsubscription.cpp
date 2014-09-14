@@ -1,4 +1,4 @@
-#include "upnp/abstracteventsubscription.h"
+#include "abstracteventsubscription.h"
 
 namespace brisa {
 namespace upnp {

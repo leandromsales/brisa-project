@@ -1,4 +1,4 @@
-#include "upnp/device/actionxmlparser.h"
+#include "actionxmlparser.h"
 
 #include <QtDebug>
 

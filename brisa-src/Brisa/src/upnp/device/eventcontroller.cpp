@@ -1,8 +1,8 @@
 #include <QDebug>
 
-#include "upnp/device/eventcontroller.h"
-#include "shared/webserver/webserversession.h"
-#include "shared/webserver/webserver.h"
+#include "eventcontroller.h"
+#include "../../shared/webserver/webserversession.h"
+#include "../../shared/webserver/webserver.h"
 
 namespace brisa {
 using namespace shared::webserver;

@@ -1,5 +1,5 @@
-#include "upnp/action.h"
-#include "upnp/device/service.h"
+#include "action.h"
+#include "device/service.h"
 #include <QDebug>
 
 

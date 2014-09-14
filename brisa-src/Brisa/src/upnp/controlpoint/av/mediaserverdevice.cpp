@@ -1,4 +1,4 @@
-#include "upnp/controlpoint/av/mediaserverdevice.h"
+#include "mediaserverdevice.h"
 
 namespace brisa {
 namespace upnp {

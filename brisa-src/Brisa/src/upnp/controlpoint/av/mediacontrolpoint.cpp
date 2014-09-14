@@ -1,4 +1,4 @@
-#include "upnp/controlpoint/av/mediacontrolpoint.h"
+#include "mediacontrolpoint.h"
 
 namespace brisa {
 using namespace shared::ssdp;

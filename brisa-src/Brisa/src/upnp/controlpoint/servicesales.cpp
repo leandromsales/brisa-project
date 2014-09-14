@@ -7,7 +7,7 @@
 #include <QDebug>
 
 #include "servicesales.h"
-#include "shared/soap/soap.h"
+#include "../../shared/soap/soap.h"
 
 namespace brisa {
 using namespace shared::soap;

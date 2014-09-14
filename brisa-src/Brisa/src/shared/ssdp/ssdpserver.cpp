@@ -1,4 +1,4 @@
-#include "shared/ssdp/ssdpserver.h"
+#include "ssdpserver.h"
 
 #include <QStringList>
 #include <QtDebug>

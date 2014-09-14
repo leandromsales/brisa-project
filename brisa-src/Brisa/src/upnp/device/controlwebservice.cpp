@@ -1,6 +1,6 @@
-#include "upnp/device/controlwebservice.h"
-#include "upnp/device/actionxmlparser.h"
-#include "shared/webserver/http/httpresponse.h"
+#include "controlwebservice.h"
+#include "actionxmlparser.h"
+#include "../../shared/webserver/http/httpresponse.h"
 
 namespace brisa {
 using namespace shared::webserver;

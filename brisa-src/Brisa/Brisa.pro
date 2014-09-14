@@ -2,6 +2,7 @@
 TEMPLATE = lib
 
 INCLUDEPATH += "include"
+INCLUDEPATH += "src"
 
 CONFIG += qt warn_on cascades_library
 CONFIG += hardening

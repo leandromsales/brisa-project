@@ -26,7 +26,7 @@
  *
  */
 #include <QtDebug>
-#include "upnp/controlpoint/msearchclientcp.h"
+#include "msearchclientcp.h"
 
 #if defined(Q_OS_UNIX) || defined(Q_OS_ANDROID) || defined(Q_OS_QNX) || defined (Q_OS_MAC)
 #include <arpa/inet.h>

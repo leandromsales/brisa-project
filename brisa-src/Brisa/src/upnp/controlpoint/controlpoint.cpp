@@ -30,9 +30,9 @@
 #include <QtCore>
 #include <QtDebug>
 
-#include "upnp/controlpoint/controlpoint.h"
-#include "shared/ssdp/ssdpclient.h"
-#include "upnp/controlpoint/msearchclientcp.h"
+#include "controlpoint.h"
+#include "../../shared/ssdp/ssdpclient.h"
+#include "msearchclientcp.h"
 
 #include "webserversession.h"
 

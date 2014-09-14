@@ -26,8 +26,8 @@
  *
  */
 
-#include "upnp/controlpoint/cpservice.h"
-#include "upnp/servicexmlhandler.h"
+#include "cpservice.h"
+#include "../servicexmlhandler.h"
 
 #include <QtDebug>
 #include <QIODevice>

@@ -1,4 +1,4 @@
-#include "upnp/controlpoint/multicasteventreceiver.h"
+#include "multicasteventreceiver.h"
 
 namespace brisa {
 namespace upnp {

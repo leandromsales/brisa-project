@@ -26,7 +26,7 @@
  *
  */
 
-#include "shared/ssdp/ssdpclient.h"
+#include "ssdpclient.h"
 
 namespace brisa {
 using namespace upnp::controlpoint;

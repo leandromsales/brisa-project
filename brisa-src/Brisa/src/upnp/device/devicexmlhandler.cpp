@@ -1,5 +1,5 @@
-#include "upnp/device/devicexmlhandler.h"
-#include "upnp/device/device.h"
+#include "devicexmlhandler.h"
+#include "device.h"
 
 #include <QDebug>
 

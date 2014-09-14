@@ -1,5 +1,5 @@
-#include "upnp/servicexmlhandler.h"
-#include "upnp/abstractservice.h"
+#include "servicexmlhandler.h"
+#include "abstractservice.h"
 
 namespace brisa {
 namespace upnp {

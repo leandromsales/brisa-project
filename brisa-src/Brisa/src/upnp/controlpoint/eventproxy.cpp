@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "upnp/controlpoint/eventproxy.h"
+#include "eventproxy.h"
 
-#include <webserversession.h>
+#include "../../shared/webserver/webserversession.h"
 
 namespace brisa {
 using namespace shared::webserver;

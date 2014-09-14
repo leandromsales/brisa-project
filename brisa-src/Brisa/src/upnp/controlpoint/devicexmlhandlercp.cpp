@@ -26,8 +26,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "upnp/controlpoint/devicexmlhandlercp.h"
-#include "upnp/controlpoint/cpdevice.h"
+#include "devicexmlhandlercp.h"
+#include "cpdevice.h"
 
 #define PORT_INDEX 2
 
