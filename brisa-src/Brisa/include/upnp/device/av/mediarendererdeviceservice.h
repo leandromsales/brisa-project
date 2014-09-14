@@ -21,19 +21,19 @@ class MediaRendererDeviceService : public Service
 public:
     explicit MediaRendererDeviceService(QObject *parent = 0);
     Q_INVOKABLE
-    int preAction(BrisaInArgument* const inArguments,
+    int preAction(InArgument* const inArguments,
                   Action* const action,
                   QString &errorDescription);
     Q_INVOKABLE
-    int postAction(BrisaInArgument* const inArguments,
-                   BrisaOutArgument* const outArguments,
+    int postAction(InArgument* const inArguments,
+                   OutArgument* const outArguments,
                    Action* const action,
                    QString &errorDescription);
     Q_INVOKABLE
-    BrisaOutArgument* offon(BrisaInArgument* const inArguments,
+    OutArgument* offon(InArgument* const inArguments,
                             Action* const action);
     Q_INVOKABLE
-    BrisaOutArgument* setchanel(BrisaInArgument* const inArguments,
+    OutArgument* setchanel(InArgument* const inArguments,
                                 Action* const action);
 
 signals:

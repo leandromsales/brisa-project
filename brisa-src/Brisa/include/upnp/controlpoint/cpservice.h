@@ -97,7 +97,7 @@ public:
      *  \param method method to be called
      *  \param param map with the parameters to be passed
      */
-    void call(const QString &method, BrisaInArgument &param);
+    void call(const QString &method, InArgument &param);
 
 private slots:
     /*!

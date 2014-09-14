@@ -14,37 +14,37 @@
 #include "upnp/icon.h"
 
 namespace brisa {
-//class shared::ssdp::BrisaSSDPServer;
+//class shared::ssdp::SSDPServer;
 namespace upnp {
 //class Webserver;
 namespace device {
 
 /*!
- *  \class Brisa::BrisaDevice brisadevice.h BrisaUpnp/BrisaDevice
+ *  \class brisa::Device device.h upnp/Device
  *  \brief UPnP device implementation
  *
- *  BrisaDevice provides a easy and fast way to create UPnP devices. Simply create a new BrisaDevice
+ *  Device provides a easy and fast way to create UPnP devices. Simply create a new Device
  *  and call start() to join the network and be visible to available control points.
  *
- *  To add a service to the device, just create a new BrisaService with the chosen actions and
+ *  To add a service to the device, just create a new Service with the chosen actions and
  *  events and add it to the device by calling \a addService(). The service will be automatically
  *  added to the device and the appropriate webserver urls paths will be created.
  *
- *  Embedded devices are also supported by BrisaDevice. Create a new BrisaDevice and call
+ *  Embedded devices are also supported by Device. Create a new Device and call
  *  \a addEmbeddedDevice(), the embedded device will be announced when the root device joins the
  *  network.
  *
  *  To stop the device and leave the network, simply call the \a stop() method, ssdp messages will
  *  also be sent for any embedded devices.
  *
- *  \sa Brisa::BrisaService
+ *  \sa brisa::Service
  */
 class Device: public QObject {
 Q_OBJECT
 
 public:
     /*!
-     *  Creates a BrisaDevice with the given parent QObject.
+     *  Creates a Device with the given parent QObject.
      */
     Device(QObject *parent = 0);
 
@@ -54,7 +54,7 @@ public:
     Device(const Device &dev);
 
     /*!
-     *  Creates a BrisaDevice with the given device information.
+     *  Creates a Device with the given device information.
      */
     Device(const QString &deviceType, const QString &friendlyName = "",
             const QString &manufacturer = "", const QString &manufacturerURL = "",
@@ -65,13 +65,13 @@ public:
 	    QObject *parent = 0);
 
     /*!
-     *  Destructor for BrisaDevice.
+     *  Destructor for Device.
      *  Stops the device if running.
      */
     virtual ~Device();
 
     /*!
-     *  Assigns dev to this BrisaDevice and returns a copy.
+     *  Assigns dev to this Device and returns a copy.
      */
     Device &operator=(const Device &dev);
 
@@ -127,9 +127,9 @@ public:
 
     /*!
      *  Overloads addService().
-     *  Create a \a BrisaService and add it to the device. We recommend using this method for better
+     *  Create a \a Service and add it to the device. We recommend using this method for better
      *  object orientation.
-     *  \sa Brisa::BrisaService
+     *  \sa brisa::Service
      */
     void addService(Service *serv);
 
@@ -147,7 +147,7 @@ public:
 
     /*!
      *  Overloads addEmbeddedDevice()
-     *  Create a new \a BrisaDevice and call this method to add it as a embedded device to a root
+     *  Create a new \a Device and call this method to add it as a embedded device to a root
      *  device. We recommend using this method for better object orientation.
      */
     void addEmbeddedDevice(Device *newEmbeddedDevice);
@@ -174,12 +174,12 @@ public:
     QList<Device *> getEmbeddedDeviceList() const;
 
     /*!
-     *  Getter for BrisaService in the service list.
+     *  Getter for Service in the service list.
      */
     Service *getServiceById(const QString &serviceId);
 
     /*!
-     *  Getter for BrisaService in the service list.
+     *  Getter for Service in the service list.
      */
     Service *getServiceByType(const QString &serviceType);
 

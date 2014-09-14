@@ -6,7 +6,7 @@
  * Filename: brisadevicexmlhandlercp.cpp
  * Created:
  * Description: Implementation of BrisaDeviceParserContext, BrisaDeviceXMLHandlerCP and
- * BrisaServiceFetcher classes.
+ * ServiceFetcher classes.
  * Authors: Name <email> @since 2009
  *
  *
@@ -97,9 +97,23 @@ void DeviceXMLHandlerCP::parseDevice(Device *device, QDomElement &element)
 
             validateURLBase(device);
 
-            BrisaServiceFetcher f(service, device->
-                                  getAttribute(Device::UrlBase)
-                                  + service->getAttribute(Service::ScpdUrl));
+            //Fixes location error: "http://192.168.1.1:1900/http://192.168.1.1:1900/wfc.xml" and "/ipc.xml"
+            QString location("");
+            QUrl scpdUrl = service->getAttribute(Service::ScpdUrl);
+
+            if (scpdUrl.isValid() && !scpdUrl.isRelative())
+                location = scpdUrl.toString();
+            else if (scpdUrl.isValid() && scpdUrl.isRelative()) {
+                if (device->getAttribute(Device::UrlBase).endsWith("/") == true && scpdUrl.toString().startsWith("/") == true) {
+                    QString temp = scpdUrl.toString();
+                    location = device->getAttribute(Device::UrlBase) + temp.remove(0, 1);
+                } else if (device->getAttribute(Device::UrlBase).endsWith("/") == false && scpdUrl.toString().startsWith("/") == false)
+                    location = device->getAttribute(Device::UrlBase) + "/" + scpdUrl.toString();
+                else
+                    location = device->getAttribute(Device::UrlBase) + scpdUrl.toString();
+            }
+
+            ServiceFetcher f(service, location);
 
             if (!f.fetch()) {
                 device->addService(service);
@@ -124,6 +138,7 @@ void DeviceXMLHandlerCP::parseDevice(Device *device, QDomElement &element)
 
     for (int i = 0; i < deviceList.size(); i++) {
         Device *embDevice = new Device(device);
+        embDevice->setAttribute(Device::UrlBase, device->getAttribute(Device::UrlBase));
         QDomElement deviceElement = deviceList.at(i).toElement();
         parseDevice(embDevice, deviceElement);
         if(!embDevice->getAttribute(Device::FriendlyName).isEmpty())

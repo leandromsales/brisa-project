@@ -240,7 +240,7 @@ void ControlPoint::httpResponse(int i, bool error) {
     qDebug() << "Brisa Control Point: Subscribed with SID " << subscription->getSid();
 }
 
-void ControlPoint::receiveMulticast(BrisaOutArgument attributes)
+void ControlPoint::receiveMulticast(OutArgument attributes)
 {
     emit multicastReceived(attributes.value("variableName"), attributes.value("newValue"));
     emit multicastReceivedRaw(attributes);

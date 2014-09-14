@@ -112,10 +112,10 @@ void Action::clearArgumentList()
     this->argumentList.clear();
 }
 
-bool Action::call(BrisaInArgument *inArguments, BrisaOutArgument *&outArguments)
+bool Action::call(InArgument *inArguments, OutArgument *&outArguments)
 {
     // Checking IN variables
-    for (BrisaInArgument::const_iterator i = inArguments->begin(); i != inArguments->end(); ++i) {
+    for (InArgument::const_iterator i = inArguments->begin(); i != inArguments->end(); ++i) {
         Argument *arg = this->getInArgument(i.key());
         if (!arg) {
             qDebug() << "Error: action " << this->getName() << " has no IN argument named '" << i.key() << "'.";
@@ -127,8 +127,8 @@ bool Action::call(BrisaInArgument *inArguments, BrisaOutArgument *&outArguments)
     if (this->method.methodIndex() >= 0) { // checking if action has a QMetaMethod specified
         bool execResult = this->method.invoke(this->service,
                                               Qt::DirectConnection,
-                                              Q_RETURN_ARG(BrisaOutArgument *, outArguments),
-                                              Q_ARG(BrisaInArgument *, inArguments),
+                                              Q_RETURN_ARG(OutArgument *, outArguments),
+                                              Q_ARG(InArgument *, inArguments),
                                               Q_ARG(Action *, this));
         if (!execResult) {
             //Marden//qDebug() << "Error invoking defined action expressed by the service method " << this->method.methodSignature();
@@ -140,7 +140,7 @@ bool Action::call(BrisaInArgument *inArguments, BrisaOutArgument *&outArguments)
     }
 
     // Check OUT variables
-    for (BrisaOutArgument::const_iterator i = outArguments->begin(); i != outArguments->end(); ++i) {
+    for (OutArgument::const_iterator i = outArguments->begin(); i != outArguments->end(); ++i) {
         Argument *arg = this->getOutArgument(i.key());
         if (!arg) {
             qDebug() << "Error: action " << this->getName() << " has no OUT expected argument named '" << i.key() << "'.";

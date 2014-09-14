@@ -64,7 +64,7 @@ void Service::parseFromXml(QTemporaryFile *xml) {
     xml->deleteLater();
 }
 
-void Service::call(const QString &method, BrisaInArgument &param) {
+void Service::call(const QString &method, InArgument &param) {
     QtSoapMessage request;
 
     http->setAction("\"" + serviceType + "#" + method + "\"");
@@ -89,7 +89,7 @@ void Service::getResponse() {
         return;
     }
 
-    BrisaOutArgument returnMessage;
+    OutArgument returnMessage;
     QList<Argument*> arguments =
             this->getAction(this->lastMethod)->getArgumentList();
     foreach (Argument * arg, arguments)

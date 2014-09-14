@@ -233,13 +233,13 @@ signals:
     /*!
      * Signal emitted when a multicast message is received.
      *
-     * Similar to multicastReceived, but sends a BrisaOutArgument containing
+     * Similar to multicastReceived, but sends a OutArgument containing
      * all the attributes of the multicast event massage, including
      * "variableName" and "newValue".
      *
      * \param raw attributes of the multicast event message.
      */
-    void multicastReceivedRaw(BrisaOutArgument raw);
+    void multicastReceivedRaw(OutArgument raw);
 
 private slots:
 

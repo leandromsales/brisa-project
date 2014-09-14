@@ -57,7 +57,7 @@ StateVariable &StateVariable::operator=(const StateVariable &variable) {
     return *this;
 }
 
-void StateVariable::setAttribute(BrisaStateVariableAttribute attr, QVariant newValue) {
+void StateVariable::setAttribute(StateVariableAttribute attr, QVariant newValue) {
     switch (attr) {
     case SendEvents:
     case sendEvents:
@@ -109,7 +109,7 @@ void StateVariable::setAttribute(BrisaStateVariableAttribute attr, QVariant newV
     }
 }
 
-QString StateVariable::getAttribute(BrisaStateVariableAttribute attr, int ind) const {
+QString StateVariable::getAttribute(StateVariableAttribute attr, int ind) const {
     switch (attr) {
     case Name:
     case name:

@@ -11,7 +11,7 @@ namespace upnp {
 
 
 /*!
- * \class Brisa::BrisaStateVariable brisastatevariable.h BrisaUpnp/BrisaStateVariable
+ * \class brisa::StateVariable statevariable.h upnp/StateVariable
  *
  * \brief Represents the service's state variables.
  */
@@ -20,7 +20,7 @@ class StateVariable: public QObject {
 public:
 
     /*!
-     * Constructs a BrisaStateVariable that \a sendEvents with the given \a name,
+     * Constructs a StateVariable that \a sendEvents with the given \a name,
      * \a datatype, \a defaultValue, \a maximum value, \a minimum value, value
      * \a step, and \a parent.
      */
@@ -35,7 +35,7 @@ public:
                        QObject *parent = 0);
 
     /*!
-     * Constructs a BrisaStateVariable from the given \a variable.
+     * Constructs a StateVariable from the given \a variable.
      */
     StateVariable(const StateVariable &);
 
@@ -65,17 +65,17 @@ public:
         value,
         Multicast,
         multicast
-    } BrisaStateVariableAttribute;
+    } StateVariableAttribute;
 
     /*!
      * Sets its attribute \a attr to the given \a value.
      */
-    void setAttribute(BrisaStateVariableAttribute attr, QVariant newValue);
+    void setAttribute(StateVariableAttribute attr, QVariant newValue);
 
     /*!
      * Returns \a attr value as a QString.
      */
-    QString getAttribute(BrisaStateVariableAttribute attr, int index = 0) const;
+    QString getAttribute(StateVariableAttribute attr, int index = 0) const;
 
     /*!
      * Returns the stored value as a QVariant.

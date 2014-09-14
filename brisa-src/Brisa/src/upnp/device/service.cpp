@@ -9,11 +9,11 @@
 #include "upnp/device/service.h"
 #include "upnp/servicexmlhandler.h"
 
-#define PRE_ACTION_SIG "preAction(BrisaInArgument*const,BrisaAction*const,QString&)"
-#define POST_ACTION_SIG "postAction(BrisaInArgument*const,BrisaOutArgument*const,BrisaAction*const,QString&)"
-#define FAILURE_ACTION_SIG "handleActionFailure(BrisaInArgument*const,BrisaAction*const,QString&)"
-#define ACTION_IN "(BrisaInArgument*const,BrisaAction*const)"
-#define ACTION_OUT "BrisaOutArgument*"
+#define PRE_ACTION_SIG "preAction(InArgument*const,BrisaAction*const,QString&)"
+#define POST_ACTION_SIG "postAction(InArgument*const,OutArgument*const,BrisaAction*const,QString&)"
+#define FAILURE_ACTION_SIG "handleActionFailure(InArgument*const,BrisaAction*const,QString&)"
+#define ACTION_IN "(InArgument*const,BrisaAction*const)"
+#define ACTION_OUT "OutArgument*"
 #define PRE_ACTION_OUT "int"
 #define POST_ACTION_OUT "int"
 #define FAILURE_ACTION_OUT "int"
@@ -61,7 +61,7 @@ Service::~Service() {
 	childWebServices.clear();
 }
 
-void Service::call(const QString &method, BrisaInArgument param,
+void Service::call(const QString &method, InArgument param,
 		WebserverSession *session) {
 	for (QList<Action *>::iterator i = this->actionList.begin();
 			i != actionList.end(); ++i) {
@@ -73,7 +73,7 @@ void Service::call(const QString &method, BrisaInArgument param,
 			if (this->preActionMethod.methodIndex() >= 0) {
 				if (!this->preActionMethod.invoke(this, Qt::DirectConnection,
 						Q_RETURN_ARG(int, prePostActionReturn),
-						Q_ARG(BrisaInArgument *, &param),
+						Q_ARG(InArgument *, &param),
 						Q_ARG(Action *, action),
 						Q_ARG(QString, errorDescription))) {
 					qDebug()
@@ -86,7 +86,7 @@ void Service::call(const QString &method, BrisaInArgument param,
 
 			if (prePostActionReturn == 0) {
 				// call the action
-				BrisaOutArgument *outArguments;
+				OutArgument *outArguments;
 
 				if (!action->call(&param, outArguments)) {
 					qDebug() << "An error has occurred during the "
@@ -100,7 +100,7 @@ void Service::call(const QString &method, BrisaInArgument param,
 						if (!this->handleActionFailureMethod.invoke(this,
 								Qt::DirectConnection,
 								Q_RETURN_ARG(int, handleFailureActionMethodReturn),
-								Q_ARG(BrisaInArgument *, &param),
+								Q_ARG(InArgument *, &param),
 								Q_ARG(Action *, action),
 								Q_ARG(QString, errorDescription))) {
 							qDebug()
@@ -122,7 +122,7 @@ void Service::call(const QString &method, BrisaInArgument param,
 
 				// avoiding segmentation fault...
 				if (!outArguments) {
-					outArguments = new BrisaOutArgument();
+					outArguments = new OutArgument();
 				}
 
 				// executing postMethod if available
@@ -130,8 +130,8 @@ void Service::call(const QString &method, BrisaInArgument param,
 					if (!this->postActionMethod.invoke(this,
 							Qt::DirectConnection,
 							Q_RETURN_ARG(int, prePostActionReturn),
-							Q_ARG(BrisaInArgument *, &param),
-							Q_ARG(BrisaOutArgument *, outArguments),
+							Q_ARG(InArgument *, &param),
+							Q_ARG(OutArgument *, outArguments),
 							Q_ARG(Action *, action),
 							Q_ARG(QString, errorDescription))) {
 						qDebug() << "Error invoking postAction method.";
@@ -174,8 +174,8 @@ void Service::buildWebServiceTree(Webserver *sessionManager) {
 	WebService *control = new ControlWebService(serviceType);
 
 	connect(control,
-			SIGNAL(requestReceived(QString,BrisaInArgument,brisa::shared::webserver::WebserverSession*)),
-			this, SLOT(call(QString,BrisaInArgument,brisa::shared::webserver::WebserverSession*)));
+			SIGNAL(requestReceived(QString,InArgument,brisa::shared::webserver::WebserverSession*)),
+			this, SLOT(call(QString,InArgument,brisa::shared::webserver::WebserverSession*)));
 	connect(control, SIGNAL(invalidRequest(brisa::shared::webserver::WebserverSession*)), this,
 			SLOT(onInvalidRequest(brisa::shared::webserver::WebserverSession*)));
 
@@ -245,7 +245,7 @@ void Service::onRequest(const HttpRequest &request,
 }
 
 inline void Service::respondAction(WebserverSession *session,
-		const BrisaOutArgument *outArgs, const QString &actionName) {
+		const OutArgument *outArgs, const QString &actionName) {
 	QByteArray message(
 			"<?xml version=\"1.0\"  encoding=\"utf-8\"?>\r\n"
 					"<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" "

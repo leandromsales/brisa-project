@@ -30,7 +30,7 @@ enum UPnPErrorCodes {
 
 
 /*!
- * \class Brisa::BrisaAbstractService brisaabstractservice.h BrisaUpnp/BrisaAbstractService
+ * \class brisa::AbstractService abstractservice.h upnp/AbstractService
  *
  * \brief An abstract class for the control point side and device side service
  */
@@ -94,7 +94,7 @@ public:
     /*!
      * \internal
      *
-     * Creates an BrisaAction with the given \a name and adds it to the service's
+     * Creates an Action with the given \a name and adds it to the service's
      * action list.
      */
     void addAction(const QString &name);
@@ -136,7 +136,7 @@ public:
     /*!
      * \internal
      *
-     * Creates a BrisaStateVariable that \a sendEvents with the given \a name,
+     * Creates a StateVariable that \a sendEvents with the given \a name,
      * \a datatype, \a defaultValue, \a maximum value, \a minimum value and \a step,
      * and adds it to the service's state variables list.
      */
@@ -176,7 +176,7 @@ public:
     void setUdn(QString udn);
 
 signals:
-    void requestFinished(BrisaOutArgument arguments, QString methodName);
+    void requestFinished(OutArgument arguments, QString methodName);
 
     void requestError(QString errorMessage, QString methodName);
 

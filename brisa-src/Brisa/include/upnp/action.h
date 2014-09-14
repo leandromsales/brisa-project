@@ -9,7 +9,7 @@
 #include <QObject>
 #include <QMetaMethod>
 
-typedef QMap<QString, QString> BrisaInArgument, BrisaOutArgument;
+typedef QMap<QString, QString> InArgument, OutArgument;
 
 namespace brisa {
 namespace upnp {
@@ -124,7 +124,7 @@ public:
      * is an output parameter. This method returns true in case of successful
      * running of the action, else returns false.
      */
-    bool call(/*const */BrisaInArgument *inArguments, BrisaOutArgument *&outArguments);
+    bool call(/*const */InArgument *inArguments, OutArgument *&outArguments);
 
     /*!
      * Sets the method to be invoked when the action is executed.

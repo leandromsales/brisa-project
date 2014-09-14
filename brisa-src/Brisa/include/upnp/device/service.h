@@ -46,12 +46,12 @@ protected:
 	void onRequest(const brisa::shared::webserver::http::HttpRequest &request, brisa::shared::webserver::WebserverSession *session);
 
 	private slots:
-	void call(const QString &method, BrisaInArgument param, brisa::shared::webserver::WebserverSession *);
+	void call(const QString &method, InArgument param, brisa::shared::webserver::WebserverSession *);
 	void onInvalidRequest(brisa::shared::webserver::WebserverSession *session);
 
 	private:
 
-	void respondAction(brisa::shared::webserver::WebserverSession *session, const BrisaOutArgument *outArgs, const QString &actionName /* = QString() */);
+	void respondAction(brisa::shared::webserver::WebserverSession *session, const OutArgument *outArgs, const QString &actionName /* = QString() */);
 
 	void respondError(brisa::shared::webserver::WebserverSession *session, int errorCode, QString errorDescription = QString());
 

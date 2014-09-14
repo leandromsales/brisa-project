@@ -3,9 +3,9 @@
  * Centro de Engenharia Elétrica e Informática
  * Laboratório de Sistemas Embarcados e Computação Pervasiva
  * BRisa Project / BRisa-Qt - http://brisa.garage.maemo.org
- * Filename: brisacontrolpointdevice.h
+ * Filename: cpdevice.h
  * Created:
- * Description: Implementation of BrisaControlPoint class.
+ * Description: Implementation of ControlPointDevice class.
  * Authors:                                                 @since 2009
  *           Jeysibel de Sousa Dantas <jeysibel@gmail.com>  @since 06/04/2010
  *
@@ -48,7 +48,7 @@ namespace upnp {
 namespace controlpoint {
 
 /*!
- *  \class Brisa::BrisaControlPointDevice brisacontrolpointdevice.h BrisaUpnp/BrisaControlPointDevice
+ *  \class brisa::upnp::controlpoint::Device cpdevice.h upnp/Device
  *
  *  \brief Class that implements the devices that control point part is going to handle.
  */
@@ -58,14 +58,14 @@ Q_OBJECT
 public:
 
     /*!
-     *  Constructor to BrisaControlPointDevice, when it makes use of this constructor the device's
+     *  Constructor to Device, when it makes use of this constructor the device's
      *  attributes should be set.
      *  \param parent \a empty
      */
     Device(QObject *parent = 0);
 
     /*!
-     *  Constructor for BrisaControlPointDevice that receives a xml file containing the device
+     *  Constructor for Device that receives a xml file containing the device
      *  description, so that the device's attributes can be initialized.
      *  \param xml \a empty
      *  \param url \a empty
@@ -75,7 +75,7 @@ public:
                     QObject *parent = 0);
 
     /*!
-     *  Constructor for BrisaControlPointDevice that receives another object of the same type and
+     *  Constructor for Device that receives another object of the same type and
      *  copy it's attributes.
      */
     Device(Device &dev, QObject *parent = 0);
@@ -116,7 +116,7 @@ public:
     virtual ~Device();
 
     /*!
-     *  \enum Brisa::BrisaControlPointDevice::xmlTags
+     *  \enum brisa::upnp::controlpoint::Device::xmlTags
      *  \brief This enum specifies the devices attributes that are going to be set/get
      *  \param Udn  Unique Device Name. Universally-unique identifier for the device.
      *  \param Major  Major version of the UPnP Device Architecture.
@@ -242,8 +242,8 @@ public:
 
     /*!
      *  Send icons download request to QNetworkAccessManager. After download is finished
-     *  the downloaded icons images are added to the BrisaIcons objects in device icons list and a
-     *  onReadyDownloadIcons(BrisaControlPointDevice) signal is emitted by downloader method.
+     *  the downloaded icons images are added to the Icons objects in device icons list and a
+     *  onReadyDownloadIcons(Device) signal is emitted by downloader method.
      */
     void downloadIcons();
 

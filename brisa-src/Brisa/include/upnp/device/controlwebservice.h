@@ -17,7 +17,7 @@ public:
     explicit ControlWebService(const QString &serviceType = QString(), QObject *parent = 0);
 
 signals:
-    void requestReceived(QString xml, BrisaInArgument args, brisa::shared::webserver::WebserverSession *server);
+    void requestReceived(QString xml, InArgument args, brisa::shared::webserver::WebserverSession *server);
     void invalidRequest(brisa::shared::webserver::WebserverSession *server);
 
 protected:

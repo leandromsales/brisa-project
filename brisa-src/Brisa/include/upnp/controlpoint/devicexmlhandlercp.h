@@ -6,7 +6,7 @@
  * Filename: brisadevicexmlhandlercp.cpp
  * Created:
  * Description: Definition of BrisaDeviceParserContext,BrisaDeviceXMLHandlerCP and
- * BrisaServiceFetcher  classes.
+ * ServiceFetcher  classes.
  * Authors: Danilo Araújo de Freitas <dsurviver@gmail.com> @since 2009
  *
  *
@@ -81,23 +81,23 @@ public:
 /*!
  *  \internal
  *
- *  \class BrisaServiceFetcher
+ *  \class ServiceFetcher
  *
  *  \brief Class that generates the service by downloading the xml description file, reading,
  *  and initializing services attributes.
  */
-class BRISA_UPNP_EXPORT BrisaServiceFetcher: public QObject {
+class BRISA_UPNP_EXPORT ServiceFetcher: public QObject {
 Q_OBJECT
 
 public:
     /*!
      *  \internal
-     *  \fn BrisaServiceFetcher::BrisaServiceFetcher(BrisaControlPointService *service, QString location,
+     *  \fn ServiceFetcher::ServiceFetcher(BrisaControlPointService *service, QString location,
      *                                               QObject *parent)
-     *  \brief BrisaServiceFetcher constructor, receives the \a service that is going to be set, the
+     *  \brief ServiceFetcher constructor, receives the \a service that is going to be set, the
      *  \a location to download xml, and a QObject as parent.
      */
-    BrisaServiceFetcher(Service *service, QString location,
+    ServiceFetcher(Service *service, QString location,
             QObject *parent = 0) :
         QObject(parent), location(location), service(service) {
         eventLoop = new QEventLoop();
@@ -112,17 +112,17 @@ public:
 
     /*!
      *  \internal
-     *  \fn BrisaServiceFetcher::~BrisaServiceFetcher()
+     *  \fn ServiceFetcher::~ServiceFetcher()
      *  \brief Destructor.
      */
-    virtual ~BrisaServiceFetcher() {
+    virtual ~ServiceFetcher() {
         delete downloader;
         delete eventLoop;
     }
 
     /*!
      *  \internal
-     *  \fn BrisaServiceFetcher::fetch()
+     *  \fn ServiceFetcher::fetch()
      *  \brief Start the xml download and initializes the event loop
      *  \return true if any error occurred
      */
@@ -136,35 +136,35 @@ public:
 private:
     /*!
      *  \internal
-     *  \property BrisaServiceFetcher::eventLoop
+     *  \property ServiceFetcher::eventLoop
      *  \brief Guarantees that flow of execution will only continue after the xml download is finished.
      */
     QEventLoop *eventLoop;
 
     /*!
      *  \internal
-     *  \property BrisaServiceFetcher::downloader
+     *  \property ServiceFetcher::downloader
      *  \brief Do the xml download from network.
      */
     QNetworkAccessManager *downloader;
 
     /*!
      *  \internal
-     *  \property BrisaServiceFetcher::location
+     *  \property ServiceFetcher::location
      *  \brief Location to download the xml file.
      */
     QString location;
 
     /*!
      *  \internal
-     *  \property BrisaServiceFetcher::service
+     *  \property ServiceFetcher::service
      *  \brief service that is going to have the parameters set.
      */
     Service *service;
 
     /*!
      *  \internal
-     *  \property BrisaServiceFetcher::error
+     *  \property ServiceFetcher::error
      *  \brief Flag to detect a error in service fetch.
      */
     bool error;
@@ -172,7 +172,7 @@ private:
 signals:
     /*!
      *  \internal
-     *  \fn BrisaServiceFetcher::fetchFinished()
+     *  \fn ServiceFetcher::fetchFinished()
      *  \brief Signal emitted when the service fetch is finished.
      */
     void fetchFinished(void);
@@ -180,7 +180,7 @@ signals:
 private slots:
     /*!
      *  \internal
-     *  \fn BrisaServiceFetcher::downloadFinished(QNetworkReply *reply)
+     *  \fn ServiceFetcher::downloadFinished(QNetworkReply *reply)
      *  \brief When download is finished, this slop write the download content into a temporary file
      *  and tells the service parameter to be generate from it that means it initializes the service
      *  too.

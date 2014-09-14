@@ -101,7 +101,7 @@ private:
 }  // namespace http
 }  // namespace webserver
 }  // namespace shared
-} // namespace Brisa
+} // namespace brisa
 
 inline int brisa::shared::webserver::http::HttpResponse::statusCode() const
 {
