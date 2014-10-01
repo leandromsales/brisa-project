@@ -1,0 +1,33 @@
+<model>
+  <column loop="true">
+    <itemmonth filename="asset:///images/a/aries.jpg" displayname="Aries" />
+    <itemmonth filename="asset:///imimages/a/taurus.jpg" displayname="Taurus" />
+    <itemmonth filename="asset:///images/a/gemini.jpg" displayname="Gemini" />
+    <itemmonth filename="asset:///images/a/cancer.jpg" displayname="Cancer" />
+    <itemmonth filename="asset:///images/a/leo.jpg" displayname="Leo" />
+    <itemmonth filename="asset:///images/a/virgo.jpg" displayname="Virgo" />
+    <itemmonth filename="asset:///images/a/libra.jpg" displayname="Libra" />
+    <itemmonth filename="asset:///images/a/scorpio.jpg" displayname="Scorpio" />
+    <itemmonth filename="asset:///images/a/sagittarius.jpg"
+        displayname="Sagittarius" />
+    <itemmonth filename="asset:///images/a/capricorn.jpg"
+        displayname="Capricorn" />
+    <itemmonth filename="asset:///images/a/aquarius.jpg"
+        displayname="Aquarius" />
+    <itemmonth filename="asset:///images/a/pisces.jpg" displayname="Pisces" />
+  </column>
+  <column loop="true">
+    <itemyear filename="asset:///images/a/rat.jpg" displayname="Rat" />
+    <itemyear filename="asset:///images/a/ox.jpg" displayname="Ox" />
+    <itemyear filename="asset:///images/a/tiger.jpg" displayname="Tiger" />
+    <itemyear filename="asset:///images/a/rabbit.jpg" displayname="Rabbit" />
+    <itemyear filename="asset:///images/a/dragon.jpg" displayname="Dragon" />
+    <itemyear filename="asset:///images/a/snake.jpg" displayname="Snake" />
+    <itemyear filename="asset:///images/a/horse.jpg" displayname="Horse" />
+    <itemyear filename="asset:///images/a/goat.jpg" displayname="Goat" />
+    <itemyear filename="asset:///images/a/monkey.jpg" displayname="Monkey" />
+    <itemyear filename="asset:///images/a/rooster.jpg" displayname="Rooster" />
+    <itemyear filename="asset:///images/a/dog.jpg" displayname="Dog" />
+    <itemyear filename="asset:///images/a/pig.jpg" displayname="Pig" />
+  </column>
+</model>
