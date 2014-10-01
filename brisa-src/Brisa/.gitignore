@@ -1,4 +1,4 @@
 /brisa.pri
 /arm
 .settings/com.rim.tad.tools.qml.core.prefs
-
+config.pri
