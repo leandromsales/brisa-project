@@ -1,0 +1,506 @@
+\contentsline {chapter}{\numberline {1}Namespace Index}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Namespace List}{1}{section.1.1}
+\contentsline {chapter}{\numberline {2}Class Index}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Class Hierarchy}{3}{section.2.1}
+\contentsline {chapter}{\numberline {3}Class Index}{5}{chapter.3}
+\contentsline {section}{\numberline {3.1}Class List}{5}{section.3.1}
+\contentsline {chapter}{\numberline {4}File Index}{7}{chapter.4}
+\contentsline {section}{\numberline {4.1}File List}{7}{section.4.1}
+\contentsline {chapter}{\numberline {5}Namespace Documentation}{9}{chapter.5}
+\contentsline {section}{\numberline {5.1}BrisaCore Namespace Reference}{9}{section.5.1}
+\contentsline {section}{\numberline {5.2}BrisaUpnp Namespace Reference}{10}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Enumeration Type Documentation}{11}{subsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.1.1}SaxParserState}{11}{subsubsection.5.2.1.1}
+\contentsline {subsubsection}{\numberline {5.2.1.2}saxParserState}{13}{subsubsection.5.2.1.2}
+\contentsline {chapter}{\numberline {6}Class Documentation}{15}{chapter.6}
+\contentsline {section}{\numberline {6.1}BrisaCore::BrisaConfigurationManager Class Reference}{15}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Detailed Description}{16}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Constructor \& Destructor Documentation}{16}{subsection.6.1.2}
+\contentsline {subsubsection}{\numberline {6.1.2.1}BrisaConfigurationManager}{16}{subsubsection.6.1.2.1}
+\contentsline {subsection}{\numberline {6.1.3}Member Function Documentation}{16}{subsection.6.1.3}
+\contentsline {subsubsection}{\numberline {6.1.3.1}getDirectAccess}{16}{subsubsection.6.1.3.1}
+\contentsline {subsubsection}{\numberline {6.1.3.2}getParameter}{17}{subsubsection.6.1.3.2}
+\contentsline {subsubsection}{\numberline {6.1.3.3}getSectionNames}{17}{subsubsection.6.1.3.3}
+\contentsline {subsubsection}{\numberline {6.1.3.4}items}{17}{subsubsection.6.1.3.4}
+\contentsline {subsubsection}{\numberline {6.1.3.5}removeSection}{17}{subsubsection.6.1.3.5}
+\contentsline {subsubsection}{\numberline {6.1.3.6}save}{17}{subsubsection.6.1.3.6}
+\contentsline {subsubsection}{\numberline {6.1.3.7}setDirectAccess}{18}{subsubsection.6.1.3.7}
+\contentsline {subsubsection}{\numberline {6.1.3.8}setParameter}{18}{subsubsection.6.1.3.8}
+\contentsline {subsubsection}{\numberline {6.1.3.9}update}{18}{subsubsection.6.1.3.9}
+\contentsline {section}{\numberline {6.2}BrisaCore::BrisaWebFile Class Reference}{19}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Detailed Description}{19}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Constructor \& Destructor Documentation}{19}{subsection.6.2.2}
+\contentsline {subsubsection}{\numberline {6.2.2.1}BrisaWebFile}{19}{subsubsection.6.2.2.1}
+\contentsline {subsubsection}{\numberline {6.2.2.2}$\sim $BrisaWebFile}{19}{subsubsection.6.2.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Member Function Documentation}{19}{subsection.6.2.3}
+\contentsline {subsubsection}{\numberline {6.2.3.1}pageRequestedEvent}{19}{subsubsection.6.2.3.1}
+\contentsline {section}{\numberline {6.3}BrisaCore::BrisaWebserver Class Reference}{21}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Detailed Description}{21}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}Constructor \& Destructor Documentation}{21}{subsection.6.3.2}
+\contentsline {subsubsection}{\numberline {6.3.2.1}BrisaWebserver}{21}{subsubsection.6.3.2.1}
+\contentsline {subsubsection}{\numberline {6.3.2.2}$\sim $BrisaWebserver}{22}{subsubsection.6.3.2.2}
+\contentsline {subsection}{\numberline {6.3.3}Member Function Documentation}{22}{subsection.6.3.3}
+\contentsline {subsubsection}{\numberline {6.3.3.1}addService}{22}{subsubsection.6.3.3.1}
+\contentsline {subsubsection}{\numberline {6.3.3.2}incomingRequest}{22}{subsubsection.6.3.3.2}
+\contentsline {subsubsection}{\numberline {6.3.3.3}newSession}{22}{subsubsection.6.3.3.3}
+\contentsline {subsubsection}{\numberline {6.3.3.4}publishFile}{22}{subsubsection.6.3.3.4}
+\contentsline {section}{\numberline {6.4}BrisaCore::BrisaWebService Class Reference}{23}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Detailed Description}{24}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}Constructor \& Destructor Documentation}{24}{subsection.6.4.2}
+\contentsline {subsubsection}{\numberline {6.4.2.1}BrisaWebService}{24}{subsubsection.6.4.2.1}
+\contentsline {subsubsection}{\numberline {6.4.2.2}$\sim $BrisaWebService}{24}{subsubsection.6.4.2.2}
+\contentsline {subsection}{\numberline {6.4.3}Member Function Documentation}{24}{subsection.6.4.3}
+\contentsline {subsubsection}{\numberline {6.4.3.1}genericRequestReceived}{24}{subsubsection.6.4.3.1}
+\contentsline {subsubsection}{\numberline {6.4.3.2}genericRequestReceived}{24}{subsubsection.6.4.3.2}
+\contentsline {subsubsection}{\numberline {6.4.3.3}pageRequestedEvent}{25}{subsubsection.6.4.3.3}
+\contentsline {subsubsection}{\numberline {6.4.3.4}respond}{25}{subsubsection.6.4.3.4}
+\contentsline {subsubsection}{\numberline {6.4.3.5}respond}{25}{subsubsection.6.4.3.5}
+\contentsline {subsubsection}{\numberline {6.4.3.6}respond}{25}{subsubsection.6.4.3.6}
+\contentsline {subsubsection}{\numberline {6.4.3.7}respond}{26}{subsubsection.6.4.3.7}
+\contentsline {section}{\numberline {6.5}BrisaCore::BrisaWebServiceProvider Class Reference}{27}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Detailed Description}{27}{subsection.6.5.1}
+\contentsline {subsection}{\numberline {6.5.2}Constructor \& Destructor Documentation}{27}{subsection.6.5.2}
+\contentsline {subsubsection}{\numberline {6.5.2.1}BrisaWebServiceProvider}{27}{subsubsection.6.5.2.1}
+\contentsline {subsubsection}{\numberline {6.5.2.2}$\sim $BrisaWebServiceProvider}{28}{subsubsection.6.5.2.2}
+\contentsline {subsection}{\numberline {6.5.3}Member Function Documentation}{28}{subsection.6.5.3}
+\contentsline {subsubsection}{\numberline {6.5.3.1}addContent}{28}{subsubsection.6.5.3.1}
+\contentsline {subsubsection}{\numberline {6.5.3.2}addFile}{28}{subsubsection.6.5.3.2}
+\contentsline {subsubsection}{\numberline {6.5.3.3}indexRequested}{28}{subsubsection.6.5.3.3}
+\contentsline {subsubsection}{\numberline {6.5.3.4}pageRequestedEvent}{28}{subsubsection.6.5.3.4}
+\contentsline {section}{\numberline {6.6}BrisaCore::BrisaWebStaticContent Class Reference}{29}{section.6.6}
+\contentsline {subsection}{\numberline {6.6.1}Detailed Description}{29}{subsection.6.6.1}
+\contentsline {subsection}{\numberline {6.6.2}Constructor \& Destructor Documentation}{29}{subsection.6.6.2}
+\contentsline {subsubsection}{\numberline {6.6.2.1}BrisaWebStaticContent}{29}{subsubsection.6.6.2.1}
+\contentsline {subsubsection}{\numberline {6.6.2.2}$\sim $BrisaWebStaticContent}{29}{subsubsection.6.6.2.2}
+\contentsline {subsection}{\numberline {6.6.3}Member Function Documentation}{30}{subsection.6.6.3}
+\contentsline {subsubsection}{\numberline {6.6.3.1}index}{30}{subsubsection.6.6.3.1}
+\contentsline {section}{\numberline {6.7}BrisaUpnp::BrisaAbstractEventSubscription Class Reference}{31}{section.6.7}
+\contentsline {subsection}{\numberline {6.7.1}Detailed Description}{31}{subsection.6.7.1}
+\contentsline {subsection}{\numberline {6.7.2}Constructor \& Destructor Documentation}{32}{subsection.6.7.2}
+\contentsline {subsubsection}{\numberline {6.7.2.1}BrisaAbstractEventSubscription}{32}{subsubsection.6.7.2.1}
+\contentsline {subsection}{\numberline {6.7.3}Member Function Documentation}{32}{subsection.6.7.3}
+\contentsline {subsubsection}{\numberline {6.7.3.1}getCallbackUrls}{32}{subsubsection.6.7.3.1}
+\contentsline {subsubsection}{\numberline {6.7.3.2}getNextSeq}{32}{subsubsection.6.7.3.2}
+\contentsline {subsubsection}{\numberline {6.7.3.3}getSid}{32}{subsubsection.6.7.3.3}
+\contentsline {subsubsection}{\numberline {6.7.3.4}getUrl}{32}{subsubsection.6.7.3.4}
+\contentsline {subsubsection}{\numberline {6.7.3.5}hasExpired}{32}{subsubsection.6.7.3.5}
+\contentsline {subsubsection}{\numberline {6.7.3.6}renew}{32}{subsubsection.6.7.3.6}
+\contentsline {subsection}{\numberline {6.7.4}Member Data Documentation}{32}{subsection.6.7.4}
+\contentsline {subsubsection}{\numberline {6.7.4.1}CALLBACK\_\discretionary {-}{}{}URLS}{32}{subsubsection.6.7.4.1}
+\contentsline {subsubsection}{\numberline {6.7.4.2}date}{33}{subsubsection.6.7.4.2}
+\contentsline {subsubsection}{\numberline {6.7.4.3}firstMessageSent}{33}{subsubsection.6.7.4.3}
+\contentsline {subsubsection}{\numberline {6.7.4.4}lastSeq}{33}{subsubsection.6.7.4.4}
+\contentsline {subsubsection}{\numberline {6.7.4.5}SID}{33}{subsubsection.6.7.4.5}
+\contentsline {subsubsection}{\numberline {6.7.4.6}timeout}{33}{subsubsection.6.7.4.6}
+\contentsline {section}{\numberline {6.8}BrisaUpnp::BrisaAbstractService Class Reference}{34}{section.6.8}
+\contentsline {subsection}{\numberline {6.8.1}Detailed Description}{35}{subsection.6.8.1}
+\contentsline {subsection}{\numberline {6.8.2}Member Enumeration Documentation}{35}{subsection.6.8.2}
+\contentsline {subsubsection}{\numberline {6.8.2.1}xmlTags}{35}{subsubsection.6.8.2.1}
+\contentsline {subsection}{\numberline {6.8.3}Constructor \& Destructor Documentation}{35}{subsection.6.8.3}
+\contentsline {subsubsection}{\numberline {6.8.3.1}BrisaAbstractService}{35}{subsubsection.6.8.3.1}
+\contentsline {subsubsection}{\numberline {6.8.3.2}BrisaAbstractService}{35}{subsubsection.6.8.3.2}
+\contentsline {subsubsection}{\numberline {6.8.3.3}BrisaAbstractService}{36}{subsubsection.6.8.3.3}
+\contentsline {subsubsection}{\numberline {6.8.3.4}$\sim $BrisaAbstractService}{36}{subsubsection.6.8.3.4}
+\contentsline {subsection}{\numberline {6.8.4}Member Function Documentation}{36}{subsection.6.8.4}
+\contentsline {subsubsection}{\numberline {6.8.4.1}addAction}{36}{subsubsection.6.8.4.1}
+\contentsline {subsubsection}{\numberline {6.8.4.2}addAction}{36}{subsubsection.6.8.4.2}
+\contentsline {subsubsection}{\numberline {6.8.4.3}addStateVariable}{36}{subsubsection.6.8.4.3}
+\contentsline {subsubsection}{\numberline {6.8.4.4}addStateVariable}{36}{subsubsection.6.8.4.4}
+\contentsline {subsubsection}{\numberline {6.8.4.5}call}{36}{subsubsection.6.8.4.5}
+\contentsline {subsubsection}{\numberline {6.8.4.6}clear}{36}{subsubsection.6.8.4.6}
+\contentsline {subsubsection}{\numberline {6.8.4.7}getAction}{36}{subsubsection.6.8.4.7}
+\contentsline {subsubsection}{\numberline {6.8.4.8}getActionList}{36}{subsubsection.6.8.4.8}
+\contentsline {subsubsection}{\numberline {6.8.4.9}getAttribute}{36}{subsubsection.6.8.4.9}
+\contentsline {subsubsection}{\numberline {6.8.4.10}getStateVariableList}{37}{subsubsection.6.8.4.10}
+\contentsline {subsubsection}{\numberline {6.8.4.11}requestFinished}{37}{subsubsection.6.8.4.11}
+\contentsline {subsubsection}{\numberline {6.8.4.12}setAttribute}{37}{subsubsection.6.8.4.12}
+\contentsline {subsection}{\numberline {6.8.5}Member Data Documentation}{37}{subsection.6.8.5}
+\contentsline {subsubsection}{\numberline {6.8.5.1}actionList}{37}{subsubsection.6.8.5.1}
+\contentsline {subsubsection}{\numberline {6.8.5.2}controlUrl}{37}{subsubsection.6.8.5.2}
+\contentsline {subsubsection}{\numberline {6.8.5.3}eventSubUrl}{37}{subsubsection.6.8.5.3}
+\contentsline {subsubsection}{\numberline {6.8.5.4}fileAddress}{37}{subsubsection.6.8.5.4}
+\contentsline {subsubsection}{\numberline {6.8.5.5}host}{37}{subsubsection.6.8.5.5}
+\contentsline {subsubsection}{\numberline {6.8.5.6}http}{37}{subsubsection.6.8.5.6}
+\contentsline {subsubsection}{\numberline {6.8.5.7}major}{37}{subsubsection.6.8.5.7}
+\contentsline {subsubsection}{\numberline {6.8.5.8}minor}{37}{subsubsection.6.8.5.8}
+\contentsline {subsubsection}{\numberline {6.8.5.9}port}{38}{subsubsection.6.8.5.9}
+\contentsline {subsubsection}{\numberline {6.8.5.10}scpdUrl}{38}{subsubsection.6.8.5.10}
+\contentsline {subsubsection}{\numberline {6.8.5.11}serviceId}{38}{subsubsection.6.8.5.11}
+\contentsline {subsubsection}{\numberline {6.8.5.12}serviceType}{38}{subsubsection.6.8.5.12}
+\contentsline {subsubsection}{\numberline {6.8.5.13}stateVariableList}{38}{subsubsection.6.8.5.13}
+\contentsline {section}{\numberline {6.9}BrisaUpnp::BrisaAction Class Reference}{39}{section.6.9}
+\contentsline {subsection}{\numberline {6.9.1}Detailed Description}{40}{subsection.6.9.1}
+\contentsline {subsection}{\numberline {6.9.2}Constructor \& Destructor Documentation}{40}{subsection.6.9.2}
+\contentsline {subsubsection}{\numberline {6.9.2.1}BrisaAction}{40}{subsubsection.6.9.2.1}
+\contentsline {subsubsection}{\numberline {6.9.2.2}BrisaAction}{40}{subsubsection.6.9.2.2}
+\contentsline {subsubsection}{\numberline {6.9.2.3}$\sim $BrisaAction}{40}{subsubsection.6.9.2.3}
+\contentsline {subsection}{\numberline {6.9.3}Member Function Documentation}{40}{subsection.6.9.3}
+\contentsline {subsubsection}{\numberline {6.9.3.1}addArgument}{40}{subsubsection.6.9.3.1}
+\contentsline {subsubsection}{\numberline {6.9.3.2}addArgument}{40}{subsubsection.6.9.3.2}
+\contentsline {subsubsection}{\numberline {6.9.3.3}addArguments}{41}{subsubsection.6.9.3.3}
+\contentsline {subsubsection}{\numberline {6.9.3.4}call}{41}{subsubsection.6.9.3.4}
+\contentsline {subsubsection}{\numberline {6.9.3.5}clearArgumentList}{41}{subsubsection.6.9.3.5}
+\contentsline {subsubsection}{\numberline {6.9.3.6}getArgumentList}{41}{subsubsection.6.9.3.6}
+\contentsline {subsubsection}{\numberline {6.9.3.7}getName}{41}{subsubsection.6.9.3.7}
+\contentsline {subsubsection}{\numberline {6.9.3.8}getService}{41}{subsubsection.6.9.3.8}
+\contentsline {subsubsection}{\numberline {6.9.3.9}getStateVariable}{41}{subsubsection.6.9.3.9}
+\contentsline {subsubsection}{\numberline {6.9.3.10}run}{41}{subsubsection.6.9.3.10}
+\contentsline {subsubsection}{\numberline {6.9.3.11}setName}{42}{subsubsection.6.9.3.11}
+\contentsline {subsubsection}{\numberline {6.9.3.12}setService}{42}{subsubsection.6.9.3.12}
+\contentsline {section}{\numberline {6.10}BrisaUpnp::BrisaActionXmlParser Class Reference}{43}{section.6.10}
+\contentsline {subsection}{\numberline {6.10.1}Detailed Description}{43}{subsection.6.10.1}
+\contentsline {subsection}{\numberline {6.10.2}Constructor \& Destructor Documentation}{43}{subsection.6.10.2}
+\contentsline {subsubsection}{\numberline {6.10.2.1}BrisaActionXmlParser}{43}{subsubsection.6.10.2.1}
+\contentsline {subsubsection}{\numberline {6.10.2.2}$\sim $BrisaActionXmlParser}{43}{subsubsection.6.10.2.2}
+\contentsline {subsection}{\numberline {6.10.3}Member Function Documentation}{44}{subsection.6.10.3}
+\contentsline {subsubsection}{\numberline {6.10.3.1}parseElement}{44}{subsubsection.6.10.3.1}
+\contentsline {subsubsection}{\numberline {6.10.3.2}parseSOAP}{44}{subsubsection.6.10.3.2}
+\contentsline {subsubsection}{\numberline {6.10.3.3}setXmlContent}{44}{subsubsection.6.10.3.3}
+\contentsline {subsection}{\numberline {6.10.4}Member Data Documentation}{44}{subsection.6.10.4}
+\contentsline {subsubsection}{\numberline {6.10.4.1}args}{44}{subsubsection.6.10.4.1}
+\contentsline {subsubsection}{\numberline {6.10.4.2}method}{44}{subsubsection.6.10.4.2}
+\contentsline {subsubsection}{\numberline {6.10.4.3}serviceType}{44}{subsubsection.6.10.4.3}
+\contentsline {section}{\numberline {6.11}BrisaUpnp::BrisaArgument Class Reference}{45}{section.6.11}
+\contentsline {subsection}{\numberline {6.11.1}Member Enumeration Documentation}{45}{subsection.6.11.1}
+\contentsline {subsubsection}{\numberline {6.11.1.1}xmlArgument}{45}{subsubsection.6.11.1.1}
+\contentsline {subsection}{\numberline {6.11.2}Constructor \& Destructor Documentation}{45}{subsection.6.11.2}
+\contentsline {subsubsection}{\numberline {6.11.2.1}BrisaArgument}{45}{subsubsection.6.11.2.1}
+\contentsline {subsection}{\numberline {6.11.3}Member Function Documentation}{45}{subsection.6.11.3}
+\contentsline {subsubsection}{\numberline {6.11.3.1}clear}{45}{subsubsection.6.11.3.1}
+\contentsline {subsubsection}{\numberline {6.11.3.2}getAttribute}{45}{subsubsection.6.11.3.2}
+\contentsline {subsubsection}{\numberline {6.11.3.3}setAttribute}{45}{subsubsection.6.11.3.3}
+\contentsline {section}{\numberline {6.12}BrisaUpnp::BrisaControlPoint Class Reference}{46}{section.6.12}
+\contentsline {subsection}{\numberline {6.12.1}Detailed Description}{46}{subsection.6.12.1}
+\contentsline {subsection}{\numberline {6.12.2}Constructor \& Destructor Documentation}{47}{subsection.6.12.2}
+\contentsline {subsubsection}{\numberline {6.12.2.1}BrisaControlPoint}{47}{subsubsection.6.12.2.1}
+\contentsline {subsubsection}{\numberline {6.12.2.2}$\sim $BrisaControlPoint}{47}{subsubsection.6.12.2.2}
+\contentsline {subsection}{\numberline {6.12.3}Member Function Documentation}{47}{subsection.6.12.3}
+\contentsline {subsubsection}{\numberline {6.12.3.1}deviceFound}{47}{subsubsection.6.12.3.1}
+\contentsline {subsubsection}{\numberline {6.12.3.2}deviceGone}{47}{subsubsection.6.12.3.2}
+\contentsline {subsubsection}{\numberline {6.12.3.3}discover}{47}{subsubsection.6.12.3.3}
+\contentsline {subsubsection}{\numberline {6.12.3.4}getSubscriptionProxy}{47}{subsubsection.6.12.3.4}
+\contentsline {subsubsection}{\numberline {6.12.3.5}isRunning}{48}{subsubsection.6.12.3.5}
+\contentsline {subsubsection}{\numberline {6.12.3.6}start}{48}{subsubsection.6.12.3.6}
+\contentsline {subsubsection}{\numberline {6.12.3.7}stop}{48}{subsubsection.6.12.3.7}
+\contentsline {section}{\numberline {6.13}BrisaUpnp::BrisaControlPointDevice Class Reference}{49}{section.6.13}
+\contentsline {subsection}{\numberline {6.13.1}Detailed Description}{50}{subsection.6.13.1}
+\contentsline {subsection}{\numberline {6.13.2}Member Enumeration Documentation}{50}{subsection.6.13.2}
+\contentsline {subsubsection}{\numberline {6.13.2.1}xmlTags}{50}{subsubsection.6.13.2.1}
+\contentsline {subsection}{\numberline {6.13.3}Constructor \& Destructor Documentation}{51}{subsection.6.13.3}
+\contentsline {subsubsection}{\numberline {6.13.3.1}BrisaControlPointDevice}{51}{subsubsection.6.13.3.1}
+\contentsline {subsubsection}{\numberline {6.13.3.2}BrisaControlPointDevice}{51}{subsubsection.6.13.3.2}
+\contentsline {subsubsection}{\numberline {6.13.3.3}BrisaControlPointDevice}{51}{subsubsection.6.13.3.3}
+\contentsline {subsubsection}{\numberline {6.13.3.4}BrisaControlPointDevice}{51}{subsubsection.6.13.3.4}
+\contentsline {subsubsection}{\numberline {6.13.3.5}$\sim $BrisaControlPointDevice}{52}{subsubsection.6.13.3.5}
+\contentsline {subsection}{\numberline {6.13.4}Member Function Documentation}{52}{subsection.6.13.4}
+\contentsline {subsubsection}{\numberline {6.13.4.1}addDevice}{52}{subsubsection.6.13.4.1}
+\contentsline {subsubsection}{\numberline {6.13.4.2}addIcon}{52}{subsubsection.6.13.4.2}
+\contentsline {subsubsection}{\numberline {6.13.4.3}addService}{52}{subsubsection.6.13.4.3}
+\contentsline {subsubsection}{\numberline {6.13.4.4}clear}{52}{subsubsection.6.13.4.4}
+\contentsline {subsubsection}{\numberline {6.13.4.5}getAttribute}{52}{subsubsection.6.13.4.5}
+\contentsline {subsubsection}{\numberline {6.13.4.6}getEmbeddedDeviceList}{53}{subsubsection.6.13.4.6}
+\contentsline {subsubsection}{\numberline {6.13.4.7}getIconList}{53}{subsubsection.6.13.4.7}
+\contentsline {subsubsection}{\numberline {6.13.4.8}getServiceById}{53}{subsubsection.6.13.4.8}
+\contentsline {subsubsection}{\numberline {6.13.4.9}getServiceByType}{53}{subsubsection.6.13.4.9}
+\contentsline {subsubsection}{\numberline {6.13.4.10}getServiceList}{54}{subsubsection.6.13.4.10}
+\contentsline {subsubsection}{\numberline {6.13.4.11}setAttribute}{54}{subsubsection.6.13.4.11}
+\contentsline {section}{\numberline {6.14}BrisaUpnp::BrisaControlPointService Class Reference}{55}{section.6.14}
+\contentsline {subsection}{\numberline {6.14.1}Detailed Description}{55}{subsection.6.14.1}
+\contentsline {subsection}{\numberline {6.14.2}Constructor \& Destructor Documentation}{55}{subsection.6.14.2}
+\contentsline {subsubsection}{\numberline {6.14.2.1}BrisaControlPointService}{55}{subsubsection.6.14.2.1}
+\contentsline {subsubsection}{\numberline {6.14.2.2}BrisaControlPointService}{55}{subsubsection.6.14.2.2}
+\contentsline {subsubsection}{\numberline {6.14.2.3}BrisaControlPointService}{56}{subsubsection.6.14.2.3}
+\contentsline {subsection}{\numberline {6.14.3}Member Function Documentation}{56}{subsection.6.14.3}
+\contentsline {subsubsection}{\numberline {6.14.3.1}call}{56}{subsubsection.6.14.3.1}
+\contentsline {subsubsection}{\numberline {6.14.3.2}parseFromXml}{56}{subsubsection.6.14.3.2}
+\contentsline {section}{\numberline {6.15}BrisaUpnp::BrisaDevice Class Reference}{57}{section.6.15}
+\contentsline {subsection}{\numberline {6.15.1}Detailed Description}{59}{subsection.6.15.1}
+\contentsline {subsection}{\numberline {6.15.2}Member Enumeration Documentation}{59}{subsection.6.15.2}
+\contentsline {subsubsection}{\numberline {6.15.2.1}xmlTags}{59}{subsubsection.6.15.2.1}
+\contentsline {subsection}{\numberline {6.15.3}Constructor \& Destructor Documentation}{60}{subsection.6.15.3}
+\contentsline {subsubsection}{\numberline {6.15.3.1}BrisaDevice}{60}{subsubsection.6.15.3.1}
+\contentsline {subsubsection}{\numberline {6.15.3.2}BrisaDevice}{60}{subsubsection.6.15.3.2}
+\contentsline {subsubsection}{\numberline {6.15.3.3}BrisaDevice}{60}{subsubsection.6.15.3.3}
+\contentsline {subsubsection}{\numberline {6.15.3.4}$\sim $BrisaDevice}{60}{subsubsection.6.15.3.4}
+\contentsline {subsection}{\numberline {6.15.4}Member Function Documentation}{60}{subsection.6.15.4}
+\contentsline {subsubsection}{\numberline {6.15.4.1}addEmbeddedDevice}{60}{subsubsection.6.15.4.1}
+\contentsline {subsubsection}{\numberline {6.15.4.2}addEmbeddedDevice}{60}{subsubsection.6.15.4.2}
+\contentsline {subsubsection}{\numberline {6.15.4.3}addIcon}{60}{subsubsection.6.15.4.3}
+\contentsline {subsubsection}{\numberline {6.15.4.4}addService}{61}{subsubsection.6.15.4.4}
+\contentsline {subsubsection}{\numberline {6.15.4.5}addService}{61}{subsubsection.6.15.4.5}
+\contentsline {subsubsection}{\numberline {6.15.4.6}clear}{61}{subsubsection.6.15.4.6}
+\contentsline {subsubsection}{\numberline {6.15.4.7}doByeBye}{61}{subsubsection.6.15.4.7}
+\contentsline {subsubsection}{\numberline {6.15.4.8}doNotify}{61}{subsubsection.6.15.4.8}
+\contentsline {subsubsection}{\numberline {6.15.4.9}getAttribute}{61}{subsubsection.6.15.4.9}
+\contentsline {subsubsection}{\numberline {6.15.4.10}getEmbeddedDeviceList}{61}{subsubsection.6.15.4.10}
+\contentsline {subsubsection}{\numberline {6.15.4.11}getIconList}{62}{subsubsection.6.15.4.11}
+\contentsline {subsubsection}{\numberline {6.15.4.12}getServiceById}{62}{subsubsection.6.15.4.12}
+\contentsline {subsubsection}{\numberline {6.15.4.13}getServiceByType}{62}{subsubsection.6.15.4.13}
+\contentsline {subsubsection}{\numberline {6.15.4.14}getServiceList}{62}{subsubsection.6.15.4.14}
+\contentsline {subsubsection}{\numberline {6.15.4.15}operator=}{62}{subsubsection.6.15.4.15}
+\contentsline {subsubsection}{\numberline {6.15.4.16}respondMSearch}{62}{subsubsection.6.15.4.16}
+\contentsline {subsubsection}{\numberline {6.15.4.17}setAttribute}{62}{subsubsection.6.15.4.17}
+\contentsline {subsubsection}{\numberline {6.15.4.18}start}{63}{subsubsection.6.15.4.18}
+\contentsline {subsubsection}{\numberline {6.15.4.19}stop}{63}{subsubsection.6.15.4.19}
+\contentsline {section}{\numberline {6.16}BrisaUpnp::BrisaDeviceParserContext Class Reference}{64}{section.6.16}
+\contentsline {subsection}{\numberline {6.16.1}Constructor \& Destructor Documentation}{64}{subsection.6.16.1}
+\contentsline {subsubsection}{\numberline {6.16.1.1}BrisaDeviceParserContext}{64}{subsubsection.6.16.1.1}
+\contentsline {subsection}{\numberline {6.16.2}Member Function Documentation}{64}{subsection.6.16.2}
+\contentsline {subsubsection}{\numberline {6.16.2.1}getDevice}{64}{subsubsection.6.16.2.1}
+\contentsline {subsubsection}{\numberline {6.16.2.2}getIcon}{64}{subsubsection.6.16.2.2}
+\contentsline {subsubsection}{\numberline {6.16.2.3}getParent}{64}{subsubsection.6.16.2.3}
+\contentsline {subsubsection}{\numberline {6.16.2.4}getService}{65}{subsubsection.6.16.2.4}
+\contentsline {subsubsection}{\numberline {6.16.2.5}hasParent}{65}{subsubsection.6.16.2.5}
+\contentsline {subsubsection}{\numberline {6.16.2.6}setDevice}{65}{subsubsection.6.16.2.6}
+\contentsline {subsubsection}{\numberline {6.16.2.7}setIcon}{65}{subsubsection.6.16.2.7}
+\contentsline {subsubsection}{\numberline {6.16.2.8}setService}{65}{subsubsection.6.16.2.8}
+\contentsline {subsection}{\numberline {6.16.3}Member Data Documentation}{65}{subsection.6.16.3}
+\contentsline {subsubsection}{\numberline {6.16.3.1}state}{65}{subsubsection.6.16.3.1}
+\contentsline {subsubsection}{\numberline {6.16.3.2}stateSkip}{65}{subsubsection.6.16.3.2}
+\contentsline {section}{\numberline {6.17}BrisaUpnp::BrisaDeviceXMLHandler Class Reference}{66}{section.6.17}
+\contentsline {subsection}{\numberline {6.17.1}Member Function Documentation}{66}{subsection.6.17.1}
+\contentsline {subsubsection}{\numberline {6.17.1.1}xmlGenerator}{66}{subsubsection.6.17.1.1}
+\contentsline {section}{\numberline {6.18}BrisaUpnp::BrisaDeviceXMLHandlerCP Class Reference}{67}{section.6.18}
+\contentsline {subsection}{\numberline {6.18.1}Detailed Description}{67}{subsection.6.18.1}
+\contentsline {subsection}{\numberline {6.18.2}Member Function Documentation}{67}{subsection.6.18.2}
+\contentsline {subsubsection}{\numberline {6.18.2.1}characters}{67}{subsubsection.6.18.2.1}
+\contentsline {subsubsection}{\numberline {6.18.2.2}endElement}{67}{subsubsection.6.18.2.2}
+\contentsline {subsubsection}{\numberline {6.18.2.3}parseDevice}{68}{subsubsection.6.18.2.3}
+\contentsline {subsubsection}{\numberline {6.18.2.4}startElement}{68}{subsubsection.6.18.2.4}
+\contentsline {section}{\numberline {6.19}BrisaUpnp::BrisaEventController Class Reference}{69}{section.6.19}
+\contentsline {subsection}{\numberline {6.19.1}Constructor \& Destructor Documentation}{69}{subsection.6.19.1}
+\contentsline {subsubsection}{\numberline {6.19.1.1}BrisaEventController}{69}{subsubsection.6.19.1.1}
+\contentsline {subsubsection}{\numberline {6.19.1.2}$\sim $BrisaEventController}{69}{subsubsection.6.19.1.2}
+\contentsline {subsection}{\numberline {6.19.2}Member Function Documentation}{69}{subsection.6.19.2}
+\contentsline {subsubsection}{\numberline {6.19.2.1}parseGenericRequest}{69}{subsubsection.6.19.2.1}
+\contentsline {subsubsection}{\numberline {6.19.2.2}subscribe}{70}{subsubsection.6.19.2.2}
+\contentsline {subsubsection}{\numberline {6.19.2.3}unsubscribe}{70}{subsubsection.6.19.2.3}
+\contentsline {subsubsection}{\numberline {6.19.2.4}variableChanged}{70}{subsubsection.6.19.2.4}
+\contentsline {section}{\numberline {6.20}BrisaUpnp::BrisaEventMessage Class Reference}{71}{section.6.20}
+\contentsline {subsection}{\numberline {6.20.1}Constructor \& Destructor Documentation}{71}{subsection.6.20.1}
+\contentsline {subsubsection}{\numberline {6.20.1.1}BrisaEventMessage}{71}{subsubsection.6.20.1.1}
+\contentsline {subsection}{\numberline {6.20.2}Member Function Documentation}{71}{subsection.6.20.2}
+\contentsline {subsubsection}{\numberline {6.20.2.1}getMessageBody}{71}{subsubsection.6.20.2.1}
+\contentsline {subsubsection}{\numberline {6.20.2.2}getMessageHeader}{71}{subsubsection.6.20.2.2}
+\contentsline {section}{\numberline {6.21}BrisaUpnp::BrisaEventProxy Class Reference}{72}{section.6.21}
+\contentsline {subsection}{\numberline {6.21.1}Detailed Description}{72}{subsection.6.21.1}
+\contentsline {subsection}{\numberline {6.21.2}Constructor \& Destructor Documentation}{72}{subsection.6.21.2}
+\contentsline {subsubsection}{\numberline {6.21.2.1}$\sim $BrisaEventProxy}{72}{subsubsection.6.21.2.1}
+\contentsline {subsection}{\numberline {6.21.3}Member Function Documentation}{73}{subsection.6.21.3}
+\contentsline {subsubsection}{\numberline {6.21.3.1}eventNotification}{73}{subsubsection.6.21.3.1}
+\contentsline {subsubsection}{\numberline {6.21.3.2}getId}{73}{subsubsection.6.21.3.2}
+\contentsline {subsubsection}{\numberline {6.21.3.3}renew}{73}{subsubsection.6.21.3.3}
+\contentsline {subsubsection}{\numberline {6.21.3.4}subscribe}{73}{subsubsection.6.21.3.4}
+\contentsline {subsubsection}{\numberline {6.21.3.5}unsubscribe}{73}{subsubsection.6.21.3.5}
+\contentsline {subsection}{\numberline {6.21.4}Friends And Related Function Documentation}{73}{subsection.6.21.4}
+\contentsline {subsubsection}{\numberline {6.21.4.1}BrisaControlPoint}{73}{subsubsection.6.21.4.1}
+\contentsline {section}{\numberline {6.22}BrisaUpnp::BrisaEventSubscription Class Reference}{74}{section.6.22}
+\contentsline {subsection}{\numberline {6.22.1}Constructor \& Destructor Documentation}{74}{subsection.6.22.1}
+\contentsline {subsubsection}{\numberline {6.22.1.1}BrisaEventSubscription}{74}{subsubsection.6.22.1.1}
+\contentsline {subsection}{\numberline {6.22.2}Member Function Documentation}{74}{subsection.6.22.2}
+\contentsline {subsubsection}{\numberline {6.22.2.1}getAcceptSubscriptionResponse}{74}{subsubsection.6.22.2.1}
+\contentsline {subsubsection}{\numberline {6.22.2.2}getAcceptUnsubscriptionResponse}{74}{subsubsection.6.22.2.2}
+\contentsline {subsubsection}{\numberline {6.22.2.3}renew}{74}{subsubsection.6.22.2.3}
+\contentsline {section}{\numberline {6.23}BrisaUpnp::BrisaIcon Class Reference}{75}{section.6.23}
+\contentsline {subsection}{\numberline {6.23.1}Member Enumeration Documentation}{75}{subsection.6.23.1}
+\contentsline {subsubsection}{\numberline {6.23.1.1}xmlIconTags}{75}{subsubsection.6.23.1.1}
+\contentsline {subsection}{\numberline {6.23.2}Constructor \& Destructor Documentation}{75}{subsection.6.23.2}
+\contentsline {subsubsection}{\numberline {6.23.2.1}BrisaIcon}{75}{subsubsection.6.23.2.1}
+\contentsline {subsection}{\numberline {6.23.3}Member Function Documentation}{75}{subsection.6.23.3}
+\contentsline {subsubsection}{\numberline {6.23.3.1}clear}{75}{subsubsection.6.23.3.1}
+\contentsline {subsubsection}{\numberline {6.23.3.2}getAttribute}{75}{subsubsection.6.23.3.2}
+\contentsline {subsubsection}{\numberline {6.23.3.3}setAttribute}{75}{subsubsection.6.23.3.3}
+\contentsline {section}{\numberline {6.24}BrisaUpnp::BrisaMSearchClientCP Class Reference}{76}{section.6.24}
+\contentsline {subsection}{\numberline {6.24.1}Detailed Description}{76}{subsection.6.24.1}
+\contentsline {subsection}{\numberline {6.24.2}Constructor \& Destructor Documentation}{76}{subsection.6.24.2}
+\contentsline {subsubsection}{\numberline {6.24.2.1}BrisaMSearchClientCP}{76}{subsubsection.6.24.2.1}
+\contentsline {subsubsection}{\numberline {6.24.2.2}$\sim $BrisaMSearchClientCP}{76}{subsubsection.6.24.2.2}
+\contentsline {subsection}{\numberline {6.24.3}Member Function Documentation}{76}{subsection.6.24.3}
+\contentsline {subsubsection}{\numberline {6.24.3.1}discover}{76}{subsubsection.6.24.3.1}
+\contentsline {subsubsection}{\numberline {6.24.3.2}doubleDiscover}{77}{subsubsection.6.24.3.2}
+\contentsline {subsubsection}{\numberline {6.24.3.3}isRunning}{77}{subsubsection.6.24.3.3}
+\contentsline {subsubsection}{\numberline {6.24.3.4}msearchResponseReceived}{77}{subsubsection.6.24.3.4}
+\contentsline {subsubsection}{\numberline {6.24.3.5}start}{77}{subsubsection.6.24.3.5}
+\contentsline {subsubsection}{\numberline {6.24.3.6}stop}{77}{subsubsection.6.24.3.6}
+\contentsline {section}{\numberline {6.25}BrisaUpnp::BrisaService Class Reference}{78}{section.6.25}
+\contentsline {subsection}{\numberline {6.25.1}Detailed Description}{78}{subsection.6.25.1}
+\contentsline {subsection}{\numberline {6.25.2}Constructor \& Destructor Documentation}{79}{subsection.6.25.2}
+\contentsline {subsubsection}{\numberline {6.25.2.1}BrisaService}{79}{subsubsection.6.25.2.1}
+\contentsline {subsubsection}{\numberline {6.25.2.2}BrisaService}{79}{subsubsection.6.25.2.2}
+\contentsline {subsubsection}{\numberline {6.25.2.3}BrisaService}{79}{subsubsection.6.25.2.3}
+\contentsline {subsubsection}{\numberline {6.25.2.4}$\sim $BrisaService}{79}{subsubsection.6.25.2.4}
+\contentsline {subsection}{\numberline {6.25.3}Member Function Documentation}{79}{subsection.6.25.3}
+\contentsline {subsubsection}{\numberline {6.25.3.1}buildWebServiceTree}{79}{subsubsection.6.25.3.1}
+\contentsline {subsubsection}{\numberline {6.25.3.2}getVariable}{79}{subsubsection.6.25.3.2}
+\contentsline {subsubsection}{\numberline {6.25.3.3}getWebService}{79}{subsubsection.6.25.3.3}
+\contentsline {subsubsection}{\numberline {6.25.3.4}parseGenericRequest}{79}{subsubsection.6.25.3.4}
+\contentsline {subsubsection}{\numberline {6.25.3.5}setDescriptionFile}{80}{subsubsection.6.25.3.5}
+\contentsline {section}{\numberline {6.26}BrisaUpnp::BrisaServiceFetcher Class Reference}{81}{section.6.26}
+\contentsline {subsection}{\numberline {6.26.1}Constructor \& Destructor Documentation}{81}{subsection.6.26.1}
+\contentsline {subsubsection}{\numberline {6.26.1.1}BrisaServiceFetcher}{81}{subsubsection.6.26.1.1}
+\contentsline {subsubsection}{\numberline {6.26.1.2}$\sim $BrisaServiceFetcher}{81}{subsubsection.6.26.1.2}
+\contentsline {subsection}{\numberline {6.26.2}Member Function Documentation}{81}{subsection.6.26.2}
+\contentsline {subsubsection}{\numberline {6.26.2.1}fetch}{81}{subsubsection.6.26.2.1}
+\contentsline {subsubsection}{\numberline {6.26.2.2}fetchFinished}{81}{subsubsection.6.26.2.2}
+\contentsline {section}{\numberline {6.27}BrisaUpnp::BrisaServiceParserContext Class Reference}{82}{section.6.27}
+\contentsline {subsection}{\numberline {6.27.1}Constructor \& Destructor Documentation}{82}{subsection.6.27.1}
+\contentsline {subsubsection}{\numberline {6.27.1.1}BrisaServiceParserContext}{82}{subsubsection.6.27.1.1}
+\contentsline {subsection}{\numberline {6.27.2}Member Function Documentation}{82}{subsection.6.27.2}
+\contentsline {subsubsection}{\numberline {6.27.2.1}getAction}{82}{subsubsection.6.27.2.1}
+\contentsline {subsubsection}{\numberline {6.27.2.2}getArgument}{82}{subsubsection.6.27.2.2}
+\contentsline {subsubsection}{\numberline {6.27.2.3}getParent}{82}{subsubsection.6.27.2.3}
+\contentsline {subsubsection}{\numberline {6.27.2.4}getService}{82}{subsubsection.6.27.2.4}
+\contentsline {subsubsection}{\numberline {6.27.2.5}getStateVariable}{83}{subsubsection.6.27.2.5}
+\contentsline {subsubsection}{\numberline {6.27.2.6}hasParent}{83}{subsubsection.6.27.2.6}
+\contentsline {subsubsection}{\numberline {6.27.2.7}setAction}{83}{subsubsection.6.27.2.7}
+\contentsline {subsubsection}{\numberline {6.27.2.8}setArgument}{83}{subsubsection.6.27.2.8}
+\contentsline {subsubsection}{\numberline {6.27.2.9}setService}{83}{subsubsection.6.27.2.9}
+\contentsline {subsubsection}{\numberline {6.27.2.10}setStateVariable}{83}{subsubsection.6.27.2.10}
+\contentsline {subsection}{\numberline {6.27.3}Member Data Documentation}{83}{subsection.6.27.3}
+\contentsline {subsubsection}{\numberline {6.27.3.1}state}{83}{subsubsection.6.27.3.1}
+\contentsline {subsubsection}{\numberline {6.27.3.2}stateSkip}{83}{subsubsection.6.27.3.2}
+\contentsline {section}{\numberline {6.28}BrisaUpnp::BrisaServiceXMLHandler Class Reference}{84}{section.6.28}
+\contentsline {subsection}{\numberline {6.28.1}Member Function Documentation}{84}{subsection.6.28.1}
+\contentsline {subsubsection}{\numberline {6.28.1.1}characters}{84}{subsubsection.6.28.1.1}
+\contentsline {subsubsection}{\numberline {6.28.1.2}endElement}{84}{subsubsection.6.28.1.2}
+\contentsline {subsubsection}{\numberline {6.28.1.3}parseService}{84}{subsubsection.6.28.1.3}
+\contentsline {subsubsection}{\numberline {6.28.1.4}startElement}{84}{subsubsection.6.28.1.4}
+\contentsline {section}{\numberline {6.29}BrisaUpnp::BrisaSSDPClient Class Reference}{85}{section.6.29}
+\contentsline {subsection}{\numberline {6.29.1}Detailed Description}{85}{subsection.6.29.1}
+\contentsline {subsection}{\numberline {6.29.2}Constructor \& Destructor Documentation}{85}{subsection.6.29.2}
+\contentsline {subsubsection}{\numberline {6.29.2.1}BrisaSSDPClient}{85}{subsubsection.6.29.2.1}
+\contentsline {subsubsection}{\numberline {6.29.2.2}$\sim $BrisaSSDPClient}{86}{subsubsection.6.29.2.2}
+\contentsline {subsection}{\numberline {6.29.3}Member Function Documentation}{86}{subsection.6.29.3}
+\contentsline {subsubsection}{\numberline {6.29.3.1}isRunning}{86}{subsubsection.6.29.3.1}
+\contentsline {subsubsection}{\numberline {6.29.3.2}newDeviceEvent}{86}{subsubsection.6.29.3.2}
+\contentsline {subsubsection}{\numberline {6.29.3.3}removedDeviceEvent}{86}{subsubsection.6.29.3.3}
+\contentsline {subsubsection}{\numberline {6.29.3.4}start}{86}{subsubsection.6.29.3.4}
+\contentsline {subsubsection}{\numberline {6.29.3.5}stop}{86}{subsubsection.6.29.3.5}
+\contentsline {section}{\numberline {6.30}BrisaUpnp::BrisaSSDPServer Class Reference}{88}{section.6.30}
+\contentsline {subsection}{\numberline {6.30.1}Detailed Description}{89}{subsection.6.30.1}
+\contentsline {subsection}{\numberline {6.30.2}Constructor \& Destructor Documentation}{89}{subsection.6.30.2}
+\contentsline {subsubsection}{\numberline {6.30.2.1}BrisaSSDPServer}{89}{subsubsection.6.30.2.1}
+\contentsline {subsubsection}{\numberline {6.30.2.2}$\sim $BrisaSSDPServer}{89}{subsubsection.6.30.2.2}
+\contentsline {subsection}{\numberline {6.30.3}Member Function Documentation}{89}{subsection.6.30.3}
+\contentsline {subsubsection}{\numberline {6.30.3.1}doByeBye}{89}{subsubsection.6.30.3.1}
+\contentsline {subsubsection}{\numberline {6.30.3.2}doNotify}{89}{subsubsection.6.30.3.2}
+\contentsline {subsubsection}{\numberline {6.30.3.3}isRunning}{90}{subsubsection.6.30.3.3}
+\contentsline {subsubsection}{\numberline {6.30.3.4}msearchRequestReceived}{90}{subsubsection.6.30.3.4}
+\contentsline {subsubsection}{\numberline {6.30.3.5}respondMSearch}{90}{subsubsection.6.30.3.5}
+\contentsline {subsubsection}{\numberline {6.30.3.6}start}{91}{subsubsection.6.30.3.6}
+\contentsline {subsubsection}{\numberline {6.30.3.7}stop}{91}{subsubsection.6.30.3.7}
+\contentsline {section}{\numberline {6.31}BrisaUpnp::BrisaStateVariable Class Reference}{92}{section.6.31}
+\contentsline {subsection}{\numberline {6.31.1}Detailed Description}{93}{subsection.6.31.1}
+\contentsline {subsection}{\numberline {6.31.2}Member Enumeration Documentation}{93}{subsection.6.31.2}
+\contentsline {subsubsection}{\numberline {6.31.2.1}BrisaStateVariableAttribute}{93}{subsubsection.6.31.2.1}
+\contentsline {subsection}{\numberline {6.31.3}Constructor \& Destructor Documentation}{93}{subsection.6.31.3}
+\contentsline {subsubsection}{\numberline {6.31.3.1}BrisaStateVariable}{93}{subsubsection.6.31.3.1}
+\contentsline {subsubsection}{\numberline {6.31.3.2}BrisaStateVariable}{93}{subsubsection.6.31.3.2}
+\contentsline {subsection}{\numberline {6.31.4}Member Function Documentation}{93}{subsection.6.31.4}
+\contentsline {subsubsection}{\numberline {6.31.4.1}addAllowedValue}{93}{subsubsection.6.31.4.1}
+\contentsline {subsubsection}{\numberline {6.31.4.2}changed}{93}{subsubsection.6.31.4.2}
+\contentsline {subsubsection}{\numberline {6.31.4.3}clear}{94}{subsubsection.6.31.4.3}
+\contentsline {subsubsection}{\numberline {6.31.4.4}getAllowedValueList}{94}{subsubsection.6.31.4.4}
+\contentsline {subsubsection}{\numberline {6.31.4.5}getAttribute}{94}{subsubsection.6.31.4.5}
+\contentsline {subsubsection}{\numberline {6.31.4.6}getDataType}{94}{subsubsection.6.31.4.6}
+\contentsline {subsubsection}{\numberline {6.31.4.7}getValue}{94}{subsubsection.6.31.4.7}
+\contentsline {subsubsection}{\numberline {6.31.4.8}operator=}{94}{subsubsection.6.31.4.8}
+\contentsline {subsubsection}{\numberline {6.31.4.9}sendEvents}{94}{subsubsection.6.31.4.9}
+\contentsline {subsubsection}{\numberline {6.31.4.10}setAttribute}{94}{subsubsection.6.31.4.10}
+\contentsline {chapter}{\numberline {7}File Documentation}{95}{chapter.7}
+\contentsline {section}{\numberline {7.1}src/core/brisaconfig.cpp File Reference}{95}{section.7.1}
+\contentsline {section}{\numberline {7.2}src/core/brisaconfig.h File Reference}{96}{section.7.2}
+\contentsline {section}{\numberline {7.3}src/core/brisacore.h File Reference}{97}{section.7.3}
+\contentsline {section}{\numberline {7.4}src/core/brisaglobal.h File Reference}{98}{section.7.4}
+\contentsline {subsection}{\numberline {7.4.1}Define Documentation}{98}{subsection.7.4.1}
+\contentsline {subsubsection}{\numberline {7.4.1.1}BRISA\_\discretionary {-}{}{}CORE\_\discretionary {-}{}{}EXPORT}{98}{subsubsection.7.4.1.1}
+\contentsline {subsubsection}{\numberline {7.4.1.2}BRISA\_\discretionary {-}{}{}UPNP\_\discretionary {-}{}{}EXPORT}{98}{subsubsection.7.4.1.2}
+\contentsline {subsubsection}{\numberline {7.4.1.3}BRISA\_\discretionary {-}{}{}UTILS\_\discretionary {-}{}{}EXPORT}{98}{subsubsection.7.4.1.3}
+\contentsline {subsubsection}{\numberline {7.4.1.4}BRISA\_\discretionary {-}{}{}VERSION}{98}{subsubsection.7.4.1.4}
+\contentsline {subsubsection}{\numberline {7.4.1.5}BRISA\_\discretionary {-}{}{}VERSION\_\discretionary {-}{}{}STR}{98}{subsubsection.7.4.1.5}
+\contentsline {section}{\numberline {7.5}src/core/brisawebserver.cpp File Reference}{99}{section.7.5}
+\contentsline {subsection}{\numberline {7.5.1}Function Documentation}{99}{subsection.7.5.1}
+\contentsline {subsubsection}{\numberline {7.5.1.1}extractPathLevel}{99}{subsubsection.7.5.1.1}
+\contentsline {section}{\numberline {7.6}src/core/brisawebserver.h File Reference}{100}{section.7.6}
+\contentsline {subsection}{\numberline {7.6.1}Define Documentation}{100}{subsection.7.6.1}
+\contentsline {subsubsection}{\numberline {7.6.1.1}DEFAULT\_\discretionary {-}{}{}PAGE}{100}{subsubsection.7.6.1.1}
+\contentsline {section}{\numberline {7.7}src/upnp/brisaabstracteventsubscription.cpp File Reference}{101}{section.7.7}
+\contentsline {section}{\numberline {7.8}src/upnp/brisaabstracteventsubscription.h File Reference}{102}{section.7.8}
+\contentsline {section}{\numberline {7.9}src/upnp/brisaabstractservice.cpp File Reference}{103}{section.7.9}
+\contentsline {section}{\numberline {7.10}src/upnp/brisaabstractservice.h File Reference}{104}{section.7.10}
+\contentsline {section}{\numberline {7.11}src/upnp/brisaaction.cpp File Reference}{105}{section.7.11}
+\contentsline {section}{\numberline {7.12}src/upnp/brisaaction.h File Reference}{106}{section.7.12}
+\contentsline {section}{\numberline {7.13}src/upnp/brisaargument.cpp File Reference}{107}{section.7.13}
+\contentsline {section}{\numberline {7.14}src/upnp/brisaargument.h File Reference}{108}{section.7.14}
+\contentsline {section}{\numberline {7.15}src/upnp/brisaicon.cpp File Reference}{109}{section.7.15}
+\contentsline {section}{\numberline {7.16}src/upnp/brisaicon.h File Reference}{110}{section.7.16}
+\contentsline {section}{\numberline {7.17}src/upnp/brisaservicexmlhandler.cpp File Reference}{111}{section.7.17}
+\contentsline {section}{\numberline {7.18}src/upnp/brisaservicexmlhandler.h File Reference}{112}{section.7.18}
+\contentsline {section}{\numberline {7.19}src/upnp/brisastatevariable.cpp File Reference}{113}{section.7.19}
+\contentsline {section}{\numberline {7.20}src/upnp/brisastatevariable.h File Reference}{114}{section.7.20}
+\contentsline {section}{\numberline {7.21}src/upnp/controlpoint/brisacontrolpoint.cpp File Reference}{115}{section.7.21}
+\contentsline {section}{\numberline {7.22}src/upnp/controlpoint/brisacontrolpoint.h File Reference}{116}{section.7.22}
+\contentsline {section}{\numberline {7.23}src/upnp/controlpoint/brisacontrolpointdevice.cpp File Reference}{117}{section.7.23}
+\contentsline {section}{\numberline {7.24}src/upnp/controlpoint/brisacontrolpointdevice.h File Reference}{118}{section.7.24}
+\contentsline {section}{\numberline {7.25}src/upnp/controlpoint/brisacontrolpointservice.cpp File Reference}{119}{section.7.25}
+\contentsline {section}{\numberline {7.26}src/upnp/controlpoint/brisacontrolpointservice.h File Reference}{120}{section.7.26}
+\contentsline {section}{\numberline {7.27}src/upnp/controlpoint/brisadevicexmlhandlercp.cpp File Reference}{121}{section.7.27}
+\contentsline {section}{\numberline {7.28}src/upnp/controlpoint/brisadevicexmlhandlercp.h File Reference}{122}{section.7.28}
+\contentsline {section}{\numberline {7.29}src/upnp/controlpoint/brisaeventproxy.cpp File Reference}{124}{section.7.29}
+\contentsline {section}{\numberline {7.30}src/upnp/controlpoint/brisaeventproxy.h File Reference}{125}{section.7.30}
+\contentsline {section}{\numberline {7.31}src/upnp/controlpoint/brisamsearchclientcp.cpp File Reference}{126}{section.7.31}
+\contentsline {subsection}{\numberline {7.31.1}Define Documentation}{126}{subsection.7.31.1}
+\contentsline {subsubsection}{\numberline {7.31.1.1}UPNP\_\discretionary {-}{}{}MSEARCH\_\discretionary {-}{}{}DISCOVER}{126}{subsubsection.7.31.1.1}
+\contentsline {section}{\numberline {7.32}src/upnp/controlpoint/brisamsearchclientcp.h File Reference}{127}{section.7.32}
+\contentsline {subsection}{\numberline {7.32.1}Define Documentation}{127}{subsection.7.32.1}
+\contentsline {subsubsection}{\numberline {7.32.1.1}DEFAULT\_\discretionary {-}{}{}SEARCH\_\discretionary {-}{}{}TIME}{127}{subsubsection.7.32.1.1}
+\contentsline {subsubsection}{\numberline {7.32.1.2}DEFAULT\_\discretionary {-}{}{}SEARCH\_\discretionary {-}{}{}TYPE}{127}{subsubsection.7.32.1.2}
+\contentsline {section}{\numberline {7.33}src/upnp/device/brisaactionxmlparser.cpp File Reference}{128}{section.7.33}
+\contentsline {section}{\numberline {7.34}src/upnp/device/brisaactionxmlparser.h File Reference}{129}{section.7.34}
+\contentsline {section}{\numberline {7.35}src/upnp/device/brisadevice.cpp File Reference}{130}{section.7.35}
+\contentsline {section}{\numberline {7.36}src/upnp/device/brisadevice.h File Reference}{131}{section.7.36}
+\contentsline {section}{\numberline {7.37}src/upnp/device/brisadevicexmlhandler.cpp File Reference}{132}{section.7.37}
+\contentsline {section}{\numberline {7.38}src/upnp/device/brisadevicexmlhandler.h File Reference}{133}{section.7.38}
+\contentsline {section}{\numberline {7.39}src/upnp/device/brisaeventcontroller.cpp File Reference}{134}{section.7.39}
+\contentsline {subsection}{\numberline {7.39.1}Define Documentation}{134}{subsection.7.39.1}
+\contentsline {subsubsection}{\numberline {7.39.1.1}ERROR\_\discretionary {-}{}{}400\_\discretionary {-}{}{}MESSAGE}{134}{subsubsection.7.39.1.1}
+\contentsline {subsubsection}{\numberline {7.39.1.2}ERROR\_\discretionary {-}{}{}412\_\discretionary {-}{}{}MESSAGE}{134}{subsubsection.7.39.1.2}
+\contentsline {section}{\numberline {7.40}src/upnp/device/brisaeventcontroller.h File Reference}{135}{section.7.40}
+\contentsline {section}{\numberline {7.41}src/upnp/device/brisaeventmessage.cpp File Reference}{136}{section.7.41}
+\contentsline {section}{\numberline {7.42}src/upnp/device/brisaeventmessage.h File Reference}{137}{section.7.42}
+\contentsline {section}{\numberline {7.43}src/upnp/device/brisaeventsubscription.cpp File Reference}{138}{section.7.43}
+\contentsline {section}{\numberline {7.44}src/upnp/device/brisaeventsubscription.h File Reference}{139}{section.7.44}
+\contentsline {section}{\numberline {7.45}src/upnp/device/brisaservice.cpp File Reference}{140}{section.7.45}
+\contentsline {subsection}{\numberline {7.45.1}Define Documentation}{140}{subsection.7.45.1}
+\contentsline {subsubsection}{\numberline {7.45.1.1}SOAP\_\discretionary {-}{}{}ERROR\_\discretionary {-}{}{}TEMPLATE}{140}{subsubsection.7.45.1.1}
+\contentsline {section}{\numberline {7.46}src/upnp/device/brisaservice.h File Reference}{141}{section.7.46}
+\contentsline {section}{\numberline {7.47}src/upnp/ssdp/brisassdpclient.cpp File Reference}{142}{section.7.47}
+\contentsline {section}{\numberline {7.48}src/upnp/ssdp/brisassdpclient.h File Reference}{143}{section.7.48}
+\contentsline {section}{\numberline {7.49}src/upnp/ssdp/brisassdpserver.cpp File Reference}{144}{section.7.49}
+\contentsline {subsection}{\numberline {7.49.1}Define Documentation}{144}{subsection.7.49.1}
+\contentsline {subsubsection}{\numberline {7.49.1.1}UPNP\_\discretionary {-}{}{}ALIVE\_\discretionary {-}{}{}MESSAGE}{144}{subsubsection.7.49.1.1}
+\contentsline {subsubsection}{\numberline {7.49.1.2}UPNP\_\discretionary {-}{}{}BYEBYE\_\discretionary {-}{}{}MESSAGE}{144}{subsubsection.7.49.1.2}
+\contentsline {subsubsection}{\numberline {7.49.1.3}UPNP\_\discretionary {-}{}{}MSEARCH\_\discretionary {-}{}{}RESPONSE}{144}{subsubsection.7.49.1.3}
+\contentsline {section}{\numberline {7.50}src/upnp/ssdp/brisassdpserver.h File Reference}{146}{section.7.50}
+\contentsline {section}{\numberline {7.51}src/utils/brisalog.cpp File Reference}{147}{section.7.51}
+\contentsline {subsection}{\numberline {7.51.1}Define Documentation}{147}{subsection.7.51.1}
+\contentsline {subsubsection}{\numberline {7.51.1.1}COLOR\_\discretionary {-}{}{}CRITICAL}{147}{subsubsection.7.51.1.1}
+\contentsline {subsubsection}{\numberline {7.51.1.2}COLOR\_\discretionary {-}{}{}DEBUG}{147}{subsubsection.7.51.1.2}
+\contentsline {subsubsection}{\numberline {7.51.1.3}COLOR\_\discretionary {-}{}{}FATAL}{147}{subsubsection.7.51.1.3}
+\contentsline {subsubsection}{\numberline {7.51.1.4}COLOR\_\discretionary {-}{}{}RESET}{147}{subsubsection.7.51.1.4}
+\contentsline {subsubsection}{\numberline {7.51.1.5}COLOR\_\discretionary {-}{}{}WARN}{147}{subsubsection.7.51.1.5}
+\contentsline {subsubsection}{\numberline {7.51.1.6}LOG\_\discretionary {-}{}{}WRITE}{148}{subsubsection.7.51.1.6}
+\contentsline {subsection}{\numberline {7.51.2}Function Documentation}{148}{subsection.7.51.2}
+\contentsline {subsubsection}{\numberline {7.51.2.1}brisaLogInitialize}{148}{subsubsection.7.51.2.1}
+\contentsline {subsubsection}{\numberline {7.51.2.2}brisaMessageWritter}{148}{subsubsection.7.51.2.2}
+\contentsline {section}{\numberline {7.52}src/utils/brisalog.h File Reference}{149}{section.7.52}
+\contentsline {subsection}{\numberline {7.52.1}Function Documentation}{149}{subsection.7.52.1}
+\contentsline {subsubsection}{\numberline {7.52.1.1}brisaLogInitialize}{149}{subsubsection.7.52.1.1}
+\contentsline {section}{\numberline {7.53}src/utils/brisanetwork.cpp File Reference}{150}{section.7.53}
+\contentsline {subsection}{\numberline {7.53.1}Function Documentation}{150}{subsection.7.53.1}
+\contentsline {subsubsection}{\numberline {7.53.1.1}getIp}{150}{subsubsection.7.53.1.1}
+\contentsline {subsubsection}{\numberline {7.53.1.2}getPort}{150}{subsubsection.7.53.1.2}
+\contentsline {section}{\numberline {7.54}src/utils/brisanetwork.h File Reference}{151}{section.7.54}
+\contentsline {subsection}{\numberline {7.54.1}Function Documentation}{151}{subsection.7.54.1}
+\contentsline {subsubsection}{\numberline {7.54.1.1}getIp}{151}{subsubsection.7.54.1.1}
+\contentsline {subsubsection}{\numberline {7.54.1.2}getPort}{151}{subsubsection.7.54.1.2}
