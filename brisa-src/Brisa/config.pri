@@ -320,7 +320,6 @@ CONFIG += precompile_header
 PRECOMPILED_HEADER = $$quote($$BASEDIR/precompiled.h)
 
 lupdate_inclusion {
-
     SOURCES += \
         $$quote($$BASEDIR/../include/*.c) \
         $$quote($$BASEDIR/../include/*.c++) \
