@@ -22,7 +22,7 @@ public:
 	virtual ~EventController();
 
 	public slots:
-	void variableChanged(StateVariable *variable);
+	void variableChanged(brisa::upnp::StateVariable *variable);
 
 	void subscribe(const brisa::shared::webserver::http::HttpRequest &request, brisa::shared::webserver::WebserverSession *session);
 
@@ -42,9 +42,9 @@ public:
 
 	int getTimeOut(const QString &timeout);
 
-	QList<EventSubscription *> subscriptions;
+	QList<brisa::upnp::device::EventSubscription *> subscriptions;
 
-	QList<StateVariable *> *variableList;
+	QList<brisa::upnp::StateVariable *> *variableList;
 
 	QUdpSocket udpSocket;
 };

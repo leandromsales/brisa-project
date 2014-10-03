@@ -192,9 +192,9 @@ void SSDPServer::msearchReceived(const QByteArray datagram,
     }
 
     if (response["man"] == "\"ssdp:discover\"") {
-        qDebug() << "BrisaSSDPServer Received msearch from "
-                 << senderIp->toString() << ":" << senderPort
-                 << " Search target: " << response["st"];
+//        qDebug() << "BrisaSSDPServer Received msearch from "
+//                 << senderIp->toString() << ":" << senderPort
+//                 << " Search target: " << response["st"];
 
         emit msearchRequestReceived(response["st"],
                                     senderIp->toString(),

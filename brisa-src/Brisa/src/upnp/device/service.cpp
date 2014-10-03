@@ -61,9 +61,33 @@ Service::~Service() {
 	childWebServices.clear();
 }
 
+// TODO: Verify commit
 void Service::call(const QString &method, InArgument param,
 		WebserverSession *session) {
-	for (QList<Action *>::iterator i = this->actionList.begin();
+    qDebug() << "Service::call: Calling function " << method << " with args "
+            << param;
+
+    Action * action = this->actionRelatedToMethod(method);
+    OutArgument *outArguments = new OutArgument;
+
+    if (action) {
+        if (action->call(&param, outArguments)) {
+            // send response.
+            qDebug() << "Service::call: sending response to the requester.";
+            this->respondAction(session, outArguments, action->getName());
+            //delete outArguments;
+        } else {
+            qDebug() << "An error has occurred during the " << action->getName()
+                                        << " callback.";
+            this->respondError(session, UPNP_ACTION_FAILED);
+            return;
+        }
+    } else {
+        qDebug() << "Service: Unknown callback: " << method;
+        this->respondError(session, UPNP_INVALID_ACTION);
+    }
+
+	/*for (QList<Action *>::iterator i = this->actionList.begin();
 			i != actionList.end(); ++i) {
 		Action *action = *i;
 		if (action->getName() == method) {
@@ -167,7 +191,7 @@ void Service::call(const QString &method, InArgument param,
 	}
 
 	qDebug() << "BrisaService: Unknown callback: " << method;
-	respondError(session, UPNP_INVALID_ACTION);
+	respondError(session, UPNP_INVALID_ACTION);*/
 }
 
 void Service::buildWebServiceTree(Webserver *sessionManager) {
@@ -239,7 +263,7 @@ void Service::onRequest(const HttpRequest &request,
 
 		call(actionXmlParser.method, actionXmlParser.args, session);
 	} else {
-		qDebug() << "BrisaService: Invalid SOAP xml format.";
+		qDebug() << "Service: Invalid SOAP xml format.";
 		respondError(session, UPNP_INVALID_ACTION);
 	}
 }
@@ -297,14 +321,14 @@ QString Service::getDescriptionFile() {
 void Service::parseDescriptionFile() {
 	if (this->scpdFilePath.isEmpty()) {
 		qDebug()
-				<< "WARNING::BrisaService::parseDescriptionFile: scpd filePath is empty";
+				<< "WARNING::Service::parseDescriptionFile: scpd filePath is empty";
 		return;
 	}
 
 	// TODO: Change this to only pass the file (this->scdpFilePath) and make the
 	// BrisaServiceXMLHandler class open the file when parseService method
 	// is called.
-	qDebug() << "INFO::BrisaService::parseDescriptionFile: scpd filePath: "
+	qDebug() << "INFO::Service::parseDescriptionFile: scpd filePath: "
 			<< this->scpdFilePath;
 	QFile file(this->scpdFilePath);
 	if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -321,7 +345,7 @@ void Service::parseDescriptionFile() {
 	} else {
 		//It should throw and exception
 		qDebug()
-				<< "ERROR:BrisaService::parseDescriptionFile: Could not open the description file.";
+				<< "ERROR:Service::parseDescriptionFile: Could not open the description file.";
 	}
 }
 
@@ -337,8 +361,8 @@ void Service::connectVariablesEventSignals() {
 	foreach (StateVariable *stateVar, this->stateVariableList)
 	{
 		if (stateVar->sendEventsChange()) {
-			QObject::connect(stateVar, SIGNAL(changed(StateVariable *)),
-					event, SLOT(variableChanged(StateVariable *)));
+			QObject::connect(stateVar, SIGNAL(changed(brisa::upnp::StateVariable *)),
+					event, SLOT(variableChanged(brisa::upnp::StateVariable *)));
 		}
 	}
 }
@@ -351,19 +375,21 @@ void Service::setDefaultValues() {
 	}
 }
 
-Action * getRelatedActionByName(QList<Action *> actionList,
-		QByteArray methodSignature) {
-	Action *action = 0;
-	for (QList<Action *>::iterator i = actionList.begin();
-			i != actionList.end(); ++i) {
-		action = *i;
-		//qDebug() << "Current action:" << action->getName();
-		if (QString(methodSignature).contains(action->getName())) {
-			break;
-		}
-		action = 0;
-	}
-	return action;
+Action * Service::actionRelatedToMethod(QString methodSignature) {
+    Action *action = 0;
+    // qDebug()
+    // << "BrisaService::actionByName: Searching for action that fits in: "
+    // << methodSignature;
+    for (QList<Action *>::iterator i = this->actionList.begin();
+            i != actionList.end(); ++i) {
+        action = *i;
+        //qDebug() << "Current action:" << action->getName();
+        if (QString(methodSignature).contains(action->getName())) {
+            break;
+        }
+        action = 0;
+    }
+    return action;
 }
 
 void Service::bindActionsToServiceMethods() {
@@ -404,7 +430,7 @@ void Service::bindActionsToServiceMethods() {
 	}
 	for(int i = meta->methodOffset(); i < meta->methodCount(); ++i) {
 		method = meta->method(i);
-		Action * action =  getRelatedActionByName(this->actionList, method.signature());
+		Action * action = actionRelatedToMethod(method.signature());
 		if(action) {
 			action->setMethod(method, this);
 			qDebug() << "Binding method " << method.signature() << " of service ID " << this->serviceId << " to service action " << action->getName();

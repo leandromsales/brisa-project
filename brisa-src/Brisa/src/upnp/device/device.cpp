@@ -422,8 +422,9 @@ void Device::buildWebServerTree()
 
 #if defined (__QNXNTO__) //Blackberry 10
     QStringList pathSlipt = tempFilePath.split("/");
-    tempFilePath = pathSlipt[pathSlipt.size() - 2] + "/" + pathSlipt[pathSlipt.size() - 1];
-    qDebug() << "DEBUG:: BB10 Temp FILE path: " << tempFilePath;
+    int pathSliptSize = pathSlipt.size();
+    tempFilePath = pathSlipt[pathSliptSize - 2] + "/" + pathSlipt[pathSliptSize - 1];
+//    qDebug() << "DEBUG:: BB10 Temp FILE path: " << tempFilePath;
 #endif
     webserver->addService(fileAddress.toUtf8(),
                           new WebFile(tempFilePath, this));

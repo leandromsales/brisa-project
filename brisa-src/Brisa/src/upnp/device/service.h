@@ -10,7 +10,8 @@
 namespace brisa {
 //class shared::webserver::Webserver;
 namespace upnp {
-//class Webserver;
+    //class Webserver;
+    class Action;
 namespace device {
 
 
@@ -59,6 +60,8 @@ protected:
 	void connectVariablesEventSignals();
 
 	void setDefaultValues();
+
+	brisa::upnp::Action * actionRelatedToMethod(QString methodSignature);
 
 	void bindActionsToServiceMethods();
 

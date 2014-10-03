@@ -1,1 +1,28 @@
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+# OS generated files #
+###################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+# Qt generated folders #
+###################
+moc_*
+arm/
+.moc/
+.obj/
+*.so*
+*.qm
+###################
+brisa.pri
 brisa-src/Brisa/config.pri

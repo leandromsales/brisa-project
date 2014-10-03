@@ -75,6 +75,7 @@ void DeviceXMLHandlerCP::parseDevice(Device *device, QDomElement &element)
     QString manufacturerURL = element.elementsByTagName("manufacturerURL").at(0).toElement().text();
     QString modelName = element.elementsByTagName("manufacturer").at(0).toElement().text();
     QString modelNumber = element.elementsByTagName("modelNumber").at(0).toElement().text();
+    QString modelDescription= element.elementsByTagName("modelDescription").at(0).toElement().text();
     QString modelURL = element.elementsByTagName("modelURL").at(0).toElement().text();
     QString serialNumber = element.elementsByTagName("serialNumber").at(0).toElement().text();
     device->setAttribute(Device::Udn, udn);
@@ -84,6 +85,7 @@ void DeviceXMLHandlerCP::parseDevice(Device *device, QDomElement &element)
     device->setAttribute(Device::ManufacturerUrl, manufacturerURL);
     device->setAttribute(Device::ModelName, modelName);
     device->setAttribute(Device::ModelNumber, modelNumber);
+    device->setAttribute(Device::ModelDescription, modelDescription);
     device->setAttribute(Device::ModelUrl, modelURL);
     device->setAttribute(Device::SerialNumber, serialNumber);
 

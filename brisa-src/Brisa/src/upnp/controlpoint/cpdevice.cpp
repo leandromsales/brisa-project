@@ -254,9 +254,10 @@ QString Device::getAttribute(xmlTags key)
         return this->_fileAddress;
         break;
     default:
-        return "";
+        qDebug() << "WARNING:BrisaControlPointDevice::getAttribute: there is no tag for the key " << key;
         break;
     }
+    return "";
 }
 
 Service *Device::getServiceById(QString serviceId)
