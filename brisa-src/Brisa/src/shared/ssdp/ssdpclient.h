@@ -30,7 +30,7 @@
 #define SSDPCLIENT_H
 
 #include <QObject>
-#include <QHttpRequestHeader>
+#include <QMap>
 
 #include "../../upnp/brisaglobal.h"
 #include "../../upnp/controlpoint/udplistener.h"
@@ -129,7 +129,7 @@ private slots:
      *
      *  \param datagram datagram
      */
-    void notifyReceived(QHttpRequestHeader *datagram);
+    void notifyReceived(const QMap<QString, QString> &message);
 
 private:
     bool running;

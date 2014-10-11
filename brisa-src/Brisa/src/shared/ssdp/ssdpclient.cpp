@@ -81,36 +81,33 @@ void SSDPClient::datagramReceived() {
         QString temp(datagram->data());
         emit messageReceived(temp);
 
-        QHttpRequestHeader *parser = new QHttpRequestHeader(temp);
-
-        notifyReceived(parser);
+        notifyReceived(getMapFromMessage(temp));
 
         delete datagram;
-        delete parser;
     }
 
 }
 
-void SSDPClient::notifyReceived(QHttpRequestHeader *datagram) {
-	if (!datagram->hasKey("nts"))
+void SSDPClient::notifyReceived(const QMap<QString, QString> &message) {
+    if (!message.contains("nts"))
 	        return;
 
-	    if (datagram->value("nts") == "ssdp:alive") {
-	        emit newDeviceEvent(datagram->value("usn"),
-	                            datagram->value("location"), datagram->value("nt"),
-	                            datagram->value("ext"), datagram->value("server"),
-	                            datagram->value("cacheControl"));
+        if (message.value("nts") == "ssdp:alive") {
+            emit newDeviceEvent(message.value("usn"),
+                                message.value("location"), message.value("nt"),
+                                message.value("ext"), message.value("server"),
+                                message.value("cacheControl"));
 	        qDebug() << "Brisa SSDP Client: Received alive from " <<
-	                datagram->value("usn") << "";
+                    message.value("usn") << "";
 
-	    } else if (datagram->value("nts") == "ssdp:byebye") {
-	        emit removedDeviceEvent(datagram->value("usn"));
+        } else if (message.value("nts") == "ssdp:byebye") {
+            emit removedDeviceEvent(message.value("usn"));
 	        qDebug() << "Brisa SSDP Client: Received byebye from " <<
-	                datagram->value("usn") << "";
+                    message.value("usn") << "";
 
 	    } else {
 	        qDebug() << "Brisa SSDP Client: Received unknown subtype: " <<
-	                datagram->value("nts") << "";
+                    message.value("nts") << "";
 	    }
 
 }
