@@ -27,6 +27,10 @@
  */
 #include "eventproxy.h"
 
+#include <QUrl>
+#include <QNetworkAccessManager>
+
+
 #include "../../shared/webserver/webserversession.h"
 
 namespace brisa {
@@ -40,15 +44,14 @@ EventProxy::EventProxy(const QStringList &callbackUrls,
                                  int &deliveryPath,
                                  QString host,
                                  int port,
-                                 QHttp *http,
+                                 QNetworkAccessManager *networkAccessManager,
                                  QString eventSub,
                                  QObject *parent) :
     AbstractEventSubscription(QString(), callbackUrls, -1, parent),
-    requestId(-1),
     deliveryPath(deliveryPath),
     host(host),
     port(port),
-    http(http),
+    m_networkAccessManager(networkAccessManager),
     eventSub(eventSub),
     webServer(webserver)
 {
@@ -58,77 +61,90 @@ EventProxy::~EventProxy() {
 }
 
 void EventProxy::renew(const int &newTimeout) {
-    QHttpRequestHeader *renewReq = getRenewRequest(newTimeout);
-    http->setHost(host, port);
-    requestId = http->request(*renewReq);
-    qDebug() << requestId << " renew: " << renewReq->toString();
-    delete renewReq;
+    QNetworkRequest renewReq = getRenewRequest(newTimeout);
+    if (!renewReq.hasRawHeader("SID")) {
+        qWarning() << "Renew failed: SID field not filled.";
+        return;
+    }
+    m_networkAccessManager->sendCustomRequest(renewReq, "SUBSCRIBE");
+    networkRequest = renewReq;
 }
 
-int EventProxy::getId() {
-    return this->requestId;
-}
+//int EventProxy::getId() {
+//    return this->requestId;
+//}
 
 void EventProxy::subscribe(const int timeout) {
-    QHttpRequestHeader *subscribeReq = getSubscriptionRequest(timeout);
-    http->setHost(host, port);
-    requestId = http->request(*subscribeReq);
-    //qDebug() << requestId << " subscription: " << subscribeReq->toString();
-    delete subscribeReq;
+    QNetworkRequest subscribeReq = getSubscriptionRequest(timeout);
+    m_networkAccessManager->sendCustomRequest(subscribeReq, "SUBSCRIBE");
+    networkRequest = subscribeReq;
 }
 
 void EventProxy::unsubscribe(void) {
-    QHttpRequestHeader *unsubscribeReq = getUnsubscriptionRequest();
-    http->setHost(host, port);
-    int unsubId = http->request(*unsubscribeReq);
-    //qDebug() << unsubId << " unsubscription: " << unsubscribeReq->toString();
-    delete unsubscribeReq;
+    QNetworkRequest unsubscribeReq = getUnsubscriptionRequest();
+    if (!unsubscribeReq.hasRawHeader("SID")) {
+        qWarning() << "Unsubscribe failed: SID field not filled.";
+        return;
+    }
+    m_networkAccessManager->sendCustomRequest(unsubscribeReq, "UNSUBSCRIBE");
+    networkRequest = unsubscribeReq;
 }
 
-QHttpRequestHeader *EventProxy::getSubscriptionRequest(const int timeout) {
-    QHttpRequestHeader *request = new QHttpRequestHeader("SUBSCRIBE", eventSub);
+QNetworkRequest EventProxy::getSubscriptionRequest(const int timeout) {
+    QUrl hostUrl;
+    hostUrl.setHost(host);
+    hostUrl.setPort(port);
+    hostUrl.setPath(eventSub);
+    QNetworkRequest request(hostUrl);
 
     // Remote host
-    request->setValue("HOST", host + ":" + QString().setNum(port));
+    //    request.setRawHeader("HOST", host + ":" + port);
 
     // Our URL for receiving notifications
-    const QUrl url = this->getUrl();
+    const QUrl url = getUrl();
 
-    qDebug() << "Url: " << url.host() << " port: " << url.port();
-    request->setValue("CALLBACK", "<http://"
+//    qDebug() << "Url: " << url.host() << " port: " << url.port();
+    request.setRawHeader("CALLBACK", QString("<http://"
                                     + url.host()
                                     + ":"
                                     + QString().setNum(url.port())
                                     + "/"
                                     + QString().setNum(deliveryPath)
-                                    + ">");
+                                    + ">").toUtf8());
 
-    request->setValue("NT", "upnp:event");
-    request->setValue("TIMEOUT", (timeout > 0)
-                                    ? "Second-" + QString().setNum(timeout)
-                                    : "INFINITE"); // INFINITE is obsolete in UPnP 1.1
+    request.setRawHeader("NT", "upnp:event");
+    request.setRawHeader("TIMEOUT", (timeout > 0)
+                                    ? QString("Second-" + QString().setNum(timeout)).toUtf8()
+                                    : QString("INFINITE").toUtf8()); // NOTE: INFINITE is obsolete in UPnP 1.1
     return request;
 }
 
-QHttpRequestHeader *EventProxy::getRenewRequest(const int timeout) const {
-    if (this->getSid().isEmpty()) {
-        qWarning() << "Renew failed: SID field not filled.";
-        return NULL;
-    }
+QNetworkRequest EventProxy::getRenewRequest(const int timeout) const {
 
-    QHttpRequestHeader *request = new QHttpRequestHeader("SUBSCRIBE", eventSub);
-    request->setValue("HOST", host + ":" + port);
-    request->setValue("SID", getSid());
-    request->setValue("TIMEOUT", (timeout > 0)
-                                    ? "Second-" + QString().setNum(timeout)
-                                    : "INFINITE");
+    QUrl url;
+    url.setHost(host);
+    url.setPort(port);
+    url.setPath(eventSub);
+    QNetworkRequest request(url);
+
+//    request.setRawHeader("HOST", host + ":" + port);
+    request.setRawHeader("TIMEOUT", (timeout > 0)
+                                    ? QString("Second-" + QString().setNum(timeout)).toUtf8()
+                                    : QString("INFINITE").toUtf8());
+    if (!getSid().isEmpty())
+        request.setRawHeader("SID", getSid().toUtf8());
     return request;
 }
 
-QHttpRequestHeader *EventProxy::getUnsubscriptionRequest() const {
-    QHttpRequestHeader *request = new QHttpRequestHeader("UNSUBSCRIBE", eventSub);
-    request->setValue("HOST", this->host + ":" + this->port);
-    request->setValue("SID", this->SID);
+QNetworkRequest EventProxy::getUnsubscriptionRequest() const {
+    QUrl url;
+    url.setHost(host);
+    url.setPort(port);
+    url.setPath(eventSub);
+    QNetworkRequest request(url);
+//    request->setValue("HOST", host + ":" + port);
+    if (!getSid().isEmpty())
+        request.setRawHeader("SID", getSid().toUtf8());
     return request;
 }
 

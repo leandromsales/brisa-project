@@ -28,15 +28,24 @@
 #ifndef EVENTPROXY_H
 #define EVENTPROXY_H
 
+#include <QDateTime>
+#include <QList>
+#include <QNetworkRequest>
+#include <QString>
+#include <QObject>
+#include <QtXml>
+
 #include "../abstracteventsubscription.h"
 #include "../brisaglobal.h"
 #include "../../shared/webserver/webserver.h"
-#include <QDateTime>
-#include <QList>
-#include <QString>
-#include <QHttpResponseHeader>
-#include <QObject>
-#include <QtXml>
+
+QT_BEGIN_NAMESPACE
+
+class QNetworkAccessManager;
+// class QNetworkReply;
+
+QT_END_NAMESPACE
+
 
 namespace brisa {
 namespace upnp {
@@ -59,10 +68,10 @@ public:
      */
     virtual ~EventProxy();
 
-    /*!
-     *  Gets the request id.
-     */
-    int getId();
+//    /*!
+//     *  Gets the request id.
+//     */
+//    int getId();
 
     /*!
      *  Renew the subscribe in a event for the \a newTimeout passed
@@ -112,7 +121,7 @@ private:
                     int &deliveryPath,
                     QString host,
                     int port,
-                    QHttp *http,
+                    QNetworkAccessManager *networkAccessManager,
                     QString eventSub,
                     QObject *parent = 0);
 
@@ -120,7 +129,8 @@ private:
      *  \property requestId
      *  \brief id that identifies the request.
      */
-    int requestId;
+    // TODO: Verificar porque esse atributo pode ser visto na classe ControlPoint
+    QNetworkRequest networkRequest;
 
     /*!
      *  \property deliveryPath
@@ -144,7 +154,7 @@ private:
      *  \property http
      *  \brief http object to send the event notification(subscribe i.e.)
      */
-    QHttp *http;
+    QNetworkAccessManager *m_networkAccessManager;
 
     /*!
      *  \property eventSub
@@ -163,20 +173,20 @@ private:
      *  \param timeout timeout
      *  \return Http subscription header with passed timeout
      */
-    QHttpRequestHeader *getSubscriptionRequest(const int timeout);
+    QNetworkRequest getSubscriptionRequest(const int timeout);
 
     /*!
      *    Creates and returns an unsubscription Http header.
      *    \param unsubscription Http header
      */
-    QHttpRequestHeader *getUnsubscriptionRequest() const;
+    QNetworkRequest getUnsubscriptionRequest() const;
 
     /*!
      *  Creates and returns a Http renew subscription header with the passed \a timeout
      *  \param timeout timeout
      *  \return Http renew subscription header with passed timeout
      */
-    QHttpRequestHeader *getRenewRequest(const int timeout) const;
+    QNetworkRequest getRenewRequest(const int timeout) const;
 
     /*!
      *  Sets the subscription sid.

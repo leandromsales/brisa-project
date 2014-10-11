@@ -29,12 +29,12 @@
 
 #include <QtCore>
 #include <QtDebug>
+#include <QNetworkAccessManager>
 
 #include "controlpoint.h"
-#include "../../shared/ssdp/ssdpclient.h"
 #include "msearchclientcp.h"
-
-#include "webserversession.h"
+#include "../../shared/ssdp/ssdpclient.h"
+#include "../../shared/webserver/webserversession.h"
 
 namespace brisa {
 
@@ -55,7 +55,7 @@ ControlPoint::ControlPoint(QObject *parent, QString st, int mx) :
     this->multicastReceiver = new MulticastEventReceiver(parent);
 
     /* HTTP protocol implementation for requests */
-    this->http = new QHttp();
+    m_networkAccessManager = new QNetworkAccessManager(this);
 
     /* SSDP client */
     this->ssdpClient = new SSDPClient(this);
@@ -67,17 +67,16 @@ ControlPoint::ControlPoint(QObject *parent, QString st, int mx) :
     downloader = new QNetworkAccessManager();
     webserver->start();
 
-    connect(http, SIGNAL(requestFinished(int, bool)), this, SLOT(httpResponse(int, bool)));
-    connect(ssdpClient, SIGNAL(removedDeviceEvent(QString)), this, SLOT(deviceRemoved(QString)));
-    connect(ssdpClient,
-            SIGNAL(newDeviceEvent(QString, QString, QString, QString, QString, QString)),
-            this,
-            SLOT(deviceFound(QString, QString, QString, QString, QString, QString)));
-    connect(msearch,
-            SIGNAL(msearchResponseReceived(QString, QString, QString, QString, QString, QString)),
-            this,
-            SLOT(deviceFound(QString, QString, QString, QString, QString, QString)));
-    connect(downloader, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
+    connect(m_networkAccessManager, SIGNAL(finished(QNetworkReply*)),
+            this, SLOT(httpResponse(QNetworkReply*)));
+    connect(ssdpClient, SIGNAL(removedDeviceEvent(QString)),
+            this, SLOT(deviceRemoved(QString)));
+    connect(ssdpClient, SIGNAL(newDeviceEvent(QString, QString, QString, QString, QString, QString)),
+            this, SLOT(deviceFound(QString, QString, QString, QString, QString, QString)));
+    connect(msearch, SIGNAL(msearchResponseReceived(QString, QString, QString, QString, QString, QString)),
+            this, SLOT(deviceFound(QString, QString, QString, QString, QString, QString)));
+    connect(downloader, SIGNAL(finished(QNetworkReply*)),
+            this, SLOT(replyFinished(QNetworkReply*)));
     connect(this->multicastReceiver, SIGNAL(multicastReceived(QMap<QString,QString>)),
             this, SLOT(receiveMulticast(QMap<QString,QString>)));
     this->multicastReceiver->start();
@@ -91,7 +90,7 @@ ControlPoint::~ControlPoint() {
     delete this->msearch;
     delete this->ssdpClient;
     delete this->webserver;
-    delete this->http;
+    delete m_networkAccessManager;
     delete this->multicastReceiver;
 }
 
@@ -183,7 +182,7 @@ EventProxy *ControlPoint::getSubscriptionProxy(Service *service) {
                                             deliveryPath,
                                             service->getAttribute(Service::Host),
                                             service->getAttribute(Service::Port).toInt(),
-                                            http,
+                                            m_networkAccessManager,
                                             service->getAttribute(Service::EventSubUrl));
 
     requests[deliveryPath] = subscription;
@@ -193,46 +192,38 @@ EventProxy *ControlPoint::getSubscriptionProxy(Service *service) {
     return subscription;
 }
 
-void ControlPoint::httpResponse(int i, bool error) {
-    qWarning() << "Brisa Control Point: Http response for request " << i;
-
+void ControlPoint::httpResponse(QNetworkReply *networkReply) {
     // Locate request object
     EventProxy *subscription = NULL;
 
     foreach(int deliveryPath, requests.keys()) {
-        if (requests[deliveryPath]->requestId == i) {
+        if (requests[deliveryPath]->networkRequest == networkReply->request()) {
             subscription = requests[deliveryPath];
-            qDebug() << "Brisa Control Point: Response for request id " << i << " " << deliveryPath;
             break;
         }
     }
 
     if (!subscription) {
-        qWarning() << "Brisa Control Point: Failed to match response with request id " << i;
+        qWarning() << "Brisa Control Point: Failed to match response";
         return;
-    } else if (error) {
+    } else if (networkReply->error()) {
         // TODO forward error to user, notify that subscription didn't work
-        qWarning() << "Brisa Control Point: Subscription error "  << http->errorString() << i;
+        qWarning() << "Brisa Control Point: Subscription error "  << networkReply->errorString();
         return;
     }
 
-    QHttpResponseHeader header = http->lastResponse();
-    QString sid = header.value("SID");
-
-    if (sid.isEmpty()) {
+    QString sid = networkReply->rawHeader("SID");
+    if (sid.isEmpty())
         // Try "sid"
-        sid = header.value("sid");
-    }
-
+        sid = networkReply->hasRawHeader("sid");
     if (sid.isEmpty()) {
         // TODO report subscription error to user
         qWarning() << "Brisa Control Point: SID header not present on event subscription response.";
-        foreach(QString key, header.keys()) {
-            qDebug() << key << header.value(key);
+        QList<QByteArray> rawHeaderList = networkReply->rawHeaderList();
+        foreach(QByteArray rawHeader, rawHeaderList) {
+            qDebug() << rawHeader;
         }
-
-        qDebug() << "Brisa Control Point: Finished printing headers.. printing data" << http->readAll();
-
+        qDebug() << "Brisa Control Point: Finished printing headers.. printing data" << networkReply->readAll();
         return;
     }
 

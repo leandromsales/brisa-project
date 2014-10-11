@@ -28,14 +28,22 @@
 #ifndef CONTROLPOINT_H
 #define CONTROLPOINT_H
 
+#include <QMap>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
-#include <QMap>
+
 #include "cpdevice.h"
 #include "eventproxy.h"
-#include "../../shared/ssdp/ssdpclient.h"
 #include "multicasteventreceiver.h"
 #include "../brisaglobal.h"
+#include "../../shared/ssdp/ssdpclient.h"
+
+QT_BEGIN_NAMESPACE
+
+class QNetworkAccessManager;
+class QNetworkReply;
+
+QT_END_NAMESPACE
 
 namespace brisa {
 class shared::ssdp::SSDPClient;
@@ -59,7 +67,7 @@ private:
      *    \property http
      *    \brief Do the http request in event subscription.
      */
-    QHttp *http;
+    QNetworkAccessManager *m_networkAccessManager;
 
     /*!
      *    \property downloader
@@ -273,7 +281,7 @@ private slots:
      *  \param i \a empty
      *  \param error \a empty
      */
-    void httpResponse(int i, bool error);
+    void httpResponse(QNetworkReply *networkReply);
 
     /*!
      * Receives the attributes of a multicast event.
