@@ -26,3 +26,5 @@ arm/
 ###################
 brisa.pri
 brisa-src/Brisa/config.pri
+brisa-src/Brisa/Brisa.pro.user
+brisa-src/build-*

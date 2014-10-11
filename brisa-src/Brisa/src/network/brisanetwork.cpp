@@ -71,6 +71,7 @@ QString getValidIP() {
 	}
 	return "127.0.0.1";
 #endif
+    return "127.0.0.1";
 //    return "192.168.25.205";
 //#endif
 }
