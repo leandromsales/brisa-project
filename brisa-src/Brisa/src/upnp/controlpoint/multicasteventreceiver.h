@@ -2,7 +2,6 @@
 #define MULTICASTEVENTRECEIVER_H
 
 #include <QObject>
-#include <QHttp>
 #include <QDomDocument>
 
 #include "udplistener.h"

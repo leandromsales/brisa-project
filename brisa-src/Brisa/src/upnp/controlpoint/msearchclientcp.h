@@ -30,7 +30,6 @@
 
 #include <QUdpSocket>
 #include <QTimer>
-#include <QHttpResponseHeader>
 
 #include "../brisaglobal.h"
 
