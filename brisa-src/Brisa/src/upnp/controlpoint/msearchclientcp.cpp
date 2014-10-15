@@ -26,6 +26,8 @@
  *
  */
 #include <QtDebug>
+
+#include "qcustomreply.h"
 #include "msearchclientcp.h"
 
 #if defined(Q_OS_UNIX) || defined(Q_OS_ANDROID) || defined(Q_OS_QNX) || defined (Q_OS_MAC)
@@ -37,22 +39,23 @@
 #endif
 #include <string.h>
 
+using namespace brisa::upnp;
 namespace brisa {
 namespace upnp {
 namespace controlpoint {
 
 static const QString UPNP_MSEARCH_DISCOVER = "M-SEARCH * HTTP/1.1\r\n"
-                                             "HOST: 239.255.255.250:1900\r\n"
-                                             "MAN: \"ssdp:discover\"\r\n"
-                                             "MX: %1\r\n"
-                                             "ST: %2\r\n"
-                                             "\r\n";
+        "HOST: 239.255.255.250:1900\r\n"
+        "MAN: \"ssdp:discover\"\r\n"
+        "MX: %1\r\n"
+        "ST: %2\r\n"
+        "\r\n";
 
 MSearchClientCP::MSearchClientCP(QObject *parent,
-        const QString &serviceType, int serviceMx) :
+                                 const QString &serviceType, int serviceMx) :
     QObject(parent), running(false), type(serviceType), mx(QByteArray::number(
-            serviceMx)), SSDP_ADDR("0.0.0.0"), SSDP_PORT(1900), S_SSDP_PORT(
-            "1900") {
+                                                               serviceMx)), SSDP_ADDR("0.0.0.0"), SSDP_PORT(1900), S_SSDP_PORT(
+                                                                                                                       "1900") {
 
     timer = new QTimer(this);
     this->udpListener = 0;
@@ -76,7 +79,7 @@ void MSearchClientCP::discover() {
     this->udpListener->moveToThread(this->thread());
     this->udpListener->moveToThread(this->thread());
     udpListener->writeDatagram(discoverMessage.toUtf8(), QHostAddress(
-            "239.255.255.250"), 1900);
+                                   "239.255.255.250"), 1900);
 }
 
 void MSearchClientCP::doubleDiscover() {
@@ -89,10 +92,10 @@ bool MSearchClientCP::isRunning() const {
 }
 
 void MSearchClientCP::start(int interval) {
-        if (!this->udpListener) {
-            this->udpListener = new QUdpSocket();
-            connect(this->udpListener, SIGNAL(readyRead()), this, SLOT(datagramReceived()));
-        }
+    if (!this->udpListener) {
+        this->udpListener = new QUdpSocket();
+        connect(this->udpListener, SIGNAL(readyRead()), this, SLOT(datagramReceived()));
+    }
     if (!isRunning()) {
         if (!this->udpListener) {
             this->udpListener = new QUdpSocket();
@@ -141,6 +144,8 @@ void MSearchClientCP::datagramReceived() {
 
         QString temp(Datagram);
         emit messageReceived(temp);
+
+        /*
         QHttpResponseHeader *response = new QHttpResponseHeader(temp);
 
         if (response->statusCode() == 200) {
@@ -160,10 +165,34 @@ void MSearchClientCP::datagramReceived() {
         }
 
         delete response;
+        */
+
+        QCustomReply *reply;
+        reply->setHeader (QNetworkRequest::ContentTypeHeader, QVariant(Datagram));
+        QVariant statusCode = reply->attribute (QNetworkRequest::HttpStatusCodeAttribute);
+
+        if (statusCode.isValid ()) {
+            int status = statusCode.toInt();
+            if (status == 200) {
+                QMap<QString, QString> map; // = mapFromMessage (Datagram); ERRO AQUI
+                QString usn = map.value ("usn");
+                if (usn.startsWith("uuid:")) {
+                    qDebug() << "BrisaMSearch received MSearch answer from "  << usn << " on " << map.value("location");
+                    emit msearchResponseReceived(map.value("usn"),
+                                                 map.value("location"),
+                                                 map.value("st"),
+                                                 map.value("ext"),
+                                                 map.value("server"),
+                                                 map.value("cache-control"));
+                } else {
+                    qDebug() << "BrisaMSearch received MSearch from " << map.value("location")
+                             << " but it does not start with string \"uuid:\". USN field is " << usn;
+                }
+            }
+        }
     }
 }
 
 }
 }
 }
-

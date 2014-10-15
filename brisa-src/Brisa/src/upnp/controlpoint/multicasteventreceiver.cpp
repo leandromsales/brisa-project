@@ -1,4 +1,5 @@
 #include "multicasteventreceiver.h"
+#include "qcustomreply.h"
 
 namespace brisa {
 namespace upnp {
@@ -54,9 +55,13 @@ void MulticastEventReceiver::formatMessage()
         qWarning() << "Bad formated multicast message!";
         return;
     }
-    QHttpRequestHeader requestHeader(header);
+    // QHttpRequestHeader requestHeader(header);
+    QCustomReply * requestHeader;
+    requestHeader->setHeader (QNetworkRequest::ContentTypeHeader, QVariant(header));
+    QMap<QString, QString> map; // = mapFromMessage (header); MESMO ERRO AQUI
+    //
     bool castOk = 0;
-    const int length = requestHeader.value("CONTENT-LENGTH").toInt(&castOk);
+    const int length = map.value("CONTENT-LENGTH").toInt(&castOk);
     if (!castOk) {
         qWarning() << "CONTENT-LENGTH is not ok on multicast message.";
         return;
@@ -68,12 +73,12 @@ void MulticastEventReceiver::formatMessage()
         qWarning() << "Value for CONTENT-LENGTH is wrong.";
         return;
     }
-    this->attributes["USN"] =  requestHeader.value("USN");
-    this->attributes["SVCID"] = requestHeader.value("SVCID");
-    this->attributes["NT"] = requestHeader.value("NT");
-    this->attributes["NTS"] = requestHeader.value("NTS");
-    this->attributes["SEQ"] = requestHeader.value("SEQ");
-    this->attributes["LVL"] = requestHeader.value("LVL");
+    this->attributes["USN"] =  map.value("USN");
+    this->attributes["SVCID"] = map.value("SVCID");
+    this->attributes["NT"] = map.value("NT");
+    this->attributes["NTS"] = map.value("NTS");
+    this->attributes["SEQ"] = map.value("SEQ");
+    this->attributes["LVL"] = map.value("LVL");
     //TODO: use BOOTID.UPNP.ORG
 //    this->attributes["BOOTID.UPNP.ORG"] = requestHeader.value("BOOTID.UPNP.ORG");
     parseBody(body.toUtf8());

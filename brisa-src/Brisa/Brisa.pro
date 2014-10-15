@@ -83,7 +83,8 @@ HEADERS += \
     src/upnp/brisautils.h \
     src/upnp/icon.h \
     src/upnp/servicexmlhandler.h \
-    src/upnp/statevariable.h
+    src/upnp/statevariable.h \
+    src/upnp/controlpoint/qcustomreply.h
 
 SOURCES += \
     src/network/brisanetwork.cpp \
@@ -145,4 +146,5 @@ SOURCES += \
     src/upnp/argument.cpp \
     src/upnp/icon.cpp \
     src/upnp/servicexmlhandler.cpp \
-    src/upnp/statevariable.cpp
+    src/upnp/statevariable.cpp \
+    src/upnp/controlpoint/qcustomreply.cpp
