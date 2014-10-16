@@ -1,15 +1,18 @@
-#ifndef QCUSTOMREPLY_H
-#define QCUSTOMREPLY_H
+#ifndef CUSTOMREPLY_H
+#define CUSTOMREPLY_H
 
 #include <QNetworkReply>
 
-class QCustomReply : public QNetworkReply
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+class CustomReply : public QNetworkReply
 {
     Q_OBJECT
 
 public:
-    QCustomReply (QObject *parent = 0);
-    ~QCustomReply ();
+    CustomReply (QObject *parent = 0);
+    ~CustomReply ();
 
     void setHttpStatusCode (int code, const QByteArray &statusText = QByteArray());
     void setHeader (QNetworkRequest::KnownHeaders header, const QVariant &value);
@@ -32,5 +35,8 @@ protected:
 private:
     struct QCustomNetworkReplyPrivate *d;
 };
+}
+}
+}
 
-#endif // QCUSTOMREPLY_H
+#endif // CUSTOMREPLY_H

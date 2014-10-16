@@ -7,7 +7,7 @@
 
 // TODO: move the include directive to the begin of the file
 #include "service.h"
-#include "servicexmlhandler.h"
+#include "../servicexmlhandler.h"
 
 #define PRE_ACTION_SIG "preAction(InArgument*const,BrisaAction*const,QString&)"
 #define POST_ACTION_SIG "postAction(InArgument*const,OutArgument*const,BrisaAction*const,QString&)"

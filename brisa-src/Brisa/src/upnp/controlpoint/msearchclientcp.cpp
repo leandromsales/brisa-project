@@ -39,7 +39,10 @@
 #endif
 #include <string.h>
 
+#include "../brisautils.h"
+
 using namespace brisa::upnp;
+
 namespace brisa {
 namespace upnp {
 namespace controlpoint {
@@ -137,12 +140,12 @@ void MSearchClientCP::stop() {
 void MSearchClientCP::datagramReceived() {
     while (udpListener->hasPendingDatagrams()) {
 
-        QByteArray Datagram;
+        QByteArray datagram;
 
-        Datagram.resize(udpListener->pendingDatagramSize());
-        udpListener->readDatagram(Datagram.data(), Datagram.size());
+        datagram.resize(udpListener->pendingDatagramSize());
+        udpListener->readDatagram(datagram.data(), datagram.size());
 
-        QString temp(Datagram);
+        QString temp(datagram);
         emit messageReceived(temp);
 
         /*
@@ -167,14 +170,13 @@ void MSearchClientCP::datagramReceived() {
         delete response;
         */
 
-        QCustomReply *reply;
-        reply->setHeader (QNetworkRequest::ContentTypeHeader, QVariant(Datagram));
+        QCustomReply *reply = new QCustomReply(this);
+        reply->setHeader (QNetworkRequest::ContentTypeHeader, QVariant(datagram));
         QVariant statusCode = reply->attribute (QNetworkRequest::HttpStatusCodeAttribute);
 
-        if (statusCode.isValid ()) {
-            int status = statusCode.toInt();
-            if (status == 200) {
-                QMap<QString, QString> map; // = mapFromMessage (Datagram); ERRO AQUI
+        if (statusCode.isValid()) {
+            if (statusCode.toInt() == 200) {
+                QMap<QString, QString> map  = mapFromMessage(datagram);
                 QString usn = map.value ("usn");
                 if (usn.startsWith("uuid:")) {
                     qDebug() << "BrisaMSearch received MSearch answer from "  << usn << " on " << map.value("location");
@@ -190,6 +192,7 @@ void MSearchClientCP::datagramReceived() {
                 }
             }
         }
+        delete reply;
     }
 }
 

@@ -84,7 +84,7 @@ HEADERS += \
     src/upnp/icon.h \
     src/upnp/servicexmlhandler.h \
     src/upnp/statevariable.h \
-    src/upnp/controlpoint/qcustomreply.h
+    src/upnp/controlpoint/customreply.h
 
 SOURCES += \
     src/network/brisanetwork.cpp \
@@ -147,4 +147,4 @@ SOURCES += \
     src/upnp/icon.cpp \
     src/upnp/servicexmlhandler.cpp \
     src/upnp/statevariable.cpp \
-    src/upnp/controlpoint/qcustomreply.cpp
+    src/upnp/controlpoint/customreply.cpp

@@ -1,4 +1,4 @@
-#include "qcustomreply.h"
+#include "customreply.h"
 
 #include <QNetworkAccessManager>
 #include <QBuffer>
@@ -10,17 +10,22 @@ struct QCustomNetworkReplyPrivate
     qint64 offset;
 };
 
-QCustomReply::QCustomReply (QObject *parent): QNetworkReply(parent)
+
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
+CustomReply::CustomReply (QObject *parent): QNetworkReply(parent)
 {
     d = new QCustomNetworkReplyPrivate;
 }
 
-QCustomReply::~QCustomReply()
+CustomReply::~CustomReply()
 {
     delete d;
 }
 
-void QCustomReply::setHttpStatusCode (int code, const QByteArray &statusText)
+void CustomReply::setHttpStatusCode (int code, const QByteArray &statusText)
 {
     setAttribute (QNetworkRequest::HttpStatusCodeAttribute, code);
     if (statusText.isNull())
@@ -29,22 +34,22 @@ void QCustomReply::setHttpStatusCode (int code, const QByteArray &statusText)
     setAttribute (QNetworkRequest::HttpReasonPhraseAttribute, statusText);
 }
 
-void QCustomReply::setHeader (QNetworkRequest::KnownHeaders header, const QVariant &value)
+void CustomReply::setHeader (QNetworkRequest::KnownHeaders header, const QVariant &value)
 {
     QNetworkReply::setHeader (header, value);
 }
 
-void QCustomReply::setContentType (const QByteArray &contentType)
+void CustomReply::setContentType (const QByteArray &contentType)
 {
     setHeader (QNetworkRequest::ContentTypeHeader, contentType);
 }
 
-void QCustomReply::setContent (const QString &content)
+void CustomReply::setContent (const QString &content)
 {
     setContent(content.toUtf8());
 }
 
-void QCustomReply::setContent (const QByteArray &content)
+void CustomReply::setContent (const QByteArray &content)
 {
     d->content = content;
     d->offset = 0;
@@ -56,22 +61,22 @@ void QCustomReply::setContent (const QByteArray &content)
     QTimer::singleShot (0, this, SIGNAL(finished()));
 }
 
-void QCustomReply::abort()
+void CustomReply::abort()
 {
     //
 }
 
-qint64 QCustomReply::bytesAvailable() const
+qint64 CustomReply::bytesAvailable() const
 {
     return d->content.size() - d->offset;
 }
 
-bool QCustomReply::isSequential() const
+bool CustomReply::isSequential() const
 {
     return true;
 }
 
-qint64 QCustomReply::readData(char *data, qint64 maxSize)
+qint64 CustomReply::readData(char *data, qint64 maxSize)
 {
     if (d->offset >= d->content.size())
         return -1;
@@ -81,4 +86,8 @@ qint64 QCustomReply::readData(char *data, qint64 maxSize)
     d->offset += number;
 
     return number;
+}
+
+}
+}
 }

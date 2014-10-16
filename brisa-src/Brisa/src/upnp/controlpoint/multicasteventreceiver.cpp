@@ -1,5 +1,7 @@
 #include "multicasteventreceiver.h"
+
 #include "qcustomreply.h"
+#include "../brisautils.h"
 
 namespace brisa {
 namespace upnp {
@@ -56,10 +58,10 @@ void MulticastEventReceiver::formatMessage()
         return;
     }
     // QHttpRequestHeader requestHeader(header);
-    QCustomReply * requestHeader;
+    QCustomReply * requestHeader = new QCustomReply(this);
     requestHeader->setHeader (QNetworkRequest::ContentTypeHeader, QVariant(header));
-    QMap<QString, QString> map; // = mapFromMessage (header); MESMO ERRO AQUI
-    //
+    QMap<QString, QString> map = mapFromMessage (header);
+
     bool castOk = 0;
     const int length = map.value("CONTENT-LENGTH").toInt(&castOk);
     if (!castOk) {

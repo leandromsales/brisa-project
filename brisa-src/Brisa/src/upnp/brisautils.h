@@ -22,10 +22,6 @@ inline QString getCompleteUuid() {
 	return QString("uuid:") + getUuid();
 }
 
-inline QMap<QString, QString> mapFromMessage(const QByteArray &message) {
-    return mapFromMessage(QString(message));
-}
-
 inline QMap<QString, QString> mapFromMessage(const QString &message) {
     QStringList messageLines = message.split("\r\n");
     QMap<QString, QString> response;
@@ -44,6 +40,10 @@ inline QMap<QString, QString> mapFromMessage(const QString &message) {
 
     return response;
 }
+
+//inline QMap<QString, QString> mapFromMessage(const QByteArray &datagram) {
+//    return mapFromMessage(QString(datagram));
+//}
 
 }
 }
