@@ -33,7 +33,7 @@ protected:
     qint64 readData (char *data, qint64 maxSize);
 
 private:
-    struct QCustomNetworkReplyPrivate *d;
+    struct CustomNetworkReplyPrivate *d;
 };
 }
 }

@@ -4,20 +4,19 @@
 #include <QBuffer>
 #include <QTimer>
 
-struct QCustomNetworkReplyPrivate
+namespace brisa {
+namespace upnp {
+namespace controlpoint {
+
+struct CustomNetworkReplyPrivate
 {
     QByteArray content;
     qint64 offset;
 };
 
-
-namespace brisa {
-namespace upnp {
-namespace controlpoint {
-
 CustomReply::CustomReply (QObject *parent): QNetworkReply(parent)
 {
-    d = new QCustomNetworkReplyPrivate;
+    d = new CustomNetworkReplyPrivate();
 }
 
 CustomReply::~CustomReply()
