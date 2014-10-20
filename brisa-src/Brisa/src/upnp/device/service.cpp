@@ -429,11 +429,12 @@ void Service::bindActionsToServiceMethods() {
 		}
 	}
 	for(int i = meta->methodOffset(); i < meta->methodCount(); ++i) {
-		method = meta->method(i);
-		Action * action = actionRelatedToMethod(method.signature());
+        // method = meta->method(i);
+        // Action * action = actionRelatedToMethod(method.signature());
+        Action * action = actionRelatedToMethod(method.methodSignature ());
 		if(action) {
 			action->setMethod(method, this);
-			qDebug() << "Binding method " << method.signature() << " of service ID " << this->serviceId << " to service action " << action->getName();
+            qDebug() << "Binding method " << method.methodSignature () << " of service ID " << this->serviceId << " to service action " << action->getName();
 		}
 	}
 
