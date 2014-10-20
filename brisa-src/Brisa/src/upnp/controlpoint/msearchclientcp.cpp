@@ -27,7 +27,7 @@
  */
 #include <QtDebug>
 
-#include "qcustomreply.h"
+#include "customreply.h"
 #include "msearchclientcp.h"
 
 #if defined(Q_OS_UNIX) || defined(Q_OS_ANDROID) || defined(Q_OS_QNX) || defined (Q_OS_MAC)
@@ -170,7 +170,7 @@ void MSearchClientCP::datagramReceived() {
         delete response;
         */
 
-        QCustomReply *reply = new QCustomReply(this);
+        CustomReply *reply = new CustomReply(this);
         reply->setHeader (QNetworkRequest::ContentTypeHeader, QVariant(datagram));
         QVariant statusCode = reply->attribute (QNetworkRequest::HttpStatusCodeAttribute);
 

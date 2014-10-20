@@ -1,6 +1,6 @@
 #include "multicasteventreceiver.h"
 
-#include "qcustomreply.h"
+#include "customreply.h"
 #include "../brisautils.h"
 
 namespace brisa {
@@ -58,7 +58,7 @@ void MulticastEventReceiver::formatMessage()
         return;
     }
     // QHttpRequestHeader requestHeader(header);
-    QCustomReply * requestHeader = new QCustomReply(this);
+    CustomReply * requestHeader = new CustomReply(this);
     requestHeader->setHeader (QNetworkRequest::ContentTypeHeader, QVariant(header));
     QMap<QString, QString> map = mapFromMessage (header);
 
