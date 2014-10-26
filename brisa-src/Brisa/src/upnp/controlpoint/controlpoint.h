@@ -36,7 +36,6 @@
 #include "eventproxy.h"
 #include "multicasteventreceiver.h"
 #include "../brisaglobal.h"
-#include "../../shared/ssdp/ssdpclient.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -46,7 +45,15 @@ class QNetworkReply;
 QT_END_NAMESPACE
 
 namespace brisa {
-class shared::ssdp::SSDPClient;
+namespace shared {
+namespace ssdp {
+class SSDPClient;
+}
+}
+}
+
+
+namespace brisa {
 namespace upnp {
 namespace controlpoint {
 class MSearchClientCP;
