@@ -68,10 +68,10 @@ public:
      */
     virtual ~EventProxy();
 
-//    /*!
-//     *  Gets the request id.
-//     */
-//    int getId();
+    /*!
+     *  Gets the request id.
+     */
+    QString getId();
 
     /*!
      *  Renew the subscribe in a event for the \a newTimeout passed
@@ -130,7 +130,7 @@ private:
      *  \brief id that identifies the request.
      */
     // TODO: Verificar porque esse atributo pode ser visto na classe ControlPoint
-    QNetworkRequest networkRequest;
+    QString requestId;
 
     /*!
      *  \property deliveryPath
@@ -193,6 +193,8 @@ private:
      *  \param sid sid
      */
     void setSid(QString &sid);
+
+    QString generateId();
 };
 
 }

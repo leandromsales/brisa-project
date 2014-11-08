@@ -197,7 +197,7 @@ void ControlPoint::httpResponse(QNetworkReply *networkReply) {
     EventProxy *subscription = NULL;
 
     foreach(int deliveryPath, requests.keys()) {
-        if (requests[deliveryPath]->networkRequest == networkReply->request()) {
+        if (requests[deliveryPath]->getId().toUtf8() == networkReply->request().rawHeader("ID")) {
             subscription = requests[deliveryPath];
             break;
         }

@@ -28,6 +28,7 @@
 #include "eventproxy.h"
 
 #include <QUrl>
+#include <QUuid>
 #include <QNetworkAccessManager>
 
 
@@ -55,6 +56,7 @@ EventProxy::EventProxy(const QStringList &callbackUrls,
     eventSub(eventSub),
     webServer(webserver)
 {
+    requestId = "";
 }
 
 EventProxy::~EventProxy() {
@@ -66,18 +68,20 @@ void EventProxy::renew(const int &newTimeout) {
         qWarning() << "Renew failed: SID field not filled.";
         return;
     }
+    requestId = generateId();
+    renewReq.setRawHeader("ID", requestId.toUtf8());
     m_networkAccessManager->sendCustomRequest(renewReq, "SUBSCRIBE");
-    networkRequest = renewReq;
 }
 
-//int EventProxy::getId() {
-//    return this->requestId;
-//}
+QString EventProxy::getId() {
+    return this->requestId;
+}
 
 void EventProxy::subscribe(const int timeout) {
     QNetworkRequest subscribeReq = getSubscriptionRequest(timeout);
+    requestId = generateId();
+    subscribeReq.setRawHeader("ID", requestId.toUtf8());
     m_networkAccessManager->sendCustomRequest(subscribeReq, "SUBSCRIBE");
-    networkRequest = subscribeReq;
 }
 
 void EventProxy::unsubscribe(void) {
@@ -87,7 +91,6 @@ void EventProxy::unsubscribe(void) {
         return;
     }
     m_networkAccessManager->sendCustomRequest(unsubscribeReq, "UNSUBSCRIBE");
-    networkRequest = unsubscribeReq;
 }
 
 QNetworkRequest EventProxy::getSubscriptionRequest(const int timeout) {
@@ -185,6 +188,12 @@ void EventProxy::onRequest(const HttpRequest &request, WebserverSession *session
 
 void EventProxy::setSid(QString &sid) {
     this->SID = sid;
+}
+
+QString EventProxy::generateId()
+{
+    QString id = QUuid::createUuid().toString();
+    return id.remove("{").remove("}").remove("-");
 }
 
 }
