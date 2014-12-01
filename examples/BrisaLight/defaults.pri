@@ -1,0 +1,2 @@
+INCLUDEPATH += $$PWD/brisa
+BRISA_DIR = $$PWD
