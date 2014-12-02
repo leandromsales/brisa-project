@@ -27,4 +27,5 @@ arm/
 brisa.pri
 brisa-src/Brisa/config.pri
 *.pro.user
+examples/BrisaLight/BrisaLight.pro.user
 brisa-src/build-*
