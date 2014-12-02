@@ -7,7 +7,7 @@
 #include <QtCore>
 #include <QCoreApplication>
 #include <QtDebug>
-#include "upnp/device/Device"
+#include "upnp/device/device.h"
 #include <QSplashScreen>
 #include "ui_light.h"
 #include "switchPower.h"
@@ -54,7 +54,7 @@ private:
     brisa::upnp::StateVariable *status;
     brisa::upnp::StateVariable *target;
     int contSplashScreen;
-    
+
 };
 
 #endif // LIGHT_H
