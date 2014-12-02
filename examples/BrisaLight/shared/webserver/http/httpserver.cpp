@@ -62,6 +62,7 @@ void HttpServer::start()
     foreach(HttpSessionManager *thread, threads) {
         thread->start();
     }
+    qDebug() << "SERVIDOR INICIOU";
 }
 
 }  // namespace http

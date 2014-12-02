@@ -2,7 +2,7 @@
 #include "ui_light.h"
 #include <QDebug>
 
-#define CURRENT_DIR QString("/home/daniel/programming-workspaces/qt/BrisaLight/")
+#define CURRENT_DIR QString("/home/larissa/workspace/git/brisa-port-qt5/brisa-project/examples/BrisaLight/")
 
 using namespace brisa;
 using namespace brisa::upnp;

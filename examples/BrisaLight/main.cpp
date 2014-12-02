@@ -15,14 +15,13 @@
 //    window.splash->show();// Show the splash Screen
 //    timer->start(750);//Starts the timer with intervals of 500 miliseconds
 
-
-
 //    window.show();
 //    return a.exec();
 //}
 
 #include <QApplication>
 #include "shared/webserver/webserver.h"
+#include "shared/webserver/webstaticcontent.h"
 #include "network/brisanetwork.h"
 #include <QDebug>
 
@@ -33,15 +32,18 @@ using namespace brisa::shared::webserver;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    // QString ipAddress = "172.20.8.208";
-    QString ipAddress = "192.168.1.113";
+    QString ipAddress = "127.0.0.1";
+    // QString ipAddress = "192.168.0.105";
     quint16 port = 58136;
     qDebug() << "Address " << ipAddress + ":" + QString::number(port);
 
     Webserver *ws = new Webserver(QHostAddress(ipAddress), port);
-    ws->start ();
+    WebStaticContent *wsc = new WebStaticContent("<html><body>funciona! :)</body></html>", ws);
+    wsc->setContent ("<html><body>funfou</body></html>");
+    ws->addService("/teste", wsc);
 
-    qDebug() << ws->isListening();
+    ws->start ();
+    qDebug() << "ESTOU OUVINDO: " << ws->isListening();
     return a.exec();
 }
 

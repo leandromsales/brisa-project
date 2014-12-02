@@ -12,6 +12,7 @@ WebStaticContent::WebStaticContent(const QByteArray &content,
         WebService(parent),
         m_content(content)
 {
+    qDebug() << "INSTANCIOU WEB STATIC CONTENT";
 }
 
 WebStaticContent::~WebStaticContent() { }
@@ -39,6 +40,7 @@ void WebStaticContent::setContentType(const QByteArray &contentType)
 void WebStaticContent::onRequest(const HttpRequest &request,
                                       WebserverSession *session)
 {
+    qDebug() << "ON REQUEST";
     HttpResponse response(request.httpVersion());
 
     response.setHeader("CONTENT-TYPE", m_contentType);

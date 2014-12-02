@@ -2,6 +2,7 @@
 
 #include <QStringList>
 #include <QtDebug>
+#include <QDebug>
 #ifdef Q_OS_UNIX
 #include <arpa/inet.h>
 #include <netinet/in.h>
@@ -78,13 +79,15 @@ SSDPServer::SSDPServer(QObject *parent) :
     running(false),
     SSDP_ADDR("239.255.255.250"), // TODO: make this as #define
     SSDP_PORT(1900), // TODO: make this as #define
-    S_SSDP_PORT("1900") // TODO: make this as #defin
+    S_SSDP_PORT("1900") // TODO: make this as #define
 {
+    qDebug() << "INSTANCIOU SSDP SERVER";
     this->udpListener = new UdpListener(SSDP_ADDR, SSDP_PORT, "Brisa SSDP Server", parent);
     connect(this->udpListener, SIGNAL(readyRead()), this, SLOT(datagramReceived()));
 }
 
 SSDPServer::~SSDPServer() {
+    qDebug() << "DESTRUIU SSDP SERVER";
     if (isRunning())
         stop();
 
@@ -107,6 +110,7 @@ void SSDPServer::stop() {
     if (isRunning()) {
         udpListener->disconnectFromHost();
         running = false;
+        qDebug() << "BrisaSSDPServer Stopped!";
     } else {
         qDebug() << "BrisaSSDPServer already stopped!";
     }
@@ -122,6 +126,7 @@ void SSDPServer::doNotify(const QString &usn,
                                const QString &server,
                                const QString &cacheControl)
 {
+    qDebug() << "SSDP SERVER DONOTIFY()";
     QString message = UPNP_ALIVE_MESSAGE.arg(cacheControl, location, st, server, usn);
 
     udpListener->writeDatagram(message.toUtf8(),
@@ -150,6 +155,7 @@ void SSDPServer::doByeBye(const QString &usn, const QString &st) {
 }
 
 void SSDPServer::datagramReceived() {
+    qDebug() << "DATAGRAMA RECEBIDO";
     while (this->udpListener->hasPendingDatagrams()) {
         QByteArray datagram;
         QHostAddress *senderIP = new QHostAddress();
@@ -171,6 +177,7 @@ void SSDPServer::msearchReceived(const QByteArray datagram,
                                       QHostAddress *senderIp,
                                       quint16 senderPort)
 {
+    qDebug() << "MSEARCH RECEBIDO";
     QString message = QString(datagram);
     QStringList messageLines = message.split("\r\n");
     QMap<QString, QString> response;
@@ -188,10 +195,12 @@ void SSDPServer::msearchReceived(const QByteArray datagram,
     }
 
     if (!response.contains("man")) {
+        qDebug() << "!MAN";
         return;
     }
 
     if (response["man"] == "\"ssdp:discover\"") {
+        qDebug() << "DISCOVER";
 //        qDebug() << "BrisaSSDPServer Received msearch from "
 //                 << senderIp->toString() << ":" << senderPort
 //                 << " Search target: " << response["st"];
@@ -211,6 +220,7 @@ void SSDPServer::respondMSearch(const QString &senderIp,
                                      const QString &st,
                                      const QString &usn)
 {
+    qDebug() << "RESPONDENDO MSEARCH";
     QString message = UPNP_MSEARCH_RESPONSE.arg(cacheControl, date, location, server, st, usn);
 
     this->udpListener->writeDatagram(message.toUtf8(),

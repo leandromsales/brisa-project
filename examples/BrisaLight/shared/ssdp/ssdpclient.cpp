@@ -89,8 +89,11 @@ void SSDPClient::datagramReceived() {
 }
 
 void SSDPClient::notifyReceived(const QMap<QString, QString> &message) {
-    if (!message.contains("nts"))
+    qDebug() << "NOTIFICAÇÃO RECEBIDA";
+    if (!message.contains("nts")) {
+        qDebug() << "!NTS";
 	        return;
+    }
 
         if (message.value("nts") == "ssdp:alive") {
             emit newDeviceEvent(message.value("usn"),
@@ -109,7 +112,6 @@ void SSDPClient::notifyReceived(const QMap<QString, QString> &message) {
 	        qDebug() << "Brisa SSDP Client: Received unknown subtype: " <<
                     message.value("nts") << "";
 	    }
-
 }
 
 QMap<QString, QString> SSDPClient::getMapFromMessage(QString message) {
