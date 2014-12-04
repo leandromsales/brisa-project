@@ -15,6 +15,8 @@ HttpServer::HttpServer(const QHostAddress &address, quint16 port, QObject *paren
 {
     qDebug() << "INSTANCIOU HTTPSERVER";
     threads.append(new HttpSessionManager(this));
+    // larissa
+    this->incomingConnection (2);
 }
 
 

@@ -32,18 +32,18 @@ using namespace brisa::shared::webserver;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    QString ipAddress = "127.0.0.1";
-    // QString ipAddress = "192.168.0.105";
+    // QString ipAddress = "127.0.0.1";
+    QString ipAddress = "192.168.0.105";
     quint16 port = 58136;
     qDebug() << "Address " << ipAddress + ":" + QString::number(port);
 
     Webserver *ws = new Webserver(QHostAddress(ipAddress), port);
     WebStaticContent *wsc = new WebStaticContent("<html><body>funciona! :)</body></html>", ws);
-    wsc->setContent ("<html><body>funfou</body></html>");
     ws->addService("/teste", wsc);
 
     ws->start ();
     qDebug() << "ESTOU OUVINDO: " << ws->isListening();
+
     return a.exec();
 }
 

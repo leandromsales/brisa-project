@@ -150,4 +150,3 @@ SOURCES += \
     src/upnp/servicexmlhandler.cpp \
     src/upnp/statevariable.cpp \
     src/upnp/controlpoint/customreply.cpp \
-    main.cpp

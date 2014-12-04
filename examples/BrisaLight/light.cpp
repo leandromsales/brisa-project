@@ -62,8 +62,8 @@ Widget::Widget(QWidget *parent) :
                     "urn:schemas-upnp-org:service:SwitchPower:1")->getVariable(
                     "Target");
 
-    bool x = connect(status, SIGNAL(changed(brisa::upnp::StateVariable *)), this,
-            SLOT(statechanged(brisa::upnp::StateVariable *)));
+    bool x = connect(status, SIGNAL(changed(StateVariable *)), this,
+            SLOT(statechanged(StateVariable *)));
 
     Q_ASSERT(x);
 
