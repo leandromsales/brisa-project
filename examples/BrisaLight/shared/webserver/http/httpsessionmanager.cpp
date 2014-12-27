@@ -47,6 +47,7 @@ void HttpSessionManager::onNewConnection(int socketDescriptor)
     if (!created) {
         qDebug() << "NAO CRIADO";
         HttpSession *s = server->factory().generateSessionHandler(this);
+        if (s != 0) qDebug() << "NAO CRIADO DE NOVO";
         s->setSession(socketDescriptor);
     }
     qDebug() << "FIM";
