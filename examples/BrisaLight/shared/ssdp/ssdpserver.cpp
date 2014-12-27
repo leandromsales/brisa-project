@@ -179,7 +179,7 @@ void SSDPServer::msearchReceived(const QByteArray datagram,
 {
     QString message = QString(datagram);
     QStringList messageLines = message.split("\r\n", QString::SkipEmptyParts);
-    qDebug() << "MSEARCH RECEBIDO COM " << messageLines.size() << " LINHAS";
+    qDebug() << "MSEARCH RECEBIDO COM" << messageLines.size() << "LINHAS";
     QMap<QString, QString> response;
     for (int i = 1; i < messageLines.size(); i++) {
         if (messageLines[i].trimmed() != "") {
@@ -200,17 +200,14 @@ void SSDPServer::msearchReceived(const QByteArray datagram,
     }
 
     if (!response.contains("man")) {
-        qDebug() << "!MAN";
         return;
-    } else {
-        qDebug() << "MAN IS " << response.value ("man");
     }
 
     if (response["man"] == "\"ssdp:discover\"") {
         qDebug() << "DISCOVER";
-//        qDebug() << "BrisaSSDPServer Received msearch from "
-//                 << senderIp->toString() << ":" << senderPort
-//                 << " Search target: " << response["st"];
+        qDebug() << "BrisaSSDPServer Received msearch from "
+                 << senderIp->toString() << ":" << senderPort
+                 << " Search target: " << response["st"];
 
         emit msearchRequestReceived(response["st"],
                                     senderIp->toString(),
