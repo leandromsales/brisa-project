@@ -177,14 +177,19 @@ void SSDPServer::msearchReceived(const QByteArray datagram,
                                       QHostAddress *senderIp,
                                       quint16 senderPort)
 {
-    qDebug() << "MSEARCH RECEBIDO";
     QString message = QString(datagram);
-    QStringList messageLines = message.split("\r\n");
+    QStringList messageLines = message.split("\r\n", QString::SkipEmptyParts);
+    qDebug() << "MSEARCH RECEBIDO COM " << messageLines.size() << " LINHAS";
     QMap<QString, QString> response;
     for (int i = 1; i < messageLines.size(); i++) {
         if (messageLines[i].trimmed() != "") {
-            QStringList line = messageLines[i].split(": ");
-            if (line.size() == 2) {
+            QStringList line = messageLines[i].split(":", QString::SkipEmptyParts);
+            if (line.size() >= 2) {
+                for (int j = 2; j < line.size (); j++) {
+                    line[1].append (":");
+                    line[1].append (line[j].trimmed ());
+                }
+
                 response[line[0].toLower()] = line[1].trimmed();
             } else {
                 response[line[0].toLower()] = "";
@@ -197,6 +202,8 @@ void SSDPServer::msearchReceived(const QByteArray datagram,
     if (!response.contains("man")) {
         qDebug() << "!MAN";
         return;
+    } else {
+        qDebug() << "MAN IS " << response.value ("man");
     }
 
     if (response["man"] == "\"ssdp:discover\"") {
