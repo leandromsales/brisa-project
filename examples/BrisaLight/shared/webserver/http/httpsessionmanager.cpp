@@ -11,17 +11,17 @@ HttpSessionManager::HttpSessionManager(HttpServer *parent) :
     server(parent)
 {
     qDebug() << "INICIOU HTTP SESSION MANAGER";
+    connect(this, SIGNAL(newConnection(int)), this, SLOT(onNewConnection(int)));
     // larissa
-    this->run ();
+    //this->run ();
 }
 
-void HttpSessionManager::run()
-{
-    qDebug() << "RODOU HTTP SESSION MANAGER";
-    connect(this, SIGNAL(newConnection(int)), this, SLOT(onNewConnection(int)));
-    qDebug() << "SAIU";
-    // exec();
-}
+//void HttpSessionManager::run()
+//{
+//    qDebug() << "RODOU HTTP SESSION MANAGER";
+//    qDebug() << "SAIU";
+//    exec();
+//}
 
 void HttpSessionManager::addSession(int socketDescriptor)
 {
