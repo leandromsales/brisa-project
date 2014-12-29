@@ -9,7 +9,9 @@ namespace webserver {
 using namespace http;
 
 WebService::WebService(QObject *parent) :
-    QObject(parent) { }
+    QObject(parent) {
+    qDebug() << "INSTANCIOU WEB SERVICE";
+}
 
 WebService::~WebService() { }
 
@@ -20,6 +22,7 @@ void WebService::postRequest(const HttpRequest &request, WebserverSession *sessi
 
 void WebService::onRequest(const HttpRequest &request, WebserverSession *session)
 {
+    qDebug() << "ON REQUEST DO WSERVICE";
     emit genericRequestReceived(request, session);
 }
 

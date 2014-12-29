@@ -16,6 +16,7 @@ Webserver::Webserver(const QHostAddress &host, quint16 port) :
         HttpServer(host, port),
         m_factory(this)
 {
+    qDebug() << "INSTANCIOU WEB SERVER";
     addService("/", new WebStaticContent(DEFAULT_PAGE, this));
 }
 
@@ -28,8 +29,10 @@ Webserver::~Webserver()
 
 void Webserver::addService(QByteArray path, WebService *service)
 {
-    if (!service || path.isEmpty())
+    if (!service || path.isEmpty()) {
+        qDebug() << "ERRO WEBSERVER.CPP ADDSERVICE()";
         return;
+    }
 
     mutex.lock();
 
@@ -46,6 +49,8 @@ void Webserver::addService(QByteArray path, WebService *service)
 
 void Webserver::removeService(QByteArray path)
 {
+    qDebug() << "REMOVER SERVICE";
+
     if (!path.startsWith('/'))
         path.prepend('/');
 
@@ -61,20 +66,28 @@ void Webserver::removeService(QByteArray path)
 
 WebService *Webserver::service(QByteArray path) const
 {
-    if (path.isEmpty())
+    qDebug() << "GET WEB SERVICE IN PATH";
+    if (path.isEmpty()) {
+        qDebug() << "There is no path";
         return NULL;
+    }
 
     if (!path.startsWith('/'))
         path.prepend('/');
 
     mutex.lock();
     WebService *service = services.value(path);
+    if (!service) {
+        qDebug() << "There is no service with this path";
+        return NULL;
+    }
     mutex.unlock();
     return service;
 }
 
 HttpServerFactory &Webserver::factory()
 {
+    qDebug() << "FACTORY";
     return m_factory;
 }
 

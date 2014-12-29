@@ -38,7 +38,13 @@ HttpSession::~HttpSession()
 
 void HttpSession::setSession(int socketDescriptor)
 {
-    socket->setSocketDescriptor(socketDescriptor);
+    bool a = socket->setSocketDescriptor(socketDescriptor);
+    if (a) {
+        qDebug() << "ERRO NO SOCKET DESCRIPTOR";
+    }
+    else {
+        qDebug() << "SOCKET DESCRIPTOR OK";
+    }
     sessionStarted();
 }
 
@@ -99,98 +105,98 @@ void HttpSession::writeEntityBody(const HttpResponse &r, QTcpSocket *s)
 void HttpSession::onReadyRead()
 {
     buffer.append(socket->readAll());
-
+    qDebug() << buffer;
 
     try {
         switch (state) {
         case WAITING_FOR_REQUEST_LINE:
-            {
+        {
 
-                while (buffer.startsWith("\r\n"))
-                    buffer.remove(0, 2);
+            while (buffer.startsWith("\r\n"))
+                buffer.remove(0, 2);
 
 
-                int i = buffer.indexOf("\r\n");
-                if (i != -1) {
+            int i = buffer.indexOf("\r\n");
+            if (i != -1) {
 
-                    QList<QByteArray> request = buffer.left(i).simplified().split(' ');
-                    buffer.remove(0, i + 2);
+                QList<QByteArray> request = buffer.left(i).simplified().split(' ');
+                buffer.remove(0, i + 2);
 
-                    if (request.size() != 3) {
+                if (request.size() != 3) {
+                    writeResponse(HttpResponse(lastSupportedHttpVersion, HttpResponse::BAD_REQUEST, true));
+                    return;
+                }
+
+                requestInfo.setMethod(request.at(0));
+                requestInfo.setUri(request.at(1));
+
+                {
+                    HttpVersion version(request.at(2));
+
+                    if (version) {
+                        requestInfo.setHttpVersion(version);
+                    } else {
                         writeResponse(HttpResponse(lastSupportedHttpVersion, HttpResponse::BAD_REQUEST, true));
                         return;
                     }
-
-                    requestInfo.setMethod(request.at(0));
-                    requestInfo.setUri(request.at(1));
-
-                    {
-                        HttpVersion version(request.at(2));
-
-                        if (version) {
-                            requestInfo.setHttpVersion(version);
-                        } else {
-                            writeResponse(HttpResponse(lastSupportedHttpVersion, HttpResponse::BAD_REQUEST, true));
-                            return;
-                        }
-                    }
-
-                    {
-                        int statusCode = isRequestSupported(requestInfo);
-                        //qDebug() << "statusCode = isRequestSupported(requestInfo) = " << statusCode;
-                        if (statusCode) {
-                            writeResponse(HttpResponse(lastSupportedHttpVersion, statusCode, true));
-                            return;
-                        }
-                    }
-
-                    state = WAITING_FOR_HEADERS;
-
-                } else {
-                    break;
                 }
+
+                {
+                    int statusCode = isRequestSupported(requestInfo);
+                    //qDebug() << "statusCode = isRequestSupported(requestInfo) = " << statusCode;
+                    if (statusCode) {
+                        writeResponse(HttpResponse(lastSupportedHttpVersion, statusCode, true));
+                        return;
+                    }
+                }
+
+                state = WAITING_FOR_HEADERS;
+
+            } else {
+                break;
             }
+        }
         case WAITING_FOR_HEADERS:
-            {
+        {
 
-                for (int i = buffer.indexOf("\r\n") ; i != -1 ; i = buffer.indexOf("\r\n")) {
-                    // don't starts with \r\n
-                    if (i != 0) {
-                        QByteArray header = buffer.left(i);
-                        buffer.remove(0, i + 2);
+            for (int i = buffer.indexOf("\r\n") ; i != -1 ; i = buffer.indexOf("\r\n")) {
+                // don't starts with \r\n
+                if (i != 0) {
+                    QByteArray header = buffer.left(i);
+                    buffer.remove(0, i + 2);
 
-                        i = header.indexOf(':');
-                        if (i > 0) {
-                            if (i + 1 < header.size())
-                                requestInfo.setHeader(header.left(i).trimmed(), header.mid(i + 1).trimmed());
-                            else
-                                requestInfo.setHeader(header.left(i).trimmed(), QByteArray());
-                        } else {
-                            writeResponse(HttpResponse(requestInfo.httpVersion() < lastSupportedHttpVersion ?
-                                                       requestInfo.httpVersion() : lastSupportedHttpVersion,
-                                                       HttpResponse::BAD_REQUEST, true));
-                            return;
-                        }
+                    i = header.indexOf(':');
+                    if (i > 0) {
+                        if (i + 1 < header.size())
+                            requestInfo.setHeader(header.left(i).trimmed(), header.mid(i + 1).trimmed());
+                        else
+                            requestInfo.setHeader(header.left(i).trimmed(), QByteArray());
                     } else {
-                        buffer.remove(0, 2);
+                        writeResponse(HttpResponse(requestInfo.httpVersion() < lastSupportedHttpVersion ?
+                                                       requestInfo.httpVersion() : lastSupportedHttpVersion,
+                                                   HttpResponse::BAD_REQUEST, true));
+                        return;
+                    }
+                } else {
+                    buffer.remove(0, 2);
 
-                        if (hasEntityBody(requestInfo)) {
+                    if (hasEntityBody(requestInfo)) {
 
-                            state = WAITING_FOR_ENTITY_BODY;
+                        state = WAITING_FOR_ENTITY_BODY;
 
 
-                        } else {
+                    } else {
 
-                            state = WAITING_FOR_REQUEST_LINE;
-                            onRequest(requestInfo);
-                            requestInfo.clear();
-                        }
+                        state = WAITING_FOR_REQUEST_LINE;
+                        onRequest(requestInfo);
+                        requestInfo.clear();
                     }
                 }
-
-                if (state != WAITING_FOR_ENTITY_BODY)
-                    break;
             }
+
+            if (state != WAITING_FOR_ENTITY_BODY)
+                break;
+        }
         case WAITING_FOR_ENTITY_BODY:
 
             if (atEnd(requestInfo, buffer)) {

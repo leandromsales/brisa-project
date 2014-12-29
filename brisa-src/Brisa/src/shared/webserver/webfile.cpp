@@ -13,7 +13,9 @@ using namespace http;
 WebFile::WebFile(const QString &fileName, QObject *parent) :
         WebService(parent),
         m_fileName(fileName),
-        m_useChunkedEntities(false) { }
+        m_useChunkedEntities(false) {
+    qDebug() << "INSTANCIOU WEB FILE";
+}
 
 WebFile::~WebFile()
 {

@@ -135,6 +135,7 @@ void UdpListener::start()
 
          exit(1);
        }
+       // setSocketDescriptor use qintptr in qt5, not qint
        this->setSocketDescriptor(fd,QUdpSocket::BoundState,QUdpSocket::ReadOnly);
 #endif
 

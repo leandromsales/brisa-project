@@ -16,6 +16,7 @@ class WebService: public QObject
 {
 Q_OBJECT
 public:
+    WebService();
     WebService(QObject *parent = 0);
     ~WebService();
 

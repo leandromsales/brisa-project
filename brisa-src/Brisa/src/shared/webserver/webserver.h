@@ -36,7 +36,9 @@ namespace webserver {
         class Factory: public brisa::shared::webserver::http::HttpServerFactory
         {
         public:
-            Factory(Webserver *server) : server(server) {}
+            Factory(Webserver *server) : server(server) {
+                qDebug() << "INSTANCIOU FACTORY";
+            }
             brisa::shared::webserver::http::HttpSession *generateSessionHandler(brisa::shared::webserver::http::HttpSessionManager *parent);
 
         private:

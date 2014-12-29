@@ -2,6 +2,7 @@
 
 #include <QStringList>
 #include <QtDebug>
+#include <QDebug>
 #ifdef Q_OS_UNIX
 #include <arpa/inet.h>
 #include <netinet/in.h>
@@ -78,13 +79,15 @@ SSDPServer::SSDPServer(QObject *parent) :
     running(false),
     SSDP_ADDR("239.255.255.250"), // TODO: make this as #define
     SSDP_PORT(1900), // TODO: make this as #define
-    S_SSDP_PORT("1900") // TODO: make this as #defin
+    S_SSDP_PORT("1900") // TODO: make this as #define
 {
+    qDebug() << "INSTANCIOU SSDP SERVER";
     this->udpListener = new UdpListener(SSDP_ADDR, SSDP_PORT, "Brisa SSDP Server", parent);
     connect(this->udpListener, SIGNAL(readyRead()), this, SLOT(datagramReceived()));
 }
 
 SSDPServer::~SSDPServer() {
+    qDebug() << "DESTRUIU SSDP SERVER";
     if (isRunning())
         stop();
 
@@ -107,6 +110,7 @@ void SSDPServer::stop() {
     if (isRunning()) {
         udpListener->disconnectFromHost();
         running = false;
+        qDebug() << "BrisaSSDPServer Stopped!";
     } else {
         qDebug() << "BrisaSSDPServer already stopped!";
     }
@@ -122,6 +126,7 @@ void SSDPServer::doNotify(const QString &usn,
                                const QString &server,
                                const QString &cacheControl)
 {
+    qDebug() << "SSDP SERVER DONOTIFY()";
     QString message = UPNP_ALIVE_MESSAGE.arg(cacheControl, location, st, server, usn);
 
     udpListener->writeDatagram(message.toUtf8(),
@@ -150,6 +155,7 @@ void SSDPServer::doByeBye(const QString &usn, const QString &st) {
 }
 
 void SSDPServer::datagramReceived() {
+    qDebug() << "DATAGRAMA RECEBIDO";
     while (this->udpListener->hasPendingDatagrams()) {
         QByteArray datagram;
         QHostAddress *senderIP = new QHostAddress();
@@ -172,12 +178,18 @@ void SSDPServer::msearchReceived(const QByteArray datagram,
                                       quint16 senderPort)
 {
     QString message = QString(datagram);
-    QStringList messageLines = message.split("\r\n");
+    QStringList messageLines = message.split("\r\n", QString::SkipEmptyParts);
+    qDebug() << "MSEARCH RECEBIDO COM" << messageLines.size() << "LINHAS";
     QMap<QString, QString> response;
     for (int i = 1; i < messageLines.size(); i++) {
         if (messageLines[i].trimmed() != "") {
-            QStringList line = messageLines[i].split(": ");
-            if (line.size() == 2) {
+            QStringList line = messageLines[i].split(":", QString::SkipEmptyParts);
+            if (line.size() >= 2) {
+                for (int j = 2; j < line.size (); j++) {
+                    line[1].append (":");
+                    line[1].append (line[j].trimmed ());
+                }
+
                 response[line[0].toLower()] = line[1].trimmed();
             } else {
                 response[line[0].toLower()] = "";
@@ -192,9 +204,10 @@ void SSDPServer::msearchReceived(const QByteArray datagram,
     }
 
     if (response["man"] == "\"ssdp:discover\"") {
-//        qDebug() << "BrisaSSDPServer Received msearch from "
-//                 << senderIp->toString() << ":" << senderPort
-//                 << " Search target: " << response["st"];
+        qDebug() << "DISCOVER";
+        qDebug() << "BrisaSSDPServer Received msearch from "
+                 << senderIp->toString() << ":" << senderPort
+                 << " Search target: " << response["st"];
 
         emit msearchRequestReceived(response["st"],
                                     senderIp->toString(),
@@ -211,6 +224,7 @@ void SSDPServer::respondMSearch(const QString &senderIp,
                                      const QString &st,
                                      const QString &usn)
 {
+    qDebug() << "RESPONDENDO MSEARCH";
     QString message = UPNP_MSEARCH_RESPONSE.arg(cacheControl, date, location, server, st, usn);
 
     this->udpListener->writeDatagram(message.toUtf8(),
