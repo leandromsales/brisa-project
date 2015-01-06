@@ -12,16 +12,7 @@ HttpSessionManager::HttpSessionManager(HttpServer *parent) :
 {
     qDebug() << "INICIOU HTTP SESSION MANAGER";
     connect(this, SIGNAL(newConnection(int)), this, SLOT(onNewConnection(int)));
-    // larissa
-    //this->run ();
 }
-
-//void HttpSessionManager::run()
-//{
-//    qDebug() << "RODOU HTTP SESSION MANAGER";
-//    qDebug() << "SAIU";
-//    exec();
-//}
 
 void HttpSessionManager::addSession(int socketDescriptor)
 {
@@ -47,7 +38,7 @@ void HttpSessionManager::onNewConnection(int socketDescriptor)
     if (!created) {
         qDebug() << "NAO CRIADO";
         HttpSession *s = server->factory().generateSessionHandler(this);
-        if (s != 0) qDebug() << "NAO CRIADO DE NOVO";
+        if (!s) qDebug() << "NAO CRIADO DE NOVO";
         s->setSession(socketDescriptor);
     }
     qDebug() << "FIM";

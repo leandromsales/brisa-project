@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     // QString ipAddress = "127.0.0.1";
-    QString ipAddress = "192.168.1.11";
+    QString ipAddress = "192.168.0.105";
     quint16 port = 58136;
     qDebug() << "Address " << ipAddress + ":" + QString::number(port);
 
