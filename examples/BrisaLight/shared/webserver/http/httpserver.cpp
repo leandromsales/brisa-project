@@ -15,8 +15,6 @@ HttpServer::HttpServer(const QHostAddress &address, quint16 port, QObject *paren
 {
     qDebug() << "INSTANCIOU HTTPSERVER";
     threads.append(new HttpSessionManager(this));
-    // larissa
-    //this->incomingConnection (2);
 }
 
 
@@ -65,6 +63,7 @@ void HttpServer::start()
         thread->start();
     }
     qDebug() << "SERVIDOR INICIOU";
+    // this->incomingConnection (2312);
 }
 
 }  // namespace http

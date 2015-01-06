@@ -16,7 +16,7 @@ Q_OBJECT
 public:
     explicit HttpSessionManager(HttpServer *parent);
 
-    void run();
+    // void run();
 
     void addSession(int socketDescriptor);
     void releaseSession(HttpSession *);
