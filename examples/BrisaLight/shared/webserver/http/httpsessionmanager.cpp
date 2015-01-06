@@ -26,19 +26,16 @@ void HttpSessionManager::onNewConnection(int socketDescriptor)
     bool created = false;
 
     mutex.lock();
-    qDebug() << "INICIO MUTEX";
     if (pool.size()) {
         pool.back()->setSession(socketDescriptor);
         pool.pop_back();
         created = true;
     }
-    qDebug() << "FIM MUTEX";
     mutex.unlock();
 
     if (!created) {
-        qDebug() << "NAO CRIADO";
         HttpSession *s = server->factory().generateSessionHandler(this);
-        if (!s) qDebug() << "NAO CRIADO DE NOVO";
+        if (!s) qDebug() << "ERRO NA CRIAÇÃO";
         s->setSession(socketDescriptor);
     }
     qDebug() << "FIM";
@@ -56,4 +53,4 @@ void HttpSessionManager::releaseSession(HttpSession *session)
 }  // namespace http
 }  // namespace webserver
 }  // namespace shared
-} // namespace Brisa
+}  // namespace Brisa

@@ -15,19 +15,19 @@ namespace network {
 #define LOCAL_HOST "127.0.0.1"
 
 /*!
- * Gets an valid IP address from an active interface on the host computer.
+ * Gets a valid IP address from an active interface on the host computer.
  *
  */
 QString getValidIP();
 
 /*!
- *  Gets an valid IP address from an specific interface.
+ *  Gets a valid IP address from an specific interface.
  *  \param networkInterface \a The interface to acquire the IP Address from.
  */
 QString getIp(QString networkInterface);
 
 /*!
- *  Gets an closed port to be used by the WebServer.
+ *  Gets a closed port to be used by the WebServer.
  */
 quint16 getPort();
 
@@ -56,7 +56,7 @@ bool isPromiscuousIPv4Address(QString address);
 bool isPromiscuousIPv6Address(QString address);
 
 /*!
- *  Verify if an port is currently opened on this host.
+ *  Verify if a port is currently openned on this host.
  *  \param address \a the IP address
  *  \param port    \a the port to be tested
  *  \param timeout \a the timeout to end the test

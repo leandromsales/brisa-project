@@ -50,6 +50,7 @@ HttpServer::~HttpServer()
     }
 }
 
+// esse cara NUNCA é chamado!
 void HttpServer::incomingConnection(int socketDescriptor)
 {
     qDebug() << "CHEGOU NOVA CONEXAO";
@@ -63,7 +64,6 @@ void HttpServer::start()
         thread->start();
     }
     qDebug() << "SERVIDOR INICIOU";
-    this->incomingConnection (2312);
 }
 
 }  // namespace http

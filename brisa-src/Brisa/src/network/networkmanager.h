@@ -17,8 +17,19 @@ namespace brisa {
 namespace network {
 
 class NetworkManager : public QObject {
-	//TODO Verificar a necessidade desta classe.
-	//Aparentemente ela foi criada apenas para conectar multicast, na interface correta, problema atualmente inexistente
+    // TODO Verificar a necessidade desta classe.
+    // Aparentemente ela foi criada apenas para conectar multicast, na interface correta, problema atualmente inexistente
+
+    /* A parte da conexão multicast é desnecessária: a classe QUdpSocket possui
+     * os métodos joinMulticastGroup com assinatura abaixo, que faz exatamente o
+     * proposto pela classe:
+     * bool QUdpSocket::joinMulticastGroup ( const QHostAddress & groupAddress,
+     *                                              const QNetworkInterface & iface )
+     * bool QUdpSocket::joinMulticastGroup ( const QHostAddress & groupAddress )
+     *
+     * Em relação aos outros dois métodos, eles não são usados.
+     * Portanto, esta classe não é mais necessária.
+     */
 
     Q_OBJECT
 

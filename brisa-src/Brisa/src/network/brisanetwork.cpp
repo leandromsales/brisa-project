@@ -24,11 +24,8 @@ bool isPromiscuousIPv6Address(QString address) {
 }
 
 QString getValidIP() {
-#if defined (__QNXNTO__)
-
-#endif
-
-    /*#if defined(Q_OS_UNIX) || defined(Q_OS_ANDROID)
+     /*
+     #if defined(Q_OS_UNIX) || defined(Q_OS_ANDROID)
      BrisaConfigurationManager *config = BrisaConfigurationManager::getInstance();
      QString interfaceName = config->getParameter("network", "interface");
      QString ip = getIp(interfaceName);
@@ -39,10 +36,10 @@ QString getValidIP() {
      ip = QHostAddress(QHostAddress::Any).toString();
      }
      return ip;
-     #else*/
+     #else
+     */
 
-    /* commented by leandro!
-
+     /* commented by leandro!
      foreach(QHostAddress addressEntry , QNetworkInterface::allAddresses() )
      {
      QString address = addressEntry.toString();
@@ -54,7 +51,8 @@ QString getValidIP() {
      }
      qDebug()
      << "Couldn't acquire a non loopback IP  address,returning 127.0.0.1.";
-     return "127.0.0.1"; */
+     return "127.0.0.1";
+     */
 
 #if defined (__QNXNTO__)
     /* By Rodrigo
@@ -71,9 +69,7 @@ QString getValidIP() {
     }
     return "127.0.0.1";
 #endif
-    return "192.168.1.11";
-    // return "127.0.0.1";
-//#endif
+    return "127.0.0.1";
 }
 
 //TODO deprecated function
