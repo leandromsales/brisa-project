@@ -15,8 +15,6 @@ HttpServer::HttpServer(const QHostAddress &address, quint16 port, QObject *paren
 {
     qDebug() << "INSTANCIOU HTTPSERVER";
     threads.append(new HttpSessionManager(this));
-    // larissa
-    //this->incomingConnection (2);
 }
 
 
@@ -52,7 +50,8 @@ HttpServer::~HttpServer()
     }
 }
 
-void HttpServer::incomingConnection(int socketDescriptor)
+// esse cara NUNCA é chamado!
+void HttpServer::incomingConnection(qintptr socketDescriptor)
 {
     qDebug() << "CHEGOU NOVA CONEXAO";
     threads[(ringIndex++) % threads.size()]->addSession(socketDescriptor);
@@ -70,4 +69,4 @@ void HttpServer::start()
 }  // namespace http
 }  // namespace webserver
 }  // namespace shared
-} // namespace Brisa
+}  // namespace Brisa

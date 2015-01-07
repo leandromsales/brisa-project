@@ -34,7 +34,9 @@ public:
     void setThreadsNumber(int);
 
     virtual HttpServerFactory &factory() = 0;
-//Marden// Mudança de "int *" para int
+
+// Marden: Mudança de "int *" para int
+// Larissa: mudança de int para qintptr
 protected:
     void incomingConnection(qintptr handle);
 

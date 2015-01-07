@@ -15,17 +15,14 @@ class HttpSessionManager : public QThread
 Q_OBJECT
 public:
     explicit HttpSessionManager(HttpServer *parent);
-
-    void run();
-
-    void addSession(int socketDescriptor);
+    void addSession(qintptr socketDescriptor);
     void releaseSession(HttpSession *);
 
 signals:
-    void newConnection(int);
+    void newConnection(qintptr);
 
 private slots:
-    void onNewConnection(int socketDescriptor);
+    void onNewConnection(qintptr socketDescriptor);
 
 private:
     HttpServer *server;
@@ -36,6 +33,6 @@ private:
 }  // namespace http
 }  // namespace webserver
 }  // namespace shared
-} // namespace Brisa
+}  // namespace Brisa
 
 #endif // HTTPSESSIONMANAGER_H

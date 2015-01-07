@@ -48,9 +48,9 @@ public:
 
     /*!
      * Constructs an action with given \a name, \a parent and \a service and a method to be invoked
-	 * when the action is executed.
+     * when the action is executed.
      */
-	Action(QString name, device::Service *service, const QMetaMethod &method, QObject *parent);
+    Action(QString name, device::Service *service, const QMetaMethod &method, QObject *parent);
 
     /*!
      * Constructs a new action based on \a action.
