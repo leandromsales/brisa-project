@@ -51,7 +51,7 @@ HttpServer::~HttpServer()
 }
 
 // esse cara NUNCA é chamado!
-void HttpServer::incomingConnection(int socketDescriptor)
+void HttpServer::incomingConnection(qintptr socketDescriptor)
 {
     qDebug() << "CHEGOU NOVA CONEXAO";
     threads[(ringIndex++) % threads.size()]->addSession(socketDescriptor);

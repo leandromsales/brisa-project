@@ -36,15 +36,10 @@ HttpSession::~HttpSession()
     delete socket;
 }
 
-void HttpSession::setSession(int socketDescriptor)
+void HttpSession::setSession(qintptr socketDescriptor)
 {
-    bool a = socket->setSocketDescriptor(socketDescriptor);
-    if (a) {
-        qDebug() << "ERRO NO SOCKET DESCRIPTOR";
-    }
-    else {
-        qDebug() << "SOCKET DESCRIPTOR OK";
-    }
+    socket->setSocketDescriptor(socketDescriptor);
+    qDebug() << "VOU INICIAR A SESSÃO";
     sessionStarted();
 }
 

@@ -36,7 +36,7 @@ public:
     virtual HttpServerFactory &factory() = 0;
 //Marden// Mudança de "int *" para int
 protected:
-    void incomingConnection(int  handle);
+    void incomingConnection(qintptr handle);
 
 private:
     QHostAddress address;

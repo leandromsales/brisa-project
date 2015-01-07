@@ -11,16 +11,16 @@ HttpSessionManager::HttpSessionManager(HttpServer *parent) :
     server(parent)
 {
     qDebug() << "INICIOU HTTP SESSION MANAGER";
-    connect(this, SIGNAL(newConnection(int)), this, SLOT(onNewConnection(int)));
+    connect(this, SIGNAL(newConnection(qintptr)), this, SLOT(onNewConnection(qintptr)));
 }
 
-void HttpSessionManager::addSession(int socketDescriptor)
+void HttpSessionManager::addSession(qintptr socketDescriptor)
 {
     qDebug() << "ADD SESSION";
     emit newConnection(socketDescriptor);
 }
 
-void HttpSessionManager::onNewConnection(int socketDescriptor)
+void HttpSessionManager::onNewConnection(qintptr socketDescriptor)
 {
     qDebug() << "ENTROU!!!";
     bool created = false;
