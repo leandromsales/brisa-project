@@ -21,10 +21,10 @@ private slots:
     OutArgument* getstatus(InArgument * const inArguments,
                                 brisa::upnp::Action * const action);
 
-    OutArgument* gettarget(InArgument * const inArguments,
-                               brisa::upnp::Action * const action);
+//    OutArgument* gettarget(InArgument * const inArguments,
+//                               brisa::upnp::Action * const action);
 
-    OutArgument* settarget(InArgument*const, brisa::upnp::Action*const);
+//    OutArgument* settarget(InArgument*const, brisa::upnp::Action*const);
 };
 
 #endif /* _SWITCHPOWER_H_ */

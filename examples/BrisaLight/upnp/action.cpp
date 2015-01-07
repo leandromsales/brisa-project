@@ -9,7 +9,7 @@ namespace upnp {
 using namespace device;
 
 Action::Action(QString name, Service *service, QObject *parent):
-	QObject(parent),
+    QObject(parent),
     name(name),
     service(service)
 {
@@ -17,7 +17,7 @@ Action::Action(QString name, Service *service, QObject *parent):
 }
 
 Action::Action(QString name, Service *service, const QMetaMethod &method, QObject *parent):
-	QObject(parent),
+    QObject(parent),
     name(name),
     service(service),
     method(method)
@@ -57,7 +57,7 @@ void Action::addArgument(Argument *argumentA)
 
 bool Action::removeArgument(Argument* argumentA)
 {
-	return this->argumentList.removeOne(argumentA);
+    return this->argumentList.removeOne(argumentA);
 }
 
 void Action::addArguments(const QList<Argument*> arguments)
@@ -131,7 +131,7 @@ bool Action::call(InArgument *inArguments, OutArgument *&outArguments)
                                               Q_ARG(InArgument *, inArguments),
                                               Q_ARG(Action *, this));
         if (!execResult) {
-            //Marden//qDebug() << "Error invoking defined action expressed by the service method " << this->method.methodSignature();
+            qDebug() << "Error invoking defined action expressed by the service method " << this->method.methodSignature();
             return false;
         }
     } else {
@@ -175,7 +175,7 @@ Argument* Action::getArgument(const QString &name, const QString &direction)
 void Action::setMethod(const QMetaMethod &method, Service *service)
 {
     this->method = method;
-	this->setService(service);
+    this->setService(service);
 }
 
 QMetaMethod Action::getMethod() const
