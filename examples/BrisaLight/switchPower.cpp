@@ -19,25 +19,24 @@ OutArgument* SwitchPower::getstatus(InArgument *const inArguments, Action *const
     Q_UNUSED(action)
     OutArgument *outArgs = new OutArgument();
     outArgs->insert("ResultStatus", this->getVariable("Status")->getAttribute(StateVariable::Value));
-    // outArgs->insert("GetStatus", this->getVariable("Status")->getAttribute(StateVariable::Value));
     return outArgs;
 }
 
-//OutArgument* SwitchPower::gettarget(InArgument *const inArguments, Action *const action)
-//{
-//    Q_UNUSED(inArguments)
-//    Q_UNUSED(action)
-//    OutArgument *outArgs = new OutArgument();
-//    outArgs->insert("RetTargetValue", this->getVariable("Target")->getAttribute(StateVariable::Value));
-//    return outArgs;
-//}
+OutArgument* SwitchPower::gettarget(InArgument *const inArguments, Action *const action)
+{
+    Q_UNUSED(inArguments)
+    Q_UNUSED(action)
+    OutArgument *outArgs = new OutArgument();
+    outArgs->insert("RetTargetValue", this->getVariable("Target")->getAttribute(StateVariable::Value));
+    return outArgs;
+}
 
-//OutArgument* SwitchPower::settarget(InArgument *const inArguments, Action *const action)
-//{
-//    Q_UNUSED(action)
-//    this->getVariable("Target")->setAttribute(StateVariable::Value,
-//                                                   (*inArguments)["NewTargetValue"]);
-//    this->getVariable("Status")->setAttribute(StateVariable::Value,
-//                                                   (*inArguments)["NewTargetValue"]);
-//    return new OutArgument();
-//}
+OutArgument* SwitchPower::settarget(InArgument *const inArguments, Action *const action)
+{
+    Q_UNUSED(action)
+    this->getVariable("Target")->setAttribute(StateVariable::Value,
+                                                   (*inArguments)["NewTargetValue"]);
+    this->getVariable("Status")->setAttribute(StateVariable::Value,
+                                                   (*inArguments)["NewTargetValue"]);
+    return new OutArgument();
+}

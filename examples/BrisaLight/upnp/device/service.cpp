@@ -77,7 +77,6 @@ void Service::call(const QString &method, InArgument param,
             this->respondAction(session, outArguments, action->getName());
             //delete outArguments;
         } else {
-            // Larissa: erro aqui! esse print apareceu, pq?
             qDebug() << "An error has occurred during the " << action->getName()
                                         << " callback.";
             this->respondError(session, UPNP_ACTION_FAILED);
@@ -383,11 +382,11 @@ Action * Service::actionRelatedToMethod(QString methodSignature) {
             i != actionList.end(); ++i) {
         action = *i;
         qDebug() << "Current action:" << action->getName();
-        if (QString(methodSignature).contains(action->getName())) {
+        if (QString(methodSignature).contains(action->getName(), Qt::CaseInsensitive)) {
             qDebug() << "ACHEI:" << action->getName();
             break;
         }
-        // action = 0;
+        action = 0;
     }
     return action;
 }
@@ -430,6 +429,7 @@ void Service::bindActionsToServiceMethods() {
     }
     for(int i = meta->methodOffset(); i < meta->methodCount(); ++i) {
         method = meta->method(i);
+        qDebug() << "METODO É " << method.name ();
         Action * action = actionRelatedToMethod(method.methodSignature());
         if(action) {
             action->setMethod(method, this);
