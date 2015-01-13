@@ -3,6 +3,10 @@
 #include <QTcpSocket>
 #include <time.h>
 #include "brisanetwork.h"
+#include <QNetworkConfigurationManager>
+#include <QNetworkConfiguration>
+#include <QNetworkSession>
+#include <QNetworkInterface>
 
 namespace brisa {
 namespace network {
@@ -24,37 +28,41 @@ bool isPromiscuousIPv6Address(QString address) {
 }
 
 QString getValidIP() {
-#if defined (__QNXNTO__)
+#if defined(Q_OS_UNIX) || defined(Q_OS_ANDROID)
+    QNetworkConfigurationManager mgr;
+    QNetworkConfiguration nconfig = mgr.defaultConfiguration();
+    QNetworkSession session ( nconfig );
+    QNetworkInterface ninter = session.interface();
 
+    int protocol;
+    /*
+     * 0 is QAbstractSocket::IPv4Protocol
+     * 1 is QAbstractSocket::IPv6Protocol
+     * 2 is QAbstractSocket::AnyIPProtocol (either IPv4 or IPv6)
+     * -1 is QAbstractSocket::UnknownNetworkLayerProtocol (other than IPv4 and IPv6)
+     */
+
+    QList<QNetworkAddressEntry> laddr = ninter.addressEntries();
+    for (QList<QNetworkAddressEntry>::const_iterator it = laddr.begin(); it != laddr.end(); ++it)
+    {
+        protocol = it->ip ().protocol ();
+        QString ip = it->ip ().toString ();
+        if ((!isLoopbackIPv4Address (ip) && !isPromiscuousIPv4Address (ip))
+                || (!isLoopbackIPv6Address (ip) && !isPromiscuousIPv6Address (ip))) {
+            return it->ip().toString ();
+        }
+    }
+    if (protocol == 0 || protocol == 2) {
+        qDebug() << "Couldn't acquire a non loopback IPv4  address, returning 127.0.0.1.";
+        return "127.0.0.1";
+    } else if (protocol == 1) {
+        qDebug() << "Couldn't acquire a non loopback IPv6  address, returning 0:0:0:0:0:0:0:1.";
+        return "0:0:0:0:0:0:0:1";
+    } else {
+        qDebug() << "Couldn't acquire a non loopback IPv4/IPv6 address";
+        return "";
+    }
 #endif
-
-    /*#if defined(Q_OS_UNIX) || defined(Q_OS_ANDROID)
-     BrisaConfigurationManager *config = BrisaConfigurationManager::getInstance();
-     QString interfaceName = config->getParameter("network", "interface");
-     QString ip = getIp(interfaceName);
-     if (ip.isEmpty()) {
-     ip = config->getParameter("network", "ip");
-     }
-     if (ip.isEmpty()) {
-     ip = QHostAddress(QHostAddress::Any).toString();
-     }
-     return ip;
-     #else*/
-
-    /* commented by leandro!
-
-     foreach(QHostAddress addressEntry , QNetworkInterface::allAddresses() )
-     {
-     QString address = addressEntry.toString();
-     if (!(isLoopbackIPv4Address(address)) && !(isLoopbackIPv6Address(
-     address)) && !(isPromiscuousIPv4Address(address))
-     && !(isPromiscuousIPv6Address(address))) {
-     return address;
-     }
-     }
-     qDebug()
-     << "Couldn't acquire a non loopback IP  address,returning 127.0.0.1.";
-     return "127.0.0.1"; */
 
 #if defined (__QNXNTO__)
     /* By Rodrigo
@@ -71,9 +79,6 @@ QString getValidIP() {
     }
     return "127.0.0.1";
 #endif
-    return "192.168.0.105";
-    // return "127.0.0.1";
-//#endif
 }
 
 //TODO deprecated function
