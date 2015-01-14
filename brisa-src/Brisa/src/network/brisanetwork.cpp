@@ -3,6 +3,10 @@
 #include <QTcpSocket>
 #include <time.h>
 #include "brisanetwork.h"
+#include <QNetworkConfigurationManager>
+#include <QNetworkConfiguration>
+#include <QNetworkSession>
+#include <QNetworkInterface>
 
 namespace brisa {
 namespace network {
