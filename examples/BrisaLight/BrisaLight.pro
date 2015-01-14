@@ -154,7 +154,17 @@ HEADERS  += light.h \
 
 FORMS    += light.ui
 
-OTHER_FILES += SwitchPower-scpd.xml
+OTHER_FILES += SwitchPower-scpd.xml \
+    defaults.pri \
+    upnp/device/av/TVOperations.xml \
+    BrisaSplashScreenBinaryLight.png \
+    offlight1.png \
+    onlight1.png \
+    BrisaLight.pro.user.3.2-pre1 \
+    BrisaLight.pro.user.f2e6976
+
+SUBDIRS += \
+    app.pro
 
 
 

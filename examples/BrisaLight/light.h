@@ -7,10 +7,10 @@
 #include <QtCore>
 #include <QCoreApplication>
 #include <QtDebug>
-#include "upnp/device/device.h"
 #include <QSplashScreen>
 #include "ui_light.h"
 #include "switchPower.h"
+#include "upnp/device/device.h"
 
 
 #define DEVICE_TYPE              "urn:schemas-upnp-org:device:BinaryLight:1"
