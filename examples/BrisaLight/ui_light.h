@@ -21,6 +21,8 @@
 
 QT_BEGIN_NAMESPACE
 
+#define CURRENT_DIR QString(PROJECT_PATH).append ("/") // /home/larissa/UFAL/Labs/CompeLab_BlackBerry/Brisa/brisa-port-qt5/brisa-project/examples/BrisaLight/
+
 class Ui_BinaryLightForm
 {
 public:
@@ -41,7 +43,7 @@ public:
         pushButton1->setMinimumSize(QSize(150, 200));
         pushButton1->setMaximumSize(QSize(150, 200));
         QIcon icon;
-        icon.addFile(QString::fromUtf8("/home/larissa/UFAL/Labs/CompeLab_BlackBerry/Brisa/brisa-port-qt5/brisa-project/examples/BrisaLight/onlight1.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(CURRENT_DIR + "onlight1.png", QSize(), QIcon::Normal, QIcon::Off);
         pushButton1->setIcon(icon);
         pushButton1->setIconSize(QSize(50, 50));
         pushButton1->setCheckable(true);

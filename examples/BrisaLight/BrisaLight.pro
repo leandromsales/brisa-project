@@ -4,6 +4,9 @@
 #
 #-------------------------------------------------
 
+DEFINES += PROJECT_PATH=\"\\\"$$PWD\\\"\"
+DEFINES += BUILD_PATH=\"\\\"$$OUT_PWD\\\"\"
+
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets

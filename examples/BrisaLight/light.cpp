@@ -2,7 +2,7 @@
 #include "ui_light.h"
 #include <QDebug>
 
-#define CURRENT_DIR QString("/home/larissa/UFAL/Labs/CompeLab_BlackBerry/Brisa/brisa-port-qt5/brisa-project/examples/BrisaLight/")
+#define CURRENT_DIR QString(PROJECT_PATH).append ("/") // /home/larissa/UFAL/Labs/CompeLab_BlackBerry/Brisa/brisa-port-qt5/brisa-project/examples/BrisaLight/
 
 using namespace brisa;
 using namespace brisa::upnp;
@@ -21,8 +21,7 @@ Widget::Widget(QWidget *parent) :
     // BRisa Device
     SwitchPower *switchPower = new SwitchPower();
 #ifdef Q_OS_UNIX
-    splash
-            = new QSplashScreen(QPixmap(CURRENT_DIR + "BrisaSplashScreenBinaryLight.png"));
+    splash = new QSplashScreen(QPixmap(CURRENT_DIR + "BrisaSplashScreenBinaryLight.png"));
 
     switchPower->setDescriptionFile(CURRENT_DIR + "SwitchPower-scpd.xml");
 
