@@ -17,10 +17,21 @@ Widget::Widget(QWidget *parent) :
 
     contSplashScreen = 0;
 
-
     // BRisa Device
     SwitchPower *switchPower = new SwitchPower();
-#ifdef Q_OS_UNIX
+
+#ifdef Q_OS_ANDROID
+    qDebug() << "ANDROID :D";
+    splash = new QSplashScreen(QPixmap("assets:/BrisaSplashScreenBinaryLight.png"));
+
+    switchPower->setDescriptionFile("assets:/SwitchPower-scpd.xml");
+
+    icon1.addPixmap(QPixmap("assets:/onlight1.png"), QIcon::Normal, QIcon::Off);
+
+    icon2.addPixmap(QPixmap("assets:/offlight1.png"), QIcon::Normal, QIcon::Off);
+
+#elif defined(Q_OS_UNIX)
+    qDebug() << "UNIX";
     splash = new QSplashScreen(QPixmap(CURRENT_DIR + "BrisaSplashScreenBinaryLight.png"));
 
     switchPower->setDescriptionFile(CURRENT_DIR + "SwitchPower-scpd.xml");
@@ -30,6 +41,7 @@ Widget::Widget(QWidget *parent) :
     icon2.addPixmap(QPixmap(CURRENT_DIR + "offlight1.png"), QIcon::Normal, QIcon::Off);
 
 #else
+    qDebug() << "OUTRO S.O.";
     splash
             = new QSplashScreen(
                     QPixmap(
@@ -45,8 +57,8 @@ Widget::Widget(QWidget *parent) :
                     QString::fromUtf8(
                             "../../../pixmaps/brisa/offlight1.png")),
             QIcon::Normal, QIcon::Off);
-
 #endif
+
     binaryLight.addService(switchPower);
 
 

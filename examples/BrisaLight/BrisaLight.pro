@@ -7,7 +7,7 @@
 DEFINES += PROJECT_PATH=\"\\\"$$PWD\\\"\"
 DEFINES += BUILD_PATH=\"\\\"$$OUT_PWD\\\"\"
 
-QT       += core gui
+QT       += core gui xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -164,13 +164,19 @@ OTHER_FILES += SwitchPower-scpd.xml \
     offlight1.png \
     onlight1.png \
     BrisaLight.pro.user.3.2-pre1 \
-    BrisaLight.pro.user.f2e6976
+    BrisaLight.pro.user.f2e6976 \
+    app_process \
+    libBrisaLight.so \
+    libc.so \
+    assets/SwitchPower-scpd.xml \
+    assets/BrisaSplashScreenBinaryLight.png \
+    assets/offlight1.png \
+    assets/onlight1.png
 
 SUBDIRS += \
+    app.pro \
+    app.pro \
     app.pro
 
-
-
-
-
-
+RESOURCES += \
+    assets.qrc
