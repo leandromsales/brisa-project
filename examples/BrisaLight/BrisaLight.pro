@@ -180,3 +180,16 @@ SUBDIRS += \
 
 RESOURCES += \
     assets.qrc
+
+# you need to add the flowing lines to your .pro/.pri file(s)
+deployment.files=assets/BrisaSplashScreenBinaryLight.png
+deployment.files=assets/offlight1.png
+deployment.files=assets/onlight1.png
+deployment.files=assets/SwitchPower-scpd.xml
+
+#define an android block
+android {
+    #all assets must go to "/assets" folder of your android package
+    deployment.path=assets/
+}
+INSTALLS += deployment
