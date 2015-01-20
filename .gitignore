@@ -6,6 +6,7 @@
 *.exe
 *.o
 *.so
+
 # OS generated files #
 ###################
 .DS_Store
@@ -15,6 +16,7 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
 # Qt generated folders #
 ###################
 moc_*
@@ -23,9 +25,8 @@ arm/
 .obj/
 *.so*
 *.qm
+
 ###################
-brisa.pri
-brisa-src/Brisa/config.pri
-*.pro.user
-examples/BrisaLight/BrisaLight.pro.user
-brisa-src/build-*
+*.pri
+*.pro.user*
+brisa-src/build*
