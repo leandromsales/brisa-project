@@ -1,5 +1,4 @@
-QT       += core network xml
-QT       -= gui
+QT       += core network xml gui
 
 CONFIG   += console
 CONFIG   += qt warn_on

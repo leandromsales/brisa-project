@@ -27,6 +27,5 @@ arm/
 *.qm
 
 ###################
-*.pri
 *.pro.user*
 brisa-src/build*

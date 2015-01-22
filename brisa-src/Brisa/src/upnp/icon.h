@@ -9,6 +9,7 @@
 #include <QUrl>
 #include <QNetworkReply>
 #include <QDebug>
+#include <QIcon>
 
 namespace brisa {
 namespace upnp {
