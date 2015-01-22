@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QDebug>
 #include "light.h"
 
 int main(int argc, char *argv[])
@@ -18,4 +19,3 @@ int main(int argc, char *argv[])
     window.show();
     return a.exec();
 }
-

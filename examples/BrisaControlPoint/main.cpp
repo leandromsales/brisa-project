@@ -2,9 +2,14 @@
 
 #include <QtGui>
 #include <QApplication>
+#include <QDebug>
+
+#define CURRENT_DIR QString(PROJECT_PATH).append ("/") // /home/larissa/UFAL/Labs/CompeLab_BlackBerry/Brisa/brisa-port-qt5/brisa-project/examples/BrisaControlPoint/
 
 int main(int argc, char *argv[])
 {
+    qDebug() << CURRENT_DIR;
+
     QApplication a(argc, argv);
     controlpointgui window;
 

@@ -7,8 +7,8 @@
 #define SERVICE_CONTROL "/SwitchPower/control"
 #define SERVICE_EVENT_SUB "/SwitchPower/eventSub"
 
-#include "upnp/action.h"
-#include "upnp/device/service.h"
+#include "upnp/Action"
+#include "upnp/device/Service"
 #include <QtDebug>
 
 class SwitchPower : public brisa::upnp::device::Service

@@ -9,7 +9,7 @@
 #include "upnp/controlpoint/Device"
 #include "upnp/controlpoint/Service"
 
-#define CURRENT_DIR QString("/home/larissa/UFAL/Labs/CompeLab_BlackBerry/Brisa/brisa-port-qt5/brisa-project/examples/BrisaControlPoint/")
+#define CURRENT_DIR QString(PROJECT_PATH).append ("/") // /home/larissa/UFAL/Labs/CompeLab_BlackBerry/Brisa/brisa-port-qt5/brisa-project/examples/BrisaControlPoint/
 
 using namespace brisa::upnp;
 using namespace brisa::upnp::controlpoint;

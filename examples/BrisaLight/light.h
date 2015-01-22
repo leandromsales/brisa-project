@@ -10,7 +10,7 @@
 #include <QSplashScreen>
 #include "ui_light.h"
 #include "switchPower.h"
-#include "upnp/device/device.h"
+#include "upnp/device/Device"
 
 
 #define DEVICE_TYPE              "urn:schemas-upnp-org:device:BinaryLight:1"
