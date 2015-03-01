@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/Functions.xml</file>
+        <file>assets/BrisaSplashScreenUpnpCalculator.png</file>
+    </qresource>
+</RCC>

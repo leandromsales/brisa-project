@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/BrisaSplashScreenBinaryLight.png</file>
+        <file>assets/offlight1.png</file>
+        <file>assets/onlight1.png</file>
+        <file>assets/SwitchPower-scpd.xml</file>
+    </qresource>
+</RCC>
