@@ -4,12 +4,12 @@
 #include <QTreeWidgetItem>
 #include <QTableWidgetItem>
 
-#include "upnp/controlpoint/ControlPoint"
-#include "upnp/controlpoint/EventProxy"
-#include "upnp/controlpoint/Device"
-#include "upnp/controlpoint/Service"
+#include "upnp/controlpoint/controlpoint.h"
+#include "upnp/controlpoint/eventproxy.h"
+#include "upnp/controlpoint/devicesales.h"
+#include "upnp/controlpoint/servicesales.h"
 
-#define CURRENT_DIR QString(PROJECT_PATH).append ("/") // /home/larissa/UFAL/Labs/CompeLab_BlackBerry/Brisa/brisa-port-qt5/brisa-project/examples/BrisaControlPoint/
+//#define CURRENT_DIR QString("/home/bruno/Documentos/Brisa/brisa-project/examples/BrisaControlPoint").append ("/") // /home/larissa/UFAL/Labs/CompeLab_BlackBerry/Brisa/brisa-port-qt5/brisa-project/examples/BrisaControlPoint/
 
 using namespace brisa::upnp;
 using namespace brisa::upnp::controlpoint;
@@ -22,13 +22,26 @@ controlpointgui::controlpointgui(QWidget *parent) :
     createMenus();
     createToolBars();
     setUpTableWidget();
-    splash
-            = new QSplashScreen(QPixmap(CURRENT_DIR + "BrisaSplashScreenControlPoint.png"));
 
+    splash = new QSplashScreen();
+
+#ifdef Q_OS_ANDROID
+
+    #define OS 1
+
+#else
+
+    #define OS 0
+
+#endif
+
+
+    QPixmap pixmap("://rsc/BrisaSplashScreenControlPoint.png");
+    splash->setPixmap(pixmap.scaled(this->width(), this->height()*(0.7)));
     controlPoint = new ControlPoint();
 
     connect(controlPoint, SIGNAL(deviceGone(QString)), this, SLOT(removeDevice(
-            QString)));
+                                                                      QString)));
     connect(controlPoint, SIGNAL(deviceFound(brisa::upnp::controlpoint::Device*))
             , this, SLOT(deviceFoundDump(brisa::upnp::controlpoint::Device*)));
     controlPoint->start();
@@ -45,7 +58,7 @@ controlpointgui::controlpointgui(QWidget *parent) :
             SLOT(multicastEventRawReceived(OutArgument)));
 
     networkItem = new QTreeWidgetItem(treeWidgetCP);
-    networkItem->setIcon(0, QIcon(CURRENT_DIR + "network.png"));
+    networkItem->setIcon(0, QIcon("://rsc/network.png"));
     networkItem->setText(0, "UPnP Network");
 
     contSplashScreen = 0;
@@ -60,52 +73,65 @@ controlpointgui::~controlpointgui()
 
 void controlpointgui::setUpTableWidget()
 {
-      QStringList list;
-      list <<"Time"<<"Device"<<"Service" << "State Variables" << "Value";
-      //QTableWidget* tableWidget = new QTableWidget(this);
-      tableWidget->setRowCount(0);
-      tableWidget->setColumnCount(5);
-      tableWidget->setHorizontalHeaderLabels(list);
-      tableWidget->setEditTriggers(NULL);
+    QStringList list;
+    list <<"Time"<<"Device"<<"Service" << "State Variables" << "Value";
+    //QTableWidget* tableWidget = new QTableWidget(this);
+    tableWidget->setRowCount(0);
+    tableWidget->setColumnCount(5);
+    tableWidget->setHorizontalHeaderLabels(list);
+    tableWidget->setEditTriggers(NULL);
 
 }
 
 void controlpointgui::createActions()
 {
 
-    clearAction = new QAction(tr("Clear Event Log"), this);
-    clearAction->setIcon(QIcon(CURRENT_DIR + "clear.png"));
+    if(OS)
+    {
+        clearAction = new QAction(tr("Clear"),this);
+        expandAction = new QAction(tr("Expand"),this);
+        collapseAction = new QAction(tr("Collapse"),this);
+        exitAction = new QAction(tr("Quit"),this);
+    }
+    else
+    {
+        clearAction = new QAction(tr("Clear Event Log"), this);
+        expandAction = new QAction(tr("&Expand all Devices"), this);
+        collapseAction = new QAction(tr("&Collapse all Devices"), this);
+        exitAction = new QAction(tr("&Quit"), this);
+
+    }
+
+    aboutCpAction = new QAction(tr("About Control Point"), this);
+    aboutBrisaAction = new QAction(tr("About Brisa"), this);
+    aboutUpnpAction = new QAction(tr("About UPnP"), this);
+    aboutQtAction = new QAction(tr("About QT"), this);
+
+    clearAction->setIcon(QIcon("://rsc/clear.png"));
     connect(clearAction, SIGNAL(triggered()), this, SLOT(clearEventLog()));
 
 
-    expandAction = new QAction(tr("&Expand all Devices"), this);
-    expandAction->setIcon(QIcon(CURRENT_DIR + "plus.png"));
+    expandAction->setIcon(QIcon("://rsc/plus.png"));
     expandAction->setToolTip("Expand all Devices");
     connect(expandAction, SIGNAL(triggered()), this, SLOT(expandItems()));
 
-    collapseAction = new QAction(tr("&Collapse all Devices"), this);
-    collapseAction->setIcon(QIcon(CURRENT_DIR + "minus.png"));
+    collapseAction->setIcon(QIcon("://rsc/minus.png"));
     collapseAction->setToolTip("Collapse all Devices");
     connect(collapseAction, SIGNAL(triggered()), this, SLOT(collapseItems()));
 
-    aboutCpAction = new QAction(tr("About Control Point"), this);
-    aboutCpAction->setIcon(QIcon(CURRENT_DIR + "info.png"));
+    aboutCpAction->setIcon(QIcon("://rsc/info.png"));
     connect(aboutCpAction, SIGNAL(triggered()), this, SLOT(aboutControlPoint()));
 
-    aboutBrisaAction = new QAction(tr("About Brisa"), this);
-    aboutBrisaAction->setIcon(QIcon(CURRENT_DIR + "brisa.png"));
+    aboutBrisaAction->setIcon(QIcon("://rsc/brisa.png"));
     connect(aboutBrisaAction, SIGNAL(triggered()), this, SLOT(aboutBrisa()));
 
-    aboutUpnpAction = new QAction(tr("About UPnP"), this);
-    aboutUpnpAction->setIcon(QIcon(CURRENT_DIR + "upnp.png"));
+    aboutUpnpAction->setIcon(QIcon("://rsc/upnp.png"));
     connect(aboutUpnpAction, SIGNAL(triggered()), this, SLOT(aboutUpnp()));
 
-    aboutQtAction = new QAction(tr("About QT"), this);
-    aboutQtAction->setIcon(QIcon(CURRENT_DIR + "qt.png"));
+    aboutQtAction->setIcon(QIcon("://rsc/qt.png"));
     connect(aboutQtAction, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 
-    exitAction = new QAction(tr("&Quit"), this);
-    exitAction->setIcon(QIcon(CURRENT_DIR + "exit.png"));
+    exitAction->setIcon(QIcon("://rsc/exit.png"));
     exitAction->setToolTip("Close the Application");
     connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
 }
@@ -172,9 +198,9 @@ void controlpointgui::aboutControlPoint()
     QMessageBox msgBox;
     msgBox.setWindowTitle("About Control Point");
     msgBox.setText("<h2>About Control Point</h2>"
-        "<p>"
-        "<b>Basic Control Point Gui Example</b>");
-    msgBox.setIconPixmap(QPixmap(CURRENT_DIR + "info.png"));
+                   "<p>"
+                   "<b>Basic Control Point Gui Example</b>");
+    msgBox.setIconPixmap(QPixmap("://rsc/info.png"));
     msgBox.exec();
 }
 
@@ -183,13 +209,13 @@ void controlpointgui::aboutBrisa()
     QMessageBox msgBox;
     msgBox.setWindowTitle("About Brisa");
     msgBox.setText("<center><h1>About Brisa</h1></center> "
-        "<p>"
-        "<center><b>BRisa</b> is a project focused on developing UPnP "
-        "technologies.</center>"
-        "<p>"
-        "<p>"
-        "<center>http://brisa.garage.maemo.org");
-    msgBox.setIconPixmap(QPixmap(CURRENT_DIR + "brisa_logo.png"));
+                   "<p>"
+                   "<center><b>BRisa</b> is a project focused on developing UPnP "
+                   "technologies.</center>"
+                   "<p>"
+                   "<p>"
+                   "<center>http://brisa.garage.maemo.org");
+    msgBox.setIconPixmap(QPixmap("://rsc/brisa_logo.png"));
     msgBox.exec();
 }
 
@@ -198,7 +224,7 @@ void controlpointgui::aboutUpnp()
     QMessageBox msgBox;
     msgBox.setWindowTitle("About UPnP");
     msgBox.setText(
-            "<center><h1>About UPnP</h1></center>"
+                "<center><h1>About UPnP</h1></center>"
                 "<p>"
                 "<b>Universal Plug and Play (UPnP)</b> is a set of networking"
                 "protocols promulgated by the UPnP Forum. The goals of UPnP are to allow devices"
@@ -210,7 +236,7 @@ void controlpointgui::aboutUpnp()
                 "<p>"
                 "<p>"
                 "<center>www.upnp.org");
-    msgBox.setIconPixmap(QPixmap(CURRENT_DIR + "upnp.png"));
+    msgBox.setIconPixmap(QPixmap("://rsc/upnp.png"));
     msgBox.exec();
 }
 
@@ -219,8 +245,8 @@ void controlpointgui::createDeviceItem()
     currentDeviceItem = new QTreeWidgetItem(networkItem);
 
     currentDeviceItem->setText(0, currentDev->getAttribute(
-            Device::FriendlyName) + " - " + currentDev->getAttribute(
-            Device::Udn));
+                                   Device::FriendlyName) + " - " + currentDev->getAttribute(
+                                   Device::Udn));
 
     if(currentDev->getIconList().size() > 0){
         connect(currentDev, SIGNAL(onReadyDownloadIcons(brisa::upnp::controlpoint::Device*)),
@@ -228,7 +254,7 @@ void controlpointgui::createDeviceItem()
         currentDev->downloadIcons();
 
     } else {
-        currentDeviceItem->setIcon(0, QIcon(CURRENT_DIR + "device.png"));
+        currentDeviceItem->setIcon(0, QIcon("://rsc/device.png"));
         addItem(currentDeviceItem);
     }
 }
@@ -247,7 +273,7 @@ void controlpointgui::addItem(QTreeWidgetItem *deviceItem)
 
     for (int i = 0; i < listService.size(); i++) {
         EventProxy *subscription = controlPoint->getSubscriptionProxy(
-                listService[i]);
+                    listService[i]);
 
         connect(subscription,SIGNAL(eventNotification(brisa::upnp::controlpoint::EventProxy *,QMap<QString, QString>)),
                 this, SLOT(changeEventLog(brisa::upnp::controlpoint::EventProxy *,QMap<QString, QString>)));
@@ -256,23 +282,23 @@ void controlpointgui::addItem(QTreeWidgetItem *deviceItem)
         QList<QString> deviceAndService;
 
         deviceAndService.append(currentDev->getAttribute(
-                Device::FriendlyName));
+                                    Device::FriendlyName));
         deviceAndService.append(listService[i]->getAttribute(
-                Service::ServiceType));
+                                    Service::ServiceType));
 
         eventToDevice[subscription->getId()] = deviceAndService;
 
         QTreeWidgetItem *serviceitem = new QTreeWidgetItem(deviceItem);
-        serviceitem->setIcon(0, QIcon(CURRENT_DIR + "service.png"));
+        serviceitem->setIcon(0, QIcon("://rsc/service.png"));
         serviceitem->setText(0, listService[i]->getAttribute(
-                Service::ServiceType));
+                                 Service::ServiceType));
 
         QList<Action *> listAction;
         listAction = listService[i]->getActionList();
 
         for (int j = 0; j < listAction.size(); j++) {
             QTreeWidgetItem *actionItem = new QTreeWidgetItem(serviceitem);
-            actionItem->setIcon(0, QIcon(CURRENT_DIR + "call.png"));
+            actionItem->setIcon(0, QIcon("://rsc/call.png"));
             actionItem->setText(0, listAction[j]->getName());
         }
     }
@@ -287,9 +313,9 @@ void controlpointgui::callMethod()
     Device* dev = getDeviceByUDN(udn);
     Service* serv = dev->getServiceByType(service);
     connect(serv, SIGNAL(requestFinished(OutArgument, QString)), this, SLOT(
-            serviceCall(OutArgument, QString)));
+                serviceCall(OutArgument, QString)));
     connect(serv, SIGNAL(requestError(QString, QString)), this, SLOT(
-            requestError(QString,QString)));
+                requestError(QString,QString)));
 
     InArgument parameters;
     for (int i = 0; i < labels.size(); i++) {
@@ -323,13 +349,13 @@ void controlpointgui::removeDevice(QString usn)
                     && (!treeWidgetCP->selectedItems().contains(items[i]))) {
                 for (int j = 0; j < items[i]->childCount(); j++) {
                     if (change || treeWidgetCP->selectedItems().contains(
-                            items[i]->child(j))) {
+                                items[i]->child(j))) {
                         change = true;
                         break;
                     }
                     for (int w = 0; w < items[i]->child(j)->childCount(); w++) {
                         if (treeWidgetCP->selectedItems().contains(
-                                items[i]->child(j)->child(w))) {
+                                    items[i]->child(j)->child(w))) {
                             if (closeable)
                                 dialog->close();
                             change = true;
@@ -392,7 +418,7 @@ void controlpointgui::call(QTreeWidgetItem * item, int collumn)
 }
 
 void controlpointgui::changeEventLog(EventProxy *subscription, QMap<
-        QString, QString> eventVariables)
+                                     QString, QString> eventVariables)
 {
 
     Q_UNUSED(subscription);
@@ -400,7 +426,7 @@ void controlpointgui::changeEventLog(EventProxy *subscription, QMap<
     qDebug() << "Unicast event message received:";
     for (int i = 0; i < eventVariables.keys().size(); i++) {
         qDebug() << ">>>>>>>>>>>>>>>>>>>>>>>>>> State variable " << eventVariables.keys()[i] <<
-                "changed value to " << eventVariables[eventVariables.keys()[i]];
+                    "changed value to " << eventVariables[eventVariables.keys()[i]];
         int row = tableWidget->rowCount() +1;
         tableWidget->setRowCount(row);
         QDateTime current = QDateTime::currentDateTime();
@@ -423,11 +449,11 @@ void controlpointgui::changeEventLog(EventProxy *subscription, QMap<
 
 void controlpointgui::clearEventLog()
 {
-        int row = tableWidget->rowCount();
-        for (int i = row; i >= 0; i--) {
-            tableWidget->removeRow(i);
-        }
-        tableWidget->resizeColumnsToContents();
+    int row = tableWidget->rowCount();
+    for (int i = row; i >= 0; i--) {
+        tableWidget->removeRow(i);
+    }
+    tableWidget->resizeColumnsToContents();
 }
 
 
@@ -447,11 +473,11 @@ void controlpointgui::processSplashScreen() {
     switch (contSplashScreen) {
     case 1:
         splash->showMessage(QObject::tr("Setting up Brisa ControlPoint..."),
-                topRight, Qt::blue);
+                            topRight, Qt::blue);
         break;
     case 2:
         splash->showMessage(QObject::tr("Waiting Brisa ControlPoint..."),
-                topRight, Qt::blue);
+                            topRight, Qt::blue);
         break;
     }
 
@@ -472,13 +498,13 @@ void controlpointgui::mountControlDialog()
 
     dialog = new QDialog();
     dialog->setWindowTitle("Action Invocation");
-    dialog->setWindowIcon(QIcon(CURRENT_DIR + "call.png"));
+    dialog->setWindowIcon(QIcon("://rsc/call.png"));
 
     QLabel *brisaText = new QLabel();
     brisaText->setText("BRisa UPnP Control Point");
 
     QLabel *serviceText = new QLabel();
-    serviceText->setPixmap(QPixmap(CURRENT_DIR + "service.png"));
+    serviceText->setPixmap(QPixmap("://rsc/service.png"));
     serviceText->setText(selected->parent()->text(0));
 
     QLabel *actionText = new QLabel();
@@ -500,7 +526,7 @@ void controlpointgui::mountControlDialog()
 
     QPushButton *invoke = new QPushButton();
     invoke->setFixedHeight(75);
-    invoke->setIcon(QIcon(CURRENT_DIR + "call.png"));
+    invoke->setIcon(QIcon("://rsc/call.png"));
     invoke->setText("Invoke");
     connect(invoke, SIGNAL(clicked()), this, SLOT(callMethod()));
 
@@ -527,7 +553,7 @@ void controlpointgui::mountControlDialog()
     QList<Argument *> inArguments;
     for (int i = 0; i < realAction->getArgumentList().size(); i++) {
         if ((realAction->getArgumentList()[i])->getAttribute(
-                Argument::Direction).compare("in") == 0) {
+                    Argument::Direction).compare("in") == 0) {
             inArguments.append(realAction->getArgumentList()[i]);
         }
     }
@@ -541,7 +567,7 @@ void controlpointgui::mountControlDialog()
         for (int i = 0; i < inArguments.size(); i++) {
             QLabel *parameter = new QLabel();
             parameter->setText("       -" + inArguments[i]->getAttribute(
-                    Argument::ArgumentName));
+                                   Argument::ArgumentName));
             labels.append(parameter);
 
             QLineEdit *lineEdito = new QLineEdit();
@@ -562,7 +588,7 @@ void controlpointgui::multicastEventReceived(QString variableName,
 {
     qDebug() << "Multicast event message received:";
     qDebug() << "State variable: " << variableName << " changed value to " <<
-            newValue;
+                newValue;
 }
 
 void controlpointgui::multicastEventRawReceived(OutArgument raw)

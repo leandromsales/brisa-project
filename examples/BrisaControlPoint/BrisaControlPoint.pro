@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui xml network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -151,3 +151,6 @@ HEADERS += controlpointgui.h \
     upnp/statevariable.h
 
 FORMS    += controlpointgui.ui
+
+RESOURCES += \
+    rsc.qrc

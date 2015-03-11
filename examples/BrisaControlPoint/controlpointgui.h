@@ -14,9 +14,11 @@
 #include <QMessageBox>
 #include <QSplashScreen>
 #include <QStringList>
+#include <QPixmap>
+
 #include "ui_controlpointgui.h"
 
-#include "upnp/Action"
+#include "upnp/action.h"
 
 #define DEVICE_UUID_SEPARATOR "?content"
 

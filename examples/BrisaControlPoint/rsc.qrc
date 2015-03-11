@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>rsc/brisa.png</file>
+        <file>rsc/brisa_logo.png</file>
+        <file>rsc/BrisaSplashScreenControlPoint.png</file>
+        <file>rsc/call.png</file>
+        <file>rsc/clear.png</file>
+        <file>rsc/device.png</file>
+        <file>rsc/exit.png</file>
+        <file>rsc/info.png</file>
+        <file>rsc/minus.png</file>
+        <file>rsc/network.png</file>
+        <file>rsc/plus.png</file>
+        <file>rsc/qt.png</file>
+        <file>rsc/service.png</file>
+        <file>rsc/upnp.png</file>
+    </qresource>
+</RCC>
