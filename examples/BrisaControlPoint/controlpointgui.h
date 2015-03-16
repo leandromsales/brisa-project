@@ -7,6 +7,7 @@
 #include <QIcon>
 #include <QString>
 #include <QTreeWidgetItem>
+#include <QHeaderView>
 #include <QDebug>
 #include <QToolBar>
 #include <QLineEdit>

@@ -88,13 +88,20 @@ controlpointgui::~controlpointgui()
 
 void controlpointgui::setUpTableWidget()
 {
+    //Definindo os headers da tabela
     QStringList list;
     list <<"Time"<<"Device"<<"Service" << "State Variables" << "Value";
 
+    //Definindo algumas propriedades de logBoxTable
     logBoxTable->setRowCount(0);
     logBoxTable->setColumnCount(5);
+
+    //Inserindo os headers na tabela
     logBoxTable->setHorizontalHeaderLabels(list);
-    logBoxTable->setEditTriggers(NULL);
+
+    //Definindo a proporcionalidade dos headers da tabela
+    QHeaderView* header = logBoxTable->horizontalHeader();
+    header->setSectionResizeMode(QHeaderView::Stretch);
 
 }
 

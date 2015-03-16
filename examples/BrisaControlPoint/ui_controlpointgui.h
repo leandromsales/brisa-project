@@ -118,6 +118,7 @@ public:
         //Instanciando o log de ações
         actionsTextEdit = new QTextEdit(centralWidget);
         actionsTextEdit->setObjectName(QString::fromUtf8("textEdit"));
+//        actionsTextEdit->setMouseTracking(false);
         actionsTextEdit->setReadOnly(true);
 
         //Junk
@@ -153,7 +154,6 @@ public:
         {
             textBoxLayout->addWidget(devicesTreeWidget);
 
-            QHBoxLayout *majorBox = new QHBoxLayout();
             QVBoxLayout *logBox = new QVBoxLayout();
             QVBoxLayout *actionBox = new QVBoxLayout();
 
@@ -162,10 +162,12 @@ public:
             actionBox->addWidget(actionsBoxTitle);
             actionBox->addWidget(actionsTextEdit);
 
-            majorBox->addLayout(logBox);
-            majorBox->addLayout(actionBox);
+            textBoxLayout->addLayout(logBox);
+            textBoxLayout->addLayout(actionBox);
 
-            textBoxLayout->addLayout(majorBox);
+            //JUNK
+            //            QHBoxLayout *majorBox = new QHBoxLayout();
+            //            textBoxLayout->addLayout(majorBox);
         }
         else
         {
