@@ -9,8 +9,6 @@
 #include "upnp/controlpoint/devicesales.h"
 #include "upnp/controlpoint/servicesales.h"
 
-//#define CURRENT_DIR QString("/home/bruno/Documentos/Brisa/brisa-project/examples/BrisaControlPoint").append ("/") // /home/larissa/UFAL/Labs/CompeLab_BlackBerry/Brisa/brisa-port-qt5/brisa-project/examples/BrisaControlPoint/
-
 using namespace brisa::upnp;
 using namespace brisa::upnp::controlpoint;
 
@@ -23,8 +21,6 @@ controlpointgui::controlpointgui(QWidget *parent) :
     createToolBars();
     setUpTableWidget();
 
-    splash = new QSplashScreen();
-
 #ifdef Q_OS_ANDROID
 
     #define OS 1
@@ -35,21 +31,38 @@ controlpointgui::controlpointgui(QWidget *parent) :
 
 #endif
 
+    //Pegando o tamanho da Tela
+    screenSize = getScreenSize();
 
+    //Definindo a imagem da Splash Screen do programa
     QPixmap pixmap("://rsc/BrisaSplashScreenControlPoint.png");
-    splash->setPixmap(pixmap.scaled(this->width(), this->height()*(0.7)));
+    //Instanciando a Splash Screen
+    splash = new QSplashScreen();
+    //Definindo a imagem da Splash Screen
+    if(OS)
+    {
+        splash->setPixmap(pixmap.scaled(screenSize.width(), screenSize.height()*(0.7)));
+    }
+    else
+    {
+        splash->setPixmap(pixmap.scaled(this->width(), this->height()*(0.7)));
+    }
+
+    //Criando um Control Point
     controlPoint = new ControlPoint();
 
     connect(controlPoint, SIGNAL(deviceGone(QString)), this, SLOT(removeDevice(
                                                                       QString)));
     connect(controlPoint, SIGNAL(deviceFound(brisa::upnp::controlpoint::Device*))
             , this, SLOT(deviceFoundDump(brisa::upnp::controlpoint::Device*)));
+
+    //Iniciando o Control Point e pesquisando Devices
     controlPoint->start();
     controlPoint->discover();
 
-    connect(treeWidgetCP, SIGNAL(itemClicked(QTreeWidgetItem * , int )),
+    connect(devicesTreeWidget, SIGNAL(itemClicked(QTreeWidgetItem * , int )),
             this, SLOT(lineEnabled(QTreeWidgetItem * , int)));
-    connect(treeWidgetCP, SIGNAL(itemDoubleClicked(QTreeWidgetItem *, int)),
+    connect(devicesTreeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem *, int)),
             this, SLOT(call(QTreeWidgetItem *, int)));
 
     connect(controlPoint, SIGNAL(multicastReceived(QString,QString)), this,
@@ -57,17 +70,19 @@ controlpointgui::controlpointgui(QWidget *parent) :
     connect(controlPoint, SIGNAL(multicastReceivedRaw(OutArgument)), this,
             SLOT(multicastEventRawReceived(OutArgument)));
 
-    networkItem = new QTreeWidgetItem(treeWidgetCP);
+    //Definindo o primeiro item da Lista de Devices
+    networkItem = new QTreeWidgetItem(devicesTreeWidget);
     networkItem->setIcon(0, QIcon("://rsc/network.png"));
     networkItem->setText(0, "UPnP Network");
 
+    //Setando Variáveis
     contSplashScreen = 0;
     doubleClick = false;
 }
 
 controlpointgui::~controlpointgui()
 {
-    controlPoint->stop();
+    delete devicesTreeWidget;
     delete controlPoint;
 }
 
@@ -75,19 +90,20 @@ void controlpointgui::setUpTableWidget()
 {
     QStringList list;
     list <<"Time"<<"Device"<<"Service" << "State Variables" << "Value";
-    //QTableWidget* tableWidget = new QTableWidget(this);
-    tableWidget->setRowCount(0);
-    tableWidget->setColumnCount(5);
-    tableWidget->setHorizontalHeaderLabels(list);
-    tableWidget->setEditTriggers(NULL);
+
+    logBoxTable->setRowCount(0);
+    logBoxTable->setColumnCount(5);
+    logBoxTable->setHorizontalHeaderLabels(list);
+    logBoxTable->setEditTriggers(NULL);
 
 }
 
 void controlpointgui::createActions()
 {
-
+    //OS define o sistema operacional executado no momento
     if(OS)
     {
+        //Criando ações
         clearAction = new QAction(tr("Clear"),this);
         expandAction = new QAction(tr("Expand"),this);
         collapseAction = new QAction(tr("Collapse"),this);
@@ -95,11 +111,11 @@ void controlpointgui::createActions()
     }
     else
     {
+        //Criando ações
         clearAction = new QAction(tr("Clear Event Log"), this);
         expandAction = new QAction(tr("&Expand all Devices"), this);
         collapseAction = new QAction(tr("&Collapse all Devices"), this);
         exitAction = new QAction(tr("&Quit"), this);
-
     }
 
     aboutCpAction = new QAction(tr("About Control Point"), this);
@@ -133,7 +149,7 @@ void controlpointgui::createActions()
 
     exitAction->setIcon(QIcon("://rsc/exit.png"));
     exitAction->setToolTip("Close the Application");
-    connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
+    connect(exitAction, SIGNAL(triggered()), this, SLOT(closeProgram()));
 }
 
 void controlpointgui::createMenus()
@@ -173,23 +189,23 @@ void controlpointgui::createToolBars()
 
 void controlpointgui::expandItems()
 {
-    treeWidgetCP->expandItem(this->networkItem);
+    devicesTreeWidget->expandItem(this->networkItem);
     for (int i = 0; i < items.size(); i++) {
-        treeWidgetCP->expandItem(items[i]);
+        devicesTreeWidget->expandItem(items[i]);
         QTreeWidgetItem *deviceItem = items[i];
         for (int j = 0; j < deviceItem->childCount(); j++)
-            treeWidgetCP->expandItem(deviceItem->child(j));
+            devicesTreeWidget->expandItem(deviceItem->child(j));
     }
 }
 
 void controlpointgui::collapseItems()
 {
-    treeWidgetCP->collapseItem(this->networkItem);
+    devicesTreeWidget->collapseItem(this->networkItem);
     for (int i = 0; i < items.size(); i++) {
-        treeWidgetCP->collapseItem(items[i]);
+        devicesTreeWidget->collapseItem(items[i]);
         QTreeWidgetItem *deviceItem = items[i];
         for (int j = 0; j < deviceItem->childCount(); j++)
-            treeWidgetCP->collapseItem(deviceItem->child(j));
+            devicesTreeWidget->collapseItem(deviceItem->child(j));
     }
 }
 
@@ -304,6 +320,11 @@ void controlpointgui::addItem(QTreeWidgetItem *deviceItem)
     }
 }
 
+QSize controlpointgui::getScreenSize() const
+{
+    return QApplication::desktop()->size();
+}
+
 
 void controlpointgui::callMethod()
 {
@@ -335,7 +356,7 @@ void controlpointgui::serviceCall(OutArgument arguments, QString method)
         returnMessage.append(it.key() + " = " + it.value() + "\n");
     }
 
-    textEdit->setText("Calling method: " + method + "\n\n" + "Returned: \n"
+    actionsTextEdit->setText("Calling method: " + method + "\n\n" + "Returned: \n"
                       + returnMessage);
 }
 
@@ -345,16 +366,16 @@ void controlpointgui::removeDevice(QString usn)
         bool change;
         if (items[i]->text(0).split(" - ")[1].compare(usn.split("::")[0]) == 0) {
             change = false;
-            if ((treeWidgetCP->selectedItems().size() > 0)
-                    && (!treeWidgetCP->selectedItems().contains(items[i]))) {
+            if ((devicesTreeWidget->selectedItems().size() > 0)
+                    && (!devicesTreeWidget->selectedItems().contains(items[i]))) {
                 for (int j = 0; j < items[i]->childCount(); j++) {
-                    if (change || treeWidgetCP->selectedItems().contains(
+                    if (change || devicesTreeWidget->selectedItems().contains(
                                 items[i]->child(j))) {
                         change = true;
                         break;
                     }
                     for (int w = 0; w < items[i]->child(j)->childCount(); w++) {
-                        if (treeWidgetCP->selectedItems().contains(
+                        if (devicesTreeWidget->selectedItems().contains(
                                     items[i]->child(j)->child(w))) {
                             if (closeable)
                                 dialog->close();
@@ -364,7 +385,7 @@ void controlpointgui::removeDevice(QString usn)
                     }
                 }
             }
-            if (change || treeWidgetCP->selectedItems().contains(items[i]))
+            if (change || devicesTreeWidget->selectedItems().contains(items[i]))
                 doubleClick = false;
 
             QString UDN = items[i]->text(0).split(" - ")[1];
@@ -427,8 +448,8 @@ void controlpointgui::changeEventLog(EventProxy *subscription, QMap<
     for (int i = 0; i < eventVariables.keys().size(); i++) {
         qDebug() << ">>>>>>>>>>>>>>>>>>>>>>>>>> State variable " << eventVariables.keys()[i] <<
                     "changed value to " << eventVariables[eventVariables.keys()[i]];
-        int row = tableWidget->rowCount() +1;
-        tableWidget->setRowCount(row);
+        int row = logBoxTable->rowCount() +1;
+        logBoxTable->setRowCount(row);
         QDateTime current = QDateTime::currentDateTime();
         QTableWidgetItem *timeItem = new QTableWidgetItem(current.toString());
         timeItem->setTextAlignment(Qt::AlignVCenter);
@@ -438,22 +459,22 @@ void controlpointgui::changeEventLog(EventProxy *subscription, QMap<
         serviceNameItem->setTextAlignment(Qt::AlignVCenter);
         QTableWidgetItem *variableNameItem = new QTableWidgetItem(eventVariables.keys()[i]);
         QTableWidgetItem *valueItem = new QTableWidgetItem(eventVariables[eventVariables.keys()[i]]);
-        tableWidget->setItem(row-1, 0, timeItem);
-        tableWidget->setItem(row-1, 1, deviceNameItem);
-        tableWidget->setItem(row-1, 2, serviceNameItem);
-        tableWidget->setItem(row-1, 3, variableNameItem);
-        tableWidget->setItem(row-1, 4, valueItem);
-        tableWidget->resizeColumnsToContents();
+        logBoxTable->setItem(row-1, 0, timeItem);
+        logBoxTable->setItem(row-1, 1, deviceNameItem);
+        logBoxTable->setItem(row-1, 2, serviceNameItem);
+        logBoxTable->setItem(row-1, 3, variableNameItem);
+        logBoxTable->setItem(row-1, 4, valueItem);
+        logBoxTable->resizeColumnsToContents();
     }
 }
 
 void controlpointgui::clearEventLog()
 {
-    int row = tableWidget->rowCount();
+    int row = logBoxTable->rowCount();
     for (int i = row; i >= 0; i--) {
-        tableWidget->removeRow(i);
+        logBoxTable->removeRow(i);
     }
-    tableWidget->resizeColumnsToContents();
+    logBoxTable->resizeColumnsToContents();
 }
 
 
@@ -597,7 +618,12 @@ void controlpointgui::multicastEventRawReceived(OutArgument raw)
     qDebug() << "Raw: " << raw;
 }
 
+void controlpointgui::closeProgram()
+{
+    this->close();
+}
+
 void controlpointgui::requestError(QString errorMessage, QString methodName)
 {
-    textEdit->setText(errorMessage + " when calling " + methodName);
+    actionsTextEdit->setText(errorMessage + " when calling " + methodName);
 }

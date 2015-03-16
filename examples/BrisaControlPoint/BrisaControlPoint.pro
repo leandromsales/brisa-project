@@ -15,7 +15,7 @@ TARGET    = BrisaControlPoint
 
 TEMPLATE  = app
 
-include(brisa.pri)
+#include(brisa.pri)
 
 SOURCES += main.cpp \
            controlpointgui.cpp \

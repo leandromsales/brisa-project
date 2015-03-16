@@ -15,6 +15,8 @@
 #include <QSplashScreen>
 #include <QStringList>
 #include <QPixmap>
+#include <QApplication>
+#include <QDesktopWidget>
 
 #include "ui_controlpointgui.h"
 
@@ -70,6 +72,7 @@ public slots:
     void clearEventLog();
     void multicastEventReceived(QString variableName, QString newValue);
     void multicastEventRawReceived(OutArgument raw);
+    void closeProgram();
 
 private:
     void createActions();
@@ -77,6 +80,7 @@ private:
     void createToolBars();
     void setUpTableWidget();
     void addItem(QTreeWidgetItem *deviceItem);
+    QSize getScreenSize() const;
 
     QList<brisa::upnp::controlpoint::Device*> devices;
     QList<QTreeWidgetItem*> items;
@@ -110,6 +114,8 @@ private:
     bool closeable;
 
     int contSplashScreen;
+
+    QSize screenSize;
 };
 
 #endif // CONTROLPOINTGUI_H
