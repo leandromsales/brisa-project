@@ -1,6 +1,7 @@
 #This file was auto-generated. Don't edit this.
 
-BASEDIR = /home/larissa/UFAL/Labs/CompeLab_BlackBerry/Brisa/brisa-port-qt5/brisa-project/brisa-src
+# Replace with your basedir
+BASEDIR = /home/larissa/brisa-project/brisa-src
 
 INCLUDEPATH += $$BASEDIR/Brisa/include
 
@@ -13,10 +14,11 @@ android {
     LIBS += -L$$BASEDIR/arm/so.le-v7-g -lbrisa
 }
 
+# Replace all paths after $$BASEDIR/ with your build paths
 unix {
     message("BRisa Unix config.")
     QT += network xml
-    INCLUDEPATH += $$BASEDIR/build-brisa-Desktop_Qt_5_3_GCC_64bit-Debug
-    DEPENDPATH += $$BASEDIR/build-brisa-Desktop_Qt_5_3_GCC_64bit-Debug
-    LIBS += -L$$BASEDIR/build-brisa-Desktop_Qt_5_3_GCC_64bit-Debug -lbrisa
+    INCLUDEPATH += $$BASEDIR/build-brisa-Desktop_Qt_5_4_1_GCC_64bit-Debug
+    DEPENDPATH += $$BASEDIR/build-brisa-Desktop_Qt_5_4_1_GCC_64bit-Debug
+    LIBS += -L$$BASEDIR/build-brisa-Desktop_Qt_5_4_1_GCC_64bit-Debug -lbrisa
 }
