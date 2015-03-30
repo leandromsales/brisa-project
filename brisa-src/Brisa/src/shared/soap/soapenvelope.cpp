@@ -36,8 +36,6 @@ QHash<QString, QString> *SoapEnvelope::parse(const QString &content) {
     QDomDocument document("SOAPEnvelope");
     document.setContent(content, true);
 
-    //qDebug() << content;
-
     QString nsURI = "http://schemas.xmlsoap.org/soap/envelope/";
     QDomElement element = document.firstChildElement("Envelope");
 
@@ -59,12 +57,11 @@ QHash<QString, QString> *SoapEnvelope::parse(const QString &content) {
         node = domNodeList.item(i);
         nodeName = node.toElement().tagName();
         nodeValue = node.childNodes().item(0).nodeValue();
-        //qDebug() << nodeName << nodeValue;
         response->insert(nodeName, nodeValue);
     }
     return response;
 }
 
 }
-}  // namespace shared
+}
 }
