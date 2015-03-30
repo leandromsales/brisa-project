@@ -15,19 +15,19 @@ namespace network {
 #define LOCAL_HOST "127.0.0.1"
 
 /*!
- * Gets a valid IP address from an active interface on the host computer.
+ * Get a valid IP address from an active interface on the host computer.
  *
  */
 QString getValidIP();
 
 /*!
- *  Gets a valid IP address from an specific interface.
- *  \param networkInterface \a The interface to acquire the IP Address from.
+ *  Get a valid IP address from a specific interface.
+ *  \param networkInterface \a The interface to acquire the IP Address from
  */
 QString getIp(QString networkInterface);
 
 /*!
- *  Gets a closed port to be used by the WebServer.
+ *  Get a port to be used by webserver.
  */
 quint16 getPort();
 
@@ -44,22 +44,22 @@ bool isLoopbackIPv4Address(QString address);
 bool isLoopbackIPv6Address(QString address);
 
 /*!
- *  Verify if this address is a Promiscous ipv4 address or not.
+ *  Verify if this address is a promiscous ipv4 address or not.
  *  \param address \a The address to be tested
  */
 bool isPromiscuousIPv4Address(QString address);
 
 /*!
- *  Verify if this address is a Promiscous ipv6 address or not.
+ *  Verify if this address is a promiscous ipv6 address or not.
  *  \param address \a The address to be tested
  */
 bool isPromiscuousIPv6Address(QString address);
 
 /*!
- *  Verify if a port is currently opened on this host.
- *  \param address \a the IP address
- *  \param port    \a the port to be tested
- *  \param timeout \a the timeout to end the test
+ *  Verify if a port is currently openned on this host.
+ *  \param address \a The IP address
+ *  \param port    \a The port to be tested
+ *  \param timeout \a The timeout (in milliseconds) to end the test
  */
 bool isPortOpen(QString address, qint16 port, qint16 timeout = 2);
 
