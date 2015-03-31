@@ -58,7 +58,7 @@ static const QString SSDP_DISCOVERY_REQUEST =
 	"\r\n";
 
 }
-}  // namespace shared
+}
 }
 
 

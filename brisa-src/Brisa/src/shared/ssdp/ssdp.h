@@ -11,8 +11,8 @@
 
 #include "ssdpprotocol.h"
 
-//#define SSDP_ADDR "239.255.255.250"
-//#define SSDP_PORT 1900
+#define SSDP_ADDR "239.255.255.250"
+#define SSDP_PORT 1900
 
 namespace brisa {
 namespace shared {
@@ -37,11 +37,18 @@ public:
      * Stop SSDP service
      */
 	void stop();
+
+    // Checking it
 	void doubleDiscover(const QString &type = QString("ssdp:all"),
 			const QString &mx = QString("1"), const QString &userAgent =
 					QString("UPnPlayer UPnP/1.1"));
 
-	QMap<QString, QString> getMapFromMessage(QString message);
+
+    /*!
+     * Turn a SSDP message in a map
+     * \param message is data received
+     */
+    QMap<QString, QString> getMapFromMessage(QString message);
 
 private:
     /*!
@@ -54,9 +61,18 @@ private:
 	int interval;
 
 private slots:
+    /*!
+     * Deal with new messages, sending signal messageReceived
+     */
 	void datagramReceived();
 
 public slots:
+    /*!
+     * Send a SSDP discovery request to 239.255.255.250
+     * \param type is SSDP device type as specified in UPnP
+     * \param mx is mMaximum time (in seconds) to wait for response
+     * \param userAgent contains some informations about produt
+     */
 	void discover(const QString &type = QString("ssdp:all"), const QString &mx =
 			QString("1"),
 			const QString &userAgent = QString("UPnPlayer UPnP/1.1"));

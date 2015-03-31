@@ -21,9 +21,8 @@ namespace ssdp {
 //  - BOOTID.UPNP.ORG
 //  - CONFIGID.UPNP.ORG
 //  - SEARCHPORT.UPNP.ORG (optional)
-// TODO: Make IP and port below another #define and replace message below
 static const QString UPNP_ALIVE_MESSAGE = "NOTIFY * HTTP/1.1\r\n"
-                                          "HOST: 239.255.255.250:1900\r\n"
+                                          "HOST: " + SSDP_ADDR + ":" + SSDP_PORT + "\r\n"
                                           "CACHE-CONTROL: max-age=%1\r\n"
                                           "LOCATION: %2\r\n"
                                           "NT: %3\r\n"
@@ -35,9 +34,8 @@ static const QString UPNP_ALIVE_MESSAGE = "NOTIFY * HTTP/1.1\r\n"
 // TODO: Implement ssdp:update as per spec 1.1, section 1.2.4
 // and use the below define to build the message, where
 // SEARCHPORT.UPNP.ORG are optional.
-// TODO: Make IP and port below another #define and replace message below
 static const QString UPNP_UPDATE_MESSAGE = "NOTIFY * HTTP/1.1\r\n"
-                                           "HOST: 239.255.255.250:1900\r\n"
+                                           "HOST: " + SSDP_ADDR + ":" + SSDP_PORT + "\r\n"
                                            "LOCATION: %1\r\n"
                                            "NT: %2\r\n"
                                            "NTS: ssdp:update\r\n"
@@ -51,9 +49,8 @@ static const QString UPNP_UPDATE_MESSAGE = "NOTIFY * HTTP/1.1\r\n"
 // as per upnp spec 1.1, section 1.2.2 and 1.2.3.
 //  - BOOTID.UPNP.ORG
 //  - CONFIGID.UPNP.ORG
-// TODO: Make IP and port below another #define and replace message below
 static const QString UPNP_BYEBYE_MESSAGE = "NOTIFY * HTTP/1.1\r\n"
-                                           "HOST: 239.255.255.250:1900\r\n"
+                                           "HOST: " + SSDP_ADDR + ":" + SSDP_PORT + "\r\n"
                                            "NT: %1\r\n"
                                            "NTS: ssdp:byebye\r\n"
                                            "USN: %2\r\n"
@@ -77,17 +74,15 @@ static const QString UPNP_MSEARCH_RESPONSE = "HTTP/1.1 200 OK\r\n"
 SSDPServer::SSDPServer(QObject *parent) :
     QObject(parent),
     running(false),
-    SSDP_ADDR("239.255.255.250"), // TODO: make this as #define
-    SSDP_PORT(1900), // TODO: make this as #define
-    S_SSDP_PORT("1900") // TODO: make this as #define
+    SSDP_ADDR(SSDP_ADDR),
+    SSDP_PORT(SSDP_PORT),
+    S_SSDP_PORT(SSDP_PORT)
 {
-    qDebug() << "INSTANCIOU SSDP SERVER";
     this->udpListener = new UdpListener(SSDP_ADDR, SSDP_PORT, "Brisa SSDP Server", parent);
     connect(this->udpListener, SIGNAL(readyRead()), this, SLOT(datagramReceived()));
 }
 
 SSDPServer::~SSDPServer() {
-    qDebug() << "DESTRUIU SSDP SERVER";
     if (isRunning())
         stop();
 
@@ -155,7 +150,6 @@ void SSDPServer::doByeBye(const QString &usn, const QString &st) {
 }
 
 void SSDPServer::datagramReceived() {
-    qDebug() << "DATAGRAMA RECEBIDO";
     while (this->udpListener->hasPendingDatagrams()) {
         QByteArray datagram;
         QHostAddress *senderIP = new QHostAddress();
@@ -179,7 +173,6 @@ void SSDPServer::msearchReceived(const QByteArray datagram,
 {
     QString message = QString(datagram);
     QStringList messageLines = message.split("\r\n", QString::SkipEmptyParts);
-    qDebug() << "MSEARCH RECEBIDO COM" << messageLines.size() << "LINHAS";
     QMap<QString, QString> response;
     for (int i = 1; i < messageLines.size(); i++) {
         if (messageLines[i].trimmed() != "") {
@@ -204,7 +197,6 @@ void SSDPServer::msearchReceived(const QByteArray datagram,
     }
 
     if (response["man"] == "\"ssdp:discover\"") {
-        qDebug() << "DISCOVER";
         qDebug() << "BrisaSSDPServer Received msearch from "
                  << senderIp->toString() << ":" << senderPort
                  << " Search target: " << response["st"];
@@ -224,7 +216,6 @@ void SSDPServer::respondMSearch(const QString &senderIp,
                                      const QString &st,
                                      const QString &usn)
 {
-    qDebug() << "RESPONDENDO MSEARCH";
     QString message = UPNP_MSEARCH_RESPONSE.arg(cacheControl, date, location, server, st, usn);
 
     this->udpListener->writeDatagram(message.toUtf8(),
@@ -235,5 +226,5 @@ void SSDPServer::respondMSearch(const QString &senderIp,
 }
 
 }
-}  // namespace shared
+}
 }
