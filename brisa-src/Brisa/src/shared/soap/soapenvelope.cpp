@@ -9,7 +9,6 @@ namespace shared {
 namespace soap {
 
 SoapEnvelope::SoapEnvelope(QObject *parent) : QObject(parent) {
-//    qDebug() << "TEST construtor soap env";
 }
 
 QString SoapEnvelope::get(const QString &actionName, const QString &ns, const QHash<QString, QString> &parameters) {
@@ -20,16 +19,6 @@ QString SoapEnvelope::get(const QString &actionName, const QString &ns, const QH
     QString response = SOAP_REQUEST_MESSAGE.arg(actionName, ns, parameters_str);
     return response;
 }
-
-/*
-"<?xml version=\"1.0\"?>
-     "<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\""
-         "s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">"
-     "<s:Body><u:%1 xmlns:u=\"%2\">%3</u:%1></s:Body></s:Envelope>";
-
-// %1 - action name - SetAVTransportURI
-// %2 - name space - urn:schemas-upnp-org:service:AVTransport:1
-// %3 - parameters - <parm1></parm1><parm2></parm2>*/
 
 QHash<QString, QString> *SoapEnvelope::parse(const QString &content) {
     QHash<QString, QString> *response = new QHash<QString, QString>();

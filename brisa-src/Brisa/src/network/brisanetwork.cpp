@@ -27,6 +27,7 @@ bool isPromiscuousIPv6Address(QString address) {
     return !address.compare("0:0:0:0:0:0:0:0") || !address.compare("::");
 }
 
+// TODO implement if defined to others plataforms
 QString getValidIP() {
 #if defined(Q_OS_UNIX) || defined(Q_OS_ANDROID)
     QNetworkConfigurationManager mgr;
@@ -36,12 +37,12 @@ QString getValidIP() {
 
     int protocol;
     /*
+     * Qt specification
      * 0 is QAbstractSocket::IPv4Protocol
      * 1 is QAbstractSocket::IPv6Protocol
      * 2 is QAbstractSocket::AnyIPProtocol (either IPv4 or IPv6)
      * -1 is QAbstractSocket::UnknownNetworkLayerProtocol (other than IPv4 and IPv6)
      */
-
     QList<QNetworkAddressEntry> laddr = ninter.addressEntries();
     for (QList<QNetworkAddressEntry>::const_iterator it = laddr.begin(); it != laddr.end(); ++it)
     {
@@ -53,12 +54,13 @@ QString getValidIP() {
         }
     }
     if (protocol == 0 || protocol == 2) {
-        qDebug() << "Couldn't acquire a non loopback IPv4  address, returning 127.0.0.1.";
+        qDebug() << "Couldn't acquire a non loopback IPv4 address, returning 127.0.0.1.";
         return "127.0.0.1";
     } else if (protocol == 1) {
-        qDebug() << "Couldn't acquire a non loopback IPv6  address, returning 0:0:0:0:0:0:0:1.";
+        qDebug() << "Couldn't acquire a non loopback IPv6 address, returning 0:0:0:0:0:0:0:1.";
         return "0:0:0:0:0:0:0:1";
     } else {
+        // TODO implement something to deal with this case
         qDebug() << "Couldn't acquire a non loopback IPv4/IPv6 address";
         return "";
     }
@@ -80,8 +82,6 @@ QString getValidIP() {
     return "127.0.0.1";
 #endif
     return "192.168.0.105";
-    // return "127.0.0.1";
-//#endif
 }
 
 //TODO deprecated function
@@ -105,7 +105,6 @@ bool isPortOpen(QString address, qint16 port, qint16 timeout) {
         return false;
 
     case QAbstractSocket::ConnectingState:
-        //stay waiting for some miliseconds to re-verify the state
         socket->waitForConnected(timeout);
 
         result = (socket->state() == QAbstractSocket::ConnectedState);
@@ -123,12 +122,9 @@ bool isPortOpen(QString address, qint16 port, qint16 timeout) {
 
 quint16 getPort() {
     srand(time(NULL));
-    //Generate a port number in range [49152,65535]
     //TODO modify this expression to a more legible one
     quint16 randomPort = (49152 + rand() / (RAND_MAX / (65535 - 49152 + 1) + 1));
-    qDebug() << "Port value chosen:" << randomPort;
     while (isPortOpen(getValidIP(), randomPort, 5)) {
-        qDebug() << "Port is already opened, trying another ";
         randomPort = (49152 + rand() / (RAND_MAX / (65535 - 49152 + 1) + 1));
     }
     return randomPort;

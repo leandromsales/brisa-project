@@ -27,7 +27,7 @@ QString getValidIP();
 QString getIp(QString networkInterface);
 
 /*!
- *  Get a port to be used by webserver.
+ *  Generate a port number in range [49152,65535] to be used by webserver.
  */
 quint16 getPort();
 
