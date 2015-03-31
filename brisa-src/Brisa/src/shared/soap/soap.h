@@ -15,6 +15,9 @@ namespace brisa {
 namespace shared {
 namespace soap {
 
+/*!
+ * This class impĺements SOAP - Simple Object Access Protocol
+ */
 class SOAP : public QObject
 {
     Q_OBJECT

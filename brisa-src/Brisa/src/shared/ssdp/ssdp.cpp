@@ -26,7 +26,7 @@ void SSDP::init() {
 	// Create a new UDP socket and bind it against port 1900
 	if (!udpSocket->bind(groupAddress, SSDP_PORT,
 			QUdpSocket::ShareAddress | QUdpSocket::ReuseAddressHint)) {
-		qDebug() << "cannot bind multicast socket in" << SSDP_ADDR;
+        qDebug() << "Cannot bind multicast socket in" << SSDP_ADDR;
 	}
 
 	// Tell the UDP socket which multicast group it should join
@@ -52,7 +52,7 @@ void SSDP::stop() {
 
 void SSDP::discover(const QString &type, const QString &mx,
 		const QString &userAgent) {
-	QString discoverMessage = SSDP_DISCOVERY_REQUEST.arg(type, mx, userAgent);
+    QString discoverMessage = SSDP_DISCOVERY_REQUEST.arg(type, mx, userAgent);
 
 	udpSocket->moveToThread(this->thread());
 	udpSocket->writeDatagram(discoverMessage.toUtf8(), QHostAddress(SSDP_ADDR),
@@ -66,7 +66,6 @@ void SSDP::doubleDiscover(const QString &type, const QString &mx,
 }
 
 void SSDP::datagramReceived() {
-
 	QUdpSocket *socket = static_cast<QUdpSocket *>(QObject::sender());
 
 	while (socket->hasPendingDatagrams()) {
@@ -85,9 +84,6 @@ void SSDP::datagramReceived() {
 	}
 }
 
-/**
- * Parse SSDP message
- */
 QMap<QString, QString> SSDP::getMapFromMessage(QString message) {
 	QStringList messageLines = message.split("\r\n");
 	QMap<QString, QString> response;
@@ -95,7 +91,6 @@ QMap<QString, QString> SSDP::getMapFromMessage(QString message) {
 	foreach(QString line, messageLines) {
 		if((line = line.trimmed())!= "") {
 			int divpos = line.indexOf(':');
-			//TODO Definir se vai sempre fazer toLower aqui
 			QString key = line.left(divpos).toLower();
 			QString value = line.right(line.size() - divpos).remove(0, 1).trimmed();
 			response[key] = value;
@@ -108,5 +103,5 @@ QMap<QString, QString> SSDP::getMapFromMessage(QString message) {
 }
 
 }
-}  // namespace shared
+}
 }
