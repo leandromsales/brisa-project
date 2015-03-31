@@ -21,7 +21,6 @@ INCLUDEPATH += "src"
 
 HEADERS += \
     src/network/brisanetwork.h \
-    src/network/networkmanager.h \
     src/shared/soap/qtsoap.h \
     src/shared/soap/soap.h \
     src/shared/soap/soapenvelope.h \
@@ -29,7 +28,6 @@ HEADERS += \
     src/shared/ssdp/ssdpclient.h \
     src/shared/ssdp/ssdpprotocol.h \
     src/shared/ssdp/ssdpserver.h \
-    src/shared/ssdp/ssdpudpsocket.h \
     src/shared/webserver/http/httpmessage.h \
     src/shared/webserver/http/httprequest.h \
     src/shared/webserver/http/httpresponse.h \
@@ -96,7 +94,6 @@ SOURCES += \
     src/shared/ssdp/ssdp.cpp \
     src/shared/ssdp/ssdpclient.cpp \
     src/shared/ssdp/ssdpserver.cpp \
-    src/shared/ssdp/ssdpudpsocket.cpp \
     src/shared/webserver/http/httpmessage.cpp \
     src/shared/webserver/http/httprequest.cpp \
     src/shared/webserver/http/httpresponse.cpp \
