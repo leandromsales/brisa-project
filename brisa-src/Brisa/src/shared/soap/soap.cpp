@@ -70,13 +70,11 @@ void SOAP::executeAction(const QString &actionName, const QHash<QString, QString
         SoapEnvelope soapEnvelope;
         this->actionName = actionName;
         this->requestEnvelope = soapEnvelope.get(actionName, this->ns, parameters).toUtf8();
-        //qDebug() << this->requestEnvelope;
-        //this->requestEnvelope = "<?xml version=\"1.0\"?><s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"><s:Body><u:Browse xmlns:u=\"urn:schemas-upnp-org:service:ContentDirectory:1\"><BrowseFlag>BrowseDirectChildren</BrowseFlag><ObjectID>0</ObjectID></u:Browse></s:Body></s:Envelope>";
 
         QNetworkRequest request(this->url);
         request.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml; charset=\"utf-8\"");
         request.setRawHeader("SOAPAction", QString("\"" + this->ns + "#" + actionName + "\"").toUtf8());
-        reply = this->downloader->post(request, requestEnvelope);
+        reply = this-0>downloader->post(request, requestEnvelope);
         connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(handleError(QNetworkReply::NetworkError)));
     }
 }
@@ -98,5 +96,5 @@ void SOAP::handleError(QNetworkReply::NetworkError code) {
 }
 
 }
-}  // namespace shared
+}
 }
