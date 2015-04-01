@@ -18,6 +18,9 @@ public:
     WebserverSession(Webserver *server, brisa::shared::webserver::http::HttpSessionManager *parent);
     ~WebserverSession();
 
+    /*!
+     * Check if version of HTTP \param request is supported.
+     */
     int isRequestSupported(const brisa::shared::webserver::http::HttpRequest &request) const;
 
 signals:
@@ -25,7 +28,15 @@ signals:
     void onEventReceived(brisa::shared::webserver::http::HttpRequest request, WebserverSession* session);
 
 public slots:
+    /*!
+     * Emit a signal responsePosted.
+     * \param r is response that will be emitted to responsePosted
+     * \param chunkedResponse set parameter useChunkedResponse
+     */
     void respond(brisa::shared::webserver::http::HttpResponse r, bool chunkedResponse = false);
+    /*!
+     * Emit a HTTP request with code 408 of timeout connections.
+     */
     void onTimeout();
 
 protected:
@@ -34,9 +45,22 @@ protected:
     void onRequest(const brisa::shared::webserver::http::HttpRequest &request);
 
     void prepareResponse(brisa::shared::webserver::http::HttpResponse &);
-    void writeEntityBody(const brisa::shared::webserver::http::HttpResponse &, QTcpSocket *);
 
+    /*!
+     * Write a HTTP response in a socket.
+     * \param r is HHTP response
+     * \param s is TCP socket
+     */
+    void writeEntityBody(const brisa::shared::webserver::http::HttpResponse &r, QTcpSocket *s);
+
+    /*!
+     * Start a session and set your timeout as 180000 ms.
+     */
     void sessionStarted();
+
+    /*!
+     * Clean chunksBuffer and keep connection alive.
+     */
     bool keepAlive();
 
 private:
@@ -51,8 +75,8 @@ private:
     bool useChunkedResponse;
 };
 
-}  // namespace webserver
-}  // namespace shared
-}  // namespace brisa
+}
+}
+}
 
 #endif // WEBSERVERSESSION_H
