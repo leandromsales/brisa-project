@@ -18,8 +18,6 @@ TARGET    = BrisaLight
 
 TEMPLATE  = app
 
-include(brisa.pri)
-
 SOURCES += main.cpp \
            light.cpp \
            switchPower.cpp
