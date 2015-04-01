@@ -9,48 +9,59 @@ namespace brisa {
 namespace shared {
 namespace webserver {
 
-    class WebFile: public WebService
-    {
+class WebFile: public WebService
+{
     Q_OBJECT
-    public:
-        WebFile(const QString &filePath = QString(), QObject *parent = 0);
-        ~WebFile();
+public:
+    WebFile(const QString &filePath = QString(), QObject *parent = 0);
+    ~WebFile();
 
-        QString fileName() const;
-        void setFile(const QString &fileName);
+    /*!
+     * Get name of file.
+     */
+    QString fileName() const;
 
-        QByteArray contentType() const;
-        void setContentType(const QByteArray &);
+    /*!
+     * Set a new name to file.
+     * \param fileName is the new name
+     */
+    void setFile(const QString &fileName);
 
-        bool useChunkedEntities() const;
-        void setUseChunkedEntities(bool);
+    /*!
+     * Get content-type.
+     */
+    QByteArray contentType() const;
 
-    protected:
-        void onRequest(const brisa::shared::webserver::http::HttpRequest &request, WebserverSession *session);
+    /*!
+     * Set a new content type to file.
+     * \param cT is the content type
+     */
+    void setContentType(const QByteArray &cT);
 
-    private:
-        QString m_fileName;
-        QByteArray m_contentType;
-        bool m_useChunkedEntities;
-    };
+    /*!
+     * Check if file use a chuncked entity or not.
+     */
+    bool useChunkedEntities() const;
 
-    inline QString WebFile::fileName() const
-    {
-        return m_fileName;
-    }
+    /*!
+     * Set if file use a chuncked entity or not.
+     */
+    void setUseChunkedEntities(bool u);
 
-    inline QByteArray WebFile::contentType() const
-    {
-        return m_contentType;
-    }
+protected:
+    /*!
+     * Deal with new file requests.
+     */
+    void onRequest(const brisa::shared::webserver::http::HttpRequest &request,
+                   WebserverSession *session);
 
-    inline bool WebFile::useChunkedEntities() const
-    {
-        return m_useChunkedEntities;
-    }
+private:
+    QString m_fileName;
+    QByteArray m_contentType;
+    bool m_useChunkedEntities;
+};
 
-}  // namespace webserver
-}  // namespace shared
-}  // namespace brisa
-
+}
+}
+}
 #endif /* _WEB_FILE_H */

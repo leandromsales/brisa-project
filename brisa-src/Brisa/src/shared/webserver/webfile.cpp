@@ -14,11 +14,15 @@ WebFile::WebFile(const QString &fileName, QObject *parent) :
         WebService(parent),
         m_fileName(fileName),
         m_useChunkedEntities(false) {
-    qDebug() << "INSTANCIOU WEB FILE";
 }
 
 WebFile::~WebFile()
 {
+}
+
+QString WebFile::fileName() const
+{
+    return m_fileName;
 }
 
 void WebFile::setFile(const QString &fileName)
@@ -26,9 +30,19 @@ void WebFile::setFile(const QString &fileName)
     m_fileName = fileName;
 }
 
+QByteArray WebFile::contentType() const
+{
+    return m_contentType;
+}
+
 void WebFile::setContentType(const QByteArray &cT)
 {
     m_contentType = cT;
+}
+
+bool WebFile::useChunkedEntities() const
+{
+    return m_useChunkedEntities;
 }
 
 void WebFile::setUseChunkedEntities(bool u)
@@ -57,9 +71,7 @@ void WebFile::onRequest(const HttpRequest &request,
     if (!request.header("RANGE").isEmpty()) {
         QByteArray rangeHeader = request.header("RANGE");
 
-        // from begin of range to the end of the file
         if (rangeHeader.indexOf('-') == -1) {
-            // 6 = QByteArray("bytes=").size()
             QByteArray firstBytePos = rangeHeader
                                       .mid(rangeHeader.indexOf("bytes=") + 6);
 
@@ -77,7 +89,6 @@ void WebFile::onRequest(const HttpRequest &request,
                                            rangeHeader.indexOf('-') - 6);
             QByteArray lastBytePos = rangeHeader.mid(rangeHeader.indexOf('-') + 1);
 
-            // has initial bytePos
             if (!firstBytePos.isEmpty()) {
                 bool ok[2];
                 qlonglong firstByte = firstBytePos.toLongLong(ok);
@@ -113,6 +124,6 @@ void WebFile::onRequest(const HttpRequest &request,
     session->respond(response, m_useChunkedEntities);
 }
 
-}  // namespace webserver
-}  // namespace shared
-}  // namespace brisa
+}
+}
+}
