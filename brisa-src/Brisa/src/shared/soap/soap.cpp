@@ -74,7 +74,7 @@ void SOAP::executeAction(const QString &actionName, const QHash<QString, QString
         QNetworkRequest request(this->url);
         request.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml; charset=\"utf-8\"");
         request.setRawHeader("SOAPAction", QString("\"" + this->ns + "#" + actionName + "\"").toUtf8());
-        reply = this-0>downloader->post(request, requestEnvelope);
+        reply = this->downloader->post(request, requestEnvelope);
         connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(handleError(QNetworkReply::NetworkError)));
     }
 }

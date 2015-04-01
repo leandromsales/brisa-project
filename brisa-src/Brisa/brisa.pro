@@ -87,7 +87,6 @@ HEADERS += \
 
 SOURCES += \
     src/network/brisanetwork.cpp \
-    src/network/networkmanager.cpp \
     src/shared/soap/qtsoap.cpp \
     src/shared/soap/soap.cpp \
     src/shared/soap/soapenvelope.cpp \

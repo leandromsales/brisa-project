@@ -22,7 +22,7 @@ namespace ssdp {
 //  - CONFIGID.UPNP.ORG
 //  - SEARCHPORT.UPNP.ORG (optional)
 static const QString UPNP_ALIVE_MESSAGE = "NOTIFY * HTTP/1.1\r\n"
-                                          "HOST: " + SSDP_ADDR + ":" + SSDP_PORT + "\r\n"
+                                          "HOST: " + QString::fromUtf8(SSDPADDR) + ":" + QString::number(SSDPPORT) + "\r\n"
                                           "CACHE-CONTROL: max-age=%1\r\n"
                                           "LOCATION: %2\r\n"
                                           "NT: %3\r\n"
@@ -35,7 +35,7 @@ static const QString UPNP_ALIVE_MESSAGE = "NOTIFY * HTTP/1.1\r\n"
 // and use the below define to build the message, where
 // SEARCHPORT.UPNP.ORG are optional.
 static const QString UPNP_UPDATE_MESSAGE = "NOTIFY * HTTP/1.1\r\n"
-                                           "HOST: " + SSDP_ADDR + ":" + SSDP_PORT + "\r\n"
+                                           "HOST: " + QString::fromUtf8(SSDPADDR) + ":" + QString::number(SSDPPORT) + "\r\n"
                                            "LOCATION: %1\r\n"
                                            "NT: %2\r\n"
                                            "NTS: ssdp:update\r\n"
@@ -50,7 +50,7 @@ static const QString UPNP_UPDATE_MESSAGE = "NOTIFY * HTTP/1.1\r\n"
 //  - BOOTID.UPNP.ORG
 //  - CONFIGID.UPNP.ORG
 static const QString UPNP_BYEBYE_MESSAGE = "NOTIFY * HTTP/1.1\r\n"
-                                           "HOST: " + SSDP_ADDR + ":" + SSDP_PORT + "\r\n"
+                                           "HOST: " + QString::fromUtf8(SSDPADDR) + ":" + QString::number(SSDPPORT) + "\r\n"
                                            "NT: %1\r\n"
                                            "NTS: ssdp:byebye\r\n"
                                            "USN: %2\r\n"
@@ -74,9 +74,9 @@ static const QString UPNP_MSEARCH_RESPONSE = "HTTP/1.1 200 OK\r\n"
 SSDPServer::SSDPServer(QObject *parent) :
     QObject(parent),
     running(false),
-    SSDP_ADDR(SSDP_ADDR),
-    SSDP_PORT(SSDP_PORT),
-    S_SSDP_PORT(SSDP_PORT)
+    SSDP_ADDR(SSDPADDR),
+    SSDP_PORT(SSDPPORT),
+    S_SSDP_PORT(SSDPPORT)
 {
     this->udpListener = new UdpListener(SSDP_ADDR, SSDP_PORT, "Brisa SSDP Server", parent);
     connect(this->udpListener, SIGNAL(readyRead()), this, SLOT(datagramReceived()));

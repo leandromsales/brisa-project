@@ -7,8 +7,8 @@
 #include <QMap>
 #include <QString>
 
-#define SSDP_ADDR "239.255.255.250"
-#define SSDP_PORT 1900
+#define SSDPADDR "239.255.255.250"
+#define SSDPPORT 1900
 
 namespace brisa {
 namespace shared {
