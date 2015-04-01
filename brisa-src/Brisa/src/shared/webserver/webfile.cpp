@@ -57,7 +57,8 @@ void WebFile::onRequest(const HttpRequest &request,
 
     QScopedPointer<QFile> file(new QFile(m_fileName));
     if(!file->open(QIODevice::ReadOnly)){
-    	qDebug() << "ERROR:WebFile::onRequest: The tmp file could not be opened. File path: " << m_fileName;
+        qDebug() << "ERROR:WebFile::onRequest: The tmp "
+                    "file could not be opened. File path: " << m_fileName;
     }
 
     const qint64 fileSize = file->size();

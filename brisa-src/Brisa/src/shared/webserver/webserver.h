@@ -20,8 +20,20 @@ public:
     Webserver(const QHostAddress &host, quint16 port);
     ~Webserver();
 
+    /*!
+     * Add a new webservice in \param path
+     * \param service is an instance of webservice
+     */
     void addService(QByteArray path, WebService *service);
+
+    /*!
+     * Remove a webservice in \param path
+     */
     void removeService(QByteArray path);
+
+    /*!
+     * Get a webservice in \param path
+     */
     WebService *service(QByteArray path) const;
 
 protected:
