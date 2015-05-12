@@ -74,22 +74,49 @@ public:
     };
 
 public:
-    // If reasonPhrase is null and the status code is know, then the default
-    // reason phrase to the is set
+    /*!
+     * Constructor of HTTP Response. If \param reasonPhrase is null and the
+     * \param statusCode is know, then reason phrase is default message to
+     * this code.
+     */
     explicit HttpResponse(const HttpVersion &httpVersion, int statusCode = OK,
                           bool closeConnection = false);
     explicit HttpResponse(const HttpVersion &httpVersion, int statusCode,
                           const QByteArray &reasonPhrase,
                           bool closeConnection = false);
 
+    /*!
+     * Return status code of HTTP Response.
+     */
     int statusCode() const;
+    /*!
+     * Set status code of HTTP Response with value of \param st and return true,
+     * if sucessful or false, otherwise.
+     */
     bool setStatusCode(int st);
+    /*!
+     * Set status code of HTTP Response with value of \param st and reason phrase
+     * with value of \param reasonPhrase.
+     */
     void setStatusCode(int st, const QByteArray &reasonPhrase);
 
+
+    /*!
+     * Return a QByteArray with reason phrase.
+     */
     QByteArray reasonPhrase() const;
+    /*!
+     * Set reason phrase with value of \param reasonPhrase.
+     */
     void setReasonPhrase(const QByteArray &reasonPhrase);
 
+    /*!
+     * Return value of close connection.
+     */
     bool closeConnection() const;
+    /*!
+     * Set value of parameter m_closeConnection with \param close.
+     */
     void setCloseConnection(bool close);
 
 private:
