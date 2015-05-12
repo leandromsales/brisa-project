@@ -40,7 +40,6 @@ void WebStaticContent::setContentType(const QByteArray &contentType)
 void WebStaticContent::onRequest(const HttpRequest &request,
                                       WebserverSession *session)
 {
-    qDebug() << "ON REQUEST";
     HttpResponse response(request.httpVersion());
 
     response.setHeader("CONTENT-TYPE", m_contentType);
