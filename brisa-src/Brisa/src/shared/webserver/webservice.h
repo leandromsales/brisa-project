@@ -20,13 +20,29 @@ public:
     WebService(QObject *parent = 0);
     ~WebService();
 
-    void postRequest(const brisa::shared::webserver::http::HttpRequest &request, WebserverSession *session);
+    /*!
+     * Emit a signal with a HTTP Request, the parameter \param request, and a
+     * Webserver session, the parameter \param session.
+     */
+    void postRequest(const brisa::shared::webserver::http::HttpRequest &request,
+                     WebserverSession *session);
 
 signals:
-    void genericRequestReceived(brisa::shared::webserver::http::HttpRequest, WebserverSession *session);
+    /*!
+     * This signal is emmited when BrisaWebService receives a HTTP Request,
+     * the parameter \param request, in a Webserver session,
+     * the parameter \param session.
+     */
+    void genericRequestReceived(brisa::shared::webserver::http::HttpRequest &request,
+                                WebserverSession *session);
 
 protected:
-    virtual void onRequest(const brisa::shared::webserver::http::HttpRequest &request, WebserverSession *session);
+    /*!
+     * Emit a generic request, with a HTTP Request, the parameter \param request,
+     * and a Webserver session, the parameter \param session.
+     */
+    virtual void onRequest(const brisa::shared::webserver::http::HttpRequest &request,
+                           WebserverSession *session);
     QByteArray path()
     {
         return m_path;
