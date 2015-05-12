@@ -19,38 +19,75 @@ public:
     HttpMessage(const HttpMessage &);
     ~HttpMessage();
 
+    /*!
+     * Return the HTTP version of message.
+     */
     HttpVersion httpVersion() const;
+    /*!
+     * Set the HTTP version of message with value \param version.
+     */
     void setHttpVersion(const HttpVersion &version);
 
+    /*!
+     * Return name of header content.
+     */
     QByteArray header(const QByteArray &name) const;
-    /*
-      if value is null, the header is removed (if exists)
-      */
+    /*!
+     * Set header content with \param name. If \param name is null, the header is
+     * removed.
+     */
     void setHeader(const QByteArray &name, const QByteArray &value);
+    /*!
+     * Return header of message.
+     */
     QHash<QByteArray, QByteArray> headers() const;
+    /*!
+     * Return an iterator pointing to first item of message's header.
+     */
     QHash<QByteArray, QByteArray>::const_iterator headersBeginIterator() const;
+    /*!
+     * Return an iterator pointing to the imaginary item after the last item in
+     * message's header.
+     */
     QHash<QByteArray, QByteArray>::const_iterator headersEndIterator() const;
 
+    /*!
+     * Return size of message's body.
+     */
     qint64 entitySize() const;
+    /*!
+     * Return message's body.
+     */
     QIODevice *entityBody() const;
-
-    // creates a QBuffer
+    /*!
+     * Set content of message's body with \param body.
+     */
     void setEntityBody(const QByteArray &body);
 
+    /*!
+     * Return a range of response entity.
+     */
     QPair<qlonglong, qlonglong> range() const;
+    /*!
+     * Set range of response entity.
+     */
     void setRange(const QPair<qlonglong, qlonglong> &);
-
+    /*!
+     * Allows a client to request that only part (a range of) the response
+     * entity be included within the response.
+     */
     bool useRange() const;
 
-    /*
-      the \p bodyDevice must be opened in readMode and must be
-      random-access (not sequencial) device
-
-      takes ownership of bodyDevice if successful
-      */
+    /*!
+     * Takes ownership of \param bodyDevice if successful. Note the
+     * \param bodyDevice must be opened in readMode and must be a random-access
+     * (not sequencial) device.
+     */
     bool setEntityBody(QIODevice *bodyDevice);
 
-    // clear the headers and entity body
+    /*!
+     * Clear headers and entity body.
+     */
     void clear();
 
 private:
