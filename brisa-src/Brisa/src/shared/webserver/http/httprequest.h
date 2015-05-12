@@ -16,10 +16,23 @@ public:
                          const QByteArray &uri = "/",
                          const HttpVersion &version = HttpVersion());
 
+    /*!
+     * Return method of HTTP Request, that indicates the method to be performed
+     * on the resource identified by the URI.
+     */
     QByteArray method() const;
+    /*!
+     * Set method with value of \param method.
+     */
     void setMethod(const QByteArray &method);
 
+    /*!
+     * Return URI, Uniform Resource Identifier, of HTTP Request.
+     */
     QByteArray uri() const;
+    /*!
+     * Set URI with value of \param uri.
+     */
     void setUri(const QByteArray &uri);
 
 private:
@@ -44,8 +57,10 @@ inline QByteArray brisa::shared::webserver::http::HttpRequest::uri() const
 
 inline QDebug &operator<<(QDebug dbg, const brisa::shared::webserver::http::HttpRequest &request)
 {
-    dbg.nospace() << "{\n  " << request.method().data() << ' ' << request.uri().data() << ' ' << request.httpVersion() << '\n';
-    for (QHash<QByteArray, QByteArray>::const_iterator i = request.headersBeginIterator();i != request.headersEndIterator();++i) {
+    dbg.nospace() << "{\n  " << request.method().data() << ' ' <<
+                     request.uri().data() << ' ' << request.httpVersion() << '\n';
+    for (QHash<QByteArray, QByteArray>::const_iterator i =
+         request.headersBeginIterator();i != request.headersEndIterator();++i) {
         dbg.nospace() << "  " << i.key().data() << ": " << i.value().data() << '\n';
     }
     if (request.entitySize())
