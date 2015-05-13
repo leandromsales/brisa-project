@@ -21,29 +21,61 @@ class HttpVersion
 {
 public:
     HttpVersion(int httpVersionMajor = 1, int httpVersionMinor = 1);
-    // str must have the format "HTTP/1.1", or a HTTP 0.0 will be created
-//    HttpVersion(const HttpVersion &) = default;
+    /*!
+     * Constructor of HTTP Version. \param str must have format "HTTP/1.1",
+     * or a HTTP 0.0 will be created
+     */
     HttpVersion(const QByteArray &str);
 
+    /*!
+     * Return HTTP major version.
+     */
     int major() const;
+    /*!
+     * Return HTTP minor version.
+     */
     int minor() const;
 
+    /*!
+     * Set HTTP major version.
+     */
     void setMajor(int);
+    /*!
+     * Set HTTP minor version.
+     */
     void setMinor(int);
 
-//    bool operator ==(const HttpVersion &) = default;
-    bool operator ==(const HttpVersion &);
+    /*!
+     * Return true of both major and minor version of HTTP \param v are equal to
+     * version of constructor.
+     */
+    bool operator == (const HttpVersion &v);
 
     // TODO: fix
     bool operator ==(qreal) const;
     bool operator !=(qreal) const;
 
-
+    /*!
+     * Return true of both major and minor version of HTTP \param o are greater than
+     * version of constructor.
+     */
     bool operator >(const HttpVersion &o) const;
+    /*!
+     * Return true of both major and minor version of HTTP \param o are smaller than
+     * version of constructor.
+     */
     bool operator <(const HttpVersion &o) const;
+    /*!
+     * Return true of both major and minor version of HTTP \param o are greater
+     * or equal than version of constructor.
+     */
     bool operator >=(const HttpVersion &o) const;
+    /*!
+     * Return true of both major and minor version of HTTP \param o are smaller
+     * or equal than version of constructor.
+     */
     bool operator <=(const HttpVersion &o) const;
-//    HttpVersion &operator =(qreal) = default;
+
     HttpVersion &operator =(qreal);
     operator QByteArray() const;
     operator bool() const;
@@ -56,7 +88,7 @@ private:
 }  // namespace http
 }  // namespace webserver
 }  // namespace shared
-} // namespace Brisa
+}  // namespace Brisa
 
 inline brisa::shared::webserver::http::HttpVersion::HttpVersion(int httpVersionMajor, int httpVersionMinor) :
         m_major(httpVersionMajor),
@@ -88,7 +120,8 @@ inline brisa::shared::webserver::http::HttpVersion::HttpVersion(const QByteArray
     }
 }
 
-inline brisa::shared::webserver::http::HttpVersion &brisa::shared::webserver::http::HttpVersion::operator =(qreal version)
+inline brisa::shared::webserver::http::HttpVersion
+&brisa::shared::webserver::http::HttpVersion::operator =(qreal version)
 {
     m_major = version;
     m_minor = static_cast<int>(version * 10) % 10;
@@ -105,7 +138,7 @@ inline int brisa::shared::webserver::http::HttpVersion::major() const
     return m_major;
 }
 
-inline bool brisa::shared::webserver::http::HttpVersion::operator ==(const HttpVersion &v)
+inline bool brisa::shared::webserver::http::HttpVersion::operator == (const HttpVersion &v)
 {
     return m_major == v.m_major && m_minor == v.m_minor;
 }
