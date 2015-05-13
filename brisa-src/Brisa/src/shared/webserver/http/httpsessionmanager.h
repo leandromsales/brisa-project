@@ -15,13 +15,22 @@ class HttpSessionManager : public QThread
 Q_OBJECT
 public:
     explicit HttpSessionManager(HttpServer *parent);
+    /*!
+     * Emit a signal onNewConnection with \param socketDescriptor.
+     */
     void addSession(qintptr socketDescriptor);
+    /*!
+     * Add a new session to pool.
+     */
     void releaseSession(HttpSession *);
 
 signals:
     void newConnection(qintptr);
 
 private slots:
+    /*!
+     * Set a HTTP Session of pool with socket descriptor \param socketDescriptor.
+     */
     void onNewConnection(qintptr socketDescriptor);
 
 private:

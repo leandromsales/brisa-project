@@ -22,6 +22,10 @@ public:
     explicit HttpSession(HttpSessionManager *sessionManager);
     virtual ~HttpSession();
 
+    /*!
+     * Set value of \param socketDescriptor, this argument is a socket descriptor
+     * for the session.
+     */
     void setSession(qintptr socketDescriptor);
 
     // @ret should return the HTTP response status (404 not found, method not implemented,
@@ -31,40 +35,64 @@ public:
     // last supported version or HTTP_VERSION_NOTSUPPORTED otherwise.
     // used to identify if this http request (version, method, uri, ...) is supported
     // always close the connection after respond the message
+    /*!
+     * Return zero if \param request is a valid HTTP Request. Otherwise, return
+     * 505, status code to HTTP_VERSION_NOT_SUPPORTED.
+     */
     virtual int isRequestSupported(const HttpRequest &request) const;
 
 protected slots:
+    /*!
+     * Build header and body of HTTP Response.
+     */
     void writeResponse(brisa::shared::webserver::http::HttpResponse);
 
 protected:
-    // used to respond BAD_REQUESTs
-    // must be set in the constructor (HttpVersion isn't thread-safe yet)
-    HttpVersion lastSupportedHttpVersion;
-
     virtual bool hasEntityBody(const HttpRequest &request) throw(HttpResponse) = 0;
-    // @ret returns true when the entity body was fully received
-    // in future, the entity body should be put on qiodevice buffer, not in memory
+    // TO DO: the entity body should be put on qiodevice buffer, not in memory
+    /*!
+     * returns true when the entity body was fully received.
+     */
     virtual bool atEnd(HttpRequest &request, QByteArray &buffer) throw(HttpResponse) = 0;
+    /*!
+     * Write an appropriate response to \param request.
+     */
     virtual void onRequest(const HttpRequest &request) = 0;
 
-    virtual void prepareResponse(HttpResponse &);
-    virtual void writeEntityBody(const HttpResponse &, QTcpSocket *);
+    /*!
+     * Set content length on header of \param r.
+     */
+    virtual void prepareResponse(HttpResponse &r);
+    /*!
+     * Write a HTTP response in a socket.
+     * \param r is HHTP response.
+     * \param s is TCP socket.
+     */
+    virtual void writeEntityBody(const HttpResponse &r, QTcpSocket *s);
 
-    virtual void sessionStarted()
-    {
-    }
+    virtual void sessionStarted();
 
-    // this function is called every time a connection is closed
-    // should return true if the object must keep alive or false
-    // if the object should be deleted
+    /*!
+     * This function is called every time a connection is closed. Should return
+     * true, if the object must keep alive, or false, if the object should be deleted.
+     */
     virtual bool keepAlive()
     {
         return false;
     }
 
 private slots:
+    /*!
+     * Read socket and try write an appropriate response.
+     */
     void onReadyRead();
+    /*!
+     * Clear buffers and set states when a connection is closed.
+     */
     void onConnectionDie();
+
+protected:
+    HttpVersion lastSupportedHttpVersion;
 
 private:
     HttpSessionManager *sessionManager;

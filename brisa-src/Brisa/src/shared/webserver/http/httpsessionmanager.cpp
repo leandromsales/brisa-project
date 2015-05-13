@@ -10,19 +10,16 @@ HttpSessionManager::HttpSessionManager(HttpServer *parent) :
     QThread(parent),
     server(parent)
 {
-    qDebug() << "INICIOU HTTP SESSION MANAGER";
     connect(this, SIGNAL(newConnection(qintptr)), this, SLOT(onNewConnection(qintptr)));
 }
 
 void HttpSessionManager::addSession(qintptr socketDescriptor)
 {
-    qDebug() << "ADD SESSION";
     emit newConnection(socketDescriptor);
 }
 
 void HttpSessionManager::onNewConnection(qintptr socketDescriptor)
 {
-    qDebug() << "ENTROU!!!";
     bool created = false;
 
     mutex.lock();
@@ -35,10 +32,8 @@ void HttpSessionManager::onNewConnection(qintptr socketDescriptor)
 
     if (!created) {
         HttpSession *s = server->factory().generateSessionHandler(this);
-        if (!s) qDebug() << "ERRO NA CRIAÇÃO";
         s->setSession(socketDescriptor);
     }
-    qDebug() << "FIM";
 }
 
 void HttpSessionManager::releaseSession(HttpSession *session)

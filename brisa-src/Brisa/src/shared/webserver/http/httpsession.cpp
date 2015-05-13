@@ -39,13 +39,12 @@ HttpSession::~HttpSession()
 void HttpSession::setSession(qintptr socketDescriptor)
 {
     socket->setSocketDescriptor(socketDescriptor);
-    qDebug() << "VOU INICIAR A SESSÃO";
     sessionStarted();
 }
 
 int HttpSession::isRequestSupported(const HttpRequest &request) const
 {
-    if (request.httpVersion() <= lastSupportedHttpVersion) {  //1.1
+    if (request.httpVersion() <= lastSupportedHttpVersion) {
         return 0;
     } else {
         return HttpResponse::HTTP_VERSION_NOT_SUPPORTED;
@@ -63,7 +62,8 @@ void HttpSession::writeResponse(HttpResponse r)
     socket->write(r.reasonPhrase());
     socket->write("\r\n");
 
-    for (QHash<QByteArray, QByteArray>::const_iterator i = r.headersBeginIterator();i != r.headersEndIterator();++i) {
+    for (QHash<QByteArray, QByteArray>::const_iterator i = r.headersBeginIterator();
+         i != r.headersEndIterator();++i) {
         socket->write(i.key());
         if (!i.value().isNull()) {
             socket->write(": ");
@@ -118,7 +118,8 @@ void HttpSession::onReadyRead()
                 buffer.remove(0, i + 2);
 
                 if (request.size() != 3) {
-                    writeResponse(HttpResponse(lastSupportedHttpVersion, HttpResponse::BAD_REQUEST, true));
+                    writeResponse(HttpResponse(lastSupportedHttpVersion,
+                                               HttpResponse::BAD_REQUEST, true));
                     return;
                 }
 
@@ -131,16 +132,17 @@ void HttpSession::onReadyRead()
                     if (version) {
                         requestInfo.setHttpVersion(version);
                     } else {
-                        writeResponse(HttpResponse(lastSupportedHttpVersion, HttpResponse::BAD_REQUEST, true));
+                        writeResponse(HttpResponse(lastSupportedHttpVersion,
+                                                   HttpResponse::BAD_REQUEST, true));
                         return;
                     }
                 }
 
                 {
                     int statusCode = isRequestSupported(requestInfo);
-                    //qDebug() << "statusCode = isRequestSupported(requestInfo) = " << statusCode;
                     if (statusCode) {
-                        writeResponse(HttpResponse(lastSupportedHttpVersion, statusCode, true));
+                        writeResponse(HttpResponse(lastSupportedHttpVersion,
+                                                   statusCode, true));
                         return;
                     }
                 }
@@ -163,9 +165,11 @@ void HttpSession::onReadyRead()
                     i = header.indexOf(':');
                     if (i > 0) {
                         if (i + 1 < header.size())
-                            requestInfo.setHeader(header.left(i).trimmed(), header.mid(i + 1).trimmed());
+                            requestInfo.setHeader(header.left(i).trimmed(),
+                                                  header.mid(i + 1).trimmed());
                         else
-                            requestInfo.setHeader(header.left(i).trimmed(), QByteArray());
+                            requestInfo.setHeader(header.left(i).trimmed(),
+                                                  QByteArray());
                     } else {
                         writeResponse(HttpResponse(requestInfo.httpVersion() < lastSupportedHttpVersion ?
                                                        requestInfo.httpVersion() : lastSupportedHttpVersion,

@@ -129,7 +129,8 @@ bool WebserverSession::atEnd(HttpRequest &request, QByteArray &buffer) throw(Htt
                     entitySize = n.toInt(&ok, 16);
 
                     if (!ok)
-                        throw HttpResponse(request.httpVersion(), HttpResponse::BAD_REQUEST, true);
+                        throw HttpResponse(request.httpVersion(),
+                                           HttpResponse::BAD_REQUEST, true);
 
                     if (entitySize)
                         chunkedEntity = WAITING_FOR_CHUNK;
@@ -223,7 +224,8 @@ void WebserverSession::onRequest(const HttpRequest &request)
 
 void WebserverSession::prepareResponse(HttpResponse &r)
 {
-    if (lastRequest.httpVersion().minor() == 0 || lastRequest.header("CONNECTION") == "close")
+    if (lastRequest.httpVersion().minor() == 0 ||
+            lastRequest.header("CONNECTION") == "close")
         r.setCloseConnection(true);
 
     QPair<qlonglong, qlonglong> range = r.range();
