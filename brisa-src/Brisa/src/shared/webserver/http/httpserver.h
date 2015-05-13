@@ -27,17 +27,29 @@ public:
                         quint16 port = 0, QObject *parent = 0);
     ~HttpServer();
 
+    /*!
+     * Start a HTTP Server.
+     */
     void start();
 
+    /*!
+     * Return number of threads in this HTTP Server.
+     */
     int threadsNumber() const;
-    // must be more than 0
+    /*!
+     * Set number of threads in this HTTP Server. This value must be greater
+     * than one.
+     */
     void setThreadsNumber(int);
 
     virtual HttpServerFactory &factory() = 0;
 
-// Marden: Mudança de "int *" para int
-// Larissa: mudança de int para qintptr
 protected:
+    /*!
+     * This virtual function is called when a new connection is available.
+     * The \param handle argument is a socket descriptor for the accepted connection.
+     *
+     */
     void incomingConnection(qintptr handle);
 
 private:

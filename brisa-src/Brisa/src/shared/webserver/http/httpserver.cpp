@@ -13,7 +13,6 @@ HttpServer::HttpServer(const QHostAddress &address, quint16 port, QObject *paren
     address(address),
     port(port)
 {
-    qDebug() << "INSTANCIOU HTTPSERVER";
     threads.append(new HttpSessionManager(this));
 }
 
@@ -50,10 +49,8 @@ HttpServer::~HttpServer()
     }
 }
 
-// esse cara NUNCA é chamado!
 void HttpServer::incomingConnection(qintptr socketDescriptor)
 {
-    qDebug() << "CHEGOU NOVA CONEXAO";
     threads[(ringIndex++) % threads.size()]->addSession(socketDescriptor);
 }
 
@@ -63,7 +60,6 @@ void HttpServer::start()
     foreach(HttpSessionManager *thread, threads) {
         thread->start();
     }
-    qDebug() << "SERVIDOR INICIOU";
 }
 
 }  // namespace http
