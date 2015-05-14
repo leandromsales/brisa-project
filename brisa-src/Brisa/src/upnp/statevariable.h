@@ -20,9 +20,9 @@ class StateVariable: public QObject {
 public:
 
     /*!
-     * Constructs a StateVariable that \a sendEvents with the given \a name,
-     * \a datatype, \a defaultValue, \a maximum value, \a minimum value, value
-     * \a step, and \a parent.
+     * Constructs a StateVariable that \param sendEvents with the given \param name,
+     * \param datatype, \param defaultValue, \param maximum value, \param minimum value, value
+     * \param step, and \param parent.
      */
     StateVariable(QString sendEvents = "",
                        QString name = "",
@@ -35,12 +35,12 @@ public:
                        QObject *parent = 0);
 
     /*!
-     * Constructs a StateVariable from the given \a variable.
+     * Constructs a StateVariable from the given \param variable.
      */
     StateVariable(const StateVariable &);
 
     /*!
-     * Sets this variable equals to \a variable.
+     * Sets this variable equals to \param variable.
      */
     StateVariable &operator=(const StateVariable &);
 
@@ -68,12 +68,12 @@ public:
     } StateVariableAttribute;
 
     /*!
-     * Sets its attribute \a attr to the given \a value.
+     * Sets its attribute \param attr to the given \param value.
      */
     void setAttribute(StateVariableAttribute attr, QVariant newValue);
 
     /*!
-     * Returns \a attr value as a QString.
+     * Returns \param attr value as a QString.
      */
     QString getAttribute(StateVariableAttribute attr, int index = 0) const;
 
@@ -110,20 +110,39 @@ public:
      */
     void clear();
 
+    // TO DO: esses sets todos deveriam ser privados, as chamadas externas deveriam
+    // acontecer através do setAttribute.
+    /*!
+     * Set value of \a nextMulticastSeq with \param seq.
+     */
     void setMulticastSeq(quint32 *seq);
-
+    /*!
+     * Return value of \a nextMulticastSeq.
+     */
     quint32 getNextMulticastSeq();
-
+    /*!
+     * Return value of \a multicastUsn.
+     */
     QString getMulticastUsn();
-
+    /*!
+     * Set value of \a multicastUsn with \param usn.
+     */
     void setMulticastUsn(QString usn);
-
+    /*!
+     * Return value of \a multicastUdn.
+     */
     QString getMulticastUdn();
-
+    /*!
+     * Set value of \a multicastUdn with \param udn.
+     */
     void setMulticastUdn(QString udn);
-
+    /*!
+     * Return value of \a multicastSvcid.
+     */
     QString getMulticastSvcid();
-
+    /*!
+     * Set value of \a multicastSvcid with \param svcid.
+     */
     void setMulticastSvcid(QString svcid);
 
 signals:

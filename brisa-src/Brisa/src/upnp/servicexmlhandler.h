@@ -19,6 +19,9 @@ public:
     ServiceXMLHandler(QObject *parent = 0);
     virtual ~ServiceXMLHandler();
 
+    /*!
+     * Parse services in \param scpd to \param service.
+     */
     void parseService(AbstractService *service, QIODevice *scpd);
 };
 

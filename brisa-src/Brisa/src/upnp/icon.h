@@ -24,14 +24,35 @@ public:
         Mimetype, Width, Height, Depth, Url
     } xmlIconTags;
 
+    /*!
+     * Set attribute \param key with value of \param v.
+     */
     void setAttribute(xmlIconTags key, QString v);
+    /*!
+     * Set variable icon with value of \param icon.
+     */
     void setIcon(QIcon icon);
+    /*!
+     * Return a QIcon.
+     */
     QIcon getIcon();
+    /*!
+     * Clear all variables.
+     */
     void clear();
+    /*!
+     * Get value of attribute \param key.
+     */
     QString getAttribute(xmlIconTags key);
+    /*!
+     * Download QIcon.
+     */
     void downloadIcon(QString deviceUrl);
 
 signals:
+    /*!
+     * This signal is emitted when download of icon is finished.
+     */
     void iconDownloadFinished();
 
 public slots:
