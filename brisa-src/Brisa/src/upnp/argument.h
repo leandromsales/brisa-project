@@ -21,8 +21,8 @@ public:
     /*!
      * \internal
      *
-     * Constructs an argument with given \a name, \a direction and
-     * \a relatedStateVariable.
+     * Constructs an argument with given \param name, \param direction and
+     * \param relatedStateVariable.
      */
     Argument(const QString &name = "", const QString &direction = "",
             const QString &relatedStateVariable = "", QObject *parent = 0);
@@ -41,14 +41,14 @@ public:
     /*!
      * \internal
      *
-     * Sets the argument's attribute \a key to the given \a value.
+     * Sets the argument's attribute \param key to the given \param value.
      */
     void setAttribute(xmlArgument key, const QString &value);
 
     /*!
      * \internal
      *
-     * Returns the value of the argument's attribute \a key.
+     * Returns the value of the argument's attribute \param key.
      */
     QString getAttribute(xmlArgument key) const;
 

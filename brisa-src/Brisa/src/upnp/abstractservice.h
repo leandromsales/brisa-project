@@ -41,8 +41,8 @@ public:
     AbstractService(QObject *parent = 0);
     /*!
      *
-     * Constructs an abstract service with given \a serviceType, \a serviceId,
-     * \a scpdUrl, \a controlUrl, \a eventSubUrl, \a host and \a parent.
+     * Constructs an abstract service with given \param serviceType, \param serviceId,
+     * \param scpdUrl, \param controlUrl, \param eventSubUrl, \param host and \param parent.
      */
     AbstractService(const QString &serviceType, const QString &serviceId =
             "", const QString &scpdUrl = "", const QString &controlUrl = "",
@@ -52,7 +52,7 @@ public:
     /*!
      * \internal
      *
-     * Constructs and abstract service from given \a serv.
+     * Constructs and abstract service from given \param serv.
      */
     AbstractService(AbstractService &service);
 
@@ -79,21 +79,21 @@ public:
     /*!
      * \internal
      *
-     * Set its attribute \a key to the given \a value.
+     * Set its attribute \param key to the given \param value.
      */
     void setAttribute(xmlTags key, const QString &value);
 
     /*!
      * \internal
      *
-     * Get the attribute \a key 's value.
+     * Get the attribute \param key 's value.
      */
     QString getAttribute(xmlTags key);
 
     /*!
      * \internal
      *
-     * Creates an Action with the given \a name and adds it to the service's
+     * Creates an Action with the given \param name and adds it to the service's
      * action list.
      */
     void addAction(const QString &name);
@@ -101,14 +101,14 @@ public:
     /*!
      * \internal
      *
-     * Adds the given \a action to the service's action list.
+     * Adds the given \param action to the service's action list.
      */
     void addAction(Action *action);
 
     /*!
      * \internal
      *
-     * Returns the service's action with the given \a name. If it has no action
+     * Returns the service's action with the given \param name. If it has no action
      * with that name, it returns 0.
      */
     Action *getAction(const QString &name);
@@ -128,19 +128,19 @@ public:
     /*!
      * \internal
      *
-     * Adds the given \a stateVariable to the service's state variables list.
+     * Adds the given \param stateVariable to the service's state variables list.
      */
     void addStateVariable(StateVariable *stateVariable);
 
     /*!
      * \internal
      *
-     * Creates a StateVariable that \a sendEvents with the given \a name,
-     * \a datatype, \a defaultValue, \a maximum value, \a minimum value and \a step,
-     * and adds it to the service's state variables list.
+     * Creates a StateVariable that \param sendEvents with the given \param name,
+     * \param datatype, \param defaultValue, \param maximum value,
+     * \param minimum value and \param step, and adds it to the service's state
+     * variables list.
      */
-    void
-            addStateVariable(const QString &sendEvents, const QString &name,
+    void addStateVariable(const QString &sendEvents, const QString &name,
                     const QString &datatype, const QString &defaultValue,
                     const QString &maximum, const QString &minimum,
                     const QString &step);

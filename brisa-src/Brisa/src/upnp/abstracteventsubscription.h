@@ -14,7 +14,8 @@ namespace brisa {
 namespace upnp {
 
 /*!
- * \class Brisa::BrisaAbstractEventSubscription brisaabstracteventsubscription.h BrisaUpnp/BrisaAbstractEventSubscription
+ * \class Brisa::BrisaAbstractEventSubscription brisaabstracteventsubscription.h
+ * BrisaUpnp/BrisaAbstractEventSubscription
  *
  * \brief Abstract class that represents an event subscription
  */
@@ -23,18 +24,19 @@ class AbstractEventSubscription: public brisa::shared::webserver::WebService {
 public:
 
     /*!
-     * Construtcs an abstract event subscription with given \a sid, list of
-     * \a callbackUrls, \a timeout and \a parent. \a timeout less than 0 means
-     * infinite.
+     * Construtcs an abstract event subscription with given \param sid, list of
+     * \param callbackUrls, \param timeout and \param parent. \param timeout less
+     * than 0 means infinite.
      */
     AbstractEventSubscription(const QString &sid,
-            const QStringList &callbackUrls, const int &timeout = -1, // <0 = infinite
+            const QStringList &callbackUrls, const int &timeout = -1,
             QObject *parent = 0);
 
     /*!
-     * Renews the subscription for the given \a newTimeout.
+     * Renews the subscription for the given \param newTimeout. \param newTimeout
+     * less than 0 means infinite.
      */
-    virtual void renew(const int &newTimeout = -1) = 0; // <0 = infinite
+    virtual void renew(const int &newTimeout = -1) = 0;
 
     /*!
      * Checks if the subscription has already expired. Returns true if it has

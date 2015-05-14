@@ -18,10 +18,16 @@ inline QString getUuid() {
 	return QUuid::createUuid().toString().remove(0, 1).remove(36, 1);
 }
 
+/*!
+ * Return uuid.
+ */
 inline QString getCompleteUuid() {
 	return QString("uuid:") + getUuid();
 }
 
+/*!
+ * Parse \param message to QMap. All keys are lowercase.
+ */
 inline QMap<QString, QString> mapFromMessage(const QString &message) {
     QStringList messageLines = message.split("\r\n");
     QMap<QString, QString> response;
@@ -29,7 +35,6 @@ inline QMap<QString, QString> mapFromMessage(const QString &message) {
     foreach(QString line, messageLines) {
         if((line = line.trimmed())!= "") {
             int divpos = line.indexOf(':');
-            //TODO Definir se vai sempre fazer toLower aqui
             QString key = line.left(divpos).toLower();
             QString value = line.right(line.size() - divpos).remove(0, 1).trimmed();
             response[key] = value;
@@ -40,11 +45,6 @@ inline QMap<QString, QString> mapFromMessage(const QString &message) {
 
     return response;
 }
-
-//inline QMap<QString, QString> mapFromMessage(const QByteArray &datagram) {
-//    return mapFromMessage(QString(datagram));
-//}
-
 }
 }
 
