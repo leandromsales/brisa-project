@@ -69,9 +69,7 @@ bool WebserverSession::hasEntityBody(const HttpRequest &request) throw(HttpRespo
         // REQUIRED. Field value MUST be text/xml; charset="utf-8" for description documents.
         if (request.header("CONTENT-TYPE").isNull()) {
             throw HttpResponse(request.httpVersion(), HttpResponse::BAD_REQUEST);
-        }/* else if(request.header("CONTENT-TYPE") != "text/xml; charset=\"utf-8\"") {
-            throw HttpResponse(request.httpVersion(), HttpResponse::BAD_REQUEST);
-        }*/
+        }
 
         if (!request.header("CONTENT-LENGTH").isNull()) {
             bool ok;

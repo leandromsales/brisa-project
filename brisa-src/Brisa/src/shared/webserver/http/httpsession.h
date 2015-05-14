@@ -28,13 +28,6 @@ public:
      */
     void setSession(qintptr socketDescriptor);
 
-    // @ret should return the HTTP response status (404 not found, method not implemented,
-    // ...) or 0. If a 0 is returned, the server continues to read the request, otherwise,
-    // respond the request with the specified response code and closes the connection.
-    // Default implementation returns 0 if version is lower or equals to the
-    // last supported version or HTTP_VERSION_NOTSUPPORTED otherwise.
-    // used to identify if this http request (version, method, uri, ...) is supported
-    // always close the connection after respond the message
     /*!
      * Return zero if \param request is a valid HTTP Request. Otherwise, return
      * 505, status code to HTTP_VERSION_NOT_SUPPORTED.
@@ -48,11 +41,15 @@ protected slots:
     void writeResponse(brisa::shared::webserver::http::HttpResponse);
 
 protected:
+    /*!
+     * Through content-length and content-size of \param request, this method define
+     * is \param request is a chunked entity or not.
+     */
     virtual bool hasEntityBody(const HttpRequest &request) throw(HttpResponse) = 0;
-    // TO DO: the entity body should be put on qiodevice buffer, not in memory
     /*!
      * returns true when the entity body was fully received.
      */
+    // TO DO: the entity body should be put on qiodevice buffer, not in memory
     virtual bool atEnd(HttpRequest &request, QByteArray &buffer) throw(HttpResponse) = 0;
     /*!
      * Write an appropriate response to \param request.
