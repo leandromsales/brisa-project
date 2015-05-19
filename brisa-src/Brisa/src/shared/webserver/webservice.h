@@ -33,7 +33,7 @@ signals:
      * the parameter \param request, in a Webserver session,
      * the parameter \param session.
      */
-    void genericRequestReceived(brisa::shared::webserver::http::HttpRequest &request,
+    void genericRequestReceived(brisa::shared::webserver::http::HttpRequest,
                                 WebserverSession *session);
 
 protected:
