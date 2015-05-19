@@ -10,6 +10,10 @@ namespace controlpoint {
 namespace av {
 namespace didl {
 
+/*!
+ * Class Res is an implementation of element res, that identifies a
+ * Resource. The equivalent MPEG21 DIDL element is 'RESOURCE'.
+ */
 class Res : public QObject
 {
     Q_OBJECT
@@ -19,11 +23,28 @@ public:
     ~Res();
     Res & operator=(const Res &);
 
+    /*!
+     * Put value of QString in /a value.
+     */
     void setValue(const QString &);
+    /*!
+     * Returns /a value.
+     */
     QString getValue();
 
+    /*!
+     * Add a property to resource. This property will be save on QHash.
+     * If arguments are empty strings, function returns false. Otherwise,
+     * returns true.
+     */
     bool addProperty(const QString &, const QString &);
-    QString getProperty(const QString &);
+    /*!
+     * Return property called \param name.
+     */
+    QString getProperty(const QString &name);
+    /*!
+     * Return QHash contains all properties.
+     */
     QHash<QString, QString> getProperties() const;
 
 private:

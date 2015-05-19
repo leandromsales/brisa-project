@@ -31,8 +31,13 @@ QString Res::getValue() {
 }
 
 bool Res::addProperty(const QString &name, const QString &value) {
-    this->properties.insert(name.toLower(), value);
-    return true; // TODO: check value, cannot be empty;
+    bool notEmpty = true;
+    if (name.isEmpty() || value.isEmpty()) {
+        notEmpty = false;
+    } else {
+        this->properties.insert(name.toLower(), value);
+    }
+    return notEmpty;
 }
 
 QString Res::getProperty(const QString &name) {
