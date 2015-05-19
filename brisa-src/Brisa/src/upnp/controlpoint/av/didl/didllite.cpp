@@ -18,7 +18,6 @@ DIDLLite::DIDLLite(QObject *parent) :
 Container *DIDLLite::parse(const QString &content) {
     QDomDocument document("didl");
     document.setContent(content);
-    //qDebug() << document.toString();
 
     QDomElement element = document.documentElement();
     if (element.tagName() != "DIDL-Lite") {
@@ -41,7 +40,6 @@ Container *DIDLLite::parse(const QString &content) {
         for (int k = 0; k < node.attributes().length(); k++) {
             nodeName = node.attributes().item(k).nodeName();
             nodeValue = node.attributes().item(k).nodeValue();
-            //qDebug() << nodeName << nodeValue;
             container->addProperty(nodeName, nodeValue);
         }
 
@@ -52,7 +50,6 @@ Container *DIDLLite::parse(const QString &content) {
             nodeValue = domNodeList1.item(j).childNodes().item(0).nodeValue();
             container->setAttribute(nodeName, nodeValue);
         }
-        //qDebug() << container->getProperty("id");
         root->addContainer(container);
     }
 
@@ -64,7 +61,6 @@ Container *DIDLLite::parse(const QString &content) {
         for (int k = 0; k < node.attributes().length(); k++) {
             nodeName = node.attributes().item(k).nodeName();
             nodeValue = node.attributes().item(k).nodeValue();
-            //qDebug() << nodeName << nodeValue;
             item->addProperty(nodeName, nodeValue);
         }
 
@@ -74,12 +70,10 @@ Container *DIDLLite::parse(const QString &content) {
             nodeName = node.nodeName();
             if (nodeName == "res") {
                 Res *res = new Res();
-                //qDebug() << node.childNodes().item(0).nodeValue();
                 res->setValue(node.childNodes().item(0).nodeValue());
                 for (int k = 0; k < node.attributes().length(); k++) {
                     nodeName = node.attributes().item(k).nodeName();
                     nodeValue = node.attributes().item(k).nodeValue();
-                    //qDebug() << nodeName << nodeValue;
                     res->addProperty(nodeName, nodeValue);
                 }
                 item->setRes(res);
@@ -87,11 +81,9 @@ Container *DIDLLite::parse(const QString &content) {
                 QStringList sl = domNodeList1.item(j).nodeName().split(":");
                 nodeName = (sl.length() == 2) ? sl[1] : sl[0];
                 nodeValue = domNodeList1.item(j).childNodes().item(0).nodeValue();
-                //qDebug() << nodeName << nodeValue;
                 item->setAttribute(nodeName, nodeValue);
             }
         }
-        //qDebug() << container->getProperty("id");
 
         root->addItem(item);
     }

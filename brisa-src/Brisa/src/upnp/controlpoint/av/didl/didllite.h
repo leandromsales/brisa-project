@@ -16,7 +16,11 @@ class DIDLLite : public QObject
     Q_OBJECT
 public:
     explicit DIDLLite(QObject *parent = 0);
-    Container *parse(const QString &);
+    /*!
+     * Parse \param content to DOM Document and write it as a container.
+     * After all, return this container.
+     */
+    Container *parse(const QString &content);
 
 signals:
 
