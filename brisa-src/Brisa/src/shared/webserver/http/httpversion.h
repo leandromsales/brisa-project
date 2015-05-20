@@ -51,7 +51,6 @@ public:
      */
     bool operator == (const HttpVersion &v);
 
-    // TODO: fix
     bool operator ==(qreal) const;
     bool operator !=(qreal) const;
 
