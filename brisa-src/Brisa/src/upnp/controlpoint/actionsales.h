@@ -20,13 +20,31 @@ public:
     ~ActionSales();
     ActionSales & operator=(const ActionSales &);
 
-    bool setAttribute(const QString &, const QString &);
-    QString getAttribute(const QString &);
+    /*!
+     * Add an attribute and your value in QHash \a attributes.
+     */
+    bool setAttribute(const QString &attributeName, const QString &attributeValue);
+    /*!
+     * Return value of \param attributeName.
+     */
+    QString getAttribute(const QString &attributeName);
+    /*!
+     * Return a QHash contains all attributes.
+     */
     QHash<QString, QString> getAttributes() const;
 
-    void setArguments(const QHash<QString, ActionArgument*> &);
+    /*!
+     * Set QHash \a argumentList with value of \param arguments.
+     */
+    void setArguments(const QHash<QString, ActionArgument*> &arguments);
+    /*!
+     * Return a QHash contains all arguments.
+     */
     QHash<QString, ActionArgument*> getArguments() const;
-    void addArgument(ActionArgument *);
+    /*!
+     * Insert an argument in argument list.
+     */
+    void addArgument(ActionArgument *argument);
 
 private:
     QHash<QString, QString> attributes;
