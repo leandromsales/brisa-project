@@ -20,24 +20,53 @@ public:
 	MediaControlPoint(QObject *parent = 0, QString st = "ssdp:all", int mx = 5);
 	~MediaControlPoint();
 
+    /*!
+     * Return a media server device with UUID in argument.
+     */
 	const MediaServerDevice *getMediaServer(const QString &);
+    /*!
+     * Return a media renderer device with UUID in argument.
+     */
 	const MediaRendererDevice *getMediaRenderer(const QString &);
+    /*!
+     * Return all media server devices.
+     */
 	QList<MediaServerDevice *> getMediaServers();
+    /*!
+     * Return all media renderer devices.
+     */
 	QList<MediaRendererDevice *> getMediaRenderers();
-	uint getMediaServersCount();
+    /*!
+     * Return \a mediaServerCount.
+     */
+    uint getMediaServersCount();
+    /*!
+     * Return \a mediaRendererCount.
+     */
 	uint getMediaRenderersCount();
-	void discover();
+    /*!
+     * Call \a discover() from \a MSearchClientCP, which send discover
+     * messages to network.
+     */
+    void discover();
+    /*!
+     * Start SSDP, discover message and media devices.
+     */
 	void start();
+    /*!
+     * Stop SSDP, discover message and media devices.
+     */
 	void stop();
+    /*!
+     * Check if server already is running.
+     */
 	bool isRunning();
 
 private:
 	uint mediaServerCount;
 	uint mediaRendererCount;
-	//teste *testen;
 
-//	SSDP *ssdp;
-	brisa::shared::ssdp::SSDPClient *ssdp;
+    brisa::shared::ssdp::SSDPClient *ssdp;
 	MSearchClientCP *msearch;
 	QHash<QString, MediaServerDevice*> mss;
 	QHash<QString, MediaRendererDevice*> mrs;
@@ -51,7 +80,7 @@ signals:
 	void leaveMediaRendererDevice(QString);
 
 private slots:
-	void handleNewSSDPMessage(QString);
+    void handleNewSSDPMessage(QString); //TODO Explain it better
 	void handleSSDPSetupEvents(QString);
 	void handleMediaServerReady(DeviceSales *device);
 	void handleMediaRendererReady(DeviceSales * device);
