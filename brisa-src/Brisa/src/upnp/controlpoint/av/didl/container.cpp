@@ -44,8 +44,13 @@ QHash<QString, QString> Container::getAttributes() const {
 }
 
 bool Container::addProperty(const QString &name, const QString &value) {
-    this->properties.insert(name.toLower(), value);
-    return true; // TODO: check value, cannot be empty;
+    bool notEmpty = true;
+    if (name.isEmpty() || value.isEmpty()) {
+        notEmpty = false;
+    } else {
+        this->properties.insert(name.toLower(), value);
+    }
+    return notEmpty;
 }
 
 QString Container::getProperty(const QString &name) {
@@ -57,8 +62,13 @@ QHash<QString, QString> Container::getProperties() const {
 }
 
 bool Container::addContainer(Container *container) {
-    this->containers.append(container);
-    return true; // TODO: check value, cannot be empty;
+    bool notEmpty = true;
+    if (!container) {
+        this->containers.append(container);
+    } else {
+        notEmpty = false;
+    }
+    return notEmpty;
 }
 
 QList<Container*> Container::getContainers() const {
@@ -66,8 +76,13 @@ QList<Container*> Container::getContainers() const {
 }
 
 bool Container::addItem(Item *item) {
-    this->items.append(item);
-    return true; // TODO: check value, cannot be empty;
+    bool notEmpty = true;
+    if (!item) {
+        this->items.append(item);
+    } else {
+        notEmpty = false;
+    }
+    return notEmpty;
 }
 
 QList<Item*> Container::getItems() const {

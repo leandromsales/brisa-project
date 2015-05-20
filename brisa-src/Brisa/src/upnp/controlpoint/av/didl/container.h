@@ -21,18 +21,53 @@ public:
     ~Container();
     Container & operator=(const Container &);
 
-    bool setAttribute(const QString &, const QString &);
-    QString getAttribute(const QString &);
+    /*!
+     * Add an attribute called \param attributeName with value \param attibruteValue
+     * to QHash \a attributes.
+     */
+    bool setAttribute(const QString &attributeName, const QString &attributeValue);
+    /*!
+     * Return value of attribute \param attributeName.
+     */
+    QString getAttribute(const QString &attributeName);
+    /*!
+     * Return all attributtes as a QHash.
+     */
     QHash<QString, QString> getAttributes() const;
 
+    /*!
+     * Add a property to item. This property will be save on QHash.
+     * If arguments are empty strings, function returns false. Otherwise,
+     * returns true.
+     */
     bool addProperty(const QString &, const QString &);
-    QString getProperty(const QString &);
+    /*!
+     * Return property with name of argument.
+     */
+    QString getProperty(const QString &name);
+    /*!
+     * Return QHash contains all properties.
+     */
     QHash<QString, QString> getProperties() const;
 
-    bool addContainer(Container *);
+    /*!
+     * If \param container isn't a null pointer, add it to item,
+     * using a QList, and return true. Otherwise, return false.
+     */
+    bool addContainer(Container *container);
+    /*!
+     * Return all containers in QList.
+     */
     QList<Container*> getContainers() const;
 
+    /*!
+     * If \param item isn't a null pointer, add it to QList, and return true.
+     * Otherwise, return false.
+     */
     bool addItem(Item *);
+    /*!
+     * Return all items.
+     */
     QList<Item*> getItems() const;
 
 private:
