@@ -23,8 +23,17 @@ public:
     ~ActionArgument();
     ActionArgument & operator=(const ActionArgument &);
 
-    bool setAttribute(const QString &, const QString &);
-    QString getAttribute(const QString &);
+    /*!
+     * Add an attribute and your value in QHash \a attributes.
+     */
+    bool setAttribute(const QString &attributeName, const QString &attributeValue);
+    /*!
+     * Return value of \param attributeName.
+     */
+    QString getAttribute(const QString &attributeName);
+    /*!
+     * Return a QHash contains all attributes.
+     */
     QHash<QString, QString> getAttributes() const;
 
 private:
