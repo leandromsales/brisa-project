@@ -13,9 +13,21 @@ class MediaRendererDevice : public QObject
 {
     Q_OBJECT
 public:
+    /*!
+     * Constructor of device
+     */
     explicit MediaRendererDevice(QObject *parent = 0);
+    /*!
+     * Destructor of device
+     */
     ~MediaRendererDevice();
+    /*!
+     * Start device
+     */
     void start();
+    /*!
+     * Stop device
+     */
     void stop();
 
 private:
