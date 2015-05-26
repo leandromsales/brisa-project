@@ -22,14 +22,35 @@ public:
     ~StateVariableSales();
     StateVariableSales & operator=(const StateVariableSales &);
 
+    /*!
+     * Set value of \a sendEvent.
+     */
     void setSendEvent(bool sendEvent);
+    /*!
+     * Get value of \a sendEvent.
+     */
     bool getSendEvent() const;
 
+    /*!
+     * Add an attribute and your value in QHash \a attributes.
+     */
     bool setAttribute(const QString &, const QString &);
+    /*!
+     * Return value of \param attributeName.
+     */
     QString getAttribute(const QString &);
+    /*!
+     * Return a QHash contains all attributes.
+     */
     QHash<QString, QString> getAttributes() const;
 
+    /*!
+     * Add an allowed value to list \a allowedValueList.
+     */
     void addAllowedValueList(const QString &);
+    /*!
+     * Return a QList contains allowed value list.
+     */
     QList<QString> getAllowedValueList();
 
 private:
