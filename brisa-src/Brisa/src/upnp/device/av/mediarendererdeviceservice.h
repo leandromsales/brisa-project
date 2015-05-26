@@ -21,18 +21,30 @@ class MediaRendererDeviceService : public Service
 public:
     explicit MediaRendererDeviceService(QObject *parent = 0);
     Q_INVOKABLE
+    /*!
+     * Set pre actions and return UPNP_SUCESS code.
+     */
     int preAction(InArgument* const inArguments,
                   Action* const action,
                   QString &errorDescription);
     Q_INVOKABLE
+    /*!
+     * Set pos actions and return UPNP_SUCESS code.
+     */
     int postAction(InArgument* const inArguments,
                    OutArgument* const outArguments,
                    Action* const action,
                    QString &errorDescription);
     Q_INVOKABLE
+    /*!
+     * Get value of \a OffOnTV and insert on output argument \a Result.
+     */
     OutArgument* offon(InArgument* const inArguments,
                             Action* const action);
     Q_INVOKABLE
+    /*!
+     * Get value of \a SelectedChannel and insert on output argument \a Result.
+     */
     OutArgument* setchanel(InArgument* const inArguments,
                                 Action* const action);
 

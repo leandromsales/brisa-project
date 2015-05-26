@@ -16,9 +16,11 @@ MediaRendererDeviceService::MediaRendererDeviceService(QObject *parent) :
 
 OutArgument* MediaRendererDeviceService::setchanel(InArgument* const inArguments,
                                                         Action* const action) {
-    action->getStateVariable("SelectedChanel")->setAttribute(StateVariable::Value,inArguments->value("NewChanel"));
+    action->getStateVariable("SelectedChanel")->setAttribute(StateVariable::Value,
+                                                             inArguments->value("NewChanel"));
     qDebug() << "in setchanel TVoperation";
-    action->getStateVariable("Operation")->setAttribute(StateVariable::Value, inArguments->value("ChangeChanel"));
+    action->getStateVariable("Operation")->setAttribute(StateVariable::Value,
+                                                        inArguments->value("ChangeChanel"));
 
     OutArgument* outArgs = new OutArgument();
 
@@ -28,26 +30,30 @@ OutArgument* MediaRendererDeviceService::setchanel(InArgument* const inArguments
 
 }
 
-int MediaRendererDeviceService::preAction(InArgument* const inArguments, Action* const action, QString &errorDescription) {
+int MediaRendererDeviceService::preAction(InArgument* const inArguments,
+                                          Action* const action, QString &errorDescription) {
    Q_UNUSED(errorDescription);
-   qDebug() << "PREACTION METHOD CALLED FOR ACTION " << action->getName();
    qDebug() << "NewStatus IN argument is: " << inArguments->value("OffOnTV");
    //errorDescription = "UPnP-UP Access denied for action " + action->getName();
    //return 801;
    return UPNP_SUCCESS;
 }
 
-OutArgument* MediaRendererDeviceService::offon(InArgument* const inArguments, Action* const action){
+OutArgument* MediaRendererDeviceService::offon(InArgument* const inArguments,
+                                               Action* const action){
     qDebug() << "in offon TVoperation";
     action->getStateVariable("Operation")->setAttribute(StateVariable::Value, "OffOnTV");
     OutArgument* outArgs = new OutArgument();
-    outArgs->insert("Result", action->getStateVariable("Operation")->getAttribute(StateVariable::Value));
+    outArgs->insert("Result",
+                    action->getStateVariable("Operation")->getAttribute(StateVariable::Value));
     return outArgs;
 }
 
-int MediaRendererDeviceService::postAction(InArgument* const inArguments, OutArgument* const outArguments, Action* const action, QString &errorDescription) {
+int MediaRendererDeviceService::postAction(InArgument* const inArguments,
+                                           OutArgument* const outArguments,
+                                           Action* const action,
+                                           QString &errorDescription) {
    Q_UNUSED(errorDescription);
-   qDebug() << "POSTACTION METHOD CALLED FOR ACTION " << action->getName();
    qDebug() << "NewStatus IN argument is: " << inArguments->value("NewChanel");
    qDebug() << "outArg1 out argument is: " << outArguments->value("Result");
    //errorDescription = "error description";
