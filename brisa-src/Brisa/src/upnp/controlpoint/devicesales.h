@@ -33,16 +33,40 @@ public:
 
     void parseDescription();
 
+    /*!
+     * Add an attribute and your value in QHash \a attributes.
+     */
     bool setAttribute(const QString &, const QString &);
+    /*!
+     * Return value of \param attributeName.
+     */
     QString getAttribute(const QString &) const;
+    /*!
+     * Return a QHash contains all attributes.
+     */
     QHash<QString, QString> getAttributes() const;
 
+    /*!
+     * Return a QHash contains all services.
+     */
     QHash<QString, ServiceSales *> getServices() const;
+    /*!
+     * Return service with name equal of param.
+     */
     ServiceSales *getService(const QString &) const;
 
+    /*!
+     * Return a QList contains all devices.
+     */
     QList<DeviceSales *> getDevices() const;
 
+    /*!
+     * Return a QHash contains all icons.
+     */
     QHash<QString, IconSales *> getIcons() const;
+    /*!
+     * Return icon with name equal of param.
+     */
     IconSales *getIcon(const QString &);
 
     quint8 parseXMLDescription(QTemporaryFile *description);

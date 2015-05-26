@@ -206,20 +206,17 @@ void DeviceSales::handleServiceDescriptionReady(ServiceSales* service) {
 
 void DeviceSales::handleErrorParsingServiceDescription(ServiceSales* service, quint8 errorCode) {
     Q_UNUSED(errorCode);
-    //qDebug() << "SERVICE PARSING ERROR: " << errorCode << " parsing service description " << service->getAttribute("serviceId") << "for DEVICE " << this->getAttribute("uuid");
     delete service;
 }
 
 void DeviceSales::handleIconDownloaded(IconSales* icon) {
     QString iconName = icon->getAttribute("name");
     this->iconList[iconName] = icon;
-    //qDebug() << "ICON READY: " << iconName;
 }
 
 void DeviceSales::handleErrorDownloadingIcon(IconSales* icon, quint8 errorCode) {
     Q_UNUSED(errorCode);
     QString iconName = icon->getAttribute("name");
-    qDebug() << "ICON DOWNLOADING ERROR: " << errorCode << " from URL " << icon->getBaseUrl() << icon->getAttribute("url") << " name " << iconName;
     delete icon;
 }
 
