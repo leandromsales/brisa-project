@@ -39,21 +39,58 @@ public:
     ~ServiceSales();
     ServiceSales & operator=(const ServiceSales &);
 
+    /*!
+     * Set base URL of service.
+     */
     void setBaseUrl(const QUrl &, bool = true);
 
+    /*!
+     * Add an attribute and your value in QHash \a attributes.
+     */
     bool setAttribute(const QString &, const QString &);
+    /*!
+     * Return value of attribute with name equal of param.
+     */
     QString getAttribute(const QString &);
+    /*!
+     * Return a QHash contains all attributes.
+     */
     QHash<QString, QString> getAttributes() const;
 
+    /*!
+     * Set QHash \a actionList.
+     */
     void setActions(QHash<QString, ActionSales*>);
+    /*!
+     * Return a QHash contains all actions.
+     */
     QHash<QString, ActionSales *> getActions() const;
+    /*!
+     * Return action with name of param.
+     */
     ActionSales *getAction(const QString &);
 
+    /*!
+     * Set QHash \a stateVariableList.
+     */
     void setStateVariables(QHash<QString, StateVariableSales*>);
+    /*!
+     * Return a QHash contains all state variables.
+     */
     QHash<QString, StateVariableSales*> getStateVariables() const;
+    /*!
+     * Return state variable with name of param.
+     */
     StateVariableSales *getStateVariable(const QString &) const;
 
+    /*!
+     * Parse a description of service to XML.
+     */
     quint8 parseXMLDescription(QTemporaryFile *description);
+    /*!
+     * Try execute action with name equal to first param and use second param
+     * as your arguments.
+     */
     QString executeAction(const QString &, const QHash<QString, QString> &);
 
     typedef enum {
