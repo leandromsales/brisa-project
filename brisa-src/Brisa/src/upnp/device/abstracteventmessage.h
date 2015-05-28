@@ -20,9 +20,13 @@ class AbstractEventMessage: public QObject {
 Q_OBJECT
 
 public:
-
+    /*!
+     * Constructor.
+     */
     AbstractEventMessage(QObject *parent = 0);
-
+    /*!
+     * Return a QByteArray contains a UPnP event message.
+     */
     QByteArray getRequestMessage() const;
 };
 
