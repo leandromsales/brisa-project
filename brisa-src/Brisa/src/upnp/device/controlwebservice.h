@@ -15,7 +15,8 @@ public:
     /*!
      * Constructor.
      */
-    explicit ControlWebService(const QString &serviceType = QString(), QObject *parent = 0);
+    explicit ControlWebService(const QString &serviceType = QString(),
+                               QObject *parent = 0);
 
 signals:
     /*!
@@ -24,7 +25,8 @@ signals:
      * \param args are arguments of action
      * \param server is web server session
      */
-    void requestReceived(QString xml, InArgument args, brisa::shared::webserver::WebserverSession *server);
+    void requestReceived(QString xml, InArgument args,
+                         brisa::shared::webserver::WebserverSession *server);
     /*!
      * This signal is emmited when a new request is received but parse to SOAP fail.
      * \param server is web server session
@@ -33,9 +35,11 @@ signals:
 
 protected:
     /*!
-     * Handle with \param request of this \param session. Also write a response, if request is valid.
+     * Handle with \param request of this \param session. Also write a response,
+     * if request is valid.
      */
-    void onRequest(const brisa::shared::webserver::http::HttpRequest &request, brisa::shared::webserver::WebserverSession *session);
+    void onRequest(const brisa::shared::webserver::http::HttpRequest &request,
+                   brisa::shared::webserver::WebserverSession *session);
 
 private:
     QString serviceType;

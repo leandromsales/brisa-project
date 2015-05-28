@@ -40,7 +40,7 @@ namespace device {
  *  \sa brisa::Service
  */
 class Device: public QObject {
-Q_OBJECT
+    Q_OBJECT
 
 public:
     /*!
@@ -57,12 +57,12 @@ public:
      *  Creates a Device with the given device information.
      */
     Device(const QString &deviceType, const QString &friendlyName = "",
-            const QString &manufacturer = "", const QString &manufacturerURL = "",
-	    const QString &modelDescription = "", const QString &modelName = "",
-	    const QString &modelNumber = "", const QString &modelURL = "",
-	    const QString &serialNumber = "", const QString &UDN = "",
-	    const QString &UPC = "", const QString &presentationURL = "",
-	    QObject *parent = 0);
+           const QString &manufacturer = "", const QString &manufacturerURL = "",
+           const QString &modelDescription = "", const QString &modelName = "",
+           const QString &modelNumber = "", const QString &modelURL = "",
+           const QString &serialNumber = "", const QString &UDN = "",
+           const QString &UPC = "", const QString &presentationURL = "",
+           QObject *parent = 0);
 
     /*!
      *  Destructor for Device.
@@ -115,15 +115,15 @@ public:
      *  Call this method to add a icon to the device.
      */
     void addIcon(const QString &mimetype = "", const QString &width = "",
-            const QString &height = "", const QString &depth = "",
-            const QString &url = "");
+                 const QString &height = "", const QString &depth = "",
+                 const QString &url = "");
 
     /*!
      *  Creates and adds a service to the device with the given information.
      */
     void addService(const QString &serviceType = "", const QString &serviceId =
             "", const QString &SCPDURL = "", const QString &controlURL = "",
-            const QString &eventSubURL = "");
+                    const QString &eventSubURL = "");
 
     /*!
      *  Overloads addService().
@@ -137,13 +137,13 @@ public:
      *  Creates and adds a embedded device with the given information to the device.
      */
     void addEmbeddedDevice(const QString &deviceType = "",
-            const QString &friendlyName = "", const QString &manufacturer = "",
-            const QString &manufacturerURL = "",
-            const QString &modelDescription = "",
-            const QString &modelName = "", const QString &modelNumber = "",
-            const QString &modelURL = "", const QString &serialNumber = "",
-            const QString &UDN = "", const QString &UPC = "",
-            const QString &presentationURL = "");
+                           const QString &friendlyName = "", const QString &manufacturer = "",
+                           const QString &manufacturerURL = "",
+                           const QString &modelDescription = "",
+                           const QString &modelName = "", const QString &modelNumber = "",
+                           const QString &modelURL = "", const QString &serialNumber = "",
+                           const QString &UDN = "", const QString &UPC = "",
+                           const QString &presentationURL = "");
 
     /*!
      *  Overloads addEmbeddedDevice()
@@ -189,14 +189,14 @@ public:
     void clear();
 
     /*!
-     *  Sends the ssdp:alive messages for root device, embedded devices and services according to the
-     *  UPnP 1.0 especification.
+     *  Sends the ssdp:alive messages for root device, embedded devices and
+     * services according to the UPnP 1.0 especification.
      */
     void doNotify();
 
     /*!
-     *  Sends the ssdp:byebye messages for root device, embedded devices and services according to the
-     *  UPnP 1.0 especification.
+     *  Sends the ssdp:byebye messages for root device, embedded devices and
+     * services according to the UPnP 1.0 especification.
      */
     void doByeBye();
 
@@ -217,42 +217,43 @@ public:
     int threadsNumber() const;
     void setThreadsNumber(int);
 
-    QByteArray addWebservice(QByteArray pathSuffix, brisa::shared::webserver::WebService *service);
+    QByteArray addWebservice(QByteArray pathSuffix,
+                             brisa::shared::webserver::WebService *service);
     void removeWebservice(const QByteArray &path);
 
 public slots:
     /*!
-     *  Connects to the msearchRequestReceived() signal comming from the ssdp module. It parses
-     *  the search type and responds accordingly.
+     * Connects to the msearchRequestReceived() signal comming from the ssdp
+     * module. It parses the search type and responds accordingly.
      *
-     *  \sa respondMSearchAll()
+     * \sa respondMSearchAll()
      */
     void respondMSearch(const QString &st, const QString &senderIp,
-            quint16 senderPort);
+                        quint16 senderPort);
 
 private:
     /*!
-     *  Creates a temporary XML file containning the device information.
-     *  \sa deviceGenerator()
+     * Creates a temporary XML file containning the device information.
+     * \sa deviceGenerator()
      */
     void xmlGenerator();
 
     /*!
-     *  Creates the UrlBase attribute according to local IP address and a random port.
+     * Creates the UrlBase attribute according to local IP address and a random port.
      */
     void buildUrlBase();
 
     /*!
-     *  Private function to discover the network address currently used by the machine where control
-     *  point is running and select an free port to use with WebServer.
+     * Private function to discover the network address currently used by the
+     * machine where control point is running and select an free port to use with
+     * WebServer.
      */
     void discoverNetworkAddress();
 
     /*!
      *  Generates the webserver tree according to the services present in the device.
-     *  Eg:
-     *     Suppose we have two services, "Gate" and "LightSwitch". So /Gate and /LightSwitch will be
-     *  valid URLs in the webserver.
+     *  Eg: Suppose we have two services, "Gate" and "LightSwitch". So /Gate and
+     * /LightSwitch will be valid URLs in the webserver.
      */
     void buildWebServerTree();
 
@@ -267,7 +268,7 @@ private:
      *  \sa respondMSearch()
      */
     void respondMSearchAll(const QString &senderIp, quint16 senderPort,
-            const QString &sDate);
+                           const QString &sDate);
 
     /*!
      *  Returns true if the device is running.

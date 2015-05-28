@@ -10,70 +10,75 @@
 namespace brisa {
 //class shared::webserver::Webserver;
 namespace upnp {
-    //class Webserver;
-    class Action;
+//class Webserver;
+class Action;
 namespace device {
 
 
 class Service: public AbstractService
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
 
-	Service(QObject *parent = 0);
+    Service(QObject *parent = 0);
 
-	Service(const QString &serviceType,
-			const QString &serviceId = QString(),
-			const QString &scpdUrl = QString(),
-			const QString &controlUrl = QString(),
-			const QString &eventSubUrl = QString(),
-			const QString &host = QString(),
-			QObject *parent = 0);
+    Service(const QString &serviceType,
+            const QString &serviceId = QString(),
+            const QString &scpdUrl = QString(),
+            const QString &controlUrl = QString(),
+            const QString &eventSubUrl = QString(),
+            const QString &host = QString(),
+            QObject *parent = 0);
 
-	Service(Service &service);
+    Service(Service &service);
 
-	virtual ~Service();
+    virtual ~Service();
 
-	StateVariable *getVariable(const QString &variableName);
+    StateVariable *getVariable(const QString &variableName);
 
-	void buildWebServiceTree(brisa::shared::webserver::Webserver *sessionManager);
+    void buildWebServiceTree(brisa::shared::webserver::Webserver *sessionManager);
 
-	void setDescriptionFile(const QString &scpdFilePath);
+    void setDescriptionFile(const QString &scpdFilePath);
 
-	QString getDescriptionFile();
+    QString getDescriptionFile();
 
 protected:
-	void onRequest(const brisa::shared::webserver::http::HttpRequest &request, brisa::shared::webserver::WebserverSession *session);
+    void onRequest(const brisa::shared::webserver::http::HttpRequest &request,
+                   brisa::shared::webserver::WebserverSession *session);
 
-	private slots:
-	void call(const QString &method, InArgument param, brisa::shared::webserver::WebserverSession *);
-	void onInvalidRequest(brisa::shared::webserver::WebserverSession *session);
+private slots:
+    void call(const QString &method, InArgument param,
+              brisa::shared::webserver::WebserverSession *);
+    void onInvalidRequest(brisa::shared::webserver::WebserverSession *session);
 
-	private:
+private:
 
-	void respondAction(brisa::shared::webserver::WebserverSession *session, const OutArgument *outArgs, const QString &actionName /* = QString() */);
+    void respondAction(brisa::shared::webserver::WebserverSession *session,
+                       const OutArgument *outArgs,
+                       const QString &actionName /* = QString() */);
 
-	void respondError(brisa::shared::webserver::WebserverSession *session, int errorCode, QString errorDescription = QString());
+    void respondError(brisa::shared::webserver::WebserverSession *session,
+                      int errorCode, QString errorDescription = QString());
 
-	void parseDescriptionFile();
+    void parseDescriptionFile();
 
-	void connectVariablesEventSignals();
+    void connectVariablesEventSignals();
 
-	void setDefaultValues();
+    void setDefaultValues();
 
-	brisa::upnp::Action * actionRelatedToMethod(QString methodSignature);
+    brisa::upnp::Action * actionRelatedToMethod(QString methodSignature);
 
-	void bindActionsToServiceMethods();
+    void bindActionsToServiceMethods();
 
-	QMap<QString, WebService *> childWebServices;
+    QMap<QString, WebService *> childWebServices;
 
-	QString scpdFilePath;
+    QString scpdFilePath;
 
-	QMetaMethod preActionMethod;
+    QMetaMethod preActionMethod;
 
-	QMetaMethod postActionMethod;
+    QMetaMethod postActionMethod;
 
-	QMetaMethod handleActionFailureMethod;
+    QMetaMethod handleActionFailureMethod;
 };
 
 }

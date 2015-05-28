@@ -18,7 +18,8 @@ QByteArray MulticastEventMessage::getMessageHeader() const
 {
     QString header = NOTIFY_EVENT_MESSAGE.arg(
                         "239.255.255.246:7900",
-                        this->variable->getMulticastUdn() + "::" + this->variable->getMulticastUsn(),
+                        this->variable->getMulticastUdn() + "::" +
+                this->variable->getMulticastUsn(),
                         this->variable->getMulticastSvcid(),
                         QString::number(this->SEQ),
                         this->LVL,

@@ -659,9 +659,6 @@ void Device::discoverNetworkAddress()
     this->port = getPort();
     this->ipAddress = getValidIP();
 
-    //qDebug() << "Brisa Device: Acquired Address " << this->ipAddress-> << ":"
-      //<< this->port;
-
     qDebug() << "Brisa Device: Acquired Address " << this->ipAddress + ":" +
                 QString::number(this->port);
 }

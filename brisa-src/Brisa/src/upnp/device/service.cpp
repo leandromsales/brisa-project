@@ -2,11 +2,9 @@
 #include <QUrl>
 #include <QMetaMethod>
 #include "controlwebservice.h"
+#include "service.h"
 #include "../../shared/webserver/webfile.h"
 #include "../../shared/webserver/webserversession.h"
-
-// TODO: move the include directive to the begin of the file
-#include "service.h"
 #include "../servicexmlhandler.h"
 
 #define PRE_ACTION_SIG "preAction(InArgument*const,BrisaAction*const,QString&)"
@@ -61,7 +59,6 @@ Service::~Service() {
     childWebServices.clear();
 }
 
-// TODO: Verify commit
 void Service::call(const QString &method, InArgument param,
         WebserverSession *session) {
     qDebug() << "Service::call: Calling function " << method << " with args "
@@ -72,10 +69,8 @@ void Service::call(const QString &method, InArgument param,
 
     if (action) {
         if (action->call(&param, outArguments)) {
-            // send response.
             qDebug() << "Service::call: sending response to the requester.";
             this->respondAction(session, outArguments, action->getName());
-            //delete outArguments;
         } else {
             qDebug() << "An error has occurred during the " << action->getName()
                                         << " callback.";
@@ -86,112 +81,6 @@ void Service::call(const QString &method, InArgument param,
         qDebug() << "Service: Unknown callback: " << method;
         this->respondError(session, UPNP_INVALID_ACTION);
     }
-
-    /*for (QList<Action *>::iterator i = this->actionList.begin();
-            i != actionList.end(); ++i) {
-        Action *action = *i;
-        if (action->getName() == method) {
-            int prePostActionReturn = 0;
-            QString errorDescription = "";
-            // executing preMethod if available
-            if (this->preActionMethod.methodIndex() >= 0) {
-                if (!this->preActionMethod.invoke(this, Qt::DirectConnection,
-                        Q_RETURN_ARG(int, prePostActionReturn),
-                        Q_ARG(InArgument *, &param),
-                        Q_ARG(Action *, action),
-                        Q_ARG(QString, errorDescription))) {
-                    qDebug()
-                            << "Error invoking preAction method. Continuing...";
-                }
-            } else {
-                qDebug()
-                        << "Warning: preAction method not found, continuing...";
-            }
-
-            if (prePostActionReturn == 0) {
-                // call the action
-                OutArgument *outArguments;
-
-                if (!action->call(&param, outArguments)) {
-                    qDebug() << "An error has occurred during the "
-                            << action->getName() << " callback.";
-                    if (!outArguments) {
-                        delete outArguments;
-                    }
-
-                    if (this->handleActionFailureMethod.methodIndex() >= 0) {
-                        int handleFailureActionMethodReturn = 0;
-                        if (!this->handleActionFailureMethod.invoke(this,
-                                Qt::DirectConnection,
-                                Q_RETURN_ARG(int, handleFailureActionMethodReturn),
-                                Q_ARG(InArgument *, &param),
-                                Q_ARG(Action *, action),
-                                Q_ARG(QString, errorDescription))) {
-                            qDebug()
-                                    << "Error invoking handleActionFailure method. Continuing...";
-                            respondError(session, UPNP_ACTION_FAILED);
-                            return;
-                        }
-                        respondError(session, handleFailureActionMethodReturn,
-                                "Error specified by UPnP vendor: "
-                                        + errorDescription);
-                        return;
-                    }
-
-                    qDebug()
-                            << "handleActionFailure method not implemented in service, returning default error.";
-                    this->respondError(session, UPNP_ACTION_FAILED);
-                    return;
-                }
-
-                // avoiding segmentation fault...
-                if (!outArguments) {
-                    outArguments = new OutArgument();
-                }
-
-                // executing postMethod if available
-                if (this->postActionMethod.methodIndex() >= 0) {
-                    if (!this->postActionMethod.invoke(this,
-                            Qt::DirectConnection,
-                            Q_RETURN_ARG(int, prePostActionReturn),
-                            Q_ARG(InArgument *, &param),
-                            Q_ARG(OutArgument *, outArguments),
-                            Q_ARG(Action *, action),
-                            Q_ARG(QString, errorDescription))) {
-                        qDebug() << "Error invoking postAction method.";
-                    }
-
-                    if (prePostActionReturn != 0) {
-                        qDebug()
-                                << "Warning: postAction service method returned non-zero, sending UPnP error code "
-                                << prePostActionReturn;
-                        delete outArguments;
-                        respondError(session, prePostActionReturn,
-                                errorDescription);
-                        return;
-                    }
-                } else {
-                    qDebug()
-                            << "Warning: postAction method not found, continuing...";
-                }
-
-                // send response.
-                this->respondAction(session, outArguments, action->getName());
-                delete outArguments;
-                return;
-            } else { // preAction returned non-zero
-                qDebug()
-                        << "Warning: preAction method returned non-zero value, it returned "
-                        << prePostActionReturn << " with description "
-                        << errorDescription;
-                respondError(session, prePostActionReturn, errorDescription);
-                return;
-            }
-        }
-    }
-
-    qDebug() << "BrisaService: Unknown callback: " << method;
-    respondError(session, UPNP_INVALID_ACTION);*/
 }
 
 void Service::buildWebServiceTree(Webserver *sessionManager) {
@@ -237,11 +126,7 @@ StateVariable *Service::getVariable(const QString &variableName) {
     return 0;
 }
 
-void Service::onRequest(const HttpRequest &request,
-        WebserverSession *session) {
-
-    // qDebug() << "REQUEST: " << HttpRequest. << endl;
-
+void Service::onRequest(const HttpRequest &request, WebserverSession *session) {
     if (request.method() != "POST") {
         session->respond(
                 HttpResponse(request.httpVersion(), HttpResponse::BAD_REQUEST,
@@ -257,7 +142,7 @@ void Service::onRequest(const HttpRequest &request,
     }
 
     if (actionXmlParser.parseSOAP()) {
-        //If servicetype is incorrect
+        qDebug() << "Service: Invalid service type.";
         if (actionXmlParser.serviceType != serviceType)
             return;
 
@@ -344,8 +229,8 @@ void Service::parseDescriptionFile() {
         this->setDefaultValues();
     } else {
         //It should throw and exception
-        qDebug()
-                << "ERROR:Service::parseDescriptionFile: Could not open the description file.";
+        qDebug() << "ERROR:Service::parseDescriptionFile: "
+                    "Could not open the description file.";
     }
 }
 
@@ -377,13 +262,13 @@ void Service::setDefaultValues() {
 
 Action * Service::actionRelatedToMethod(QString methodSignature) {
     Action *action = 0;
-     qDebug() << "BrisaService::actionByName: Searching for action that fits in: "<< methodSignature;
+     qDebug() << "BrisaService::actionByName: Searching for action that fits in: "
+              << methodSignature;
     for (QList<Action *>::iterator i = this->actionList.begin();
             i != actionList.end(); ++i) {
         action = *i;
         qDebug() << "Current action:" << action->getName();
         if (QString(methodSignature).contains(action->getName(), Qt::CaseInsensitive)) {
-            qDebug() << "ACHEI:" << action->getName();
             break;
         }
         action = 0;
@@ -433,45 +318,12 @@ void Service::bindActionsToServiceMethods() {
         Action * action = actionRelatedToMethod(method.methodSignature());
         if(action) {
             action->setMethod(method, this);
-            qDebug() << "Binding method " << method.methodSignature () << " of service ID " << this->serviceId << " to service action " << action->getName();
+            qDebug() << "Binding method " << method.methodSignature ()
+                     << " of service ID " << this->serviceId << " to service action "
+                     << action->getName();
         }
     }
 
-    // binding service actions methods
-    /*for (QList<BrisaAction *>::iterator i = this->actionList.begin();
-            i != actionList.end(); ++i) {
-        BrisaAction *action = *i;
-        QString actionName = action->getName();
-        QString methodName = actionName.toLower();
-
-        //qDebug() << "INFO:BrisaService::bindActionsToServiceMethods: Current binding method " << methodName + ACTION_IN;
-        int methodIndex = meta->indexOfMethod(
-                qPrintable(methodName + ACTION_IN));
-
-        if (methodIndex < 0) {
-            qDebug() << "Error: no method named " << methodName
-                    << " was found in the "
-                    << "specified service class definition that matches with expected "
-                    << "signature " << ACTION_OUT << " " << methodName
-                    << ACTION_IN << "." << "It was not possible to bind action "
-                    << actionName << " to " << methodName;
-            continue;
-        }
-
-        QMetaMethod method = meta->method(methodIndex);
-        if (strcmp(method.typeName(), ACTION_OUT) == 0) {
-            qDebug() << "Binding method " << methodName << " of service ID "
-                    << this->serviceId << " to service action " << actionName;
-            action->setMethod(method, this);
-        } else {
-            qDebug() << "Error: method named " << methodName
-                    << " has wrong prototype. "
-                    << "It is expected a method prototype that matches with the prototype "
-                    << "'" << ACTION_OUT << " " << methodName << ACTION_IN
-                    << "'. It was " << "found a method with prototype '"
-                    << method.typeName() << " " << methodName << ACTION_IN;
-        }
-    }*/
 }
 
 }
