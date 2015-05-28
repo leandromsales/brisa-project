@@ -64,7 +64,7 @@ private:
      */
     void sendEvent(const EventMessage &message, const QUrl &url);
     /*!
-     * Sem \param message in multicast, to 172.16.6.223:7900.
+     * Send \param message in multicast, to 172.16.6.223:7900.
      */
     void sendMulticastEvent(const MulticastEventMessage &message);
     /*!

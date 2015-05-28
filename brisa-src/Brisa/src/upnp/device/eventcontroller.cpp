@@ -153,7 +153,8 @@ void EventController::sendEvent(const EventMessage &message, const QUrl &url)
     socket->connectToHost(url.host(), url.port());
 
     connect(socket, SIGNAL(disconnected()), socket, SLOT(deleteLater()));
-    connect(socket, SIGNAL(error(QAbstractSocket::SocketError)), socket, SLOT(deleteLater()));
+    connect(socket, SIGNAL(error(QAbstractSocket::SocketError)), socket,
+            SLOT(deleteLater()));
     connect(socket, SIGNAL(readyRead()), socket, SLOT(deleteLater()));
 
     socket->write(message.getRequestMessage());
@@ -178,7 +179,8 @@ void EventController::variableChanged(StateVariable *variable)
     QList<StateVariable *> variables;
     variables.append(variable);
 
-    for (QList<EventSubscription *>::iterator i = this->subscriptions.begin(); i != this->subscriptions.end(); ++i) {
+    for (QList<EventSubscription *>::iterator i = this->subscriptions.begin();
+         i != this->subscriptions.end(); ++i) {
         // Remove expired subscriptions
         if ((*i)->hasExpired()) {
             qDebug() << "Removing subscription:" << (*i)->getSid();

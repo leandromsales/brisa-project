@@ -14,7 +14,8 @@ ControlWebService::ControlWebService(const QString &serviceType, QObject *parent
 {
 }
 
-void ControlWebService::onRequest(const HttpRequest &request, WebserverSession *session)
+void ControlWebService::onRequest(const HttpRequest &request,
+                                  WebserverSession *session)
 {
     if (request.method() != "POST") {
         HttpResponse r(request.httpVersion(), HttpResponse::METHOD_NOT_ALLOWED);
