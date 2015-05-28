@@ -28,29 +28,28 @@ static const QString NOTIFY_EVENT_MESSAGE =
 class MulticastEventMessage : public AbstractEventMessage
 {
 public:
-    MulticastEventMessage(StateVariable *variable,
-                               QString LVL, QObject *parent = 0);
-
+    /*!
+     * Constructor.
+     * \param LVL is event level.
+     * \a SEQ is event key.
+     */
+    MulticastEventMessage(StateVariable *variable, QString LVL,
+                          QObject *parent = 0);
+    /*!
+     * Return message header.
+     */
     QByteArray getMessageHeader() const;
-
+    /*!
+     * Return message body.
+     */
     QByteArray getMessageBody() const;
-
+    /*!
+     * Return header and body of message.
+     */
     QByteArray getRequestMessage() const;
-
 private:
     StateVariable *variable;
-
-    /*!
-     * \property SEQ
-     *
-     * \brief its event key
-     */
     int SEQ;
-
-    /*!
-     * \property LVL
-     * \brief event level
-     */
     QString LVL;
 };
 

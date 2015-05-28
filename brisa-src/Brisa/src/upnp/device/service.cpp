@@ -116,9 +116,8 @@ void Service::onInvalidRequest(WebserverSession *session) {
 }
 
 StateVariable *Service::getVariable(const QString &variableName) {
-    for (QList<StateVariable *>::iterator i =
-            this->stateVariableList.begin(); i != this->stateVariableList.end();
-            ++i) {
+    for (QList<StateVariable *>::iterator i = this->stateVariableList.begin();
+         i != this->stateVariableList.end(); ++i) {
         if ((*i)->getAttribute(StateVariable::Name) == variableName)
             return *i;
     }
@@ -128,9 +127,8 @@ StateVariable *Service::getVariable(const QString &variableName) {
 
 void Service::onRequest(const HttpRequest &request, WebserverSession *session) {
     if (request.method() != "POST") {
-        session->respond(
-                HttpResponse(request.httpVersion(), HttpResponse::BAD_REQUEST,
-                        true));
+        session->respond( HttpResponse(request.httpVersion(),
+                                       HttpResponse::BAD_REQUEST, true));
     }
 
     ActionXmlParser actionXmlParser;
@@ -211,8 +209,7 @@ void Service::parseDescriptionFile() {
     }
 
     // TODO: Change this to only pass the file (this->scdpFilePath) and make the
-    // BrisaServiceXMLHandler class open the file when parseService method
-    // is called.
+    // BrisaServiceXMLHandler class open the file when parseService method is called.
     qDebug() << "INFO::Service::parseDescriptionFile: scpd filePath: "
             << this->scpdFilePath;
     QFile file(this->scpdFilePath);
@@ -228,9 +225,9 @@ void Service::parseDescriptionFile() {
         this->connectVariablesEventSignals();
         this->setDefaultValues();
     } else {
-        //It should throw and exception
         qDebug() << "ERROR:Service::parseDescriptionFile: "
                     "Could not open the description file.";
+        throw std::invalid_argument("Could not open the description file.");
     }
 }
 
