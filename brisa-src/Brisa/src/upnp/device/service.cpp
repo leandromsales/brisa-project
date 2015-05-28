@@ -171,7 +171,6 @@ inline void Service::respondAction(WebserverSession *session,
             "</s:Body>\r\n"
             "</s:Envelope>\r\n");
 
-    // TODO: if the connection should br closed, set the flag in the HttpResponse constructor
     HttpResponse r(HttpVersion(1, 1), HttpResponse::OK);
     r.setHeader("CONTENT-LENGTH", QByteArray::number(message.size()));
     r.setEntityBody(message);
@@ -186,7 +185,6 @@ inline void Service::respondError(WebserverSession *session, int errorCode,
     QString message = SOAP_ERROR_TEMPLATE.arg(QString::number(errorCode),
             this->errorCodeToString(errorCode));
 
-    // TODO: if the connection should br closed, set the flag in the HttpResponse constructor
     HttpResponse r(HttpVersion(1, 1), HttpResponse::OK);
     r.setHeader("CONTENT-LENGTH", QByteArray::number(message.size()));
     r.setEntityBody(message.toUtf8());
@@ -311,7 +309,6 @@ void Service::bindActionsToServiceMethods() {
     }
     for(int i = meta->methodOffset(); i < meta->methodCount(); ++i) {
         method = meta->method(i);
-        qDebug() << "METODO É " << method.name ();
         Action * action = actionRelatedToMethod(method.methodSignature());
         if(action) {
             action->setMethod(method, this);
