@@ -206,8 +206,6 @@ void Service::parseDescriptionFile() {
         return;
     }
 
-    // TODO: Change this to only pass the file (this->scdpFilePath) and make the
-    // BrisaServiceXMLHandler class open the file when parseService method is called.
     qDebug() << "INFO::Service::parseDescriptionFile: scpd filePath: "
             << this->scpdFilePath;
     QFile file(this->scpdFilePath);

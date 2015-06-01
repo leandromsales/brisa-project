@@ -123,6 +123,8 @@ bool isPortOpen(QString address, qint16 port, qint16 timeout) {
 quint16 getPort() {
     srand(time(NULL));
     //TODO modify this expression to a more legible one
+    // An option could be: v3 = rand() % 30 + 1985;
+    // With this, v3 is a number in the range 1985-2014
     quint16 randomPort = (49152 + rand() / (RAND_MAX / (65535 - 49152 + 1) + 1));
     while (isPortOpen(getValidIP(), randomPort, 5)) {
         randomPort = (49152 + rand() / (RAND_MAX / (65535 - 49152 + 1) + 1));
