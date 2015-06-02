@@ -221,9 +221,9 @@ void Service::parseDescriptionFile() {
         this->connectVariablesEventSignals();
         this->setDefaultValues();
     } else {
+        // TO DO: throw an exception here
         qDebug() << "ERROR:Service::parseDescriptionFile: "
                     "Could not open the description file.";
-        throw std::invalid_argument("Could not open the description file.");
     }
 }
 
