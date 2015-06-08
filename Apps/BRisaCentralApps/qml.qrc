@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>BRisaApplicationView.qml</file>
+        <file>BRisaApplication.qml</file>
+    </qresource>
+    <qresource prefix="/image">
+        <file>icon.png</file>
+    </qresource>
+</RCC>
