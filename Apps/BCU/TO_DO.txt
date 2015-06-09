@@ -1,4 +1,4 @@
-- incluir arquivos do BRisa
+- incluir arquivos do BRisa (OK)
 - criar uma versão modificada de um control point
 - modificações no control point:
   * o device encontrado deve possuir os serviços abaixo, caso contrário, não será válido.
