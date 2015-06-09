@@ -1,10 +1,9 @@
-#This file was auto-generated. Don't edit this.
-
 # Replace with your basedir
-BASEDIR = /home/larissa/brisa-project/brisa-src
+BASEDIR = /home/larissa/UFAL/Compelab/git/brisa-project/brisa-src
 
 INCLUDEPATH += $$BASEDIR/Brisa/include
 
+# Replace all paths after $$BASEDIR/ with your build paths
 android {
     message("BRisa Android config.")
     QT += network xml
@@ -18,7 +17,7 @@ android {
 unix {
     message("BRisa Unix config.")
     QT += network xml
-    INCLUDEPATH += $$BASEDIR/build-brisa-Desktop_Qt_5_4_1_GCC_64bit-Debug
-    DEPENDPATH += $$BASEDIR/build-brisa-Desktop_Qt_5_4_1_GCC_64bit-Debug
-    LIBS += -L$$BASEDIR/build-brisa-Desktop_Qt_5_4_1_GCC_64bit-Debug -lbrisa
+    INCLUDEPATH += $$BASEDIR/build-brisa
+    DEPENDPATH += $$BASEDIR/build-brisa
+    LIBS += -L$$BASEDIR/build-brisa -lbrisa
 }

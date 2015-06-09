@@ -1,0 +1,13 @@
+- incluir arquivos do BRisa
+- criar uma versão modificada de um control point
+- modificações no control point:
+  * o device encontrado deve possuir os serviços abaixo, caso contrário, não será válido.
+    ~> getListOfApps
+    ~> getAppInfo
+    ~> getApp
+  * o control point deve ser capaz de decodificação a compactação .compe
+- criar uma interface gráfica
+
+OBS.:
+- o provável método relativo aos serviços que será modificado será replyFinished em ControlPoint (no BRisa, em upnp/controlpoint)
+- o BRisaControlPoint (na pasta examples do repositório) deve servir de base

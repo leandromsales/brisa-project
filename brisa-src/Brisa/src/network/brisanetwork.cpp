@@ -1,12 +1,4 @@
-#include <QtDebug>
-#include <QIODevice>
-#include <QTcpSocket>
-#include <time.h>
 #include "brisanetwork.h"
-#include <QNetworkConfigurationManager>
-#include <QNetworkConfiguration>
-#include <QNetworkSession>
-#include <QNetworkInterface>
 
 namespace brisa {
 namespace network {
@@ -27,7 +19,7 @@ bool isPromiscuousIPv6Address(QString address) {
     return !address.compare("0:0:0:0:0:0:0:0") || !address.compare("::");
 }
 
-// TODO implement if defined to others plataforms
+// TO DO implement if defined to others plataforms
 QString getValidIP() {
 #if defined(Q_OS_UNIX) || defined(Q_OS_ANDROID)
     QNetworkConfigurationManager mgr;

@@ -5,8 +5,14 @@
 #include <QList>
 #include <QNetworkInterface>
 #include <QNetworkAddressEntry>
+#include <QNetworkConfigurationManager>
+#include <QNetworkConfiguration>
+#include <QNetworkSession>
 #include <QtDebug>
 #include <QObject>
+#include <QIODevice>
+#include <QTcpSocket>
+#include <time.h>
 #include <ctime>
 
 namespace brisa {

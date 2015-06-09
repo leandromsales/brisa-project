@@ -67,7 +67,7 @@ protected:
      */
     virtual void writeEntityBody(const HttpResponse &r, QTcpSocket *s);
 
-    virtual void sessionStarted();
+    virtual void sessionStarted(){}
 
     /*!
      * This function is called every time a connection is closed. Should return
