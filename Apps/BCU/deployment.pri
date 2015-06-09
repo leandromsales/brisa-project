@@ -1,27 +1,17 @@
-android-no-sdk {
-    target.path = /data/user/qt
-    export(target.path)
-    INSTALLS += target
-} else:android {
-    x86 {
-        target.path = /libs/x86
-    } else: armeabi-v7a {
-        target.path = /libs/armeabi-v7a
-    } else {
-        target.path = /libs/armeabi
-    }
-    export(target.path)
-    INSTALLS += target
-} else:unix {
-    isEmpty(target.path) {
-        qnx {
-            target.path = /tmp/$${TARGET}/bin
-        } else {
-            target.path = /opt/$${TARGET}/bin
-        }
-        export(target.path)
-    }
-    INSTALLS += target
-}
+# Replace with your basedir
+BASEDIR = /home/larissa/UFAL/Compelab/git/brisa-project/brisa-src
 
-export(INSTALLS)
+# Replace with your basedir
+BASEDIR = /home/larissa/UFAL/Compelab/git/brisa-project/brisa-src
+
+# Include BRisa
+INCLUDEPATH += $$BASEDIR/Brisa/include
+
+# Replace all paths after $$BASEDIR/ with your build paths
+unix {
+    message("BRisa Unix config.")
+    QT += network xml
+    INCLUDEPATH += $$BASEDIR/build-brisa
+    DEPENDPATH += $$BASEDIR/build-brisa
+    LIBS += -L$$BASEDIR/build-brisa -lbrisa
+}
