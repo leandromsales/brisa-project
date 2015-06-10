@@ -1,13 +1,25 @@
++-----------+
+| ANOTAÇÕES |
++-----------+
+
 - incluir arquivos do BRisa (OK)
-- criar uma versão modificada de um control point
-- modificações no control point:
-  * o device encontrado deve possuir os serviços abaixo, caso contrário, não será válido.
+- criar uma classe baseada em um control point (OK)
+- modificações no control point original (em progresso):
+  * o device encontrado deve possuir os serviços que possuam
+    as ações abaixo, caso contrário, o device não será válido
+    (OK, apesar de não ter nenhum teste ainda, já que isto
+    requer um device)
     ~> getListOfApps
     ~> getAppInfo
     ~> getApp
-  * o control point deve ser capaz de decodificação a compactação .compe
+  * o control point deve ser capaz de decodificação a
+    compactação .compe (conversar com o Bruno sobre essa
+    compactação)
 - criar uma interface gráfica
 
 OBS.:
-- o provável método relativo aos serviços que será modificado será replyFinished em ControlPoint (no BRisa, em upnp/controlpoint)
-- o BRisaControlPoint (na pasta examples do repositório) deve servir de base
+- o provável método relativo aos serviços que será modificado
+  no novo cp será replyFinished em ControlPoint (no BRisa,
+  em upnp/controlpoint)
+- o BRisaControlPoint (na pasta examples do repositório) deve
+  servir de base
