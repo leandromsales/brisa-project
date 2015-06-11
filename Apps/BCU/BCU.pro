@@ -2,9 +2,6 @@ TEMPLATE = app
 
 QT += qml quick widgets
 
-SOURCES += main.cpp \
-    controlpointbcu.cpp
-
 RESOURCES += qml.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
@@ -17,4 +14,9 @@ DISTFILES += \
     TO_DO.txt
 
 HEADERS += \
-    controlpointbcu.h
+    controlpointbcu.h \
+    myclasstest.h
+
+SOURCES += main.cpp \
+    controlpointbcu.cpp \
+    myclasstest.cpp

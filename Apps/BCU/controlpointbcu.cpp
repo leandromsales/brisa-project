@@ -1,21 +1,27 @@
 #include "controlpointbcu.h"
 
-brisa::upnp::controlpoint::ControlPointBCU::ControlPointBCU(QObject *parent, QString st, int mx) :
-    brisa::upnp::controlpoint::ControlPoint(parent, st, mx) {
+using namespace brisa;
+using namespace upnp;
+using namespace controlpoint;
+
+ControlPointBCU::ControlPointBCU(QObject *parent, QString st, int mx) :
+    ControlPoint(parent, st, mx) {
     // BCU's constructor is equal to control point's constructor
+    connect(downloader, SIGNAL(finished(QNetworkReply*)), this,
+            SLOT(replyFinished(QNetworkReply*)));
 }
 
-brisa::upnp::controlpoint::ControlPointBCU::~ControlPointBCU()
+ControlPointBCU::~ControlPointBCU()
 {
     // BCU has no specific destructor, control point's destructor is enough
 }
 
-void brisa::upnp::controlpoint::ControlPointBCU::replyFinished(QNetworkReply *reply)
+void ControlPointBCU::replyFinished(QNetworkReply *reply)
 {
+    qDebug() << "reply finished";
     QTemporaryFile *rootXml = new QTemporaryFile();
     if (!rootXml->open()) {
-        qWarning() << "BCU: Failed to open file for writing "
-                      "root XML.";
+        qWarning() << "BCU: Failed to open file for writing root XML.";
     } else {
         rootXml->write(reply->readAll());
         rootXml->seek(0);
@@ -56,7 +62,7 @@ void brisa::upnp::controlpoint::ControlPointBCU::replyFinished(QNetworkReply *re
 
             emit deviceFound(device);
         } else {
-            qWarning() << "BCU: Incompatible device";
+            qDebug() << "BCU: Incompatible device";
         }
     }
 }
