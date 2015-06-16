@@ -2,17 +2,18 @@
 #include <QApplication>
 #include <QQmlContext>
 
-#include "brisaapplicationmanager.h"
+#include "bcadevice.h"
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
+
     QQmlApplicationEngine engine;
 
     QQmlContext *ctxt = engine.rootContext();
 
-    BRisaApplicationManager manager;
+    BRisaApplicationManager *manager = new BRisaApplicationManager();
 
     QStringList list;
     list.append("Play");
@@ -67,11 +68,14 @@ int main(int argc, char *argv[])
 
 
 
-    manager.addApp(application);
-    manager.addApp(application2);
-    manager.addApp(application3);
+    manager->addApp(application);
+    manager->addApp(application2);
+    manager->addApp(application3);
 
-    ctxt->setContextProperty("manager", &manager);
+    BCADevice *bca = new BCADevice(manager);
+    bca->printAllApps();
+
+    ctxt->setContextProperty("manager", manager);
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 

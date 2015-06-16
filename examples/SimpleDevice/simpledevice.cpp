@@ -28,7 +28,6 @@ SimpleDevice::SimpleDevice() : simpleDevice(DEVICE_TYPE, DEVICE_FRIENDLY_NAME,
                      SIGNAL(changed(brisa::upnp::StateVariable *)),
                      this,
                      SLOT(statechanged(brisa::upnp::StateVariable *)));
-
     Q_ASSERT(x);
 
     qDebug() << "Connected: " << x;

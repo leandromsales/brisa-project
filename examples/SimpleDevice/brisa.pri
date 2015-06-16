@@ -1,7 +1,7 @@
 #This file was auto-generated. Don't edit this.
 
 # Replace with your basedir
-BASEDIR = /home/bruno/Documentos/brisa/brisa-project/brisa-src
+BASEDIR = /mnt/8a5bbc36-bd45-46d1-b620-3ba1f05a981b/bruno/Documentos/brisa/brisa-project/brisa-src
 
 INCLUDEPATH += $$BASEDIR/Brisa/include
 

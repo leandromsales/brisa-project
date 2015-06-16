@@ -4,7 +4,9 @@ QT += qml quick widgets
 
 SOURCES += main.cpp \
     brisaapplication.cpp \
-    brisaapplicationmanager.cpp
+    brisaapplicationmanager.cpp \
+    bcadevice.cpp \
+    functions.cpp
 
 RESOURCES += qml.qrc
 
@@ -13,7 +15,10 @@ QML_IMPORT_PATH =
 
 # Default rules for deployment.
 include(deployment.pri)
+include(brisa.pri)
 
 HEADERS += \
     brisaapplication.h \
-    brisaapplicationmanager.h
+    brisaapplicationmanager.h \
+    bcadevice.h \
+    functions.h

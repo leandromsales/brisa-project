@@ -10,7 +10,7 @@ BRisaApplication::BRisaApplication(QString newIconPath, QString newTitle, QStrin
 
 BRisaApplication::~BRisaApplication(){}
 
-QStringList BRisaApplication::getServices() const{    return services; }
+QStringList BRisaApplication::getServices() const{    return services;  }
 
 QString BRisaApplication::getDescription() const{    return description;    }
 
