@@ -42,10 +42,10 @@ void MediaControlPoint::handleNewSSDPMessage(QString message) {
     } else if (message.startsWith("NOTIFY * HTTP/1.1")) {
         headerType = 2;
     } else {
-        //        qDebug() << "=============== NEW MESSAGE ================";
-        //        qDebug() << "WRONG SEARCH MESSAGE";
-        //        qDebug() << message;
-        //        qDebug() << "============ END OF NEW MESSAGE ============";
+                qDebug() << "=============== NEW MESSAGE ================";
+                qDebug() << "WRONG SEARCH MESSAGE";
+                qDebug() << message;
+                qDebug() << "============ END OF NEW MESSAGE ============";
         return;
     }
 

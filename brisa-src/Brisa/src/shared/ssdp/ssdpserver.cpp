@@ -121,7 +121,6 @@ void SSDPServer::doNotify(const QString &usn,
                                const QString &server,
                                const QString &cacheControl)
 {
-    qDebug() << "SSDP SERVER DONOTIFY()";
     QString message = UPNP_ALIVE_MESSAGE.arg(cacheControl, location, st, server, usn);
 
     udpListener->writeDatagram(message.toUtf8(),

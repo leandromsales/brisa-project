@@ -89,9 +89,7 @@ void SSDPClient::datagramReceived() {
 }
 
 void SSDPClient::notifyReceived(const QMap<QString, QString> &message) {
-    qDebug() << "NOTIFICAÇÃO RECEBIDA";
     if (!message.contains("nts")) {
-        qDebug() << "!NTS";
 	        return;
     }
 

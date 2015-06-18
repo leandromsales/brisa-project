@@ -12,7 +12,6 @@ WebStaticContent::WebStaticContent(const QByteArray &content,
         WebService(parent),
         m_content(content)
 {
-    qDebug() << "INSTANCIOU WEB STATIC CONTENT";
 }
 
 WebStaticContent::~WebStaticContent() { }
