@@ -1,7 +1,6 @@
 #ifndef MYCLASSTEST_H
 #define MYCLASSTEST_H
 
-#include "upnp/controlpoint/ControlPoint"
 #include "controlpointbcu.h"
 
 class MyClassTest

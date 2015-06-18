@@ -12,7 +12,7 @@ MyClassTest::MyClassTest()
 void MyClassTest::startCP()
 {
     qDebug() << "Iniciando o cpBCU";
-    ControlPoint *controlPoint = new ControlPointBCU();
+    ControlPointBCU *controlPoint = new ControlPointBCU();
     controlPoint->start();
     controlPoint->discover();
     qDebug() << "cpBCU iniciado";

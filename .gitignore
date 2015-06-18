@@ -26,6 +26,13 @@ arm/
 *.so*
 *.qm
 
+# Other files     #
 ###################
 *.pro.user*
 brisa-src/build*
+Apps/build*
+examples/build*
+*~
+
+###################
+Apps/BCU/src
