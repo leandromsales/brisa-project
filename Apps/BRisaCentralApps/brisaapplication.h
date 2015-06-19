@@ -4,6 +4,9 @@
 #include <QStringList>
 #include <QString>
 #include <QObject>
+#include <QList>
+
+#include "serviceApp.h"
 
 class BRisaApplication : public QObject
 {
@@ -12,22 +15,24 @@ class BRisaApplication : public QObject
 
 public:
 
-    Q_PROPERTY(QStringList services READ getServices)
+    Q_PROPERTY(QList<ServiceApp *> services READ getServices)
     Q_PROPERTY(QString description READ getDescription)
     Q_PROPERTY(QString iconPath READ getIconPath)
     Q_PROPERTY(QString title READ getTitle)
 
-    BRisaApplication(QString newIconPath, QString newTitle, QString newDescription, QStringList newServices);
+    BRisaApplication(QString newIconPath, QString newTitle, QString newDescription, QList<ServiceApp *>newServices);
     ~BRisaApplication();
 
-    Q_INVOKABLE QStringList getServices() const;
+    Q_INVOKABLE QStringList getString() const;
     Q_INVOKABLE QString getDescription() const;
     Q_INVOKABLE QString getIconPath() const;
     Q_INVOKABLE QString getTitle() const;
 
+    QList<ServiceApp *> getServices();
+
 private:
 
-    QStringList services;
+    QList<ServiceApp *> services;
     QString description;
     QString iconPath;
     QString title;

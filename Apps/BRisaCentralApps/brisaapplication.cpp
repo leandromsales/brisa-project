@@ -1,16 +1,27 @@
 #include "brisaapplication.h"
 
-BRisaApplication::BRisaApplication(QString newIconPath, QString newTitle, QString newDescription, QStringList newServices)
+BRisaApplication::BRisaApplication(QString newIconPath, QString newTitle, QString newDescription, QList<ServiceApp *> newServiceApps)
 {
     description = newDescription;
-    services = newServices;
+    services = newServiceApps;
     iconPath = newIconPath;
     title = newTitle;
 }
 
 BRisaApplication::~BRisaApplication(){}
 
-QStringList BRisaApplication::getServices() const{    return services;  }
+QStringList BRisaApplication::getString() const
+{
+    QStringList aux;
+
+    foreach (ServiceApp *s, services) {
+        aux.append(s->getString());
+    }
+
+    return aux;
+}
+
+QList<ServiceApp *> BRisaApplication::getServices() {    return services;  }
 
 QString BRisaApplication::getDescription() const{    return description;    }
 

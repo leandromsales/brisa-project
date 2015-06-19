@@ -31,11 +31,11 @@ Rectangle {
                 appFrame.description=description
 
                 var i;
-                for(i = 0; i < servicesModel.length/2; i++) {
+                for(i = 0; i < servicesModel.length; i++) {
 
                     list.append({
                                     "title": servicesModel[i],
-                                    "description" : servicesModel[i + 1]
+                                    "description" : servicesModel[++i]
                                 });
 
                 }

@@ -19,11 +19,11 @@ public:
     Q_INVOKABLE int getNumOfApps();
 
     void addApp(QObject *app);
+    BRisaApplication *getAppByName(QString appName);
 
 private:
 
     QList<QObject *> apps;
-
     int numOfApps;
 
 };

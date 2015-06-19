@@ -18,6 +18,11 @@
     <action>
     <name>GetInfoOfApp</name>
       <argumentList>
+      <argument>
+        <name>SelectedApp</name>
+        <direction>in</direction>
+        <relatedStateVariable>AppSelector</relatedStateVariable>
+      </argument>
         <argument>
           <name>InfoOfApp</name>
           <direction>out</direction>
@@ -49,6 +54,11 @@
   </stateVariable>
   <stateVariable sendEvents="yes">
     <name>App</name>
+    <dataType>string</dataType>
+    <defaultValue>Default</defaultValue>
+  </stateVariable>
+  <stateVariable sendEvents="no">
+    <name>AppSelector</name>
     <dataType>string</dataType>
     <defaultValue>Default</defaultValue>
   </stateVariable>

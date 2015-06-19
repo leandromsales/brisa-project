@@ -6,7 +6,8 @@ SOURCES += main.cpp \
     brisaapplication.cpp \
     brisaapplicationmanager.cpp \
     bcadevice.cpp \
-    functions.cpp
+    functions.cpp \
+    serviceApp.cpp
 
 RESOURCES += qml.qrc
 
@@ -21,4 +22,5 @@ HEADERS += \
     brisaapplication.h \
     brisaapplicationmanager.h \
     bcadevice.h \
-    functions.h
+    functions.h \
+    serviceApp.h

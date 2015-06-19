@@ -74,7 +74,7 @@ ApplicationWindow {
                         title:manager.getListApps()[index].getTitle();
                         description:manager.getListApps()[index].getDescription();
 
-                        servicesModel: manager.getListApps()[index].getServices();
+                        servicesModel: manager.getListApps()[index].getString();
 
                     }
                 }
