@@ -24,3 +24,6 @@ OBS.:
 1. o provável método relativo aos serviços que será modificado no novo cp será
    replyFinished em ControlPoint (no BRisa, em upnp/controlpoint)
 2. o BRisaControlPoint (na pasta examples do repositório) deve servir de base
+
+
+- adicionar evento da tecla Voltar

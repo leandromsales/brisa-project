@@ -10,13 +10,32 @@ ApplicationWindow {
     width: 480 // Screen.desktopAvailableWidth
     height: 600 // Screen.desktopAvailableHeight*0.95
     visible: true
+    color: "white"
+
+    Loader {
+        id: loader
+        focus: true
+        z: 100
+        anchors.fill: parent
+    }
+
+    Rectangle {
+        id: topBar
+        width: parent.width
+        anchors.top: parent.top
+        height: Screen.desktopAvailableHeight*0.05
+
+        Text {
+            text: "Dispositivos disponíveis"
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
+        }
+    }
 
     GridLayout {
         id: grid
-        columns: parent.width / 75 // pensei no tamanho de cada ícone em 72 px +/-
-        anchors.top: parent.top
-        width: parent.fill
-        height: parent.fill
+        columns: parent.width / 75
+        anchors.top: topBar.bottom
 
         AppIcon {}
         AppIcon {}
@@ -30,7 +49,7 @@ ApplicationWindow {
         height: Screen.desktopAvailableHeight*0.05
 
         Text {
-            text: "Pesquisando por dispositivos..."
+            text: "Pesquisando por outros dispositivos..."
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
         }
