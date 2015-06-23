@@ -6,17 +6,19 @@
 - criar uma classe baseada em um control point (OK)
 - modificações no control point original (em progresso):
   * o device encontrado deve possuir os serviços que possuam as ações abaixo,
-    caso contrário, o device não será válido (ver OBS1)
+    caso contrário, o device não será válido (OK)
     ~> getListOfApps
     ~> getAppInfo
     ~> getApp
-    (OK, apesar de não ter nenhum teste ainda, já que isto requer um device)
   * o control point deve ser capaz de decodificação a compactação .compe
     (conversar com o Bruno sobre essa compactação)
-- realizar a inicialização de todos os serviços necessários a um cp (ver OBS2)
-- criar uma interface gráfica; inicialmente, essa interface pode ser baseada no
-  BRisaControlPoint a fim de testar funcionalidades específicas do código. A
-  ideia é que posteriormente seja feita uma interface nova para o BCU.
+- realizar a inicialização de todos os serviços necessários a um cp (OK)
+- criar uma interface gráfica; inicialmente, será uma tela em branco e os
+  devices válidos deverão ser listados de forma semelhante ao que acontece num
+  menu de aplicativos (como um grid). Ao "tocar / clicar" num device, as opções
+  sobre e carregar o app serão mostradas; a primeira, carregará uma informações
+  a respeito do aplicativo e a segunda fará o download / atualização / abrirá o
+  app. Durante esse processo, uma splash screen é exibida.
 
 OBS.:
 1. o provável método relativo aos serviços que será modificado no novo cp será
