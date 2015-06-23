@@ -18,10 +18,27 @@ ApplicationWindow {
         width: parent.fill
         height: parent.fill
 
-        Text { text: "Aqui"; }
-        Text { text: "aparecerão"; }
-        Text { text: "os"; }
-        Text { text: "devices"; }
+        Item {
+            width: 75
+            height: 75
+
+            Image {
+                source: "qrc:/pics/qtlogo.png"
+                width: 72
+                height: 72
+            }
+        }
+
+        Item {
+            width: 75
+            height: 75
+
+            Image {
+                source: "qrc:/pics/qtlogo.png"
+                width: 72
+                height: 72
+            }
+        }
     }
 
     Rectangle {
