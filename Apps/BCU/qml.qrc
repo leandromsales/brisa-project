@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>MainForm.ui.qml</file>
+        <file>AppIcon.qml</file>
+        <file>pics/qtlogo.png</file>
     </qresource>
 </RCC>

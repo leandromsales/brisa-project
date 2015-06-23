@@ -18,27 +18,9 @@ ApplicationWindow {
         width: parent.fill
         height: parent.fill
 
-        Item {
-            width: 75
-            height: 75
-
-            Image {
-                source: "qrc:/pics/qtlogo.png"
-                width: 72
-                height: 72
-            }
-        }
-
-        Item {
-            width: 75
-            height: 75
-
-            Image {
-                source: "qrc:/pics/qtlogo.png"
-                width: 72
-                height: 72
-            }
-        }
+        AppIcon {}
+        AppIcon {}
+        AppIcon {}
     }
 
     Rectangle {
