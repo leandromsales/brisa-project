@@ -3,6 +3,7 @@ import QtQuick.Controls 1.2
 import QtQuick.Window 2.0
 import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.1
+import QtGraphicalEffects 1.0
 
 ApplicationWindow {
     id: root
@@ -30,6 +31,23 @@ ApplicationWindow {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
         }
+
+        Rectangle {
+            height: 1
+            width: parent.width
+            anchors.bottom: parent.bottom
+
+            LinearGradient {
+                anchors.fill: parent
+                start: Qt.point(0, 0)
+                end: Qt.point(parent.width, 0)
+                gradient: Gradient {
+                    GradientStop { position: 0.0; color: "white" }
+                    GradientStop { position: 0.5; color: "black" }
+                    GradientStop { position: 1.0; color: "white" }
+                }
+            }
+        }
     }
 
     GridLayout {
@@ -37,6 +55,8 @@ ApplicationWindow {
         columns: parent.width / 75
         anchors.top: topBar.bottom
 
+        // a criação desses caras deverá ser dinâmica: sempre que um
+        // device compatível for encontrado, um appIcon será mostrado
         AppIcon {}
         AppIcon {}
         AppIcon {}

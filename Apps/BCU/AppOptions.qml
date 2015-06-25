@@ -5,6 +5,12 @@ import QtGraphicalEffects 1.0
 Rectangle {
     color: "white"
     opacity: 0.75
+    focus: true
+        Keys.onPressed: {
+            if (event.key == Qt.Key_Backspace) {
+                loader.source = ""
+            }
+        }
 
     Rectangle {
         id: mainRec
