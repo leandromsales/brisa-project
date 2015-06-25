@@ -15,7 +15,6 @@ namespace controlpoint {
 
 ControlPointBCU::ControlPointBCU(QObject *parent, QString st, int mx) :
     QObject(parent) {
-
     this->discoverNetworkAddress();
     this->buildUrlBase();
     this->deliveryPath = 0;
@@ -84,7 +83,6 @@ void ControlPointBCU::discover() {
 }
 
 void ControlPointBCU::replyFinished(QNetworkReply *reply) {
-    qDebug() << "reply finished";
     QTemporaryFile *rootXml = new QTemporaryFile();
     if (!rootXml->open()) {
         qWarning() << "BCU: Failed to open file for writing root XML.";
@@ -129,6 +127,8 @@ void ControlPointBCU::replyFinished(QNetworkReply *reply) {
             delete rootXml;
             delete urlBase;
             reply->deleteLater();
+
+            // aqui virá o código que adiciona o icone do app no BCU
 
             emit deviceFound(device);
         } else {

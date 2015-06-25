@@ -23,29 +23,132 @@ class ControlPointBCU: public QObject {
 Q_OBJECT
 
 public:
+    /*!
+     *  Constructor
+     *  \param parent parent
+     *  \param st service type
+     *  \param mx interval
+     */
     ControlPointBCU(QObject *parent = 0, QString st = "ssdp:all", int mx = 5);
+
+    /*!
+     *  Destructor
+     */
     ~ControlPointBCU();
+
+    /*!
+     *  Starts the control point, the ssdpClient and the msearch
+     *  \sa stop(), isRunning()
+     */
     void start();
+
+    /*!
+     *  Stops the control point, the ssdpClient and the msearch
+     *  \sa start(), isRunning()
+     */
     void stop();
+
+    /*!
+     *  Return if the control point is running
+     *  \return true if the control point is running or false otherwise
+     *  \sa start(), stop()
+     */
     bool isRunning();
+
+    /*!
+     *  Starts the control point msearch discover.
+     */
     void discover();
 
 private:
+    /*!
+     *  Private function to create the UrlBase of the control point (http:// + ip + : + port)'.
+     */
     void buildUrlBase();
+
+    /*!
+     *  Private function to discover the network address currently used by the machine where control
+     *  point is running and select an free port to use with BrisaWebServer.
+     */
     void discoverNetworkAddress();
 
 signals:
+    /*!
+     *    \fn void BrisaControlPoint::deviceFound(BrisaControlPointDevice *device)
+     *    This signal is emitted when a new device is find in network and all it's attributes are created
+     *    by the xml reading.
+     *    \sa deviceGone(QString udn)
+     *    \param device the device that has been found
+     */
     void deviceFound(Device *device);
+
+    /*!
+     *    \fn void BrisaControlPoint::deviceGone(QString udn)
+     *    This signal is emitted when a device leaves the network, that means that the the ssdp client
+     *    received a "ssdp:byebye" message from the device and, to handle this, the control point emit
+     *    a deviceGone event with the device's \a udn as parameter.
+     *    \sa deviceFound(BrisaControlPointDevice *device)
+     */
     void deviceGone(QString udn);
+
+    /*!
+     * Signal emitted when a multicast message is received.
+     *
+     * \param variableName name of the state variable.
+     * \param newValue new value of the state variable.
+     */
     void multicastReceived(QString variableName, QString newValue);
+
+    /*!
+     * Signal emitted when a multicast message is received.
+     *
+     * Similar to multicastReceived, but sends a OutArgument containing
+     * all the attributes of the multicast event massage, including
+     * "variableName" and "newValue".
+     *
+     * \param raw attributes of the multicast event message.
+     */
     void multicastReceivedRaw(OutArgument raw);
 
 private slots:
+    /*!
+     *  Slot called when receive a newDevice event, this slot start the device's xml download.
+     *  \param udn \a empty
+     *  \param location \a empty
+     *  \param ext \a empty
+     *  \param server \a empty
+     *  \param cacheControl \a empty
+     */
     void deviceFound(QString udn, QString location, QString st, QString ext,
             QString server, QString cacheControl);
+
+    /*!
+     *  Slot called when ssdp client emits a removed device event, this slot emit the deviceGone signal
+     *  which has as parameter the device's udn.
+     *  \param udn empty
+     */
     void deviceRemoved(const QString udn);
+
+    /*!
+     *  Write the content of the downloaded xml in a new xml temporary file to set the device's
+     *  attributes emits the deviceFound signal when finished.
+     *  \param reply \a empty
+     */
     void replyFinished(QNetworkReply *reply);
+
+    /*!
+     *  Slot to get the response of the http request, made by BrisaEventProxy class and set the SID
+     *  of the subscription object.
+     *  \param i \a empty
+     *  \param error \a empty
+     */
     void httpResponse(QNetworkReply *networkReply);
+
+    /*!
+     * Receives the attributes of a multicast event.
+     *
+     * \param attributes attributes of the multicast event.
+     */
     void receiveMulticast(QMap<QString, QString> attributes);
 
 public:
