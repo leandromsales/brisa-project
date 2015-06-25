@@ -59,6 +59,7 @@ Rectangle {
                 id: maLoad
                 anchors.fill: load
                 hoverEnabled : true
+                onClicked: loader.source = "LoadApp.qml"
             }
         }
     }

@@ -37,7 +37,7 @@ Rectangle {
                     width:helpScreen.width;
                     readOnly:true
 
-                    text: "Aqui haverão informações sobre o app \nSe houver muito texto, aparecerá uma barra de rolagem"
+                    text: "Aqui haverão informações sobre o app \nSe houver muito texto, a área será rolável"
                 }
             }
         }

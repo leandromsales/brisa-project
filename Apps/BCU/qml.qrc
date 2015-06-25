@@ -6,5 +6,6 @@
         <file>pics/qtlogo.png</file>
         <file>AppOptions.qml</file>
         <file>AboutApp.qml</file>
+        <file>LoadApp.qml</file>
     </qresource>
 </RCC>
