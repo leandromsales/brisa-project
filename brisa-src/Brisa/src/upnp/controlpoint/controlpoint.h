@@ -174,7 +174,8 @@ public:
      */
     ControlPoint(QObject *parent = 0, QString st = "ssdp:all", int mx = 5);
 
-    /**  Destructor
+    /*!
+     *  Destructor
      */
     virtual ~ControlPoint();
 

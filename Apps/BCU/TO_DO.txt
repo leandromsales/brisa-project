@@ -10,6 +10,8 @@
     ~> getListOfApps
     ~> getAppInfo
     ~> getApp
+    ** o método relativo aos serviços que será modificado no novo cp
+    será replyFinished de ControlPoint (no BRisa, em upnp/controlpoint)
   * o control point deve ser capaz de decodificação a compactação .compe
     (conversar com o Bruno sobre essa compactação)
 - realizar a inicialização de todos os serviços necessários a um cp (OK)
@@ -18,12 +20,7 @@
   menu de aplicativos (como um grid). Ao "tocar / clicar" num device, as opções
   sobre e carregar o app serão mostradas; a primeira, carregará uma informações
   a respeito do aplicativo e a segunda fará o download / atualização / abrirá o
-  app. Durante esse processo, uma splash screen é exibida.
+  app. Durante esse processo, uma splash screen é exibida. (OK)
+- criar um novo device no grid toda vez que um device válido for encontrado
+- carregar app (em qml) dinamicamente após o download
 
-OBS.:
-1. o provável método relativo aos serviços que será modificado no novo cp será
-   replyFinished em ControlPoint (no BRisa, em upnp/controlpoint)
-2. o BRisaControlPoint (na pasta examples do repositório) deve servir de base
-
-
-- adicionar evento da tecla Voltar
