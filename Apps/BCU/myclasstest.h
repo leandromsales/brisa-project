@@ -2,6 +2,7 @@
 #define MYCLASSTEST_H
 
 #include "controlpointbcu.h"
+#include "FolderCompressor.h"
 
 class MyClassTest
 {
@@ -9,6 +10,8 @@ public:
     MyClassTest();
     void startCP();
     void startDevice();
+    void compress(QString source, QString destination);
+    void uncompress(QString source, QString destination);
 };
 
 #endif // MYCLASSTEST_H

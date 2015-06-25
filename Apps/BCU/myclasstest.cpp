@@ -23,3 +23,17 @@ void MyClassTest::startDevice()
 
 }
 
+void MyClassTest::compress(QString source, QString destination)
+{
+    FolderCompressor * fc = new FolderCompressor();
+    bool status = fc->compressFolder(source, destination);
+    qDebug() << "compressed: " << status;
+}
+
+void MyClassTest::uncompress(QString source, QString destination)
+{
+    FolderCompressor * fc = new FolderCompressor();
+    bool status2 = fc->decompressFolder(source, destination);
+    qDebug() << "uncompressed: " << status2;
+}
+
