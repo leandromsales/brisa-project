@@ -36,6 +36,8 @@ Rectangle {
                 id: maAbout
                 anchors.fill: about
                 hoverEnabled : true
+                onClicked: loader.source = "AboutApp.qml"
+
             }
         }
 
@@ -67,6 +69,6 @@ Rectangle {
         x: mainRec.x + 2
         y: mainRec.y + 2
         z: -1
-        color: "grey"
+        color: "black"
     }
 }
