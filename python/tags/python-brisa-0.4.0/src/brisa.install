@@ -1,0 +1,4 @@
+[install]
+repo_name = Brisa UPnP A/V Framework
+repo_deb_3  = deb http://embedded.ufcg.edu.br/~jluisn/brisa ./
+package = brisa

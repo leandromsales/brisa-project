@@ -1,0 +1,1367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+ "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd"
+[
+<!ENTITY % documentation_developer_entities SYSTEM "documentation-developer.ent">
+%documentation_developer_entities;
+<!ENTITY contact_chapter SYSTEM "contact.xml">
+]>
+
+<book id="documentation-developer">
+	<bookinfo>
+		<title>Core Documentation</title>
+
+		<author>
+			<firstname>Leandro</firstname>
+			<surname>Melo de Sales</surname>
+			<affiliation>
+				<address><email>leandro@embedded.ufcg.edu.br</email></address>
+			</affiliation>
+		</author>
+
+		<author>
+			<firstname>André</firstname>
+			<surname>Dieb Martins</surname>
+			<affiliation>
+				<address><email>dieb@embedded.ufcg.edu.br</email></address>
+			</affiliation>
+		</author>
+
+		<!-- FIXME: This is not right -->
+		<author>
+			<firstname>Embedded Systems and Pervasive Computing
+				Laboratory</firstname>
+			<affiliation>
+				<address>http://embedded.ufcg.edu.br/</address>
+			</affiliation>
+		</author>
+
+		<revhistory>
+
+			<revision>
+				<revnumber>1.1</revnumber>
+				<date>2008-10-30</date>
+				<revdescription>
+					<itemizedlist>
+						<listitem>
+							<para>Updated install section, renamed package name
+								"main", images fixed.</para>
+						</listitem>
+					</itemizedlist>
+				</revdescription>
+			</revision>
+
+			<revision>
+				<revnumber>1.0</revnumber>
+				<date>2008-09-19</date>
+				<revdescription>
+					<itemizedlist>
+						<listitem>
+							<para>First Version.</para>
+						</listitem>
+					</itemizedlist>
+				</revdescription>
+			</revision>
+
+		</revhistory>
+
+		<abstract>
+			<para>This guide describes the how to use the UPnP BRisa
+				Framework. This document target audience are new UPnP developers,
+				but it also may serve as reference for advanced ones.</para>
+		</abstract>
+
+
+	</bookinfo>
+	
+
+	<chapter>
+		<title>Introduction</title>
+
+		<sect1>
+			<title>What is python-BRisa?</title>
+			<para>
+				python-BRisa is an UPnP framework written in Python. Initially it focused on the 
+				UPnP A/V specification, which concerns multimedia devices and control points.
+				However, nowadays it has attained the status of a general UPnP Framework,
+				providing facilities for creating UPnP devices and control points.
+			</para>
+			<para>
+				python-BRisa features:
+                <itemizedlist>
+                    <listitem>Implements the UPnP device architecture specification (SSDP, SOAP, MSearch, Eventing),
+                UPnP services and devices through Object-oriented programming,
+                a control point API
+				HTTP, SOAP), network utilitaries, threading management, logging, configurations,		   
+				web server, UPnP control point and devices.  
+                    </listitem>
+                </itemizedlist>
+			</para>
+								
+			<para>Even though it's not BRisa's main focus anymore, the BRisa project is still
+			commited to maintaing and improving its UPnP A/V "branch", always complying to
+			DLNA <xref linkend="ref_dlna"/> and UPnP specs.
+			</para>
+
+			<para>Aside from the framework itself, BRisa also provides some applications, most
+			concerning UPnP A/V:
+			</para>
+			<itemizedlist>
+				<listitem>
+					<para>
+						<emphasis role="bold">brisa-media-server
+						</emphasis>
+						- UPnP A/V Media Server 1.0 implementation with addition of a plugin architecture
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						<emphasis role="bold">brisa-media-server-plugins
+						</emphasis>
+						- Plugins for BRisa Media Server (Youtube, Flickr, Shoutcast)
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						<emphasis role="bold">brisa-media-renderer
+						</emphasis>
+						- UPnP A/V Media Renderer 1.0 implementation
+					</para>
+				</listitem>
+			</itemizedlist>
+
+		</sect1>
+		
+		<sect1>
+			<title>Preliminary Reading</title>
+			<para>
+				It is recommended that you have a basic understanding of Python
+				programming language and of the UPnP specification. If you are already
+				familiar with those, you can skip the first three items of
+				<xref linkend="Overview_UPnP_BRisa_basics" />.
+			</para>
+			<para>Suggested documents:</para>
+
+			<itemizedlist>
+				<listitem>
+					<para>
+						Python Documentation -
+						<ulink url="http://docs.python.org/">http://docs.python.org/
+						</ulink>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						UPnP Device Architecture -
+						<ulink
+							url="http://upnp.org/specs/arch/UPnP-arch-DeviceArchitecture-v1.0-20080424.pdf">
+							http://upnp.org/specs/arch/UPnP-arch-DeviceArchitecture-v1.0-20080424.pdf
+						</ulink>
+					</para>
+				</listitem>
+
+			</itemizedlist>
+
+		</sect1>
+
+		<sect1>
+			<title>Requirements</title>
+			<para>BRisa UPnP Framework (python-brisa) requires the following:</para>
+			<itemizedlist>
+				<listitem>
+					<para>
+						Python 2.5.x, Python 2.5.x dev -
+						<ulink url="http://python.org/">http://python.org/</ulink>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Python-Cherrypy (>= 3.1.1) -
+						<ulink url="http://www.cherrypy.org/">http://www.cherrypy.org/
+						</ulink>
+					</para>
+				</listitem>
+
+			</itemizedlist>
+			<para>brisa-media-server requires <ulink url="http://lms.garage.maemo.org/">LightMediaScanner</ulink>, 
+			<ulink url="http://dbus.freedesktop.org/doc/dbus-python/doc/tutorial.html">DBus/Python-Dbus</ulink> and
+			<ulink url="http://www.pygtk.org/">PyGTK</ulink>.</para>
+			<para>brisa-media-renderer requires	<ulink url="http://gstreamer.freedesktop.org/downloap">gstreamer0.10+</ulink>,
+			<ulink url="http://gstreamer.freedesktop.org/modules/gst-python.html">python-gstreamer</ulink>,
+			<ulink url="http://gstreamer.freedesktop.org/download">gstreamer0.10-plugins-*</ulink> and
+			<ulink url="http://dbus.freedesktop.org/doc/dbus-python/doc/tutorial.html">DBus/Python-Dbus</ulink>.  
+			</para>
+
+		</sect1>
+ 
+<!-- Updated version this point up -->
+
+		<sect1>
+			<title>Integration</title>
+			<para>BRisa runs on Linux, Mac OSX, Nokia maemo devices (N800,
+            N810).</para>
+            <para>Though we haven't tested on other platforms, it should work on any platform with a python interpreter
+            installed. BRisa really needs your help and feedback so that it run out of the box on
+            these systems. Please report problems to the development list and we
+            will surely try to fix it. There's also a plan of porting it to
+            Symbian S60.
+            </para>
+		</sect1>
+
+		<sect1>
+			<title>Installing BRisa</title>
+				<itemizedlist>
+					<listitem>
+						<para>
+							Get latest BRisa <ulink url="https://garage.maemo.org/frs/?group_id=138">packages</ulink>
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							For each package:
+							<screen>
+<prompt>$ </prompt><userinput>tar zxvf package.tar.gz</userinput>
+<prompt>$ </prompt><userinput>cd package</userinput>
+<prompt>$ </prompt><userinput>sudo python setup.py install</userinput>
+</screen>
+						</para>
+					</listitem>
+
+				</itemizedlist>
+
+		</sect1>
+
+	</chapter>
+
+
+	<chapter id="Overview_UPnP_BRisa_basics">
+		<title>Overview: UPnP &amp; BRisa basics</title>
+	
+	<para>BRisa (or python-brisa) framework can be divided into its control
+    point API and its device and services facilities.
+    This python API is described thoroughly at <xref linkend="BRisa_modules"/> and its subsequent sections.
+    It is also possible to consult the <ulink url="&url_brisa_apidoc;">API Documentation</ulink>.</para>
+	
+	</chapter>
+	
+				<chapter id="BRisa_modules">
+				<title>Modules</title>
+
+					<sect1>
+					<title>Abstract</title>
+						<itemizedlist>
+							<listitem><emphasis role="bold">brisa.config</emphasis> - configuraticonfiguration tool and variables</listitem>
+							<listitem><emphasis role="bold">brisa.control_point</emphasis> - control point API</listitem>
+							<listitem><emphasis role="bold">brisa.log</emphasis> - logging</listitem>
+							<listitem><emphasis role="bold">brisa.threading</emphasis> - framework's core, thread management and thread related things</listitem>
+							<listitem><emphasis role="bold">brisa.services</emphasis> - UPnP services implemented</listitem>
+							<listitem><emphasis role="bold">brisa.upnp</emphasis> - UPnP general (ssdp, msearch, etc)</listitem>
+							<listitem><emphasis role="bold">brisa.utils</emphasis> - utility, networking, messaging, parsers</listitem>
+							<listitem><emphasis role="bold">brisa.xml_descriptions</emphasis> - default XML descriptions</listitem>
+						</itemizedlist>
+					</sect1>
+					
+					<sect1>
+					<title>Description</title>
+					
+						<itemizedlist>
+							<listitem><para>brisa.config</para>
+								<para>This is where our BrisaConf class and some configuration variables are placed.
+								This class is not supposed to be used directly, since its role on the configuration
+								matter is only to check variables and set them on that package, so that you
+								can use it later at any stage/module of your application.
+								</para>
+							</listitem>
+							<listitem id="Package_brisa_control_point"><para>brisa.control_point</para>
+								<itemizedlist>
+									<listitem><para>control_point.py - Base Control Point</para>
+										<para>This module contains three functions and a ControlPoint class. More specifically:</para>
+                                    	<itemizedlist>
+											<listitem><para><emphasis role="bold"><emphasis>get_device_object</emphasis></emphasis> - makes and returns a description of a device object given the location</para>
+											</listitem>
+											<listitem><para><emphasis role="bold"><emphasis>get_device_object_async</emphasis></emphasis> - same as above, but asynchronous</para>
+											</listitem>
+											<listitem><para><emphasis role="bold"><emphasis>get_service_control_url</emphasis></emphasis> - returns a list of control_url given a service dict</para>
+											</listitem>
+									
+		                                </itemizedlist>
+						
+                                    <para><emphasis role="bold"><emphasis>ControlPoint</emphasis></emphasis> - core class for the API that implements an UPnP Control Point basic functionalities, such as device search control, subscribe/unsubscribe methods for device events and UPnP events.</para>
+									</listitem>
+									
+									<listitem><para>control_point_av.py - UPnP A/V 1.0 ControlPoint implementation</para>
+										<para>This module contains an UPnP A/V 1.0 ControlPoint implementation, which uses directly the Control Point API.
+                                    It provides methods for controlling
+                                    servers and renderers, such as <emphasis role="bold">browse,
+                                    search, get_search_capabilities,
+                                    get_sort_capabilities, play, stop, pause,
+                                    next, previous</emphasis>. It's also an practical
+                                    example for developers of how to use the
+                                    control point API.</para>
+                                    
+									</listitem>
+									<listitem><para>event and others</para>
+										<para><emphasis role="bold">event.py</emphasis> contains the base for UPnP event listening. A GTK GUI implementation using our multimedia ControlPoint
+									is also provided.</para>
+									</listitem>
+								</itemizedlist>
+							</listitem>
+							
+							<listitem><para>brisa.devices</para>
+								<para>Holder package for implemented devices. Three devices have been implemented:</para>
+								<itemizedlist>
+									<listitem><para><emphasis role="bold">MediaServer</emphasis> - device implementing a MediaServer, provides a simple start/stop interface <emphasis role="bold">*</emphasis></para></listitem>
+									<listitem><para><emphasis role="bold">MediaRenderer</emphasis> - device implementing a MediaRenderer, provides a simple start/stop interface <emphasis role="bold">*</emphasis></para></listitem>
+								</itemizedlist>
+
+								<para><emphasis role="bold">*</emphasis>	: Complies with <ulink url="http://upnp.org/standardizeddcps/mediaserver.asp">UPnP MediaServer and MediaRenderer V1.0</ulink>.</para>
+							</listitem>
+							
+							<listitem><para>brisa.log</para>
+								<para> Provides logging API with five different levels of logging. The level can be set at the <emphasis role="bold">configuration file</emphasis>.
+							</para>
+								<para>Levels list:</para>
+								<itemizedlist>
+									<listitem><para>CRITICAL</para></listitem>
+									<listitem><para>ERROR</para></listitem>
+									<listitem><para>WARNING</para></listitem>
+									<listitem><para>DEBUG</para></listitem>
+									<listitem><para>INFO</para></listitem>
+								</itemizedlist>
+							</listitem>
+							
+							<listitem id="Package_brisa_threading"><para>brisa.threading</para>
+							<para>This package provides thread related classes and methods for managing them during execution (complete explanation of this
+							can be found at <xref linkend="Package_threading_managed_threading"/> of this document).</para>
+							<para>It also provides a sleep function that assures blocking the whole sleeping time (<ulink url="http://docs.python.org/lib/module-time.html">python sleep is not completely safe</ulink>).
+							</para>
+							</listitem>
+							
+							<listitem><para>brisa.services</para>
+								<itemizedlist>
+									<listitem><para>avtransport</para>
+									<para>Implementation of the <ulink url="http://upnp.org/standardizeddcps/documents/AVTransport1.0.pdf">AVTransport V 1.0</ulink> service.</para>
+									</listitem>
+									
+									<listitem><para>cds</para>
+									<para>Implementation of the <ulink url="http://upnp.org/standardizeddcps/documents/ContentDirectory1.0.pdf">ContentDirectory V 1.0</ulink> service. (cds) is the package which implements BRisa's plugin-based architecture. For usage and plugin writing tips refer to the following sections.</para>									
+									</listitem>
+									
+									<listitem><para>connmgr</para>
+									<para>Implementation of the <ulink url="http://upnp.org/standardizeddcps/documents/ConnectionManager1.0.pdf">ConnectionManager V 1.0</ulink> service.</para>
+									</listitem>
+									
+									<listitem><para>gst_renderer</para>
+									<para>Renderer service implementation using <ulink url="http://gstreamer.net">GStreamer</ulink>.</para>
+									</listitem>
+									
+									<listitem><para>media_registrar_ms</para>
+									</listitem>
+									
+									<listitem><para>render_control</para>
+									<para>Implementation of the <ulink url="http://upnp.org/standardizeddcps/documents/RenderingControl1.0.pdf">RenderingControl V 1.0</ulink> service.</para>
+									</listitem>
+									
+									<listitem id="web_server_service"><para>web_server</para>  
+									<para> The web_server service provides a web server interface that allows publishing/removing resources and static files.
+									Resources and static files are concepts of web servers but they can be abstracted:</para>
+										<itemizedlist>
+											<listitem><para><emphasis role="bold">Static file</emphasis>: object that matches with a file on the webserver. A request to an url that matches with a static file
+										will have the file as response (for example, a simple download);</para></listitem> 
+											<listitem><para><emphasis role="bold">Resource</emphasis>: object that needs special information to be used for generating the response. For example, if you have a 
+										web form with login and password fields, the submit URL must be a Resource that understands the form data passed.</para></listitem>
+	                                    </itemizedlist>
+										<para>For usage please refer to <xref linkend="Services_and_Plugin_Architecture"/>.</para>
+									</listitem>
+								</itemizedlist>
+							</listitem>
+							
+							<listitem><para>brisa.upnp</para>
+							<para>This package implements UPnP procedures (such as MSearch, SSDP server) and low level things (such as devices, services). It 
+							also contains UPnP constants, a DIDLLite implementation for UPnP containers &amp; items and message handle related classes and objects
+							(for handling device and service messages).</para>
+							</listitem>
+							<listitem id="Package_brisa_utils"><para>brisa.utils</para>
+							<para>This package provides useful functions and modules required by the UPnP implementation. It has high level implementations of network protocols
+							(TCP, UDP) for listening and sending, network-related functions (getting your ip address, parsing urls) and a looping call. For usage please refer to the subsequent sections.</para>
+							</listitem>
+							<listitem><para>brisa.xml_descriptions</para>
+							<para>Contains scpd xml descriptions.</para>
+							</listitem>
+						</itemizedlist>
+	</sect1>
+	
+	
+
+</chapter>
+
+<chapter id="Package_threading_managed_threading">
+<title>Package threading: managed threading</title>
+	<para>This section explains how BRisa manages multiple threads and some concepts introduced by our multithread-based architecture.
+                </para>
+                
+    <sect1>
+    	<title>Concepts</title>
+    	
+    								<sect2>
+							<title>ThreadObject</title>
+                            <para>ThreadObject is a feature of BRisa which abstracts Thread
+                            management from the developer. Basically, a ThreadObject is a Thread with some useful access/control methods and automatic registering/closure. 
+                            When a ThreadObject is instantiated, it registers itself on the 
+                            ThreadManager, who keeps track of all ThreadObjects for clean exiting.
+                            </para>                            
+                            <para>
+                            Just as a normal Thread, all the logic of your Thread should be 
+                            written in the <emphasis role="bold">run()</emphasis> method, which does nothing by default.
+                            If you need to do some actions before actually starting your ThreadObject
+                            routine, you should do this on the <emphasis role="bold">prepare_to_start()</emphasis> method.
+                            Analogous to the <emphasis role="bold">prepare_to_start()</emphasis> method, ThreadObject's also provides
+                            a <emphasis role="bold">prepare_to_stop()</emphasis> method, in which you should write actions to be done
+                            before exiting.</para>
+                            
+                            <para>
+                            ThreadObject are named with the template <emphasis role="bold"><emphasis>"ThreadObject %d: %s"</emphasis></emphasis> where 
+                            %d is the unique ThreadObject number and %s is your class that inherits
+                            from ThreadObject. This keeps debugging easy.</para>
+                            
+                            <para>
+                            Note that if you overwrite <emphasis role="bold">stop()</emphasis> or <emphasis role="bold">start()</emphasis> methods, both prepare_to_start
+                            and prepare_to_stop methods will become useless, since the logic for these
+                            calls will be lost (unless you copy it, which is not a very smart thing).
+                            </para>
+                            
+                            <para>
+                            We <emphasis role="bold">really recommend</emphasis> users to write the <emphasis role="bold">run()</emphasis> method in
+                            a way that <emphasis role="bold">is_running()</emphasis> method is often read and handles the exiting of
+                            your ThreadObject. We still don't have a force-quit scheme implemented and
+                            by doing this the developer will avoid defunct processes. <emphasis role="bold">DO NOT</emphasis> modify
+                            the attribute <emphasis>running</emphasis> (it is part of the ThreadObject prepare_to_stop
+                            scheme and is automatically set when you call <emphasis role="bold">stop()</emphasis>).  
+                            </para>
+                            
+                            <example>
+                            	<title>Using ThreadObject</title>
+                            	<programlisting>
+from brisa.threading import ThreadObject
+
+class MyThread(ThreadObject):
+    def __init__(self, ...):
+        ThreadObject.__init__(self, ...)
+
+    def prepare_to_stop(self, ...):
+        # Here my thread will do things necessary before stopping
+
+    def prepare_to_start(self, ...):
+        # Here my thread will do things necessary before starting
+
+    def run(self, ...):
+        # Here the thread will do its work!
+        while self.is_running():
+            # Work!
+        # Got here after the a stop() call or run() finished
+        # It is good here to close connections, for example.
+                            	
+                            	</programlisting>
+                            </example>
+
+</sect2>
+
+							<sect2>
+							<title>ThreadManager</title>
+                            <para>
+                            ThreadManager is the class that manages BRisa's threads and provides
+                            some useful functions such as running asynchronous function calls, a
+                            blocking main loop and proper threads stopping.
+                            </para>
+                            <para>
+                            If you're using ThreadManager's loop and you want your threads to finish
+                            nicely, it is strongly recommended to make your threads inherit from brisa.threading.ThreadObject
+                            (see its documentation).
+                            </para>
+                            <para>
+                            By doing this, your thread will automatically register itself on the
+                            ThreadManager and finish smoothly at the end of execution
+                            (ThreadManager().main_loop_quit()).
+                            </para>
+                            <para>
+                            Using ThreadManager</para>
+                            
+                            <itemizedlist>
+                            	<listitem><para>Using ThreadObject to have threads properly registered to the ThreadManager</para>
+                            	</listitem>
+                            	<listitem><para>Running a main loop with <emphasis role="bold">ThreadManager().main_loop()</emphasis></para>
+                            	</listitem>
+                            	<listitem><para>Stopping all threads with <emphasis role="bold">ThreadManager().stop_main_loop()</emphasis></para>
+                            	</listitem>
+                            	<listitem><para>Registering "stop" functions to be called when the main loop quits</para>
+                            	</listitem>
+                            	<listitem><para><ulink url="https://garage.maemo.org/plugins/scmsvn/viewcvs.php/trunk/examples/?root=brisa">Examples folder</ulink></para>
+                            	</listitem>                      	
+                            </itemizedlist>
+                            
+                            <para>
+                            ThreadManager is a <emphasis role="bold">SINGLETON</emphasis>. This means you can import it at any point of your program
+                            and use its functions.Some other useful management functions are also provided in the <link linkend="Package_brisa_threading"><emphasis role="bold">brisa.threading</emphasis>
+                            package</link>.
+                            </para>
+                            
+</sect2>
+							<sect2><title>ThreadedCall</title>
+                            <para>ThreadedCall is a class that performs an asynchronous call and forwards the result of the call to a success callback in case of success or to a error callback in case some exception was raised. It can also
+perform delayed calls.
+                            </para>
+                            <para>
+                            We strongly recommend a context analysis before using a ThreadedCall for avoiding race conditions.
+                            </para>
+                            
+					        	<sect3>
+					        	<title>Using ThreadedCall, run_async_function and run_async_call</title>
+                                
+                                	<para>Use <emphasis role="bold">run_async_function()</emphasis> for calls that you want to pass parameters in a 
+                                tuple, like when using <emphasis role="bold">thread.start_new_thread</emphasis>.</para> 
+
+                            <example>
+                            <title>Using run_async_function()</title>
+                            	<programlisting>
+from brisa.threading import ThreadManager
+
+def my_function(x, y, z, t):
+    # Do something
+
+ThreadManager.run_async_function(my_function, (5, 6, 7, 8))
+                            	
+                            	</programlisting>
+                            </example>
+
+                                
+                                <para>
+                                For passing <emphasis>*args</emphasis> and <emphasis>**kwargs</emphasis> to the function its easier to use 
+                                ThreadedCall. It is possible to use it directly or using <emphasis role="bold">run_async_call()</emphasis> method.
+                                The difference is that <emphasis role="bold">run_async_call()</emphasis> makes the call and returns the control
+                                object (a ThreadedCall instance) and using the object you must call your ThreadedCall
+                                instance's <emphasis role="bold">start()</emphasis> method explicitly.
+                                </para>
+
+                            <example>
+                            	<title>brisa.threading.examples</title>
+                            	<programlisting>
+                            	</programlisting>
+                            </example>
+                                    
+					</sect3>
+					
+					</sect2>
+    	
+                
+    </sect1>
+				
+					<sect1><title>Flow of Control</title>
+					
+			<figure id="figure_flowofcontrol">
+				<title>&text_flowofcontrol;
+				</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata scalefit="1" width="100%" contentdepth="100%" fileref="&image_file_flowofcontrol;" />
+					</imageobject>
+					<textobject>
+						<phrase>&text_flowofcontrol;
+						</phrase>
+					</textobject>
+				</mediaobject>
+			</figure>
+					
+					
+</sect1>
+
+</chapter>
+	
+	
+				<chapter id="Configuration_Usage">
+				<title>Configuration Usage</title>
+				
+				<para>
+				BRisa's configuration file is called <emphasis role="bold">brisa.conf</emphasis>. BRisa's has a template for it which
+				is used as a base when installing BRisa. <emphasis role="bold">Your own</emphasis> configuration file is located at
+				<emphasis role="bold">~/.brisa/brisa.conf</emphasis> and it holds your specific configuration choices (which you may have
+				edited with the tool we provide or by hand). 
+				</para>
+				<para>
+				Taking a quick look into <emphasis role="bold">brisa.conf</emphasis>, you may see its structure as configuration names 
+				between square brackets and key<emphasis role="bold">:</emphasis>value attributes below this name and before another one, as exemplified above:</para>
+				<screen>
+				<programlisting>
+[brisa]
+servername = BRisa Media Server
+renderername = BRisa Media Renderer
+upservername = BRisa UP Server
+version = 0.7
+encoding = utf-8
+xbox_compatible = on
+
+[another name]
+somename = somevalue
+(...)				
+				</programlisting>				
+				</screen>
+				
+
+				<para>
+				Almost all BRisa code uses the config package for retrieving variables. We may point out
+				<emphasis role="bold">brisaMediaServer.py</emphasis>, <emphasis role="bold">brisaMediaRenderer.py</emphasis> and <emphasis role="bold">brisaControlPoint.py</emphasis> as main examples. As auxiliary
+				examples we point <emphasis role="bold">brisa.services.cds.plugins.filesystem.persistence.Persistence.py</emphasis> where it uses the config
+				module to retrieve a database URI (line 23).</para>
+				
+				<sect1>
+				<title>Use Examples</title>
+				
+
+									<example>
+													<title>Encoding</title>
+													<programlisting>
+from brisa import config
+
+encoding = config.get_parameter("brisa", "encoding")
+</programlisting>
+</example>
+
+<example>
+<title>Database URI</title>
+													<programlisting>
+# brisa.conf configuration
+[persistence]
+connection = sqlite:/home/user/.brisa/filesystem.db
+
+# python code for retrieving the above configuration
+from brisa import config
+database_uri = config.get_parameter('persistence', 'connection').split('sqlite:')[1]
+</programlisting>
+</example>
+
+							</sect1>
+</chapter>
+
+	
+	<chapter>
+	<title>Logger</title>
+	
+			<para>For using the logger you just need to include the package and call the method corresponding to the level you want. For example, some
+				log messages might make more sense in a DEBUG level instead of WARNING or INFO. The level choice is completely up to you.</para>
+			
+			<example>
+			<title>Using the logger</title>
+			<programlisting>
+from brisa import log
+
+log.debug("This is my debug message")
+log.debug("This will appear as an INFO message!")
+			</programlisting>
+			</example>
+	
+	</chapter>
+	<chapter>
+	
+				<title>Using ControlPoint API</title>
+				<para>At this point we suppose you already know the basics about the <link linkend="Package_brisa_control_point">control point package</link>.
+                The most common use of the API is to create a control point
+                class and inherit from our base ControlPoint. Here you'll find
+                a simple example of a command line based control point that
+                can search for devices and list them with some useful
+                information. Although this example does not inherits from
+                ControlPoint, it shows how to subscribe and get some useful info
+                about devices (one can also try to reimplement this example
+                with inheritance, as an exercise).
+                </para>
+                <para>
+                The second example has the same idea of the first but is
+                GUI-based. Both examples are in the package <ulink url="https://garage.maemo.org/plugins/scmsvn/viewcvs.php/trunk/python-brisa/examples/?root=brisa">python-brisa-examples</ulink>
+				</para>
+				
+				<sect1>
+				
+					<title>Creating a command line based ControlPoint</title>
+                    <para>In this example we create a command line with the
+                    <emphasis role="bold">raw_input()</emphasis> function and we provide a few commands.
+                    Also, we have an Observer class that implements new/del
+                    device events. Note that we subscribe our Observer to listen
+                    for those events with the <emphasis role="bold">subscribe()</emphasis> method.</para>
+                    
+<example>
+<title>Command line based ControlPoint</title>
+<programlisting>
+<!-- This reduces the font size, that exceed the established margins at a PDF  --><?db-font-size 70% ?># Licensed under the MIT license
+# http://opensource.org/licenses/mit-license.php or see LICENSE file.
+# Copyright 2007-2008 Brisa Team &lt;brisa-develop@garage.maemo.org&gt;
+
+import sys
+
+from brisa.control_point.control_point import ControlPoint
+from brisa.threading import ThreadManager
+
+
+class Observer(object):
+    # Needed callbacks
+    l = []
+
+    def on_new_device(self, dev):
+        self.l.append(dev)
+
+    def on_device_removed(self, udn):
+        for dev in self.l:
+            if dev.udn == udn:
+                self.l.remove(dev)
+                break
+
+    def list_devices(self):
+        for dev in self.l:
+            print 'device:'
+            print '\tudn:', dev.udn
+            print '\tfriendly_name:', dev.friendly_name
+            print '\tservices:', dev.services
+            print '\ttype:', dev.device_type
+            if dev.devices:
+                print '\tchild devices:'
+                for child_dev in dev.devices:
+                    print '\t\tudn:', child_dev.udn
+                    print '\t\tfriendly_name:', child_dev.friendly_name
+                    print '\t\tservices:', dev.services
+                    print '\t\ttype:', child_dev.device_type
+            print
+
+
+def main():
+    print "BRisa's ControlPoint example\n"
+
+    exit = False
+
+    obs = Observer()
+    cp = ControlPoint()
+    cp.subscribe("new_device_event", obs.on_new_device)
+    cp.subscribe("removed_device_event", obs.on_device_removed)
+
+    try:
+        while not exit:
+            c = str(raw_input('>>> '))
+
+            if c == 'exit':
+                exit = True
+            elif c == 'help':
+                print 'commands: exit, help, start_search, stop_search, list'
+            elif c == 'start_search':
+                cp.start_search(600, "upnp:rootdevice")
+                print 'search started!'
+            elif c == 'stop_search':
+                cp.stop_search()
+                print 'search stopped!'
+            elif c == 'list':
+                print obs.list_devices()
+
+            c = ''
+    except KeyboardInterrupt, k:
+        print 'quiting'
+
+    ThreadManager().stop_all()
+    sys.exit(0)
+
+
+if __name__ == "__main__":
+    main()
+
+</programlisting> 
+</example>
+</sect1>
+					<sect1>
+					
+<title>GUI based ControlPoint</title>
+                    <para>We have also a GUI based ControlPoint example using GTK.
+                    It's simple and applies the same idea of the previous
+                    example. The code is a bit long and we prefer to give you
+                    the <ulink url="https://garage.maemo.org/plugins/scmsvn/viewcvs.php/trunk/python-brisa-examples/control_point_gui/?root=brisa">link</ulink>
+                    </para>
+                    </sect1>
+</chapter>		
+
+
+
+<chapter>
+<title>Diving into UPnP &amp; BRisa</title>
+            <para>
+			BRisa UPnP framework allows creating UPnP entities in a very simple manner. It permits the creation of UPnP services and devices, as well as
+			facilitate the process of using the DIDL parsing. The following sections will guide you how to use the BRisa UPnP framework.
+            </para>
+            
+            <sect1>
+            <title>UPnP default constants</title>
+                    <para>The module <emphasis role="bold">brisa.upnp.upnp_defaults</emphasis> contains UPnP
+                    default constants which you might want to use when using the
+                    framework. For example, it contains the default UPnP SSDP
+                    port and SSDP address for multicast messages.
+                    </para>
+					
+			</sect1>
+			
+			<sect1>
+			<title>Creating an UPnP Device</title>		
+                        <para>The basic steps for creating an UPnP device are:</para>
+                            <itemizedlist>
+                            
+                                <listitem><para><emphasis role="bold">Create a RootDevice</emphasis> which holds
+                                information about your device and contains
+                                another devices</para></listitem>
+                                <listitem><para><emphasis role="bold">Set up an address for listening</emphasis> using the
+                                WebServer</para></listitem>
+                                <listitem><para><emphasis role="bold">Create and add services</emphasis> for your RootDevice
+                                and for its embedded devices</para></listitem>
+                                <listitem><para><emphasis role="bold">Set up a DeviceHandler</emphasis> for announcing,
+                                stopping (sending bye-bye)</para></listitem>
+                                <listitem><para><emphasis role="bold">Publish your services and devices</emphasis> on the WebServer</para></listitem>
+                            </itemizedlist>
+                        <para>From this point on we will explain further these
+                        steps and show how to create a new device step by step.
+                        The code blocks below can be used to create a single
+                        program with little effort, but we split them for
+                        explaining purposes.</para>
+
+                        <para><emphasis role="bold">Warning</emphasis>: you can do these steps any way you want.
+                        The code below is just ONE way of creating a
+                        device.
+                        </para>
+
+<sect2>
+							<title>Creating the RootDevice</title>
+                            <para>
+                            The code below shows how to create and modify a
+                            RootDevice.</para>
+                            <example>
+                            <title>Creating and modifying a RootDevice</title>
+                            <programlisting>
+from brisa.upnp.device import RootDevice
+
+# I want my device to listen on this port 
+listen_url = 'http://localhost:7777'
+
+
+def create_root_device(listen_url):
+    # RootDevice(device_type, friendly_name, location)
+    root_device = RootDevice('urn:schemas-upnp-org:device:MyDevice:1',
+                            'MyDevice',
+                            listen_url)
+
+    # Setting attributes
+    root_device.manufacturer = 'Manufacturer'
+    root_device.manufacturer_url = 'http://www.manufacturer.org'
+    root_device.model_name = 'MyDevice version 1.0'
+    root_device.model_number = '1.0'
+    root_device.model_url = 'http://www.manufacturer.org/mydevice/1.0/'
+    root_device.serial_number = '0123456789ABCDEF'
+
+    return root_device
+
+(...)
+</programlisting></example>
+                            <para>
+                            The only difference between a Device and a
+                            RootDevice is that RootDevice can contain other
+                            devices. If you want to have embedded devices on the
+                            root,
+                            create them in the same way as the RootDevice and
+                            then add it to some RootDevice you have.
+                            </para>
+</sect2>
+
+<sect2>
+							<title>Creating services</title>
+							<para>In order to create a new service, you must have:
+                            </para>
+                            <itemizedlist>
+                                <listitem><para><emphasis role="bold">a Service object</emphasis>, which contains
+                                information about the service, such as service
+                                location, UPnP URL's (control, event sub,
+                                presentation, scpd)</para></listitem>
+                                <listitem><para><emphasis role="bold">a ServiceControl object</emphasis> which
+                                implements the methods of your service. These
+                                methods must be named in the form <emphasis>soap_[method]()</emphasis> (examples: soap_Browse, soap_GetSomething)</para></listitem>
+                            </itemizedlist>
+
+                            <para>Code:</para>
+                                
+                                
+                                <example>
+                                <title>Creating the Service</title>
+                                <programlisting>
+(...)
+
+from brisa.upnp.service import Service
+
+# Here we create the service that will have control at location
+# listen_url/MyDevice/Control and the others just analogous.
+
+my_service = Service(listen_url,
+                    'MyDevice/control'
+                    'MyDevice/event'
+                    'MyDevice/presentation',
+                    'MyDevice/scpd.xml')
+
+(...)
+</programlisting>
+</example>
+
+                                
+							<example>
+							<title>Creating the ServiceControl</title>
+							<programlisting>
+(...)
+
+from brisa.upnp.service import ServiceControl
+
+class MyUPnPServiceControl(ServiceControl):
+
+    # Required attribute that describes the namespace for the published methods
+    namespace = ('u', 'urn:schemas-upnp-org:service:MyService:1')
+
+    def __init__(self):
+        ServiceControl.__init__(self)
+
+    def start(self):
+        pass
+
+    def soap_MyMethod(self, *args, **kwargs):
+        print 'Hello World!'
+
+(...)
+</programlisting>
+</example>
+
+							<para>In this example we create a method called <emphasis role="bold">MyMethod</emphasis>,
+                            which will automatically be exported as a webservice when 
+                            you add this service inside a Device/RootDevice object.
+                            <para>
+                            </para>
+                            To add a service into a Device/RootDevice object, just 
+                            append it using your object as shown below:</para>
+							
+							<example>
+							<title>Adding a service into a RootDevice</title>
+							<programlisting>
+(...)
+
+# Create the RootDevice
+device = create_root_device()
+
+control = MyUPnPServiceControl()
+
+# Sets control of my_service to the control we want
+my_service.control = control
+
+# Adds the service to the device
+device.services[my_service.service_type] = my_service
+
+(...)
+</programlisting>
+</example>
+
+    						<para>The next section provides further details regarding to the creation of a new BRisa UPnP device.</para>							
+</sect2>
+
+
+<sect2>
+					        <title>DeviceHandler</title>
+                            <para>DeviceHandler configures some internal things for
+                            your device.</para>
+
+                            <example>
+                            <title>Creating the device handler</title>
+                            <programlisting>
+(...)
+
+from brisa.upnp.upnp_handler import DeviceHandler
+
+# Parameter is a name for your server
+device_handler = DeviceHandler('MyDevice Server')
+
+# Configure my device (which is a RootDevice)
+(xml_name, xml_path) = device_handler.config_device(device)
+
+# The device handler created a xml with information about my device
+
+(...)
+</programlisting>
+</example>
+
+</sect2>
+
+<sect2>
+                            <title>Finishing up settings</title>
+                            <para>The only thing left to do is to set up our
+                            webserver and create some management methods for starting
+                            and stopping.
+                            </para>
+                            <example>
+                            <title>Set up the webserver</title>
+                            <programlisting>
+(...)
+
+from brisa.threading import ThreadManager
+from brisa.services.web_server import WebServer, StaticFile
+
+webserver = WebServer()
+
+# Sets the webserver's listen url to the one I want for my device and services
+webserver.listen_url = listen_url
+
+# Add the information about my device on the webserver (xml file)
+webserver.add_static_file(xml_name, StaticFile(xml_path))
+
+# Start service, returns a Resource correspondent with the Service
+service_resource = my_service.start_service()
+
+# Adds the resource of the service to the webserver
+webserver.add_resource(my_service.friendly_name, service_resource)
+
+
+def stop():
+    self.device_handler.stop_device()
+    return True
+
+def start():
+    # Start webserver
+    webserver.start()
+
+    # Start the service control
+    my_service.control.start()
+
+    # Enables my device receiving requests
+    device_handler.start_device()
+
+    # Register stop function
+    ThreadManager().register_stop_function(stop)
+
+    # Blocking main loop. Captures exit signals (SIGTERM, SIGINT)
+    ThreadManager().main_loop()
+
+
+if __name__=="__main__":
+    start()
+</programlisting>
+</example>
+</sect2>
+</sect1>
+</chapter>
+
+<chapter id="Services_and_Plugin_Architecture">			
+			<title>Services &amp; Plugin Architecture</title>
+				<sect1>
+					<title>Using the web server</title>
+                    <para>BRisa's web server service is delivered as a
+                    <emphasis role="bold">Singleton</emphasis>. For using it, just retrieve the singleton
+                    and add anything you want using the provided methods. For
+                    understanding the examples below it's recommended that
+                    you're already familiar with <link linkend="web_server_service">
+                    the package</link>.</para>
+
+<example>
+<title>Serving a file</title>
+<programlisting>
+from brisa.services.web_server import WebServer, StaticFile
+
+webserver = WebServer()
+webserver.listen_url = 'http://url:port'
+
+my_file = StaticFile('/path/to/my_file')
+
+# I want my file to be found at http://url:port/my_file_name
+webserver.add_static_file('my_file_name', my_file)
+
+webserver.start()
+</programlisting>
+</example>
+
+<example>
+<title>Using a Resource</title>
+<programlisting>
+from brisa.services.web_server import WebServer, Resource
+
+webserver = WebServer()
+webserver.listen_url = 'http://url:port'
+
+
+class MyResource(Resource):
+
+    def render(self, uri, request, response):
+        # The answer to the request is the return of this
+        # function.
+        return 'My resource has been requested!'
+
+    def getChildWithDefault(self, uri, params):
+        # In this function you will return who you want to
+        # render the request. You can have some logic with
+        # uri and params that matches with who you want to
+        # render the request. Here we're returning the
+        # class itself because this is what we want.
+        return self
+
+# I want my resource to be located at http://url:port/my_resource'
+web_server.add_resource('my_resource', MyResource())
+
+web_server.start()
+</programlisting>
+</example>
+</sect1>
+
+<sect1>
+					<title>Brief explanation of the content directory asynchronous plugin structure</title>
+                    <para>When writing plugins, developers must place
+                    their package on the <emphasis>services/cds/plugins</emphasis> folder. They will be
+                    automatically loaded according to their plugin <link linkend="Configuration_Usage">configuration</link>.
+                    From this point on you will learn about the following:
+                    </para>
+ 
+ </sect1>                   
+
+<sect1>
+					<title>Writing your own plugin</title>
+					
+		<sect2>			
+							<title>Using the Plugin class</title>
+                            <para>The Plugin class is the base class for all
+                            plugin. It is located at module
+                            brisa.services.cds.plugin. When inheriting from it,
+                            it is not needed to pass any additional parameters,
+                            but you must implement the following methods:
+                            </para>
+                            <itemizedlist>
+                                <listitem><para><emphasis role="bold">load</emphasis> - load implementation for your plugin</para></listitem>
+                                <listitem><para><emphasis role="bold">unload</emphasis> - unload implementation for your plugin</para></listitem>
+                                <listitem><para><emphasis role="bold">browser</emphasis> - browse implementation for
+                                your plugin</para></listitem>
+                                <listitem><para><emphasis role="bold">search</emphasis> - search implementation for
+                                your plugin</para></listitem>
+                            </itemizedlist>
+                            <para>
+                            If you do not implement any of these four methods
+                            and a request arrives for your plugin and for that
+                            specific method, an exception will be raised
+                            remembering you to implement it. 
+                            
+                            </para>
+                            <para>
+                            You may name your
+                            plugin by renaming the <emphasis>name</emphasis> attribute and if
+                            your <emphasis role="bold">browser</emphasis> method implements internally the
+                            advanced search features (sorting, slicing), you
+                            must set the <emphasis>has_browse_filter</emphasis> to True.
+                            </para>
+                            <para>
+                            BRisa has some plugins implemented, such as
+                            Filesystem, Youtube, Shoutcast, and etc. You may
+                            refer to them as <ulink url="https://garage.maemo.org/plugins/scmsvn/viewcvs.php/trunk/python-brisa/brisa/services/cds/plugins/?root=brisa">practical examples</ulink>.
+                            </para>
+							
+</sect2>
+<sect2>							
+							<title>Notes on plugin configurations</title>
+                            <para>
+                            If you want your plugin to provide some
+                            configuration, you can add an entry at brisa.conf
+                            for it. Note that when you're writing your plugin,
+                            you will need to use brisa's <link linkend="Configuration_Usage">configuration module</link>
+                            to retrieve or set the values you have on brisa.conf.
+                            </para>
+                            <para>
+                            Our implemented plugins may serve as examples of
+                            this. The <xref linkend="Configuration_Usage"/> contains a plugin configuration example.
+                            For our Filesystem plugin we have
+                            an entry on brisa.conf we called persistence. It
+                            contains a few "key = value" fields which we load when
+                            loading this plugin.
+                            </para>
+                            
+                            </sect2>
+                            </sect1>
+                            
+                            </chapter>
+                            
+<chapter>                           
+			<title>Utility</title>
+			
+			<sect1>
+					<title>How to use TCP and UDP listeners and senders</title>
+                    <para>BRisa provides TCP and UDP listeners, called
+                    respectivelly TCPListener and UDPListener, both located at
+                    the module <link linkend="Package_brisa_utils">brisa.utils.network_listeners</link>.
+                    These listeners share the same interface, and for using it
+                    just create an object of it and subscribe for listening. You
+                    can subscribe with a single callback (data_callback, passed
+                    for the constructor) or by creating a listener and 
+                    subscribing with <emphasis role="bold">subscribe(listener)</emphasis> method. Your
+                    listener must implement the <emphasis role="bold">data_received(data, addr)</emphasis>
+                    method. <emphasis role="bold">addr</emphasis> is a tuple with the form (host, port).</para>
+                    
+                    
+                    <informalexample>
+                    <programlisting>
+TCPListener(port, interface='', listeners=[], data_callback=None,
+            shared_socket=None)
+    Creates a TCP connection listener on the port and interface specified.
+    Forwards data listened to data_callback and to the listeners (that must
+    implement a data_received() method). Can also reuse a socket connection
+    already open, which in this case must be passed on the shared_socket
+    parameter.
+
+UDPListener(addr, port, interface='', listeners=[], data_callback=None,
+            shared_socket=None):
+    Creates an UDP connection listener on the port, address and interface
+    specified. Forwards data listened to data_callback and to the listeners
+    (that must implement the data_received() method). Can also reuse a socket
+    connection already open, which in this case must be passed on the
+    shared_socket parameter.
+    </programlisting>
+    </informalexample>
+    
+                    <para>
+                    Concerning TCP and UDP senders, respectively TCPTransport
+                    and UDPTransport, the only thing needed is to create an 
+                    object and use the provided methods (all non-blocking).
+                    </para>
+                    
+                    <informalexample>
+                    <programlisting>
+UDPTransport(ttl=2)
+    Creates an UDP packet sender with the specified TTL.
+
+    set_TTL(ttl)
+        Sets the TTL
+
+    send_data(data, (host, port))
+        Sends data to the host and port specified.
+
+    send_delayed(delay, data, (host, port))
+        Sets a timer for sending the data after the specified delay.
+
+
+TCPTransport()
+    Creates an TCP packet sender.
+
+    send_data(data, (host, port))
+        Connects and sends data to the host and port specified.
+
+    connect_and_feed(feeder, (host, port))
+        Connects and feeds the connection with the feeder until it finishes the
+        feeding. Feeder is supposed to be a generator.
+        </programlisting>
+        </informalexample>
+
+</sect1>
+
+<sect1>
+					<title>get_ip_address - Getting your IP address</title>
+                    <para>Retrieves the ip address on the given interface.</para>
+                    <informalexample>
+                    <programlisting>
+get_ip_address(interface_name)
+    Returns a string with the ip address on the specified interface.
+</programlisting>
+</informalexample>
+</sect1>
+
+<sect1>
+					<title>get_active_ifaces - Getting available network interfaces</title>
+                    <para>Returns a list of the active network interfaces.</para>
+                    <informalexample>
+                    <programlisting>
+get_active_ifaces()
+    Return a list of the active network interfaces
+    Default route of /proc/net/route has the destination field set to 00000000
+</programlisting>
+</informalexample>
+</sect1>
+<sect1>    
+					<title>parse_url - Parsing an url</title>
+                    <para><emphasis role="bold">parse_url</emphasis> is just an alias for the urlparse.urlparse
+                    function.</para>
+                    <informalexample>
+                    <programlisting>
+parse_url(url)
+    Parse a URL into 6 components:
+    scheme://netloc/path;params?query#fragment
+    Return a 6-tuple: (scheme, netloc, path, params, query, fragment).
+    Note that we don't break the components up in smaller bits
+    (e.g. netloc is a single string) and we don't expand %
+    escapes.
+    </programlisting>
+    </informalexample>
+    </sect1>
+<sect1>
+
+					<title>http_call - Sending HTTP requests</title>
+                    <para>Returns a HTTPResponse object for the given call.</para>
+
+                    <informalexample>
+                    <programlisting>
+http_call(method, url, body='', headers={})
+    Performs a HTTP request and returns an HTTPResponse associated with the given
+    call.
+
+    method: HTTP method (NOTIFY, POST, etc...)
+    url: target URL
+    body: body of the message
+    headers: additional headers
+    </programlisting>
+    </informalexample>
+    </sect1>
+    
+    <sect1>
+					<title>LoopingCall - Performing repeated function calls in specified intervals</title>
+                    <para>As mentioned on the title, LoopingCall performs repeated
+                    function calls in a specified interval.</para>
+
+                    <informalexample>
+                    <programlisting>
+LoopingCall(function, *args, **kwargs)
+
+    start(interval, now=True)
+        Starts the LoopingCall with the specified interval. If now is not True,
+        it waits the interval once before starting the loop.
+
+    stop()
+        Stops the LoopingCall.
+        </programlisting>
+        </informalexample>
+        
+                    <para>
+                    Note that <emphasis role="bold">args</emphasis> and <emphasis role="bold">kwargs</emphasis> are the parameters
+                    you want to pass to your function in each call.
+                    </para>
+
+</sect1>
+<sect1>					
+					<title>Generating properties</title>
+                    <informalexample>
+                    <programlisting>
+gen_property_with_default(name, fget=None, fset=None, doc="")
+    Generates a property of a name either with a default fget or a default fset.
+
+gen_property_of_type(name, _type, doc="")
+    Generates a type-forced property associated with a name. Provides type
+    checking on the setter (coherence between value to be set and type
+    specified).
+    </programlisting>
+    </informalexample>
+    </sect1>
+    </chapter>
+    
+	&contact_chapter;
+	
+
+<bibliography>
+<title>References</title>
+
+<biblioentry id="ref_dlna">
+  <title>DLNA Specification. <ulink url="http://www.dlna.org">http://www.dlna.org</ulink>
+</title>
+</biblioentry>
+
+</bibliography>
+
+</book>
+

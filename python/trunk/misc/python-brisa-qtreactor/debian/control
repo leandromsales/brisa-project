@@ -1,0 +1,11 @@
+Source: python-brisa-qtreactor
+Section: multimedia
+Priority: optional
+Maintainer: André Dieb Martins <andre.dieb@gmail.com>
+Build-Depends: debhelper (>= 5.0.38), python2.5-dev | python2.5-setuptools
+Standards-Version: 3.6.1
+
+Package: python2.5-brisa-qtreactor
+Architecture: all
+Depends: python2.5-brisa, python-qt4 | python2.5-qt4
+Description: Provides python-brisa integration with Qt4.

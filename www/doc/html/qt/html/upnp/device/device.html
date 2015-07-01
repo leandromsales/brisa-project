@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. device — BrisaDevice class &mdash; Qt BRisa UPnP framework v2.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="top" title="Qt BRisa UPnP framework v2.0 documentation" href="../../index.html" />
+    <link rel="up" title="1. device — Device building and deploying" href="index.html" />
+    <link rel="next" title="2. service — BrisaService class" href="service.html" />
+    <link rel="prev" title="1. device — Device building and deploying" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="service.html" title="2. service — BrisaService class"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="1. device — Device building and deploying"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Qt BRisa UPnP framework v2.0 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >5. <tt class="docutils literal docutils literal docutils literal docutils literal"><span class="pre">upnp</span></tt> &#8212; UPnP modules</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">1. <tt class="docutils literal docutils literal"><span class="pre">device</span></tt> &#8212; Device building and deploying</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="device-brisadevice-class">
+<h1>1. <tt class="xref docutils literal"><span class="pre">device</span></tt> &#8212; BrisaDevice class<a class="headerlink" href="#device-brisadevice-class" title="Permalink to this headline">¶</a></h1>
+<p>BrisaDevice class provides an easy and fast way to create UPnP devices. All you need to do is create a new BrisaDevice object and call its start() method to join the network and be visible to available control points.</p>
+<div class="section" id="important-methods">
+<h2>1.1. Important Methods<a class="headerlink" href="#important-methods" title="Permalink to this headline">¶</a></h2>
+<p>BrisaDevice constructor which should receive all device information on its arguments.</p>
+<div class="highlight-python"><pre>void addEmbeddedDevice(const QString &amp;deviceType = "",
+                    const QString &amp;friendlyName = "",
+                    const QString &amp;manufacturer = "",
+                    const QString &amp;manufacturerURL = "",
+                    const QString &amp;modelDescription = "",
+                    const QString &amp;modelName = "",
+                    const QString &amp;modelNumber = "",
+                    const QString &amp;modelURL = "",
+                    const QString &amp;serialNumber = "",
+                    const QString &amp;UDN = "",
+                    const QString &amp;UPC = "",
+                    const QString &amp;presentationURL = "");</pre>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Call this function passing the BrisaDevice to be embedded and the embedded device will be announced when the root device joins the network.</p>
+<div class="highlight-python"><pre>void addEmbeddedDevice(BrisaDevice *newEmbeddedDevice);</pre>
+</div>
+<p>Method used to add a service to the device, you just need to pass a BrisaService object as the argument. The service will be automatically added to the device and the appropriate webserver urls paths will be created.</p>
+<div class="highlight-python"><pre>void addService(BrisaService *serv)</pre>
+</div>
+<p>Call this method to join the network and start the device.</p>
+<div class="highlight-python"><pre>void start()</pre>
+</div>
+<p>Stops the device and leaves the network sending ssdp messages for any embedded devices.</p>
+<div class="highlight-python"><pre>void stop()</pre>
+</div>
+<div class="section" id="creating-a-generic-device">
+<h3>1.1.1. Creating a generic device<a class="headerlink" href="#creating-a-generic-device" title="Permalink to this headline">¶</a></h3>
+<p>Here is a simple explanation on how creating a device and starting it. These are only basic steps to follow, you can check a more practical example at <em>Code Examples</em> section.</p>
+<p>BrisaDevice constructor receives all information about a device, so it&#8217;s a good idea to define the constants first.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">#define DEVICE_TYPE  &quot;urn:schemas-upnp-org:device:MyDevice:1&quot;</span>
+<span class="c">#define DEVICE_FRIENDLY_NAME  &quot;My Device Name&quot;</span>
+<span class="c">#define DEVICE_MANUFACTURER  &quot;Brisa Team. Embedded Laboratory and INdT Brazil&quot;</span>
+<span class="c">#define DEVICE_MANUFACTURER_URL &quot;https://garage.maemo.org/projects/brisa&quot;</span>
+<span class="c">#define DEVICE_MODEL_DESCRIPTION &quot;An example device&quot;</span>
+<span class="c">#define DEVICE_MODEL_NAME  &quot;My device model&quot;</span>
+<span class="c">#define DEVICE_MODEL_NUMBER &quot;1.0&quot;</span>
+<span class="c">#define DEVICE_MODEL_URL &quot;https://garage.maemo.org/projects/brisa&quot;</span>
+<span class="c">#define DEVICE_SERIAL_NUMBER  &quot;1.0&quot;</span>
+</pre></div>
+</div>
+<p>Then we can call the constructor passing the device informations we just defined</p>
+<div class="highlight-python"><pre>BrisaDevice myDevice(DEVICE_TYPE,
+                    DEVICE_FRIENDLY_NAME,
+                    DEVICE_MANUFACTURER,
+                    DEVICE_MANUFACTURER_URL,
+                    DEVICE_MODEL_DESCRIPTION,
+                    DEVICE_MODEL_NAME,
+                    DEVICE_MODEL_NUMBER,
+                    DEVICE_MODEL_URL,
+                    DEVICE_SERIAL_NUMBER,
+                    getCompleteUuid());
+// The getcompleteuuid() finction returns a valid device udn automatically</pre>
+</div>
+<p>We can now add our services to the device we just created (creation of services will be explained on the next section)</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">myDevice</span><span class="o">.</span><span class="n">addService</span><span class="p">(</span><span class="n">myService</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>And finally we start our device</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">myDevice</span><span class="o">.</span><span class="n">start</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>We&#8217;re done! Now you know the basics steps of creating a device.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">1. <tt class="docutils literal"><span class="pre">device</span></tt> &#8212; BrisaDevice class</a><ul>
+<li><a class="reference external" href="#important-methods">1.1. Important Methods</a><ul>
+<li><a class="reference external" href="#creating-a-generic-device">1.1.1. Creating a generic device</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="index.html"
+                                  title="previous chapter">1. <tt class="docutils literal"><span class="pre">device</span></tt> &#8212; Device building and deploying</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="service.html"
+                                  title="next chapter">2. <tt class="docutils literal docutils literal"><span class="pre">service</span></tt> &#8212; BrisaService class</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../../_sources/upnp/device/device.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="service.html" title="2. service — BrisaService class"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="1. device — Device building and deploying"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Qt BRisa UPnP framework v2.0 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >5. <tt class="docutils literal docutils literal docutils literal docutils literal"><span class="pre">upnp</span></tt> &#8212; UPnP modules</a> &raquo;</li>
+          <li><a href="index.html" >1. <tt class="docutils literal docutils literal"><span class="pre">device</span></tt> &#8212; Device building and deploying</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../../copyright.html">Copyright</a> 2010, BRisa Team.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.4.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+#!/usr/bin/env python2.5
+
+from brisa_media_server import _basic_config
+_basic_config.main()
+
+from brisa_media_server.assistant import Assistant
+Assistant().run()

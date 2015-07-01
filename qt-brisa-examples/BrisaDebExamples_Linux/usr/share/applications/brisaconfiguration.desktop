@@ -1,0 +1,10 @@
+[Desktop Entry]
+Categories=Development;
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=Brisa Configuration
+Exec=/usr/bin/brisaconfiguration
+Icon=/usr/share/pixmaps/brisa/info.png
+Categories=Brisa;
+

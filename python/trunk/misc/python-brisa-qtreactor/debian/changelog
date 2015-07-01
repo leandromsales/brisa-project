@@ -1,0 +1,17 @@
+python-brisa-qtreactor (0.10.0maemo2) unstable; urgency=low
+
+  * First release of the qt reactor.
+
+ -- André Dieb Martins <andre.dieb@gmail.com>  Sat, 07 Jun 2009 19:06:00 -0300
+
+python-brisa-qtreactor (0.10.0maemo1) unstable; urgency=low
+
+  * First release of the qt reactor, new version!
+
+ -- Leandro Melo de Sales <leandroal@gmail.com>  Fri, 05 Jun 2009 00:44:00 -0300
+
+python-brisa-qtreactor (0.10.0) unstable; urgency=low
+
+  * First release of the qt reactor.
+
+ -- Andre Dieb Martins <dieb@embedded.ufcg.edu.br>  Mon, 31 May 2009 15:20:00 -0300

@@ -1,0 +1,111 @@
+#!/usr/bin/make -f
+
+PYVER=2.5
+PYTHON=python$(PYVER)
+
+p_base=$(PYTHON)-brisa
+d_base=debian/tmp
+package=brisa
+
+build: build-stamp
+
+build-stamp:
+	dh_testdir
+	$(PYTHON) setup.py build
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	$(PYTHON) setup.py clean
+	-rm -f build-stamp
+	-rm -rf build
+	-rm -f *.py[co]
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+
+	$(PYTHON) setup.py install --root=$(d_base)
+
+	# python2.5-brisa-base
+	mkdir -p debian/$(p_base)-base/usr/lib/$(PYTHON)/site-packages/$(package)
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/brisa.conf debian/$(p_base)-base/usr/lib/$(PYTHON)/site-packages/$(package)
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/*.py debian/$(p_base)-base/usr/lib/$(PYTHON)/site-packages/$(package)
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/config debian/$(p_base)-base/usr/lib/$(PYTHON)/site-packages/$(package)
+	mkdir -p debian/$(p_base)-base/usr/lib/$(PYTHON)/site-packages/$(package)/devices
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/devices/*.py debian/$(p_base)-base/usr/lib/$(PYTHON)/site-packages/$(package)/devices
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/log debian/$(p_base)-base/usr/lib/$(PYTHON)/site-packages/$(package)
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/threading debian/$(p_base)-base/usr/lib/$(PYTHON)/site-packages/$(package)
+	mkdir -p debian/$(p_base)-base/usr/lib/$(PYTHON)/site-packages/$(package)/services
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/services/*.py debian/$(p_base)-base/usr/lib/$(PYTHON)/site-packages/$(package)/services
+	mkdir -p debian/$(p_base)-base/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/*.py debian/$(p_base)-base/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds
+	mkdir -p debian/$(p_base)-base/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/plugins
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/plugins/*.py debian/$(p_base)-base/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/plugins
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/services/connmgr debian/$(p_base)-base/usr/lib/$(PYTHON)/site-packages/$(package)/services
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/services/media_registrar_ms debian/$(p_base)-base/usr/lib/$(PYTHON)/site-packages/$(package)/services
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/services/web_server debian/$(p_base)-base/usr/lib/$(PYTHON)/site-packages/$(package)/services
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/upnp debian/$(p_base)-base/usr/lib/$(PYTHON)/site-packages/$(package)
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/utils debian/$(p_base)-base/usr/lib/$(PYTHON)/site-packages/$(package)
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/xml_descriptions debian/$(p_base)-base/usr/lib/$(PYTHON)/site-packages/$(package)
+
+	# python2.5-brisa-media-renderer
+	mkdir -p debian/$(p_base)-media-renderer/usr/bin
+	mv debian/tmp/usr/bin/brisa-media-renderer debian/$(p_base)-media-renderer/usr/bin/brisa-media-renderer
+	mkdir -p debian/$(p_base)-media-renderer/usr/lib/$(PYTHON)/site-packages/$(package)/devices
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/devices/media_renderer debian/$(p_base)-media-renderer/usr/lib/$(PYTHON)/site-packages/$(package)/devices
+	mkdir -p debian/$(p_base)-media-renderer/usr/lib/$(PYTHON)/site-packages/$(package)/services
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/services/avtransport debian/$(p_base)-media-renderer/usr/lib/$(PYTHON)/site-packages/$(package)/services
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/services/gst_renderer debian/$(p_base)-media-renderer/usr/lib/$(PYTHON)/site-packages/$(package)/services
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/services/render_control debian/$(p_base)-media-renderer/usr/lib/$(PYTHON)/site-packages/$(package)/services
+
+	# python2.5-brisa-media-server
+	mkdir -p debian/$(p_base)-media-server/usr/bin
+	mv debian/tmp/usr/bin/brisa-media-server debian/$(p_base)-media-server/usr/bin/brisa-media-server
+	mkdir -p debian/$(p_base)-media-server/usr/lib/$(PYTHON)/site-packages/$(package)/devices
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/devices/media_server debian/$(p_base)-media-server/usr/lib/$(PYTHON)/site-packages/$(package)/devices
+	mkdir -p debian/$(p_base)-media-server/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/plugins
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/plugins/filesystem debian/$(p_base)-media-server/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/plugins
+
+	# python2.5-brisa-media-server-plugin-canola
+	mkdir -p debian/$(p_base)-media-server-plugin-canola/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/plugins
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/plugins/canola debian/$(p_base)-media-server-plugin-canola/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/plugins
+
+	# python2.5-brisa-media-server-plugin-flickr
+	mkdir -p debian/$(p_base)-media-server-plugin-flickr/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/plugins
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/plugins/flickr debian/$(p_base)-media-server-plugin-flickr/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/plugins
+
+	# python2.5-brisa-media-server-plugin-maemo
+	mkdir -p debian/$(p_base)-media-server-plugin-maemo/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/plugins
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/plugins/maemo_multimedia debian/$(p_base)-media-server-plugin-maemo/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/plugins
+
+	# python2.5-brisa-media-server-plugin-shoutcast
+	mkdir -p debian/$(p_base)-media-server-plugin-shoutcast/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/plugins
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/plugins/shoutcast debian/$(p_base)-media-server-plugin-shoutcast/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/plugins
+
+	# python2.5-brisa-media-server-plugin-youtube
+	mkdir -p debian/$(p_base)-media-server-plugin-youtube/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/plugins
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/plugins/youtube debian/$(p_base)-media-server-plugin-youtube/usr/lib/$(PYTHON)/site-packages/$(package)/services/cds/plugins
+
+	# python2.5-brisa-control-point
+	mkdir -p debian/$(p_base)-control-point/usr/lib/$(PYTHON)/site-packages/$(package)
+	mv debian/tmp/usr/lib/$(PYTHON)/site-packages/$(package)/control_point debian/$(p_base)-control-point/usr/lib/$(PYTHON)/site-packages/$(package)
+
+binary-indep: build install
+
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_fixperms
+	dh_python
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+
+.PHONY: build install clean binary binary-indep binary-arch

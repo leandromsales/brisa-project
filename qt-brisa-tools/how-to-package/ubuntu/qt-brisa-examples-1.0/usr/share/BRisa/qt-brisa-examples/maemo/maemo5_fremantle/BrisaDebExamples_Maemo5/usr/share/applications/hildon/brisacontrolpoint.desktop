@@ -1,0 +1,9 @@
+[Desktop Entry]
+Categories=Development;
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=BrisaControlPoint
+Exec=/usr/bin/brisacontrolpoint
+Icon=service
+Categories=Brisa;

@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>4. webserver — Webserver facilities &mdash; Qt BRisa UPnP framework v2.0 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Qt BRisa UPnP framework v2.0 documentation" href="../index.html" />
+    <link rel="up" title="4. core-utils — Framework’s core and utils" href="index.html" />
+    <link rel="next" title="5. upnp — UPnP modules" href="../upnp/index.html" />
+    <link rel="prev" title="3. network — Network facilities" href="network.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../upnp/index.html" title="5. upnp — UPnP modules"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="network.html" title="3. network — Network facilities"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Qt BRisa UPnP framework v2.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">4. <tt class="docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">core-utils</span></tt> &#8212; Framework&#8217;s core and utils</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="webserver-webserver-facilities">
+<h1>4. <tt class="xref docutils literal"><span class="pre">webserver</span></tt> &#8212; Webserver facilities<a class="headerlink" href="#webserver-webserver-facilities" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="creating-a-simple-web-service-using-qt-brisa">
+<span id="index-11"></span><h2>4.1. Creating a simple Web Service using Qt BRisa<a class="headerlink" href="#creating-a-simple-web-service-using-qt-brisa" title="Permalink to this headline">¶</a></h2>
+<p>BRisa framework can be used to help you create your own web service. This section will demonstrate how to do this by showing the basics steps to create a simple web service. Although it is a simple web service, the following example covers the basics about using BRisa for this purpose.</p>
+<p>We are going to use the following classes from the BrisaCore module:</p>
+<blockquote>
+<ul class="simple">
+<li>BrisaWebServer</li>
+<li>BrisaWebServiceProvider</li>
+<li>BrisaWebService</li>
+</ul>
+</blockquote>
+<p>BrisaWebServer , BrisaWebServiceProvider and BrisaWebService classes are implemented using <a class="reference external" href="http://www.libqxt.org/">libqxt</a>, which has also other uses.</p>
+<p>Let us begin by starting a Web Server creating an instance of BrisaWebServer, passing an IP address and a port number (you can use BrisaCore network functions to obtain these)</p>
+<div class="highlight-python"><pre>BrisaWebServer *webserver = new BrisaWebserver(QHostAddress(ipAddress), port);</pre>
+</div>
+<p>After that we need something to manage our services, thats where the BrisaWebServiceProvider comes in, we build it passing the BrisaWebServer we have just created.</p>
+<div class="highlight-python"><pre>BrisaWebServiceProvider *webserviceManager = new BrisaWebServiceProvider(webserver, this);</pre>
+</div>
+<p>And then we call the &#8220;addService&#8221; method from BrisaWebService to add the <em>webserviceManager</em> to the root of the <em>webserver</em>, passing the desired url path. A BrisaWebServiceProvider itself is a webservice. It just doesn&#8217;t emits the signals we want.</p>
+<div class="highlight-python"><pre>webserver-&gt;addService("hello", webserviceManager);</pre>
+</div>
+<p>Now we can create the webservice (or webservices) passing our <em>webserver</em> to tie everything up.</p>
+<div class="highlight-python"><pre>BrisaWebService *hello = new BrisaWebService(webserver, this);</pre>
+</div>
+<p>And after that we call the &#8220;addService&#8221; method from the <em>webserviceManager</em> object we created, passing the url path we want for our webservice. So our service will be in the path &#8220;IP:PORT/hello/world&#8221;.</p>
+<div class="highlight-python"><pre>webserviceManager-&gt;addService("world", hello);</pre>
+</div>
+<p>When a request arrives at our webservice two signals are emmited:</p>
+<div class="highlight-python"><pre>void genericRequestReceived(const QString &amp;method,
+                            const QMultiHash&lt;QString, QString&gt; &amp;headers,
+                            const QByteArray &amp;requestContent,
+                            int sessionId,
+                            int requestId);</pre>
+</div>
+<div class="highlight-python"><pre>void genericRequestReceived(BrisaWebService *service,
+                            QMultiHash&lt;QString, QString&gt;,
+                            QString requestContent);</pre>
+</div>
+<p>So, simply connect one (or both) of the signals to a slot and treat the request the way you want to. If you want to answer the request, simply call one of the &#8220;respond()&#8221; methods from BrisaWebService.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">4. <tt class="docutils literal"><span class="pre">webserver</span></tt> &#8212; Webserver facilities</a><ul>
+<li><a class="reference external" href="#creating-a-simple-web-service-using-qt-brisa">4.1. Creating a simple Web Service using Qt BRisa</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="network.html"
+                                  title="previous chapter">3. <tt class="docutils literal docutils literal docutils literal"><span class="pre">network</span></tt> &#8212; Network facilities</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="../upnp/index.html"
+                                  title="next chapter">5. <tt class="docutils literal"><span class="pre">upnp</span></tt> &#8212; UPnP modules</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/core/webserver.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../upnp/index.html" title="5. upnp — UPnP modules"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="network.html" title="3. network — Network facilities"
+             >previous</a> |</li>
+        <li><a href="../index.html">Qt BRisa UPnP framework v2.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >4. <tt class="docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">core-utils</span></tt> &#8212; Framework&#8217;s core and utils</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 2010, BRisa Team.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.4.
+    </div>
+  </body>
+</html>

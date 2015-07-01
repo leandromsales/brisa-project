@@ -1,0 +1,65 @@
+python-brisa 0.9.0, 2009-03-15
+------------------------------
+- Main loop implemented with file handling and timers
+- Removed lots of threads: mostly are now integrated with the main loop (fd's and sleeps)
+- Fixed looping call bug when the parameter "now" is False
+- Webserver now closes automatically when the application ends (but it still can be stop()'ed manually before that)
+- Implemented UPnP eventing API on the device side
+- Removed deprecated and old modules
+
+python-brisa 0.8.0, 2009-02-02
+------------------------------
+- Major cleanup on the framework (old/unused modules removed)
+- Fixed PEP8 errors and files/methods/variables with wrong naming convention 
+- Split between framework and applications
+- Separate documentation for developers and users
+- Various bug-fixes on the framework and applicationss
+- Thread management improvements (assured control over threads)
+- Better programmatic control over the control point
+- Better support for multiple instances of BRisa
+- Configuration API stabilized, using cPickle
+- Logging with more information (file, line, time)
+- DIDL completely refactored and now uses cElementTree
+- Added a simple command line tool for configuring (brisa-conf)
+- UPnP A/V specifics moved out from python-brisa
+- Added simple watch API for objects and SQLite databases
+- Improved debian packaging
+- Installation script (setup.py) enhanced
+- Added more examples to the directory
+
+python-brisa 0.7.2, 2008-11-27
+----------------------------------
+- removed extern/python-id3 which is not a dependency anymore
+- created a colored logging module for developers
+- configuration persistence moved from text file to sqlite database
+- configuration API holds a runtime state that can be save()'d or update()'d with the configuration persistence
+- optimization on the new configuration API: save only modifications
+- pep8 corrections
+- DIDL-Lite completely refactored and now uses cElementTree (faster)
+- removed old media-server things from content directory
+- removed old binaries (media-server, media-renderer, up-server)
+- added simplified platform name to config module
+- removed old redundant classes from services.cds.plugin (Mem*)
+- added brisa-conf cmdline tool to setup.py installation
+
+
+python-brisa 0.7.1, 2008-11-11
+------------------------------
+- API change: modules from brisa/utils/python moved to brisa/utils
+- added watch facilities for SQLLite databases and objects bool attributes
+- partial optimization on the filesystem plugin persistence
+- fixed bugs #2980, #2950
+- fixed examples with old import names
+
+
+python-brisa 0.7.0, 2008-10-30
+------------------------------
+- control point API cleaned: now contains a basic control_point.py and a A/V implementation
+- removed SQLObject dependency
+- removed Twisted dependency
+- removed sqlite2 dependency (sqlite3 is being shipped with python2.5)
+- removed pymad and libmad dependency (now we use python-mutagen)
+- new implementation of XML DIDLite generation
+- plugins browser methods can return all matches or perform internal optimized sorting/slicing (has_browse_filter flag)
+- added maemo multimedia and canola plugins
+- added UPnP-UP (User Profile) initial implementation

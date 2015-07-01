@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7. webserver — Webserver facilities &mdash; python-brisa UPnP framework v0.10.0 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.10.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="python-brisa UPnP framework v0.10.0 documentation" href="../index.html" />
+    <link rel="up" title="3. core — Framework’s core" href="index.html" />
+    <link rel="next" title="4. upnp — UPnP modules" href="../upnp/index.html" />
+    <link rel="prev" title="6. network_listeners — Network listening facilities" href="network_listeners.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../upnp/index.html" title="4. upnp — UPnP modules"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="network_listeners.html" title="6. network_listeners — Network listening facilities"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">3. <tt class="docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">core</span></tt> &#8212; Framework&#8217;s core</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="webserver-webserver-facilities">
+<h1>7. <tt class="xref docutils literal"><span class="pre">webserver</span></tt> &#8212; Webserver facilities<a class="headerlink" href="#webserver-webserver-facilities" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="../glossary/index.html#python-brisa"><em>python-brisa</em></a> provides a WSGI application-side to
+which any WSGI server can be plugged in.</p>
+<p>Along with the WSGI app-side, we provide three adapters for known python
+webservers:</p>
+<blockquote>
+<ul class="simple">
+<li><strong>CherrypyAdapter</strong> - <a class="reference external" href="http://www.cherrypy.org">Cherrypy</a></li>
+<li><strong>CircuitsWebAdapter</strong> - <a class="reference external" href="http://trac.softcircuit.com.au/circuits">Circuits.web</a></li>
+<li><strong>PasteAdapter</strong> - <a class="reference external" href="http://pythonpaste.org">Python-paste</a></li>
+</ul>
+</blockquote>
+<p>In the simplest case, all you need is to have <strong>at least one</strong> of them
+installed, and use the webserver without any worry about WSGI, adapters or
+anything else. See the illustrative code below and the example of the next
+section:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">brisa.core.webserver</span> <span class="kn">import</span> <span class="n">WebServer</span>
+
+<span class="n">webserver</span> <span class="o">=</span> <span class="n">WebServer</span><span class="p">(</span><span class="s">&#39;MyServerName&#39;</span><span class="p">,</span> <span class="s">&#39;localhost&#39;</span><span class="p">,</span> <span class="mf">1234</span><span class="p">)</span>
+
+<span class="c"># Add files, resources</span>
+<span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="n">webserver</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If you have more than one installed and you want to explicitly use one of them,
+there are two ways:</p>
+<blockquote>
+<ol class="arabic">
+<li><p class="first">Set a configuration entry:</p>
+<div class="highlight-python"><pre>$ brisa-conf -s brisa -p webserver_adapter X</pre>
+</div>
+<p>where X is the adapter name (<tt class="docutils literal"><span class="pre">cherrypy</span></tt>, <tt class="docutils literal"><span class="pre">circuits</span></tt> or <tt class="docutils literal"><span class="pre">circuits.web</span></tt>).</p>
+</li>
+<li><p class="first">Choose during runtime:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">brisa.core.webserver</span> <span class="kn">import</span> <span class="n">WebServer</span><span class="p">,</span> <span class="n">CircuitsWebAdapter</span>
+
+<span class="n">webserver</span> <span class="o">=</span> <span class="n">WebServer</span><span class="p">(</span><span class="n">adapter</span><span class="o">=</span><span class="n">CircuitsWebAdapter</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</blockquote>
+<p>For performance reasons we recommend the CircuitsWeb adapter.</p>
+<div class="section" id="creating-a-simple-webserver">
+<h2>7.1. Creating a simple webserver<a class="headerlink" href="#creating-a-simple-webserver" title="Permalink to this headline">¶</a></h2>
+<p>This example shows the webserver usage, along with files and resources. You can find this source <a href="../_downloads/webserver.py"><strong class="xref">here</strong></a>.</p>
+<p>In a first moment, we setup the reactor, the webserver and add a file to the
+webserver on the relative path <tt class="docutils literal"><span class="pre">/hello_world</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">brisa.core.reactors</span> <span class="kn">import</span> <span class="n">install_default_reactor</span>
+<span class="n">reactor</span> <span class="o">=</span> <span class="n">install_default_reactor</span><span class="p">()</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">brisa.core.webserver</span> <span class="kn">import</span> <span class="n">WebServer</span><span class="p">,</span> <span class="n">StaticFile</span><span class="p">,</span> <span class="n">CustomResource</span>
+
+<span class="c"># Setup webserver</span>
+<span class="n">webserver</span> <span class="o">=</span> <span class="n">WebServer</span><span class="p">()</span>
+
+<span class="c"># Write and serve a sample file</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;/tmp/hello_world&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;Hello World!&#39;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">webserver</span><span class="o">.</span><span class="n">add_static_file</span><span class="p">(</span><span class="s">&#39;hello_world&#39;</span><span class="p">,</span> <span class="n">StaticFile</span><span class="p">(</span><span class="s">&#39;/tmp/hello_world&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The resource class can be used for more complex requests. We create here a
+Greeter which will greet someone given its name. It is added to the webserver
+on the relative path <tt class="docutils literal"><span class="pre">/Greet</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Serving a resource</span>
+<span class="k">class</span> <span class="nc">Greeter</span><span class="p">(</span><span class="n">CustomResource</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">get_render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">say_hello</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&#39;Hello </span><span class="si">%s</span><span class="s">!&#39;</span> <span class="o">%</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">cherrypy</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">params</span>
+
+        <span class="k">if</span> <span class="s">&#39;name&#39;</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+            <span class="c"># http://addr:port/Greet?name=Someone</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">say_hello</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&#39;Hello!&#39;</span>
+
+<span class="n">webserver</span><span class="o">.</span><span class="n">add_resource</span><span class="p">(</span><span class="s">&#39;Greet&#39;</span><span class="p">,</span> <span class="n">Greeter</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>In the final step, we start the webserver and print the test URLs that can be
+used to verify the functionality:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Starting the webserver</span>
+<span class="n">webserver</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="k">print</span> <span class="s">&#39;Webserver listening on&#39;</span><span class="p">,</span> <span class="n">webserver</span><span class="o">.</span><span class="n">get_listen_url</span><span class="p">()</span>
+<span class="k">print</span> <span class="s">&#39;File URL: </span><span class="si">%s</span><span class="s">/hello_world&#39;</span> <span class="o">%</span> <span class="n">webserver</span><span class="o">.</span><span class="n">get_listen_url</span><span class="p">()</span>
+<span class="k">print</span> <span class="s">&#39;Res URL: </span><span class="si">%s</span><span class="s">/Greet&#39;</span> <span class="o">%</span> <span class="n">webserver</span><span class="o">.</span><span class="n">get_listen_url</span><span class="p">()</span>
+<span class="k">print</span> <span class="s">&#39;Res test URL: </span><span class="si">%s</span><span class="s">/Greet?name=you&#39;</span> <span class="o">%</span> <span class="n">webserver</span><span class="o">.</span><span class="n">get_listen_url</span><span class="p">()</span>
+
+<span class="c"># Block so that the program doesn&#39;t quit</span>
+
+<span class="n">reactor</span><span class="o">.</span><span class="n">add_after_stop_func</span><span class="p">(</span><span class="n">webserver</span><span class="o">.</span><span class="n">stop</span><span class="p">)</span>
+<span class="n">reactor</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s">&#39;/tmp/hello_world&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">7. <tt class="docutils literal"><span class="pre">webserver</span></tt> &#8212; Webserver facilities</a><ul>
+<li><a class="reference external" href="#creating-a-simple-webserver">7.1. Creating a simple webserver</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="network_listeners.html"
+                                  title="previous chapter">6. <tt class="docutils literal docutils literal docutils literal"><span class="pre">network_listeners</span></tt> &#8212; Network listening facilities</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="../upnp/index.html"
+                                  title="next chapter">4. <tt class="docutils literal"><span class="pre">upnp</span></tt> &#8212; UPnP modules</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/core/webserver.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../upnp/index.html" title="4. upnp — UPnP modules"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="network_listeners.html" title="6. network_listeners — Network listening facilities"
+             >previous</a> |</li>
+        <li><a href="../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >3. <tt class="docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">core</span></tt> &#8212; Framework&#8217;s core</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 2009, Andre Dieb Martins.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+    </div>
+  </body>
+</html>

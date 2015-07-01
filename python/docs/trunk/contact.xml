@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<chapter>
+	<title>Contact</title>
+
+	<para>After reading this document, if you have any doubts feel
+		free to contact us on irc or through the mailing lists.</para>
+
+	<itemizedlist>
+		<listitem>
+			<para>IRC</para>
+			<itemizedlist>
+				<listitem>
+					<para>
+						<emphasis role="bold">#brisa</emphasis>
+						@
+						<emphasis>irc.freenode.org</emphasis>
+					</para>
+				</listitem>
+			</itemizedlist>
+		</listitem>
+
+		<listitem>
+			<para>Mailing lists</para>
+			<itemizedlist>
+				<listitem>
+					<para>
+						brisa-develop -
+						<ulink url="&url_brisa_develop;" type="Subscribe">Subscribe
+						</ulink>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						brisa-discuss -
+						<ulink url="&url_brisa_discuss;" type="Subscribe">Subscribe
+						</ulink>
+					</para>
+				</listitem>
+			</itemizedlist>
+		</listitem>
+
+	</itemizedlist>
+
+</chapter>

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Categories=Development;
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=BrisaBinaryLight
+Exec=/usr/bin/brisabinarylight
+Icon=lighticon
+Categories=Brisa;

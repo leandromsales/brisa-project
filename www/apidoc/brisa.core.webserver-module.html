@@ -1,0 +1,834 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>brisa.core.webserver</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://brisa.garage.maemo.org">python-brisa UPnP framework 0.10.0 documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="brisa-module.html">Package&nbsp;brisa</a> ::
+        <a href="brisa.core-module.html">Package&nbsp;core</a> ::
+        Module&nbsp;webserver
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="brisa.core.webserver-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module webserver</h1><p class="nomargin-top"><span class="codelink"><a href="brisa.core.webserver-pysrc.html">source&nbsp;code</a></span></p>
+<p>WSGI-based webserver module. Includes a few built-in adapters for 
+  working with different WSGI servers.</p>
+  <p>If possible, an adapter will be automatically assigned to a WebServer 
+  instance - if not passed by the user.</p>
+  <p>For retrieving the available adapters, use get_available_adapters(). 
+  The results can be passed to the WebServer, e.g. 
+  WebServer(adapter=some_adapter) where some_adapter was retrieved with 
+  get_available_adapters().</p>
+
+<!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Classes"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="brisa.core.webserver.Request-class.html" class="summary-name" onclick="show_private();">Request</a><br />
+      Request wrapper class.
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="brisa.core.webserver.Response-class.html" class="summary-name" onclick="show_private();">Response</a><br />
+      Response wrapper class.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="brisa.core.webserver.StaticFile-class.html" class="summary-name">StaticFile</a><br />
+      Object that matches with a file and makes it available on the 
+        server.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="brisa.core.webserver.Resource-class.html" class="summary-name">Resource</a><br />
+      Represents a resource or a folder on the webserver.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="brisa.core.webserver.CustomResource-class.html" class="summary-name">CustomResource</a><br />
+      Same as Resource.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="brisa.core.webserver.AdapterInterface-class.html" class="summary-name">AdapterInterface</a><br />
+      Common interface for WSGI-servers adapters.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="brisa.core.webserver.CherrypyAdapter-class.html" class="summary-name">CherrypyAdapter</a><br />
+      Cherrypy WSGI server adapter.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="brisa.core.webserver.PasteAdapter-class.html" class="summary-name">PasteAdapter</a><br />
+      Paste WSGI server adapter.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="brisa.core.webserver.CircuitsWebAdapter-class.html" class="summary-name">CircuitsWebAdapter</a><br />
+      circuits.web WSGI server adapter.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="brisa.core.webserver.WebServer-class.html" class="summary-name">WebServer</a><br />
+      Webserver class.
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">string</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.core.webserver-module.html#simple_response" class="summary-sig-name" onclick="show_private();">simple_response</a>(<span class="summary-sig-arg">code</span>,
+        <span class="summary-sig-arg">start_response</span>,
+        <span class="summary-sig-arg">extra_msg</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Performs a simple response for a request.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.core.webserver-pysrc.html#simple_response">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">string</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.core.webserver-module.html#response" class="summary-sig-name" onclick="show_private();">response</a>(<span class="summary-sig-arg">code</span>,
+        <span class="summary-sig-arg">start_response</span>,
+        <span class="summary-sig-arg">msg</span>)</span><br />
+      Performs a response for a request without wrapping in a html 
+      template.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.core.webserver-pysrc.html#response">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.core.webserver-module.html#get_byte_ranges" class="summary-sig-name" onclick="show_private();">get_byte_ranges</a>(<span class="summary-sig-arg">r</span>,
+        <span class="summary-sig-arg">clen</span>)</span><br />
+      Based on a Range header and on the content length of a file, returns 
+      a list of byte ranges requested.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.core.webserver-pysrc.html#get_byte_ranges">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.core.webserver-module.html#chunk_generator" class="summary-sig-name" onclick="show_private();">chunk_generator</a>(<span class="summary-sig-arg">f</span>,
+        <span class="summary-sig-arg">chunk_size</span>,
+        <span class="summary-sig-arg">max_chunked</span>)</span><br />
+      Generates chunks of a file.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.core.webserver-pysrc.html#chunk_generator">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.core.webserver-module.html#setup_single_part_response" class="summary-sig-name" onclick="show_private();">setup_single_part_response</a>(<span class="summary-sig-arg">r</span>,
+        <span class="summary-sig-arg">rng</span>,
+        <span class="summary-sig-arg">clen</span>)</span><br />
+      Setups a response object for a single part response.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.core.webserver-pysrc.html#setup_single_part_response">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.core.webserver-module.html#setup_multi_part_response" class="summary-sig-name" onclick="show_private();">setup_multi_part_response</a>(<span class="summary-sig-arg">r</span>,
+        <span class="summary-sig-arg">rngs</span>,
+        <span class="summary-sig-arg">clen</span>,
+        <span class="summary-sig-arg">content_type</span>)</span><br />
+      Setups a response object for a multi part response, based on the byte
+      ranges requested.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.core.webserver-pysrc.html#setup_multi_part_response">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.core.webserver-module.html#client_host" class="summary-sig-name" onclick="show_private();">client_host</a>(<span class="summary-sig-arg">server_host</span>)</span><br />
+      Return the host on which a client can connect to the given listener.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.core.webserver-pysrc.html#client_host">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.core.webserver-module.html#check_port" class="summary-sig-name" onclick="show_private();">check_port</a>(<span class="summary-sig-arg">host</span>,
+        <span class="summary-sig-arg">port</span>,
+        <span class="summary-sig-arg">timeout</span>=<span class="summary-sig-default">1.0</span>)</span><br />
+      Raises an error if the given port is not free on the given host.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.core.webserver-pysrc.html#check_port">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_preferred_adapter"></a><span class="summary-sig-name">get_preferred_adapter</span>()</span><br />
+      Returns the preferred adapter, located at brisa.webserver_adapter 
+      config entry.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.core.webserver-pysrc.html#get_preferred_adapter">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_available_adapters"></a><span class="summary-sig-name">get_available_adapters</span>()</span><br />
+      Returns a list of the available adapters.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.core.webserver-pysrc.html#get_available_adapters">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="log"></a><span class="summary-name">log</span> = <code title="log.getLogger('core.webserver')">log.getLogger('core.webserver')</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="invalid_path_exists"></a><span class="summary-name">invalid_path_exists</span> = <code title="'path does not exist'">'path does not exist'</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="invalid_path_abs"></a><span class="summary-name">invalid_path_abs</span> = <code title="'path must be absolute'">'path must be absolute'</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="invalid_path_dir"></a><span class="summary-name">invalid_path_dir</span> = <code title="'path must be a file'">'path must be a file'</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="brisa.core.webserver-module.html#http_codes" class="summary-name" onclick="show_private();">http_codes</a> = <code title="{100: 'Continue', 101: 'Switching Protocols', 200: 'OK', 201: 'Created\
+', 202: 'Accepted', 203: 'Non-Authoritative Information', 204: 'No Con\
+tent', 205: 'Reset Content', 206: 'Partial Content', 300: 'Multiple Ch\
+oices', 301: 'Moved Permanently', 302: 'Found', 303: 'See Other', 304:\
+ 'Not Modified', 305: 'Use Proxy', 307: 'Temporary Redirect', 400: 'Ba\
+d Request', 401: 'Unauthorized', 403: 'Forbidden', 404: 'Not Found', 4\
+05: 'Method Not Allowed', 416: 'Requested range not satisfiable', 417:\
+ 'Expectation Failed', 500: 'Internal Server Error', 501: 'Not Impleme\
+...">{100: 'Continue', 101: 'Switching Protocols', 200<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="chunks_size"></a><span class="summary-name">chunks_size</span> = <code title="2** 16">2** 16</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="brisa.core.webserver-module.html#simple_template" class="summary-name" onclick="show_private();">simple_template</a> = <code title="'&lt;html&gt;&lt;head&gt;&lt;title&gt;%s&lt;/title&gt;&lt;body&gt;%s&lt;/body&gt;&lt;/html&gt;'">'&lt;html&gt;&lt;head&gt;&lt;title&gt;%s&lt;/title&gt;&lt;body&gt;%s&lt;/body<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="brisa.core.webserver-module.html#adapters" class="summary-name">adapters</a> = <code title="{'cherrypy': CherrypyAdapter, 'paste': PasteAdapter, 'circuits.web': C\
+ircuitsWebAdapter}">{'cherrypy': CherrypyAdapter, 'paste': PasteAdapter<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="simple_response"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">simple_response</span>(<span class="sig-arg">code</span>,
+        <span class="sig-arg">start_response</span>,
+        <span class="sig-arg">extra_msg</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.core.webserver-pysrc.html#simple_response">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Performs a simple response for a request. Usually used for returning 
+  errors or empty pages. For example, start_response(404, start_response, 
+  'File not available on the server') will return a page to the user with 
+  the 404 status and this message on the body, wrapped in a simple html 
+  template.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>code</code></strong> (integer) - status code present on http_codes dict</li>
+        <li><strong class="pname"><code>start_response</code></strong> (callable) - start_response wsgi function</li>
+        <li><strong class="pname"><code>extra_msg</code></strong> (string) - message that goes on the body. If not supplied, the status 
+          message will take its place on the body.</li>
+    </ul></dd>
+    <dt>Returns: string</dt>
+        <dd>final message to return as response body</dd>
+  </dl>
+<div class="fields">      <p><strong>Note:</strong>
+        this function also sends the headers
+      </p>
+</div></td></tr></table>
+</div>
+<a name="response"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">response</span>(<span class="sig-arg">code</span>,
+        <span class="sig-arg">start_response</span>,
+        <span class="sig-arg">msg</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.core.webserver-pysrc.html#response">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Performs a response for a request without wrapping in a html 
+  template.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>code</code></strong> (integer) - status code present on http_codes dict</li>
+        <li><strong class="pname"><code>start_response</code></strong> (callable) - start_response wsgi function</li>
+        <li><strong class="pname"><code>msg</code></strong> (string) - message that goes on the body. If not supplied, the status 
+          message will take its place on the body.</li>
+    </ul></dd>
+    <dt>Returns: string</dt>
+        <dd>final message to return as response body</dd>
+  </dl>
+<div class="fields">      <p><strong>Note:</strong>
+        this function also sends the headers
+      </p>
+</div></td></tr></table>
+</div>
+<a name="get_byte_ranges"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_byte_ranges</span>(<span class="sig-arg">r</span>,
+        <span class="sig-arg">clen</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.core.webserver-pysrc.html#get_byte_ranges">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Based on a Range header and on the content length of a file, returns a
+  list of byte ranges requested. Returns None if the header was invalid and
+  an empty list in case of invalid range.</p>
+  <p>Based on Cherrypy 3.1 implementation.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>r</code></strong> - range header</li>
+        <li><strong class="pname"><code>clen</code></strong> - content length</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="chunk_generator"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">chunk_generator</span>(<span class="sig-arg">f</span>,
+        <span class="sig-arg">chunk_size</span>,
+        <span class="sig-arg">max_chunked</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.core.webserver-pysrc.html#chunk_generator">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generates chunks of a file. Stops when reaches the max_chunked value 
+  of generated chunks.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="setup_single_part_response"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">setup_single_part_response</span>(<span class="sig-arg">r</span>,
+        <span class="sig-arg">rng</span>,
+        <span class="sig-arg">clen</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.core.webserver-pysrc.html#setup_single_part_response">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Setups a response object for a single part response. Based on Cherrypy
+  3.1 implementation.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>r</code></strong> - response object</li>
+        <li><strong class="pname"><code>rng</code></strong> - 2-tuple of the form (start, stop) with the byte range requested</li>
+        <li><strong class="pname"><code>clen</code></strong> - length of the body file</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="setup_multi_part_response"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">setup_multi_part_response</span>(<span class="sig-arg">r</span>,
+        <span class="sig-arg">rngs</span>,
+        <span class="sig-arg">clen</span>,
+        <span class="sig-arg">content_type</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.core.webserver-pysrc.html#setup_multi_part_response">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Setups a response object for a multi part response, based on the byte 
+  ranges requested. Based on Cherrypy 3.1 implementation.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>r</code></strong> - response object</li>
+        <li><strong class="pname"><code>rngs</code></strong> - list of ranges</li>
+        <li><strong class="pname"><code>clen</code></strong> - length of the body file</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="client_host"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">client_host</span>(<span class="sig-arg">server_host</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.core.webserver-pysrc.html#client_host">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return the host on which a client can connect to the given 
+  listener.</p>
+  <p>Copyright (c) 2002-2008, CherryPy Team (team@cherrypy.org)</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="check_port"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">check_port</span>(<span class="sig-arg">host</span>,
+        <span class="sig-arg">port</span>,
+        <span class="sig-arg">timeout</span>=<span class="sig-default">1.0</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.core.webserver-pysrc.html#check_port">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Raises an error if the given port is not free on the given host.</p>
+  <p>Copyright (c) 2002-2008, CherryPy Team (team@cherrypy.org)</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== VARIABLES DETAILS ==================== -->
+<a name="section-VariablesDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-VariablesDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="http_codes"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">http_codes</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+{100: 'Continue', 101: 'Switching Protocols', 200: 'OK', 201: 'Created<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+', 202: 'Accepted', 203: 'Non-Authoritative Information', 204: 'No Con<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+tent', 205: 'Reset Content', 206: 'Partial Content', 300: 'Multiple Ch<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+oices', 301: 'Moved Permanently', 302: 'Found', 303: 'See Other', 304:<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+ 'Not Modified', 305: 'Use Proxy', 307: 'Temporary Redirect', 400: 'Ba<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+d Request', 401: 'Unauthorized', 403: 'Forbidden', 404: 'Not Found', 4<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+05: 'Method Not Allowed', 416: 'Requested range not satisfiable', 417:<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+ 'Expectation Failed', 500: 'Internal Server Error', 501: 'Not Impleme<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+<code class="variable-ellipsis">...</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="simple_template"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">simple_template</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+'&lt;html&gt;&lt;head&gt;&lt;title&gt;%s&lt;/title&gt;&lt;body&gt;%s&lt;/body&gt;&lt;/html&gt;'
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="adapters"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">adapters</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+{'cherrypy': CherrypyAdapter, 'paste': PasteAdapter, 'circuits.web': C<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+ircuitsWebAdapter}
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://brisa.garage.maemo.org">python-brisa UPnP framework 0.10.0 documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Jun  9 22:24:56 2009
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

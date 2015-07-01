@@ -1,0 +1,29 @@
+python-brisa (0.9.0-0maemo1) unstable; urgency=low
+
+  * New release
+
+ -- Andre Dieb Martins <andre.dieb@gmail.com>  Sun, 15 Mar 2009 17:41:00 -0300
+
+python-brisa (0.8.0-0maemo2) unstable; urgency=low
+
+  * Control point splitted to another subpackage
+
+ -- Elvis Pfutzenreuter <elvis.pfutzenreuter@openbossa.org>  Tue, 20 Jan 2008 19:25:00 -0200 
+
+python-brisa (0.8.0-0maemo1) unstable; urgency=low
+
+  * New release
+
+ -- Elvis Pfutzenreuter <elvis.pfutzenreuter@openbossa.org>  Mon, 19 Jan 2008 10:25:00 -0200
+
+python-brisa (0.7.1-0maemo1) unstable; urgency=low
+
+  * New release
+
+ -- Leandro Melo de Sales <leandroal@gmail.com>  Sat, 8 Nov 2008 16:45:11 -0300
+
+python-brisa (0.7.0-0maemo1) unstable; urgency=low
+
+  * Added debian package support
+
+ -- Leandro Melo de Sales <leandroal@gmail.com>  Thu, 2 Oct 2008 16:06:12 -0300

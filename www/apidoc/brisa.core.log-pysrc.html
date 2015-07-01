@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>brisa.core.log</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://brisa.garage.maemo.org">python-brisa UPnP framework 0.10.0 documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="brisa-module.html">Package&nbsp;brisa</a> ::
+        <a href="brisa.core-module.html">Package&nbsp;core</a> ::
+        Module&nbsp;log
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="brisa.core.log-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="brisa.core.log-module.html">Module brisa.core.log</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># Licensed under the MIT license</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># http://opensource.org/licenses/mit-license.php or see LICENSE file.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"># Copyright 2007-2008 Brisa Team &lt;brisa-develop@garage.maemo.org&gt;</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring">""" Log module with colored logging feature. Common usage of this module can</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring">be only importing it and calling one of the available functions: debug,</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-docstring">warning, info, critical, error.</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">os</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">logging</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">logging</tt> <tt class="py-keyword">import</tt> <tt class="py-name">getLogger</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package brisa=brisa-module.html"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-0', 'brisa', 'link-0');">brisa</a></tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Variable brisa.__enable_logging__=brisa-module.html#__enable_logging__"><a title="brisa.__enable_logging__" class="py-name" href="#" onclick="return doclink('link-1', '__enable_logging__', 'link-1');">__enable_logging__</a></tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-2" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-2', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Package brisa.core=brisa.core-module.html"><a title="brisa.core" class="py-name" href="#" onclick="return doclink('link-3', 'core', 'link-3');">core</a></tt> <tt class="py-keyword">import</tt> <tt id="link-4" class="py-name" targets="Module brisa.core.config=brisa.core.config-module.html"><a title="brisa.core.config" class="py-name" href="#" onclick="return doclink('link-4', 'config', 'link-4');">config</a></tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-name">BLACK</tt><tt class="py-op">,</tt> <tt class="py-name">RED</tt><tt class="py-op">,</tt> <tt class="py-name">GREEN</tt><tt class="py-op">,</tt> <tt class="py-name">YELLOW</tt><tt class="py-op">,</tt> <tt class="py-name">BLUE</tt><tt class="py-op">,</tt> <tt class="py-name">MAGENTA</tt><tt class="py-op">,</tt> <tt class="py-name">CYAN</tt><tt class="py-op">,</tt> <tt class="py-name">WHITE</tt> <tt class="py-op">=</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-number">8</tt><tt class="py-op">)</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt id="link-5" class="py-name" targets="Variable brisa.core.log.RESET_SEQ=brisa.core.log-module.html#RESET_SEQ"><a title="brisa.core.log.RESET_SEQ" class="py-name" href="#" onclick="return doclink('link-5', 'RESET_SEQ', 'link-5');">RESET_SEQ</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'\033[0m'</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt id="link-6" class="py-name" targets="Variable brisa.core.log.COLOR_SEQ=brisa.core.log-module.html#COLOR_SEQ"><a title="brisa.core.log.COLOR_SEQ" class="py-name" href="#" onclick="return doclink('link-6', 'COLOR_SEQ', 'link-6');">COLOR_SEQ</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'\033[1;%dm'</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt id="link-7" class="py-name" targets="Variable brisa.core.log.BOLD_SEQ=brisa.core.log-module.html#BOLD_SEQ"><a title="brisa.core.log.BOLD_SEQ" class="py-name" href="#" onclick="return doclink('link-7', 'BOLD_SEQ', 'link-7');">BOLD_SEQ</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'\033[1m'</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt id="link-8" class="py-name" targets="Variable brisa.core.log.COLORS=brisa.core.log-module.html#COLORS"><a title="brisa.core.log.COLORS" class="py-name" href="#" onclick="return doclink('link-8', 'COLORS', 'link-8');">COLORS</a></tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line">    <tt class="py-string">'WARNING'</tt><tt class="py-op">:</tt> <tt class="py-name">YELLOW</tt><tt class="py-op">,</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line">    <tt class="py-string">'INFO'</tt><tt class="py-op">:</tt> <tt class="py-name">WHITE</tt><tt class="py-op">,</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line">    <tt class="py-string">'DEBUG'</tt><tt class="py-op">:</tt> <tt class="py-name">BLUE</tt><tt class="py-op">,</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line">    <tt class="py-string">'CRITICAL'</tt><tt class="py-op">:</tt> <tt class="py-name">YELLOW</tt><tt class="py-op">,</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">    <tt class="py-string">'ERROR'</tt><tt class="py-op">:</tt> <tt class="py-name">RED</tt><tt class="py-op">}</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"> </tt>
+<a name="formatter_message"></a><div id="formatter_message-def"><a name="L32"></a><tt class="py-lineno"> 32</tt> <a class="py-toggle" href="#" id="formatter_message-toggle" onclick="return toggle('formatter_message');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.core.log-module.html#formatter_message">formatter_message</a><tt class="py-op">(</tt><tt class="py-param">message</tt><tt class="py-op">,</tt> <tt class="py-param">use_color</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="formatter_message-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="formatter_message-expanded"><a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">    <tt class="py-docstring">""" Method to format the pattern in which the log messages will be</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-docstring">    displayed.</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring">    @param message: message log to be displayed</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring">    @param use_color: Flag to indicates the use of colors or not</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring">    @type message: str</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-docstring">    @type use_color: boolean</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-docstring">    @return: the new formatted message</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-docstring">    @rtype: str</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">use_color</tt><tt class="py-op">:</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt id="link-9" class="py-name" targets="Variable brisa.core.network_listeners.SubscriptionError.message=brisa.core.network_listeners.SubscriptionError-class.html#message"><a title="brisa.core.network_listeners.SubscriptionError.message" class="py-name" href="#" onclick="return doclink('link-9', 'message', 'link-9');">message</a></tt> <tt class="py-op">=</tt> <tt id="link-10" class="py-name"><a title="brisa.core.network_listeners.SubscriptionError.message" class="py-name" href="#" onclick="return doclink('link-10', 'message', 'link-9');">message</a></tt><tt class="py-op">.</tt><tt class="py-name">replace</tt><tt class="py-op">(</tt><tt class="py-string">'$RESET'</tt><tt class="py-op">,</tt> <tt id="link-11" class="py-name"><a title="brisa.core.log.RESET_SEQ" class="py-name" href="#" onclick="return doclink('link-11', 'RESET_SEQ', 'link-5');">RESET_SEQ</a></tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">replace</tt><tt class="py-op">(</tt><tt class="py-string">'$BOLD'</tt><tt class="py-op">,</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">                                                               <tt id="link-12" class="py-name"><a title="brisa.core.log.BOLD_SEQ" class="py-name" href="#" onclick="return doclink('link-12', 'BOLD_SEQ', 'link-7');">BOLD_SEQ</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">    <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt id="link-13" class="py-name"><a title="brisa.core.network_listeners.SubscriptionError.message" class="py-name" href="#" onclick="return doclink('link-13', 'message', 'link-9');">message</a></tt> <tt class="py-op">=</tt> <tt id="link-14" class="py-name"><a title="brisa.core.network_listeners.SubscriptionError.message" class="py-name" href="#" onclick="return doclink('link-14', 'message', 'link-9');">message</a></tt><tt class="py-op">.</tt><tt class="py-name">replace</tt><tt class="py-op">(</tt><tt class="py-string">'$RESET'</tt><tt class="py-op">,</tt> <tt class="py-string">''</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">replace</tt><tt class="py-op">(</tt><tt class="py-string">'$BOLD'</tt><tt class="py-op">,</tt> <tt class="py-string">''</tt><tt class="py-op">)</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-15" class="py-name"><a title="brisa.core.network_listeners.SubscriptionError.message" class="py-name" href="#" onclick="return doclink('link-15', 'message', 'link-9');">message</a></tt> </tt>
+</div><a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"> </tt>
+<a name="ColoredFormatter"></a><div id="ColoredFormatter-def"><a name="L53"></a><tt class="py-lineno"> 53</tt> <a class="py-toggle" href="#" id="ColoredFormatter-toggle" onclick="return toggle('ColoredFormatter');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="brisa.core.log.ColoredFormatter-class.html">ColoredFormatter</a><tt class="py-op">(</tt><tt class="py-base-class">logging</tt><tt class="py-op">.</tt><tt class="py-base-class">Formatter</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ColoredFormatter-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ColoredFormatter-expanded"><a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">    <tt class="py-docstring">""" ColoredFormatter class, which wrappers logging.Formatter. """</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"> </tt>
+<a name="ColoredFormatter.__init__"></a><div id="ColoredFormatter.__init__-def"><a name="L56"></a><tt class="py-lineno"> 56</tt> <a class="py-toggle" href="#" id="ColoredFormatter.__init__-toggle" onclick="return toggle('ColoredFormatter.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.core.log.ColoredFormatter-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">msg</tt><tt class="py-op">,</tt> <tt class="py-param">use_color</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ColoredFormatter.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ColoredFormatter.__init__-expanded"><a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-docstring">""" Constructor of the ColoredFormatter class.</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"><tt class="py-docstring">        @param msg: message to be displayed</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-docstring">        @param use_color: Flag to indicate the use of color or not</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"><tt class="py-docstring">        @type msg: str</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"><tt class="py-docstring">        @type use_color: boolean</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">Formatter</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Method brisa.core.config.ConfigurationManager.__init__()=brisa.core.config.ConfigurationManager-class.html#__init__,Method brisa.core.config._BRisaConfigurationManager.__init__()=brisa.core.config._BRisaConfigurationManager-class.html#__init__,Method brisa.core.failure.Failure.__init__()=brisa.core.failure.Failure-class.html#__init__,Method brisa.core.ireactor.ReactorInterface.__init__()=brisa.core.ireactor.ReactorInterface-class.html#__init__,Method brisa.core.ireactor.ReactorInterface.__init__()=brisa.core.ireactor.ReactorInterface-class.html#__init__,Method brisa.core.log.ColoredFormatter.__init__()=brisa.core.log.ColoredFormatter-class.html#__init__,Method brisa.core.log.ColoredLogger.__init__()=brisa.core.log.ColoredLogger-class.html#__init__,Method brisa.core.network_listeners.CannotListenError.__init__()=brisa.core.network_listeners.CannotListenError-class.html#__init__,Method brisa.core.network_listeners.NetworkListener.__init__()=brisa.core.network_listeners.NetworkListener-class.html#__init__,Method brisa.core.network_listeners.UDPListener.__init__()=brisa.core.network_listeners.UDPListener-class.html#__init__,Method brisa.core.network_senders.TCPTransport.__init__()=brisa.core.network_senders.TCPTransport-class.html#__init__,Method brisa.core.network_senders.UDPTransport.__init__()=brisa.core.network_senders.UDPTransport-class.html#__init__,Method brisa.core.plugin.PluginInterface.__init__()=brisa.core.plugin.PluginInterface-class.html#__init__,Method brisa.core.plugin_manager.PluginManager.__init__()=brisa.core.plugin_manager.PluginManager-class.html#__init__,Method brisa.core.plugin_manager.RootPlugin.__init__()=brisa.core.plugin_manager.RootPlugin-class.html#__init__,Method brisa.core.reactors._select.SelectReactor.__init__()=brisa.core.reactors._select.SelectReactor-class.html#__init__,Method brisa.core.reactors._select.Timer.__init__()=brisa.core.reactors._select.Timer-class.html#__init__,Method brisa.core.reactors.glib2.GLib2Reactor.__init__()=brisa.core.reactors.glib2.GLib2Reactor-class.html#__init__,Method brisa.core.threaded_call.ThreadedCall.__init__()=brisa.core.threaded_call.ThreadedCall-class.html#__init__,Method brisa.core.webserver.Request.__init__()=brisa.core.webserver.Request-class.html#__init__,Method brisa.core.webserver.Resource.__init__()=brisa.core.webserver.Resource-class.html#__init__,Method brisa.core.webserver.Response.__init__()=brisa.core.webserver.Response-class.html#__init__,Method brisa.core.webserver.StaticFile.__init__()=brisa.core.webserver.StaticFile-class.html#__init__,Method brisa.core.webserver.WebServer.__init__()=brisa.core.webserver.WebServer-class.html#__init__,Method brisa.upnp.base_action.BaseAction.__init__()=brisa.upnp.base_action.BaseAction-class.html#__init__,Method brisa.upnp.base_action.BaseArgument.__init__()=brisa.upnp.base_action.BaseArgument-class.html#__init__,Method brisa.upnp.base_device.BaseDevice.__init__()=brisa.upnp.base_device.BaseDevice-class.html#__init__,Method brisa.upnp.base_device.BaseDevice.__init__()=brisa.upnp.base_device.BaseDevice-class.html#__init__,Method brisa.upnp.base_device.BaseDeviceIcon.__init__()=brisa.upnp.base_device.BaseDeviceIcon-class.html#__init__,Method brisa.upnp.base_service.BaseService.__init__()=brisa.upnp.base_service.BaseService-class.html#__init__,Method brisa.upnp.base_service.BaseStateVariable.__init__()=brisa.upnp.base_service.BaseStateVariable-class.html#__init__,Method brisa.upnp.base_service_builder.BaseServiceBuilder.__init__()=brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#__init__,Method brisa.upnp.base_service_builder.BaseServiceBuilder.__init__()=brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#__init__,Method brisa.upnp.control_point.action.Action.__init__()=brisa.upnp.control_point.action.Action-class.html#__init__,Method brisa.upnp.control_point.action.Argument.__init__()=brisa.upnp.control_point.action.Argument-class.html#__init__,Method brisa.upnp.control_point.control_point.ControlPoint.__init__()=brisa.upnp.control_point.control_point.ControlPoint-class.html#__init__,Method brisa.upnp.control_point.control_point_av.ControlPointAV.__init__()=brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#__init__,Method brisa.upnp.control_point.device_builder.DeviceAssembler.__init__()=brisa.upnp.control_point.device_builder.DeviceAssembler-class.html#__init__,Method brisa.upnp.control_point.device_builder.DeviceBuilder.__init__()=brisa.upnp.control_point.device_builder.DeviceBuilder-class.html#__init__,Method brisa.upnp.control_point.event.EventListener.__init__()=brisa.upnp.control_point.event.EventListener-class.html#__init__,Method brisa.upnp.control_point.event.EventListenerServer.__init__()=brisa.upnp.control_point.event.EventListenerServer-class.html#__init__,Method brisa.upnp.control_point.msearch.MSearch.__init__()=brisa.upnp.control_point.msearch.MSearch-class.html#__init__,Method brisa.upnp.control_point.service.AutoRenew.__init__()=brisa.upnp.control_point.service.AutoRenew-class.html#__init__,Method brisa.upnp.control_point.service.RenewSubscribeRequest.__init__()=brisa.upnp.control_point.service.RenewSubscribeRequest-class.html#__init__,Method brisa.upnp.control_point.service.Service.__init__()=brisa.upnp.control_point.service.Service-class.html#__init__,Method brisa.upnp.control_point.service.StateVariable.__init__()=brisa.upnp.control_point.service.StateVariable-class.html#__init__,Method brisa.upnp.control_point.service.SubscribeRequest.__init__()=brisa.upnp.control_point.service.SubscribeRequest-class.html#__init__,Method brisa.upnp.control_point.service.UnsubscribeRequest.__init__()=brisa.upnp.control_point.service.UnsubscribeRequest-class.html#__init__,Method brisa.upnp.device.action.Action.__init__()=brisa.upnp.device.action.Action-class.html#__init__,Method brisa.upnp.device.action.Argument.__init__()=brisa.upnp.device.action.Argument-class.html#__init__,Method brisa.upnp.device.device.Device.__init__()=brisa.upnp.device.device.Device-class.html#__init__,Method brisa.upnp.device.event.EventController.__init__()=brisa.upnp.device.event.EventController-class.html#__init__,Method brisa.upnp.device.event.EventMessage.__init__()=brisa.upnp.device.event.EventMessage-class.html#__init__,Method brisa.upnp.device.event.Subscriber.__init__()=brisa.upnp.device.event.Subscriber-class.html#__init__,Method brisa.upnp.device.service.ErrorCode.__init__()=brisa.upnp.device.service.ErrorCode-class.html#__init__,Method brisa.upnp.device.service.Service.__init__()=brisa.upnp.device.service.Service-class.html#__init__,Method brisa.upnp.device.service.ServiceController.__init__()=brisa.upnp.device.service.ServiceController-class.html#__init__,Method brisa.upnp.device.service.StateVariable.__init__()=brisa.upnp.device.service.StateVariable-class.html#__init__,Method brisa.upnp.device.xml_gen.DeviceXMLBuilder.__init__()=brisa.upnp.device.xml_gen.DeviceXMLBuilder-class.html#__init__,Method brisa.upnp.device.xml_gen.DeviceXMLGenerator.__init__()=brisa.upnp.device.xml_gen.DeviceXMLGenerator-class.html#__init__,Method brisa.upnp.device.xml_gen.ServiceXMLBuilder.__init__()=brisa.upnp.device.xml_gen.ServiceXMLBuilder-class.html#__init__,Method brisa.upnp.device.xml_gen.ServiceXMLGenerator.__init__()=brisa.upnp.device.xml_gen.ServiceXMLGenerator-class.html#__init__,Method brisa.upnp.didl.didl_lite.Album.__init__()=brisa.upnp.didl.didl_lite.Album-class.html#__init__,Method brisa.upnp.didl.didl_lite.AudioBook.__init__()=brisa.upnp.didl.didl_lite.AudioBook-class.html#__init__,Method brisa.upnp.didl.didl_lite.AudioBroadcast.__init__()=brisa.upnp.didl.didl_lite.AudioBroadcast-class.html#__init__,Method brisa.upnp.didl.didl_lite.AudioItem.__init__()=brisa.upnp.didl.didl_lite.AudioItem-class.html#__init__,Method brisa.upnp.didl.didl_lite.Container.__init__()=brisa.upnp.didl.didl_lite.Container-class.html#__init__,Method brisa.upnp.didl.didl_lite.Element.__init__()=brisa.upnp.didl.didl_lite.Element-class.html#__init__,Method brisa.upnp.didl.didl_lite.Genre.__init__()=brisa.upnp.didl.didl_lite.Genre-class.html#__init__,Method brisa.upnp.didl.didl_lite.ImageItem.__init__()=brisa.upnp.didl.didl_lite.ImageItem-class.html#__init__,Method brisa.upnp.didl.didl_lite.Item.__init__()=brisa.upnp.didl.didl_lite.Item-class.html#__init__,Method brisa.upnp.didl.didl_lite.Movie.__init__()=brisa.upnp.didl.didl_lite.Movie-class.html#__init__,Method brisa.upnp.didl.didl_lite.MusicAlbum.__init__()=brisa.upnp.didl.didl_lite.MusicAlbum-class.html#__init__,Method brisa.upnp.didl.didl_lite.MusicArtist.__init__()=brisa.upnp.didl.didl_lite.MusicArtist-class.html#__init__,Method brisa.upnp.didl.didl_lite.MusicTrack.__init__()=brisa.upnp.didl.didl_lite.MusicTrack-class.html#__init__,Method brisa.upnp.didl.didl_lite.MusicVideoClip.__init__()=brisa.upnp.didl.didl_lite.MusicVideoClip-class.html#__init__,Method brisa.upnp.didl.didl_lite.Object.__init__()=brisa.upnp.didl.didl_lite.Object-class.html#__init__,Method brisa.upnp.didl.didl_lite.Person.__init__()=brisa.upnp.didl.didl_lite.Person-class.html#__init__,Method brisa.upnp.didl.didl_lite.Photo.__init__()=brisa.upnp.didl.didl_lite.Photo-class.html#__init__,Method brisa.upnp.didl.didl_lite.PlaylistContainer.__init__()=brisa.upnp.didl.didl_lite.PlaylistContainer-class.html#__init__,Method brisa.upnp.didl.didl_lite.PlaylistItem.__init__()=brisa.upnp.didl.didl_lite.PlaylistItem-class.html#__init__,Method brisa.upnp.didl.didl_lite.Resource.__init__()=brisa.upnp.didl.didl_lite.Resource-class.html#__init__,Method brisa.upnp.didl.didl_lite.SearchClass.__init__()=brisa.upnp.didl.didl_lite.SearchClass-class.html#__init__,Method brisa.upnp.didl.didl_lite.StorageFolder.__init__()=brisa.upnp.didl.didl_lite.StorageFolder-class.html#__init__,Method brisa.upnp.didl.didl_lite.StorageSystem.__init__()=brisa.upnp.didl.didl_lite.StorageSystem-class.html#__init__,Method brisa.upnp.didl.didl_lite.StorageVolume.__init__()=brisa.upnp.didl.didl_lite.StorageVolume-class.html#__init__,Method brisa.upnp.didl.didl_lite.VideoBroadcast.__init__()=brisa.upnp.didl.didl_lite.VideoBroadcast-class.html#__init__,Method brisa.upnp.didl.didl_lite.VideoItem.__init__()=brisa.upnp.didl.didl_lite.VideoItem-class.html#__init__,Method brisa.upnp.services.cds.content_directory.ContentDirectory.__init__()=brisa.upnp.services.cds.content_directory.ContentDirectory-class.html#__init__,Method brisa.upnp.services.connmgr.connection_manager.ConnectionManagerRenderer.__init__()=brisa.upnp.services.connmgr.connection_manager.ConnectionManagerRenderer-class.html#__init__,Method brisa.upnp.services.connmgr.connection_manager.ConnectionManagerServer.__init__()=brisa.upnp.services.connmgr.connection_manager.ConnectionManagerServer-class.html#__init__,Method brisa.upnp.soap.HTTPError.__init__()=brisa.upnp.soap.HTTPError-class.html#__init__,Method brisa.upnp.soap.SOAPProxy.__init__()=brisa.upnp.soap.SOAPProxy-class.html#__init__,Method brisa.upnp.ssdp.SSDPServer.__init__()=brisa.upnp.ssdp.SSDPServer-class.html#__init__,Method brisa.utils.looping_call.LoopingCall.__init__()=brisa.utils.looping_call.LoopingCall-class.html#__init__"><a title="brisa.core.config.ConfigurationManager.__init__
+brisa.core.config._BRisaConfigurationManager.__init__
+brisa.core.failure.Failure.__init__
+brisa.core.ireactor.ReactorInterface.__init__
+brisa.core.ireactor.ReactorInterface.__init__
+brisa.core.log.ColoredFormatter.__init__
+brisa.core.log.ColoredLogger.__init__
+brisa.core.network_listeners.CannotListenError.__init__
+brisa.core.network_listeners.NetworkListener.__init__
+brisa.core.network_listeners.UDPListener.__init__
+brisa.core.network_senders.TCPTransport.__init__
+brisa.core.network_senders.UDPTransport.__init__
+brisa.core.plugin.PluginInterface.__init__
+brisa.core.plugin_manager.PluginManager.__init__
+brisa.core.plugin_manager.RootPlugin.__init__
+brisa.core.reactors._select.SelectReactor.__init__
+brisa.core.reactors._select.Timer.__init__
+brisa.core.reactors.glib2.GLib2Reactor.__init__
+brisa.core.threaded_call.ThreadedCall.__init__
+brisa.core.webserver.Request.__init__
+brisa.core.webserver.Resource.__init__
+brisa.core.webserver.Response.__init__
+brisa.core.webserver.StaticFile.__init__
+brisa.core.webserver.WebServer.__init__
+brisa.upnp.base_action.BaseAction.__init__
+brisa.upnp.base_action.BaseArgument.__init__
+brisa.upnp.base_device.BaseDevice.__init__
+brisa.upnp.base_device.BaseDevice.__init__
+brisa.upnp.base_device.BaseDeviceIcon.__init__
+brisa.upnp.base_service.BaseService.__init__
+brisa.upnp.base_service.BaseStateVariable.__init__
+brisa.upnp.base_service_builder.BaseServiceBuilder.__init__
+brisa.upnp.base_service_builder.BaseServiceBuilder.__init__
+brisa.upnp.control_point.action.Action.__init__
+brisa.upnp.control_point.action.Argument.__init__
+brisa.upnp.control_point.control_point.ControlPoint.__init__
+brisa.upnp.control_point.control_point_av.ControlPointAV.__init__
+brisa.upnp.control_point.device_builder.DeviceAssembler.__init__
+brisa.upnp.control_point.device_builder.DeviceBuilder.__init__
+brisa.upnp.control_point.event.EventListener.__init__
+brisa.upnp.control_point.event.EventListenerServer.__init__
+brisa.upnp.control_point.msearch.MSearch.__init__
+brisa.upnp.control_point.service.AutoRenew.__init__
+brisa.upnp.control_point.service.RenewSubscribeRequest.__init__
+brisa.upnp.control_point.service.Service.__init__
+brisa.upnp.control_point.service.StateVariable.__init__
+brisa.upnp.control_point.service.SubscribeRequest.__init__
+brisa.upnp.control_point.service.UnsubscribeRequest.__init__
+brisa.upnp.device.action.Action.__init__
+brisa.upnp.device.action.Argument.__init__
+brisa.upnp.device.device.Device.__init__
+brisa.upnp.device.event.EventController.__init__
+brisa.upnp.device.event.EventMessage.__init__
+brisa.upnp.device.event.Subscriber.__init__
+brisa.upnp.device.service.ErrorCode.__init__
+brisa.upnp.device.service.Service.__init__
+brisa.upnp.device.service.ServiceController.__init__
+brisa.upnp.device.service.StateVariable.__init__
+brisa.upnp.device.xml_gen.DeviceXMLBuilder.__init__
+brisa.upnp.device.xml_gen.DeviceXMLGenerator.__init__
+brisa.upnp.device.xml_gen.ServiceXMLBuilder.__init__
+brisa.upnp.device.xml_gen.ServiceXMLGenerator.__init__
+brisa.upnp.didl.didl_lite.Album.__init__
+brisa.upnp.didl.didl_lite.AudioBook.__init__
+brisa.upnp.didl.didl_lite.AudioBroadcast.__init__
+brisa.upnp.didl.didl_lite.AudioItem.__init__
+brisa.upnp.didl.didl_lite.Container.__init__
+brisa.upnp.didl.didl_lite.Element.__init__
+brisa.upnp.didl.didl_lite.Genre.__init__
+brisa.upnp.didl.didl_lite.ImageItem.__init__
+brisa.upnp.didl.didl_lite.Item.__init__
+brisa.upnp.didl.didl_lite.Movie.__init__
+brisa.upnp.didl.didl_lite.MusicAlbum.__init__
+brisa.upnp.didl.didl_lite.MusicArtist.__init__
+brisa.upnp.didl.didl_lite.MusicTrack.__init__
+brisa.upnp.didl.didl_lite.MusicVideoClip.__init__
+brisa.upnp.didl.didl_lite.Object.__init__
+brisa.upnp.didl.didl_lite.Person.__init__
+brisa.upnp.didl.didl_lite.Photo.__init__
+brisa.upnp.didl.didl_lite.PlaylistContainer.__init__
+brisa.upnp.didl.didl_lite.PlaylistItem.__init__
+brisa.upnp.didl.didl_lite.Resource.__init__
+brisa.upnp.didl.didl_lite.SearchClass.__init__
+brisa.upnp.didl.didl_lite.StorageFolder.__init__
+brisa.upnp.didl.didl_lite.StorageSystem.__init__
+brisa.upnp.didl.didl_lite.StorageVolume.__init__
+brisa.upnp.didl.didl_lite.VideoBroadcast.__init__
+brisa.upnp.didl.didl_lite.VideoItem.__init__
+brisa.upnp.services.cds.content_directory.ContentDirectory.__init__
+brisa.upnp.services.connmgr.connection_manager.ConnectionManagerRenderer.__init__
+brisa.upnp.services.connmgr.connection_manager.ConnectionManagerServer.__init__
+brisa.upnp.soap.HTTPError.__init__
+brisa.upnp.soap.SOAPProxy.__init__
+brisa.upnp.ssdp.SSDPServer.__init__
+brisa.utils.looping_call.LoopingCall.__init__" class="py-name" href="#" onclick="return doclink('link-16', '__init__', 'link-16');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">msg</tt><tt class="py-op">)</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">use_color</tt> <tt class="py-op">=</tt> <tt class="py-name">use_color</tt> </tt>
+</div><a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"> </tt>
+<a name="ColoredFormatter.format"></a><div id="ColoredFormatter.format-def"><a name="L68"></a><tt class="py-lineno"> 68</tt> <a class="py-toggle" href="#" id="ColoredFormatter.format-toggle" onclick="return toggle('ColoredFormatter.format');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.core.log.ColoredFormatter-class.html#format">format</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">record</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ColoredFormatter.format-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ColoredFormatter.format-expanded"><a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">        <tt class="py-docstring">""" format method to the ColoredFormatter class that organizes the log</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-docstring">        message.</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt class="py-docstring">        @parameter record: information about the logger</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"><tt class="py-docstring">        @type record: Instance of Logger, either its RootLogger or not</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-name">levelname</tt> <tt class="py-op">=</tt> <tt class="py-name">record</tt><tt class="py-op">.</tt><tt class="py-name">levelname</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">use_color</tt> <tt class="py-keyword">and</tt> <tt class="py-name">levelname</tt> <tt class="py-keyword">in</tt> <tt id="link-17" class="py-name"><a title="brisa.core.log.COLORS" class="py-name" href="#" onclick="return doclink('link-17', 'COLORS', 'link-8');">COLORS</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">            <tt class="py-name">levelname_color</tt> <tt class="py-op">=</tt> <tt id="link-18" class="py-name"><a title="brisa.core.log.COLOR_SEQ" class="py-name" href="#" onclick="return doclink('link-18', 'COLOR_SEQ', 'link-6');">COLOR_SEQ</a></tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-number">30</tt> <tt class="py-op">+</tt> <tt id="link-19" class="py-name"><a title="brisa.core.log.COLORS" class="py-name" href="#" onclick="return doclink('link-19', 'COLORS', 'link-8');">COLORS</a></tt><tt class="py-op">[</tt><tt class="py-name">levelname</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-name">levelname</tt>\ </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">                              <tt class="py-op">+</tt> <tt id="link-20" class="py-name"><a title="brisa.core.log.RESET_SEQ" class="py-name" href="#" onclick="return doclink('link-20', 'RESET_SEQ', 'link-5');">RESET_SEQ</a></tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">            <tt class="py-name">record</tt><tt class="py-op">.</tt><tt class="py-name">levelname</tt> <tt class="py-op">=</tt> <tt class="py-name">levelname_color</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">Formatter</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Method brisa.core.log.ColoredFormatter.format()=brisa.core.log.ColoredFormatter-class.html#format"><a title="brisa.core.log.ColoredFormatter.format" class="py-name" href="#" onclick="return doclink('link-21', 'format', 'link-21');">format</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">record</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"> </tt>
+<a name="ColoredLogger"></a><div id="ColoredLogger-def"><a name="L83"></a><tt class="py-lineno"> 83</tt> <a class="py-toggle" href="#" id="ColoredLogger-toggle" onclick="return toggle('ColoredLogger');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="brisa.core.log.ColoredLogger-class.html">ColoredLogger</a><tt class="py-op">(</tt><tt class="py-base-class">logging</tt><tt class="py-op">.</tt><tt class="py-base-class">Logger</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ColoredLogger-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ColoredLogger-expanded"><a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">    <tt id="link-22" class="py-name" targets="Variable brisa.core.log.ColoredLogger.FORMAT=brisa.core.log.ColoredLogger-class.html#FORMAT"><a title="brisa.core.log.ColoredLogger.FORMAT" class="py-name" href="#" onclick="return doclink('link-22', 'FORMAT', 'link-22');">FORMAT</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'%(created)f $BOLD%(levelname)s$RESET $BOLD%(module)s:%(lineno)d'</tt>\ </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">             <tt class="py-string">':%(funcName)s()$RESET %(message)s'</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">    <tt id="link-23" class="py-name" targets="Variable brisa.core.log.ColoredLogger.COLOR_FORMAT=brisa.core.log.ColoredLogger-class.html#COLOR_FORMAT"><a title="brisa.core.log.ColoredLogger.COLOR_FORMAT" class="py-name" href="#" onclick="return doclink('link-23', 'COLOR_FORMAT', 'link-23');">COLOR_FORMAT</a></tt> <tt class="py-op">=</tt> <tt id="link-24" class="py-name" targets="Function brisa.core.log.formatter_message()=brisa.core.log-module.html#formatter_message"><a title="brisa.core.log.formatter_message" class="py-name" href="#" onclick="return doclink('link-24', 'formatter_message', 'link-24');">formatter_message</a></tt><tt class="py-op">(</tt><tt id="link-25" class="py-name"><a title="brisa.core.log.ColoredLogger.FORMAT" class="py-name" href="#" onclick="return doclink('link-25', 'FORMAT', 'link-22');">FORMAT</a></tt><tt class="py-op">,</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"> </tt>
+<a name="ColoredLogger.__init__"></a><div id="ColoredLogger.__init__-def"><a name="L89"></a><tt class="py-lineno"> 89</tt> <a class="py-toggle" href="#" id="ColoredLogger.__init__-toggle" onclick="return toggle('ColoredLogger.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.core.log.ColoredLogger-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ColoredLogger.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ColoredLogger.__init__-expanded"><a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt class="py-docstring">""" Constructor for the ColoredLogger class.</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"><tt class="py-docstring">        @param name: name of the Logger.</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring">        @type name: str</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">        <tt class="py-keyword">global</tt> <tt class="py-name">level</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">        <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">Logger</tt><tt class="py-op">.</tt><tt id="link-26" class="py-name"><a title="brisa.core.config.ConfigurationManager.__init__
+brisa.core.config._BRisaConfigurationManager.__init__
+brisa.core.failure.Failure.__init__
+brisa.core.ireactor.ReactorInterface.__init__
+brisa.core.ireactor.ReactorInterface.__init__
+brisa.core.log.ColoredFormatter.__init__
+brisa.core.log.ColoredLogger.__init__
+brisa.core.network_listeners.CannotListenError.__init__
+brisa.core.network_listeners.NetworkListener.__init__
+brisa.core.network_listeners.UDPListener.__init__
+brisa.core.network_senders.TCPTransport.__init__
+brisa.core.network_senders.UDPTransport.__init__
+brisa.core.plugin.PluginInterface.__init__
+brisa.core.plugin_manager.PluginManager.__init__
+brisa.core.plugin_manager.RootPlugin.__init__
+brisa.core.reactors._select.SelectReactor.__init__
+brisa.core.reactors._select.Timer.__init__
+brisa.core.reactors.glib2.GLib2Reactor.__init__
+brisa.core.threaded_call.ThreadedCall.__init__
+brisa.core.webserver.Request.__init__
+brisa.core.webserver.Resource.__init__
+brisa.core.webserver.Response.__init__
+brisa.core.webserver.StaticFile.__init__
+brisa.core.webserver.WebServer.__init__
+brisa.upnp.base_action.BaseAction.__init__
+brisa.upnp.base_action.BaseArgument.__init__
+brisa.upnp.base_device.BaseDevice.__init__
+brisa.upnp.base_device.BaseDevice.__init__
+brisa.upnp.base_device.BaseDeviceIcon.__init__
+brisa.upnp.base_service.BaseService.__init__
+brisa.upnp.base_service.BaseStateVariable.__init__
+brisa.upnp.base_service_builder.BaseServiceBuilder.__init__
+brisa.upnp.base_service_builder.BaseServiceBuilder.__init__
+brisa.upnp.control_point.action.Action.__init__
+brisa.upnp.control_point.action.Argument.__init__
+brisa.upnp.control_point.control_point.ControlPoint.__init__
+brisa.upnp.control_point.control_point_av.ControlPointAV.__init__
+brisa.upnp.control_point.device_builder.DeviceAssembler.__init__
+brisa.upnp.control_point.device_builder.DeviceBuilder.__init__
+brisa.upnp.control_point.event.EventListener.__init__
+brisa.upnp.control_point.event.EventListenerServer.__init__
+brisa.upnp.control_point.msearch.MSearch.__init__
+brisa.upnp.control_point.service.AutoRenew.__init__
+brisa.upnp.control_point.service.RenewSubscribeRequest.__init__
+brisa.upnp.control_point.service.Service.__init__
+brisa.upnp.control_point.service.StateVariable.__init__
+brisa.upnp.control_point.service.SubscribeRequest.__init__
+brisa.upnp.control_point.service.UnsubscribeRequest.__init__
+brisa.upnp.device.action.Action.__init__
+brisa.upnp.device.action.Argument.__init__
+brisa.upnp.device.device.Device.__init__
+brisa.upnp.device.event.EventController.__init__
+brisa.upnp.device.event.EventMessage.__init__
+brisa.upnp.device.event.Subscriber.__init__
+brisa.upnp.device.service.ErrorCode.__init__
+brisa.upnp.device.service.Service.__init__
+brisa.upnp.device.service.ServiceController.__init__
+brisa.upnp.device.service.StateVariable.__init__
+brisa.upnp.device.xml_gen.DeviceXMLBuilder.__init__
+brisa.upnp.device.xml_gen.DeviceXMLGenerator.__init__
+brisa.upnp.device.xml_gen.ServiceXMLBuilder.__init__
+brisa.upnp.device.xml_gen.ServiceXMLGenerator.__init__
+brisa.upnp.didl.didl_lite.Album.__init__
+brisa.upnp.didl.didl_lite.AudioBook.__init__
+brisa.upnp.didl.didl_lite.AudioBroadcast.__init__
+brisa.upnp.didl.didl_lite.AudioItem.__init__
+brisa.upnp.didl.didl_lite.Container.__init__
+brisa.upnp.didl.didl_lite.Element.__init__
+brisa.upnp.didl.didl_lite.Genre.__init__
+brisa.upnp.didl.didl_lite.ImageItem.__init__
+brisa.upnp.didl.didl_lite.Item.__init__
+brisa.upnp.didl.didl_lite.Movie.__init__
+brisa.upnp.didl.didl_lite.MusicAlbum.__init__
+brisa.upnp.didl.didl_lite.MusicArtist.__init__
+brisa.upnp.didl.didl_lite.MusicTrack.__init__
+brisa.upnp.didl.didl_lite.MusicVideoClip.__init__
+brisa.upnp.didl.didl_lite.Object.__init__
+brisa.upnp.didl.didl_lite.Person.__init__
+brisa.upnp.didl.didl_lite.Photo.__init__
+brisa.upnp.didl.didl_lite.PlaylistContainer.__init__
+brisa.upnp.didl.didl_lite.PlaylistItem.__init__
+brisa.upnp.didl.didl_lite.Resource.__init__
+brisa.upnp.didl.didl_lite.SearchClass.__init__
+brisa.upnp.didl.didl_lite.StorageFolder.__init__
+brisa.upnp.didl.didl_lite.StorageSystem.__init__
+brisa.upnp.didl.didl_lite.StorageVolume.__init__
+brisa.upnp.didl.didl_lite.VideoBroadcast.__init__
+brisa.upnp.didl.didl_lite.VideoItem.__init__
+brisa.upnp.services.cds.content_directory.ContentDirectory.__init__
+brisa.upnp.services.connmgr.connection_manager.ConnectionManagerRenderer.__init__
+brisa.upnp.services.connmgr.connection_manager.ConnectionManagerServer.__init__
+brisa.upnp.soap.HTTPError.__init__
+brisa.upnp.soap.SOAPProxy.__init__
+brisa.upnp.ssdp.SSDPServer.__init__
+brisa.utils.looping_call.LoopingCall.__init__" class="py-name" href="#" onclick="return doclink('link-26', '__init__', 'link-16');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt id="link-27" class="py-name" targets="Variable brisa.core.plugin.PluginInterface.name=brisa.core.plugin.PluginInterface-class.html#name,Variable brisa.core.plugin_manager.RootPlugin.name=brisa.core.plugin_manager.RootPlugin-class.html#name"><a title="brisa.core.plugin.PluginInterface.name
+brisa.core.plugin_manager.RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-27', 'name', 'link-27');">name</a></tt><tt class="py-op">,</tt> <tt class="py-name">level</tt><tt class="py-op">)</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt class="py-name">color_formatter</tt> <tt class="py-op">=</tt> <tt id="link-28" class="py-name" targets="Class brisa.core.log.ColoredFormatter=brisa.core.log.ColoredFormatter-class.html"><a title="brisa.core.log.ColoredFormatter" class="py-name" href="#" onclick="return doclink('link-28', 'ColoredFormatter', 'link-28');">ColoredFormatter</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="brisa.core.log.ColoredLogger.COLOR_FORMAT" class="py-name" href="#" onclick="return doclink('link-29', 'COLOR_FORMAT', 'link-23');">COLOR_FORMAT</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">        <tt class="py-name">console</tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">StreamHandler</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">        <tt class="py-name">console</tt><tt class="py-op">.</tt><tt class="py-name">setFormatter</tt><tt class="py-op">(</tt><tt class="py-name">color_formatter</tt><tt class="py-op">)</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">addHandler</tt><tt class="py-op">(</tt><tt class="py-name">console</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"><tt id="link-30" class="py-name" targets="Variable brisa.core.log.log_dict=brisa.core.log-module.html#log_dict"><a title="brisa.core.log.log_dict" class="py-name" href="#" onclick="return doclink('link-30', 'log_dict', 'link-30');">log_dict</a></tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-string">'WARNING'</tt><tt class="py-op">:</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">WARNING</tt><tt class="py-op">,</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">            <tt class="py-string">'DEBUG'</tt><tt class="py-op">:</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">DEBUG</tt><tt class="py-op">,</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">            <tt class="py-string">'INFO'</tt><tt class="py-op">:</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">INFO</tt><tt class="py-op">,</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">            <tt class="py-string">'CRITICAL'</tt><tt class="py-op">:</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">CRITICAL</tt><tt class="py-op">,</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">            <tt class="py-string">'ERROR'</tt><tt class="py-op">:</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">ERROR</tt><tt class="py-op">}</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line"> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"> </tt>
+<a name="setup_logging"></a><div id="setup_logging-def"><a name="L110"></a><tt class="py-lineno">110</tt> <a class="py-toggle" href="#" id="setup_logging-toggle" onclick="return toggle('setup_logging');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.core.log-module.html#setup_logging">setup_logging</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="setup_logging-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="setup_logging-expanded"><a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">    <tt class="py-docstring">""" Method to setup the logging options. """</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">    <tt class="py-keyword">global</tt> <tt id="link-31" class="py-name" targets="Variable brisa.core.log.debug=brisa.core.log-module.html#debug"><a title="brisa.core.log.debug" class="py-name" href="#" onclick="return doclink('link-31', 'debug', 'link-31');">debug</a></tt><tt class="py-op">,</tt> <tt id="link-32" class="py-name" targets="Variable brisa.core.log.info=brisa.core.log-module.html#info"><a title="brisa.core.log.info" class="py-name" href="#" onclick="return doclink('link-32', 'info', 'link-32');">info</a></tt><tt class="py-op">,</tt> <tt id="link-33" class="py-name" targets="Variable brisa.core.log.warning=brisa.core.log-module.html#warning"><a title="brisa.core.log.warning" class="py-name" href="#" onclick="return doclink('link-33', 'warning', 'link-33');">warning</a></tt><tt class="py-op">,</tt> <tt id="link-34" class="py-name" targets="Variable brisa.core.log.critical=brisa.core.log-module.html#critical"><a title="brisa.core.log.critical" class="py-name" href="#" onclick="return doclink('link-34', 'critical', 'link-34');">critical</a></tt><tt class="py-op">,</tt> <tt id="link-35" class="py-name" targets="Variable brisa.core.log.error=brisa.core.log-module.html#error,Method brisa.upnp.control_point.service.RenewSubscribeRequest.error()=brisa.upnp.control_point.service.RenewSubscribeRequest-class.html#error,Method brisa.upnp.control_point.service.SubscribeRequest.error()=brisa.upnp.control_point.service.SubscribeRequest-class.html#error,Method brisa.upnp.control_point.service.UnsubscribeRequest.error()=brisa.upnp.control_point.service.UnsubscribeRequest-class.html#error,Method brisa.upnp.device.event.EventMessage.error()=brisa.upnp.device.event.EventMessage-class.html#error"><a title="brisa.core.log.error
+brisa.upnp.control_point.service.RenewSubscribeRequest.error
+brisa.upnp.control_point.service.SubscribeRequest.error
+brisa.upnp.control_point.service.UnsubscribeRequest.error
+brisa.upnp.device.event.EventMessage.error" class="py-name" href="#" onclick="return doclink('link-35', 'error', 'link-35');">error</a></tt><tt class="py-op">,</tt> <tt id="link-36" class="py-name" targets="Variable brisa.core.log.root_logger=brisa.core.log-module.html#root_logger"><a title="brisa.core.log.root_logger" class="py-name" href="#" onclick="return doclink('link-36', 'root_logger', 'link-36');">root_logger</a></tt><tt class="py-op">,</tt> <tt class="py-name">set_level</tt><tt class="py-op">,</tt>\ </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">           <tt class="py-name">setLevel</tt><tt class="py-op">,</tt> <tt class="py-name">filename</tt><tt class="py-op">,</tt> <tt class="py-name">level</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">    <tt class="py-name">level</tt> <tt class="py-op">=</tt> <tt id="link-37" class="py-name"><a title="brisa.core.log.log_dict" class="py-name" href="#" onclick="return doclink('link-37', 'log_dict', 'link-30');">log_dict</a></tt><tt class="py-op">.</tt><tt class="py-name">get</tt><tt class="py-op">(</tt><tt id="link-38" class="py-name"><a title="brisa.core.config" class="py-name" href="#" onclick="return doclink('link-38', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-39" class="py-name" targets="Method brisa.core.config.ConfigurationManager.get_parameter()=brisa.core.config.ConfigurationManager-class.html#get_parameter,Variable brisa.core.config.get_parameter=brisa.core.config-module.html#get_parameter"><a title="brisa.core.config.ConfigurationManager.get_parameter
+brisa.core.config.get_parameter" class="py-name" href="#" onclick="return doclink('link-39', 'get_parameter', 'link-39');">get_parameter</a></tt><tt class="py-op">(</tt><tt class="py-string">'brisa'</tt><tt class="py-op">,</tt> <tt class="py-string">'logging'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">                         <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">DEBUG</tt><tt class="py-op">)</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">    <tt class="py-name">filename</tt> <tt class="py-op">=</tt> <tt id="link-40" class="py-name"><a title="brisa.core.config" class="py-name" href="#" onclick="return doclink('link-40', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-41" class="py-name"><a title="brisa.core.config.ConfigurationManager.get_parameter
+brisa.core.config.get_parameter" class="py-name" href="#" onclick="return doclink('link-41', 'get_parameter', 'link-39');">get_parameter</a></tt><tt class="py-op">(</tt><tt class="py-string">'brisa'</tt><tt class="py-op">,</tt> <tt class="py-string">'logging_output'</tt><tt class="py-op">)</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">filename</tt> <tt class="py-op">==</tt> <tt class="py-string">'file'</tt><tt class="py-op">:</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">        <tt class="py-name">filename</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt id="link-42" class="py-name"><a title="brisa.core.config" class="py-name" href="#" onclick="return doclink('link-42', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-43" class="py-name" targets="Variable brisa.core.config._BRisaConfigurationManager.brisa_home=brisa.core.config._BRisaConfigurationManager-class.html#brisa_home,Variable brisa.core.config.brisa_home=brisa.core.config-module.html#brisa_home"><a title="brisa.core.config._BRisaConfigurationManager.brisa_home
+brisa.core.config.brisa_home" class="py-name" href="#" onclick="return doclink('link-43', 'brisa_home', 'link-43');">brisa_home</a></tt><tt class="py-op">,</tt> <tt class="py-string">'brisa.log'</tt><tt class="py-op">)</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">        <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">basicConfig</tt><tt class="py-op">(</tt><tt class="py-name">level</tt><tt class="py-op">=</tt><tt class="py-name">level</tt><tt class="py-op">,</tt> <tt class="py-name">filename</tt><tt class="py-op">=</tt><tt class="py-name">filename</tt><tt class="py-op">,</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">                            <tt id="link-44" class="py-name"><a title="brisa.core.log.ColoredFormatter.format" class="py-name" href="#" onclick="return doclink('link-44', 'format', 'link-21');">format</a></tt><tt class="py-op">=</tt><tt class="py-string">'%(created)f %(levelname)s %(module)s:'</tt>\ </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">                                   <tt class="py-string">'%(lineno)d:%(funcName)s() %(message)s'</tt><tt class="py-op">)</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">        <tt id="link-45" class="py-name"><a title="brisa.core.log.root_logger" class="py-name" href="#" onclick="return doclink('link-45', 'root_logger', 'link-36');">root_logger</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-string">'RootLogger'</tt><tt class="py-op">)</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">    <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">        <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">setLoggerClass</tt><tt class="py-op">(</tt><tt id="link-46" class="py-name" targets="Class brisa.core.log.ColoredLogger=brisa.core.log.ColoredLogger-class.html"><a title="brisa.core.log.ColoredLogger" class="py-name" href="#" onclick="return doclink('link-46', 'ColoredLogger', 'link-46');">ColoredLogger</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">        <tt id="link-47" class="py-name"><a title="brisa.core.log.root_logger" class="py-name" href="#" onclick="return doclink('link-47', 'root_logger', 'link-36');">root_logger</a></tt> <tt class="py-op">=</tt> <tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-string">'RootLogger'</tt><tt class="py-op">)</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">        <tt id="link-48" class="py-name"><a title="brisa.core.log.root_logger" class="py-name" href="#" onclick="return doclink('link-48', 'root_logger', 'link-36');">root_logger</a></tt><tt class="py-op">.</tt><tt class="py-name">setLevel</tt><tt class="py-op">(</tt><tt class="py-name">level</tt><tt class="py-op">)</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line"> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">    <tt class="py-keyword">def</tt> <tt class="py-def-name">set_level</tt><tt class="py-op">(</tt><tt class="py-param">level</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">        <tt class="py-docstring">""" Real implementation of the set level function. """</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">        <tt id="link-49" class="py-name"><a title="brisa.core.log.root_logger" class="py-name" href="#" onclick="return doclink('link-49', 'root_logger', 'link-36');">root_logger</a></tt><tt class="py-op">.</tt><tt class="py-name">setLevel</tt><tt class="py-op">(</tt><tt id="link-50" class="py-name"><a title="brisa.core.log.log_dict" class="py-name" href="#" onclick="return doclink('link-50', 'log_dict', 'link-30');">log_dict</a></tt><tt class="py-op">.</tt><tt class="py-name">get</tt><tt class="py-op">(</tt><tt class="py-name">level</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">    <tt class="py-keyword">def</tt> <tt class="py-def-name">setLevel</tt><tt class="py-op">(</tt><tt class="py-param">level</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">        <tt class="py-docstring">""" Method to set the log level. """</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">        <tt class="py-name">set_level</tt><tt class="py-op">(</tt><tt class="py-name">level</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line"> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line"><tt id="link-51" class="py-name"><a title="brisa.core.log.root_logger" class="py-name" href="#" onclick="return doclink('link-51', 'root_logger', 'link-36');">root_logger</a></tt> <tt class="py-op">=</tt> <tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line"> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line"><tt class="py-keyword">if</tt> <tt id="link-52" class="py-name"><a title="brisa.__enable_logging__" class="py-name" href="#" onclick="return doclink('link-52', '__enable_logging__', 'link-1');">__enable_logging__</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">    <tt id="link-53" class="py-name" targets="Function brisa.core.log.setup_logging()=brisa.core.log-module.html#setup_logging"><a title="brisa.core.log.setup_logging" class="py-name" href="#" onclick="return doclink('link-53', 'setup_logging', 'link-53');">setup_logging</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line"> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line"><tt id="link-54" class="py-name"><a title="brisa.core.log.debug" class="py-name" href="#" onclick="return doclink('link-54', 'debug', 'link-31');">debug</a></tt> <tt class="py-op">=</tt> <tt id="link-55" class="py-name"><a title="brisa.core.log.root_logger" class="py-name" href="#" onclick="return doclink('link-55', 'root_logger', 'link-36');">root_logger</a></tt><tt class="py-op">.</tt><tt id="link-56" class="py-name"><a title="brisa.core.log.debug" class="py-name" href="#" onclick="return doclink('link-56', 'debug', 'link-31');">debug</a></tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line"><tt id="link-57" class="py-name"><a title="brisa.core.log.info" class="py-name" href="#" onclick="return doclink('link-57', 'info', 'link-32');">info</a></tt> <tt class="py-op">=</tt> <tt id="link-58" class="py-name"><a title="brisa.core.log.root_logger" class="py-name" href="#" onclick="return doclink('link-58', 'root_logger', 'link-36');">root_logger</a></tt><tt class="py-op">.</tt><tt id="link-59" class="py-name"><a title="brisa.core.log.info" class="py-name" href="#" onclick="return doclink('link-59', 'info', 'link-32');">info</a></tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line"><tt id="link-60" class="py-name"><a title="brisa.core.log.warning" class="py-name" href="#" onclick="return doclink('link-60', 'warning', 'link-33');">warning</a></tt> <tt class="py-op">=</tt> <tt id="link-61" class="py-name"><a title="brisa.core.log.root_logger" class="py-name" href="#" onclick="return doclink('link-61', 'root_logger', 'link-36');">root_logger</a></tt><tt class="py-op">.</tt><tt id="link-62" class="py-name"><a title="brisa.core.log.warning" class="py-name" href="#" onclick="return doclink('link-62', 'warning', 'link-33');">warning</a></tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line"><tt id="link-63" class="py-name"><a title="brisa.core.log.critical" class="py-name" href="#" onclick="return doclink('link-63', 'critical', 'link-34');">critical</a></tt> <tt class="py-op">=</tt> <tt id="link-64" class="py-name"><a title="brisa.core.log.root_logger" class="py-name" href="#" onclick="return doclink('link-64', 'root_logger', 'link-36');">root_logger</a></tt><tt class="py-op">.</tt><tt id="link-65" class="py-name"><a title="brisa.core.log.critical" class="py-name" href="#" onclick="return doclink('link-65', 'critical', 'link-34');">critical</a></tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line"><tt id="link-66" class="py-name"><a title="brisa.core.log.error
+brisa.upnp.control_point.service.RenewSubscribeRequest.error
+brisa.upnp.control_point.service.SubscribeRequest.error
+brisa.upnp.control_point.service.UnsubscribeRequest.error
+brisa.upnp.device.event.EventMessage.error" class="py-name" href="#" onclick="return doclink('link-66', 'error', 'link-35');">error</a></tt> <tt class="py-op">=</tt> <tt id="link-67" class="py-name"><a title="brisa.core.log.root_logger" class="py-name" href="#" onclick="return doclink('link-67', 'root_logger', 'link-36');">root_logger</a></tt><tt class="py-op">.</tt><tt id="link-68" class="py-name"><a title="brisa.core.log.error
+brisa.upnp.control_point.service.RenewSubscribeRequest.error
+brisa.upnp.control_point.service.SubscribeRequest.error
+brisa.upnp.control_point.service.UnsubscribeRequest.error
+brisa.upnp.device.event.EventMessage.error" class="py-name" href="#" onclick="return doclink('link-68', 'error', 'link-35');">error</a></tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://brisa.garage.maemo.org">python-brisa UPnP framework 0.10.0 documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Jun  9 22:24:59 2009
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

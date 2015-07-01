@@ -1,0 +1,5 @@
+brisa-media-server (0.1.0) unstable; urgency=low
+
+  * Added debian packaging
+
+ -- Andre Dieb Martins <dieb@embedded.ufcg.edu.br>  Wed, 19 Nov 2008 04:23:15 -0300

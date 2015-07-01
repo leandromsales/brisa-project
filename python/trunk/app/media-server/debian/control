@@ -1,0 +1,14 @@
+Source: brisa-media-server
+Section: multimedia
+Priority: optional
+Maintainer: André Dieb Martins <andre.dieb@gmail.com>
+Build-Depends: debhelper (>= 5.0.38), python2.5-dev | python2.5-setuptools
+Standards-Version: 3.6.1
+
+Package: python2.5-brisa-media-server
+Section: user/multimedia
+Architecture: all
+Depends: python2.5-brisa, python2.5-dbus, python2.5-gtk2, liblightmediascanner0, liblightmediascanner-dev, lightmediascanner0-plugins | lightmediascanner-plugin-all, python2.5-lightmediascanner | python-lightmediascanner, python-gobject | python2.5-gobject
+Provides: ${python:Provides}
+Description: BRisa UPnP Media Server Device 1.0
+   An UPnP A/V media server device implemented using python-brisa UPnP framework.

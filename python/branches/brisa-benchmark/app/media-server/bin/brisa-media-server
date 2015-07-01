@@ -1,0 +1,58 @@
+#!/usr/bin/env python
+# Licensed under the MIT license
+# http://opensource.org/licenses/mit-license.php or see LICENSE file.
+# Copyright 2007-2008 Brisa Team <brisa-develop@garage.maemo.org>
+
+# Implementation of a simple daemon Application of UPnP Media Server
+
+import socket
+import os
+import guppy
+
+from brisa import config
+from brisa import log
+from brisa.utils import options
+from brisa.utils.system import daemonize
+from brisa_media_server import MediaServerDevice
+
+homedir = os.path.expanduser('~')
+
+
+def show_startup_message(listen_url):
+    log.info("BRisa UPnP Media Server v. %s",
+             config.manager.brisa_version)
+    log.info("Server is listening at address %s", listen_url)
+    log.info("Press Ctrl+C to stop the server")
+    print "BRisa Media Server version %s started. Please refer to %s for" \
+          "more information." % (config.manager.brisa_version, log.filename)
+    print "Listen address: %s" % listen_url
+
+class MemoryLog:
+    
+    def __init__(self, fileName):
+        self.hp = guppy.hpy()
+        self.file = open(fileName, "w")
+        self.hp.setrelheap()
+
+    def create_log(self):
+        h = self.hp.heap()
+        for i in range(0,len(h)):
+            self.file.write(str(h[i]))
+
+        self.file.close()
+
+if __name__ == '__main__':
+
+    listen_url, daemon = options.parse_args("Media Server")
+    if daemon:
+        daemonize()
+    server_name = config.get_parameter('media_server', 'name')
+    server_name = "%s at %s" % (server_name, socket.gethostname())
+    show_startup_message(listen_url)
+
+    memoryLog = MemoryLog(homedir + "/.brisa/media-server-memoryLog.txt")
+    
+    media_server_device = MediaServerDevice(server_name, listen_url)
+    media_server_device.start()
+
+    memoryLog.create_log()

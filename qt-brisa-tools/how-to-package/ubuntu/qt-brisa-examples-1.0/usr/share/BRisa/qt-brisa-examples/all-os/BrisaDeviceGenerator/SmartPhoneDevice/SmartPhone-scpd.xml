@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scpd xmlns="urn:schemas-upnp-org:service-1-0">
+  <specVersion>
+    <major>1</major>
+    <minor>0</minor>
+  </specVersion>
+  <serviceStateTable>
+    <stateVariable sendEvents="no">
+      <name>NumberCalling</name>
+      <dataType>string</dataType>
+    </stateVariable>
+    <stateVariable sendEvents="yes">
+      <name>Calling</name>
+      <dataType>boolean</dataType>
+      <defaultValue>0</defaultValue>
+    </stateVariable>
+    <stateVariable sendEvents="no">
+      <name>A_ARG_TYPE_BOOLEAN</name>
+      <dataType>boolean</dataType>
+    </stateVariable>
+  </serviceStateTable>
+  <actionList>
+    <action>
+      <name>Call</name>
+      <argumentList>
+        <argument>
+          <name>Number</name>
+          <direction>in</direction>
+          <relatedStateVariable>NumberCalling</relatedStateVariable>
+        </argument>
+        <argument>
+          <name>Sucess</name>
+          <direction>out</direction>
+          <relatedStateVariable>A_ARG_TYPE_BOOLEAN</relatedStateVariable>
+        </argument>
+      </argumentList>
+    </action>
+    <action>
+      <name>HangUp</name>
+    </action>
+    <action>
+      <name>GetCallStatus</name>
+      <argumentList>
+          <argument>
+            <name>Calling</name>
+            <direction>out</direction>
+            <relatedStateVariable>Calling</relatedStateVariable>
+          </argument>
+      </argumentList>
+    </action>
+    <action>
+      <name>GetLastNumberCalled</name>
+      <argumentList>
+          <argument>
+            <name>Number</name>
+            <direction>out</direction>
+            <relatedStateVariable>NumberCalling</relatedStateVariable>
+          </argument>
+      </argumentList>
+    </action>
+  </actionList>
+</scpd>

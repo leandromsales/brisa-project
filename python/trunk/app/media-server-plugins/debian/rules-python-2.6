@@ -1,0 +1,60 @@
+#!/usr/bin/make -f
+
+PYVER=2.6
+PYTHON=python$(PYVER)
+PYTHON1=python$(PYVER1)
+
+p_base=$(PYTHON)-brisa
+d_base=debian/tmp
+package=brisa_media_server
+
+build: build-stamp
+
+build-stamp:
+	dh_testdir
+	$(PYTHON) setup.py build
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	$(PYTHON) setup.py clean
+	-rm -f build-stamp
+	-rm -rf build
+	-rm -f *.py[co]
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+
+	$(PYTHON) setup.py install --root=$(d_base)
+
+	# python2.6-brisa-media-server-plugin-flickr
+	mkdir -p debian/$(p_base)-media-server-plugin-flickr/usr/local/lib/$(PYTHON)/dist-packages/$(package)/plugins
+	mv debian/tmp/usr/local/lib/$(PYTHON)/dist-packages/$(package)/plugins/flickr debian/$(p_base)-media-server-plugin-flickr/usr/local/lib/$(PYTHON)/dist-packages/$(package)/plugins
+
+	# python2.6-brisa-media-server-plugin-shoutcast
+	mkdir -p debian/$(p_base)-media-server-plugin-shoutcast/usr/local/lib/$(PYTHON)/dist-packages/$(package)/plugins
+	mv debian/tmp/usr/local/lib/$(PYTHON)/dist-packages/$(package)/plugins/shoutcast debian/$(p_base)-media-server-plugin-shoutcast/usr/local/lib/$(PYTHON)/dist-packages/$(package)/plugins
+
+	# python2.6-brisa-media-server-plugin-youtube
+	mkdir -p debian/$(p_base)-media-server-plugin-youtube/usr/local/lib/$(PYTHON)/dist-packages/$(package)/plugins
+	mv debian/tmp/usr/local/lib/$(PYTHON)/dist-packages/$(package)/plugins/youtube debian/$(p_base)-media-server-plugin-youtube/usr/local/lib/$(PYTHON)/dist-packages/$(package)/plugins
+
+binary-indep: build install
+
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_fixperms
+	dh_python
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+
+.PHONY: build install clean binary binary-indep binary-arch

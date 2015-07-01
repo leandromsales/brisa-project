@@ -1,0 +1,5 @@
+setup.py
+bin/brisa-media-applet
+src/__init__.py
+src/applet/__init__.py
+src/applet/control.py

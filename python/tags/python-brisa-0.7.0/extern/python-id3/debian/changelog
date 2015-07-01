@@ -1,0 +1,105 @@
+python2.5-id3 (1.2-0maemo7) stable; urgency=low
+
+  * Added maemo support
+
+ -- José Luís do Nascimento <jluisn@gmail.com>  Tue, 25 Sep 2008 09:00:00 +0300
+ 
+python-id3 (1.2-6.2) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Move badly chosen B-D-I to B-D.
+  * Bump Standards-Version to 3.7.2.
+  * Update old FSF address.
+  * Update python-id3 for the new policy: (closes: #373317)
+    + debian/pycompat (2)
+    + use python-support
+
+ -- Pierre Habouzit <madcoder@debian.org>  Thu, 29 Jun 2006 10:17:19 +0200
+
+python-id3 (1.2-6.1) unstable; urgency=low
+
+  * Rebuild against python 2.3.
+
+ -- Josselin Mouette <joss@debian.org>  Thu, 14 Aug 2003 14:03:05 +0200
+
+python-id3 (1.2-6) unstable; urgency=low
+
+  * Added Build-Depends on cdbs
+  * Bumped Standards-Version to 3.6.0 
+
+ -- Michael Banck <mbanck@debian.org>  Fri, 18 Jul 2003 15:36:42 +0200
+
+python-id3 (1.2-5) unstable; urgency=low
+
+  * Moved section from interpreters to python
+  * Switched to cdbs 
+
+ -- Michael Banck <mbanck@debian.org>  Fri, 18 Jul 2003 12:48:18 +0200
+
+python-id3 (1.2-4) unstable; urgency=low
+
+  * Use dh_python to byte-compile in postinst; closes: #156509
+  * Build-Depend on debhelper >= 4.1.25 because of dh_python 
+
+ -- Michael Banck <mbanck@debian.org>  Wed, 15 Jan 2003 15:10:45 +0100
+
+python-id3 (1.2-3) unstable; urgency=low
+
+  * Switched to Python2.2
+  * Removed local Emacs-variables from debian/changelog 
+
+ -- Michael Banck <mbanck@debian.org>  Tue, 27 Aug 2002 22:51:33 +0200
+
+python-id3 (1.2-2) unstable; urgency=low
+
+  * Reverted to Architecture: all; closes: #141766
+  * Don't byte-compile the module for the moment
+  * Changed Maintainer email address
+
+ -- Michael Banck <mbanck@debian.org>  Tue, 28 May 2002 00:08:47 +0200
+
+python-id3 (1.2-1) unstable; urgency=low
+
+  * New upstream release; closes: #123103
+  * Trimmed debian/rules 
+  * Added id3-tagger.py as example to Documentation
+
+ -- Michael Banck <mbanck@gmx.net>  Fri,  5 Apr 2002 19:07:45 +0200
+
+python-id3 (1.1-3) unstable; urgency=low
+
+  * *sigh*, forgot to move the debhelper stuff from binary-indep 
+    to binary-arch when I moved from Architecture: 'all' to 'any'
+    in 1.1-1. 
+
+ -- Michael Banck <mbanck@gmx.net>  Sun, 11 Nov 2001 10:00:47 +0100
+
+python-id3 (1.1-2) unstable; urgency=low
+
+  * Forgot changeing one 'python' to '/usr/bin/python2.1' in the
+    previous revision
+
+ -- Michael Banck <mbanck@gmx.net>  Sat, 10 Nov 2001 09:57:03 +0100
+
+python-id3 (1.1-1) unstable; urgency=low
+
+  * New upstream release
+  * Changed Architecture: to 'any', as stuff _gets_ compiled in
+    debian/rules
+  * Changed debian/rules to call /usr/bin/python2.1 instead of just
+    python as /usr/bin/python isn't around
+
+ -- Michael Banck <mbanck@gmx.net>  Thu,  8 Nov 2001 23:59:11 +0100
+
+python-id3 (1.0-2) unstable; urgency=low
+
+  * Changed control file to comply with Python Policy, ver 0.3.6
+
+ -- Michael Banck <mbanck@gmx.net>  Wed,  7 Nov 2001 20:37:11 +0100
+
+python-id3 (1.0-1) unstable; urgency=low
+
+  * Initial Release; closes: #114910
+
+ -- Michael Banck <mbanck@gmx.net>  Sat,  6 Oct 2001 21:53:17 +0000
+

@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. base_device — Basic device classes &mdash; python-brisa UPnP framework v0.10.0 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.10.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="python-brisa UPnP framework v0.10.0 documentation" href="../index.html" />
+    <link rel="up" title="4. UPnP" href="index.html" />
+    <link rel="next" title="2. base_service — Basic service classes" href="base_service.html" />
+    <link rel="prev" title="4. UPnP" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="base_service.html" title="2. base_service — Basic service classes"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="4. UPnP"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">4. UPnP</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="base-device-basic-device-classes">
+<h1>1. <tt class="xref docutils literal"><span class="pre">base_device</span></tt> &#8212; Basic device classes<a class="headerlink" href="#base-device-basic-device-classes" title="Permalink to this headline">¶</a></h1>
+<p>The base_device module contains two classes that have all the attributes and methods that are common to all devices.</p>
+<div class="section" id="basedevice-class">
+<h2>1.1. BaseDevice class<a class="headerlink" href="#basedevice-class" title="Permalink to this headline">¶</a></h2>
+<p>BaseDevice is the base class for devices. On <a class="reference external" href="../glossary/index.html#python-brisa"><em>python-brisa</em></a>,
+devices are represented by objects. For the control point API, a device has a
+set of methods for dealing with events, variables and so on. For the device API
+(deploying devices), a device contains methods directed to the deployment.</p>
+<p>The BaseDevice class contains attributes that are common for both device-side and
+control-point-side devices. Even so, it&#8217;s very unlikely for users to use
+BaseDevice directly.</p>
+<div class="section" id="attributes">
+<h3>1.1.1. Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h3>
+<p>The BaseDevice class attributes describes the device in some aspects, such as:</p>
+<ul class="simple">
+<li>The type of the device</li>
+<li>Its location, uuid and friendly name</li>
+<li>If it has a parent device (embedded device), its manufacturer information</li>
+<li>Informations about the model of the device and its serial number</li>
+</ul>
+</div>
+<div class="section" id="methods">
+<h3>1.1.2. Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h3>
+<p>The BaseDevice class methods make it possible to deal with the device and its
+services. They are:</p>
+<dl class="function">
+<dt id="rem_service_by_id">
+<tt class="descname">rem_service_by_id</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#rem_service_by_id" title="Permalink to this definition">¶</a></dt>
+<dd>It removes the service that matches the given id.</dd></dl>
+
+<dl class="function">
+<dt id="add_device">
+<tt class="descname">add_device</tt><big>(</big><em>device</em><big>)</big><a class="headerlink" href="#add_device" title="Permalink to this definition">¶</a></dt>
+<dd>Adds the given device into this device.</dd></dl>
+
+<dl class="function">
+<dt id="rem_device">
+<tt class="descname">rem_device</tt><big>(</big><em>device</em><big>)</big><a class="headerlink" href="#rem_device" title="Permalink to this definition">¶</a></dt>
+<dd>Removes the given device from this device.</dd></dl>
+
+<dl class="function">
+<dt id="add_service">
+<tt class="descname">add_service</tt><big>(</big><em>service</em><big>)</big><a class="headerlink" href="#add_service" title="Permalink to this definition">¶</a></dt>
+<dd>Adds the given service into this device.</dd></dl>
+
+<dl class="function">
+<dt id="get_service_by_type">
+<tt class="descname">get_service_by_type</tt><big>(</big><em>service_type</em><big>)</big><a class="headerlink" href="#get_service_by_type" title="Permalink to this definition">¶</a></dt>
+<dd>Returns a service given its type.</dd></dl>
+
+<dl class="function">
+<dt id="rem_service">
+<tt class="descname">rem_service</tt><big>(</big><em>service</em><big>)</big><a class="headerlink" href="#rem_service" title="Permalink to this definition">¶</a></dt>
+<dd>Removes a service, if present on the device.</dd></dl>
+
+<dl class="function">
+<dt id="is_root_device">
+<tt class="descname">is_root_device</tt><big>(</big><big>)</big><a class="headerlink" href="#is_root_device" title="Permalink to this definition">¶</a></dt>
+<dd>Returns True if this device is a root device (it contains embedded devices).</dd></dl>
+
+</div>
+</div>
+<div class="section" id="basedeviceicon-class">
+<h2>1.2. BaseDeviceIcon class<a class="headerlink" href="#basedeviceicon-class" title="Permalink to this headline">¶</a></h2>
+<p>Also a base class for devices, it contains attributes that describes the
+Device&#8217;s icon, such as width, height, depth, url and mimetype.</p>
+<div class="section" id="id1">
+<h3>1.2.1. Attributes<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>The BaseDeviceIcon attributes are:</p>
+<ul class="simple">
+<li>Mimetype - mimetype for the icon</li>
+<li>Width - icon width</li>
+<li>Height - icon height</li>
+<li>Depth - icon depth</li>
+<li>Url - the icon&#8217;s url</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h3>1.2.2. Methods<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>BaseDeviceIcon&#8217;s methods are:</p>
+<dl class="function">
+<dt id="get_mimetype">
+<tt class="descname">get_mimetype</tt><big>(</big><big>)</big><a class="headerlink" href="#get_mimetype" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the icon&#8217;s mimetype in string form.</dd></dl>
+
+<dl class="function">
+<dt id="get_width">
+<tt class="descname">get_width</tt><big>(</big><big>)</big><a class="headerlink" href="#get_width" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the icon&#8217;s width in string form.</dd></dl>
+
+<dl class="function">
+<dt id="get_depth">
+<tt class="descname">get_depth</tt><big>(</big><big>)</big><a class="headerlink" href="#get_depth" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the icon&#8217;s depth in string form.</dd></dl>
+
+<dl class="function">
+<dt id="get_url">
+<tt class="descname">get_url</tt><big>(</big><big>)</big><a class="headerlink" href="#get_url" title="Permalink to this definition">¶</a></dt>
+<dd>Return the icon&#8217;s url in string form.</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">1. <tt class="docutils literal"><span class="pre">base_device</span></tt> &#8212; Basic device classes</a><ul>
+<li><a class="reference external" href="#basedevice-class">1.1. BaseDevice class</a><ul>
+<li><a class="reference external" href="#attributes">1.1.1. Attributes</a></li>
+<li><a class="reference external" href="#methods">1.1.2. Methods</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#basedeviceicon-class">1.2. BaseDeviceIcon class</a><ul>
+<li><a class="reference external" href="#id1">1.2.1. Attributes</a></li>
+<li><a class="reference external" href="#id2">1.2.2. Methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="index.html"
+                                  title="previous chapter">4. UPnP</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="base_service.html"
+                                  title="next chapter">2. <tt class="docutils literal"><span class="pre">base_service</span></tt> &#8212; Basic service classes</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/upnp/base_device.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="base_service.html" title="2. base_service — Basic service classes"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="4. UPnP"
+             >previous</a> |</li>
+        <li><a href="../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >4. UPnP</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 2009, Andre Dieb Martins.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.1.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+Status:
+- Based latest brisa svn which will be release 0.9.0 (some fixes on the control point and webserver)
+- Browse working fine (just like the old upnp plugin from canola)
+- Logging not working (dunno why. I debugged with prints)
+
+
+TODO:
+- A screen between browse and play so that the renderer can be chosen. Requires
+  some code learning from the other plugins located at
+  http://openbossa.indt.org/canola/developer.html, specially the youtube one. I
+  think there we will find exactly how to do it. AFAIK, we need to create an
+  edje view just writing an edc file (http://docs.enlightenment.org/api/edje/html/edcref.html)
+  and compile it with edje_cc. We also need to write a controller for this
+  interface, which takes edje decorators on the methods for interface callbacks.
+
+  In a few lines:
+  Write the edc defining programs inside it use these program's signals to
+  connect the callbacks on the controller. Attach the controller to the view.
+
+- Debian packaging
+- Cleanup
+- Profiling compared to the old upnp plugin (important)
+
+
+Developing:
+1. Get http://openbossa.indt.org/canola/source_files/canola2-beta9.tar.bz2 and
+   extract it
+2. sudo apt-get install mplayer (make sure it's installed)
+3. Copy canola2-upnp-brisa to canola/plugins
+4. Compile the default theme (we will do all themes only at the end)
+
+	cd canola/
+	Just run “./run-canola.sh –-shell” to set-up the environment and you’ll have the edje_cc compiler available
+    cd plugins/canola2-upnp-brisa/data/themes/default
+    edje_cc default.edc
+    mv default.edj ../../../../../THEMES/default-upnp.edj
+    cp images/upnp_search.png ../../../../../data/themes/default/upnp_search.png
+
+5. Work on canola/plugins/canola2-upnp-brisa/upnp/model.py and test it with
+   run_canola.sh

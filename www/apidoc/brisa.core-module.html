@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>brisa.core</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://brisa.garage.maemo.org">python-brisa UPnP framework 0.10.0 documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="brisa-module.html">Package&nbsp;brisa</a> ::
+        Package&nbsp;core
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="brisa.core-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PACKAGE DESCRIPTION ==================== -->
+<h1 class="epydoc">Package core</h1><p class="nomargin-top"><span class="codelink"><a href="brisa.core-pysrc.html">source&nbsp;code</a></span></p>
+<p>Core module of the framework. Contains modules such as log, config, 
+  plugin arch, threaded calls, reactor engine and so on.</p>
+
+<!-- ==================== SUBMODULES ==================== -->
+<a name="section-Submodules"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Submodules</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Submodules"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr><td class="summary">
+  <ul class="nomargin">
+    <li> <strong class="uidlink"><a href="brisa.core.config-module.html">brisa.core.config</a></strong>: <em class="summary">BRisa configuration API consists of access methods (sets and gets) 
+        to the configuration.</em>    </li>
+    <li> <strong class="uidlink"><a href="brisa.core.failure-module.html">brisa.core.failure</a></strong>: <em class="summary">Error presentation wrapper.</em>    </li>
+    <li> <strong class="uidlink"><a href="brisa.core.ireactor-module.html">brisa.core.ireactor</a></strong>: <em class="summary">Defines a interface to be implemented by reactors.</em>    </li>
+    <li> <strong class="uidlink"><a href="brisa.core.log-module.html">brisa.core.log</a></strong>: <em class="summary">Log module with colored logging feature.</em>    </li>
+    <li> <strong class="uidlink"><a href="brisa.core.network-module.html">brisa.core.network</a></strong>: <em class="summary">Network related functions, such as get_ip_address(), http_call(), 
+        parse_url() and others.</em>    </li>
+    <li> <strong class="uidlink"><a href="brisa.core.network_listeners-module.html">brisa.core.network_listeners</a></strong>: <em class="summary">Provides a simple API and observer model for listening over UDP.</em>    </li>
+    <li> <strong class="uidlink"><a href="brisa.core.network_senders-module.html">brisa.core.network_senders</a></strong>: <em class="summary">Facilities for sending UDP datagrams and TCP messages.</em>    </li>
+    <li> <strong class="uidlink"><a href="brisa.core.plugin-module.html">brisa.core.plugin</a></strong>: <em class="summary">Defines a interface for plugins.</em>    </li>
+    <li> <strong class="uidlink"><a href="brisa.core.plugin_manager-module.html">brisa.core.plugin_manager</a></strong>: <em class="summary">Manager for plugins that implement the plugin interface defined on 
+        the plugin module.</em>    </li>
+    <li> <strong class="uidlink"><a href="brisa.core.reactors-module.html">brisa.core.reactors</a></strong>: <em class="summary">Bult-in reactors.</em>
+    <ul>
+    <li class="private"> <strong class="uidlink"><a href="brisa.core.reactors._ecore-module.html">brisa.core.reactors._ecore</a></strong>: <em class="summary">Ecore based reactor.</em>    </li>
+    <li class="private"> <strong class="uidlink"><a href="brisa.core.reactors._select-module.html">brisa.core.reactors._select</a></strong>: <em class="summary">Default select-based reactor.</em>    </li>
+    <li> <strong class="uidlink"><a href="brisa.core.reactors.glib2-module.html">brisa.core.reactors.glib2</a></strong>: <em class="summary">Glib2/gobject based reactor.</em>    </li>
+    <li> <strong class="uidlink"><a href="brisa.core.reactors.gtk2-module.html">brisa.core.reactors.gtk2</a></strong>: <em class="summary">Gtk2 based reactor.</em>    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="brisa.core.singleton-module.html">brisa.core.singleton</a></strong>: <em class="summary">Provides a inheritable singleton class.</em>    </li>
+    <li> <strong class="uidlink"><a href="brisa.core.system-module.html">brisa.core.system</a></strong>: <em class="summary">Daemonize tool.</em>    </li>
+    <li> <strong class="uidlink"><a href="brisa.core.threaded_call-module.html">brisa.core.threaded_call</a></strong>: <em class="summary">Runs a call asynchronously and forwards the result/error to 
+        specified callbacks.</em>    </li>
+    <li> <strong class="uidlink"><a href="brisa.core.webserver-module.html">brisa.core.webserver</a></strong>: <em class="summary">WSGI-based webserver module.</em>    </li>
+  </ul></td></tr>
+</table>
+
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://brisa.garage.maemo.org">python-brisa UPnP framework 0.10.0 documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Jun  9 22:24:56 2009
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

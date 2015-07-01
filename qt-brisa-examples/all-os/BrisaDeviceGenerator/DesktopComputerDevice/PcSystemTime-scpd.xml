@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scpd xmlns="urn:schemas-upnp-org:service-1-0">
+  <specVersion>
+    <major>1</major>
+    <minor>0</minor>
+  </specVersion>
+  <serviceStateTable>
+    <stateVariable sendEvents="no">
+      <name>A_ARG_TYPE_DATETIME</name>
+      <dataType>dateTime</dataType>
+    </stateVariable>
+  </serviceStateTable>
+  <actionList>
+    <action>
+    <name>GetSystemDateTime</name>
+      <argumentList>
+        <argument>
+          <name>DateTime</name>
+          <direction>out</direction>
+          <relatedStateVariable>A_ARG_TYPE_DATETIME</relatedStateVariable>
+        </argument>
+      </argumentList>
+    </action>
+   </actionList>
+</scpd>

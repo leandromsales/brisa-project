@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>4. ssdp — SSDP Server implementation &mdash; python-brisa UPnP framework v0.10.0 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.10.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="python-brisa UPnP framework v0.10.0 documentation" href="../index.html" />
+    <link rel="up" title="4. upnp — UPnP modules" href="index.html" />
+    <link rel="next" title="5. Applications" href="../applications/index.html" />
+    <link rel="prev" title="3. upnp_defaults — UPnP Constants" href="upnp_defaults.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../applications/index.html" title="5. Applications"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="upnp_defaults.html" title="3. upnp_defaults — UPnP Constants"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">4. <tt class="docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">upnp</span></tt> &#8212; UPnP modules</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="ssdp-ssdp-server-implementation">
+<h1>4. <tt class="xref docutils literal"><span class="pre">ssdp</span></tt> &#8212; SSDP Server implementation<a class="headerlink" href="#ssdp-ssdp-server-implementation" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="../glossary/index.html#python-brisa"><em>python-brisa</em></a> provides a SSDP (Simple Service Discovery
+Protocol) module which can be used on
+the control point&#8217;s side or on the device&#8217;s.</p>
+<ul class="simple">
+<li>Device&#8217;s side - Used for annoucing the device, its embedded devices and all services.</li>
+<li>Control Point&#8217;s side - Used for keeping record of known devices.</li>
+</ul>
+<p>There&#8217;s no need to use the SSDP Server directly when using the control point or
+device API&#8217;s.</p>
+<div class="section" id="ssdpserver-class">
+<h2>4.1. SSDPServer class<a class="headerlink" href="#ssdpserver-class" title="Permalink to this headline">¶</a></h2>
+<p>Implementation of a SSDP Server.</p>
+<div class="section" id="attributes">
+<h3>4.1.1. Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h3>
+<p>The attribute of the SSDPServer class are:</p>
+<ul class="simple">
+<li>server_name - name of the server.</li>
+<li>xml_description_filename - XML description filename.</li>
+<li>max_age - max age parameter, default is 1800.</li>
+<li>receive_notify - if False, ignores notify messages.</li>
+<li>known_devices - dict of the known devices.</li>
+<li>advertised -  dict of the advertised devices.</li>
+<li>_callbacks - dict of the callbacks.</li>
+</ul>
+</div>
+<div class="section" id="methods">
+<h3>4.1.2. Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="is_running">
+<tt class="descname">is_running</tt><big>(</big><big>)</big><a class="headerlink" href="#is_running" title="Permalink to this definition">¶</a></dt>
+<dd>Returns True if the SSDPServer is running, False otherwise.</dd></dl>
+
+<dl class="function">
+<dt id="start">
+<tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#start" title="Permalink to this definition">¶</a></dt>
+<dd>Starts the SSDPServer.</dd></dl>
+
+<dl class="function">
+<dt id="stop">
+<tt class="descname">stop</tt><big>(</big><big>)</big><a class="headerlink" href="#stop" title="Permalink to this definition">¶</a></dt>
+<dd>Sends bye bye notifications and stops the SSDPServer.</dd></dl>
+
+<dl class="function">
+<dt id="destroy">
+<tt class="descname">destroy</tt><big>(</big><big>)</big><a class="headerlink" href="#destroy" title="Permalink to this definition">¶</a></dt>
+<dd>Destroys the SSDPServer.</dd></dl>
+
+<dl class="function">
+<dt id="clear_device_list">
+<tt class="descname">clear_device_list</tt><big>(</big><big>)</big><a class="headerlink" href="#clear_device_list" title="Permalink to this definition">¶</a></dt>
+<dd>Clears the device list.</dd></dl>
+
+<dl class="function">
+<dt id="discovered_device_failed">
+<tt class="descname">discovered_device_failed</tt><big>(</big><em>dev</em><big>)</big><a class="headerlink" href="#discovered_device_failed" title="Permalink to this definition">¶</a></dt>
+<dd>Device could not be fully built, so forget it.</dd></dl>
+
+<dl class="function">
+<dt id="is_known_device">
+<tt class="descname">is_known_device</tt><big>(</big><em>usn</em><big>)</big><a class="headerlink" href="#is_known_device" title="Permalink to this definition">¶</a></dt>
+<dd>Returns if the device with the passed usn is already known.</dd></dl>
+
+<dl class="function">
+<dt id="subscribe">
+<tt class="descname">subscribe</tt><big>(</big><em>name</em>, <em>callback</em><big>)</big><a class="headerlink" href="#subscribe" title="Permalink to this definition">¶</a></dt>
+<dd>Subscribes a callback for an given name event.</dd></dl>
+
+<dl class="function">
+<dt id="unsubscribe">
+<tt class="descname">unsubscribe</tt><big>(</big><em>name</em>, <em>callback</em><big>)</big><a class="headerlink" href="#unsubscribe" title="Permalink to this definition">¶</a></dt>
+<dd>Unsubscribes a call back for an event.</dd></dl>
+
+<dl class="function">
+<dt id="announce_device">
+<tt class="descname">announce_device</tt><big>(</big><big>)</big><a class="headerlink" href="#announce_device" title="Permalink to this definition">¶</a></dt>
+<dd>Announces the device.</dd></dl>
+
+<dl class="function">
+<dt id="register_device">
+<tt class="descname">register_device</tt><big>(</big><em>device</em><big>)</big><a class="headerlink" href="#register_device" title="Permalink to this definition">¶</a></dt>
+<dd>Registers a device on the SSDP Server.</dd></dl>
+
+<dl class="function">
+<dt id="_datagram_received">
+<tt class="descname">_datagram_received</tt><big>(</big><em>data</em>, <em>(host</em>, <em>pot)</em><big>)</big><a class="headerlink" href="#_datagram_received" title="Permalink to this definition">¶</a></dt>
+<dd>Handles a received multicast datagram.</dd></dl>
+
+<dl class="function">
+<dt id="_discovery_request">
+<tt class="descname">_discovery_request</tt><big>(</big><em>headers</em>, <em>(host</em>, <em>port)</em><big>)</big><a class="headerlink" href="#_discovery_request" title="Permalink to this definition">¶</a></dt>
+<dd>Processes the discovery requests and responds accordingly.</dd></dl>
+
+<dl class="function">
+<dt id="_notify_received">
+<tt class="descname">_notify_received</tt><big>(</big><em>headers</em>, <em>(host</em>, <em>port)</em><big>)</big><a class="headerlink" href="#_notify_received" title="Permalink to this definition">¶</a></dt>
+<dd>Processes a presence announcement.</dd></dl>
+
+<dl class="function">
+<dt id="_register">
+<tt class="descname">_register</tt><big>(</big><em>usn</em>, <em>st</em>, <em>location</em>, <em>server</em>, <em>cache_control</em>, <em>where='remote'</em><big>)</big><a class="headerlink" href="#_register" title="Permalink to this definition">¶</a></dt>
+<dd>Registers a service or device.</dd></dl>
+
+<dl class="function">
+<dt id="_local_register">
+<tt class="descname">_local_register</tt><big>(</big><em>usn</em>, <em>st</em>, <em>location</em>, <em>server</em>, <em>cache_control</em><big>)</big><a class="headerlink" href="#_local_register" title="Permalink to this definition">¶</a></dt>
+<dd>Registers locally a new service or device.</dd></dl>
+
+<dl class="function">
+<dt id="_register_device">
+<tt class="descname">_register_device</tt><big>(</big><em>device</em><big>)</big><a class="headerlink" href="#_register_device" title="Permalink to this definition">¶</a></dt>
+<dd>Registers a device.</dd></dl>
+
+<dl class="function">
+<dt id="_renew_notifications">
+<tt class="descname">_renew_notifications</tt><big>(</big><big>)</big><a class="headerlink" href="#_renew_notifications" title="Permalink to this definition">¶</a></dt>
+<dd>Renew notifications (sends a notify).</dd></dl>
+
+<dl class="function">
+<dt id="_unregister">
+<tt class="descname">_unregister</tt><big>(</big><em>usn</em><big>)</big><a class="headerlink" href="#_unregister" title="Permalink to this definition">¶</a></dt>
+<dd>Unregisters a device.</dd></dl>
+
+<dl class="function">
+<dt id="_do_notify">
+<tt class="descname">_do_notify</tt><big>(</big><em>usn</em><big>)</big><a class="headerlink" href="#_do_notify" title="Permalink to this definition">¶</a></dt>
+<dd>Do a notification for the usn specified.</dd></dl>
+
+<dl class="function">
+<dt id="_do_byebye">
+<tt class="descname">_do_byebye</tt><big>(</big><em>usn</em><big>)</big><a class="headerlink" href="#_do_byebye" title="Permalink to this definition">¶</a></dt>
+<dd>Do byebye notification for the usn specified.</dd></dl>
+
+<dl class="function">
+<dt id="_callback">
+<tt class="descname">_callback</tt><big>(</big><em>name</em>, <em>*args</em><big>)</big><a class="headerlink" href="#_callback" title="Permalink to this definition">¶</a></dt>
+<dd>Performs callbacks for events.</dd></dl>
+
+<dl class="function">
+<dt id="_cleanup">
+<tt class="descname">_cleanup</tt><big>(</big><big>)</big><a class="headerlink" href="#_cleanup" title="Permalink to this definition">¶</a></dt>
+<dd>Cleans the SSDPServer by removing known devices and internal cache.</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">4. <tt class="docutils literal"><span class="pre">ssdp</span></tt> &#8212; SSDP Server implementation</a><ul>
+<li><a class="reference external" href="#ssdpserver-class">4.1. SSDPServer class</a><ul>
+<li><a class="reference external" href="#attributes">4.1.1. Attributes</a></li>
+<li><a class="reference external" href="#methods">4.1.2. Methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="upnp_defaults.html"
+                                  title="previous chapter">3. <tt class="docutils literal docutils literal"><span class="pre">upnp_defaults</span></tt> &#8212; UPnP Constants</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="../applications/index.html"
+                                  title="next chapter">5. Applications</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/upnp/ssdp.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../applications/index.html" title="5. Applications"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="upnp_defaults.html" title="3. upnp_defaults — UPnP Constants"
+             >previous</a> |</li>
+        <li><a href="../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >4. <tt class="docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">upnp</span></tt> &#8212; UPnP modules</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 2009, Andre Dieb Martins.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1083 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>brisa.upnp.service.Service</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >BRisa UPnP Framework</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="brisa-module.html">Package&nbsp;brisa</a> ::
+        <a href="brisa.upnp-module.html">Package&nbsp;upnp</a> ::
+        <a href="brisa.upnp.service-module.html">Module&nbsp;service</a> ::
+        Class&nbsp;Service
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="brisa.upnp.service.Service-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class Service</h1><span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service">source&nbsp;code</a></span><br /><br />
+<pre class="base-tree">
+object --+
+         |
+        <strong class="uidshort">Service</strong>
+</pre>
+
+<hr />
+<p>Represents an UPnP device Service. Contains information about the 
+  service, such as service location, UPnP URL's (control, event sub, 
+  presentation, scpd XML).</p>
+  Reference:     
+  http://upnp.org/specs/arch/UPnP-arch-DeviceArchitecture-v1.0-20080424.pdf.<br /><br />
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.service.Service-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">location</span>,
+        <span class="summary-sig-arg">control_url</span>,
+        <span class="summary-sig-arg">event_sub_url</span>,
+        <span class="summary-sig-arg">presentation_url</span>,
+        <span class="summary-sig-arg">scpd_url</span>)</span><br />
+      Constructor for the Service class.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dict</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="actions"></a><span class="summary-sig-name">actions</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns service's actions.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service.actions">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dict</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="variables"></a><span class="summary-sig-name">variables</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns service's variables.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service.variables">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dict</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="var_subscribers"></a><span class="summary-sig-name">var_subscribers</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns service's subscribers for variables.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service.var_subscribers">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="build"></a><span class="summary-sig-name">build</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Builds the service description synchronously.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service.build">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.service.Service-class.html#build_async" class="summary-sig-name">build_async</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">callback</span>)</span><br />
+      Builds the service description asynchronously.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service.build_async">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">string</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.service.Service-class.html#_format_url" class="summary-sig-name">_format_url</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">url</span>)</span><br />
+      Formats a relative URL to '/path/to'.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service._format_url">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.service.Service-class.html#_set_service_id" class="summary-sig-name">_set_service_id</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">service_id</span>)</span><br />
+      Setter for the service_id property.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service._set_service_id">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.service.Service-class.html#_set_subscription_id" class="summary-sig-name">_set_subscription_id</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">subscription_id</span>)</span><br />
+      Setter for the subscription_id property.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service._set_subscription_id">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">StateVariable</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.service.Service-class.html#get_state_variable" class="summary-sig-name">get_state_variable</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">name</span>)</span><br />
+      Returns a state variable.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service.get_state_variable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.service.Service-class.html#subscribe_for_variable" class="summary-sig-name">subscribe_for_variable</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">var_name</span>,
+        <span class="summary-sig-arg">callback</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service.subscribe_for_variable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">ElementTree</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.service.Service-class.html#_fetch_description" class="summary-sig-name">_fetch_description</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">path</span>)</span><br />
+      Fetches a description given its path.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service._fetch_description">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.service.Service-class.html#_fetch_description_async" class="summary-sig-name">_fetch_description_async</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">path</span>)</span><br />
+      Fetches a description asynchronously, given its path.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service._fetch_description_async">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">boolean</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.service.Service-class.html#_fetch_description_async_error" class="summary-sig-name">_fetch_description_async_error</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">cargo</span>,
+        <span class="summary-sig-arg">error</span>)</span><br />
+      Receives an error when fetching a description asynchronously.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service._fetch_description_async_error">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_fetch_description_async_done"></a><span class="summary-sig-name">_fetch_description_async_done</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">fd</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">cargo</span>=<span class="summary-sig-default">None</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service._fetch_description_async_done">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.service.Service-class.html#_parse_description" class="summary-sig-name">_parse_description</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">fd</span>)</span><br />
+      Receives a file descriptor when fetched with success.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service._parse_description">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.service.Service-class.html#parse_actions" class="summary-sig-name">parse_actions</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">tree</span>)</span><br />
+      Parses actions from a fetched tree</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service.parse_actions">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.service.Service-class.html#_parse_service_description" class="summary-sig-name">_parse_service_description</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">path</span>)</span><br />
+      Fetches a service description and parses its actions.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service._parse_service_description">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">CustomResource</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.service.Service-class.html#start_service" class="summary-sig-name">start_service</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Starts the service by adding the scpd and the control to the 
+      service and returning the resource which will be available (and point
+      to the service).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service.start_service">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.service.Service-class.html#event_subscribe" class="summary-sig-name">event_subscribe</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">event_host</span>,
+        <span class="summary-sig-arg">callback</span>,
+        <span class="summary-sig-arg">cargo</span>)</span><br />
+      Subscribes for events.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service.event_subscribe">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.service.Service-class.html#event_unsubscribe" class="summary-sig-name">event_unsubscribe</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">event_host</span>,
+        <span class="summary-sig-arg">callback</span>,
+        <span class="summary-sig-arg">cargo</span>)</span><br />
+      Unsubscribes for events.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service.event_unsubscribe">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__str__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="brisa.upnp.service.Service-class.html#service_id" class="summary-name">service_id</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="brisa.upnp.service.Service-class.html#subscription_id" class="summary-name">subscription_id</a>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">location</span>,
+        <span class="sig-arg">control_url</span>,
+        <span class="sig-arg">event_sub_url</span>,
+        <span class="sig-arg">presentation_url</span>,
+        <span class="sig-arg">scpd_url</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Constructor for the Service class.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>location</code></strong> (string) - location of the service</li>
+        <li><strong class="pname"><code>control_url</code></strong> (string) - control url (relative)</li>
+        <li><strong class="pname"><code>event_sub_url</code></strong> (string) - event sub url (relative)</li>
+        <li><strong class="pname"><code>presentation_url</code></strong> (string) - presentation url (relative)</li>
+        <li><strong class="pname"><code>scpd_url</code></strong> (string) - scpd XML url (relative)</li>
+    </ul></dd>
+    <dt>Overrides:
+      object.__init__
+    </dt>
+  </dl>
+<div class="fields">      <p><strong>Note:</strong>
+        relative above means relative to the location
+      </p>
+</div></td></tr></table>
+</div>
+<a name="build_async"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">build_async</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">callback</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service.build_async">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Builds the service description asynchronously.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>callback</code></strong> (callable) - callback that will receive this service when finished 
+          building</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_format_url"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_format_url</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">url</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service._format_url">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  <p>Formats a relative URL to '/path/to'.</p>
+  url must be either '/path/to' or 'path/to', never the complete 
+  URL.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>url</code></strong> (string) - relative URL to be formatted</li>
+    </ul></dd>
+    <dt>Returns: string</dt>
+        <dd>the formatted url</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_set_service_id"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_set_service_id</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">service_id</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service._set_service_id">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Setter for the service_id property.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>service_id</code></strong> (string) - id to be set</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_set_subscription_id"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_set_subscription_id</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">subscription_id</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service._set_subscription_id">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Setter for the subscription_id property.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>subscription_id</code></strong> (string) - id to be set</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_state_variable"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_state_variable</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">name</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service.get_state_variable">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Returns a state variable.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>name</code></strong> (string) - variable name</li>
+    </ul></dd>
+    <dt>Returns: StateVariable</dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="subscribe_for_variable"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">subscribe_for_variable</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">var_name</span>,
+        <span class="sig-arg">callback</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service.subscribe_for_variable">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>var_name</code></strong> (string) - name of the variable</li>
+        <li><strong class="pname"><code>callback</code></strong> (callable) - callback to receive notifications</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_fetch_description"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_fetch_description</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">path</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service._fetch_description">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Fetches a description given its path.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>path</code></strong> (string) - location of the description</li>
+    </ul></dd>
+    <dt>Returns: ElementTree</dt>
+        <dd>description in a ElementTree representation</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_fetch_description_async"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_fetch_description_async</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">path</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service._fetch_description_async">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Fetches a description asynchronously, given its path. Forwards success
+  to self.fetch_description_async_done and error to 
+  self.fetch_description_async_error.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>path</code></strong> (string) - location of the description</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_fetch_description_async_error"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_fetch_description_async_error</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">cargo</span>,
+        <span class="sig-arg">error</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service._fetch_description_async_error">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Receives an error when fetching a description asynchronously.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>cargo</code></strong> - callback parameters</li>
+        <li><strong class="pname"><code>error</code></strong> (Exception) - exception raised</li>
+    </ul></dd>
+    <dt>Returns: boolean</dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_parse_description"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_parse_description</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">fd</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service._parse_description">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Receives a file descriptor when fetched with success.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>fd</code></strong> (file) - file descriptor</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="parse_actions"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">parse_actions</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">tree</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service.parse_actions">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Parses actions from a fetched tree
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>tree</code></strong> (ElementTree) - tree containing the actions</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_parse_service_description"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_parse_service_description</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">path</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service._parse_service_description">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Fetches a service description and parses its actions.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>path</code></strong> (string) - description path</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="start_service"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">start_service</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service.start_service">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Starts the service by adding the scpd and the control to the service 
+  and returning the resource which will be available (and point to the 
+  service).
+  <dl class="fields">
+    <dt>Returns: CustomResource</dt>
+        <dd>resource that can be added to the web server for making the 
+          service available.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="event_subscribe"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">event_subscribe</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">event_host</span>,
+        <span class="sig-arg">callback</span>,
+        <span class="sig-arg">cargo</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service.event_subscribe">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Subscribes for events.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>event_host</code></strong> (tuple) - 2-tuple (host, port) with the event listener server.</li>
+        <li><strong class="pname"><code>callback</code></strong> (callable) - callback</li>
+        <li><strong class="pname"><code>cargo</code></strong> - callback parameters</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="event_unsubscribe"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">event_unsubscribe</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">event_host</span>,
+        <span class="sig-arg">callback</span>,
+        <span class="sig-arg">cargo</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.service-pysrc.html#Service.event_unsubscribe">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Unsubscribes for events.
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>event_host</code></strong> (tuple) - 2-tuple (host, port) with the event listener server.</li>
+        <li><strong class="pname"><code>callback</code></strong> (callable) - callback</li>
+        <li><strong class="pname"><code>cargo</code></strong> - callback parameters</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== PROPERTY DETAILS ==================== -->
+<a name="section-PropertyDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Property Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-PropertyDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="service_id"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">service_id</h3>
+  
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.getter(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="brisa.upnp.service.Service-class.html#_set_service_id" class="summary-sig-name">brisa.upnp.service.Service._set_service_id</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">service_id</span>)</span>
+        - Setter for the service_id property.
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="subscription_id"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">subscription_id</h3>
+  
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.getter(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="brisa.upnp.service.Service-class.html#_set_subscription_id" class="summary-sig-name">brisa.upnp.service.Service._set_subscription_id</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">subscription_id</span>)</span>
+        - Setter for the subscription_id property.
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >BRisa UPnP Framework</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Sat Oct 11 01:30:27 2008
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

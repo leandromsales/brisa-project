@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ssdpclient — SSDP Client implementation &mdash; Qt BRisa UPnP framework v2.0 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Qt BRisa UPnP framework v2.0 documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../index.html">Qt BRisa UPnP framework v2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="ssdpclient-ssdp-client-implementation">
+<h1><tt class="xref docutils literal"><span class="pre">ssdpclient</span></tt> &#8212; SSDP Client implementation<a class="headerlink" href="#ssdpclient-ssdp-client-implementation" title="Permalink to this headline">¶</a></h1>
+<p>Brisa Qt provides SSDP client (Simple Service Discovery
+Protocol) class which can be used on the control point&#8217;s side for receiving notification messages</p>
+<div class="section" id="brisassdpclient-class">
+<h2>BrisaSSDPClient class<a class="headerlink" href="#brisassdpclient-class" title="Permalink to this headline">¶</a></h2>
+<p>Implementation of a SSDP Client.</p>
+<div class="section" id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h3>
+<p>The attribute of the BrisaSSDPClient class are:</p>
+<ul class="simple">
+<li>running - Bool to tell if server is running or not</li>
+<li>SSDP_ADDR - SSDP address</li>
+<li>SSDP_PORT - SSDP port</li>
+<li>S_SSDP_PORT - QString port, used in bind</li>
+<li>udpListener - Socket to join multicast group and listen to msearch notification</li>
+</ul>
+</div>
+<div class="section" id="methods-and-slots">
+<h3>Methods and Slots<a class="headerlink" href="#methods-and-slots" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="isRunning">
+<tt class="descname">isRunning</tt><big>(</big><big>)</big><a class="headerlink" href="#isRunning" title="Permalink to this definition">¶</a></dt>
+<dd>Returns True if the BrisaSSDPClient is running, False otherwise.</dd></dl>
+
+<dl class="function">
+<dt id="start">
+<tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#start" title="Permalink to this definition">¶</a></dt>
+<dd>Connects to the MultiCast group and starts the client.</dd></dl>
+
+<dl class="function">
+<dt id="stop">
+<tt class="descname">stop</tt><big>(</big><big>)</big><a class="headerlink" href="#stop" title="Permalink to this definition">¶</a></dt>
+<dd>Stops the client.</dd></dl>
+
+<dl class="function">
+<dt id="datagramReceived">
+<tt class="descname">datagramReceived</tt><big>(</big><big>)</big><a class="headerlink" href="#datagramReceived" title="Permalink to this definition">¶</a></dt>
+<dd>Receives UDP datagrams from a QUdpSocket.</dd></dl>
+
+<dl class="function">
+<dt id="notifyReceived">
+<tt class="descname">notifyReceived</tt><big>(</big><em>QHttpRequestHeader *datagram</em><big>)</big><a class="headerlink" href="#notifyReceived" title="Permalink to this definition">¶</a></dt>
+<dd>Parses the UDP datagram received from &#8220;datagramReceived()&#8221;.</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#"><tt class="docutils literal"><span class="pre">ssdpclient</span></tt> &#8212; SSDP Client implementation</a><ul>
+<li><a class="reference external" href="#brisassdpclient-class">BrisaSSDPClient class</a><ul>
+<li><a class="reference external" href="#attributes">Attributes</a></li>
+<li><a class="reference external" href="#methods-and-slots">Methods and Slots</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/upnp/ssdpclient.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../index.html">Qt BRisa UPnP framework v2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 2010, BRisa Team.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.4.
+    </div>
+  </body>
+</html>

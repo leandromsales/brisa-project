@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. config — Configuration facilities &mdash; python-brisa UPnP framework v0.10.0 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.10.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="python-brisa UPnP framework v0.10.0 documentation" href="../index.html" />
+    <link rel="up" title="3. core — Framework’s core" href="index.html" />
+    <link rel="next" title="3. log — Logging facilities" href="logging.html" />
+    <link rel="prev" title="1. reactor — Reactor facilities" href="reactor.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="logging.html" title="3. log — Logging facilities"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="reactor.html" title="1. reactor — Reactor facilities"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">3. <tt class="docutils literal"><span class="pre">core</span></tt> &#8212; Framework&#8217;s core</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="config-configuration-facilities">
+<h1>2. <tt class="xref docutils literal"><span class="pre">config</span></tt> &#8212; Configuration facilities<a class="headerlink" href="#config-configuration-facilities" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="../glossary/index.html#python-brisa"><em>python-brisa</em></a> provides a very simple configuration API and
+a built-in configuration manager.</p>
+<div class="section" id="using-the-built-in-configuration-manager">
+<h2>2.1. Using the Built-In Configuration Manager<a class="headerlink" href="#using-the-built-in-configuration-manager" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">brisa.core.config</span> <span class="kn">import</span> <span class="n">manager</span>
+
+<span class="c"># Retrieving the value of some_section.some_parameter_name</span>
+<span class="k">print</span> <span class="n">manager</span><span class="o">.</span><span class="n">get_parameter</span><span class="p">(</span><span class="s">&#39;some_section&#39;</span><span class="p">,</span> <span class="s">&#39;some_parameter_name&#39;</span><span class="p">)</span>
+
+<span class="c"># Setting some_section.some_parameter_name = 1</span>
+<span class="n">manager</span><span class="o">.</span><span class="n">set_parameter</span><span class="p">(</span><span class="s">&#39;some_section&#39;</span><span class="p">,</span> <span class="s">&#39;some_parameter_name&#39;</span><span class="p">,</span> <span class="mf">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The default manager contains a default section for framework settings. It is
+called <em>brisa</em> and you can play with the manager&#8217;s methods on it (e.g.
+<tt class="docutils literal"><span class="pre">manager.contains()</span></tt>, <tt class="docutils literal"><span class="pre">manager.items()</span></tt>, and so on).</p>
+</div>
+<div class="section" id="direct-access-option">
+<h2>2.2. Direct Access Option<a class="headerlink" href="#direct-access-option" title="Permalink to this headline">¶</a></h2>
+<p>When activated, the direct access option makes the manager perform changes
+(e.g. <tt class="docutils literal"><span class="pre">manager.set_parameter()</span></tt>) directly on the configuration static storage. If
+not activated, all changes made during runtime will be lost if you don&#8217;t
+explicitly call <tt class="docutils literal"><span class="pre">manager.save()</span></tt>.</p>
+<p>Direct Access can be activated with <tt class="docutils literal"><span class="pre">manager.set_direct_access(True)</span></tt> and
+deactivated the same way, passing False as argument.</p>
+</div>
+<div class="section" id="configuration-tool">
+<h2>2.3. Configuration Tool<a class="headerlink" href="#configuration-tool" title="Permalink to this headline">¶</a></h2>
+<p>There&#8217;s a command-line configuration tool called <tt class="docutils literal"><span class="pre">brisa-conf</span></tt>. It can list
+sections, add/remove sections, set parameters, clean up configuration.</p>
+<p>For help on how to use it, try <tt class="docutils literal"><span class="pre">brisa-conf</span> <span class="pre">--help</span></tt>. It will give you detailed
+information on how to use it.</p>
+<p>We also have a few examples illustrated below.</p>
+<p>Listing all sections:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">brisa</span><span class="o">-</span><span class="n">conf</span> <span class="o">-</span><span class="n">l</span>
+</pre></div>
+</div>
+<p>Listing items of section <tt class="docutils literal"><span class="pre">brisa</span></tt>:</p>
+<div class="highlight-python"><pre>brisa-conf -i brisa</pre>
+</div>
+<p>Setting logging output to stdout:</p>
+<div class="highlight-python"><pre>brisa-conf -s brisa -p logging_output stdout</pre>
+</div>
+<p>Setting logging level to DEBUG:</p>
+<div class="highlight-python"><pre>brisa-conf -s brisa -p logging DEBUG</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">2. <tt class="docutils literal"><span class="pre">config</span></tt> &#8212; Configuration facilities</a><ul>
+<li><a class="reference external" href="#using-the-built-in-configuration-manager">2.1. Using the Built-In Configuration Manager</a></li>
+<li><a class="reference external" href="#direct-access-option">2.2. Direct Access Option</a></li>
+<li><a class="reference external" href="#configuration-tool">2.3. Configuration Tool</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="reactor.html"
+                                  title="previous chapter">1. <tt class="docutils literal"><span class="pre">reactor</span></tt> &#8212; Reactor facilities</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="logging.html"
+                                  title="next chapter">3. <tt class="docutils literal"><span class="pre">log</span></tt> &#8212; Logging facilities</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/core/configuration.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="logging.html" title="3. log — Logging facilities"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="reactor.html" title="1. reactor — Reactor facilities"
+             >previous</a> |</li>
+        <li><a href="../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >3. <tt class="docutils literal"><span class="pre">core</span></tt> &#8212; Framework&#8217;s core</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 2009, Andre Dieb Martins.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+    </div>
+  </body>
+</html>

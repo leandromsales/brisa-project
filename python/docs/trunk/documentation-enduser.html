@@ -1,0 +1,330 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>End user Documentation</title>
+<link rel="stylesheet" href="css/docbook2.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<meta name="description" content="This guide describes how to install and use BRisa applications">
+<link rel="start" href="#documentation-enduser" title="End user Documentation">
+<link rel="next" href="#id2519075" title="Chapter 1. Installing">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="book" lang="en">
+<div class="titlepage">
+<div>
+<div><h1 class="title">
+<a name="documentation-enduser"></a>End user Documentation</h1></div>
+<div><div class="author">
+<h3 class="author">
+<span class="firstname">Leandro</span> <span class="surname">Melo de Sales</span>
+</h3>
+<div class="affiliation"><div class="address"><p><code class="email">&lt;<a class="email" href="mailto:leandro@embedded.ufcg.edu.br">leandro@embedded.ufcg.edu.br</a>&gt;</code></p></div></div>
+</div></div>
+<div><div class="author">
+<h3 class="author">
+<span class="firstname">André</span> <span class="surname">Dieb Martins</span>
+</h3>
+<div class="affiliation"><div class="address"><p><code class="email">&lt;<a class="email" href="mailto:dieb@embedded.ufcg.edu.br">dieb@embedded.ufcg.edu.br</a>&gt;</code></p></div></div>
+</div></div>
+<div><div class="author">
+<h3 class="author"><span class="firstname">Embedded Systems and Pervasive Computing
+				Laboratory</span></h3>
+<div class="affiliation"><div class="address"><p><code class="email">&lt;<a class="email" href="mailto:http://embedded.ufcg.edu.br/">http://embedded.ufcg.edu.br/</a>&gt;</code></p></div></div>
+</div></div>
+<div><div class="revhistory"><table border="1" width="100%" summary="Revision history">
+<tr><th align="left" valign="top" colspan="2"><b>Revision History</b></th></tr>
+<tr>
+<td align="left">Revision 1.0</td>
+<td align="left">2008-09-24</td>
+</tr>
+<tr><td align="left" colspan="2">
+					<div class="itemizedlist"><ul type="disc"><li><p>First Version concerning python-brisa 0.9.0
+                            and brisa-apps 0.1.0.</p></li></ul></div>
+				</td></tr>
+</table></div></div>
+<div><div class="abstract">
+<p class="title"><b>Abstract</b></p>
+<p>This guide describes how to install and use BRisa applications
+			</p>
+</div></div>
+</div>
+<hr>
+</div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl>
+<dt><span class="chapter"><a href="#id2519075">1. Installing</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="#id2531033">Maemo Devices (N800, N810, ...)</a></span></dt>
+<dt><span class="sect1"><a href="#id2527855">Linux</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="#id2532950">Installing dependencies</a></span></dt>
+<dt><span class="sect2"><a href="#id2530860">Installing Brisa</a></span></dt>
+<dt><span class="sect2"><a href="#Manual_dependencies_install">Manual dependencies install</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="#id2533379">2. Using</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="#Configuration_Tool">Setting your folders for MediaServer</a></span></dt>
+<dt><span class="sect1"><a href="#id2543921">Starting servers on the terminal</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="#id2537800">Media Server</a></span></dt>
+<dt><span class="sect2"><a href="#id2542094">Media Renderer</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="#Troubleshooting">3. Troubleshooting &amp; Common Problems</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="#id2528066">IOError: [Errno 2] No such file or directory: '/home/user/.meta_storage'</a></span></dt>
+<dt><span class="sect1"><a href="#id2541674">Known issue: text and buttons on maemo looking weird</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="#id2528084">4. Contact</a></span></dt>
+</dl>
+</div>
+<div class="list-of-figures">
+<p><b>List of Figures</b></p>
+<dl><dt>2.1. <a href="#id2549692"><span class="bold">Configuration Tool</span>
+				</a>
+</dt></dl>
+</div>
+<div class="chapter" lang="en">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="id2519075"></a>Chapter 1. Installing</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl>
+<dt><span class="sect1"><a href="#id2531033">Maemo Devices (N800, N810, ...)</a></span></dt>
+<dt><span class="sect1"><a href="#id2527855">Linux</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="#id2532950">Installing dependencies</a></span></dt>
+<dt><span class="sect2"><a href="#id2530860">Installing Brisa</a></span></dt>
+<dt><span class="sect2"><a href="#Manual_dependencies_install">Manual dependencies install</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id2531033"></a>Maemo Devices (N800, N810, ...)</h2></div></div></div>
+<p>
+				Single click install has not been updated yet for the latest release
+				(0.7.0). It will be updated but at this moment BRisa for maemo is
+				aimed mainly for developers with experience with ssh and scp. Please
+				consult the
+				<a class="ulink" href="http://garage.maemo.org/mailman/listinfo/brisa-develop" target="_top">Developer Documentation</a>
+				.
+			</p>
+</div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id2527855"></a>Linux</h2></div></div></div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="id2532950"></a>Installing dependencies</h3></div></div></div>
+<p>Ubuntu Gutsy, Hardy</p>
+<pre class="screen">
+<strong class="userinput"><code>sudo apt-get install python-cherrypy3 python-formencode python-pyinotify gstreamer0.10-bad python-gst python-mutagen python-dev python</code></strong>
+</pre>
+<p>Gentoo</p>
+<pre class="screen">
+<strong class="userinput"><code>emerge cherrypy pysqlite formencode pyinotify gst-plugins-bad gst-python mutagen</code></strong>
+</pre>
+<p>
+					If your distribution is not on the list above, please refer to
+					<a class="xref" href="#Manual_dependencies_install" title="Manual dependencies install">the section called “Manual dependencies install”</a>
+					.
+				</p>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="id2530860"></a>Installing Brisa</h3></div></div></div>
+<p>
+					Download the packages
+					<a class="ulink" href="https://garage.maemo.org/frs/?group_id=138" target="_top">here</a>
+					and install each by executing the following commands on the
+					terminal:
+				</p>
+<pre class="screen">
+<strong class="userinput"><code>tar -zxvf package.tar.gz
+cd package
+sudo python setup.py install
+</code></strong>
+</pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="Manual_dependencies_install"></a>Manual dependencies install</h3></div></div></div>
+<p>BRisa requires the following third-party packages:</p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+							Python 2.5+, Python 2.5 dev-
+							<a class="ulink" href="http://python.org/" target="_top">http://python.org/</a>
+						</p></li>
+<li><p>
+							Python-inotify -
+							<a class="ulink" href="http://pyinotify.sourceforge.net/" target="_top">http://pyinotify.sourceforge.net/
+							</a>
+						</p></li>
+<li><p>
+							Python-mutagen -
+							<a class="ulink" href="http://pypi.python.org/pypi/mutagen/1.12" target="_top">http://pypi.python.org/pypi/mutagen/1.12
+							</a>
+						</p></li>
+<li><p>
+							gstreamer0.10 -
+							<a class="ulink" href="http://gstreamer.freedesktop.org/downloap" target="_top">http://gstreamer.freedesktop.org/download
+							</a>
+						</p></li>
+<li><p>
+							Python-gstreamer -
+							<a class="ulink" href="http://gstreamer.freedesktop.org/modules/gst-python.html" target="_top">
+								http://gstreamer.freedesktop.org/modules/gst-python.html</a>
+						</p></li>
+<li><p>
+							(optional) gstreamer0.10-plugins-* -
+							<a class="ulink" href="http://gstreamer.freedesktop.org/download/" target="_top">http://gstreamer.freedesktop.org/download
+							</a>
+						</p></li>
+</ul></div>
+<p>Optional - only needed for the media renderer for
+					viewing some specific types of videos, like flv.</p>
+</div>
+</div>
+</div>
+<div class="chapter" lang="en">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="id2533379"></a>Chapter 2. Using</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl>
+<dt><span class="sect1"><a href="#Configuration_Tool">Setting your folders for MediaServer</a></span></dt>
+<dt><span class="sect1"><a href="#id2543921">Starting servers on the terminal</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="#id2537800">Media Server</a></span></dt>
+<dt><span class="sect2"><a href="#id2542094">Media Renderer</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="Configuration_Tool"></a>Setting your folders for MediaServer</h2></div></div></div>
+<p>In
+				order to BRisa find your audio, video and image files, you must tell
+				it where it is located. For that, you must use our <span class="bold"><strong>Configuration Tool</strong></span>
+				, which is illustrated below.
+			</p>
+<div class="figure">
+<a name="id2549692"></a><p class="title"><b>Figure 2.1. <span class="bold">Configuration Tool</span>
+				</b></p>
+<div class="figure-contents"><div class="mediaobject"><img src="images/configuration_tool.png" alt="Configuration Tool"></div></div>
+</div>
+<br class="figure-break"><p>For
+				starting the <span class="bold"><strong>Configuration Tool</strong></span>,
+				you can try to find it on your window manager menu (distributions
+				compliant with freedesktop) or you can type this in a terminal:
+			</p>
+<pre class="screen">
+<code class="prompt">$ </code><strong class="userinput"><code>brisa-configuration-tool</code></strong>
+</pre>
+<p>
+				For editing configuration and fields just select and edit what you
+				want to change. Note that some fields like "connection" or
+				"database" should be automatically correct after install, you should
+				not have to change that (for problems consult
+				<a class="xref" href="#Troubleshooting" title="Chapter 3. Troubleshooting &amp; Common Problems">Chapter 3, <i>Troubleshooting &amp; Common Problems</i></a>
+				below).
+			</p>
+<p>
+				On the tab local you will find the directories to set your
+				<span class="bold"><strong>audio, video and picture</strong></span>
+				folders. For selecting multiple folders click on select again after
+				selecting something.
+			</p>
+<p>
+				Once you're done setting your media folders, click on the
+				<span class="bold"><strong>Save</strong></span>
+				button and then on
+				<span class="bold"><strong>Quit</strong></span>
+				(both on the right side of the screen).
+			</p>
+</div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id2543921"></a>Starting servers on the terminal</h2></div></div></div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="id2537800"></a>Media Server</h3></div></div></div>
+<p>For starting the media server, just open up a terminal and
+					type the following command:</p>
+<pre class="screen">
+<code class="prompt">$ </code><strong class="userinput"><code>brisa-media-server</code></strong>
+</pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="id2542094"></a>Media Renderer</h3></div></div></div>
+<p>For starting the media renderer, juts open up a terminal
+					and type the following command:</p>
+<pre class="screen">
+<code class="prompt">$ </code><strong class="userinput"><code>brisa-media-renderer</code></strong>
+</pre>
+</div>
+<p>
+				If you want debug messages, use the
+				<a class="link" href="#Configuration_Tool" title="Setting your folders for MediaServer">Configuration Tool</a>
+				and on the first tab (General) set the logging level to DEBUG.
+			</p>
+</div>
+</div>
+<div class="chapter" lang="en">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="Troubleshooting"></a>Chapter 3. Troubleshooting &amp; Common Problems</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl>
+<dt><span class="sect1"><a href="#id2528066">IOError: [Errno 2] No such file or directory: '/home/user/.meta_storage'</a></span></dt>
+<dt><span class="sect1"><a href="#id2541674">Known issue: text and buttons on maemo looking weird</a></span></dt>
+</dl>
+</div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id2528066"></a>IOError: [Errno 2] No such file or directory: '/home/user/.meta_storage'</h2></div></div></div>
+<p><span class="bold"><strong>Problem:</strong></span> you have the metacrawler plugin on, but you probably aren't running on a maemo device. That storage is directed  maemo devices.</p>
+<p><span class="bold"><strong>Solution:</strong></span> using the <span class="bold"><strong>Configuration Tool</strong></span> disable the <span class="emphasis"><em>maemo multimedia plugin</em></span></p>
+</div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id2541674"></a>Known issue: text and buttons on maemo looking weird</h2></div></div></div>
+<p><span class="bold"><strong>Status:</strong></span> this is a known issue that have been detected recently. It will be fixed on version 0.1.1</p>
+</div>
+</div>
+<div class="chapter" lang="en">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="id2528084"></a>Chapter 4. Contact</h2></div></div></div>
+<p>After reading this document, if you have any doubts feel
+		free to contact us on irc or through the mailing lists.</p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>IRC</p>
+<div class="itemizedlist"><ul type="circle"><li><p>
+						<span class="bold"><strong>#brisa</strong></span>
+						@
+						<span class="emphasis"><em>irc.freenode.org</em></span>
+					</p></li></ul></div>
+</li>
+<li>
+<p>Mailing lists</p>
+<div class="itemizedlist"><ul type="circle">
+<li><p>
+						brisa-develop -
+						<a class="ulink" href="http://garage.maemo.org/mailman/listinfo/brisa-develop" target="_top">Subscribe
+						</a>
+					</p></li>
+<li><p>
+						brisa-discuss -
+						<a class="ulink" href="http://garage.maemo.org/mailman/listinfo/brisa-discuss" target="_top">Subscribe
+						</a>
+					</p></li>
+</ul></div>
+</li>
+</ul></div>
+</div>
+</div></body>
+</html>

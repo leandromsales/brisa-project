@@ -1,0 +1,20 @@
+brisa-media-server-plugins 0.1.1, 2009-03-16
+------------------------------
+- removed maemo multimedia plugin (deprecated)
+
+brisa-media-server-plugins 0.1.0, 2009-02-02
+------------------------------
+- added debian packaging
+- some minor fixes after extraction from python-brisa 0.7.1
+- configuration parameters renamed with better names
+- added auto-config: plugins register themselves and their configuration
+  parameters on the configuration database
+- removed prints
+- renamed some configuration parameter names for better names
+- added fields specifications for plugin configurations
+- initial folder for some plugins is now guessed, instead of a hardcoded
+  always-wrong value
+- pep8 corrections
+- flickr, shoutcast, youtube plugins refactored
+- changes of the new brisa didl module reflected on each plugin
+- removed canola plugin since media library plugin uses the same scanning lib

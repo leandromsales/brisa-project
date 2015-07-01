@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!ENTITY url_brisa_develop "http://garage.maemo.org/mailman/listinfo/brisa-develop">
+<!ENTITY url_brisa_discuss "http://garage.maemo.org/mailman/listinfo/brisa-discuss">
+<!ENTITY url_brisa_apidoc "http://brisa.garage.maemo.org/apidoc/index.html">
+<!ENTITY url_brisa_download_packages "https://garage.maemo.org/frs/?group_id=138">
+<!ENTITY url_python "http://python.org/">

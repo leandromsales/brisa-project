@@ -1,0 +1,9 @@
+#include "images/images.edc"
+#include "fonts/fonts.edc"
+#include "widgets/button.edc"
+
+
+collections {
+    #include "media_center_menu.edc"
+    #include "media_center_main.edc"
+}

@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>brisa.core.network</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://brisa.garage.maemo.org">python-brisa UPnP framework 0.10.0 documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="brisa-module.html">Package&nbsp;brisa</a> ::
+        <a href="brisa.core-module.html">Package&nbsp;core</a> ::
+        Module&nbsp;network
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="brisa.core.network-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module network</h1><p class="nomargin-top"><span class="codelink"><a href="brisa.core.network-pysrc.html">source&nbsp;code</a></span></p>
+<p>Network related functions, such as get_ip_address(), http_call(), 
+  parse_url() and others.</p>
+
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">string</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.core.network-module.html#get_ip_address" class="summary-sig-name">get_ip_address</a>(<span class="summary-sig-arg">ifname</span>)</span><br />
+      Determine the IP address given the interface name</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.core.network-pysrc.html#get_ip_address">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.core.network-module.html#get_active_ifaces" class="summary-sig-name">get_active_ifaces</a>()</span><br />
+      Return a list of the active network interfaces</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.core.network-pysrc.html#get_active_ifaces">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.core.network-module.html#http_call" class="summary-sig-name">http_call</a>(<span class="summary-sig-arg">method</span>,
+        <span class="summary-sig-arg">url</span>,
+        <span class="summary-sig-arg">body</span>=<span class="summary-sig-default">''</span>,
+        <span class="summary-sig-arg">headers</span>=<span class="summary-sig-default">{}</span>)</span><br />
+      Returns a HTTPResponse object for the given call.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.core.network-pysrc.html#http_call">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.core.network-module.html#url_fetch" class="summary-sig-name">url_fetch</a>(<span class="summary-sig-arg">url</span>,
+        <span class="summary-sig-arg">filename</span>=<span class="summary-sig-default">''</span>,
+        <span class="summary-sig-arg">attempts</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">interval</span>=<span class="summary-sig-default">0</span>)</span><br />
+      Fetches an URL into a file or returns a file descriptor.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.core.network-pysrc.html#url_fetch">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.core.network-module.html#decode" class="summary-sig-name">decode</a>(<span class="summary-sig-arg">text</span>)</span><br />
+      Converts an arbitrary string to byte string in UTF-8.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.core.network-pysrc.html#decode">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">ElementTree</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.core.network-module.html#parse_xml" class="summary-sig-name">parse_xml</a>(<span class="summary-sig-arg">data</span>)</span><br />
+      Parses XML data into an ElementTree.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.core.network-pysrc.html#parse_xml">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">tuple</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.core.network-module.html#parse_http_response" class="summary-sig-name">parse_http_response</a>(<span class="summary-sig-arg">data</span>)</span><br />
+      Parses HTTP response data into a tuple in the form (cmd, headers).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.core.network-pysrc.html#parse_http_response">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">tuple</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.core.network-module.html#parse_url" class="summary-sig-name">parse_url</a>(<span class="summary-sig-arg">url</span>)</span><br />
+      Parse a URL into 6 components.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.core.network-pysrc.html#parse_url">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="get_ip_address"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_ip_address</span>(<span class="sig-arg">ifname</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.core.network-pysrc.html#get_ip_address">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Determine the IP address given the interface name</p>
+  <p>http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/439094 (c) 
+  Paul Cannon Uses the Linux SIOCGIFADDR ioctl to find the IP address 
+  associated with a network interface, given the name of that interface, 
+  e.g. &quot;eth0&quot;. The address is returned as a string containing a 
+  dotted quad.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ifname</code></strong> (string) - interface name</li>
+    </ul></dd>
+    <dt>Returns: string</dt>
+        <dd>ip address in the interface specified</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_active_ifaces"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_active_ifaces</span>()</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.core.network-pysrc.html#get_active_ifaces">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return a list of the active network interfaces</p>
+  <p>Default route of /proc/net/route has the destination field set to 
+  00000000</p>
+  <dl class="fields">
+    <dt>Returns: list</dt>
+        <dd>active network interfaces</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="http_call"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">http_call</span>(<span class="sig-arg">method</span>,
+        <span class="sig-arg">url</span>,
+        <span class="sig-arg">body</span>=<span class="sig-default">''</span>,
+        <span class="sig-arg">headers</span>=<span class="sig-default">{}</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.core.network-pysrc.html#http_call">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns a HTTPResponse object for the given call.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>method</code></strong> (string) - HTTP method (NOTIFY, POST, etc...)</li>
+        <li><strong class="pname"><code>url</code></strong> (string) - receiver URL</li>
+        <li><strong class="pname"><code>body</code></strong> (string) - body of the message</li>
+        <li><strong class="pname"><code>headers</code></strong> (dictionary) - additional headers</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="url_fetch"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">url_fetch</span>(<span class="sig-arg">url</span>,
+        <span class="sig-arg">filename</span>=<span class="sig-default">''</span>,
+        <span class="sig-arg">attempts</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">interval</span>=<span class="sig-default">0</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.core.network-pysrc.html#url_fetch">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Fetches an URL into a file or returns a file descriptor. If attempts 
+  and interval are not specified, they get their values from 
+  brisa.url_fetch_attempts and brisa.url_fetch_attempts_interval.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>url</code></strong> (string) - URL to be fetched</li>
+        <li><strong class="pname"><code>filename</code></strong> (string) - if specified fetch result gets written on this path</li>
+        <li><strong class="pname"><code>attempts</code></strong> (integer) - number of attempts</li>
+        <li><strong class="pname"><code>interval</code></strong> (float) - interval between attempts in seconds</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="decode"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">decode</span>(<span class="sig-arg">text</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.core.network-pysrc.html#decode">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Converts an arbitrary string to byte string in UTF-8. On failure 
+  returns the given string.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>text</code></strong> (string) - string to be converted</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="parse_xml"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">parse_xml</span>(<span class="sig-arg">data</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.core.network-pysrc.html#parse_xml">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Parses XML data into an ElementTree.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>data</code></strong> (string) - raw XML data</li>
+    </ul></dd>
+    <dt>Returns: ElementTree</dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="parse_http_response"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">parse_http_response</span>(<span class="sig-arg">data</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.core.network-pysrc.html#parse_http_response">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Parses HTTP response data into a tuple in the form (cmd, headers).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>data</code></strong> (string) - HTTP response data</li>
+    </ul></dd>
+    <dt>Returns: tuple</dt>
+        <dd>(cmd, headers) for the given data</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="parse_url"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">parse_url</span>(<span class="sig-arg">url</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.core.network-pysrc.html#parse_url">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Parse a URL into 6 components.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>url</code></strong> (string) - scheme://netloc/path;params?query#fragment</li>
+    </ul></dd>
+    <dt>Returns: tuple</dt>
+        <dd>a 6-tuple: (scheme, netloc, path, params, query, fragment). Note 
+          that we don't break the components up in smaller bits (e.g. 
+          netloc is a single string) and we don't expand % escapes.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://brisa.garage.maemo.org">python-brisa UPnP framework 0.10.0 documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Jun  9 22:24:56 2009
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

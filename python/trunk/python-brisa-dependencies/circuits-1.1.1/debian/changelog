@@ -1,0 +1,5 @@
+circuits (1.1.1) unstable; urgency=low
+
+  * Added debian packaging.
+
+ -- André Dieb Martins <dieb@embedded.ufcg.edu.br>  Fri, 05 Jun 2009 11:18:00 -0300 

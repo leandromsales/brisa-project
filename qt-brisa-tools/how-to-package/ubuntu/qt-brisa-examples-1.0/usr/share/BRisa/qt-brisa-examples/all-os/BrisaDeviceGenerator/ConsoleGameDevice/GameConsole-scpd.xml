@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scpd xmlns="urn:schemas-upnp-org:service-1-0">
+  <specVersion>
+    <major>1</major>
+    <minor>0</minor>
+  </specVersion>
+  <serviceStateTable>
+    <stateVariable sendEvents="yes">
+      <name>Game</name>
+      <dataType>string</dataType>
+      <defaultValue>""</defaultValue>
+    </stateVariable>
+  </serviceStateTable>
+  <actionList>
+    <action>
+      <name>Reset</name>
+    </action>
+    <action>
+      <name>SetGame</name>
+      <argumentList>
+        <argument>
+          <name>Game</name>
+          <direction>in</direction>
+          <relatedStateVariable>Game</relatedStateVariable>
+        </argument>
+      </argumentList>
+    </action>
+    <action>
+      <name>GetGame</name>
+      <argumentList>
+        <argument>
+          <name>Game</name>
+          <direction>out</direction>
+          <relatedStateVariable>Game</relatedStateVariable>
+        </argument>
+      </argumentList>
+    </action>
+  </actionList>
+</scpd>

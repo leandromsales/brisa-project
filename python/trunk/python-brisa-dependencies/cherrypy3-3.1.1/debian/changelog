@@ -1,0 +1,5 @@
+cherrypy (3-3.1.1) unstable; urgency=low
+
+  * Added debian packaging.
+
+ -- André Dieb Martins <dieb@embedded.ufcg.edu.br>  Thu, 22 Jan 2009 16:18:00 -0300 

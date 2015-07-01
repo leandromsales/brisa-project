@@ -1,0 +1,9 @@
+[Desktop Entry]
+Categories=Development;
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=Brisa Device Generator
+Exec=/usr/bin/brisadevicegen
+Icon=/usr/share/pixmaps/brisa/smartphone.png
+Categories=Brisa;

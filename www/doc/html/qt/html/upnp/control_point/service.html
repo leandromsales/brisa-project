@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. service — BrisaControlPointService class &mdash; Qt BRisa UPnP framework v2.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="top" title="Qt BRisa UPnP framework v2.0 documentation" href="../../index.html" />
+    <link rel="up" title="2. control_point — Control Point API" href="index.html" />
+    <link rel="next" title="3. SSDP — Simple Service Discovery Protocol API" href="../ssdp/index.html" />
+    <link rel="prev" title="2. control_point — Control Point API" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../ssdp/index.html" title="3. SSDP — Simple Service Discovery Protocol API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="2. control_point — Control Point API"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Qt BRisa UPnP framework v2.0 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >5. <tt class="docutils literal docutils literal docutils literal"><span class="pre">upnp</span></tt> &#8212; UPnP modules</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">2. <tt class="docutils literal docutils literal docutils literal"><span class="pre">control_point</span></tt> &#8212; Control Point API</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="service-brisacontrolpointservice-class">
+<h1>1. <tt class="xref docutils literal"><span class="pre">service</span></tt> &#8212; BrisaControlPointService class<a class="headerlink" href="#service-brisacontrolpointservice-class" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subscribing-to-unicast-eventing">
+<h2>1.1. Subscribing to unicast eventing.<a class="headerlink" href="#subscribing-to-unicast-eventing" title="Permalink to this headline">¶</a></h2>
+<p>It&#8217;s very simple to subscribe for service unicast eventing. You need to
+select the service object that you want to subscribe, get the event proxy and call subscribe method passing
+the subscription timeout as in the following code</p>
+<div class="highlight-python"><pre>class ControlPoint : BrisaControlPoint
+
+public:
+    ControlPoint() : BrisaControlPoint() {};
+
+    void subscribe(BrisaControlPointService *service, int timeout = -1);
+
+    void unsubscribe(BrisaControlPointService *service);
+
+public slots:
+    void eventReceived(BrisaEventProxy *eventProxy, QMap&lt;QString, QString&gt; map));</pre>
+</div>
+<p>Now implement these methods and the slot on the source file</p>
+<div class="highlight-python"><pre>void ControlPoint::subscribe(BrisaControlPointService *service, int timeout)
+{
+    BrisaEventProxy *subscription = this-&gt;getSubscriptionProxy(service);
+
+    connect(subscription, SIGNAL(eventNotification(BrisaEventProxy *, QMap&lt;QString, QString&gt;)),
+            this, SLOT(eventReceived(BrisaEventProxy *,QMap&lt;QString, QString&gt;)));
+
+    subscription-&gt;subscribe(timeout);
+}
+
+void ControlPoint::eventReceived(BrisaEventProxy *eventProxy,QMap&lt;QString, QString&gt; map)
+{
+    Q_UNUSED(subscription);
+
+    qDebug() &lt;&lt; "Event Message!";
+    for(int i = 0; i &lt; eventVariables.keys().size(); i++) {
+        qDebug() &lt;&lt; "State Variable: " &lt;&lt; eventVariables.keys()[i];
+        qDebug() &lt;&lt; "Value: " &lt;&lt; eventVariables[eventVariables.keys()[i]];
+    }
+}</pre>
+</div>
+<p>In order to unsubscribe for service unicast eventing, you need to
+select the service object that you want to unsubscribe get the event Proxy and call
+the unsubscribe method</p>
+<div class="highlight-python"><pre>void ControlPoint unsubscribe(BrisaService *service)
+{
+    BrisaEventProxy *unsubscription = this-&gt;getSubscriptionProxy(service);
+
+    unsubscription-&gt;unsubscribe();
+}</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">1. <tt class="docutils literal"><span class="pre">service</span></tt> &#8212; BrisaControlPointService class</a><ul>
+<li><a class="reference external" href="#subscribing-to-unicast-eventing">1.1. Subscribing to unicast eventing.</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="index.html"
+                                  title="previous chapter">2. <tt class="docutils literal docutils literal"><span class="pre">control_point</span></tt> &#8212; Control Point API</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="../ssdp/index.html"
+                                  title="next chapter">3. <tt class="docutils literal"><span class="pre">SSDP</span></tt> &#8212; Simple Service Discovery Protocol API</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../../_sources/upnp/control_point/service.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../ssdp/index.html" title="3. SSDP — Simple Service Discovery Protocol API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="2. control_point — Control Point API"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Qt BRisa UPnP framework v2.0 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >5. <tt class="docutils literal docutils literal docutils literal"><span class="pre">upnp</span></tt> &#8212; UPnP modules</a> &raquo;</li>
+          <li><a href="index.html" >2. <tt class="docutils literal docutils literal docutils literal"><span class="pre">control_point</span></tt> &#8212; Control Point API</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../../copyright.html">Copyright</a> 2010, BRisa Team.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.4.
+    </div>
+  </body>
+</html>

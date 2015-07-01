@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="brisa_style.css" rel="stylesheet" type="text/css">
+<script language="javascript">
+function add_dir(text){ 
+	bar_index=0;
+	bar='/';
+	if(text.substring(0,1) == '"'){
+		text = text.substring(1, text.length - 1);
+	}
+	if(text.substring(0,7) == 'file://'){
+		text = text.substring(7, text.length);
+	}
+	for (Count=0; Count<text.length; Count++){
+		string = text.substring (Count, Count+1);
+			if(string == bar){
+				bar_index=Count;
+		}
+	}
+	Result = text.substring (0, bar_index);
+	selected_dirs = document.form2.dir.value;
+	if (selected_dirs != ""){
+		Result = selected_dirs + ":" + Result;
+	}
+	document.form2.dir.value=Result;
+	document.form1.input.value=text;
+}
+</script>
+
+</head>
+
+<body>
+<table width="650" border=0 align="center">
+  <tr>
+    <td><strong>Local Videos </strong>
+  <tr>
+    <td width="644"><hr>
+  <tr>
+    <td><form action="brisa_main.html" method="get" enctype="multipart/form-data" name="form2" target="mainFrame" id="form2">
+        Selected directories:<br>
+        <input name="dir" type="text" id="dir" value="%s" size="75">
+        <input type="submit" name="Submit" value="Send">
+        <input name="plugin_name" type="hidden" id="plugin_name" value="video">
+	</form>
+  <tr>
+    <td><form name="form1">
+        <p>Select any directory listed below<br>
+            <input name="input" type="text" size="70" value="%s">
+            <input name="Button" type=Button onClick="add_dir(this.form.input.value)" value="add">
+        </p>
+      </form>
+	<tr><td> %s
+</table>
+</body>
+</html>

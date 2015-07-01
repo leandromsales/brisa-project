@@ -1,0 +1,96 @@
+:mod:`base_device` --- Basic device classes
+============================================
+
+.. module: base_device
+    :synopsis: Basic device related classes
+
+The base_device module contains two classes that have all the attributes and methods that are common to all devices.
+
+BaseDevice class
+-----------------
+BaseDevice is the base class for devices. On :ref:`python-brisa <python-brisa>`,
+devices are represented by objects. For the control point API, a device has a
+set of methods for dealing with events, variables and so on. For the device API
+(deploying devices), a device contains methods directed to the deployment.
+
+The BaseDevice class contains attributes that are common for both device-side and
+control-point-side devices. Even so, it's very unlikely for users to use
+BaseDevice directly.
+
+Attributes
+^^^^^^^^^^^
+The BaseDevice class attributes describes the device in some aspects, such as:
+
+* The type of the device
+* Its location, uuid and friendly name
+* If it has a parent device (embedded device), its manufacturer information
+* Informations about the model of the device and its serial number
+
+Methods
+^^^^^^^^
+The BaseDevice class methods make it possible to deal with the device and its
+services. They are:
+
+.. function:: rem_service_by_id(id)
+
+   It removes the service that matches the given id.
+
+.. function:: add_device(device)
+
+    Adds the given device into this device.
+
+.. function:: rem_device(device)
+
+    Removes the given device from this device.
+
+.. function:: add_service(service)
+
+    Adds the given service into this device.
+
+.. function:: get_service_by_type(service_type)
+
+    Returns a service given its type.
+
+.. function:: rem_service(service)
+
+    Removes a service, if present on the device.
+
+.. function:: is_root_device()
+
+    Returns True if this device is a root device (it contains embedded devices).
+
+
+BaseDeviceIcon class
+---------------------
+Also a base class for devices, it contains attributes that describes the
+Device's icon, such as width, height, depth, url and mimetype.
+
+Attributes
+^^^^^^^^^^^
+The BaseDeviceIcon attributes are:
+
+* Mimetype - mimetype for the icon
+* Width - icon width
+* Height - icon height
+* Depth - icon depth
+* Url - the icon's url
+
+Methods
+^^^^^^^^
+BaseDeviceIcon's methods are:
+
+.. function:: get_mimetype()
+
+    Returns the icon's mimetype in string form.
+
+.. function:: get_width()
+
+    Returns the icon's width in string form.
+
+.. function:: get_depth()
+
+    Returns the icon's depth in string form.
+
+.. function:: get_url()
+
+    Return the icon's url in string form.

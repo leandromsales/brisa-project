@@ -1,0 +1,331 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>BRisa Project - Changes</title>
+	<meta name="resource-type" content="document" />
+	<meta http-equiv="content-type" content="text/html; charset: iso-8859-1" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<link href="includes/css.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="includes/lightbox.css" type="text/css" media="screen" />
+	
+    <script src="includes/actions.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/prototype.js"></script>
+	<script type="text/javascript" src="js/scriptaculous.js?load=effects"></script>
+	<script type="text/javascript" src="js/lightbox.js"></script>
+</head>
+
+
+<body>
+<div id='container'>
+
+<div id='faixa'></div>
+
+<div id='menu'>
+	<img src="images/marca.png" alt="logo" title="logo" align="left" style="padding-top: 10px; padding-left: 10px;"/><a href="faq.html" class="menu_opc">faq</a><a href="https://garage.maemo.org/projects/brisa" class="menu_opc" target="_new">development</a><a href="publications.html" class="menu_opc">publications</a><a href="documentation.html" class="menu_opc">documentation</a><a href="installation.html" class="menu_opc">installation</a><a href="http://brisa.garage.maemo.org/" class="menu_opc">home</a>
+</div>
+<div class='conteudo'>
+<div class="sub">
+
+<p><b>&nbsp;&nbsp;&nbsp;python-brisa CHANGES</b></p>
+
+<ul>
+  <p><b><a name="Release_0.9"></a><span style="background-color: rgb(244, 244, 244);">Release 0.9 - 
+(2009-05-30)</span></b></p>
+<li class="add" title="add">Implented WSGI server adapters for cherrypy, circuits.web and paste</li>
+<li class="add" title="add">Webserver is now WSGI with pluggable server adapters</li>
+<li class="add" title="add">Implemented ServiceBuilder that builds the service object from a scpd.xml</li>
+<li class="add" title="add">Implemented two ways of creating a service: with a scpd.xml file or by
+specifying service parameters through code - and the framework generates
+the scpd.xml</li>
+<li class="add" title="add">Reactor infrastructure added</li>
+<li class="add" title="add">Webserver is not a singleton anymore</li>
+<li class="add" title="add">Arrangement for device abstracts the user from a lot of things, such as the
+webserver</li>
+<li class="add" title="add">Implemented Gtk2Reactor, Glib2Reactor, EcoreReactor, SelectReactor (default)</li>
+<li class="add" title="add">Plugin architecture refactored</li>
+<li class="add" title="add">Log messages are a bit more cleaner now. Most log messages were for debug
+purposes, so, changed most of them to DEBUG. INFO level now should be only
+used for informing the user high-level events, such as "New device",
+"Device is gone", "Publishing device", and so on.</li>
+<li class="add" title="add">Control point objects are now reusable (they weren't). They can now be
+stopped, and started again.</li>
+<li class="add" title="add">Closure procedure is now chained. Some classes (such as ssdp
+msearch) now have these 3 methods: start(), stop(), destroy().
+start() - starts the class,  stop() - stops the class,
+but it can be start()'ed again later and destroy() - stops
+the class DEFINITELY, clean references to help with garbage collection,
+makes the class unusable. For a more clearer view, take a look
+at upnp/control_point/control_point.py. You will notice that these three
+methods are chained.</li>
+<li class="add" title="add">Device webserver publishing is now chained and transparent to the user.
+Added some options to brisa for customizing device/service build (and these
+options have default values for making everything work as automatic as
+possible)</li>
+<li class="add" title="add">Packages created:
+<ul>
+<li class="add"><b>core</b>: framework core stuff</li>
+ <li class="add"><b>core.reactors</b>: reactors implementations</li>
+ <li class="add"><b>upnp.control_point</b>: API for writing control points</li>
+ <li class="add"><b>upnp.device</b>: API for writing devices</li>
+ <li class="add"><b>upnp.services</b>: general services implemented by us (ConnectionManager, ContentDirectory)</li>
+ <li class="add"><b>upnp.services.xmls</b>: XML folder for the services of the item above</li>
+ </ul>
+<li class="add" title="add">Removed lots of threads: most are now integrated with the main loop (fd's and sleeps)</li>
+<li class="add" title="add">Implemented UPnP eventing API on the device side</li>
+<li class="add" title="add">Removed deprecated modules: utils.sqlite, threading</li>
+<li class="add" title="add">Packages moves (<i>from</i> -> <i>to</i>):
+<ul type=square>
+<li class="upd">utils.network -> core.network</li>
+<li class="upd">utils.network_listeners -> core.network_listeners</li>
+<li class="upd">utils.network_senders -> core.network_senders</li>
+<li class="upd">utils.system -> core.system</li>
+<li class="upd">utils.failure -> core.failure</li>
+<li class="upd">threading.threaded_call -> core.threaded_call</li>
+<li class="upd">log -> core.log</li>
+<li class="upd">config -> core.config</li>
+<li class="upd">control_point -> upnp.control_point</li>
+<li class="upd">xml_descriptions -> upnp.services.xmls</li>
+<li class="upd">services.web_server -> core.webserver</li>
+</ul>
+</li>
+<li class="fix" title="fix">Fixed looping call bug when the parameter "now" is False</li>
+<li class="fix" title="fix">Fixed arguments parsing bug (was not parsing arguments properly)</li>
+<li class="fix" title="fix">Fixed examples XML files</li>
+</ul>
+<ul>
+  <p><b><span style="background-color: rgb(244, 244, 244);">Release 0.8 - 
+(2008-09-30)</span></b></p><li class="add" title="add">Major cleanup on the framework (old/unused modules removed)</li>
+<li class="fix" title="fix">Fixed PEP8 errors and files/methods/variables with wrong naming convention</li>
+<li class="add" title="add">Split between framework and applications</li>
+<li class="add" title="add">Separate documentation for developers and users</li>
+<li class="add" title="add">Various bug-fixes on the framework and applicationss</li>
+<li class="add" title="add">Thread management improvements (assured control over threads)</li>
+<li class="add" title="add">Better programmatic control over the control point</li>
+<li class="add" title="add">Better support for multiple instances of BRisa</li>
+<li class="add" title="add">Configuration API stabilized, using cPickle</li>
+<li class="add" title="add">Logging with more information (file, line, time)</li>
+<li class="add" title="add">DIDL completely refactored and now uses cElementTree</li>
+<li class="add" title="add">Added a simple command line tool for configuring (brisa-conf)</li>
+<li class="add" title="add">UPnP A/V specifics moved out from python-brisa</li>
+<li class="add" title="add">Added simple watch API for objects and SQLite databases</li>
+<li class="add" title="add">Improved debian packaging</li>
+<li class="add" title="add">Installation script (setup.py) enhanced</li>
+<li class="add" title="add">Added more examples to the directory</li>
+<li class="fix" title="fix">#2980: didl_lite using parse_xml incorrectly</li>
+<li class="fix" title="fix">#3242: difficulties in control point start/stop</li>
+<li class="fix" title="fix">#3244, #3270, #3273: ThreadObject problem with blocking run()'s fixed with
+interruption mechanism</li>
+<li class="fix" title="fix">#3247: attributes moved to object scope</li>
+<li class="fix" title="fix">#3271: run_async_call() performing the call even when cancelled</li>
+<li class="fix" title="fix">#3273: ThreadManager.stop_all using list dangerously</li>
+<li class="fix" title="fix">#3274: webserver does not remove itself from ThreadManager list</li>
+<li class="fix" title="fix">#3288: service XML is never parsed</li>
+<li class="fix" title="fix">#3289: control point event not sending changed_vars</li>
+<li class="fix" title="fix">#3291: some UPnP devices sending empty controlURL</li>
+<li class="fix" title="fix">#3306: default number of trials and intervals of url_fetch should be
+configurable</li>
+<li class="fix" title="fix">#3306: device which failed to download XML is being ignored forever by
+SSDPSearch</li>
+<li class="fix" title="fix">#3371: instances of ThreadObject not being garbage-collected</li>
+</ul>
+
+<ul>
+  <p><b><span style="background-color: rgb(244, 244, 244);">Release 0.7 - 
+(2008-09-30)</span></b></p>
+
+    <li class="add" title="add">Written documentation for users and
+              developers</li>
+    <li class="add" title="add">Control Point API cleaned, added event
+              support</li>
+    <li class="add" title="add">Framework reorganized with lots of
+            fixes and cleanups</li>
+    <li class="add" title="add">Removed Twisted dependency </li>
+    <li class="add" title="add">Removed sqlite2 dependency (now uses
+              sqlite3 which comes with python)</li>
+    <li class="add" title="add">Replaced pymad, libmad and pyid3
+              dependencies with mutagen</li>
+    <li class="add" title="add">New implementation of XML DIDLLite
+    <li class="add" title="add">Implementation of the maemo multimedia
+              and Canola 1 plugins</li>
+     <li class="add" title="add">Added an initial implementation of the
+              UPnP-UP (User Profile) concept</li>
+
+    <li class="add" title="add">Reimplementation of the filesystem plugin
+    persistence (because sqlobject was removed)</li>
+    <li class="add" title="add">Added Cherrypy as dependency for providing the
+    web server</li>
+    <li class="add" title="add">SVN completely restructured</li>
+    <li class="add" title="add">Improvements on the Control Point API with
+    asynchronous device creation</li>
+    <li class="add" title="add">Implemented a thread management
+    architecture</li>
+    <li class="add" title="add">Generated APIDoc for all framework</li>
+    <li class="add" title="add">Added a configuration tool in GTK</li>
+    <li class="add" title="add">Refactored media server and media render code
+    for better organization</li>
+              
+			  
+</ul>
+
+<ul>
+  <p><b><span style="background-color: rgb(224, 224, 224);">Release 0.6 -
+(2007-08-20)</span></b></p>
+
+  <li class="add" title="add">Many improvements on the SQLObject usage for the Filesystem plug-in</li>
+
+  <li class="add" title="add">New implementation of XML DIDLite generation</li>
+
+  <li class="add" title="add">Reimplementation of the content directory service browsing</li>
+
+  <li class="add" title="add">Now the content directory is responsible to generate the DIDL response</li>
+
+  <li class="add" title="add">Support of namespace:id in the id field of XML DIDL</li>
+
+  <li class="add" title="add">Call specific browser method according to the namespace (which represents
+   a plugin identifier)</li>
+
+  <li class="add" title="add">A completely reimplementation of the plug-in architecture of the Media Server</li>
+
+  <li class="add" title="add">The plugin manager becomes a singleton and now the it supports load and unload of plug-ins according to the plug-ins priority field</li>
+
+  <li class="add" title="add">The usage flag of plug-ins can be controlled through programming (although the default value is read from brisa.conf file)</li>
+
+  <li class="add" title="add">The plugins now support the implementation of a specific browse method</li>
+
+  <li class="add" title="add">Implementation of YouTube plug-in</li>
+
+  <li class="add" title="add">Many improvements on the SHOUTcast and FlickR plugins</li>
+
+  <li class="add" title="add">Completely separation of the persistence layer and filesystem plug-ins</li>
+
+  <li class="add" title="add">Many improvements on the UPnP API</li>
+
+  <li class="add" title="add">Now there is just on webserver instance shared between UPnP devices</li>
+
+</ul>
+
+<ul>
+
+  <p><b><span style="background-color: rgb(224, 224, 224);">Release 0.5 -
+(2007)</span></b></p>
+
+  <li class="fix" title="fix">Many improvements on the SQLObject usage for the Filesystem plug-in</li>
+
+  <li class="fix" title="fix">New implementation of XML DIDLite generation</li>
+
+  <li class="fix" title="fix">Reimplementation of the content directory service browsing:</li>
+
+  <li class="fix" title="fix">Now the content directory is responsible to generate the DIDL response</li>
+
+  <li class="fix" title="fix">Support of namespace:id in the id field of XML DIDL</li>
+
+  <li class="fix" title="fix">Call specific browser method according to the namespace (which represents a plugin identifier)</li>
+
+  <li class="fix" title="fix">A completely reimplementation of the plug-in architecture of the Media Server</li>
+  <li class="fix" title="fix">The plugin manager becomes a singleton and now the it supports load and unload of plug-ins according to the plug-ins priority field</li>
+
+  <li class="fix" title="fix">The usage flag of plug-ins can be controlled through programming (although the default value is read from brisa.conf file)</li>
+
+  <li class="fix" title="fix">The plugins now support the implementation of a specific browse method.</li>
+
+  <li class="fix" title="fix">Implementation of YouTube plug-in</li>
+
+  <li class="fix" title="fix">Many improvements on the SHOUTcast and FlickR plugins</li>
+
+  <li class="fix" title="fix">Completely separation of the persistence layer and filesystem plug-ins</li>
+
+  <li class="fix" title="fix">Many improvements on the UPnP API:</li>
+
+  <li class="fix" title="fix">Now there is just on webserver instance shared between UPnP devices</li>
+
+  </ul>
+
+</ul>
+
+<ul>
+
+  <p><b><span style="background-color: rgb(224, 224, 224);">Release 0.4 -
+(2007-05-15)</span></b></p>
+
+  <li class="fix" title="fix">Implementation of feature request listen in #765</li>
+
+  <li class="fix" title="fix">In previous brisa version the database were always erased and recreated every media server startup</li>
+
+  <li class="fix" title="fix">Use of filesize and filepath to reconized a "already stored media file"</li>
+
+  <li class="fix" title="fix">Automatic map between genre id and genre names, which made the server ID3 compliant</li>
+
+  <li class="fix" title="fix">Support for addition of new file at media server runtime</li>
+
+  <li class="fix" title="fix">In previous brisa version, the user must to restart the server in order to make media server recognize new files</li>
+
+  <li class="fix" title="fix">Implementation of server watcher using pyinotify to identify and store new files information added to any shared directory</li>
+
+  <li class="fix" title="fix">Improvement of the brisaserver.py code, which have many mixed (incorrect) use of plugin manager, twisted, etc</li>
+
+  <li class="fix" title="fix">The main method was simplified, many steps was transformed into other methods and the code become more clear</li>
+
+  <li class="fix" title="fix">Some code listened into plugin manager was reorganized and distributed between plugin.py and brisaserver.py in a more interest manner</li>
+
+  <li class="fix" title="fix">Improvement in plugin load, now it is loaded in a thread way, which allow the startup of the media server more fast</li>
+
+  <li class="fix" title="fix">Implementation of template method and observer design patterns to load the plugin and be notified when it is finished</li>
+
+  <li class="fix" title="fix">Improvement of file_system_plugin.py code. It was removed the relation between plugins and twisted web server resource. Now, the plugin doesn't know the resource of the twisted web server. The right place is brisaserver.py, where it is known and where it is managed the content web server</li>
+
+  <li class="fix" title="fix">Twisted web now see the brisa database as its filesystem to access content (creation of a specific twisted.web.resource)</li>
+
+  <li class="fix" title="fix">Improvement of the plugin architecture</li>
+
+  <li class="fix" title="fix">Creation of a plugin interface for third-party plugin implementors</li>
+
+  <li class="fix" title="fix">Some PEP8 fixes for the files modified by this commit</li>
+
+  <li class="fix" title="fix">The server now support unicode in response to the browsing. From now, special chars, such as ç, ã, é and so on is now supported</li>
+
+  <li class="fix" title="fix">In the earlier version of file_system_plugins, they accepted title, album and artist as a blank string. Now it is mandatory any string in these fields</li>
+
+  <li class="fix" title="fix">Load web server content on the fly. The file system of the media server web server is now the database. No more /content directory is loaded into the memory, instand it is loaded on the fly by quering the database</li>
+
+  <li class="fix" title="fix">Improvement of brisa.conf syntax, making in more uniform between similar [sections] and other minor changes. The name of albums defined in section [image], which until brisa =< 0.3 was called photoalbum, is now defined into a .album_name file located in the respective image path, which a user can create and put the name of the album in the first line of the file. If it is necessary, in future release it can be changed to a ini format file. Since the only parameter is the name, the team define just to put a single string inside the file. For more details, refer to the brisa.conf itself</li>
+
+  <li class="fix" title="fix">option output was added to [logging] section. The user can specify if he/she wants the log to stdout or to the file</li>
+
+  <li class="fix" title="fix">option watch was added to filesystem sections in order to inform if the dirs option need to be monitorized for changes</li>
+
+  <li class="fix" title="fix">dir option no it is dirs</li>
+
+  <li class="fix" title="fix">Get parameter as a list</li>
+
+  <li class="fix" title="fix">In the brisa_config module was created a method get_parameter_as_list, which the developer can get the read parameter as a python list, which is splited by a specified token. If no token is specified, : is used</li>
+
+  <li class="fix" title="fix">brisa_config now is using standard python config module and it was transformed into a singleton</li>
+
+  <li class="fix" title="fix">Improvements of DIDL handles</li>
+
+  <li class="fix" title="fix">Improvements of web interface for configure media server</li>
+
+</ul>
+
+<ul><p><a href="http://brisa.garage.maemo.org/"><img src="images/li_back.jpg" alt="back" border="0" title="back" /></a></p></ul>
+		  <br />
+</div>
+	  <div id="sub_footer">
+	  	<img src="images/li_rodape.jpg" alt="logo" usemap="#Map" title="logo" border="0">
+		<map name="Map" id="Map">
+			<area shape="rect" coords="1,3,79,33" href="http://brisa.garage.maemo.org/">
+			<area shape="rect" coords="135,3,227,30" href="http://percomp.org/" target="_blank">
+			<area shape="rect" coords="300,5,399,30" href="http://embedded.ufcg.edu.br/" target="_blank">
+			<area shape="rect" coords="499,3,543,40" href="http://www.indt.org/" target="_blank">
+			<area shape="rect" coords="577,3,911,108" href="http://maemo.org/" target="_blank">
+        </map>
+    </div>
+</div>
+</div>
+
+	  <div id="footer"> &copy; Copyright 2007 - 2009, <span style="color: rgb(255, 255, 255);"><b>INdT</b></span></div>
+
+</body>
+</html>

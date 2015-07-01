@@ -1,0 +1,11 @@
+brisa-media-server-plugins (0.1.1) unstable; urgency=low
+
+  * New release, removed maemo multimedia (deprecated)
+
+ -- Andre Dieb Martins <dieb@embedded.ufcg.edu.br>  Mon, 16 Mar 2009 04:08:00 -0300
+
+brisa-media-server-plugins (0.1.0) unstable; urgency=low
+
+  * Youtube, Flickr, Shoutcast plugins refactored
+
+ -- Andre Dieb Martins <dieb@embedded.ufcg.edu.br>  Wed, 14 Jan 2009 16:17:00 -0300

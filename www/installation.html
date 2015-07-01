@@ -1,0 +1,287 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<head>
+<title>BRisa Project - Installation</title>
+	<meta name="resource-type" content="document" />
+	<meta http-equiv="content-type" content="text/html; charset: iso-8859-1" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<link href="includes/css.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="includes/lightbox.css" type="text/css" media="screen" />
+	
+    <script src="includes/actions.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/prototype.js"></script>
+	<script type="text/javascript" src="js/scriptaculous.js?load=effects"></script>
+	<script type="text/javascript" src="js/lightbox.js"></script>
+</head>
+
+<body>
+
+<div id="container">
+  	<div id="faixa"></div>
+	
+	<!-- MENU -->
+	<div id="menu">
+	<img src="images/marca.png" alt="logo" title="logo" align="left"
+	style="padding-top: 10px; padding-left: 10px;"/><a href="faq.html" class="menu_opc">faq</a><a href="https://garage.maemo.org/projects/brisa" class="menu_opc" target="_new">development</a><a href="publications.html" class="menu_opc">publications</a><a href="documentation.html" class="menu_opc">documentation</a><a href="installation.html" class="menu_opc">installation</a><a href="http://brisa.garage.maemo.org/" class="menu_opc">home</a>
+	</div>
+	<!-- END HEADER -->
+	
+	
+	<!-- START CONTENT -->
+	<div id="content">
+	
+		<!-- LEFT DIV -->
+	  <div id="insidecontent">
+          <p><h1>Installing Python-BRisa</h1></p>
+          <br/>
+
+	  Install the dependencies:
+	  <ol>
+		<li>Python 2.5 or 2.6, python-setuptools - <a href="http://www.python.org">www.python.org</a></li>
+		<li>Only <b>one</b> of the following:
+		    <ul type=square>
+			<li><b>(Recommended)*</b> Python-circuits - <a
+			href="http://trac.softcircuit.com.au/circuits/">http://trac.softcircuit.com.au/circuits/</a></li>
+			<li>Python-paste - <a
+			href="http://pythonpaste.org">http://pythonpaste.org</a></li>
+			<li>Python-cherrypy 3.1.1 - <a href="http://www.cherrypy.org">www.cherrypy.org</a></li>
+		  </ul>
+		</li>
+
+	  </ol>
+
+<b>*</b> We have python-circuits dependency packaged by us, available for download at the <a href="https://garage.maemo.org/frs/?group_id=138">here</a>.
+<br/><br/><br/>
+
+	  Install latest python-brisa:
+	  <ol>
+		<li>Download latest python-brisa
+		<a
+		href="https://garage.maemo.org/frs/?group_id=138">.tar.gz</a></li>
+                <li>
+		<div class="codigo">tar -zxvf
+		<b>python-brisa_&lt;version&gt;.tar.gz</b><br/>
+                                        cd <b>file</b><br/>
+                                        sudo python setup.py install</div>
+            </li>
+          </ol>
+	  <br/>
+          Misc:
+          <a href="#tsh">Troubleshooting</a>,<a
+	  href="install_opensuse.html">Installing on openSUSE</a>
+          <hr>
+
+	  <p><h1>Installing Python-BRisa applications</h1></p>
+
+		<h2>Media Server</h2>
+
+		Install the dependencies:
+        <ul type=square>
+            <li>LightMediaScanner and Python-LightMediaScanner - <a href="http://lms.garage.maemo.org">http://lms.garage.maemo.org</a></li>
+            <li>dbus and python-dbus - <a href="http://dbus.freedesktop.org/doc/dbus-python/doc/tutorial.html">http://dbus.freedesktop.org/doc/dbus-python/doc/tutorial.html</a></li>
+            <li>PyGTK, Python-gobject - <a href="http://www.pygtk.org/">http://www.pygtk.org/</a></li>
+        </ul>
+
+		Install the application
+		<ol>
+			<li>Download latest brisa-media-server 
+		<a href="https://garage.maemo.org/frs/?group_id=138">.tar.gz</a></li>
+			<li>
+		<div class="codigo">tar -zxvf
+		<b>brisa-media-server_&lt;version&gt;.tar.gz</b><br/>
+                                        cd <b>file</b><br/>
+                                        sudo python setup.py install</div></li>
+		</ol>
+
+		<h2>Media Renderer</h2>
+
+		Install the dependencies:
+        <ul type=square>
+            <li>gstreamer 0.10+ - <a href="http://gstreamer.freedesktop.org/download">http://gstreamer.freedesktop.org/download</a></li>
+            <li>gstreamer plugins - <a href="http://gstreamer.freedesktop.org/download">http://gstreamer.freedesktop.org/download</a></li>
+            <li>pygst - <a href="http://gstreamer.freedesktop.org/modules/gst-python.html">http://gstreamer.freedesktop.org/modules/gst-python.html</a></li>
+            <li>dbus and python-dbus - <a href="http://dbus.freedesktop.org/doc/dbus-python/doc/tutorial.html">http://dbus.freedesktop.org/doc/dbus-python/doc/tutorial.html</a></li>
+            <li>PyGTK, Python-gobject - <a href="http://www.pygtk.org/">http://www.pygtk.org/</a></li>
+        </ul>
+
+		Install the application:
+		<ol>
+
+			<li>Download latest brisa-media-renderer
+		<a href="https://garage.maemo.org/frs/?group_id=138">.tar.gz</a></li>
+			<li>
+		<div class="codigo">tar -zxvf
+		<b>brisa-media-renderer_&lt;version&gt;.tar.gz</b><br/>
+                                        cd <b>file</b><br/>
+                                        sudo python setup.py install</div></li>
+		</ol>
+
+
+		<h2>Media Server plugins (extra)</h2>
+		<ol>
+
+			<li>Download latest brisa-media-server-plugins
+		<a href="https://garage.maemo.org/frs/?group_id=138">.tar.gz</a></li>
+			<li>
+		<div class="codigo">tar -zxvf
+		<b>brisa-media-server-plugins_&lt;version&gt;.tar.gz</b><br/>
+                                        cd <b>file</b><br/>
+                                        sudo python setup.py install</div></li>
+		</ol>
+
+          </p>
+          <hr>
+	  <p><a name="tsh"></a><h1>Troubleshooting</h1>
+      <ul type=square>
+            <li><h3>Cleaning up</h3>
+	    For cleaning up old framework configuration for a new fresh install,
+	    type in the terminal:
+            <br/><br/>
+            <div class="codigo">brisa-conf -c</div>
+	    <br/><br/>
+	    
+	    
+          </ul>
+          </p>
+
+
+	  </div>
+		<!-- END LEFT DIV -->
+		
+		<!-- SIDEBAR -->
+		<div id="sidebar">
+        <p>
+          <p><h1>Downloads</p></h1>
+          <br/>
+<!--          <div class="download_box">-->
+          <p><h2>Latest:</p></h2>
+
+          <table frame="vsides" align=center>
+            <tr>
+                <th></th>
+                <th>Tar (all)</th>
+                <th>Python 2.5</th>
+                <th>Python 2.6</th>
+            </tr>
+
+            <tr>
+                <th>python-brisa Framework 0.10.0</th>
+                <th><a
+		href="https://garage.maemo.org/frs/download.php/6275/python-brisa_0.10.0maemo4.tar.gz">.tar.gz</a></th>
+                <th><a
+		href="https://garage.maemo.org/frs/download.php/6273/python2.5-brisa_0.10.0maemo4_all.deb">.deb</a></th>
+                <th><a
+		href="https://garage.maemo.org/frs/download.php/6274/python2.6-brisa_0.10.0maemo4_all.deb">.deb</a></th>
+            </tr>
+
+            <tr>
+                <th>python-brisa Qt Reactor 0.10.0</th>
+                <th><a href="https://garage.maemo.org/frs/download.php/6233/python-brisa-qtreactor_0.10.0maemo2.tar.gz">.tar.gz</a></th>
+                <th><a
+                href="https://garage.maemo.org/frs/download.php/6234/python2.5-brisa-qtreactor_0.10.0maemo2_all.deb">.deb</a></th>
+                <th><a
+                href="https://garage.maemo.org/frs/download.php/6235/python2.6-brisa-qtreactor_0.10.0maemo2_all.deb">.deb</a></th>
+            </tr>
+
+            <tr>
+                <th>BRisa Media Server 0.1.1</th>
+                <th><a
+                href="https://garage.maemo.org/frs/download.php/6239/brisa-media-server_0.1.1maemo4.tar.gz">.tar.gz</a></th>
+                <th><a
+                href="https://garage.maemo.org/frs/download.php/6243/python2.5-brisa-media-server_0.1.1maemo4_all.deb">.deb</a></th>
+                <th><a
+                href="https://garage.maemo.org/frs/download.php/6249/python2.6-brisa-media-server_0.1.1maemo4_all.deb">.deb</a></th>
+            </tr>
+
+            <tr>
+                <th>BRisa Media Server Plugins 0.1.1</th>
+                <th><a
+                href="https://garage.maemo.org/frs/download.php/6240/brisa-media-server-plugins_0.1.1maemo1.tar.gz">.tar.gz</a></th>
+                <th><a
+                href="https://garage.maemo.org/frs/?group_id=138">.debs</a></th>
+                <th><a
+                href="https://garage.maemo.org/frs/?group_id=138">.debs</a></th>
+            </tr>
+
+            <tr>
+                <th>BRisa Media Renderer 0.1.1</th>
+                <th><a
+                href="https://garage.maemo.org/frs/download.php/6237/brisa-media-renderer_0.1.1maemo3.tar.gz">.tar.gz</a></th>
+                <th><a
+                href="https://garage.maemo.org/frs/download.php/6242/python2.5-brisa-media-renderer_0.1.1maemo3_all.deb">.deb</a></th>
+                <th><a
+                href="https://garage.maemo.org/frs/download.php/6248/python2.6-brisa-media-renderer_0.1.1maemo3_all.deb">.deb</a></th>
+            </tr>
+
+            <tr>
+                <th>BRisa Media Tools 0.1.1</th>
+                <th><a
+                href="https://garage.maemo.org/frs/download.php/6241/brisa-media-tools_0.1.1maemo1.tar.gz">.tar.gz</a></th>
+                <th><a
+                href="https://garage.maemo.org/frs/download.php/6247/python2.5-brisa-media-tools_0.1.1maemo1_all.deb">.deb</a></th>
+                <th><a
+                href="https://garage.maemo.org/frs/download.php/6253/python2.6-brisa-media-tools_0.1.1maemo1_all.deb">.deb</a></th>
+            </tr>
+
+          </table>
+          <br/>
+          * Applications version 0.1.1 work with python-brisa 0.10.0.<br/>
+          ** All packages can be found <a
+          href="https://garage.maemo.org/frs/?group_id=138">here</a>, also
+	  the <a href="faq.html#Minimum_Requirements">dependencies</a>.
+          </p>
+
+          <br/><br/>
+          <p><h1>Dependency Stack</h1>
+          <br/>
+
+          <table frame="box" align="center" rules="all" width="100%" 
+          style="border: 1px solid #CCCCCC">
+          <tr>
+                <td colspan=2 align="center" bgcolor="#999999"><a
+                href="faq.html#Minimum_Requirements" style="text-decoration:
+                none;">framework deps</a></td>
+                <td rowspan="2" align="center" bgcolor="#AAAAAA"><a style="text-decoration: none;" href="faq.html#Minimum_Requirements">app. deps</a></td>
+          </tr>
+          <tr>
+                <td colspan="2" align="center" bgcolor="#BBBBBB">python-brisa framework</td>
+          </tr>
+          <tr>
+                <td colspan="3" bgcolor="#CCCCCC" align="center">python-brisa-apps</td>
+          </tr>
+          </table>
+
+          </p>
+
+				
+		</div>
+		<!-- END SIDEBAR -->
+		
+		<!-- CLEAR BOTH FLOAT. -->
+		<div style="clear: both;"></div>
+		<!-- END FLOAT CLEANER -->
+		
+	</div>
+	<!-- END CONTENT -->
+	
+	<!-- SUB FOOTER -->
+	  <div id="sub_footer">
+	  	<img src="images/li_rodape.jpg" alt="logo" usemap="#Map" title="logo" border="0">
+		<map name="Map" id="Map">
+			<area shape="rect" coords="1,3,79,33" href="http://brisa.garage.maemo.org/">
+			<area shape="rect" coords="135,3,227,30" href="http://percomp.org/" target="_blank">
+			<area shape="rect" coords="300,5,399,30" href="http://embedded.ufcg.edu.br/" target="_blank">
+			<area shape="rect" coords="499,3,543,40" href="http://www.indt.org/" target="_blank">
+			<area shape="rect" coords="577,3,911,108" href="http://maemo.org/" target="_blank">
+        </map>
+    </div>
+	<!-- SUB FOOTER -->
+	
+	<!-- FOOTER -->
+	  <div id="footer"> &copy; Copyright 2007 - 2009, <span style="color: rgb(255, 255, 255);"><b>INdT</b></span></div>
+	<!-- FOOTER -->
+</div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+
+if which maemo-select-menu-location
+then
+    maemo-select-menu-location brisa_media_applet.desktop
+    return 0
+else
+    return 0
+fi

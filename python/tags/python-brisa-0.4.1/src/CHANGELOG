@@ -1,0 +1,31 @@
+Version 0.4 (05/15/2007)
+
+  - Implementation of feature request listen in #765 (leandro)
+      - In previous brisa version the database were always erased and recreated every media server startup
+      - Use of filesize and filepath to reconized a "already stored media file"
+  - Automatic map between genre id and genre names, which made the server ID3 compliant (leandro)
+  - Support for addition of new file at media server runtime (leandro)
+      - In previous brisa version, the user must to restart the server in order to make media server recognize new files
+      - Implementation of server watcher using pyinotify to identify and store new files information added to any shared directory (leandro)
+  - Improvement of the brisaserver.py code, which have many mixed (incorrect) use of plugin manager, twisted, etc (leandro)
+      - The main method was simplified, many steps was transformed into other methods and the code become more clear
+      - Some code listened into plugin manager was reorganized and distributed between plugin.py and brisaserver.py in a more interest manner
+  - Improvement in plugin load, now it is loaded in a thread way, which allow the startup of the media server more fast (leandro, adrian, anajulia)
+      - Implementation of template method and observer design patterns to load the plugin and be notified when it is finished
+  - Improvement of file_system_plugin.py code. It was removed the relation between plugins and twisted web server resource. Now, the plugin doesn't know the resource of the twisted web server. The right place is brisaserver.py, where it is known and where it is managed the content web server (leandro, adrian)
+	- Twisted web now see the brisa database as its filesystem to access content (creation of a specific twisted.web.resource)
+  - Improvement of the plugin architecture (adrian)
+      - Creation of a plugin interface for third-party plugin implementors
+  - Some PEP8 fixes for the files modified by this commit (all)
+  - The server now support unicode in response to the browsing. From now, special chars, such as ç, ã, é and so on is now supported (leandro)
+  - In the earlier version of file_system_plugins, they accepted title, album and artist as a blank string. Now it is mandatory any string in these fields
+  - Load web server content on the fly. The file system of the media server web server is now the database. No more /content directory is loaded into the memory, instand it is loaded on the fly by quering the database (leandro)
+  - Improvement of brisa.conf syntax, making in more uniform between similar [sections] and other minor changes. The name of albums defined in section [image], which until brisa =< 0.3 was called photoalbum, is now defined into a .album_name file located in the respective image path, which a user can create and put the name of the album in the first line of the file. If it is necessary, in future release it can be changed to a ini format file. Since the only parameter is the name, the team define just to put a single string inside the file. For more details, refer to the brisa.conf itself (leandro)
+       - option output was added to [logging] section. The user can specify if he/she wants the log to stdout or to the file
+       - option watch was added to filesystem sections in order to inform if the dirs option need to be monitorized for changes
+       - dir option no it is dirs
+  - Get parameter as a list (leandro)
+       - In the brisa_config module was created a method get_parameter_as_list, which the developer can get the read parameter as a python list, which is splited by a specified token. If no token is specified, : is used. 
+  - brisa_config now is using standard python config module and it was transformed into a singleton (???)
+  - Improvements of DIDL handles (leandro)
+  - Improvements of web interface for configure media server (leandro)

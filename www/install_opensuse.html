@@ -1,0 +1,48 @@
+      <p><a name="opensuse"></a><h1>openSUSE - Installation guide for openSUSE</h1>
+      <ul type=square>
+      The guide is based on openSUSE 11.1
+      <li><h3>Preparation and basic dependencies</h3>
+      <div class="codigo">sudo zypper install gtk glib automake autoconf gcc<br/>sudo easy_install cherrypy</div><br/>
+      Install python2.5, python-devel, python-setup_tools and python-xml as well (all compatible to python2.5, you can do it easily using YaST).<br/><br/><b>If you have python2.5 installed ignore the following steps.</b><br/><br/>Do the procedure below for the following packages: python-devel, python-setup_tools, python-xml:<br/><br/>
+      <div class="codigo">Open YaST<br/>Click on Installed<br/>Search for python<br/>
+      Select the python package, change the version to 2.5 then click install. 
+      <br/>
+      </div><br/><li><h3> Download our packages</h3><br/>
+      All our available packages are listed <a href="https://garage.maemo.org/frs/?group_id=138">here</a>.
+      <br/><br/><li><h3>Python BRisa installation</h3></li>
+      <div class="codigo">tar xfz python-brisa.tar.gz<br/>
+      cd python-brisa<br/>
+      sudo python setup.py install</div>
+      <br/> Now you should be able to import brisa on python.
+      <br/><br/><li><h3>BRisa Media Server installation</h3></li>
+      First install the dependencies <br/><br/>
+      <div class="codigo">sudo zypper install sqlite3-devel libmp4ff0 libmp4v2 libmp4v2-devel flac flac-devel
+      libvorbis-devel pyrex</div>
+      <br/>
+      Download and install <a href="http://sourceforge.net/project/downloading.php?group_id=79755&filename=PyDispatcher-2.0.1.tar.gz&a=6421064">PyDispatcher</a>      <br/><br/><div class="codigo"> tar xfz PyDispatcher-2.0.1.tar.gz<br/>cd PyDispatcher-2.0.1<br/>sudo python setup.py install --prefix=/usr</div><br/>
+      Download and install <a href="http://www.cython.org/Cython-0.11.1.tar.gz">Cython</a><br/><br/>
+      <div class="codigo">tar xfz Cython-0.11.1.tar.gz<br/>cd Cython-0.11.1<br/>sudo python setup.py install --prefix=/usr</div><br/>
+      Now for installing <a href="https://garage.maemo.org/frs/download.php/5870/lightmediascanner-0.3.0.0.tar.gz">lightmediascanner</a><br/><br/>
+      <div class="codigo"> tar xjf lightmediascanner-0.3.0.0.tar.bz2<br/>
+	      cd lightmediascanner-0.3.0.0<br/>./configure<br/>make<br/>sudo make install</div> 
+      <br/>Installing <a href="https://garage.maemo.org/frs/download.php/5871/python-lightmediascanner-0.3.0.tar.gz">lightmediascanner bindings</a>
+      <br/><br/><div class="codigo">tar xfz python-lightmediascanner-0.3.0.tar.gz<br/>cd python-lightmediascanner-0.2.0<br/>
+
+      sudo python setup.py install --prefix=/usr</div><br/>
+      BRisa Media Server<br/><br/>
+      <div class="codigo">tar xfz brisa-media-server.tar.gz<br/>cd brisa-media-server<br/>sudo python setup.py install</div>
+      <br/><li><h3>BRisa Media Server Plugins</h3></li>
+      <div class="codigo">tar xfz brisa-media-server-plugins.tar.gz<br/>cd brisa-media-server-plugins<br/>sudo python setup.py install</div>
+      <br/><li><h3>BRisa Media Renderer</h3></li>
+      Install the BRisa Media Renderer dependencies doing:<br/><br/>
+      <div class="codigo">sudo zypper install gstreamer-0_10 gstreamer-0_10-plugins-base-devel gstreamer_0-10-plugins-good gstreamer-0_10-libschroedinger-1_0-0 dirac-devel libdirac_decoder0 libdirac_encoder0 libdvdread4 libdvdread-devel</div><br/>If you have trouble on the availability of dvdread4 and dvdread4-devel you can download them <a href="ftp://rpmfind.net/linux/opensuse/factory/repo/oss/suse/i586/libdvdread-devel-4.1.3-6.44.i586.rpm">here</a> and <a href="ftp://rpmfind.net/linux/opensuse/factory/repo/oss/suse/i586/libdvdread4-4.1.3-6.44.i586.rpm">here</a>.
+      <br/><br/>BRisa Media Renderer:<br/><br/>
+      <div class="codigo">tar xfz brisa-media-renderer.tar.gz<br/>cd brisa-media-renderer<br/>sudo python setup.py install</div>
+      <br/><li><h3>BRisa Media Tools</h3></li>
+      <div class="codigo">tar xfz brisa-media-tools.tar.gz<br/>cd brisa-media-tools<br/>sudo python setup.py install</div>
+      <br/>You should be able to use all our packages. Try running 'brisa-media-applet' on a terminal or through an application launcher. 
+</li>
+    </ul>
+
+      <hr/>
+

@@ -1,0 +1,31 @@
+BRisa UPnP Framework v0.8.0
+
+This document contains the minimum information for installing BRisa.
+
+For extended installing tips and system specific instructions please consult our
+documentation on the project page (http://brisa.garage.maemo.org).
+
+
+Dependencies
+=============
+
+BRisa requires the following third-party packages:
+
+-Python 2.5+ - http://python.org/
+-Python-inotify - http://pyinotify.sourceforge.net/
+-Python-mutagen - http://pypi.python.org/pypi/mutagen/1.12
+-gstreamer0.10 - http://gstreamer.freedesktop.org/download
+-Python-gstreamer - http://gstreamer.freedesktop.org/modules/gst-python.html
+-(optional) gstreamer0.10-plugins-* - http://gstreamer.freedesktop.org/download
+
+
+Installing
+=============
+
+You can install by simply running the following command:
+
+    # python setup.py install
+
+or
+
+    $ sudo python setup.py install

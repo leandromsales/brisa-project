@@ -1,0 +1,7 @@
+brisa-media-renderer 0.1.0, 2009-02-02 (development)
+------------------------------
+- added debian packaging
+- imports refactored
+- moved from python-brisa 0.7.1: it's an app, not part of the framework
+- pep8 corrections
+- added simple dbus methods for halting the device and retrieving info

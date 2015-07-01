@@ -1,0 +1,49 @@
+brisa-media-server (0.1.2maemo0) unstable; urgency=low
+
+  * New release
+
+ -- André Dieb Martins <andre.dieb@gmail.com>  Wed, 21 Oct 2009 15:38:55 -0300
+
+brisa-media-server (0.1.1maemo5) unstable; urgency=low
+
+  * Add assistant window hints for better appearance
+  * Fix auto-selection of folder for maemo
+
+ -- André Dieb Martins <andre.dieb@gmail.com>  Mon, 13 Jul 2009 17:07:00 -0300
+
+brisa-media-server (0.1.1maemo4) unstable; urgency=low
+
+  * Fix assistant glade XML to make it see invisible folders (maemo)
+
+ -- André Dieb Martins <andre.dieb@gmail.com>  Mon, 8 Jun 2009 15:56:00 -0300
+
+brisa-media-server (0.1.1maemo3) unstable; urgency=low
+
+  * Fix dependencies names (dbus, gtk)
+
+ -- André Dieb Martins <andre.dieb@gmail.com>  Fr, 5 Jun 2009 23:11:00 -0300
+
+brisa-media-server (0.1.1maemo2) unstable; urgency=low
+
+  * Fix python env problem
+  * Package is now signed
+
+ -- André Dieb Martins <andre.dieb@gmail.com>  Fri, 05 Jun 2009 19:37:00 -0300
+
+brisa-media-server (0.1.1imaemo1) unstable; urgency=low
+
+  * New release
+
+ -- Leandro Melo de Sales <leandroal@gmail.com>  Fri, 05 Jun 2009 00:44:00 -0300
+
+brisa-media-server (0.1.1) unstable; urgency=low
+
+  * Added assistant for fast setup after install
+
+ -- Andre Dieb Martins <dieb@embedded.ufcg.edu.br>  Mon, 28 Mar 2009 17:55:39 -0300
+
+brisa-media-server (0.1.0) unstable; urgency=low
+
+  * Added debian packaging
+
+ -- Andre Dieb Martins <dieb@embedded.ufcg.edu.br>  Wed, 19 Nov 2008 04:23:15 -0300

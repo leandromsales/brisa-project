@@ -1,0 +1,11 @@
+python-brisa (0.7.1-0maemo1) unstable; urgency=low
+
+  * New release
+
+ -- Andre Moreira Magalhaes <andrunko@gmail.com>  Wed, 29 Oct 2008 19:45:11 -0300
+
+python-brisa (0.7.0-0maemo1) unstable; urgency=low
+
+  * Added debian package support
+
+ -- Andre Moreira Magalhaes <andrunko@gmail.com>  Thu, 2 Oct 2008 16:06:12 -0300

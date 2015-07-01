@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. service — Service classes &mdash; python-brisa UPnP framework v0.10.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.10.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="top" title="python-brisa UPnP framework v0.10.0 documentation" href="../../index.html" />
+    <link rel="up" title="2. control_point — Control Point API" href="index.html" />
+    <link rel="next" title="3. upnp_defaults — UPnP Constants" href="../upnp_defaults.html" />
+    <link rel="prev" title="2. control_point — Control Point API" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../upnp_defaults.html" title="3. upnp_defaults — UPnP Constants"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="2. control_point — Control Point API"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >4. <tt class="docutils literal docutils literal docutils literal"><span class="pre">upnp</span></tt> &#8212; UPnP modules</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">2. <tt class="docutils literal docutils literal docutils literal"><span class="pre">control_point</span></tt> &#8212; Control Point API</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="service-service-classes">
+<h1>1. <tt class="xref docutils literal"><span class="pre">service</span></tt> &#8212; Service classes<a class="headerlink" href="#service-service-classes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subscribe-for-unicast-eventing">
+<h2>1.1. Subscribe for unicast eventing.<a class="headerlink" href="#subscribe-for-unicast-eventing" title="Permalink to this headline">¶</a></h2>
+<p>It&#8217;s very simple to subscribe for service unicast eventing. You need to
+select the service object that you want to subscribe and call
+&#8220;event_subscribe&#8221; method.</p>
+<p>There is a special parameter at &#8220;event_subscribe&#8221; method: auto_renew.
+If true, the framework will automatically renew the subscription before it
+expires. If false, the program need to call &#8220;event_renew&#8221; method before the
+subscription timeout. The renew callback will be used when auto_renew is true:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">ControlPoint</span><span class="p">(</span><span class="n">ControlPoint</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ControlPoint</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">subscribe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">service</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_select_service</span><span class="p">()</span>
+        <span class="n">service</span><span class="o">.</span><span class="n">event_subscribe</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">event_host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_event_subscribe_callback</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_event_renew_callback</span><span class="p">)</span>
+        <span class="n">service</span><span class="o">.</span><span class="n">subscribe_for_variable</span><span class="p">(</span><span class="s">&quot;A_ARG_TYPE_Textin&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_event_callback</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_select_service</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># Implement your way of find the service that you want</span>
+        <span class="k">return</span> <span class="n">service</span>
+
+    <span class="k">def</span> <span class="nf">_event_subscribe_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cargo</span><span class="p">,</span> <span class="n">subscription_id</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;Event subscribe done!&quot;</span>
+        <span class="k">print</span> <span class="s">&#39;Subscription ID: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">subscription_id</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s">&#39;Timeout: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_event_renew_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cargo</span><span class="p">,</span> <span class="n">subscription_id</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;Event renew done!&quot;</span>
+        <span class="k">print</span> <span class="s">&#39;Subscription ID: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">subscription_id</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s">&#39;Timeout: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_event_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;Event message!&quot;</span>
+        <span class="k">print</span> <span class="s">&#39;State variable:&#39;</span><span class="p">,</span> <span class="n">name</span>
+        <span class="k">print</span> <span class="s">&#39;Variable value:&#39;</span><span class="p">,</span> <span class="n">value</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="unsubscribe-for-unicast-eventing">
+<h2>1.2. Unsubscribe for unicast eventing.<a class="headerlink" href="#unsubscribe-for-unicast-eventing" title="Permalink to this headline">¶</a></h2>
+<p>In order to unsubscribe for service unicast eventing, you need to
+select the service object that you want to unsubscribe and call
+&#8220;event_unsubscribe&#8221; method:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">unsubscribe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">service</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_select_service</span><span class="p">()</span>
+    <span class="n">service</span><span class="o">.</span><span class="n">event_unsubscribe</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">event_host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_event_unsubscribe_callback</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_event_unsubscribe_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cargo</span><span class="p">,</span> <span class="n">old_subscription_id</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">&quot;Event unsubscribe done!&quot;</span>
+    <span class="k">print</span> <span class="s">&#39;Old subscription ID: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">old_subscription_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">1. <tt class="docutils literal"><span class="pre">service</span></tt> &#8212; Service classes</a><ul>
+<li><a class="reference external" href="#subscribe-for-unicast-eventing">1.1. Subscribe for unicast eventing.</a></li>
+<li><a class="reference external" href="#unsubscribe-for-unicast-eventing">1.2. Unsubscribe for unicast eventing.</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="index.html"
+                                  title="previous chapter">2. <tt class="docutils literal docutils literal"><span class="pre">control_point</span></tt> &#8212; Control Point API</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="../upnp_defaults.html"
+                                  title="next chapter">3. <tt class="docutils literal"><span class="pre">upnp_defaults</span></tt> &#8212; UPnP Constants</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../../_sources/upnp/control_point/service.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../upnp_defaults.html" title="3. upnp_defaults — UPnP Constants"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="2. control_point — Control Point API"
+             >previous</a> |</li>
+        <li><a href="../../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >4. <tt class="docutils literal docutils literal docutils literal"><span class="pre">upnp</span></tt> &#8212; UPnP modules</a> &raquo;</li>
+          <li><a href="index.html" >2. <tt class="docutils literal docutils literal docutils literal"><span class="pre">control_point</span></tt> &#8212; Control Point API</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../../copyright.html">Copyright</a> 2009, Andre Dieb Martins.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+    </div>
+  </body>
+</html>

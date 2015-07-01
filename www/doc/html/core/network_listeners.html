@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6. network_listeners — Network listening facilities &mdash; python-brisa UPnP framework v0.10.0 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.10.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="python-brisa UPnP framework v0.10.0 documentation" href="../index.html" />
+    <link rel="up" title="3. core — Framework’s core" href="index.html" />
+    <link rel="next" title="7. webserver — Webserver facilities" href="webserver.html" />
+    <link rel="prev" title="5. network — Network facilities" href="network.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="webserver.html" title="7. webserver — Webserver facilities"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="network.html" title="5. network — Network facilities"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">3. <tt class="docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">core</span></tt> &#8212; Framework&#8217;s core</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="network-listeners-network-listening-facilities">
+<h1>6. <tt class="xref docutils literal"><span class="pre">network_listeners</span></tt> &#8212; Network listening facilities<a class="headerlink" href="#network-listeners-network-listening-facilities" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="../glossary/index.html#python-brisa"><em>python-brisa</em></a> provides a network listening module which
+will make it easy to implement, for example, a udp server.</p>
+<div class="section" id="implementing-a-simple-udp-server">
+<h2>6.1. Implementing a simple udp server.<a class="headerlink" href="#implementing-a-simple-udp-server" title="Permalink to this headline">¶</a></h2>
+<p>Look how simple it&#8217;s to implement a udp server</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">brisa.core.reactors</span> <span class="kn">import</span> <span class="n">install_default_reactor</span>
+<span class="n">reactor</span> <span class="o">=</span> <span class="n">install_default_reactor</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">brisa.core.network_listeners</span> <span class="kn">import</span> <span class="n">UDPListeners</span>
+
+<span class="k">def</span> <span class="nf">forward_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
+    <span class="c"># This is the data handler function, in this example it will simply</span>
+    <span class="c"># print the received data and the address from where it came</span>
+    <span class="k">print</span> <span class="n">data</span><span class="p">,</span> <span class="s">&#39;from &#39;</span><span class="p">,</span> <span class="n">addr</span>
+
+<span class="n">server</span> <span class="o">=</span> <span class="n">UDPListener</span><span class="p">(</span><span class="s">&#39;239.255.255.250&#39;</span><span class="p">,</span>
+                     <span class="n">port</span><span class="p">,</span>
+                     <span class="s">&#39;interface&#39;</span><span class="p">,</span>
+                     <span class="n">data_callback</span> <span class="o">=</span> <span class="n">foward_data</span><span class="p">)</span>
+
+<span class="c"># Be sure to register the UDPListener&#39;s stop function before using the</span>
+<span class="c"># start method, or the program doesn&#39;t end.</span>
+<span class="n">server</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">reactor</span><span class="o">.</span><span class="n">add_after_stop_func</span><span class="p">(</span><span class="n">server</span><span class="o">.</span><span class="n">stop</span><span class="p">)</span>
+<span class="n">reactor</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This is all it takes to implement a simple udp server</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">6. <tt class="docutils literal"><span class="pre">network_listeners</span></tt> &#8212; Network listening facilities</a><ul>
+<li><a class="reference external" href="#implementing-a-simple-udp-server">6.1. Implementing a simple udp server.</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="network.html"
+                                  title="previous chapter">5. <tt class="docutils literal docutils literal"><span class="pre">network</span></tt> &#8212; Network facilities</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="webserver.html"
+                                  title="next chapter">7. <tt class="docutils literal"><span class="pre">webserver</span></tt> &#8212; Webserver facilities</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/core/network_listeners.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="webserver.html" title="7. webserver — Webserver facilities"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="network.html" title="5. network — Network facilities"
+             >previous</a> |</li>
+        <li><a href="../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >3. <tt class="docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">core</span></tt> &#8212; Framework&#8217;s core</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 2009, Andre Dieb Martins.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+    </div>
+  </body>
+</html>

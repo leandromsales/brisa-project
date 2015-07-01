@@ -1,0 +1,2 @@
+version=3
+http://download.cherrypy.org/cherrypy/([\d\.a-zA-Z]+)/CherryPy-(.+)\.tar\.gz

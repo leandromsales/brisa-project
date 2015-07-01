@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <array name="qt_libs">
+        <item>QtCore</item>
+        <item>QtGui</item>
+        <item>QtNetwork</item>
+        <item>QtXml</item>
+        <item>QtDeclarative</item>
+    </array>
+    <array name="bundled_libs">
+        <item>BrisaCore</item>
+        <item>BrisaUtils</item>
+	<item>BrisaUpnp</item>
+        <item>brisabinarylight</item>
+        <item>libbrisabinarylight</item>
+    </array>
+</resources>

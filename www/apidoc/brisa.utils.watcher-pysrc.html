@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>brisa.utils.watcher</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >BRisa UPnP Framework</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;brisa ::
+        <a href="brisa.utils-module.html">Package&nbsp;utils</a> ::
+        Module&nbsp;watcher
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="brisa.utils.watcher-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="brisa.utils.watcher-module.html">Module brisa.utils.watcher</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment"># Licensed under the MIT license</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># http://opensource.org/licenses/mit-license.php or see LICENSE file.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># Copyright 2007-2008 Brisa Team &lt;brisa-develop@garage.maemo.org&gt;</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-docstring">""" Base for watching files and folders.</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">pyinotify</tt> <tt class="py-keyword">import</tt> <tt class="py-name">ProcessEvent</tt><tt class="py-op">,</tt> <tt class="py-name">EventsCodes</tt><tt class="py-op">,</tt> <tt class="py-name">WatchManager</tt><tt class="py-op">,</tt> <tt class="py-name">Notifier</tt><tt class="py-op">,</tt> <tt class="py-name">Watch</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">brisa</tt><tt class="py-op">.</tt><tt id="link-0" class="py-name" targets="Package brisa.threading=brisa.threading-module.html"><a title="brisa.threading" class="py-name" href="#" onclick="return doclink('link-0', 'threading', 'link-0');">threading</a></tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Class brisa.threading.thread_object.ThreadObject=brisa.threading.thread_object.ThreadObject-class.html"><a title="brisa.threading.thread_object.ThreadObject" class="py-name" href="#" onclick="return doclink('link-1', 'ThreadObject', 'link-1');">ThreadObject</a></tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">brisa</tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Package brisa.utils=brisa.utils-module.html"><a title="brisa.utils" class="py-name" href="#" onclick="return doclink('link-2', 'utils', 'link-2');">utils</a></tt> <tt class="py-keyword">import</tt> <tt id="link-3" class="py-name" targets="Module brisa.utils.python.sleep=brisa.utils.python.sleep-module.html,Function brisa.utils.python.sleep.sleep()=brisa.utils.python.sleep-module.html#sleep"><a title="brisa.utils.python.sleep
+brisa.utils.python.sleep.sleep" class="py-name" href="#" onclick="return doclink('link-3', 'sleep', 'link-3');">sleep</a></tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"> </tt>
+<a name="FlagWatcher"></a><div id="FlagWatcher-def"><a name="L14"></a><tt class="py-lineno">14</tt> <a class="py-toggle" href="#" id="FlagWatcher-toggle" onclick="return toggle('FlagWatcher');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="brisa.utils.watcher.FlagWatcher-class.html">FlagWatcher</a><tt class="py-op">(</tt><tt class="py-base-class">ThreadObject</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FlagWatcher-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="FlagWatcher-expanded"><a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"> </tt>
+<a name="FlagWatcher.__init__"></a><div id="FlagWatcher.__init__-def"><a name="L16"></a><tt class="py-lineno">16</tt> <a class="py-toggle" href="#" id="FlagWatcher.__init__-toggle" onclick="return toggle('FlagWatcher.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.utils.watcher.FlagWatcher-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">object</tt><tt class="py-op">,</tt> <tt class="py-param">flag_name</tt><tt class="py-op">,</tt> <tt class="py-param">callback</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">delay</tt><tt class="py-op">=</tt><tt class="py-number">3</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FlagWatcher.__init__-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="FlagWatcher.__init__-expanded"><a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_object</tt> <tt class="py-op">=</tt> <tt class="py-name">object</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_flag_name</tt> <tt class="py-op">=</tt> <tt class="py-name">flag_name</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_stored</tt> <tt class="py-op">=</tt> <tt class="py-name">getattr</tt><tt class="py-op">(</tt><tt class="py-name">object</tt><tt class="py-op">,</tt> <tt class="py-name">flag_name</tt><tt class="py-op">)</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_modify_count</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Method brisa.upnp.ssdp.SSDPServer._callback()=brisa.upnp.ssdp.SSDPServer-class.html#_callback"><a title="brisa.upnp.ssdp.SSDPServer._callback" class="py-name" href="#" onclick="return doclink('link-4', '_callback', 'link-4');">_callback</a></tt> <tt class="py-op">=</tt> <tt id="link-5" class="py-name" targets="Method brisa.control_point.control_point.ControlPoint.callback()=brisa.control_point.control_point.ControlPoint-class.html#callback"><a title="brisa.control_point.control_point.ControlPoint.callback" class="py-name" href="#" onclick="return doclink('link-5', 'callback', 'link-5');">callback</a></tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">delay</tt> <tt class="py-op">=</tt> <tt class="py-name">delay</tt> </tt>
+</div><a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"> </tt>
+<a name="FlagWatcher.modified"></a><div id="FlagWatcher.modified-def"><a name="L24"></a><tt class="py-lineno">24</tt> <a class="py-toggle" href="#" id="FlagWatcher.modified-toggle" onclick="return toggle('FlagWatcher.modified');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.utils.watcher.FlagWatcher-class.html#modified">modified</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FlagWatcher.modified-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="FlagWatcher.modified-expanded"><a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line">        <tt class="py-docstring">""" Returns how many times the flag was modified since the last check.</tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_modify_count</tt> <tt class="py-op">-=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_modify_count</tt> <tt class="py-op">+</tt> <tt class="py-number">1</tt> </tt>
+</div><a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"> </tt>
+<a name="FlagWatcher.run"></a><div id="FlagWatcher.run-def"><a name="L30"></a><tt class="py-lineno">30</tt> <a class="py-toggle" href="#" id="FlagWatcher.run-toggle" onclick="return toggle('FlagWatcher.run');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.utils.watcher.FlagWatcher-class.html#run">run</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FlagWatcher.run-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="FlagWatcher.run-expanded"><a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Method brisa.threading.thread_object.ThreadObject.is_running()=brisa.threading.thread_object.ThreadObject-class.html#is_running,Method brisa.upnp.msearch.MSearch.is_running()=brisa.upnp.msearch.MSearch-class.html#is_running"><a title="brisa.threading.thread_object.ThreadObject.is_running
+brisa.upnp.msearch.MSearch.is_running" class="py-name" href="#" onclick="return doclink('link-6', 'is_running', 'link-6');">is_running</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">object</tt><tt class="py-op">:</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line">                <tt class="py-name">value</tt> <tt class="py-op">=</tt> <tt class="py-name">getattr</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">object</tt><tt class="py-op">,</tt> <tt class="py-name">flag_name</tt><tt class="py-op">)</tt> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">value</tt> <tt class="py-op">!=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">stored</tt><tt class="py-op">:</tt> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">stored</tt> <tt class="py-op">=</tt> <tt class="py-name">value</tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Method brisa.utils.watcher.FlagWatcher.on_flag_modify()=brisa.utils.watcher.FlagWatcher-class.html#on_flag_modify"><a title="brisa.utils.watcher.FlagWatcher.on_flag_modify" class="py-name" href="#" onclick="return doclink('link-7', 'on_flag_modify', 'link-7');">on_flag_modify</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line">            <tt id="link-8" class="py-name"><a title="brisa.utils.python.sleep
+brisa.utils.python.sleep.sleep" class="py-name" href="#" onclick="return doclink('link-8', 'sleep', 'link-3');">sleep</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">delay</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"> </tt>
+<a name="FlagWatcher.on_flag_modify"></a><div id="FlagWatcher.on_flag_modify-def"><a name="L40"></a><tt class="py-lineno">40</tt> <a class="py-toggle" href="#" id="FlagWatcher.on_flag_modify-toggle" onclick="return toggle('FlagWatcher.on_flag_modify');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.utils.watcher.FlagWatcher-class.html#on_flag_modify">on_flag_modify</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FlagWatcher.on_flag_modify-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="FlagWatcher.on_flag_modify-expanded"><a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name"><a title="brisa.upnp.ssdp.SSDPServer._callback" class="py-name" href="#" onclick="return doclink('link-9', '_callback', 'link-4');">_callback</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="brisa.upnp.ssdp.SSDPServer._callback" class="py-name" href="#" onclick="return doclink('link-10', '_callback', 'link-4');">_callback</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_stored</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >BRisa UPnP Framework</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Sat Oct 11 01:00:48 2008
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

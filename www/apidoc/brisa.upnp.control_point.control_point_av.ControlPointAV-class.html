@@ -1,0 +1,898 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>brisa.upnp.control_point.control_point_av.ControlPointAV</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://brisa.garage.maemo.org">python-brisa UPnP framework 0.10.0 documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="brisa-module.html">Package&nbsp;brisa</a> ::
+        <a href="brisa.upnp-module.html">Package&nbsp;upnp</a> ::
+        <a href="brisa.upnp.control_point-module.html">Package&nbsp;control_point</a> ::
+        <a href="brisa.upnp.control_point.control_point_av-module.html">Module&nbsp;control_point_av</a> ::
+        Class&nbsp;ControlPointAV
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class ControlPointAV</h1><p class="nomargin-top"><span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV">source&nbsp;code</a></span></p>
+<pre class="base-tree">
+                object --+    
+                         |    
+control_point.ControlPoint --+
+                             |
+                            <strong class="uidshort">ControlPointAV</strong>
+</pre>
+
+<hr />
+<p>This class extends ControlPoint and add basic AV functionality.</p>
+  <p>Basic usage is to set a server and/or renderer device with 
+  set_current_server() and/or set_current_renderer() to work on, then use 
+  the available A/V methods which are listed below.</p>
+  <p>Media servers:</p>
+  <ul>
+    <li>
+      browse()         - performs browse
+    </li>
+    <li>
+      search()         - performs search
+    </li>
+    <li>
+      get_search_capabilities() - returns the search capabilities
+    </li>
+    <li>
+      get_sort_capabilities()   - returns the sort capabilities
+    </li>
+  </ul>
+  <p>Media renderer:</p>
+  <ul>
+    <li>
+      av_play(id, uri) - plays an item from a media server on a media 
+      renderer. Must receive the item id on the media server or the URL 
+      where it is available.
+    </li>
+    <li>
+      av_stop()        - stop playing
+    </li>
+    <li>
+      av_pause()       - pause
+    </li>
+    <li>
+      av_next()        - play next track
+    </li>
+    <li>
+      av_previous()    - play previous track
+    </li>
+  </ul>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">receive_notify</span>=<span class="summary-sig-default">True</span>)</span><br />
+      Constructor for the ControlPointAV class.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_current_server"></a><span class="summary-sig-name">get_current_server</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the current selected server.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.get_current_server">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#set_current_server" class="summary-sig-name">set_current_server</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">server_device</span>)</span><br />
+      Sets the current server.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.set_current_server">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_current_renderer"></a><span class="summary-sig-name">get_current_renderer</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the current selected renderer.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.get_current_renderer">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#set_current_renderer" class="summary-sig-name">set_current_renderer</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">renderer_device</span>)</span><br />
+      Sets the current renderer.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.set_current_renderer">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_cd_service"></a><span class="summary-sig-name">get_cd_service</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the Content Directory service from the selected server.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.get_cd_service">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_avt_service"></a><span class="summary-sig-name">get_avt_service</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the AV Transport service from the selected renderer.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.get_avt_service">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#browse" class="summary-sig-name">browse</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">object_id</span>,
+        <span class="summary-sig-arg">browse_flag</span>,
+        <span class="summary-sig-arg">filter</span>,
+        <span class="summary-sig-arg">starting_index</span>,
+        <span class="summary-sig-arg">requested_count</span>,
+        <span class="summary-sig-arg">sort_criteria</span>=<span class="summary-sig-default">&quot;dc:title&quot;</span>)</span><br />
+      Browses media servers.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.browse">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dict</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#search" class="summary-sig-name">search</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">container_id</span>,
+        <span class="summary-sig-arg">search_criteria</span>,
+        <span class="summary-sig-arg">filter</span>,
+        <span class="summary-sig-arg">starting_index</span>,
+        <span class="summary-sig-arg">requested_count</span>,
+        <span class="summary-sig-arg">sort_criteria</span>)</span><br />
+      Search items in Media Server.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.search">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dict</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_search_capabilites"></a><span class="summary-sig-name">get_search_capabilites</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Return the fields supported by the server for searching.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.get_search_capabilites">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dict</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_sort_capabilities"></a><span class="summary-sig-name">get_sort_capabilities</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns a list of fields supported by the server for sorting.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.get_sort_capabilities">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#av_play" class="summary-sig-name">av_play</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">id</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">uri</span>=<span class="summary-sig-default">''</span>)</span><br />
+      Tells the selected media renderer to play an item given its id or 
+      media URI.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.av_play">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="av_stop"></a><span class="summary-sig-name">av_stop</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Stops the rendering.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.av_stop">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="av_pause"></a><span class="summary-sig-name">av_pause</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Pauses the rendering.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.av_pause">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="av_next"></a><span class="summary-sig-name">av_next</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Requests play on the next track.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.av_next">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="av_previous"></a><span class="summary-sig-name">av_previous</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Requests play on the previous track.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.av_previous">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>control_point.ControlPoint</code></b>:
+      <code>destroy</code>,
+      <code>force_discovery</code>,
+      <code>get_devices</code>,
+      <code>is_msearch_running</code>,
+      <code>is_running</code>,
+      <code>start</code>,
+      <code>start_search</code>,
+      <code>stop</code>,
+      <code>stop_search</code>,
+      <code>subscribe</code>,
+      <code>unsubscribe</code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code>control_point.ControlPoint</code></b> (private):
+      <code>_callback</code>,
+      <code>_cleanup</code>,
+      <code>_get_recv_notify</code>,
+      <code>_new_device_event</code>,
+      <code>_new_device_event_impl</code>,
+      <code>_on_event</code>,
+      <code>_removed_device_event</code>,
+      <code>_set_recv_notify</code>
+      </p></div>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="CDS_namespace"></a><span class="summary-name">CDS_namespace</span> = <code title="'urn:schemas-upnp-org:service:ContentDirectory:1'">'urn:schemas-upnp-org:service:ContentDirectory:1'</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="AVT_namespace"></a><span class="summary-name">AVT_namespace</span> = <code title="'urn:schemas-upnp-org:service:AVTransport:1'">'urn:schemas-upnp-org:service:AVTransport:1'</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="DMS_type"></a><span class="summary-name">DMS_type</span> = <code title="'urn:schemas-upnp-org:device:MediaServer:'">'urn:schemas-upnp-org:device:MediaServer:'</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="DMR_type"></a><span class="summary-name">DMR_type</span> = <code title="'urn:schemas-upnp-org:device:MediaRenderer:'">'urn:schemas-upnp-org:device:MediaRenderer:'</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="msg_invalid_server"></a><span class="summary-name">msg_invalid_server</span> = <code title="'server_device parameter must be a Device'">'server_device parameter must be a Device'</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#msg_invalid_renderer" class="summary-name">msg_invalid_renderer</a> = <code title="'renderer_device parameter must be a Device'">'renderer_device parameter must be a De<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#msg_select_server" class="summary-name">msg_select_server</a> = <code title="'media server not set. Set it with ' 'set_current_server().'">'media server not set. Set it with ' 'set_<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#msg_select_renderer" class="summary-name">msg_select_renderer</a> = <code title="'media renderer not set. Set it with ' 'set_current_renderer().'">'media renderer not set. Set it with ' '<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>control_point.ControlPoint</code></b>:
+      <code>msg_already_started</code>,
+      <code>msg_already_stopped</code>,
+      <code>receive_notify</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">receive_notify</span>=<span class="sig-default">True</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Constructor for the ControlPointAV class.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>receive_notify</code></strong> (bool) - if False, disables notify handling. This means it will only 
+          listen for MSearch responses.</li>
+    </ul></dd>
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_current_server"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_current_server</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">server_device</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.set_current_server">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Sets the current server. Required before performing any action on the 
+  Content Directory service.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>server_device</code></strong> (Device) - server</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_current_renderer"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_current_renderer</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">renderer_device</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.set_current_renderer">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Sets the current renderer. Required before performing any action on 
+  the AV Transport service.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>renderer_device</code></strong> (Device) - renderer</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="browse"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">browse</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">object_id</span>,
+        <span class="sig-arg">browse_flag</span>,
+        <span class="sig-arg">filter</span>,
+        <span class="sig-arg">starting_index</span>,
+        <span class="sig-arg">requested_count</span>,
+        <span class="sig-arg">sort_criteria</span>=<span class="sig-default">&quot;dc:title&quot;</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.browse">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Browses media servers.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>object_id</code></strong> (string) - object id</li>
+        <li><strong class="pname"><code>browse_flag</code></strong> (string) - BrowseDirectChildren or BrowseMetadata</li>
+        <li><strong class="pname"><code>filter</code></strong> (string) - a filter to indicate which metadata properties are to be 
+          returned. Usually &quot;*&quot;.</li>
+        <li><strong class="pname"><code>starting_index</code></strong> (int) - starting index to consider the requested count</li>
+        <li><strong class="pname"><code>requested_count</code></strong> (int) - requested number of entries</li>
+        <li><strong class="pname"><code>sort_criteria</code></strong> (string) - sorting criteria</li>
+    </ul></dd>
+    <dt>Returns: list</dt>
+        <dd>a list of containers and items</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="search"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">search</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">container_id</span>,
+        <span class="sig-arg">search_criteria</span>,
+        <span class="sig-arg">filter</span>,
+        <span class="sig-arg">starting_index</span>,
+        <span class="sig-arg">requested_count</span>,
+        <span class="sig-arg">sort_criteria</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.search">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Search items in Media Server.</p>
+  <p>This method search items with search_criteria key in the container_id 
+  of current media server.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>container_id</code></strong> (string) - unique identifier of the container in which to begin searching.</li>
+        <li><strong class="pname"><code>search_criteria</code></strong> (string) - search criteria</li>
+        <li><strong class="pname"><code>filter</code></strong> (string) - a filter to indicate which metadata properties are to be 
+          returned.</li>
+        <li><strong class="pname"><code>starting_index</code></strong> (int) - starting index to consider the requested count</li>
+        <li><strong class="pname"><code>requested_count</code></strong> (int) - requested number of entries under the object specified by 
+          container_id</li>
+        <li><strong class="pname"><code>sort_criteria</code></strong> (string) - sorting criteria</li>
+    </ul></dd>
+    <dt>Returns: dict</dt>
+        <dd>search result</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="av_play"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">av_play</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">id</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">uri</span>=<span class="sig-default">''</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.control_point.control_point_av-pysrc.html#ControlPointAV.av_play">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Tells the selected media renderer to play an item given its id or 
+  media URI.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>id</code></strong> (string) - id of the media on the media server</li>
+        <li><strong class="pname"><code>uri</code></strong> (string) - URI where the media is available</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== CLASS VARIABLE DETAILS ==================== -->
+<a name="section-ClassVariableDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variable Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariableDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="msg_invalid_renderer"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">msg_invalid_renderer</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+'renderer_device parameter must be a Device'
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="msg_select_server"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">msg_select_server</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+'media server not set. Set it with ' 'set_current_server().'
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="msg_select_renderer"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">msg_select_renderer</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+'media renderer not set. Set it with ' 'set_current_renderer().'
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://brisa.garage.maemo.org">python-brisa UPnP framework 0.10.0 documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Jun  9 22:24:57 2009
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

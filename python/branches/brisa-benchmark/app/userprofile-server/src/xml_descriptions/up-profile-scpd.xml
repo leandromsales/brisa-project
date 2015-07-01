@@ -1,0 +1,61 @@
+<scpd>
+    <specVersion>
+        <major>1</major>
+        <minor>0</minor>
+    </specVersion>
+    <actionList>
+        <action>
+            <name>GetUserInfo</name>
+            <argumentList>
+                <argument>
+                    <name>UUID</name>
+                    <direction>in</direction>
+                    <relatedStateVariable>A_ARG_TYPE_UUID</relatedStateVariable>
+                </argument>
+                <argument>
+                    <name>User</name>
+                    <direction>out</direction>
+                    <relatedStateVariable>A_ARG_TYPE_User</relatedStateVariable>
+                </argument>
+            </argumentList>
+        </action>
+        <action>
+            <name>GetProfile</name>
+            <argumentList>
+                <argument>
+                    <name>UUID</name>
+                    <direction>in</direction>
+                    <relatedStateVariable>A_ARG_TYPE_UUID</relatedStateVariable>
+                </argument>
+                <argument>
+                    <name>CategoryID</name>
+                    <direction>in</direction>
+                    <relatedStateVariable>A_ARG_TYPE_CategoryID</relatedStateVariable>
+                </argument>
+                <argument>
+                    <name>Preference</name>
+                    <direction>out</direction>
+                    <relatedStateVariable>A_ARG_TYPE_Preference</relatedStateVariable>
+                </argument>
+            </argumentList>
+        </action>
+    </actionList>
+    <serviceStateTable>
+        <stateVariable sendEvents="no">
+            <name>A_ARG_TYPE_UUID</name>
+            <dataType>string</dataType>
+        </stateVariable>
+        <stateVariable sendEvents="no">
+            <name>A_ARG_TYPE_User</name>
+            <dataType>string</dataType>
+        </stateVariable>
+        <stateVariable sendEvents="no">
+            <name>A_ARG_TYPE_CategoryID</name>
+            <dataType>string</dataType>
+        </stateVariable>
+        <stateVariable sendEvents="no">
+            <name>A_ARG_TYPE_Preference</name>
+            <dataType>string</dataType>
+        </stateVariable>
+    </serviceStateTable>
+</scpd>

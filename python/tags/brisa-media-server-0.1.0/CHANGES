@@ -1,0 +1,12 @@
+brisa-media-server 0.1.0, 2009-02-02 (development)
+------------------------------
+- added debian packaging
+- moved from python-brisa 0.7.1: it's an app, not part of the framework
+- added auto-config: will perform basic configurations when installed with
+  the debian package or on the first launch
+- merged brisa-media-server with brisa-media-server-conf
+- renamed filesystem plugin to media library
+- added field spec to brisa framework tab (allows configuration)
+- added dbus methods for controlling the device (halt, rescan_folders,
+  reload_config and get_server_info)
+- fixes on media_library to work with any recent version of lightmediascanner

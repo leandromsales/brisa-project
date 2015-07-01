@@ -1,0 +1,62 @@
+<scpd>
+    <specVersion>
+        <major>1</major>
+        <minor>0</minor>
+    </specVersion>
+    <actionList>
+        <action>
+            <name>Auth</name>
+            <argumentList>
+                <argument>
+                    <name>Login</name>
+                    <direction>in</direction>
+                    <relatedStateVariable>A_ARG_TYPE_Login</relatedStateVariable>
+                </argument>
+                <argument>
+                    <name>Password</name>
+                    <direction>in</direction>
+                    <relatedStateVariable>A_ARG_TYPE_Password</relatedStateVariable>
+                </argument>
+                <argument>
+                    <name>UUID</name>
+                    <direction>out</direction>
+                    <relatedStateVariable>A_ARG_TYPE_UUID</relatedStateVariable>
+                </argument>
+            </argumentList>
+        </action>
+        <action>
+            <name>RenewSession</name>
+            <argumentList>
+                <argument>
+                    <name>UUID</name>
+                    <direction>in</direction>
+                    <relatedStateVariable>A_ARG_TYPE_UUID</relatedStateVariable>
+                </argument>
+            </argumentList>
+        </action>
+        <action>
+            <name>Logout</name>
+            <argumentList>
+                <argument>
+                    <name>UUID</name>
+                    <direction>in</direction>
+                    <relatedStateVariable>A_ARG_TYPE_UUID</relatedStateVariable>
+                </argument>
+            </argumentList>
+        </action>
+    </actionList>
+    <serviceStateTable>
+        <stateVariable sendEvents="no">
+            <name>A_ARG_TYPE_UUID</name>
+            <dataType>string</dataType>
+        </stateVariable>
+        <stateVariable sendEvents="no">
+            <name>A_ARG_TYPE_Login</name>
+            <dataType>string</dataType>
+        </stateVariable>
+        <stateVariable sendEvents="no">
+            <name>A_ARG_TYPE_Password</name>
+            <dataType>string</dataType>
+        </stateVariable>
+    </serviceStateTable>
+</scpd>

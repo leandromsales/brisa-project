@@ -1,0 +1,12 @@
+<node>
+  <interface name="br.ufal.ic.BrisaUpnp">
+    <method name="fileWrite">
+        <arg name="filepath" type="s" direction="in"/>
+    </method>
+    <method name="fileOpen">
+        <arg name="filepath" type="s" direction="in"/>
+    </method>
+    <method name="fsUmounted">
+        <type="s" direction="in"/>
+    </method>
+</node>

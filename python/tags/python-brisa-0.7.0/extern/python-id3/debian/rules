@@ -1,0 +1,55 @@
+#!/usr/bin/make -f
+
+PYTHON=python2.5
+package = python2.5-id3
+root_dir = debian/$(package)
+
+build: build-stamp
+build-stamp:
+	dh_testdir
+	$(PYTHON) setup.py build
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp
+	rm -rf build
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	
+	$(PYTHON) setup.py install --root=$(root_dir)
+	$(PYTHON) -OO -m compileall -d / -f $(root_dir)/usr/lib/$(PYTHON)/site-packages
+
+	# cleanup
+	find $(root_dir) -name "*.py" | xargs rm -rf
+	find $(root_dir) -name "*.pyc" | xargs rm -rf
+
+	find $(root_dir) -name ".svn" | xargs rm -rf
+
+binary-indep: build install
+
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installdocs
+	dh_installchangelogs
+	dh_installinit
+	dh_installdebconf
+	dh_installlogrotate
+	dh_compress
+	dh_fixperms
+
+	dh_python
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+
+.PHONY: binary binary-arch binary-indep clean

@@ -1,0 +1,25 @@
+Source: python-brisa
+Section: user/multimedia
+Priority: optional
+Maintainer: Leandro Melo de Sales <leandroal@gmail.com>
+Build-Depends: debhelper (>= 5.0.38), python2.5-dev, python-setuptools | python2.5-setuptools
+Standards-Version: 3.6.1
+
+Package: python2.5-brisa
+Section: user/multimedia
+Architecture: all
+Depends: python2.5-brisa-base, python2.5-brisa-control-point
+Provides: ${python:Provides}
+Description: Installs python-brisa related packages (base and control point)
+
+Package: python2.5-brisa-base
+Architecture: all
+Depends: python2.5, python2.5-xml | python-xml, python2.5-cherrypy3 | python-cherrypy3
+Provides: ${python:Provides}
+Description: Python-BRisa base package, contains the framework itself.
+
+Package: python2.5-brisa-control-point
+Architecture: all
+Depends: python2.5, python2.5-xml | python-xml, python2.5-cherrypy3 | python-cherrypy3, python2.5-brisa-base (>= 0.9.0)
+Provides: ${python:Provides}
+Description: Python-BRisa UPnP control point API.

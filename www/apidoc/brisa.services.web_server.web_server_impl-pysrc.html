@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>brisa.services.web_server.web_server_impl</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >BRisa UPnP Framework</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="brisa-module.html">Package&nbsp;brisa</a> ::
+        Package&nbsp;services ::
+        <a href="brisa.services.web_server-module.html">Package&nbsp;web_server</a> ::
+        Module&nbsp;web_server_impl
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="brisa.services.web_server.web_server_impl-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="brisa.services.web_server.web_server_impl-module.html">Module brisa.services.web_server.web_server_impl</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># Licensed under the MIT license</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># http://opensource.org/licenses/mit-license.php or see LICENSE file.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># Copyright 2007-2008 Brisa Team &lt;brisa-develop@garage.maemo.org&gt;</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring">""" Implements the web server singleton.</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">cherrypy</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">thread</tt> <tt class="py-keyword">import</tt> <tt class="py-name">start_new_thread</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package brisa.threading=brisa.threading-module.html"><a title="brisa.threading" class="py-name" href="#" onclick="return doclink('link-0', 'threading', 'link-0');">threading</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">Thread</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">time</tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Module brisa.utils.python.sleep=brisa.utils.python.sleep-module.html,Function brisa.utils.python.sleep.sleep()=brisa.utils.python.sleep-module.html#sleep"><a title="brisa.utils.python.sleep
+brisa.utils.python.sleep.sleep" class="py-name" href="#" onclick="return doclink('link-1', 'sleep', 'link-1');">sleep</a></tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-2" class="py-name" targets="Package brisa=brisa-module.html"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-2', 'brisa', 'link-2');">brisa</a></tt> <tt class="py-keyword">import</tt> <tt id="link-3" class="py-name" targets="Package brisa.log=brisa.log-module.html,Variable brisa.services.cds.plugin.log=brisa.services.cds.plugin-module.html#log"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-3', 'log', 'link-3');">log</a></tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-4" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-4', 'brisa', 'link-2');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Package brisa.utils=brisa.utils-module.html"><a title="brisa.utils" class="py-name" href="#" onclick="return doclink('link-5', 'utils', 'link-5');">utils</a></tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Module brisa.utils.network=brisa.utils.network-module.html"><a title="brisa.utils.network" class="py-name" href="#" onclick="return doclink('link-6', 'network', 'link-6');">network</a></tt> <tt class="py-keyword">import</tt> <tt id="link-7" class="py-name" targets="Function brisa.utils.network.parse_url()=brisa.utils.network-module.html#parse_url"><a title="brisa.utils.network.parse_url" class="py-name" href="#" onclick="return doclink('link-7', 'parse_url', 'link-7');">parse_url</a></tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-8" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-8', 'brisa', 'link-2');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-9" class="py-name"><a title="brisa.threading" class="py-name" href="#" onclick="return doclink('link-9', 'threading', 'link-0');">threading</a></tt> <tt class="py-keyword">import</tt> <tt id="link-10" class="py-name" targets="Class brisa.threading.thread_object.ThreadObject=brisa.threading.thread_object.ThreadObject-class.html"><a title="brisa.threading.thread_object.ThreadObject" class="py-name" href="#" onclick="return doclink('link-10', 'ThreadObject', 'link-10');">ThreadObject</a></tt><tt class="py-op">,</tt> <tt id="link-11" class="py-name" targets="Function brisa.threading.thread_manager.ThreadManager()=brisa.threading.thread_manager-module.html#ThreadManager"><a title="brisa.threading.thread_manager.ThreadManager" class="py-name" href="#" onclick="return doclink('link-11', 'ThreadManager', 'link-11');">ThreadManager</a></tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-12" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-12', 'brisa', 'link-2');">brisa</a></tt><tt class="py-op">.</tt><tt class="py-name">services</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Package brisa.services.web_server=brisa.services.web_server-module.html"><a title="brisa.services.web_server" class="py-name" href="#" onclick="return doclink('link-13', 'web_server', 'link-13');">web_server</a></tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Module brisa.services.web_server.static=brisa.services.web_server.static-module.html"><a title="brisa.services.web_server.static" class="py-name" href="#" onclick="return doclink('link-14', 'static', 'link-14');">static</a></tt> <tt class="py-keyword">import</tt> <tt id="link-15" class="py-name" targets="Class brisa.services.web_server.static.StaticFile=brisa.services.web_server.static.StaticFile-class.html"><a title="brisa.services.web_server.static.StaticFile" class="py-name" href="#" onclick="return doclink('link-15', 'StaticFile', 'link-15');">StaticFile</a></tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-16" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-16', 'brisa', 'link-2');">brisa</a></tt><tt class="py-op">.</tt><tt class="py-name">services</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name"><a title="brisa.services.web_server" class="py-name" href="#" onclick="return doclink('link-17', 'web_server', 'link-13');">web_server</a></tt><tt class="py-op">.</tt><tt id="link-18" class="py-name" targets="Module brisa.services.web_server.resource=brisa.services.web_server.resource-module.html"><a title="brisa.services.web_server.resource" class="py-name" href="#" onclick="return doclink('link-18', 'resource', 'link-18');">resource</a></tt> <tt class="py-keyword">import</tt> <tt id="link-19" class="py-name" targets="Class brisa.services.web_server.resource.CustomResource=brisa.services.web_server.resource.CustomResource-class.html"><a title="brisa.services.web_server.resource.CustomResource" class="py-name" href="#" onclick="return doclink('link-19', 'CustomResource', 'link-19');">CustomResource</a></tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-20" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-20', 'brisa', 'link-2');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-21" class="py-name"><a title="brisa.utils" class="py-name" href="#" onclick="return doclink('link-21', 'utils', 'link-5');">utils</a></tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="brisa.utils.network" class="py-name" href="#" onclick="return doclink('link-22', 'network', 'link-6');">network</a></tt> <tt class="py-keyword">import</tt> <tt id="link-23" class="py-name" targets="Function brisa.utils.network.get_active_ifaces()=brisa.utils.network-module.html#get_active_ifaces"><a title="brisa.utils.network.get_active_ifaces" class="py-name" href="#" onclick="return doclink('link-23', 'get_active_ifaces', 'link-23');">get_active_ifaces</a></tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-24" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-24', 'brisa', 'link-2');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-25" class="py-name"><a title="brisa.utils" class="py-name" href="#" onclick="return doclink('link-25', 'utils', 'link-5');">utils</a></tt><tt class="py-op">.</tt><tt id="link-26" class="py-name"><a title="brisa.utils.network" class="py-name" href="#" onclick="return doclink('link-26', 'network', 'link-6');">network</a></tt> <tt class="py-keyword">import</tt> <tt id="link-27" class="py-name" targets="Function brisa.utils.network.get_ip_address()=brisa.utils.network-module.html#get_ip_address"><a title="brisa.utils.network.get_ip_address" class="py-name" href="#" onclick="return doclink('link-27', 'get_ip_address', 'link-27');">get_ip_address</a></tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"> </tt>
+<a name="_BrisaWebServer"></a><div id="_BrisaWebServer-def"><a name="L23"></a><tt class="py-lineno"> 23</tt> <a class="py-toggle" href="#" id="_BrisaWebServer-toggle" onclick="return toggle('_BrisaWebServer');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="brisa.services.web_server.web_server_impl._BrisaWebServer-class.html">_BrisaWebServer</a><tt class="py-op">(</tt><tt class="py-base-class">ThreadObject</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_BrisaWebServer-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="_BrisaWebServer-expanded"><a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"> </tt>
+<a name="_BrisaWebServer.__init__"></a><div id="_BrisaWebServer.__init__-def"><a name="L25"></a><tt class="py-lineno"> 25</tt> <a class="py-toggle" href="#" id="_BrisaWebServer.__init__-toggle" onclick="return toggle('_BrisaWebServer.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_BrisaWebServer.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_BrisaWebServer.__init__-expanded"><a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line">        <tt class="py-docstring">""" This class may not be constructed manually. Instead, use</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-docstring">        BrisaWebServer() factory method for retrieving a reference to</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-docstring">        the singleton instance. """</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">        <tt id="link-28" class="py-name"><a title="brisa.threading.thread_object.ThreadObject" class="py-name" href="#" onclick="return doclink('link-28', 'ThreadObject', 'link-10');">ThreadObject</a></tt><tt class="py-op">.</tt><tt id="link-29" class="py-name" targets="Method brisa.config.BrisaConf.__init__()=brisa.config.BrisaConf-class.html#__init__,Method brisa.control_point.control_point.ControlPoint.__init__()=brisa.control_point.control_point.ControlPoint-class.html#__init__,Method brisa.control_point.event.EventListener.__init__()=brisa.control_point.event.EventListener-class.html#__init__,Method brisa.control_point.event.EventListenerServer.__init__()=brisa.control_point.event.EventListenerServer-class.html#__init__,Method brisa.services.cds.content_directory.ContentDirectory.__init__()=brisa.services.cds.content_directory.ContentDirectory-class.html#__init__,Method brisa.services.cds.plugin.MemContainer.__init__()=brisa.services.cds.plugin.MemContainer-class.html#__init__,Method brisa.services.cds.plugin.MemDIDLContainer.__init__()=brisa.services.cds.plugin.MemDIDLContainer-class.html#__init__,Method brisa.services.cds.plugin.MemDIDLObject.__init__()=brisa.services.cds.plugin.MemDIDLObject-class.html#__init__,Method brisa.services.cds.plugin.MemObject.__init__()=brisa.services.cds.plugin.MemObject-class.html#__init__,Method brisa.services.cds.plugin.Plugin.__init__()=brisa.services.cds.plugin.Plugin-class.html#__init__,Method brisa.services.cds.plugin.PluginLoader.__init__()=brisa.services.cds.plugin.PluginLoader-class.html#__init__,Method brisa.services.cds.plugin._PluginManager.__init__()=brisa.services.cds.plugin._PluginManager-class.html#__init__,Method brisa.services.cds.plugin._RootPlugin.__init__()=brisa.services.cds.plugin._RootPlugin-class.html#__init__,Method brisa.services.web_server.resource.Resource.__init__()=brisa.services.web_server.resource.Resource-class.html#__init__,Method brisa.services.web_server.static.Data.__init__()=brisa.services.web_server.static.Data-class.html#__init__,Method brisa.services.web_server.static.StaticFile.__init__()=brisa.services.web_server.static.StaticFile-class.html#__init__,Method brisa.services.web_server.web_server_impl._BrisaWebServer.__init__()=brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#__init__,Method brisa.threading.thread_manager._ThreadManager.__init__()=brisa.threading.thread_manager._ThreadManager-class.html#__init__,Method brisa.threading.thread_object.ThreadObject.__init__()=brisa.threading.thread_object.ThreadObject-class.html#__init__,Method brisa.threading.threaded_call.ThreadedCall.__init__()=brisa.threading.threaded_call.ThreadedCall-class.html#__init__,Method brisa.upnp.device.Device.__init__()=brisa.upnp.device.Device-class.html#__init__,Method brisa.upnp.device.DeviceIcon.__init__()=brisa.upnp.device.DeviceIcon-class.html#__init__,Method brisa.upnp.device.RootDevice.__init__()=brisa.upnp.device.RootDevice-class.html#__init__,Method brisa.upnp.didl.didl_lite.Album.__init__()=brisa.upnp.didl.didl_lite.Album-class.html#__init__,Method brisa.upnp.didl.didl_lite.AudioItem.__init__()=brisa.upnp.didl.didl_lite.AudioItem-class.html#__init__,Method brisa.upnp.didl.didl_lite.Container.__init__()=brisa.upnp.didl.didl_lite.Container-class.html#__init__,Method brisa.upnp.didl.didl_lite.Element.__init__()=brisa.upnp.didl.didl_lite.Element-class.html#__init__,Method brisa.upnp.didl.didl_lite.Genre.__init__()=brisa.upnp.didl.didl_lite.Genre-class.html#__init__,Method brisa.upnp.didl.didl_lite.Item.__init__()=brisa.upnp.didl.didl_lite.Item-class.html#__init__,Method brisa.upnp.didl.didl_lite.Movie.__init__()=brisa.upnp.didl.didl_lite.Movie-class.html#__init__,Method brisa.upnp.didl.didl_lite.MusicAlbum.__init__()=brisa.upnp.didl.didl_lite.MusicAlbum-class.html#__init__,Method brisa.upnp.didl.didl_lite.MusicTrack.__init__()=brisa.upnp.didl.didl_lite.MusicTrack-class.html#__init__,Method brisa.upnp.didl.didl_lite.MusicVideoClip.__init__()=brisa.upnp.didl.didl_lite.MusicVideoClip-class.html#__init__,Method brisa.upnp.didl.didl_lite.Object.__init__()=brisa.upnp.didl.didl_lite.Object-class.html#__init__,Method brisa.upnp.didl.didl_lite.Person.__init__()=brisa.upnp.didl.didl_lite.Person-class.html#__init__,Method brisa.upnp.didl.didl_lite.Photo.__init__()=brisa.upnp.didl.didl_lite.Photo-class.html#__init__,Method brisa.upnp.didl.didl_lite.Resource.__init__()=brisa.upnp.didl.didl_lite.Resource-class.html#__init__,Method brisa.upnp.didl.didl_lite.VideoItem.__init__()=brisa.upnp.didl.didl_lite.VideoItem-class.html#__init__,Method brisa.upnp.message_handle.device_description_message.DeviceDescriptionMessage.__init__()=brisa.upnp.message_handle.device_description_message.DeviceDescriptionMessage-class.html#__init__,Method brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject.__init__()=brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject-class.html#__init__,Method brisa.upnp.message_handle.device_message.DeviceMessage.__init__()=brisa.upnp.message_handle.device_message.DeviceMessage-class.html#__init__,Method brisa.upnp.message_handle.device_object.DeviceObject.__init__()=brisa.upnp.message_handle.device_object.DeviceObject-class.html#__init__,Method brisa.upnp.message_handle.user_preference_description_message.UserPreferenceDescriptionMessage.__init__()=brisa.upnp.message_handle.user_preference_description_message.UserPreferenceDescriptionMessage-class.html#__init__,Method brisa.upnp.message_handle.user_preference_description_object.UserPreferenceDescriptionObject.__init__()=brisa.upnp.message_handle.user_preference_description_object.UserPreferenceDescriptionObject-class.html#__init__,Method brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage.__init__()=brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage-class.html#__init__,Method brisa.upnp.message_handle.user_profile_description_object.UserProfileDescriptionObject.__init__()=brisa.upnp.message_handle.user_profile_description_object.UserProfileDescriptionObject-class.html#__init__,Method brisa.upnp.msearch.MSearch.__init__()=brisa.upnp.msearch.MSearch-class.html#__init__,Method brisa.upnp.service.Action.__init__()=brisa.upnp.service.Action-class.html#__init__,Method brisa.upnp.service.Argument.__init__()=brisa.upnp.service.Argument-class.html#__init__,Method brisa.upnp.service.Service.__init__()=brisa.upnp.service.Service-class.html#__init__,Method brisa.upnp.service.StateVariable.__init__()=brisa.upnp.service.StateVariable-class.html#__init__,Method brisa.upnp.service.SubscribeRequest.__init__()=brisa.upnp.service.SubscribeRequest-class.html#__init__,Method brisa.upnp.service.UnsubscribeRequest.__init__()=brisa.upnp.service.UnsubscribeRequest-class.html#__init__,Method brisa.upnp.soap.HTTPError.__init__()=brisa.upnp.soap.HTTPError-class.html#__init__,Method brisa.upnp.soap.SOAPProxy.__Method.__init__()=brisa.upnp.soap.SOAPProxy.__Method-class.html#__init__,Method brisa.upnp.soap.SOAPProxy.__init__()=brisa.upnp.soap.SOAPProxy-class.html#__init__,Method brisa.upnp.ssdp.SSDPServer.__init__()=brisa.upnp.ssdp.SSDPServer-class.html#__init__,Method brisa.upnp.upnp_handler.DeviceHandler.__init__()=brisa.upnp.upnp_handler.DeviceHandler-class.html#__init__,Method brisa.upnp.upnp_publisher.ErrorCode.__init__()=brisa.upnp.upnp_publisher.ErrorCode-class.html#__init__,Method brisa.upnp.upnp_publisher.UPnPPublisher.__init__()=brisa.upnp.upnp_publisher.UPnPPublisher-class.html#__init__,Method brisa.utils.network_listeners.CannotListenError.__init__()=brisa.utils.network_listeners.CannotListenError-class.html#__init__,Method brisa.utils.network_listeners.NetworkListener.__init__()=brisa.utils.network_listeners.NetworkListener-class.html#__init__,Method brisa.utils.network_listeners.TCPListener.__init__()=brisa.utils.network_listeners.TCPListener-class.html#__init__,Method brisa.utils.network_listeners.UDPListener.__init__()=brisa.utils.network_listeners.UDPListener-class.html#__init__,Method brisa.utils.network_senders.TCPTransport.__init__()=brisa.utils.network_senders.TCPTransport-class.html#__init__,Method brisa.utils.network_senders.UDPTransport.__init__()=brisa.utils.network_senders.UDPTransport-class.html#__init__,Method brisa.utils.python.failure.Failure.__init__()=brisa.utils.python.failure.Failure-class.html#__init__,Method brisa.utils.python.looping_call.LoopingCall.__init__()=brisa.utils.python.looping_call.LoopingCall-class.html#__init__"><a title="brisa.config.BrisaConf.__init__
+brisa.control_point.control_point.ControlPoint.__init__
+brisa.control_point.event.EventListener.__init__
+brisa.control_point.event.EventListenerServer.__init__
+brisa.services.cds.content_directory.ContentDirectory.__init__
+brisa.services.cds.plugin.MemContainer.__init__
+brisa.services.cds.plugin.MemDIDLContainer.__init__
+brisa.services.cds.plugin.MemDIDLObject.__init__
+brisa.services.cds.plugin.MemObject.__init__
+brisa.services.cds.plugin.Plugin.__init__
+brisa.services.cds.plugin.PluginLoader.__init__
+brisa.services.cds.plugin._PluginManager.__init__
+brisa.services.cds.plugin._RootPlugin.__init__
+brisa.services.web_server.resource.Resource.__init__
+brisa.services.web_server.static.Data.__init__
+brisa.services.web_server.static.StaticFile.__init__
+brisa.services.web_server.web_server_impl._BrisaWebServer.__init__
+brisa.threading.thread_manager._ThreadManager.__init__
+brisa.threading.thread_object.ThreadObject.__init__
+brisa.threading.threaded_call.ThreadedCall.__init__
+brisa.upnp.device.Device.__init__
+brisa.upnp.device.DeviceIcon.__init__
+brisa.upnp.device.RootDevice.__init__
+brisa.upnp.didl.didl_lite.Album.__init__
+brisa.upnp.didl.didl_lite.AudioItem.__init__
+brisa.upnp.didl.didl_lite.Container.__init__
+brisa.upnp.didl.didl_lite.Element.__init__
+brisa.upnp.didl.didl_lite.Genre.__init__
+brisa.upnp.didl.didl_lite.Item.__init__
+brisa.upnp.didl.didl_lite.Movie.__init__
+brisa.upnp.didl.didl_lite.MusicAlbum.__init__
+brisa.upnp.didl.didl_lite.MusicTrack.__init__
+brisa.upnp.didl.didl_lite.MusicVideoClip.__init__
+brisa.upnp.didl.didl_lite.Object.__init__
+brisa.upnp.didl.didl_lite.Person.__init__
+brisa.upnp.didl.didl_lite.Photo.__init__
+brisa.upnp.didl.didl_lite.Resource.__init__
+brisa.upnp.didl.didl_lite.VideoItem.__init__
+brisa.upnp.message_handle.device_description_message.DeviceDescriptionMessage.__init__
+brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject.__init__
+brisa.upnp.message_handle.device_message.DeviceMessage.__init__
+brisa.upnp.message_handle.device_object.DeviceObject.__init__
+brisa.upnp.message_handle.user_preference_description_message.UserPreferenceDescriptionMessage.__init__
+brisa.upnp.message_handle.user_preference_description_object.UserPreferenceDescriptionObject.__init__
+brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage.__init__
+brisa.upnp.message_handle.user_profile_description_object.UserProfileDescriptionObject.__init__
+brisa.upnp.msearch.MSearch.__init__
+brisa.upnp.service.Action.__init__
+brisa.upnp.service.Argument.__init__
+brisa.upnp.service.Service.__init__
+brisa.upnp.service.StateVariable.__init__
+brisa.upnp.service.SubscribeRequest.__init__
+brisa.upnp.service.UnsubscribeRequest.__init__
+brisa.upnp.soap.HTTPError.__init__
+brisa.upnp.soap.SOAPProxy.__Method.__init__
+brisa.upnp.soap.SOAPProxy.__init__
+brisa.upnp.ssdp.SSDPServer.__init__
+brisa.upnp.upnp_handler.DeviceHandler.__init__
+brisa.upnp.upnp_publisher.ErrorCode.__init__
+brisa.upnp.upnp_publisher.UPnPPublisher.__init__
+brisa.utils.network_listeners.CannotListenError.__init__
+brisa.utils.network_listeners.NetworkListener.__init__
+brisa.utils.network_listeners.TCPListener.__init__
+brisa.utils.network_listeners.UDPListener.__init__
+brisa.utils.network_senders.TCPTransport.__init__
+brisa.utils.network_senders.UDPTransport.__init__
+brisa.utils.python.failure.Failure.__init__
+brisa.utils.python.looping_call.LoopingCall.__init__" class="py-name" href="#" onclick="return doclink('link-29', '__init__', 'link-29');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">        <tt class="py-comment"># Root dir</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_root_dir</tt> <tt class="py-op">=</tt> <tt id="link-30" class="py-name"><a title="brisa.services.web_server.resource.CustomResource" class="py-name" href="#" onclick="return doclink('link-30', 'CustomResource', 'link-19');">CustomResource</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_root_dir</tt><tt class="py-op">.</tt><tt class="py-name">is_root</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_root_dir</tt><tt class="py-op">.</tt><tt id="link-31" class="py-name" targets="Variable brisa.services.web_server.static.StaticFile.exposed=brisa.services.web_server.static.StaticFile-class.html#exposed"><a title="brisa.services.web_server.static.StaticFile.exposed" class="py-name" href="#" onclick="return doclink('link-31', 'exposed', 'link-31');">exposed</a></tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">        <tt class="py-comment"># Default listen url: localhost:7777</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_listen_port</tt> <tt class="py-op">=</tt> <tt class="py-number">7777</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">        <tt class="py-name">ifaces</tt> <tt class="py-op">=</tt> <tt id="link-32" class="py-name"><a title="brisa.utils.network.get_active_ifaces" class="py-name" href="#" onclick="return doclink('link-32', 'get_active_ifaces', 'link-23');">get_active_ifaces</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">ifaces</tt><tt class="py-op">:</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_listen_host</tt> <tt class="py-op">=</tt> <tt id="link-33" class="py-name"><a title="brisa.utils.network.get_ip_address" class="py-name" href="#" onclick="return doclink('link-33', 'get_ip_address', 'link-27');">get_ip_address</a></tt><tt class="py-op">(</tt><tt class="py-name">ifaces</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_listen_host</tt> <tt class="py-op">=</tt> <tt class="py-string">'localhost'</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_listen_url</tt> <tt class="py-op">=</tt> <tt class="py-string">'http://%s:%d'</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_listen_host</tt><tt class="py-op">,</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">                                             <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_listen_port</tt><tt class="py-op">)</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_daemon</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+</div><a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"> </tt>
+<a name="_BrisaWebServer.__del__"></a><div id="_BrisaWebServer.__del__-def"><a name="L47"></a><tt class="py-lineno"> 47</tt> <a class="py-toggle" href="#" id="_BrisaWebServer.__del__-toggle" onclick="return toggle('_BrisaWebServer.__del__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#__del__">__del__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_BrisaWebServer.__del__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_BrisaWebServer.__del__-expanded"><a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-docstring">""" Called in the end of the execution. ThreadManager calls all stop</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-docstring">        methods from ThreadObjects registered and removes them from its list,</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"><tt class="py-docstring">        resulting in this call. """</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"> </tt>
+<a name="_BrisaWebServer.get_host"></a><div id="_BrisaWebServer.get_host-def"><a name="L53"></a><tt class="py-lineno"> 53</tt> <a class="py-toggle" href="#" id="_BrisaWebServer.get_host-toggle" onclick="return toggle('_BrisaWebServer.get_host');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#get_host">get_host</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_BrisaWebServer.get_host-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_BrisaWebServer.get_host-expanded"><a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_listen_host</tt> </tt>
+</div><a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"> </tt>
+<a name="_BrisaWebServer.get_port"></a><div id="_BrisaWebServer.get_port-def"><a name="L56"></a><tt class="py-lineno"> 56</tt> <a class="py-toggle" href="#" id="_BrisaWebServer.get_port-toggle" onclick="return toggle('_BrisaWebServer.get_port');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#get_port">get_port</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_BrisaWebServer.get_port-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_BrisaWebServer.get_port-expanded"><a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_listen_port</tt> </tt>
+</div><a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"> </tt>
+<a name="_BrisaWebServer._get_listen_url"></a><div id="_BrisaWebServer._get_listen_url-def"><a name="L59"></a><tt class="py-lineno"> 59</tt> <a class="py-toggle" href="#" id="_BrisaWebServer._get_listen_url-toggle" onclick="return toggle('_BrisaWebServer._get_listen_url');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#_get_listen_url">_get_listen_url</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_BrisaWebServer._get_listen_url-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_BrisaWebServer._get_listen_url-expanded"><a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_listen_url</tt> </tt>
+</div><a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"> </tt>
+<a name="_BrisaWebServer._set_listen_url"></a><div id="_BrisaWebServer._set_listen_url-def"><a name="L62"></a><tt class="py-lineno"> 62</tt> <a class="py-toggle" href="#" id="_BrisaWebServer._set_listen_url-toggle" onclick="return toggle('_BrisaWebServer._set_listen_url');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#_set_listen_url">_set_listen_url</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">url</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_BrisaWebServer._set_listen_url-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_BrisaWebServer._set_listen_url-expanded"><a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">        <tt class="py-name">u</tt> <tt class="py-op">=</tt> <tt id="link-34" class="py-name"><a title="brisa.utils.network.parse_url" class="py-name" href="#" onclick="return doclink('link-34', 'parse_url', 'link-7');">parse_url</a></tt><tt class="py-op">(</tt><tt class="py-name">url</tt><tt class="py-op">)</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_listen_port</tt> <tt class="py-op">=</tt> <tt class="py-name">u</tt><tt class="py-op">.</tt><tt class="py-name">port</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_listen_host</tt> <tt class="py-op">=</tt> <tt class="py-name">u</tt><tt class="py-op">.</tt><tt class="py-name">hostname</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_listen_url</tt> <tt class="py-op">=</tt> <tt class="py-name">url</tt> </tt>
+</div><a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"> </tt>
+<a name="_BrisaWebServer._get_root_dir"></a><div id="_BrisaWebServer._get_root_dir-def"><a name="L68"></a><tt class="py-lineno"> 68</tt> <a class="py-toggle" href="#" id="_BrisaWebServer._get_root_dir-toggle" onclick="return toggle('_BrisaWebServer._get_root_dir');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#_get_root_dir">_get_root_dir</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_BrisaWebServer._get_root_dir-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_BrisaWebServer._get_root_dir-expanded"><a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_root_dir</tt> </tt>
+</div><a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"> </tt>
+<a name="_BrisaWebServer._set_root_dir"></a><div id="_BrisaWebServer._set_root_dir-def"><a name="L71"></a><tt class="py-lineno"> 71</tt> <a class="py-toggle" href="#" id="_BrisaWebServer._set_root_dir-toggle" onclick="return toggle('_BrisaWebServer._set_root_dir');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#_set_root_dir">_set_root_dir</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">r</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_BrisaWebServer._set_root_dir-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_BrisaWebServer._set_root_dir-expanded"><a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">        <tt class="py-comment"># If you're setting this then you really know what you're doing.</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_root_dir</tt> <tt class="py-op">=</tt> <tt class="py-name">r</tt> </tt>
+</div><a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">    <tt id="link-35" class="py-name" targets="Variable brisa.services.web_server.web_server_impl._BrisaWebServer.listen_url=brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#listen_url"><a title="brisa.services.web_server.web_server_impl._BrisaWebServer.listen_url" class="py-name" href="#" onclick="return doclink('link-35', 'listen_url', 'link-35');">listen_url</a></tt> <tt class="py-op">=</tt> <tt class="py-name">property</tt><tt class="py-op">(</tt><tt id="link-36" class="py-name" targets="Method brisa.services.web_server.web_server_impl._BrisaWebServer._get_listen_url()=brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#_get_listen_url"><a title="brisa.services.web_server.web_server_impl._BrisaWebServer._get_listen_url" class="py-name" href="#" onclick="return doclink('link-36', '_get_listen_url', 'link-36');">_get_listen_url</a></tt><tt class="py-op">,</tt> <tt id="link-37" class="py-name" targets="Method brisa.services.web_server.web_server_impl._BrisaWebServer._set_listen_url()=brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#_set_listen_url"><a title="brisa.services.web_server.web_server_impl._BrisaWebServer._set_listen_url" class="py-name" href="#" onclick="return doclink('link-37', '_set_listen_url', 'link-37');">_set_listen_url</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">    <tt id="link-38" class="py-name" targets="Variable brisa.services.web_server.web_server_impl._BrisaWebServer.root_dir=brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#root_dir"><a title="brisa.services.web_server.web_server_impl._BrisaWebServer.root_dir" class="py-name" href="#" onclick="return doclink('link-38', 'root_dir', 'link-38');">root_dir</a></tt> <tt class="py-op">=</tt> <tt class="py-name">property</tt><tt class="py-op">(</tt><tt id="link-39" class="py-name" targets="Method brisa.services.web_server.web_server_impl._BrisaWebServer._get_root_dir()=brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#_get_root_dir"><a title="brisa.services.web_server.web_server_impl._BrisaWebServer._get_root_dir" class="py-name" href="#" onclick="return doclink('link-39', '_get_root_dir', 'link-39');">_get_root_dir</a></tt><tt class="py-op">,</tt> <tt id="link-40" class="py-name" targets="Method brisa.services.web_server.web_server_impl._BrisaWebServer._set_root_dir()=brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#_set_root_dir"><a title="brisa.services.web_server.web_server_impl._BrisaWebServer._set_root_dir" class="py-name" href="#" onclick="return doclink('link-40', '_set_root_dir', 'link-40');">_set_root_dir</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"> </tt>
+<a name="_BrisaWebServer.add_static_file"></a><div id="_BrisaWebServer.add_static_file-def"><a name="L78"></a><tt class="py-lineno"> 78</tt> <a class="py-toggle" href="#" id="_BrisaWebServer.add_static_file-toggle" onclick="return toggle('_BrisaWebServer.add_static_file');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#add_static_file">add_static_file</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">,</tt> <tt class="py-param">static_file</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_BrisaWebServer.add_static_file-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_BrisaWebServer.add_static_file-expanded"><a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-docstring">""" Adds a static file to server's tree """</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">static_file</tt><tt class="py-op">:</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_root_dir</tt><tt class="py-op">.</tt><tt id="link-41" class="py-name" targets="Method brisa.services.web_server.resource.Resource.add_static_file()=brisa.services.web_server.resource.Resource-class.html#add_static_file,Method brisa.services.web_server.web_server_impl._BrisaWebServer.add_static_file()=brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#add_static_file"><a title="brisa.services.web_server.resource.Resource.add_static_file
+brisa.services.web_server.web_server_impl._BrisaWebServer.add_static_file" class="py-name" href="#" onclick="return doclink('link-41', 'add_static_file', 'link-41');">add_static_file</a></tt><tt class="py-op">(</tt><tt id="link-42" class="py-name" targets="Variable brisa.services.cds.plugin.Plugin.name=brisa.services.cds.plugin.Plugin-class.html#name,Variable brisa.services.cds.plugin._RootPlugin.name=brisa.services.cds.plugin._RootPlugin-class.html#name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-42', 'name', 'link-42');">name</a></tt><tt class="py-op">,</tt> <tt class="py-name">static_file</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"> </tt>
+<a name="_BrisaWebServer.add_resource"></a><div id="_BrisaWebServer.add_resource-def"><a name="L83"></a><tt class="py-lineno"> 83</tt> <a class="py-toggle" href="#" id="_BrisaWebServer.add_resource-toggle" onclick="return toggle('_BrisaWebServer.add_resource');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#add_resource">add_resource</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">,</tt> <tt class="py-param">resource</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_BrisaWebServer.add_resource-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_BrisaWebServer.add_resource-expanded"><a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">        <tt class="py-docstring">""" Adds a resource to server's tree """</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt id="link-43" class="py-name"><a title="brisa.services.web_server.resource" class="py-name" href="#" onclick="return doclink('link-43', 'resource', 'link-18');">resource</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_root_dir</tt><tt class="py-op">.</tt><tt id="link-44" class="py-name" targets="Method brisa.services.web_server.resource.Resource.add_resource()=brisa.services.web_server.resource.Resource-class.html#add_resource,Method brisa.services.web_server.web_server_impl._BrisaWebServer.add_resource()=brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#add_resource"><a title="brisa.services.web_server.resource.Resource.add_resource
+brisa.services.web_server.web_server_impl._BrisaWebServer.add_resource" class="py-name" href="#" onclick="return doclink('link-44', 'add_resource', 'link-44');">add_resource</a></tt><tt class="py-op">(</tt><tt id="link-45" class="py-name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-45', 'name', 'link-42');">name</a></tt><tt class="py-op">,</tt> <tt id="link-46" class="py-name"><a title="brisa.services.web_server.resource" class="py-name" href="#" onclick="return doclink('link-46', 'resource', 'link-18');">resource</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"> </tt>
+<a name="_BrisaWebServer.remove_resource"></a><div id="_BrisaWebServer.remove_resource-def"><a name="L88"></a><tt class="py-lineno"> 88</tt> <a class="py-toggle" href="#" id="_BrisaWebServer.remove_resource-toggle" onclick="return toggle('_BrisaWebServer.remove_resource');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#remove_resource">remove_resource</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_BrisaWebServer.remove_resource-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_BrisaWebServer.remove_resource-expanded"><a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">        <tt class="py-docstring">""" Removes a resource from the tree during execution """</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">hasattr</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_root_dir</tt><tt class="py-op">,</tt> <tt id="link-47" class="py-name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-47', 'name', 'link-42');">name</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">            <tt class="py-name">delattr</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_root_dir</tt><tt class="py-op">,</tt> <tt id="link-48" class="py-name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-48', 'name', 'link-42');">name</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"> </tt>
+<a name="_BrisaWebServer.run"></a><div id="_BrisaWebServer.run-def"><a name="L93"></a><tt class="py-lineno"> 93</tt> <a class="py-toggle" href="#" id="_BrisaWebServer.run-toggle" onclick="return toggle('_BrisaWebServer.run');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#run">run</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_BrisaWebServer.run-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_BrisaWebServer.run-expanded"><a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">        <tt class="py-docstring">""" Run method called when start() is called. Invoking this method</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt class="py-docstring">        directly may cause unexpected results (blocking). Instead, invoke</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"><tt class="py-docstring">        start(). """</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-49" class="py-name" targets="Method brisa.services.web_server.web_server_impl._BrisaWebServer._mount_tree()=brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#_mount_tree"><a title="brisa.services.web_server.web_server_impl._BrisaWebServer._mount_tree" class="py-name" href="#" onclick="return doclink('link-49', '_mount_tree', 'link-49');">_mount_tree</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-50" class="py-name" targets="Method brisa.services.web_server.web_server_impl._BrisaWebServer._configure()=brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#_configure"><a title="brisa.services.web_server.web_server_impl._BrisaWebServer._configure" class="py-name" href="#" onclick="return doclink('link-50', '_configure', 'link-50');">_configure</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">daemon</tt> <tt class="py-op">==</tt> <tt class="py-name">True</tt><tt class="py-op">:</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">            <tt class="py-name">start_new_thread</tt><tt class="py-op">(</tt><tt class="py-name">cherrypy</tt><tt class="py-op">.</tt><tt class="py-name">quickstart</tt><tt class="py-op">,</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_app</tt><tt class="py-op">,</tt> <tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">            <tt class="py-name">cherrypy</tt><tt class="py-op">.</tt><tt class="py-name">engine</tt><tt class="py-op">.</tt><tt id="link-51" class="py-name" targets="Method brisa.services.cds.content_directory.ContentDirectory.start()=brisa.services.cds.content_directory.ContentDirectory-class.html#start,Method brisa.threading.thread_object.ThreadObject.start()=brisa.threading.thread_object.ThreadObject-class.html#start,Method brisa.upnp.msearch.MSearch.start()=brisa.upnp.msearch.MSearch-class.html#start,Method brisa.upnp.ssdp.SSDPServer.start()=brisa.upnp.ssdp.SSDPServer-class.html#start,Method brisa.utils.python.looping_call.LoopingCall.start()=brisa.utils.python.looping_call.LoopingCall-class.html#start"><a title="brisa.services.cds.content_directory.ContentDirectory.start
+brisa.threading.thread_object.ThreadObject.start
+brisa.upnp.msearch.MSearch.start
+brisa.upnp.ssdp.SSDPServer.start
+brisa.utils.python.looping_call.LoopingCall.start" class="py-name" href="#" onclick="return doclink('link-51', 'start', 'link-51');">start</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"> </tt>
+<a name="_BrisaWebServer.prepare_to_stop"></a><div id="_BrisaWebServer.prepare_to_stop-def"><a name="L104"></a><tt class="py-lineno">104</tt> <a class="py-toggle" href="#" id="_BrisaWebServer.prepare_to_stop-toggle" onclick="return toggle('_BrisaWebServer.prepare_to_stop');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#prepare_to_stop">prepare_to_stop</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_BrisaWebServer.prepare_to_stop-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_BrisaWebServer.prepare_to_stop-expanded"><a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">        <tt class="py-docstring">""" Prepares to stop ThreadObject by stopping the server """</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">        <tt class="py-name">cherrypy</tt><tt class="py-op">.</tt><tt class="py-name">engine</tt><tt class="py-op">.</tt><tt id="link-52" class="py-name" targets="Method brisa.control_point.control_point_av.ControlPointAV.stop()=brisa.control_point.control_point_av.ControlPointAV-class.html#stop,Method brisa.control_point.event.EventListenerServer.stop()=brisa.control_point.event.EventListenerServer-class.html#stop,Method brisa.threading.thread_object.ThreadObject.stop()=brisa.threading.thread_object.ThreadObject-class.html#stop,Method brisa.upnp.msearch.MSearch.stop()=brisa.upnp.msearch.MSearch-class.html#stop,Method brisa.upnp.ssdp.SSDPServer.stop()=brisa.upnp.ssdp.SSDPServer-class.html#stop,Method brisa.utils.python.looping_call.LoopingCall.stop()=brisa.utils.python.looping_call.LoopingCall-class.html#stop"><a title="brisa.control_point.control_point_av.ControlPointAV.stop
+brisa.control_point.event.EventListenerServer.stop
+brisa.threading.thread_object.ThreadObject.stop
+brisa.upnp.msearch.MSearch.stop
+brisa.upnp.ssdp.SSDPServer.stop
+brisa.utils.python.looping_call.LoopingCall.stop" class="py-name" href="#" onclick="return doclink('link-52', 'stop', 'link-52');">stop</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"> </tt>
+<a name="_BrisaWebServer.prepare_to_start"></a><div id="_BrisaWebServer.prepare_to_start-def"><a name="L108"></a><tt class="py-lineno">108</tt> <a class="py-toggle" href="#" id="_BrisaWebServer.prepare_to_start-toggle" onclick="return toggle('_BrisaWebServer.prepare_to_start');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#prepare_to_start">prepare_to_start</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">daemon</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_BrisaWebServer.prepare_to_start-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_BrisaWebServer.prepare_to_start-expanded"><a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">daemon</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+</div><a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"> </tt>
+<a name="_BrisaWebServer._mount_tree"></a><div id="_BrisaWebServer._mount_tree-def"><a name="L111"></a><tt class="py-lineno">111</tt> <a class="py-toggle" href="#" id="_BrisaWebServer._mount_tree-toggle" onclick="return toggle('_BrisaWebServer._mount_tree');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#_mount_tree">_mount_tree</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_BrisaWebServer._mount_tree-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_BrisaWebServer._mount_tree-expanded"><a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">        <tt class="py-docstring">""" Mounts the tree and sets the Application object """</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_app</tt> <tt class="py-op">=</tt> <tt class="py-name">cherrypy</tt><tt class="py-op">.</tt><tt class="py-name">tree</tt><tt class="py-op">.</tt><tt class="py-name">mount</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_root_dir</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"> </tt>
+<a name="_BrisaWebServer._configure"></a><div id="_BrisaWebServer._configure-def"><a name="L115"></a><tt class="py-lineno">115</tt> <a class="py-toggle" href="#" id="_BrisaWebServer._configure-toggle" onclick="return toggle('_BrisaWebServer._configure');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#_configure">_configure</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_BrisaWebServer._configure-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_BrisaWebServer._configure-expanded"><a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">        <tt class="py-docstring">""" TODO: Add more configuration entries here as needed.</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"><tt class="py-docstring">        Embedded environment is:</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"><tt class="py-docstring">            - 'engine.autoreload_on': False</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"><tt class="py-docstring">            - 'checker.on': False</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"><tt class="py-docstring">            - 'tools.log_headers.on': False</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line"><tt class="py-docstring">            - 'request.show_tracebacks': False</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"><tt class="py-docstring">            - 'log.screen': False</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line"><tt class="py-docstring">            - 'engine.SIGHUP': None</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"><tt class="py-docstring">            - 'engine.SIGTERM': None</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">        <tt class="py-name">cherrypy</tt><tt class="py-op">.</tt><tt id="link-53" class="py-name" targets="Package brisa.config=brisa.config-module.html"><a title="brisa.config" class="py-name" href="#" onclick="return doclink('link-53', 'config', 'link-53');">config</a></tt><tt class="py-op">.</tt><tt class="py-name">update</tt><tt class="py-op">(</tt><tt class="py-op">{</tt><tt class="py-string">'environment'</tt><tt class="py-op">:</tt> <tt class="py-string">'embedded'</tt><tt class="py-op">}</tt><tt class="py-op">)</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">                         <tt class="py-comment">#'log.error_file': 'BRisa-WebServer-Errors.log'})</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">cherrypy</tt><tt class="py-op">.</tt><tt class="py-name">server</tt><tt class="py-op">.</tt><tt class="py-name">socket_port</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_listen_port</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">        <tt class="py-name">cherrypy</tt><tt class="py-op">.</tt><tt class="py-name">server</tt><tt class="py-op">.</tt><tt class="py-name">socket_host</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_listen_host</tt> </tt>
+</div></div><a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"><tt id="link-54" class="py-name" targets="Variable brisa.services.web_server.web_server_impl._singleton=brisa.services.web_server.web_server_impl-module.html#_singleton,Variable brisa.threading.thread_manager._singleton=brisa.threading.thread_manager-module.html#_singleton"><a title="brisa.services.web_server.web_server_impl._singleton
+brisa.threading.thread_manager._singleton" class="py-name" href="#" onclick="return doclink('link-54', '_singleton', 'link-54');">_singleton</a></tt> <tt class="py-op">=</tt> <tt id="link-55" class="py-name" targets="Class brisa.services.web_server.web_server_impl._BrisaWebServer=brisa.services.web_server.web_server_impl._BrisaWebServer-class.html"><a title="brisa.services.web_server.web_server_impl._BrisaWebServer" class="py-name" href="#" onclick="return doclink('link-55', '_BrisaWebServer', 'link-55');">_BrisaWebServer</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"> </tt>
+<a name="WebServer"></a><div id="WebServer-def"><a name="L135"></a><tt class="py-lineno">135</tt> <a class="py-toggle" href="#" id="WebServer-toggle" onclick="return toggle('WebServer');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.web_server.web_server_impl-module.html#WebServer">WebServer</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WebServer-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="WebServer-expanded"><a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">    <tt class="py-docstring">""" Returns the instance of BRisa's Web Server.</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-56" class="py-name"><a title="brisa.services.web_server.web_server_impl._singleton
+brisa.threading.thread_manager._singleton" class="py-name" href="#" onclick="return doclink('link-56', '_singleton', 'link-54');">_singleton</a></tt> </tt>
+</div><a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >BRisa UPnP Framework</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Sat Oct 11 01:30:28 2008
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

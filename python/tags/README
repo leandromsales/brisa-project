@@ -1,0 +1,32 @@
+Notes
+
+This section contains notes and some information about the tags.
+
+* python-brisa from 0.0 to 0.2 weren't tagged.
+* python-brisa from 0.3 to 0.7.1 did include our media server and media renderer
+applications.
+* brisa-configuration-tool applies ONLY to python-brisa 0.7.*
+* python-brisa from 0.8 on is only about the UPnP framework. From this point on
+applications will be deployed separatelly from the framework, starting at
+version 0.1.0. This means that brisa-media-*-0.1.0 packages will work with
+python-brisa >= 0.8.
+
+
+Release Sets
+
+This section puts together tags which apply with each other. For example, the
+version of media-server runs with python-brisa 0.8.0 is 0.1.0. Useful for crazy
+people that want to use old software for some reason :-).
+
+python-brisa-0.8.0 and brisa-media-*-0.1.0:
+ * brisa-media-tools: tools for controlling, configuring and tuning brisa media
+   server and media renderer
+ * brisa-media-server: sharing media over your network
+ * brisa-media-renderer: playing media from a media server
+ * python-brisa: UPnP framework
+
+python-brisa-0.7.0, python-brisa-0.7.1, brisa-configuration-tool-0.1.0:
+ * brisa-configuration-tool: configuration tool for media server,
+   also configures some things of the framework
+ * python-brisa-0.7.0: UPnP framework and applications
+ * python-brisa-0.7.1: UPnP framework and applications

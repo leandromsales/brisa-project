@@ -1,0 +1,4 @@
+brisa-userprofile-server 0.1.0, 2009-02-02 (development)
+------------------------------
+- added debian packaging
+- TODO: remove slqobject, twisted, cleanup everything

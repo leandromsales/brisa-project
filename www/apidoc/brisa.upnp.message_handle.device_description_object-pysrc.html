@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>brisa.upnp.message_handle.device_description_object</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >BRisa UPnP Framework</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="brisa-module.html">Package&nbsp;brisa</a> ::
+        <a href="brisa.upnp-module.html">Package&nbsp;upnp</a> ::
+        <a href="brisa.upnp.message_handle-module.html">Package&nbsp;message_handle</a> ::
+        Module&nbsp;device_description_object
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="brisa.upnp.message_handle.device_description_object-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="brisa.upnp.message_handle.device_description_object-module.html">Module brisa.upnp.message_handle.device_description_object</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment"># Licensed under the MIT license</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># http://opensource.org/licenses/mit-license.php</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># Copyright 2007-2008 Brisa Team &lt;brisa-develop@garage.maemo.org&gt;</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-docstring">""" A higher level interface of DeviceObject that abstracts the user from using</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-docstring">DeviceObject directly.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">xml</tt><tt class="py-op">.</tt><tt class="py-name">etree</tt><tt class="py-op">.</tt><tt class="py-name">ElementTree</tt> <tt class="py-keyword">import</tt> <tt class="py-name">ElementTree</tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package brisa=brisa-module.html"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-0', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Package brisa.upnp=brisa.upnp-module.html"><a title="brisa.upnp" class="py-name" href="#" onclick="return doclink('link-1', 'upnp', 'link-1');">upnp</a></tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Package brisa.upnp.message_handle=brisa.upnp.message_handle-module.html"><a title="brisa.upnp.message_handle" class="py-name" href="#" onclick="return doclink('link-2', 'message_handle', 'link-2');">message_handle</a></tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Module brisa.upnp.message_handle.device_object=brisa.upnp.message_handle.device_object-module.html"><a title="brisa.upnp.message_handle.device_object" class="py-name" href="#" onclick="return doclink('link-3', 'device_object', 'link-3');">device_object</a></tt> <tt class="py-keyword">import</tt> <tt id="link-4" class="py-name" targets="Class brisa.upnp.message_handle.device_object.DeviceObject=brisa.upnp.message_handle.device_object.DeviceObject-class.html"><a title="brisa.upnp.message_handle.device_object.DeviceObject" class="py-name" href="#" onclick="return doclink('link-4', 'DeviceObject', 'link-4');">DeviceObject</a></tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-5" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-5', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Package brisa.utils=brisa.utils-module.html"><a title="brisa.utils" class="py-name" href="#" onclick="return doclink('link-6', 'utils', 'link-6');">utils</a></tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Module brisa.utils.network=brisa.utils.network-module.html"><a title="brisa.utils.network" class="py-name" href="#" onclick="return doclink('link-7', 'network', 'link-7');">network</a></tt> <tt class="py-keyword">import</tt> <tt id="link-8" class="py-name" targets="Function brisa.utils.network.url_fetch()=brisa.utils.network-module.html#url_fetch"><a title="brisa.utils.network.url_fetch" class="py-name" href="#" onclick="return doclink('link-8', 'url_fetch', 'link-8');">url_fetch</a></tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-9" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-9', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Package brisa.threading=brisa.threading-module.html"><a title="brisa.threading" class="py-name" href="#" onclick="return doclink('link-10', 'threading', 'link-10');">threading</a></tt> <tt class="py-keyword">import</tt> <tt id="link-11" class="py-name" targets="Function brisa.threading.run_async_call()=brisa.threading-module.html#run_async_call"><a title="brisa.threading.run_async_call" class="py-name" href="#" onclick="return doclink('link-11', 'run_async_call', 'link-11');">run_async_call</a></tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-12" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-12', 'brisa', 'link-0');">brisa</a></tt> <tt class="py-keyword">import</tt> <tt id="link-13" class="py-name" targets="Package brisa.log=brisa.log-module.html,Variable brisa.services.cds.plugin.log=brisa.services.cds.plugin-module.html#log"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-13', 'log', 'link-13');">log</a></tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"> </tt>
+<a name="DeviceDescriptionObject"></a><div id="DeviceDescriptionObject-def"><a name="L17"></a><tt class="py-lineno">17</tt> <a class="py-toggle" href="#" id="DeviceDescriptionObject-toggle" onclick="return toggle('DeviceDescriptionObject');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject-class.html">DeviceDescriptionObject</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DeviceDescriptionObject-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="DeviceDescriptionObject-expanded"><a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"> </tt>
+<a name="DeviceDescriptionObject.__init__"></a><div id="DeviceDescriptionObject.__init__-def"><a name="L19"></a><tt class="py-lineno">19</tt> <a class="py-toggle" href="#" id="DeviceDescriptionObject.__init__-toggle" onclick="return toggle('DeviceDescriptionObject.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">location</tt><tt class="py-op">,</tt> <tt class="py-param">filename</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DeviceDescriptionObject.__init__-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="DeviceDescriptionObject.__init__-expanded"><a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">location</tt> <tt class="py-op">=</tt> <tt class="py-name">location</tt> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Variable brisa.log.filename=brisa.log-module.html#filename"><a title="brisa.log.filename" class="py-name" href="#" onclick="return doclink('link-14', 'filename', 'link-14');">filename</a></tt> <tt class="py-op">=</tt> <tt id="link-15" class="py-name"><a title="brisa.log.filename" class="py-name" href="#" onclick="return doclink('link-15', 'filename', 'link-14');">filename</a></tt> </tt>
+</div><a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"> </tt>
+<a name="DeviceDescriptionObject.to_object"></a><div id="DeviceDescriptionObject.to_object-def"><a name="L23"></a><tt class="py-lineno">23</tt> <a class="py-toggle" href="#" id="DeviceDescriptionObject.to_object-toggle" onclick="return toggle('DeviceDescriptionObject.to_object');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject-class.html#to_object">to_object</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DeviceDescriptionObject.to_object-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="DeviceDescriptionObject.to_object-expanded"><a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="brisa.log.filename" class="py-name" href="#" onclick="return doclink('link-16', 'filename', 'link-14');">filename</a></tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line">            <tt class="py-name">filecontent</tt> <tt class="py-op">=</tt> <tt id="link-17" class="py-name"><a title="brisa.utils.network.url_fetch" class="py-name" href="#" onclick="return doclink('link-17', 'url_fetch', 'link-8');">url_fetch</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">location</tt><tt class="py-op">)</tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">filecontent</tt><tt class="py-op">:</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line">            <tt class="py-name">tree</tt> <tt class="py-op">=</tt> <tt class="py-name">ElementTree</tt><tt class="py-op">(</tt><tt class="py-name">file</tt><tt class="py-op">=</tt><tt class="py-name">filecontent</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">getroot</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line">            <tt class="py-keyword">from</tt> <tt class="py-name">xml</tt><tt class="py-op">.</tt><tt class="py-name">etree</tt><tt class="py-op">.</tt><tt class="py-name">ElementTree</tt> <tt class="py-keyword">import</tt> <tt class="py-name">parse</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line">            <tt class="py-name">tree</tt> <tt class="py-op">=</tt> <tt class="py-name">parse</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="brisa.log.filename" class="py-name" href="#" onclick="return doclink('link-18', 'filename', 'link-14');">filename</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt id="link-19" class="py-name"><a title="brisa.upnp.message_handle.device_object.DeviceObject" class="py-name" href="#" onclick="return doclink('link-19', 'DeviceObject', 'link-4');">DeviceObject</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">location</tt><tt class="py-op">,</tt> <tt class="py-name">tree</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Method brisa.upnp.message_handle.device_object.DeviceObject.create_object()=brisa.upnp.message_handle.device_object.DeviceObject-class.html#create_object"><a title="brisa.upnp.message_handle.device_object.DeviceObject.create_object" class="py-name" href="#" onclick="return doclink('link-20', 'create_object', 'link-20');">create_object</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"> </tt>
+<a name="DeviceDescriptionObject.to_object_async"></a><div id="DeviceDescriptionObject.to_object_async-def"><a name="L35"></a><tt class="py-lineno">35</tt> <a class="py-toggle" href="#" id="DeviceDescriptionObject.to_object_async-toggle" onclick="return toggle('DeviceDescriptionObject.to_object_async');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject-class.html#to_object_async">to_object_async</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">callback</tt><tt class="py-op">,</tt> <tt class="py-param">cargo</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DeviceDescriptionObject.to_object_async-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="DeviceDescriptionObject.to_object_async-expanded"><a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Method brisa.control_point.control_point.ControlPoint.callback()=brisa.control_point.control_point.ControlPoint-class.html#callback"><a title="brisa.control_point.control_point.ControlPoint.callback" class="py-name" href="#" onclick="return doclink('link-21', 'callback', 'link-21');">callback</a></tt> <tt class="py-op">=</tt> <tt id="link-22" class="py-name"><a title="brisa.control_point.control_point.ControlPoint.callback" class="py-name" href="#" onclick="return doclink('link-22', 'callback', 'link-21');">callback</a></tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cargo</tt> <tt class="py-op">=</tt> <tt class="py-name">cargo</tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line">        <tt id="link-23" class="py-name"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-23', 'log', 'link-13');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'self.location is %s'</tt> <tt class="py-op">%</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">location</tt><tt class="py-op">)</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="brisa.log.filename" class="py-name" href="#" onclick="return doclink('link-24', 'filename', 'link-14');">filename</a></tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line">            <tt id="link-25" class="py-name"><a title="brisa.threading.run_async_call" class="py-name" href="#" onclick="return doclink('link-25', 'run_async_call', 'link-11');">run_async_call</a></tt><tt class="py-op">(</tt><tt id="link-26" class="py-name"><a title="brisa.utils.network.url_fetch" class="py-name" href="#" onclick="return doclink('link-26', 'url_fetch', 'link-8');">url_fetch</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line">                           <tt class="py-name">success_callback</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name" targets="Method brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject.to_object_async_gotdata()=brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject-class.html#to_object_async_gotdata"><a title="brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject.to_object_async_gotdata" class="py-name" href="#" onclick="return doclink('link-27', 'to_object_async_gotdata', 'link-27');">to_object_async_gotdata</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line">                           <tt class="py-name">error_callback</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name" targets="Method brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject.to_object_async_error()=brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject-class.html#to_object_async_error"><a title="brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject.to_object_async_error" class="py-name" href="#" onclick="return doclink('link-28', 'to_object_async_error', 'link-28');">to_object_async_error</a></tt><tt class="py-op">,</tt> <tt class="py-name">delay</tt><tt class="py-op">=</tt><tt class="py-number">0</tt><tt class="py-op">,</tt> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">                           <tt class="py-name">url</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">location</tt><tt class="py-op">)</tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject.to_object_async_gotdata" class="py-name" href="#" onclick="return doclink('link-29', 'to_object_async_gotdata', 'link-27');">to_object_async_gotdata</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="brisa.log.filename" class="py-name" href="#" onclick="return doclink('link-30', 'filename', 'link-14');">filename</a></tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">read</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line"> </tt>
+<a name="DeviceDescriptionObject.to_object_async_error"></a><div id="DeviceDescriptionObject.to_object_async_error-def"><a name="L48"></a><tt class="py-lineno">48</tt> <a class="py-toggle" href="#" id="DeviceDescriptionObject.to_object_async_error-toggle" onclick="return toggle('DeviceDescriptionObject.to_object_async_error');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject-class.html#to_object_async_error">to_object_async_error</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">cargo</tt><tt class="py-op">,</tt> <tt class="py-param">error</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DeviceDescriptionObject.to_object_async_error-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="DeviceDescriptionObject.to_object_async_error-expanded"><a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">        <tt id="link-31" class="py-name"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-31', 'log', 'link-13');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Error fetching %s - Error: %s"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">location</tt><tt class="py-op">,</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line">                                                     <tt class="py-name">str</tt><tt class="py-op">(</tt><tt id="link-32" class="py-name" targets="Method brisa.upnp.service.SubscribeRequest.error()=brisa.upnp.service.SubscribeRequest-class.html#error,Method brisa.upnp.service.UnsubscribeRequest.error()=brisa.upnp.service.UnsubscribeRequest-class.html#error"><a title="brisa.upnp.service.SubscribeRequest.error
+brisa.upnp.service.UnsubscribeRequest.error" class="py-name" href="#" onclick="return doclink('link-32', 'error', 'link-32');">error</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">True</tt> </tt>
+</div><a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line"> </tt>
+<a name="DeviceDescriptionObject.to_object_async_gotdata"></a><div id="DeviceDescriptionObject.to_object_async_gotdata-def"><a name="L53"></a><tt class="py-lineno">53</tt> <a class="py-toggle" href="#" id="DeviceDescriptionObject.to_object_async_gotdata-toggle" onclick="return toggle('DeviceDescriptionObject.to_object_async_gotdata');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject-class.html#to_object_async_gotdata">to_object_async_gotdata</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">fd</tt><tt class="py-op">,</tt> <tt class="py-param">cargo</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DeviceDescriptionObject.to_object_async_gotdata-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="DeviceDescriptionObject.to_object_async_gotdata-expanded"><a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">            <tt id="link-33" class="py-name"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-33', 'log', 'link-13');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'to object async got data getting tree'</tt><tt class="py-op">)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line">            <tt class="py-name">tree</tt> <tt class="py-op">=</tt> <tt class="py-name">ElementTree</tt><tt class="py-op">(</tt><tt class="py-name">file</tt><tt class="py-op">=</tt><tt class="py-name">fd</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">getroot</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line">            <tt id="link-34" class="py-name"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-34', 'log', 'link-13');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Bad device XML %s"</tt> <tt class="py-op">%</tt> <tt class="py-name">e</tt><tt class="py-op">.</tt><tt id="link-35" class="py-name" targets="Variable brisa.utils.network_listeners.SubscriptionError.message=brisa.utils.network_listeners.SubscriptionError-class.html#message"><a title="brisa.utils.network_listeners.SubscriptionError.message" class="py-name" href="#" onclick="return doclink('link-35', 'message', 'link-35');">message</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> </tt>
+<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line">        <tt class="py-name">devobj</tt> <tt class="py-op">=</tt> <tt id="link-36" class="py-name"><a title="brisa.upnp.message_handle.device_object.DeviceObject" class="py-name" href="#" onclick="return doclink('link-36', 'DeviceObject', 'link-4');">DeviceObject</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">location</tt><tt class="py-op">,</tt> <tt class="py-name">tree</tt><tt class="py-op">)</tt> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line">        <tt class="py-name">devobj</tt><tt class="py-op">.</tt><tt id="link-37" class="py-name"><a title="brisa.upnp.message_handle.device_object.DeviceObject.create_object" class="py-name" href="#" onclick="return doclink('link-37', 'create_object', 'link-20');">create_object</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-38" class="py-name" targets="Method brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject.to_object_async_gotdevice()=brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject-class.html#to_object_async_gotdevice"><a title="brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject.to_object_async_gotdevice" class="py-name" href="#" onclick="return doclink('link-38', 'to_object_async_gotdevice', 'link-38');">to_object_async_gotdevice</a></tt><tt class="py-op">(</tt><tt class="py-name">devobj</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line"> </tt>
+<a name="DeviceDescriptionObject.to_object_async_gotdevice"></a><div id="DeviceDescriptionObject.to_object_async_gotdevice-def"><a name="L64"></a><tt class="py-lineno">64</tt> <a class="py-toggle" href="#" id="DeviceDescriptionObject.to_object_async_gotdevice-toggle" onclick="return toggle('DeviceDescriptionObject.to_object_async_gotdevice');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject-class.html#to_object_async_gotdevice">to_object_async_gotdevice</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">devobj</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DeviceDescriptionObject.to_object_async_gotdevice-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="DeviceDescriptionObject.to_object_async_gotdevice-expanded"><a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name"><a title="brisa.control_point.control_point.ControlPoint.callback" class="py-name" href="#" onclick="return doclink('link-39', 'callback', 'link-21');">callback</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cargo</tt><tt class="py-op">,</tt> <tt class="py-name">devobj</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >BRisa UPnP Framework</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Sat Oct 11 01:30:28 2008
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

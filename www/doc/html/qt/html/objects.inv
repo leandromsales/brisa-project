@@ -1,0 +1,5 @@
+# Sphinx inventory version 1
+# Project: Qt BRisa UPnP framework
+# Version: 2.0
+getPort function core/network.html
+getValidIP function core/network.html

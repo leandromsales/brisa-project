@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>brisa.upnp.message_handle.user_profile_description_message</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >BRisa UPnP Framework</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="brisa-module.html">Package&nbsp;brisa</a> ::
+        <a href="brisa.upnp-module.html">Package&nbsp;upnp</a> ::
+        <a href="brisa.upnp.message_handle-module.html">Package&nbsp;message_handle</a> ::
+        Module&nbsp;user_profile_description_message
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="brisa.upnp.message_handle.user_profile_description_message-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="brisa.upnp.message_handle.user_profile_description_message-module.html">Module brisa.upnp.message_handle.user_profile_description_message</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment"># Licensed under the MIT license</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># http://opensource.org/licenses/mit-license.php</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># Copyright 2007 Brisa Team &lt;brisa-develop@garage.maemo.org&gt;</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">os</tt> <tt class="py-keyword">import</tt> <tt class="py-name">path</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">xml</tt><tt class="py-op">.</tt><tt class="py-name">etree</tt> <tt class="py-keyword">import</tt> <tt class="py-name">ElementTree</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">xml</tt><tt class="py-op">.</tt><tt class="py-name">etree</tt><tt class="py-op">.</tt><tt class="py-name">ElementTree</tt> <tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Class brisa.upnp.didl.didl_lite.Element=brisa.upnp.didl.didl_lite.Element-class.html"><a title="brisa.upnp.didl.didl_lite.Element" class="py-name" href="#" onclick="return doclink('link-0', 'Element', 'link-0');">Element</a></tt><tt class="py-op">,</tt> <tt class="py-name">SubElement</tt><tt class="py-op">,</tt> <tt class="py-name">dump</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-1" class="py-name" targets="Package brisa=brisa-module.html"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-1', 'brisa', 'link-1');">brisa</a></tt> <tt class="py-keyword">import</tt> <tt id="link-2" class="py-name" targets="Package brisa.config=brisa.config-module.html"><a title="brisa.config" class="py-name" href="#" onclick="return doclink('link-2', 'config', 'link-2');">config</a></tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-3" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-3', 'brisa', 'link-1');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Package brisa.upnp=brisa.upnp-module.html"><a title="brisa.upnp" class="py-name" href="#" onclick="return doclink('link-4', 'upnp', 'link-4');">upnp</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Module brisa.upnp.upnp_defaults=brisa.upnp.upnp_defaults-module.html"><a title="brisa.upnp.upnp_defaults" class="py-name" href="#" onclick="return doclink('link-5', 'upnp_defaults', 'link-5');">upnp_defaults</a></tt> <tt class="py-keyword">import</tt> <tt id="link-6" class="py-name" targets="Class brisa.upnp.upnp_defaults.UPnPDefaults=brisa.upnp.upnp_defaults.UPnPDefaults-class.html"><a title="brisa.upnp.upnp_defaults.UPnPDefaults" class="py-name" href="#" onclick="return doclink('link-6', 'UPnPDefaults', 'link-6');">UPnPDefaults</a></tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-7" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-7', 'brisa', 'link-1');">brisa</a></tt><tt class="py-op">.</tt><tt class="py-name">services</tt><tt class="py-op">.</tt><tt class="py-name">up_profile</tt><tt class="py-op">.</tt><tt class="py-name">persistence</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Module brisa.utils.database=brisa.utils.database-module.html"><a title="brisa.utils.database" class="py-name" href="#" onclick="return doclink('link-8', 'database', 'link-8');">database</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">User</tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"> </tt>
+<a name="UserProfileDescriptionMessage"></a><div id="UserProfileDescriptionMessage-def"><a name="L15"></a><tt class="py-lineno">15</tt> <a class="py-toggle" href="#" id="UserProfileDescriptionMessage-toggle" onclick="return toggle('UserProfileDescriptionMessage');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage-class.html">UserProfileDescriptionMessage</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="UserProfileDescriptionMessage-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="UserProfileDescriptionMessage-expanded"><a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"> </tt>
+<a name="UserProfileDescriptionMessage.__init__"></a><div id="UserProfileDescriptionMessage.__init__-def"><a name="L17"></a><tt class="py-lineno">17</tt> <a class="py-toggle" href="#" id="UserProfileDescriptionMessage.__init__-toggle" onclick="return toggle('UserProfileDescriptionMessage.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">username</tt><tt class="py-op">,</tt> <tt class="py-param">password</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="UserProfileDescriptionMessage.__init__-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="UserProfileDescriptionMessage.__init__-expanded"><a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">xml</tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line">        <tt class="py-name">id</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line">        <tt id="link-9" class="py-name" targets="Variable brisa.services.cds.plugin.Plugin.name=brisa.services.cds.plugin.Plugin-class.html#name,Variable brisa.services.cds.plugin._RootPlugin.name=brisa.services.cds.plugin._RootPlugin-class.html#name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-9', 'name', 'link-9');">name</a></tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line">        <tt class="py-name">username</tt> <tt class="py-op">=</tt> <tt class="py-name">username</tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line">        <tt class="py-name">email</tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line">        <tt class="py-name">password</tt> <tt class="py-op">=</tt> <tt class="py-name">password</tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line">        <tt id="link-10" class="py-name" targets="Variable brisa.utils.python.failure.count=brisa.utils.python.failure-module.html#count"><a title="brisa.utils.python.failure.count" class="py-name" href="#" onclick="return doclink('link-10', 'count', 'link-10');">count</a></tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line">        <tt class="py-name">user</tt> <tt class="py-op">=</tt> <tt class="py-name">User</tt><tt class="py-op">.</tt><tt class="py-name">select</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line">        <tt class="py-name">user_number</tt> <tt class="py-op">=</tt> <tt class="py-name">user</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name"><a title="brisa.utils.python.failure.count" class="py-name" href="#" onclick="return doclink('link-11', 'count', 'link-10');">count</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt id="link-12" class="py-name"><a title="brisa.utils.python.failure.count" class="py-name" href="#" onclick="return doclink('link-12', 'count', 'link-10');">count</a></tt> <tt class="py-op">&lt;=</tt> <tt class="py-name">user_number</tt><tt class="py-op">:</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">username</tt> <tt class="py-op">==</tt> <tt class="py-name">User</tt><tt class="py-op">.</tt><tt class="py-name">get</tt><tt class="py-op">(</tt><tt id="link-13" class="py-name"><a title="brisa.utils.python.failure.count" class="py-name" href="#" onclick="return doclink('link-13', 'count', 'link-10');">count</a></tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">username</tt> <tt class="py-keyword">and</tt> \ </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line">               <tt class="py-name">password</tt> <tt class="py-op">==</tt> <tt class="py-name">User</tt><tt class="py-op">.</tt><tt class="py-name">get</tt><tt class="py-op">(</tt><tt id="link-14" class="py-name"><a title="brisa.utils.python.failure.count" class="py-name" href="#" onclick="return doclink('link-14', 'count', 'link-10');">count</a></tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">password</tt><tt class="py-op">:</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line">                <tt class="py-name">id</tt> <tt class="py-op">=</tt> <tt class="py-name">User</tt><tt class="py-op">.</tt><tt class="py-name">get</tt><tt class="py-op">(</tt><tt id="link-15" class="py-name"><a title="brisa.utils.python.failure.count" class="py-name" href="#" onclick="return doclink('link-15', 'count', 'link-10');">count</a></tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">id</tt> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line">                <tt class="py-name">id</tt> <tt class="py-op">=</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">id</tt><tt class="py-op">)</tt> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line">                <tt id="link-16" class="py-name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-16', 'name', 'link-9');">name</a></tt> <tt class="py-op">=</tt> <tt class="py-name">User</tt><tt class="py-op">.</tt><tt class="py-name">get</tt><tt class="py-op">(</tt><tt id="link-17" class="py-name"><a title="brisa.utils.python.failure.count" class="py-name" href="#" onclick="return doclink('link-17', 'count', 'link-10');">count</a></tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">firstName</tt> <tt class="py-op">+</tt> <tt class="py-string">" "</tt> \ </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">                       <tt class="py-op">+</tt> <tt class="py-name">User</tt><tt class="py-op">.</tt><tt class="py-name">get</tt><tt class="py-op">(</tt><tt id="link-18" class="py-name"><a title="brisa.utils.python.failure.count" class="py-name" href="#" onclick="return doclink('link-18', 'count', 'link-10');">count</a></tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">lastName</tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">                <tt class="py-name">email</tt> <tt class="py-op">=</tt> <tt class="py-name">User</tt><tt class="py-op">.</tt><tt class="py-name">get</tt><tt class="py-op">(</tt><tt id="link-19" class="py-name"><a title="brisa.utils.python.failure.count" class="py-name" href="#" onclick="return doclink('link-19', 'count', 'link-10');">count</a></tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">email</tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line">            <tt id="link-20" class="py-name"><a title="brisa.utils.python.failure.count" class="py-name" href="#" onclick="return doclink('link-20', 'count', 'link-10');">count</a></tt> <tt class="py-op">+=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">userInfo</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">id</tt><tt class="py-op">,</tt> <tt id="link-21" class="py-name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-21', 'name', 'link-9');">name</a></tt><tt class="py-op">,</tt> <tt class="py-name">username</tt><tt class="py-op">,</tt> <tt class="py-name">email</tt><tt class="py-op">,</tt> <tt class="py-name">password</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line"> </tt>
+<a name="UserProfileDescriptionMessage.create_xml_elements"></a><div id="UserProfileDescriptionMessage.create_xml_elements-def"><a name="L42"></a><tt class="py-lineno">42</tt> <a class="py-toggle" href="#" id="UserProfileDescriptionMessage.create_xml_elements-toggle" onclick="return toggle('UserProfileDescriptionMessage.create_xml_elements');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage-class.html#create_xml_elements">create_xml_elements</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="UserProfileDescriptionMessage.create_xml_elements-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="UserProfileDescriptionMessage.create_xml_elements-expanded"><a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line"> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">xml</tt> <tt class="py-op">=</tt> <tt id="link-22" class="py-name"><a title="brisa.upnp.didl.didl_lite.Element" class="py-name" href="#" onclick="return doclink('link-22', 'Element', 'link-0');">Element</a></tt><tt class="py-op">(</tt><tt class="py-string">"root"</tt><tt class="py-op">,</tt> <tt class="py-name">xmlns</tt> <tt class="py-op">=</tt> <tt class="py-string">"urn:schemas-upnp-org:"</tt> <tt class="py-op">+</tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line">                           <tt id="link-23" class="py-name"><a title="brisa.upnp.upnp_defaults.UPnPDefaults" class="py-name" href="#" onclick="return doclink('link-23', 'UPnPDefaults', 'link-6');">UPnPDefaults</a></tt><tt class="py-op">.</tt><tt id="link-24" class="py-name" targets="Variable brisa.upnp.upnp_defaults.UPnPDefaults.SCHEMA_VERSION=brisa.upnp.upnp_defaults.UPnPDefaults-class.html#SCHEMA_VERSION"><a title="brisa.upnp.upnp_defaults.UPnPDefaults.SCHEMA_VERSION" class="py-name" href="#" onclick="return doclink('link-24', 'SCHEMA_VERSION', 'link-24');">SCHEMA_VERSION</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line"> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line">        <tt class="py-name">specVersion_element</tt> <tt class="py-op">=</tt> <tt class="py-name">SubElement</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">xml</tt><tt class="py-op">,</tt> <tt class="py-string">"specVersion"</tt><tt class="py-op">)</tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">        <tt class="py-name">element</tt> <tt class="py-op">=</tt> <tt class="py-name">SubElement</tt><tt class="py-op">(</tt><tt class="py-name">specVersion_element</tt><tt class="py-op">,</tt> <tt class="py-string">"major"</tt><tt class="py-op">)</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">        <tt class="py-name">element</tt><tt class="py-op">.</tt><tt class="py-name">text</tt> <tt class="py-op">=</tt> <tt id="link-25" class="py-name"><a title="brisa.upnp.upnp_defaults.UPnPDefaults" class="py-name" href="#" onclick="return doclink('link-25', 'UPnPDefaults', 'link-6');">UPnPDefaults</a></tt><tt class="py-op">.</tt><tt id="link-26" class="py-name" targets="Variable brisa.upnp.upnp_defaults.UPnPDefaults.SCHEMA_VERSION_MAJOR=brisa.upnp.upnp_defaults.UPnPDefaults-class.html#SCHEMA_VERSION_MAJOR"><a title="brisa.upnp.upnp_defaults.UPnPDefaults.SCHEMA_VERSION_MAJOR" class="py-name" href="#" onclick="return doclink('link-26', 'SCHEMA_VERSION_MAJOR', 'link-26');">SCHEMA_VERSION_MAJOR</a></tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line">        <tt class="py-name">element</tt> <tt class="py-op">=</tt> <tt class="py-name">SubElement</tt><tt class="py-op">(</tt><tt class="py-name">specVersion_element</tt><tt class="py-op">,</tt> <tt class="py-string">"minor"</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line">        <tt class="py-name">element</tt><tt class="py-op">.</tt><tt class="py-name">text</tt> <tt class="py-op">=</tt> <tt id="link-27" class="py-name"><a title="brisa.upnp.upnp_defaults.UPnPDefaults" class="py-name" href="#" onclick="return doclink('link-27', 'UPnPDefaults', 'link-6');">UPnPDefaults</a></tt><tt class="py-op">.</tt><tt id="link-28" class="py-name" targets="Variable brisa.upnp.upnp_defaults.UPnPDefaults.SCHEMA_VERSION_MINOR=brisa.upnp.upnp_defaults.UPnPDefaults-class.html#SCHEMA_VERSION_MINOR"><a title="brisa.upnp.upnp_defaults.UPnPDefaults.SCHEMA_VERSION_MINOR" class="py-name" href="#" onclick="return doclink('link-28', 'SCHEMA_VERSION_MINOR', 'link-28');">SCHEMA_VERSION_MINOR</a></tt> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line"> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line">        <tt class="py-name">userInfo_element</tt> <tt class="py-op">=</tt> <tt class="py-name">SubElement</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">xml</tt><tt class="py-op">,</tt> <tt class="py-string">"userInfo"</tt><tt class="py-op">)</tt> </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line">        <tt class="py-name">element</tt> <tt class="py-op">=</tt> <tt class="py-name">SubElement</tt><tt class="py-op">(</tt><tt class="py-name">userInfo_element</tt><tt class="py-op">,</tt> <tt class="py-string">"userId"</tt><tt class="py-op">)</tt> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">        <tt class="py-name">element</tt><tt class="py-op">.</tt><tt class="py-name">text</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">userInfo</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line">        <tt class="py-name">element</tt> <tt class="py-op">=</tt> <tt class="py-name">SubElement</tt><tt class="py-op">(</tt><tt class="py-name">userInfo_element</tt><tt class="py-op">,</tt> <tt class="py-string">"fullName"</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line">        <tt class="py-name">element</tt><tt class="py-op">.</tt><tt class="py-name">text</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">userInfo</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line">        <tt class="py-name">element</tt> <tt class="py-op">=</tt> <tt class="py-name">SubElement</tt><tt class="py-op">(</tt><tt class="py-name">userInfo_element</tt><tt class="py-op">,</tt> <tt class="py-string">"userName"</tt><tt class="py-op">)</tt> </tt>
+<a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line">        <tt class="py-name">element</tt><tt class="py-op">.</tt><tt class="py-name">text</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">userInfo</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt> </tt>
+<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line">        <tt class="py-name">element</tt> <tt class="py-op">=</tt> <tt class="py-name">SubElement</tt><tt class="py-op">(</tt><tt class="py-name">userInfo_element</tt><tt class="py-op">,</tt> <tt class="py-string">"email"</tt><tt class="py-op">)</tt> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line">        <tt class="py-name">element</tt><tt class="py-op">.</tt><tt class="py-name">text</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">userInfo</tt><tt class="py-op">[</tt><tt class="py-number">3</tt><tt class="py-op">]</tt> </tt>
+<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line">        <tt class="py-name">element</tt> <tt class="py-op">=</tt> <tt class="py-name">SubElement</tt><tt class="py-op">(</tt><tt class="py-name">userInfo_element</tt><tt class="py-op">,</tt> <tt class="py-string">"password"</tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line">        <tt class="py-name">element</tt><tt class="py-op">.</tt><tt class="py-name">text</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">userInfo</tt><tt class="py-op">[</tt><tt class="py-number">4</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line"> </tt>
+<a name="UserProfileDescriptionMessage.dump_xml"></a><div id="UserProfileDescriptionMessage.dump_xml-def"><a name="L65"></a><tt class="py-lineno">65</tt> <a class="py-toggle" href="#" id="UserProfileDescriptionMessage.dump_xml-toggle" onclick="return toggle('UserProfileDescriptionMessage.dump_xml');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage-class.html#dump_xml">dump_xml</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="UserProfileDescriptionMessage.dump_xml-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="UserProfileDescriptionMessage.dump_xml-expanded"><a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name" targets="Method brisa.upnp.message_handle.device_description_message.DeviceDescriptionMessage.create_xml_elements()=brisa.upnp.message_handle.device_description_message.DeviceDescriptionMessage-class.html#create_xml_elements,Method brisa.upnp.message_handle.user_preference_description_message.UserPreferenceDescriptionMessage.create_xml_elements()=brisa.upnp.message_handle.user_preference_description_message.UserPreferenceDescriptionMessage-class.html#create_xml_elements,Method brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage.create_xml_elements()=brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage-class.html#create_xml_elements"><a title="brisa.upnp.message_handle.device_description_message.DeviceDescriptionMessage.create_xml_elements
+brisa.upnp.message_handle.user_preference_description_message.UserPreferenceDescriptionMessage.create_xml_elements
+brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage.create_xml_elements" class="py-name" href="#" onclick="return doclink('link-29', 'create_xml_elements', 'link-29');">create_xml_elements</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name" targets="Method brisa.upnp.message_handle.device_description_message.DeviceDescriptionMessage.to_xml()=brisa.upnp.message_handle.device_description_message.DeviceDescriptionMessage-class.html#to_xml,Method brisa.upnp.message_handle.user_preference_description_message.UserPreferenceDescriptionMessage.to_xml()=brisa.upnp.message_handle.user_preference_description_message.UserPreferenceDescriptionMessage-class.html#to_xml,Method brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage.to_xml()=brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage-class.html#to_xml"><a title="brisa.upnp.message_handle.device_description_message.DeviceDescriptionMessage.to_xml
+brisa.upnp.message_handle.user_preference_description_message.UserPreferenceDescriptionMessage.to_xml
+brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage.to_xml" class="py-name" href="#" onclick="return doclink('link-30', 'to_xml', 'link-30');">to_xml</a></tt><tt class="py-op">(</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt id="link-31" class="py-name"><a title="brisa.config" class="py-name" href="#" onclick="return doclink('link-31', 'config', 'link-2');">config</a></tt><tt class="py-op">.</tt><tt id="link-32" class="py-name" targets="Variable brisa.config.conf=brisa.config-module.html#conf"><a title="brisa.config.conf" class="py-name" href="#" onclick="return doclink('link-32', 'conf', 'link-32');">conf</a></tt><tt class="py-op">.</tt><tt id="link-33" class="py-name" targets="Variable brisa.config.BrisaConf.brisa_home=brisa.config.BrisaConf-class.html#brisa_home,Variable brisa.config.brisa_home=brisa.config-module.html#brisa_home"><a title="brisa.config.BrisaConf.brisa_home
+brisa.config.brisa_home" class="py-name" href="#" onclick="return doclink('link-33', 'brisa_home', 'link-33');">brisa_home</a></tt><tt class="py-op">,</tt> <tt class="py-string">'"userInfo"'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line">        <tt class="py-name">xml</tt> <tt class="py-op">=</tt> <tt class="py-name">ElementTree</tt><tt class="py-op">.</tt><tt class="py-name">tostring</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">xml</tt><tt class="py-op">,</tt> <tt id="link-34" class="py-name" targets="Variable brisa.control_point.control_point.ControlPoint.encoding=brisa.control_point.control_point.ControlPoint-class.html#encoding,Variable brisa.control_point.control_point_av.ControlPointAV.encoding=brisa.control_point.control_point_av.ControlPointAV-class.html#encoding,Variable brisa.upnp.upnp_publisher.UPnPPublisher.encoding=brisa.upnp.upnp_publisher.UPnPPublisher-class.html#encoding"><a title="brisa.control_point.control_point.ControlPoint.encoding
+brisa.control_point.control_point_av.ControlPointAV.encoding
+brisa.upnp.upnp_publisher.UPnPPublisher.encoding" class="py-name" href="#" onclick="return doclink('link-34', 'encoding', 'link-34');">encoding</a></tt><tt class="py-op">=</tt><tt class="py-string">'utf-8'</tt><tt class="py-op">)</tt> </tt>
+<a name="L69"></a><tt class="py-lineno">69</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">xml</tt> </tt>
+</div><a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line"> </tt>
+<a name="UserProfileDescriptionMessage.to_xml"></a><div id="UserProfileDescriptionMessage.to_xml-def"><a name="L71"></a><tt class="py-lineno">71</tt> <a class="py-toggle" href="#" id="UserProfileDescriptionMessage.to_xml-toggle" onclick="return toggle('UserProfileDescriptionMessage.to_xml');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage-class.html#to_xml">to_xml</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">location</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="UserProfileDescriptionMessage.to_xml-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="UserProfileDescriptionMessage.to_xml-expanded"><a name="L72"></a><tt class="py-lineno">72</tt>  <tt class="py-line">        <tt class="py-name">ElementTree</tt><tt class="py-op">.</tt><tt class="py-name">ElementTree</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">xml</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-name">location</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L73"></a><tt class="py-lineno">73</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >BRisa UPnP Framework</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Sat Oct 11 01:30:27 2008
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

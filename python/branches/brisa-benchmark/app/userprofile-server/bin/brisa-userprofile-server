@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+# Licensed under the MIT license
+# http://opensource.org/licenses/mit-license.php or see LICENSE file.
+# Copyright 2007 Brisa Team <brisa-develop@garage.maemo.org>
+
+# Implementation of a simple daemon Application of UPnP User Profile Server
+
+import socket
+
+from brisa import config
+from brisa import log
+from brisa.utils import options
+from brisa.utils.system import daemonize
+
+from brisa_userprofile_server import UserProfileServerDevice
+from brisa_userprofile_server.services.up_profile.persistence import database
+
+if __name__ == '__main__':
+    data = database.Data()
+
+    listen_url, daemon = options.parse_args("User Profile Server")
+    if daemon:
+        daemonize()
+    upserver_name = config.get_parameter('brisa', 'upservername')
+    server_name = "%s at %s" % (upserver_name, socket.gethostname())
+    up_server_device = UserProfileServerDevice(server_name, listen_url)
+    up_server_device.start()

@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. reactor — Reactor facilities &mdash; python-brisa UPnP framework v0.10.0 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.10.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="python-brisa UPnP framework v0.10.0 documentation" href="../index.html" />
+    <link rel="up" title="3. core — Framework’s core" href="index.html" />
+    <link rel="next" title="2. config — Configuration facilities" href="configuration.html" />
+    <link rel="prev" title="3. core — Framework’s core" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="configuration.html" title="2. config — Configuration facilities"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="3. core — Framework’s core"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">3. <tt class="docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">core</span></tt> &#8212; Framework&#8217;s core</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="reactor-reactor-facilities">
+<h1>1. <tt class="xref docutils literal"><span class="pre">reactor</span></tt> &#8212; Reactor facilities<a class="headerlink" href="#reactor-reactor-facilities" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="choosing-a-reactor">
+<h2>1.1. Choosing a Reactor<a class="headerlink" href="#choosing-a-reactor" title="Permalink to this headline">¶</a></h2>
+<p><strong>The first thing that may be done on a python-brisa application is to setup the
+framework gears, that is, choose a reactor.</strong></p>
+<p>The choice of a reactor is very simple and depends mainly on your application.
+If your application requires somehow Gtk, Qt, ecore or even gobject, you should
+choose the reactor that attends that demand. Besides having a <strong>default</strong>
+python-pure reactor, <a class="reference external" href="../glossary/index.html#python-brisa"><em>python-brisa</em></a> implements:</p>
+<ul class="simple">
+<li>glib/gobject</li>
+<li>gtk2</li>
+<li>ecore</li>
+<li>Qt</li>
+</ul>
+<p>If your application do not demand any of these libraries/frameworks, then you
+should probably use the default reactor. The next section explains how to
+install the default reactor and subsequent sections explains how to use the
+reactor.</p>
+</div>
+<div class="section" id="default-reactor">
+<h2>1.2. Default Reactor<a class="headerlink" href="#default-reactor" title="Permalink to this headline">¶</a></h2>
+<p>Installing the default reactor:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">brisa.core.reactors</span> <span class="kn">import</span> <span class="n">install_default_reactor</span>
+<span class="n">reactor</span> <span class="o">=</span> <span class="n">install_default_reactor</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Once installed, the reactor cannot be replaced during the same runtime.</p>
+</div>
+<div class="section" id="retrieving-a-installed-reactor">
+<h2>1.3. Retrieving a Installed Reactor<a class="headerlink" href="#retrieving-a-installed-reactor" title="Permalink to this headline">¶</a></h2>
+<p>Once installed, the reactor can be retrieved the same way it was installed (by
+calling install_default_reactor() or e.g. Gtk2Reactor()). The reactor will be installed on
+module <em>brisa.core.reactor</em> and can also be retrieved with:</p>
+<p><tt class="docutils literal"><span class="pre">from</span> <span class="pre">brisa.core</span> <span class="pre">import</span> <span class="pre">reactor</span></tt></p>
+</div>
+<div class="section" id="gtk2reactor-example">
+<h2>1.4. Gtk2Reactor Example<a class="headerlink" href="#gtk2reactor-example" title="Permalink to this headline">¶</a></h2>
+<p>For instance, if your application contains a Gtk GUI, you must install the Gtk2Reactor,
+action illustrated below:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">brisa.core.reactors</span> <span class="kn">import</span> <span class="n">Gtk2Reactor</span>
+<span class="n">reactor</span> <span class="o">=</span> <span class="n">Gtk2Reactor</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The most important thing here is to notice that once installed, this reactor
+will use Gtk internally, so your old calls to <tt class="docutils literal"><span class="pre">gtk.main()</span></tt>, <tt class="docutils literal"><span class="pre">gtk.main_quit()</span></tt> will
+be equal to <tt class="docutils literal"><span class="pre">reactor.main()</span></tt>, <tt class="docutils literal"><span class="pre">reactor.main_quit()</span></tt>, respectivelly.</p>
+<p>For the sake of organization, we recommend you to use the reactor interface
+(e.g. use <tt class="docutils literal"><span class="pre">reactor.main()</span></tt> instead of <tt class="docutils literal"><span class="pre">gtk.main()</span></tt>). It&#8217;s possible the reactor
+doesn&#8217;t work properly if you don&#8217;t use the interface.</p>
+</div>
+<div class="section" id="qtreactor-example">
+<h2>1.5. QtReactor Example<a class="headerlink" href="#qtreactor-example" title="Permalink to this headline">¶</a></h2>
+<p>If your application contains a Qt GUI or a Qt Core, you must install the QtReactor,
+action illustrated below:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">brisa.core.reactors.qtreactor</span> <span class="kn">import</span> <span class="n">QtReactor</span>
+<span class="n">reactor</span> <span class="o">=</span> <span class="n">QtReactor</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This reactor will use Qt internally, so remember to call <tt class="docutils literal"><span class="pre">reactor.main()</span></tt> and
+<tt class="docutils literal"><span class="pre">reactor.main_quit()</span></tt> as we did with Gtk2Reactor. Take a look at
+<strong>code examples</strong> to see a Qt device and a Qt control point example.</p>
+<p>The concepts illustrated above are the same for the other reactors.</p>
+</div>
+<div class="section" id="advanced-reactor-usage">
+<h2>1.6. Advanced Reactor Usage<a class="headerlink" href="#advanced-reactor-usage" title="Permalink to this headline">¶</a></h2>
+<p>The reactor interface defines that reactors must support file descriptors
+event handling and timers.</p>
+<p>File descriptors event handlers and timers can be added before starting the
+reactor (e.g. <tt class="docutils literal"><span class="pre">reactor.main()</span></tt>) and during runtime. Though, they will not
+work if the reactor hasn&#8217;t been started.</p>
+</div>
+<div class="section" id="creating-a-timer">
+<h2>1.7. Creating a Timer<a class="headerlink" href="#creating-a-timer" title="Permalink to this headline">¶</a></h2>
+<p>For creating a timer, use the reactor&#8217;s method <tt class="docutils literal"><span class="pre">add_timer()</span></tt>. By providing the
+interval to wait between calls to the function, you will receive an unique id
+for the timer. Use it later for removing it from the reactor:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">brisa.core</span> <span class="kn">import</span> <span class="n">reactor</span>
+
+<span class="c"># Adds a timer</span>
+<span class="n">timer_id</span> <span class="o">=</span> <span class="n">reactor</span><span class="o">.</span><span class="n">add_timer</span><span class="p">(</span><span class="n">interval</span><span class="p">,</span> <span class="n">my_function</span><span class="p">)</span>
+<span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="c"># Removes the timer given it&#39;s id</span>
+<span class="n">reactor</span><span class="o">.</span><span class="n">rem_timer</span><span class="p">(</span><span class="n">timer_id</span><span class="p">)</span>
+<span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-an-event-handler">
+<h2>1.8. Creating an Event Handler<a class="headerlink" href="#creating-an-event-handler" title="Permalink to this headline">¶</a></h2>
+<p>For creating an event handler, use the reactor&#8217;s method <tt class="docutils literal"><span class="pre">add_fd()</span></tt>. By providing
+a fd file object, a callback for the event and a type for watch on the event, you
+will get an unique handler. Use this handler later for removing the event
+handler from the reactor with the <tt class="docutils literal"><span class="pre">rem_fd()</span></tt> method.</p>
+<p>Whenever an event of the type specified (read, write or exception) happens on
+the file, your callback will be called with the following format: <tt class="docutils literal"><span class="pre">callback(file,</span> <span class="pre">event_type)</span></tt>.</p>
+<p>The available <em>type</em> flags are:</p>
+<ul class="simple">
+<li>EVENT_TYPE_READ</li>
+<li>EVENT_TYPE_WRITE</li>
+<li>EVENT_TYPE_EXCEPTION</li>
+</ul>
+<p>Multiple events can be watched by passing an or combination of event types on
+the <em>type</em> parameter (e.g. <tt class="docutils literal"><span class="pre">type=EVENT_TYPE_READ|EVENT_TYPE_WRITE</span></tt> for watching
+both read and write events):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">brisa.core</span> <span class="kn">import</span> <span class="n">reactor</span>
+<span class="kn">from</span> <span class="nn">brisa.core.ireactor</span> <span class="kn">import</span> <span class="n">EVENT_TYPE_READ</span>
+
+<span class="k">def</span> <span class="nf">on_ready_to_read</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">&#39;I read: &#39;</span><span class="p">,</span> <span class="n">fd</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="c"># Add my fd</span>
+<span class="n">fd_handler</span> <span class="o">=</span> <span class="n">reactor</span><span class="o">.</span><span class="n">add_fd</span><span class="p">(</span><span class="n">myfd</span><span class="p">,</span> <span class="n">on_ready_to_read</span><span class="p">,</span> <span class="n">EVENT_TYPE_READ</span><span class="p">);</span>
+
+<span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="n">reactor</span><span class="o">.</span><span class="n">rem_fd</span><span class="p">(</span><span class="n">fd_handler</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">1. <tt class="docutils literal"><span class="pre">reactor</span></tt> &#8212; Reactor facilities</a><ul>
+<li><a class="reference external" href="#choosing-a-reactor">1.1. Choosing a Reactor</a></li>
+<li><a class="reference external" href="#default-reactor">1.2. Default Reactor</a></li>
+<li><a class="reference external" href="#retrieving-a-installed-reactor">1.3. Retrieving a Installed Reactor</a></li>
+<li><a class="reference external" href="#gtk2reactor-example">1.4. Gtk2Reactor Example</a></li>
+<li><a class="reference external" href="#qtreactor-example">1.5. QtReactor Example</a></li>
+<li><a class="reference external" href="#advanced-reactor-usage">1.6. Advanced Reactor Usage</a></li>
+<li><a class="reference external" href="#creating-a-timer">1.7. Creating a Timer</a></li>
+<li><a class="reference external" href="#creating-an-event-handler">1.8. Creating an Event Handler</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="index.html"
+                                  title="previous chapter">3. <tt class="docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">core</span></tt> &#8212; Framework&#8217;s core</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="configuration.html"
+                                  title="next chapter">2. <tt class="docutils literal docutils literal docutils literal"><span class="pre">config</span></tt> &#8212; Configuration facilities</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/core/reactor.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="configuration.html" title="2. config — Configuration facilities"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="3. core — Framework’s core"
+             >previous</a> |</li>
+        <li><a href="../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >3. <tt class="docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">core</span></tt> &#8212; Framework&#8217;s core</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 2009, Andre Dieb Martins.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+Source: brisa-media-tools
+Section: multimedia
+Priority: optional
+Maintainer: Andre Dieb Martins <dieb@embedded.ufcg.edu.br>
+Build-Depends: debhelper (>= 5.0.38), python2.5-dev, python-setuptools | python2.5-setuptools, 
+Standards-Version: 3.6.1
+
+Package: python2.5-brisa-media-tools
+Section: user/multimedia
+Architecture: all
+Depends: python2.5-brisa-base, python2.5-brisa-media-server, python2.5-brisa-media-renderer,
+Provides: ${python:Provides}
+Description: BRisa Media Tools is a package that contains tools for BRisa Media Server and
+    BRisa Media Renderer. For example, brisa-media-apps-control is a tool included
+    on the package and allows controlling BRisa Media Server and BRisa Media
+    Renderer devices from a graphical interface.

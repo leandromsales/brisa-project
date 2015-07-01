@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="brisa_style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<table width="650" border="0" align="center">
+  <tr>
+    <td colspan="2"><strong>Brisa Main</strong></td>
+  </tr>
+  <tr>
+    <td colspan="2"><hr></td>
+  </tr>
+  <tr>
+    <td colspan="2">
+    <p>Brisa MediaServer version: %s </p>    <p>MediaServer status: %s </p>    <p>DB File: %s</p>    <p>Shared sound directories: %s</p>    <p>Shared video  directories: %s</p>    <p>Shoutcast usage: %s </p>    <p>Flickr usage: %s</p>    <p>Flickr username: %s</p>    <p>Flickr private images (require authentication): %s</p>    <p>PhotoAlbums: %s </p></td>
+  </tr>
+  <tr>
+    <td colspan="2"><hr></td>
+  </tr>
+  <tr>
+    <td width="498"><form action="brisa_main.html" method="get" name="form2" target="mainFrame">
+      <input type="submit" name="Submit2" value="Start server">
+      <input name="plugin_name" type="hidden" id="plugin_name" value="main">
+      <input name="action" type="hidden" id="action" value="start">
+    </form></td>
+    <td width="142"><form action="brisa_main.html" method="get" name="form1" target="mainFrame">
+      <div align="right">
+        <input name="plugin_name" type="hidden" id="plugin_name" value="main">
+        <input name="action" type="hidden" id="action" value="stop">
+        <input type="submit" name="Submit" value="Stop server">
+      </div>
+    </form></td>
+  </tr>
+</table>
+</body>
+</html>

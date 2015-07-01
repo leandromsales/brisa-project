@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Internet plugins</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="brisa_style.css" rel="stylesheet" type="text/css">
+<script language="javascript">
+function refresh_item_active(){
+	item_field = document.form1.usage.checked;
+	if (item_field == true){
+		document.form2.usage.value="on"
+	}else{
+		document.form2.usage.value="off"
+	}
+}
+function refresh_item_private(){
+	item_field = document.form1.private.checked;
+	if (item_field == true){
+		document.form2.private.value="yes"
+	}else{
+		document.form2.private.value="no"
+	}
+}
+function refresh_item_username(){
+	item_field = document.form1.username.value;
+	document.form2.username.value = item_field;
+}
+function set_item(){
+	item_value_usage = document.form2.usage.value;
+	item_value_username = document.form2.username.value;
+	item_value_private = document.form2.private.value;
+	
+	if (item_value_usage == "on"){
+		document.form1.usage.checked = true;
+	}else{
+		document.form1.usage.checked = false;
+	}
+	if (item_value_private == "yes"){
+		document.form1.private.checked = true;
+	}else{
+		document.form1.private.checked = false;
+	}
+	document.form1.username.value = item_value_username;
+}
+</script>
+</head>
+
+<body>
+<table width="650" border="0" align="center">
+  <tr>
+    <td width="309"><strong>Flickr plugin</strong></td>
+  </tr>
+  <tr>
+    <td><hr></td>
+  </tr>
+  <tr>
+    <td><form name="form1" method="get" action="">
+      <p>Active:
+          <input name="usage" type="checkbox" id="usage" onClick="refresh_item_active()" value="checkbox">
+      </p>
+      <p>Username:
+        <input name="username" type="text" id="username" size="25" onChange="refresh_item_username()">
+      </p>
+      <p>Private photos: 
+        <input name="private" type="checkbox" id="private" onClick="refresh_item_private()" value="checkbox">
+      </p>
+    </form></td>
+  </tr>
+  <tr>
+    <td><form action="brisa_main.html" method="get" name="form2" target="mainFrame">
+      <p>
+        <input name="Submit" type="submit" id="Submit" value="Send">
+	<input name="plugin_name" type="hidden" id="plugin_name" value="flickr">
+	<input name="usage" type="hidden" id="usage" value="%s">
+        <input name="username" type="hidden" id="username" value="%s">
+        <input name="private" type="hidden" id="private" value="%s">
+</p>
+    </form></td>
+  </tr>
+</table>
+<script language="javascript">set_item()</script>
+</body>
+</html>

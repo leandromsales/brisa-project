@@ -1,0 +1,11 @@
+brisa-media-renderer (0.1.1) unstable; urgency=low
+
+  * New release
+
+ -- Andre Dieb Martins <dieb@embedded.ufcg.edu.br>  Mon, 16 Mar 2009 03:58:00 -0300
+
+brisa-media-renderer (0.1.0) unstable; urgency=low
+
+  * Added debian packaging
+
+ -- Andre Dieb Martins <dieb@embedded.ufcg.edu.br>  Wed, 19 Nov 2008 04:23:15 -0300

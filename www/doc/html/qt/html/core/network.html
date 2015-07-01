@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3. network — Network facilities &mdash; Qt BRisa UPnP framework v2.0 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Qt BRisa UPnP framework v2.0 documentation" href="../index.html" />
+    <link rel="up" title="4. core-utils — Framework’s core and utils" href="index.html" />
+    <link rel="next" title="4. webserver — Webserver facilities" href="webserver.html" />
+    <link rel="prev" title="2. log — Logging facilities" href="logging.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="webserver.html" title="4. webserver — Webserver facilities"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="logging.html" title="2. log — Logging facilities"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Qt BRisa UPnP framework v2.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">4. <tt class="docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">core-utils</span></tt> &#8212; Framework&#8217;s core and utils</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="network-network-facilities">
+<h1>3. <tt class="xref docutils literal"><span class="pre">network</span></tt> &#8212; Network facilities<a class="headerlink" href="#network-network-facilities" title="Permalink to this headline">¶</a></h1>
+<p id="index-10">Qt BRisa has some functions which can simplify networking related tasks.</p>
+<dl class="function">
+<dt id="getValidIP">
+<tt class="descname">getValidIP</tt><big>(</big><big>)</big><a class="headerlink" href="#getValidIP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>You can use getValidIP function to retrieve an valid IP on any active network interface (eth0, wlan0 wlan1). The following example demonstrates how easy it is to use getValidIP function</p>
+<div class="highlight-python"><pre>#include &lt;BrisaNetwork&gt;
+
+QString ip = getValidIP();
+
+It will return a QString containing a valid IP</pre>
+</div>
+<dl class="function">
+<dt id="getPort">
+<tt class="descname">getPort</tt><big>(</big><big>)</big><a class="headerlink" href="#getPort" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>You can get a random port between the specified range of UpnP protocol using the getPort function.
+It will return a port number greater than 49152 and smaller than 65535 that is currently available</p>
+<div class="highlight-python"><pre>#include &lt;BrisaNetwork&gt;
+
+quint16 port = getPort();</pre>
+</div>
+<p>This will return a quint16 containing a port number.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="logging.html"
+                                  title="previous chapter">2. <tt class="docutils literal docutils literal docutils literal"><span class="pre">log</span></tt> &#8212; Logging facilities</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="webserver.html"
+                                  title="next chapter">4. <tt class="docutils literal"><span class="pre">webserver</span></tt> &#8212; Webserver facilities</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/core/network.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="webserver.html" title="4. webserver — Webserver facilities"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="logging.html" title="2. log — Logging facilities"
+             >previous</a> |</li>
+        <li><a href="../index.html">Qt BRisa UPnP framework v2.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >4. <tt class="docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">core-utils</span></tt> &#8212; Framework&#8217;s core and utils</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 2010, BRisa Team.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.4.
+    </div>
+  </body>
+</html>

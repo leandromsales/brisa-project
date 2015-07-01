@@ -1,0 +1,9 @@
+[Desktop Entry]
+Categories=Development;
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=Brisa Light Switcher
+Exec=/usr/bin/brisalightswitcher
+Icon= /usr/share/pixmaps/brisa/lightswitcher.png
+Categories=Brisa;

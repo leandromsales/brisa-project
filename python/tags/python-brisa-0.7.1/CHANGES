@@ -1,0 +1,25 @@
+python-brisa 0.7.2-dev, xxxx-xx-xx (development release)
+----------------------------------
+- removed extern/python-id3 which is not a dependency anymore
+
+
+python-brisa 0.7.1, xxxx-xx-xx
+------------------------------
+- API change: modules from brisa/utils/python moved to brisa/utils
+- added watch facilities for SQLLite databases and objects bool attributes
+- partial optimization on the filesystem plugin persistence
+- fixed bugs #2980, #2950
+- fixed examples with old import names
+
+
+python-brisa 0.7.0, 2008-10-30
+------------------------------
+- control point API cleaned: now contains a basic control_point.py and a A/V implementation
+- removed SQLObject dependency
+- removed Twisted dependency
+- removed sqlite2 dependency (sqlite3 is being shipped with python2.5)
+- removed pymad and libmad dependency (now we use python-mutagen)
+- new implementation of XML DIDLite generation
+- plugins browser methods can return all matches or perform internal optimized sorting/slicing (has_browse_filter flag)
+- added maemo multimedia and canola plugins
+- added UPnP-UP (User Profile) initial implementation

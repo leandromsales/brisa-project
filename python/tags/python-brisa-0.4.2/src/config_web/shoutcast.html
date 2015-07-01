@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="brisa_style.css" rel="stylesheet" type="text/css">
+<script language="javascript">
+function refresh_item(){
+	item_field = document.form2.checkbox.checked;
+	if (item_field == true){
+		document.form1.usage.value="on"
+	}else{
+		document.form1.usage.value="off"
+	}
+}
+
+function set_item(){
+	item_value = document.form1.usage.value;
+	if (item_value == "on"){
+		document.form2.checkbox.checked = true;
+	}else{
+		document.form2.checkbox.checked = false;
+	}
+}
+</script>
+</head>
+
+<body>
+<table width="650" border="0" align="center">
+  <tr>
+    <td width="309"><strong>Shoutcast plugin</strong></td>
+  </tr>
+  <tr>
+    <td><hr></td>
+  </tr>
+  <tr>
+    <td><form name="form2" method="get" action="">
+      Active:
+      <input name="checkbox" type="checkbox" value="checkbox" checked onClick="refresh_item()">
+<label></label>    
+    </form>
+	</td>
+  </tr>
+  <tr>
+    <td><form action="brisa_main.html" method="get" name="form1" target="mainFrame">
+      <p>
+        <input type="submit" name="Submit" value="Send">
+          <input name="plugin_name" type="hidden" id="plugin_name" value="shoutcast">
+          <input name="usage" type="hidden" id="usage" value="%s">
+</p>
+        </form></td>
+  </tr>
+</table>
+<script language="javascript">set_item()</script>
+</body>
+</html>

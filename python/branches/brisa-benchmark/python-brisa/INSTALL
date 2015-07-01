@@ -1,0 +1,23 @@
+BRisa UPnP Framework v0.9.0
+
+This document contains the minimum information for installing BRisa.
+
+For extended installing tips and system specific instructions please consult our
+documentation on the project page (http://brisa.garage.maemo.org).
+
+
+Dependencies
+=============
+
+BRisa requires the following third-party packages:
+
+- Python 2.5.x, Python2.5.x-dev - http://python.org/
+- Python-Cherrypy - http://cherrypy.org
+
+
+Installing
+=============
+
+You can install by simply running the following command:
+
+    # python setup.py install

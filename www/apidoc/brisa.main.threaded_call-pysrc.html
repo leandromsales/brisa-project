@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>brisa.main.threaded_call</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >BRisa UPnP Framework</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="brisa-module.html">Package&nbsp;brisa</a> ::
+        <a href="brisa.main-module.html">Package&nbsp;main</a> ::
+        Module&nbsp;threaded_call
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="brisa.main.threaded_call-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="brisa.main.threaded_call-module.html">Module brisa.main.threaded_call</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># Licensed under the MIT license</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># http://opensource.org/licenses/mit-license.php or see LICENSE file.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># Copyright 2007-2008 Brisa Team &lt;brisa-develop@garage.maemo.org&gt;</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring">""" Runs a call asynchronously and forwards the result/error to specified</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring">callbacks.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">threading</tt> <tt class="py-keyword">import</tt> <tt class="py-name">Semaphore</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package brisa=brisa-module.html"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-0', 'brisa', 'link-0');">brisa</a></tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Package brisa.log=brisa.log-module.html,Variable brisa.services.cds.plugin.log=brisa.services.cds.plugin-module.html#log"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-1', 'log', 'link-1');">log</a></tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-2" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-2', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Package brisa.main=brisa.main-module.html"><a title="brisa.main" class="py-name" href="#" onclick="return doclink('link-3', 'main', 'link-3');">main</a></tt> <tt class="py-keyword">import</tt> <tt id="link-4" class="py-name" targets="Function brisa.main.sleep()=brisa.main-module.html#sleep"><a title="brisa.main.sleep" class="py-name" href="#" onclick="return doclink('link-4', 'sleep', 'link-4');">sleep</a></tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-5" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-5', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-6" class="py-name"><a title="brisa.main" class="py-name" href="#" onclick="return doclink('link-6', 'main', 'link-3');">main</a></tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Module brisa.main.thread_object=brisa.main.thread_object-module.html"><a title="brisa.main.thread_object" class="py-name" href="#" onclick="return doclink('link-7', 'thread_object', 'link-7');">thread_object</a></tt> <tt class="py-keyword">import</tt> <tt id="link-8" class="py-name" targets="Class brisa.main.thread_object.ThreadObject=brisa.main.thread_object.ThreadObject-class.html"><a title="brisa.main.thread_object.ThreadObject" class="py-name" href="#" onclick="return doclink('link-8', 'ThreadObject', 'link-8');">ThreadObject</a></tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"> </tt>
+<a name="ThreadedCall"></a><div id="ThreadedCall-def"><a name="L16"></a><tt class="py-lineno"> 16</tt> <a class="py-toggle" href="#" id="ThreadedCall-toggle" onclick="return toggle('ThreadedCall');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="brisa.main.threaded_call.ThreadedCall-class.html">ThreadedCall</a><tt class="py-op">(</tt><tt class="py-base-class">ThreadObject</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ThreadedCall-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ThreadedCall-expanded"><a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line">    <tt class="py-docstring">""" This class runs a call asynchronously and forwards the result/error</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring">    to specified callbacks.</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring">    One can instantiate this class directly or use the method located at</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring">    package brisa.main.</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-docstring">    @param function: function to be called passing *args and **kwargs</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-docstring">    @param success_callback: called in case of success, receives call result</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring">    @param error_callback: called in case of error, receives call result</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring">    @param delay: time to be wait before performing the call</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-docstring">    @param args: arguments to the function</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-docstring">    @param kwargs: arguments to the function</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-docstring">    @type function: callable</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-docstring">    @type success_callback: callable</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-docstring">    @type error_callback: callable</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-docstring">    @type delay: float</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"> </tt>
+<a name="ThreadedCall.__init__"></a><div id="ThreadedCall.__init__-def"><a name="L36"></a><tt class="py-lineno"> 36</tt> <a class="py-toggle" href="#" id="ThreadedCall.__init__-toggle" onclick="return toggle('ThreadedCall.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.main.threaded_call.ThreadedCall-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">function</tt><tt class="py-op">,</tt> <tt class="py-param">success_callback</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">error_callback</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">                 <tt class="py-param">success_callback_cargo</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">error_callback_cargo</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">                 <tt class="py-param">delay</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-param">args</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-param">kwargs</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ThreadedCall.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ThreadedCall.__init__-expanded"><a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">        <tt id="link-9" class="py-name"><a title="brisa.main.thread_object.ThreadObject" class="py-name" href="#" onclick="return doclink('link-9', 'ThreadObject', 'link-8');">ThreadObject</a></tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Method brisa.config.BrisaConf.__init__()=brisa.config.BrisaConf-class.html#__init__,Method brisa.control_point.control_point.ControlPoint.__init__()=brisa.control_point.control_point.ControlPoint-class.html#__init__,Method brisa.control_point.event.EventListener.__init__()=brisa.control_point.event.EventListener-class.html#__init__,Method brisa.control_point.event.EventListenerServer.__init__()=brisa.control_point.event.EventListenerServer-class.html#__init__,Method brisa.main.thread_manager._ThreadManager.__init__()=brisa.main.thread_manager._ThreadManager-class.html#__init__,Method brisa.main.thread_object.ThreadObject.__init__()=brisa.main.thread_object.ThreadObject-class.html#__init__,Method brisa.main.threaded_call.ThreadedCall.__init__()=brisa.main.threaded_call.ThreadedCall-class.html#__init__,Method brisa.services.cds.content_directory.ContentDirectory.__init__()=brisa.services.cds.content_directory.ContentDirectory-class.html#__init__,Method brisa.services.cds.plugin.MemContainer.__init__()=brisa.services.cds.plugin.MemContainer-class.html#__init__,Method brisa.services.cds.plugin.MemDIDLContainer.__init__()=brisa.services.cds.plugin.MemDIDLContainer-class.html#__init__,Method brisa.services.cds.plugin.MemDIDLObject.__init__()=brisa.services.cds.plugin.MemDIDLObject-class.html#__init__,Method brisa.services.cds.plugin.MemObject.__init__()=brisa.services.cds.plugin.MemObject-class.html#__init__,Method brisa.services.cds.plugin.Plugin.__init__()=brisa.services.cds.plugin.Plugin-class.html#__init__,Method brisa.services.cds.plugin.PluginLoader.__init__()=brisa.services.cds.plugin.PluginLoader-class.html#__init__,Method brisa.services.cds.plugin._PluginManager.__init__()=brisa.services.cds.plugin._PluginManager-class.html#__init__,Method brisa.services.cds.plugin._RootPlugin.__init__()=brisa.services.cds.plugin._RootPlugin-class.html#__init__,Method brisa.upnp.device.Device.__init__()=brisa.upnp.device.Device-class.html#__init__,Method brisa.upnp.device.DeviceIcon.__init__()=brisa.upnp.device.DeviceIcon-class.html#__init__,Method brisa.upnp.device.RootDevice.__init__()=brisa.upnp.device.RootDevice-class.html#__init__,Method brisa.upnp.didl.didl_lite.Album.__init__()=brisa.upnp.didl.didl_lite.Album-class.html#__init__,Method brisa.upnp.didl.didl_lite.AudioItem.__init__()=brisa.upnp.didl.didl_lite.AudioItem-class.html#__init__,Method brisa.upnp.didl.didl_lite.Container.__init__()=brisa.upnp.didl.didl_lite.Container-class.html#__init__,Method brisa.upnp.didl.didl_lite.Element.__init__()=brisa.upnp.didl.didl_lite.Element-class.html#__init__,Method brisa.upnp.didl.didl_lite.Genre.__init__()=brisa.upnp.didl.didl_lite.Genre-class.html#__init__,Method brisa.upnp.didl.didl_lite.Item.__init__()=brisa.upnp.didl.didl_lite.Item-class.html#__init__,Method brisa.upnp.didl.didl_lite.Movie.__init__()=brisa.upnp.didl.didl_lite.Movie-class.html#__init__,Method brisa.upnp.didl.didl_lite.MusicAlbum.__init__()=brisa.upnp.didl.didl_lite.MusicAlbum-class.html#__init__,Method brisa.upnp.didl.didl_lite.MusicTrack.__init__()=brisa.upnp.didl.didl_lite.MusicTrack-class.html#__init__,Method brisa.upnp.didl.didl_lite.MusicVideoClip.__init__()=brisa.upnp.didl.didl_lite.MusicVideoClip-class.html#__init__,Method brisa.upnp.didl.didl_lite.Object.__init__()=brisa.upnp.didl.didl_lite.Object-class.html#__init__,Method brisa.upnp.didl.didl_lite.Person.__init__()=brisa.upnp.didl.didl_lite.Person-class.html#__init__,Method brisa.upnp.didl.didl_lite.Photo.__init__()=brisa.upnp.didl.didl_lite.Photo-class.html#__init__,Method brisa.upnp.didl.didl_lite.Resource.__init__()=brisa.upnp.didl.didl_lite.Resource-class.html#__init__,Method brisa.upnp.didl.didl_lite.VideoItem.__init__()=brisa.upnp.didl.didl_lite.VideoItem-class.html#__init__,Method brisa.upnp.message_handle.device_description_message.DeviceDescriptionMessage.__init__()=brisa.upnp.message_handle.device_description_message.DeviceDescriptionMessage-class.html#__init__,Method brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject.__init__()=brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject-class.html#__init__,Method brisa.upnp.message_handle.device_message.DeviceMessage.__init__()=brisa.upnp.message_handle.device_message.DeviceMessage-class.html#__init__,Method brisa.upnp.message_handle.device_object.DeviceObject.__init__()=brisa.upnp.message_handle.device_object.DeviceObject-class.html#__init__,Method brisa.upnp.message_handle.user_preference_description_message.UserPreferenceDescriptionMessage.__init__()=brisa.upnp.message_handle.user_preference_description_message.UserPreferenceDescriptionMessage-class.html#__init__,Method brisa.upnp.message_handle.user_preference_description_object.UserPreferenceDescriptionObject.__init__()=brisa.upnp.message_handle.user_preference_description_object.UserPreferenceDescriptionObject-class.html#__init__,Method brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage.__init__()=brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage-class.html#__init__,Method brisa.upnp.message_handle.user_profile_description_object.UserProfileDescriptionObject.__init__()=brisa.upnp.message_handle.user_profile_description_object.UserProfileDescriptionObject-class.html#__init__,Method brisa.upnp.msearch.MSearch.__init__()=brisa.upnp.msearch.MSearch-class.html#__init__,Method brisa.upnp.service.Action.__init__()=brisa.upnp.service.Action-class.html#__init__,Method brisa.upnp.service.Argument.__init__()=brisa.upnp.service.Argument-class.html#__init__,Method brisa.upnp.service.Service.__init__()=brisa.upnp.service.Service-class.html#__init__,Method brisa.upnp.service.StateVariable.__init__()=brisa.upnp.service.StateVariable-class.html#__init__,Method brisa.upnp.service.SubscribeRequest.__init__()=brisa.upnp.service.SubscribeRequest-class.html#__init__,Method brisa.upnp.service.UnsubscribeRequest.__init__()=brisa.upnp.service.UnsubscribeRequest-class.html#__init__,Method brisa.upnp.soap.HTTPError.__init__()=brisa.upnp.soap.HTTPError-class.html#__init__,Method brisa.upnp.soap.SOAPProxy.__Method.__init__()=brisa.upnp.soap.SOAPProxy.__Method-class.html#__init__,Method brisa.upnp.soap.SOAPProxy.__init__()=brisa.upnp.soap.SOAPProxy-class.html#__init__,Method brisa.upnp.ssdp.SSDPServer.__init__()=brisa.upnp.ssdp.SSDPServer-class.html#__init__,Method brisa.upnp.upnp_handler.DeviceHandler.__init__()=brisa.upnp.upnp_handler.DeviceHandler-class.html#__init__,Method brisa.upnp.upnp_publisher.ErrorCode.__init__()=brisa.upnp.upnp_publisher.ErrorCode-class.html#__init__,Method brisa.upnp.upnp_publisher.UPnPPublisher.__init__()=brisa.upnp.upnp_publisher.UPnPPublisher-class.html#__init__,Method brisa.utils.network_listeners.CannotListenError.__init__()=brisa.utils.network_listeners.CannotListenError-class.html#__init__,Method brisa.utils.network_listeners.NetworkListener.__init__()=brisa.utils.network_listeners.NetworkListener-class.html#__init__,Method brisa.utils.network_listeners.TCPListener.__init__()=brisa.utils.network_listeners.TCPListener-class.html#__init__,Method brisa.utils.network_listeners.UDPListener.__init__()=brisa.utils.network_listeners.UDPListener-class.html#__init__,Method brisa.utils.network_senders.TCPTransport.__init__()=brisa.utils.network_senders.TCPTransport-class.html#__init__,Method brisa.utils.network_senders.UDPTransport.__init__()=brisa.utils.network_senders.UDPTransport-class.html#__init__,Method brisa.utils.python.failure.Failure.__init__()=brisa.utils.python.failure.Failure-class.html#__init__,Method brisa.utils.python.looping_call.LoopingCall.__init__()=brisa.utils.python.looping_call.LoopingCall-class.html#__init__"><a title="brisa.config.BrisaConf.__init__
+brisa.control_point.control_point.ControlPoint.__init__
+brisa.control_point.event.EventListener.__init__
+brisa.control_point.event.EventListenerServer.__init__
+brisa.main.thread_manager._ThreadManager.__init__
+brisa.main.thread_object.ThreadObject.__init__
+brisa.main.threaded_call.ThreadedCall.__init__
+brisa.services.cds.content_directory.ContentDirectory.__init__
+brisa.services.cds.plugin.MemContainer.__init__
+brisa.services.cds.plugin.MemDIDLContainer.__init__
+brisa.services.cds.plugin.MemDIDLObject.__init__
+brisa.services.cds.plugin.MemObject.__init__
+brisa.services.cds.plugin.Plugin.__init__
+brisa.services.cds.plugin.PluginLoader.__init__
+brisa.services.cds.plugin._PluginManager.__init__
+brisa.services.cds.plugin._RootPlugin.__init__
+brisa.upnp.device.Device.__init__
+brisa.upnp.device.DeviceIcon.__init__
+brisa.upnp.device.RootDevice.__init__
+brisa.upnp.didl.didl_lite.Album.__init__
+brisa.upnp.didl.didl_lite.AudioItem.__init__
+brisa.upnp.didl.didl_lite.Container.__init__
+brisa.upnp.didl.didl_lite.Element.__init__
+brisa.upnp.didl.didl_lite.Genre.__init__
+brisa.upnp.didl.didl_lite.Item.__init__
+brisa.upnp.didl.didl_lite.Movie.__init__
+brisa.upnp.didl.didl_lite.MusicAlbum.__init__
+brisa.upnp.didl.didl_lite.MusicTrack.__init__
+brisa.upnp.didl.didl_lite.MusicVideoClip.__init__
+brisa.upnp.didl.didl_lite.Object.__init__
+brisa.upnp.didl.didl_lite.Person.__init__
+brisa.upnp.didl.didl_lite.Photo.__init__
+brisa.upnp.didl.didl_lite.Resource.__init__
+brisa.upnp.didl.didl_lite.VideoItem.__init__
+brisa.upnp.message_handle.device_description_message.DeviceDescriptionMessage.__init__
+brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject.__init__
+brisa.upnp.message_handle.device_message.DeviceMessage.__init__
+brisa.upnp.message_handle.device_object.DeviceObject.__init__
+brisa.upnp.message_handle.user_preference_description_message.UserPreferenceDescriptionMessage.__init__
+brisa.upnp.message_handle.user_preference_description_object.UserPreferenceDescriptionObject.__init__
+brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage.__init__
+brisa.upnp.message_handle.user_profile_description_object.UserProfileDescriptionObject.__init__
+brisa.upnp.msearch.MSearch.__init__
+brisa.upnp.service.Action.__init__
+brisa.upnp.service.Argument.__init__
+brisa.upnp.service.Service.__init__
+brisa.upnp.service.StateVariable.__init__
+brisa.upnp.service.SubscribeRequest.__init__
+brisa.upnp.service.UnsubscribeRequest.__init__
+brisa.upnp.soap.HTTPError.__init__
+brisa.upnp.soap.SOAPProxy.__Method.__init__
+brisa.upnp.soap.SOAPProxy.__init__
+brisa.upnp.ssdp.SSDPServer.__init__
+brisa.upnp.upnp_handler.DeviceHandler.__init__
+brisa.upnp.upnp_publisher.ErrorCode.__init__
+brisa.upnp.upnp_publisher.UPnPPublisher.__init__
+brisa.utils.network_listeners.CannotListenError.__init__
+brisa.utils.network_listeners.NetworkListener.__init__
+brisa.utils.network_listeners.TCPListener.__init__
+brisa.utils.network_listeners.UDPListener.__init__
+brisa.utils.network_senders.TCPTransport.__init__
+brisa.utils.network_senders.UDPTransport.__init__
+brisa.utils.python.failure.Failure.__init__
+brisa.utils.python.looping_call.LoopingCall.__init__" class="py-name" href="#" onclick="return doclink('link-10', '__init__', 'link-10');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">function</tt> <tt class="py-op">=</tt> <tt class="py-name">function</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">args</tt> <tt class="py-op">=</tt> <tt class="py-name">args</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">kwargs</tt> <tt class="py-op">=</tt> <tt class="py-name">kwargs</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">success_callback</tt> <tt class="py-op">=</tt> <tt class="py-name">success_callback</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">success_callback_cargo</tt> <tt class="py-op">=</tt> <tt class="py-name">success_callback_cargo</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">error_callback</tt> <tt class="py-op">=</tt> <tt class="py-name">error_callback</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">error_callback_cargo</tt> <tt class="py-op">=</tt> <tt class="py-name">error_callback_cargo</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">delay</tt> <tt class="py-op">=</tt> <tt class="py-name">delay</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">completed_flag</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">completed</tt> <tt class="py-op">=</tt> <tt class="py-name">Semaphore</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"> </tt>
+<a name="ThreadedCall.run"></a><div id="ThreadedCall.run-def"><a name="L52"></a><tt class="py-lineno"> 52</tt> <a class="py-toggle" href="#" id="ThreadedCall.run-toggle" onclick="return toggle('ThreadedCall.run');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.main.threaded_call.ThreadedCall-class.html#run">run</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ThreadedCall.run-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ThreadedCall.run-expanded"><a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-docstring">""" Implementation of the call procedure.</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">        <tt id="link-11" class="py-name"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-11', 'log', 'link-1');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'ThreadedCall: running'</tt><tt class="py-op">)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">delay</tt><tt class="py-op">:</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">            <tt class="py-comment"># This runs in a thread. We can sleep here instead using time</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-comment"></tt>            <tt id="link-12" class="py-name"><a title="brisa.main.sleep" class="py-name" href="#" onclick="return doclink('link-12', 'sleep', 'link-4');">sleep</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">delay</tt><tt class="py-op">)</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">            <tt id="link-13" class="py-name"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-13', 'log', 'link-1');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'ThreadedCall: sleeping %d'</tt> <tt class="py-op">%</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">delay</tt><tt class="py-op">)</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">            <tt id="link-14" class="py-name"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-14', 'log', 'link-1');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'ThreadedCall: calling'</tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">            <tt class="py-comment"># Performing the call</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"><tt class="py-comment"></tt>            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">function</tt><tt class="py-op">(</tt><tt class="py-op">*</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">args</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">kwargs</tt><tt class="py-op">)</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">            <tt id="link-15" class="py-name"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-15', 'log', 'link-1');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'ThreadedCall: got result %s'</tt> <tt class="py-op">%</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">result</tt><tt class="py-op">)</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">success_callback</tt><tt class="py-op">:</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">                <tt id="link-16" class="py-name"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-16', 'log', 'link-1');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'ThreadedCall: forwarding to success_callback'</tt><tt class="py-op">)</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">success_callback</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">result</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">success_callback_cargo</tt><tt class="py-op">)</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Method brisa.main.threaded_call.ThreadedCall.set_completed()=brisa.main.threaded_call.ThreadedCall-class.html#set_completed"><a title="brisa.main.threaded_call.ThreadedCall.set_completed" class="py-name" href="#" onclick="return doclink('link-17', 'set_completed', 'link-17');">set_completed</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">            <tt id="link-18" class="py-name"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-18', 'log', 'link-1');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'ThreadedCall: exception happened (%s), forwarding...'</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">                      <tt class="py-op">%</tt> <tt class="py-name">e</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Variable brisa.utils.network_listeners.SubscriptionError.message=brisa.utils.network_listeners.SubscriptionError-class.html#message"><a title="brisa.utils.network_listeners.SubscriptionError.message" class="py-name" href="#" onclick="return doclink('link-19', 'message', 'link-19');">message</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">            <tt class="py-comment"># Storing exception for handling</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"><tt class="py-comment"></tt>            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">e</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">error_callback</tt><tt class="py-op">:</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">error_callback</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">error_callback_cargo</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">)</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name"><a title="brisa.main.threaded_call.ThreadedCall.set_completed" class="py-name" href="#" onclick="return doclink('link-20', 'set_completed', 'link-17');">set_completed</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"> </tt>
+<a name="ThreadedCall.cancel"></a><div id="ThreadedCall.cancel-def"><a name="L83"></a><tt class="py-lineno"> 83</tt> <a class="py-toggle" href="#" id="ThreadedCall.cancel-toggle" onclick="return toggle('ThreadedCall.cancel');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.main.threaded_call.ThreadedCall-class.html#cancel">cancel</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ThreadedCall.cancel-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ThreadedCall.cancel-expanded"><a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">        <tt class="py-docstring">""" Cancel the call.</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"><tt class="py-docstring">        Not implemented yet.</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt class="py-comment"># TODO: implement me</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"> </tt>
+<a name="ThreadedCall.prepare_to_stop"></a><div id="ThreadedCall.prepare_to_stop-def"><a name="L91"></a><tt class="py-lineno"> 91</tt> <a class="py-toggle" href="#" id="ThreadedCall.prepare_to_stop-toggle" onclick="return toggle('ThreadedCall.prepare_to_stop');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.main.threaded_call.ThreadedCall-class.html#prepare_to_stop">prepare_to_stop</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ThreadedCall.prepare_to_stop-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ThreadedCall.prepare_to_stop-expanded"><a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">        <tt class="py-docstring">""" Prepares to stop.</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Method brisa.main.threaded_call.ThreadedCall.is_completed()=brisa.main.threaded_call.ThreadedCall-class.html#is_completed"><a title="brisa.main.threaded_call.ThreadedCall.is_completed" class="py-name" href="#" onclick="return doclink('link-21', 'is_completed', 'link-21');">is_completed</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Method brisa.main.threaded_call.ThreadedCall.cancel()=brisa.main.threaded_call.ThreadedCall-class.html#cancel"><a title="brisa.main.threaded_call.ThreadedCall.cancel" class="py-name" href="#" onclick="return doclink('link-22', 'cancel', 'link-22');">cancel</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name"><a title="brisa.main.threaded_call.ThreadedCall.set_completed" class="py-name" href="#" onclick="return doclink('link-23', 'set_completed', 'link-17');">set_completed</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">True</tt> </tt>
+</div><a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"> </tt>
+<a name="ThreadedCall.is_completed"></a><div id="ThreadedCall.is_completed-def"><a name="L99"></a><tt class="py-lineno"> 99</tt> <a class="py-toggle" href="#" id="ThreadedCall.is_completed-toggle" onclick="return toggle('ThreadedCall.is_completed');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.main.threaded_call.ThreadedCall-class.html#is_completed">is_completed</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ThreadedCall.is_completed-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ThreadedCall.is_completed-expanded"><a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-docstring">""" Returns whether the call has been completed or not.</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">completed</tt><tt class="py-op">.</tt><tt class="py-name">acquire</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">        <tt class="py-name">r</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">completed_flag</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">completed</tt><tt class="py-op">.</tt><tt class="py-name">release</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">r</tt> </tt>
+</div><a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line"> </tt>
+<a name="ThreadedCall.set_completed"></a><div id="ThreadedCall.set_completed-def"><a name="L107"></a><tt class="py-lineno">107</tt> <a class="py-toggle" href="#" id="ThreadedCall.set_completed-toggle" onclick="return toggle('ThreadedCall.set_completed');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.main.threaded_call.ThreadedCall-class.html#set_completed">set_completed</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ThreadedCall.set_completed-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ThreadedCall.set_completed-expanded"><a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">        <tt class="py-docstring">""" Sets the call as completed. This should not be called directly.</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"><tt class="py-docstring">        Use stop() instead.</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">completed</tt><tt class="py-op">.</tt><tt class="py-name">acquire</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">completed_flag</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">completed</tt><tt class="py-op">.</tt><tt class="py-name">release</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >BRisa UPnP Framework</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Thu Oct  9 23:37:14 2008
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

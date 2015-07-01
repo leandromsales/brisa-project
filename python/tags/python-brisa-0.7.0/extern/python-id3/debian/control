@@ -1,0 +1,18 @@
+Source: python2.5-id3
+Section: python
+Priority: optional
+Maintainer: Michael Banck <mbanck@debian.org>
+Build-Depends: debhelper (>= 5.0.38), python2.5, python2.5-dev
+Standards-Version: 3.7.2
+
+Package: python2.5-id3
+Architecture: all
+Depends: ${python:Depends}
+Provides: ${python:Provides}
+Description: Python module for id3-tags manipulation
+ python-id3 is a simple Python module for retrieving and setting so-called ID3
+ tags on MP3 compressed audio files through an object-oriented interface. MP3
+ players generally use this simple information for display track title, artist
+ name, and album title while playing the sound file.  
+ .  
+ ID3.py supports ID3 version 1.1, including the track number field.

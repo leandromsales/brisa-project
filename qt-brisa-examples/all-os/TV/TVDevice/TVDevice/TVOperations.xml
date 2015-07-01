@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scpd xmlns="urn:schemas-upnp-org:service-1-0">
+  <specVersion>
+    <major>1</major>
+    <minor>0</minor>
+  </specVersion>
+
+  <actionList>
+
+    <action>
+
+	    <name>SetChanel</name>
+
+	      <argumentList>
+			<argument>
+				  <name>NewChanel</name>
+				  <direction>in</direction>
+				 <relatedStateVariable>SelectedChanel</relatedStateVariable>
+			 </argument>
+
+			<argument>
+				  <name>Result</name>
+				  <direction>out</direction>
+				  <relatedStateVariable>ResultOperation</relatedStateVariable>
+			</argument>
+	      </argumentList>
+
+    </action>
+
+    <action>
+
+    <name>OffOn</name>
+
+      <argumentList>
+		<argument>
+			  <name>Result</name>
+			  <direction>out</direction>
+			  <relatedStateVariable>ResultOperation</relatedStateVariable>
+		</argument>
+      </argumentList>
+
+    </action>
+
+  </actionList>
+
+  <serviceStateTable>
+
+    <stateVariable sendEvents="yes">
+      <name>SelectedChanel</name>
+      <dataType>string</dataType>
+    </stateVariable>
+
+   <stateVariable sendEvents="yes">
+      <name>Operation</name>
+      <dataType>string</dataType>
+   </stateVariable>	
+
+    <stateVariable sendEvents="yes">
+      <name>ResultOperation</name>
+      <dataType>string</dataType>
+    </stateVariable>
+ 
+  </serviceStateTable>
+
+</scpd>

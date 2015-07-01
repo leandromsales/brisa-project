@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>brisa.upnp.control_point.control_point_av</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://brisa.garage.maemo.org">python-brisa UPnP framework 0.10.0 documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="brisa-module.html">Package&nbsp;brisa</a> ::
+        <a href="brisa.upnp-module.html">Package&nbsp;upnp</a> ::
+        <a href="brisa.upnp.control_point-module.html">Package&nbsp;control_point</a> ::
+        Module&nbsp;control_point_av
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="brisa.upnp.control_point.control_point_av-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="brisa.upnp.control_point.control_point_av-module.html">Module brisa.upnp.control_point.control_point_av</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># Licensed under the MIT license</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># http://opensource.org/licenses/mit-license.php or see LICENSE file.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"># Copyright 2007-2008 Brisa Team &lt;brisa-develop@garage.maemo.org&gt;</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring">""" Extends the base control point and adds basic Audio/Video functionality.</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package brisa=brisa-module.html"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-0', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Package brisa.core=brisa.core-module.html"><a title="brisa.core" class="py-name" href="#" onclick="return doclink('link-1', 'core', 'link-1');">core</a></tt> <tt class="py-keyword">import</tt> <tt id="link-2" class="py-name" targets="Module brisa.core.log=brisa.core.log-module.html,Variable brisa.core.plugin_manager.log=brisa.core.plugin_manager-module.html#log,Variable brisa.core.reactors._ecore.log=brisa.core.reactors._ecore-module.html#log,Variable brisa.core.reactors.gtk2.log=brisa.core.reactors.gtk2-module.html#log,Variable brisa.core.webserver.log=brisa.core.webserver-module.html#log,Variable brisa.upnp.control_point.control_point.log=brisa.upnp.control_point.control_point-module.html#log,Variable brisa.upnp.control_point.control_point_av.log=brisa.upnp.control_point.control_point_av-module.html#log,Variable brisa.upnp.device.event.log=brisa.upnp.device.event-module.html#log,Variable brisa.upnp.services.cds.content_directory.log=brisa.upnp.services.cds.content_directory-module.html#log,Variable brisa.upnp.ssdp.log=brisa.upnp.ssdp-module.html#log"><a title="brisa.core.log
+brisa.core.plugin_manager.log
+brisa.core.reactors._ecore.log
+brisa.core.reactors.gtk2.log
+brisa.core.webserver.log
+brisa.upnp.control_point.control_point.log
+brisa.upnp.control_point.control_point_av.log
+brisa.upnp.device.event.log
+brisa.upnp.services.cds.content_directory.log
+brisa.upnp.ssdp.log" class="py-name" href="#" onclick="return doclink('link-2', 'log', 'link-2');">log</a></tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-3" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-3', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-4" class="py-name"><a title="brisa.core" class="py-name" href="#" onclick="return doclink('link-4', 'core', 'link-1');">core</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Module brisa.core.network=brisa.core.network-module.html"><a title="brisa.core.network" class="py-name" href="#" onclick="return doclink('link-5', 'network', 'link-5');">network</a></tt> <tt class="py-keyword">import</tt> <tt id="link-6" class="py-name" targets="Function brisa.core.network.parse_url()=brisa.core.network-module.html#parse_url"><a title="brisa.core.network.parse_url" class="py-name" href="#" onclick="return doclink('link-6', 'parse_url', 'link-6');">parse_url</a></tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-7" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-7', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Package brisa.upnp=brisa.upnp-module.html"><a title="brisa.upnp" class="py-name" href="#" onclick="return doclink('link-8', 'upnp', 'link-8');">upnp</a></tt><tt class="py-op">.</tt><tt id="link-9" class="py-name" targets="Package brisa.upnp.control_point=brisa.upnp.control_point-module.html,Module brisa.upnp.control_point.control_point=brisa.upnp.control_point.control_point-module.html"><a title="brisa.upnp.control_point
+brisa.upnp.control_point.control_point" class="py-name" href="#" onclick="return doclink('link-9', 'control_point', 'link-9');">control_point</a></tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="brisa.upnp.control_point
+brisa.upnp.control_point.control_point" class="py-name" href="#" onclick="return doclink('link-10', 'control_point', 'link-9');">control_point</a></tt> <tt class="py-keyword">import</tt> <tt id="link-11" class="py-name" targets="Class brisa.upnp.control_point.control_point.ControlPoint=brisa.upnp.control_point.control_point.ControlPoint-class.html"><a title="brisa.upnp.control_point.control_point.ControlPoint" class="py-name" href="#" onclick="return doclink('link-11', 'ControlPoint', 'link-11');">ControlPoint</a></tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-12" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-12', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="brisa.upnp" class="py-name" href="#" onclick="return doclink('link-13', 'upnp', 'link-8');">upnp</a></tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="brisa.upnp.control_point
+brisa.upnp.control_point.control_point" class="py-name" href="#" onclick="return doclink('link-14', 'control_point', 'link-9');">control_point</a></tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Module brisa.upnp.control_point.device=brisa.upnp.control_point.device-module.html,Package brisa.upnp.device=brisa.upnp.device-module.html,Module brisa.upnp.device.device=brisa.upnp.device.device-module.html"><a title="brisa.upnp.control_point.device
+brisa.upnp.device
+brisa.upnp.device.device" class="py-name" href="#" onclick="return doclink('link-15', 'device', 'link-15');">device</a></tt> <tt class="py-keyword">import</tt> <tt id="link-16" class="py-name" targets="Class brisa.upnp.control_point.device.Device=brisa.upnp.control_point.device.Device-class.html,Class brisa.upnp.device.device.Device=brisa.upnp.device.device.Device-class.html"><a title="brisa.upnp.control_point.device.Device
+brisa.upnp.device.device.Device" class="py-name" href="#" onclick="return doclink('link-16', 'Device', 'link-16');">Device</a></tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-17" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-17', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="brisa.upnp" class="py-name" href="#" onclick="return doclink('link-18', 'upnp', 'link-8');">upnp</a></tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Package brisa.upnp.didl=brisa.upnp.didl-module.html"><a title="brisa.upnp.didl" class="py-name" href="#" onclick="return doclink('link-19', 'didl', 'link-19');">didl</a></tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Module brisa.upnp.didl.didl_lite=brisa.upnp.didl.didl_lite-module.html"><a title="brisa.upnp.didl.didl_lite" class="py-name" href="#" onclick="return doclink('link-20', 'didl_lite', 'link-20');">didl_lite</a></tt> <tt class="py-keyword">import</tt> <tt id="link-21" class="py-name" targets="Class brisa.upnp.didl.didl_lite.Element=brisa.upnp.didl.didl_lite.Element-class.html"><a title="brisa.upnp.didl.didl_lite.Element" class="py-name" href="#" onclick="return doclink('link-21', 'Element', 'link-21');">Element</a></tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt id="link-22" class="py-name"><a title="brisa.core.log
+brisa.core.plugin_manager.log
+brisa.core.reactors._ecore.log
+brisa.core.reactors.gtk2.log
+brisa.core.webserver.log
+brisa.upnp.control_point.control_point.log
+brisa.upnp.control_point.control_point_av.log
+brisa.upnp.device.event.log
+brisa.upnp.services.cds.content_directory.log
+brisa.upnp.ssdp.log" class="py-name" href="#" onclick="return doclink('link-22', 'log', 'link-2');">log</a></tt> <tt class="py-op">=</tt> <tt id="link-23" class="py-name"><a title="brisa.core.log
+brisa.core.plugin_manager.log
+brisa.core.reactors._ecore.log
+brisa.core.reactors.gtk2.log
+brisa.core.webserver.log
+brisa.upnp.control_point.control_point.log
+brisa.upnp.control_point.control_point_av.log
+brisa.upnp.device.event.log
+brisa.upnp.services.cds.content_directory.log
+brisa.upnp.ssdp.log" class="py-name" href="#" onclick="return doclink('link-23', 'log', 'link-2');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-string">'control-point.control-point-av'</tt><tt class="py-op">)</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"> </tt>
+<a name="ControlPointAV"></a><div id="ControlPointAV-def"><a name="L18"></a><tt class="py-lineno"> 18</tt> <a class="py-toggle" href="#" id="ControlPointAV-toggle" onclick="return toggle('ControlPointAV');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html">ControlPointAV</a><tt class="py-op">(</tt><tt class="py-base-class">ControlPoint</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ControlPointAV-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ControlPointAV-expanded"><a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line">    <tt class="py-docstring">""" This class extends ControlPoint and add basic AV functionality.</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring">    Basic usage is to set a server and/or renderer device with</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-docstring">    set_current_server() and/or set_current_renderer() to work on, then use</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-docstring">    the available A/V methods which are listed below.</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring">    Media servers:</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring">        - browse()         - performs browse</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-docstring">        - search()         - performs search</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-docstring">        - get_search_capabilities() - returns the search capabilities</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-docstring">        - get_sort_capabilities()   - returns the sort capabilities</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-docstring">    Media renderer:</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-docstring">        - av_play(id, uri) - plays an item from a media server on a media</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-docstring">                             renderer. Must receive the item id on the media</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-docstring">                             server or the URL where it is available.</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-docstring">        - av_stop()        - stop playing</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring">        - av_pause()       - pause</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring">        - av_next()        - play next track</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring">        - av_previous()    - play previous track</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">    <tt id="link-24" class="py-name" targets="Variable brisa.upnp.control_point.control_point_av.ControlPointAV.CDS_namespace=brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#CDS_namespace"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.CDS_namespace" class="py-name" href="#" onclick="return doclink('link-24', 'CDS_namespace', 'link-24');">CDS_namespace</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'urn:schemas-upnp-org:service:ContentDirectory:1'</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">    <tt id="link-25" class="py-name" targets="Variable brisa.upnp.control_point.control_point_av.ControlPointAV.AVT_namespace=brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#AVT_namespace"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.AVT_namespace" class="py-name" href="#" onclick="return doclink('link-25', 'AVT_namespace', 'link-25');">AVT_namespace</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'urn:schemas-upnp-org:service:AVTransport:1'</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">    <tt id="link-26" class="py-name" targets="Variable brisa.upnp.control_point.control_point_av.ControlPointAV.DMS_type=brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#DMS_type"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.DMS_type" class="py-name" href="#" onclick="return doclink('link-26', 'DMS_type', 'link-26');">DMS_type</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'urn:schemas-upnp-org:device:MediaServer:'</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">    <tt id="link-27" class="py-name" targets="Variable brisa.upnp.control_point.control_point_av.ControlPointAV.DMR_type=brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#DMR_type"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.DMR_type" class="py-name" href="#" onclick="return doclink('link-27', 'DMR_type', 'link-27');">DMR_type</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'urn:schemas-upnp-org:device:MediaRenderer:'</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">    <tt id="link-28" class="py-name" targets="Variable brisa.upnp.control_point.control_point_av.ControlPointAV.msg_invalid_server=brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#msg_invalid_server"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.msg_invalid_server" class="py-name" href="#" onclick="return doclink('link-28', 'msg_invalid_server', 'link-28');">msg_invalid_server</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'server_device parameter must be a Device'</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">    <tt id="link-29" class="py-name" targets="Variable brisa.upnp.control_point.control_point_av.ControlPointAV.msg_invalid_renderer=brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#msg_invalid_renderer"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.msg_invalid_renderer" class="py-name" href="#" onclick="return doclink('link-29', 'msg_invalid_renderer', 'link-29');">msg_invalid_renderer</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'renderer_device parameter must be a Device'</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">    <tt id="link-30" class="py-name" targets="Variable brisa.upnp.control_point.control_point_av.ControlPointAV.msg_select_server=brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#msg_select_server"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.msg_select_server" class="py-name" href="#" onclick="return doclink('link-30', 'msg_select_server', 'link-30');">msg_select_server</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'media server not set. Set it with '</tt>\ </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">                        <tt class="py-string">'set_current_server().'</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">    <tt id="link-31" class="py-name" targets="Variable brisa.upnp.control_point.control_point_av.ControlPointAV.msg_select_renderer=brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#msg_select_renderer"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.msg_select_renderer" class="py-name" href="#" onclick="return doclink('link-31', 'msg_select_renderer', 'link-31');">msg_select_renderer</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'media renderer not set. Set it with '</tt>\ </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">                          <tt class="py-string">'set_current_renderer().'</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"> </tt>
+<a name="ControlPointAV.__init__"></a><div id="ControlPointAV.__init__-def"><a name="L52"></a><tt class="py-lineno"> 52</tt> <a class="py-toggle" href="#" id="ControlPointAV.__init__-toggle" onclick="return toggle('ControlPointAV.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">receive_notify</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ControlPointAV.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ControlPointAV.__init__-expanded"><a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-docstring">""" Constructor for the ControlPointAV class.</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"><tt class="py-docstring">        @param receive_notify: if False, disables notify handling. This means</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"><tt class="py-docstring">                               it will only listen for MSearch responses.</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt class="py-docstring">        @type receive_notify: bool</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">        <tt id="link-32" class="py-name"><a title="brisa.upnp.control_point.control_point.ControlPoint" class="py-name" href="#" onclick="return doclink('link-32', 'ControlPoint', 'link-11');">ControlPoint</a></tt><tt class="py-op">.</tt><tt id="link-33" class="py-name" targets="Method brisa.core.config.ConfigurationManager.__init__()=brisa.core.config.ConfigurationManager-class.html#__init__,Method brisa.core.config._BRisaConfigurationManager.__init__()=brisa.core.config._BRisaConfigurationManager-class.html#__init__,Method brisa.core.failure.Failure.__init__()=brisa.core.failure.Failure-class.html#__init__,Method brisa.core.ireactor.ReactorInterface.__init__()=brisa.core.ireactor.ReactorInterface-class.html#__init__,Method brisa.core.ireactor.ReactorInterface.__init__()=brisa.core.ireactor.ReactorInterface-class.html#__init__,Method brisa.core.log.ColoredFormatter.__init__()=brisa.core.log.ColoredFormatter-class.html#__init__,Method brisa.core.log.ColoredLogger.__init__()=brisa.core.log.ColoredLogger-class.html#__init__,Method brisa.core.network_listeners.CannotListenError.__init__()=brisa.core.network_listeners.CannotListenError-class.html#__init__,Method brisa.core.network_listeners.NetworkListener.__init__()=brisa.core.network_listeners.NetworkListener-class.html#__init__,Method brisa.core.network_listeners.UDPListener.__init__()=brisa.core.network_listeners.UDPListener-class.html#__init__,Method brisa.core.network_senders.TCPTransport.__init__()=brisa.core.network_senders.TCPTransport-class.html#__init__,Method brisa.core.network_senders.UDPTransport.__init__()=brisa.core.network_senders.UDPTransport-class.html#__init__,Method brisa.core.plugin.PluginInterface.__init__()=brisa.core.plugin.PluginInterface-class.html#__init__,Method brisa.core.plugin_manager.PluginManager.__init__()=brisa.core.plugin_manager.PluginManager-class.html#__init__,Method brisa.core.plugin_manager.RootPlugin.__init__()=brisa.core.plugin_manager.RootPlugin-class.html#__init__,Method brisa.core.reactors._select.SelectReactor.__init__()=brisa.core.reactors._select.SelectReactor-class.html#__init__,Method brisa.core.reactors._select.Timer.__init__()=brisa.core.reactors._select.Timer-class.html#__init__,Method brisa.core.reactors.glib2.GLib2Reactor.__init__()=brisa.core.reactors.glib2.GLib2Reactor-class.html#__init__,Method brisa.core.threaded_call.ThreadedCall.__init__()=brisa.core.threaded_call.ThreadedCall-class.html#__init__,Method brisa.core.webserver.Request.__init__()=brisa.core.webserver.Request-class.html#__init__,Method brisa.core.webserver.Resource.__init__()=brisa.core.webserver.Resource-class.html#__init__,Method brisa.core.webserver.Response.__init__()=brisa.core.webserver.Response-class.html#__init__,Method brisa.core.webserver.StaticFile.__init__()=brisa.core.webserver.StaticFile-class.html#__init__,Method brisa.core.webserver.WebServer.__init__()=brisa.core.webserver.WebServer-class.html#__init__,Method brisa.upnp.base_action.BaseAction.__init__()=brisa.upnp.base_action.BaseAction-class.html#__init__,Method brisa.upnp.base_action.BaseArgument.__init__()=brisa.upnp.base_action.BaseArgument-class.html#__init__,Method brisa.upnp.base_device.BaseDevice.__init__()=brisa.upnp.base_device.BaseDevice-class.html#__init__,Method brisa.upnp.base_device.BaseDevice.__init__()=brisa.upnp.base_device.BaseDevice-class.html#__init__,Method brisa.upnp.base_device.BaseDeviceIcon.__init__()=brisa.upnp.base_device.BaseDeviceIcon-class.html#__init__,Method brisa.upnp.base_service.BaseService.__init__()=brisa.upnp.base_service.BaseService-class.html#__init__,Method brisa.upnp.base_service.BaseStateVariable.__init__()=brisa.upnp.base_service.BaseStateVariable-class.html#__init__,Method brisa.upnp.base_service_builder.BaseServiceBuilder.__init__()=brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#__init__,Method brisa.upnp.base_service_builder.BaseServiceBuilder.__init__()=brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#__init__,Method brisa.upnp.control_point.action.Action.__init__()=brisa.upnp.control_point.action.Action-class.html#__init__,Method brisa.upnp.control_point.action.Argument.__init__()=brisa.upnp.control_point.action.Argument-class.html#__init__,Method brisa.upnp.control_point.control_point.ControlPoint.__init__()=brisa.upnp.control_point.control_point.ControlPoint-class.html#__init__,Method brisa.upnp.control_point.control_point_av.ControlPointAV.__init__()=brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#__init__,Method brisa.upnp.control_point.device_builder.DeviceAssembler.__init__()=brisa.upnp.control_point.device_builder.DeviceAssembler-class.html#__init__,Method brisa.upnp.control_point.device_builder.DeviceBuilder.__init__()=brisa.upnp.control_point.device_builder.DeviceBuilder-class.html#__init__,Method brisa.upnp.control_point.event.EventListener.__init__()=brisa.upnp.control_point.event.EventListener-class.html#__init__,Method brisa.upnp.control_point.event.EventListenerServer.__init__()=brisa.upnp.control_point.event.EventListenerServer-class.html#__init__,Method brisa.upnp.control_point.msearch.MSearch.__init__()=brisa.upnp.control_point.msearch.MSearch-class.html#__init__,Method brisa.upnp.control_point.service.AutoRenew.__init__()=brisa.upnp.control_point.service.AutoRenew-class.html#__init__,Method brisa.upnp.control_point.service.RenewSubscribeRequest.__init__()=brisa.upnp.control_point.service.RenewSubscribeRequest-class.html#__init__,Method brisa.upnp.control_point.service.Service.__init__()=brisa.upnp.control_point.service.Service-class.html#__init__,Method brisa.upnp.control_point.service.StateVariable.__init__()=brisa.upnp.control_point.service.StateVariable-class.html#__init__,Method brisa.upnp.control_point.service.SubscribeRequest.__init__()=brisa.upnp.control_point.service.SubscribeRequest-class.html#__init__,Method brisa.upnp.control_point.service.UnsubscribeRequest.__init__()=brisa.upnp.control_point.service.UnsubscribeRequest-class.html#__init__,Method brisa.upnp.device.action.Action.__init__()=brisa.upnp.device.action.Action-class.html#__init__,Method brisa.upnp.device.action.Argument.__init__()=brisa.upnp.device.action.Argument-class.html#__init__,Method brisa.upnp.device.device.Device.__init__()=brisa.upnp.device.device.Device-class.html#__init__,Method brisa.upnp.device.event.EventController.__init__()=brisa.upnp.device.event.EventController-class.html#__init__,Method brisa.upnp.device.event.EventMessage.__init__()=brisa.upnp.device.event.EventMessage-class.html#__init__,Method brisa.upnp.device.event.Subscriber.__init__()=brisa.upnp.device.event.Subscriber-class.html#__init__,Method brisa.upnp.device.service.ErrorCode.__init__()=brisa.upnp.device.service.ErrorCode-class.html#__init__,Method brisa.upnp.device.service.Service.__init__()=brisa.upnp.device.service.Service-class.html#__init__,Method brisa.upnp.device.service.ServiceController.__init__()=brisa.upnp.device.service.ServiceController-class.html#__init__,Method brisa.upnp.device.service.StateVariable.__init__()=brisa.upnp.device.service.StateVariable-class.html#__init__,Method brisa.upnp.device.xml_gen.DeviceXMLBuilder.__init__()=brisa.upnp.device.xml_gen.DeviceXMLBuilder-class.html#__init__,Method brisa.upnp.device.xml_gen.DeviceXMLGenerator.__init__()=brisa.upnp.device.xml_gen.DeviceXMLGenerator-class.html#__init__,Method brisa.upnp.device.xml_gen.ServiceXMLBuilder.__init__()=brisa.upnp.device.xml_gen.ServiceXMLBuilder-class.html#__init__,Method brisa.upnp.device.xml_gen.ServiceXMLGenerator.__init__()=brisa.upnp.device.xml_gen.ServiceXMLGenerator-class.html#__init__,Method brisa.upnp.didl.didl_lite.Album.__init__()=brisa.upnp.didl.didl_lite.Album-class.html#__init__,Method brisa.upnp.didl.didl_lite.AudioBook.__init__()=brisa.upnp.didl.didl_lite.AudioBook-class.html#__init__,Method brisa.upnp.didl.didl_lite.AudioBroadcast.__init__()=brisa.upnp.didl.didl_lite.AudioBroadcast-class.html#__init__,Method brisa.upnp.didl.didl_lite.AudioItem.__init__()=brisa.upnp.didl.didl_lite.AudioItem-class.html#__init__,Method brisa.upnp.didl.didl_lite.Container.__init__()=brisa.upnp.didl.didl_lite.Container-class.html#__init__,Method brisa.upnp.didl.didl_lite.Element.__init__()=brisa.upnp.didl.didl_lite.Element-class.html#__init__,Method brisa.upnp.didl.didl_lite.Genre.__init__()=brisa.upnp.didl.didl_lite.Genre-class.html#__init__,Method brisa.upnp.didl.didl_lite.ImageItem.__init__()=brisa.upnp.didl.didl_lite.ImageItem-class.html#__init__,Method brisa.upnp.didl.didl_lite.Item.__init__()=brisa.upnp.didl.didl_lite.Item-class.html#__init__,Method brisa.upnp.didl.didl_lite.Movie.__init__()=brisa.upnp.didl.didl_lite.Movie-class.html#__init__,Method brisa.upnp.didl.didl_lite.MusicAlbum.__init__()=brisa.upnp.didl.didl_lite.MusicAlbum-class.html#__init__,Method brisa.upnp.didl.didl_lite.MusicArtist.__init__()=brisa.upnp.didl.didl_lite.MusicArtist-class.html#__init__,Method brisa.upnp.didl.didl_lite.MusicTrack.__init__()=brisa.upnp.didl.didl_lite.MusicTrack-class.html#__init__,Method brisa.upnp.didl.didl_lite.MusicVideoClip.__init__()=brisa.upnp.didl.didl_lite.MusicVideoClip-class.html#__init__,Method brisa.upnp.didl.didl_lite.Object.__init__()=brisa.upnp.didl.didl_lite.Object-class.html#__init__,Method brisa.upnp.didl.didl_lite.Person.__init__()=brisa.upnp.didl.didl_lite.Person-class.html#__init__,Method brisa.upnp.didl.didl_lite.Photo.__init__()=brisa.upnp.didl.didl_lite.Photo-class.html#__init__,Method brisa.upnp.didl.didl_lite.PlaylistContainer.__init__()=brisa.upnp.didl.didl_lite.PlaylistContainer-class.html#__init__,Method brisa.upnp.didl.didl_lite.PlaylistItem.__init__()=brisa.upnp.didl.didl_lite.PlaylistItem-class.html#__init__,Method brisa.upnp.didl.didl_lite.Resource.__init__()=brisa.upnp.didl.didl_lite.Resource-class.html#__init__,Method brisa.upnp.didl.didl_lite.SearchClass.__init__()=brisa.upnp.didl.didl_lite.SearchClass-class.html#__init__,Method brisa.upnp.didl.didl_lite.StorageFolder.__init__()=brisa.upnp.didl.didl_lite.StorageFolder-class.html#__init__,Method brisa.upnp.didl.didl_lite.StorageSystem.__init__()=brisa.upnp.didl.didl_lite.StorageSystem-class.html#__init__,Method brisa.upnp.didl.didl_lite.StorageVolume.__init__()=brisa.upnp.didl.didl_lite.StorageVolume-class.html#__init__,Method brisa.upnp.didl.didl_lite.VideoBroadcast.__init__()=brisa.upnp.didl.didl_lite.VideoBroadcast-class.html#__init__,Method brisa.upnp.didl.didl_lite.VideoItem.__init__()=brisa.upnp.didl.didl_lite.VideoItem-class.html#__init__,Method brisa.upnp.services.cds.content_directory.ContentDirectory.__init__()=brisa.upnp.services.cds.content_directory.ContentDirectory-class.html#__init__,Method brisa.upnp.services.connmgr.connection_manager.ConnectionManagerRenderer.__init__()=brisa.upnp.services.connmgr.connection_manager.ConnectionManagerRenderer-class.html#__init__,Method brisa.upnp.services.connmgr.connection_manager.ConnectionManagerServer.__init__()=brisa.upnp.services.connmgr.connection_manager.ConnectionManagerServer-class.html#__init__,Method brisa.upnp.soap.HTTPError.__init__()=brisa.upnp.soap.HTTPError-class.html#__init__,Method brisa.upnp.soap.SOAPProxy.__init__()=brisa.upnp.soap.SOAPProxy-class.html#__init__,Method brisa.upnp.ssdp.SSDPServer.__init__()=brisa.upnp.ssdp.SSDPServer-class.html#__init__,Method brisa.utils.looping_call.LoopingCall.__init__()=brisa.utils.looping_call.LoopingCall-class.html#__init__"><a title="brisa.core.config.ConfigurationManager.__init__
+brisa.core.config._BRisaConfigurationManager.__init__
+brisa.core.failure.Failure.__init__
+brisa.core.ireactor.ReactorInterface.__init__
+brisa.core.ireactor.ReactorInterface.__init__
+brisa.core.log.ColoredFormatter.__init__
+brisa.core.log.ColoredLogger.__init__
+brisa.core.network_listeners.CannotListenError.__init__
+brisa.core.network_listeners.NetworkListener.__init__
+brisa.core.network_listeners.UDPListener.__init__
+brisa.core.network_senders.TCPTransport.__init__
+brisa.core.network_senders.UDPTransport.__init__
+brisa.core.plugin.PluginInterface.__init__
+brisa.core.plugin_manager.PluginManager.__init__
+brisa.core.plugin_manager.RootPlugin.__init__
+brisa.core.reactors._select.SelectReactor.__init__
+brisa.core.reactors._select.Timer.__init__
+brisa.core.reactors.glib2.GLib2Reactor.__init__
+brisa.core.threaded_call.ThreadedCall.__init__
+brisa.core.webserver.Request.__init__
+brisa.core.webserver.Resource.__init__
+brisa.core.webserver.Response.__init__
+brisa.core.webserver.StaticFile.__init__
+brisa.core.webserver.WebServer.__init__
+brisa.upnp.base_action.BaseAction.__init__
+brisa.upnp.base_action.BaseArgument.__init__
+brisa.upnp.base_device.BaseDevice.__init__
+brisa.upnp.base_device.BaseDevice.__init__
+brisa.upnp.base_device.BaseDeviceIcon.__init__
+brisa.upnp.base_service.BaseService.__init__
+brisa.upnp.base_service.BaseStateVariable.__init__
+brisa.upnp.base_service_builder.BaseServiceBuilder.__init__
+brisa.upnp.base_service_builder.BaseServiceBuilder.__init__
+brisa.upnp.control_point.action.Action.__init__
+brisa.upnp.control_point.action.Argument.__init__
+brisa.upnp.control_point.control_point.ControlPoint.__init__
+brisa.upnp.control_point.control_point_av.ControlPointAV.__init__
+brisa.upnp.control_point.device_builder.DeviceAssembler.__init__
+brisa.upnp.control_point.device_builder.DeviceBuilder.__init__
+brisa.upnp.control_point.event.EventListener.__init__
+brisa.upnp.control_point.event.EventListenerServer.__init__
+brisa.upnp.control_point.msearch.MSearch.__init__
+brisa.upnp.control_point.service.AutoRenew.__init__
+brisa.upnp.control_point.service.RenewSubscribeRequest.__init__
+brisa.upnp.control_point.service.Service.__init__
+brisa.upnp.control_point.service.StateVariable.__init__
+brisa.upnp.control_point.service.SubscribeRequest.__init__
+brisa.upnp.control_point.service.UnsubscribeRequest.__init__
+brisa.upnp.device.action.Action.__init__
+brisa.upnp.device.action.Argument.__init__
+brisa.upnp.device.device.Device.__init__
+brisa.upnp.device.event.EventController.__init__
+brisa.upnp.device.event.EventMessage.__init__
+brisa.upnp.device.event.Subscriber.__init__
+brisa.upnp.device.service.ErrorCode.__init__
+brisa.upnp.device.service.Service.__init__
+brisa.upnp.device.service.ServiceController.__init__
+brisa.upnp.device.service.StateVariable.__init__
+brisa.upnp.device.xml_gen.DeviceXMLBuilder.__init__
+brisa.upnp.device.xml_gen.DeviceXMLGenerator.__init__
+brisa.upnp.device.xml_gen.ServiceXMLBuilder.__init__
+brisa.upnp.device.xml_gen.ServiceXMLGenerator.__init__
+brisa.upnp.didl.didl_lite.Album.__init__
+brisa.upnp.didl.didl_lite.AudioBook.__init__
+brisa.upnp.didl.didl_lite.AudioBroadcast.__init__
+brisa.upnp.didl.didl_lite.AudioItem.__init__
+brisa.upnp.didl.didl_lite.Container.__init__
+brisa.upnp.didl.didl_lite.Element.__init__
+brisa.upnp.didl.didl_lite.Genre.__init__
+brisa.upnp.didl.didl_lite.ImageItem.__init__
+brisa.upnp.didl.didl_lite.Item.__init__
+brisa.upnp.didl.didl_lite.Movie.__init__
+brisa.upnp.didl.didl_lite.MusicAlbum.__init__
+brisa.upnp.didl.didl_lite.MusicArtist.__init__
+brisa.upnp.didl.didl_lite.MusicTrack.__init__
+brisa.upnp.didl.didl_lite.MusicVideoClip.__init__
+brisa.upnp.didl.didl_lite.Object.__init__
+brisa.upnp.didl.didl_lite.Person.__init__
+brisa.upnp.didl.didl_lite.Photo.__init__
+brisa.upnp.didl.didl_lite.PlaylistContainer.__init__
+brisa.upnp.didl.didl_lite.PlaylistItem.__init__
+brisa.upnp.didl.didl_lite.Resource.__init__
+brisa.upnp.didl.didl_lite.SearchClass.__init__
+brisa.upnp.didl.didl_lite.StorageFolder.__init__
+brisa.upnp.didl.didl_lite.StorageSystem.__init__
+brisa.upnp.didl.didl_lite.StorageVolume.__init__
+brisa.upnp.didl.didl_lite.VideoBroadcast.__init__
+brisa.upnp.didl.didl_lite.VideoItem.__init__
+brisa.upnp.services.cds.content_directory.ContentDirectory.__init__
+brisa.upnp.services.connmgr.connection_manager.ConnectionManagerRenderer.__init__
+brisa.upnp.services.connmgr.connection_manager.ConnectionManagerServer.__init__
+brisa.upnp.soap.HTTPError.__init__
+brisa.upnp.soap.SOAPProxy.__init__
+brisa.upnp.ssdp.SSDPServer.__init__
+brisa.utils.looping_call.LoopingCall.__init__" class="py-name" href="#" onclick="return doclink('link-33', '__init__', 'link-33');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt id="link-34" class="py-name" targets="Variable brisa.upnp.control_point.control_point.ControlPoint.receive_notify=brisa.upnp.control_point.control_point.ControlPoint-class.html#receive_notify"><a title="brisa.upnp.control_point.control_point.ControlPoint.receive_notify" class="py-name" href="#" onclick="return doclink('link-34', 'receive_notify', 'link-34');">receive_notify</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_current_server</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_current_renderer</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+</div><a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"> </tt>
+<a name="ControlPointAV.get_current_server"></a><div id="ControlPointAV.get_current_server-def"><a name="L63"></a><tt class="py-lineno"> 63</tt> <a class="py-toggle" href="#" id="ControlPointAV.get_current_server-toggle" onclick="return toggle('ControlPointAV.get_current_server');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#get_current_server">get_current_server</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ControlPointAV.get_current_server-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ControlPointAV.get_current_server-expanded"><a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt class="py-docstring">""" Returns the current selected server.</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_current_server</tt> </tt>
+</div><a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"> </tt>
+<a name="ControlPointAV.set_current_server"></a><div id="ControlPointAV.set_current_server-def"><a name="L68"></a><tt class="py-lineno"> 68</tt> <a class="py-toggle" href="#" id="ControlPointAV.set_current_server-toggle" onclick="return toggle('ControlPointAV.set_current_server');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#set_current_server">set_current_server</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">server_device</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ControlPointAV.set_current_server-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ControlPointAV.set_current_server-expanded"><a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">        <tt class="py-docstring">""" Sets the current server. Required before performing any action on</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-docstring">        the Content Directory service.</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt class="py-docstring">        @param server_device: server</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"><tt class="py-docstring">        @type server_device: Device</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-keyword">assert</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">server_device</tt><tt class="py-op">,</tt> <tt id="link-35" class="py-name"><a title="brisa.upnp.control_point.device.Device
+brisa.upnp.device.device.Device" class="py-name" href="#" onclick="return doclink('link-35', 'Device', 'link-16');">Device</a></tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-36" class="py-name"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.msg_invalid_server" class="py-name" href="#" onclick="return doclink('link-36', 'msg_invalid_server', 'link-28');">msg_invalid_server</a></tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_current_server</tt> <tt class="py-op">=</tt> <tt class="py-name">server_device</tt> </tt>
+</div><a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"> </tt>
+<a name="ControlPointAV.get_current_renderer"></a><div id="ControlPointAV.get_current_renderer-def"><a name="L78"></a><tt class="py-lineno"> 78</tt> <a class="py-toggle" href="#" id="ControlPointAV.get_current_renderer-toggle" onclick="return toggle('ControlPointAV.get_current_renderer');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#get_current_renderer">get_current_renderer</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ControlPointAV.get_current_renderer-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ControlPointAV.get_current_renderer-expanded"><a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-docstring">""" Returns the current selected renderer.</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_current_renderer</tt> </tt>
+</div><a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"> </tt>
+<a name="ControlPointAV.set_current_renderer"></a><div id="ControlPointAV.set_current_renderer-def"><a name="L83"></a><tt class="py-lineno"> 83</tt> <a class="py-toggle" href="#" id="ControlPointAV.set_current_renderer-toggle" onclick="return toggle('ControlPointAV.set_current_renderer');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#set_current_renderer">set_current_renderer</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">renderer_device</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ControlPointAV.set_current_renderer-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ControlPointAV.set_current_renderer-expanded"><a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">        <tt class="py-docstring">""" Sets the current renderer. Required before performing any action</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"><tt class="py-docstring">        on the AV Transport service.</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"><tt class="py-docstring">        @param renderer_device: renderer</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"><tt class="py-docstring">        @type renderer_device: Device</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt class="py-keyword">assert</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">renderer_device</tt><tt class="py-op">,</tt> <tt id="link-37" class="py-name"><a title="brisa.upnp.control_point.device.Device
+brisa.upnp.device.device.Device" class="py-name" href="#" onclick="return doclink('link-37', 'Device', 'link-16');">Device</a></tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-38" class="py-name"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.msg_invalid_renderer" class="py-name" href="#" onclick="return doclink('link-38', 'msg_invalid_renderer', 'link-29');">msg_invalid_renderer</a></tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_current_renderer</tt> <tt class="py-op">=</tt> <tt class="py-name">renderer_device</tt> </tt>
+</div><a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"> </tt>
+<a name="ControlPointAV.get_cd_service"></a><div id="ControlPointAV.get_cd_service-def"><a name="L93"></a><tt class="py-lineno"> 93</tt> <a class="py-toggle" href="#" id="ControlPointAV.get_cd_service-toggle" onclick="return toggle('ControlPointAV.get_cd_service');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#get_cd_service">get_cd_service</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ControlPointAV.get_cd_service-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ControlPointAV.get_cd_service-expanded"><a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">        <tt class="py-docstring">""" Returns the Content Directory service from the selected server.</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_current_server</tt><tt class="py-op">:</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt class="py-name">RuntimeError</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.msg_select_server" class="py-name" href="#" onclick="return doclink('link-39', 'msg_select_server', 'link-30');">msg_select_server</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_current_server</tt><tt class="py-op">.</tt><tt id="link-40" class="py-name" targets="Method brisa.upnp.base_device.BaseDevice.get_service_by_type()=brisa.upnp.base_device.BaseDevice-class.html#get_service_by_type,Method brisa.upnp.base_device.BaseDevice.get_service_by_type()=brisa.upnp.base_device.BaseDevice-class.html#get_service_by_type"><a title="brisa.upnp.base_device.BaseDevice.get_service_by_type
+brisa.upnp.base_device.BaseDevice.get_service_by_type" class="py-name" href="#" onclick="return doclink('link-40', 'get_service_by_type', 'link-40');">get_service_by_type</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-41" class="py-name"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.CDS_namespace" class="py-name" href="#" onclick="return doclink('link-41', 'CDS_namespace', 'link-24');">CDS_namespace</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"> </tt>
+<a name="ControlPointAV.get_avt_service"></a><div id="ControlPointAV.get_avt_service-def"><a name="L100"></a><tt class="py-lineno">100</tt> <a class="py-toggle" href="#" id="ControlPointAV.get_avt_service-toggle" onclick="return toggle('ControlPointAV.get_avt_service');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#get_avt_service">get_avt_service</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ControlPointAV.get_avt_service-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ControlPointAV.get_avt_service-expanded"><a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt class="py-docstring">""" Returns the AV Transport service from the selected renderer.</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_current_renderer</tt><tt class="py-op">:</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt class="py-name">RuntimeError</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-42" class="py-name"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.msg_select_renderer" class="py-name" href="#" onclick="return doclink('link-42', 'msg_select_renderer', 'link-31');">msg_select_renderer</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_current_renderer</tt><tt class="py-op">.</tt><tt id="link-43" class="py-name"><a title="brisa.upnp.base_device.BaseDevice.get_service_by_type
+brisa.upnp.base_device.BaseDevice.get_service_by_type" class="py-name" href="#" onclick="return doclink('link-43', 'get_service_by_type', 'link-40');">get_service_by_type</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-44" class="py-name"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.AVT_namespace" class="py-name" href="#" onclick="return doclink('link-44', 'AVT_namespace', 'link-25');">AVT_namespace</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line"> </tt>
+<a name="ControlPointAV.browse"></a><div id="ControlPointAV.browse-def"><a name="L107"></a><tt class="py-lineno">107</tt> <a class="py-toggle" href="#" id="ControlPointAV.browse-toggle" onclick="return toggle('ControlPointAV.browse');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#browse">browse</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">object_id</tt><tt class="py-op">,</tt> <tt class="py-param">browse_flag</tt><tt class="py-op">,</tt> <tt class="py-param">filter</tt><tt class="py-op">,</tt> <tt class="py-param">starting_index</tt><tt class="py-op">,</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">               <tt class="py-param">requested_count</tt><tt class="py-op">,</tt> <tt class="py-param">sort_criteria</tt><tt class="py-op">=</tt><tt class="py-string">"dc:title"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ControlPointAV.browse-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ControlPointAV.browse-expanded"><a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">        <tt class="py-docstring">""" Browses media servers.</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line"><tt class="py-docstring">        @param object_id: object id</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line"><tt class="py-docstring">        @param browse_flag: BrowseDirectChildren or BrowseMetadata</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line"><tt class="py-docstring">        @param filter: a filter to indicate which metadata properties</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"><tt class="py-docstring">                       are to be returned. Usually "*".</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"><tt class="py-docstring">        @param starting_index: starting index to consider the requested count</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"><tt class="py-docstring">        @param requested_count: requested number of entries</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"><tt class="py-docstring">        @param sort_criteria: sorting criteria</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"><tt class="py-docstring">        @type object_id: string</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"><tt class="py-docstring">        @type browse_flag: string</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"><tt class="py-docstring">        @type filter: string</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line"><tt class="py-docstring">        @type starting_index: int</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"><tt class="py-docstring">        @type requested_count: int</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line"><tt class="py-docstring">        @type sort_criteria: string</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"><tt class="py-docstring">        @return: a list of containers and items</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: list</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">        <tt id="link-45" class="py-name" targets="Module brisa.upnp.control_point.service=brisa.upnp.control_point.service-module.html,Module brisa.upnp.device.service=brisa.upnp.device.service-module.html"><a title="brisa.upnp.control_point.service
+brisa.upnp.device.service" class="py-name" href="#" onclick="return doclink('link-45', 'service', 'link-45');">service</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-46" class="py-name" targets="Method brisa.upnp.control_point.control_point_av.ControlPointAV.get_cd_service()=brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#get_cd_service"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.get_cd_service" class="py-name" href="#" onclick="return doclink('link-46', 'get_cd_service', 'link-46');">get_cd_service</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">        <tt class="py-name">browse_response</tt> <tt class="py-op">=</tt> <tt id="link-47" class="py-name"><a title="brisa.upnp.control_point.service
+brisa.upnp.device.service" class="py-name" href="#" onclick="return doclink('link-47', 'service', 'link-45');">service</a></tt><tt class="py-op">.</tt><tt class="py-name">Browse</tt><tt class="py-op">(</tt><tt class="py-name">ObjectID</tt><tt class="py-op">=</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">object_id</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">                                         <tt class="py-name">BrowseFlag</tt><tt class="py-op">=</tt><tt class="py-name">browse_flag</tt><tt class="py-op">,</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">                                         <tt class="py-name">Filter</tt><tt class="py-op">=</tt><tt class="py-name">filter</tt><tt class="py-op">,</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">                                         <tt class="py-name">StartingIndex</tt><tt class="py-op">=</tt><tt class="py-name">starting_index</tt><tt class="py-op">,</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">                                         <tt class="py-name">RequestedCount</tt><tt class="py-op">=</tt><tt class="py-name">requested_count</tt><tt class="py-op">,</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">                                         <tt class="py-name">SortCriteria</tt><tt class="py-op">=</tt><tt class="py-name">sort_criteria</tt><tt class="py-op">)</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">        <tt class="py-name">elt</tt> <tt class="py-op">=</tt> <tt id="link-48" class="py-name"><a title="brisa.upnp.didl.didl_lite.Element" class="py-name" href="#" onclick="return doclink('link-48', 'Element', 'link-21');">Element</a></tt><tt class="py-op">.</tt><tt id="link-49" class="py-name" targets="Class Method brisa.upnp.didl.didl_lite.Element.from_string()=brisa.upnp.didl.didl_lite.Element-class.html#from_string,Class Method brisa.upnp.didl.didl_lite.Object.from_string()=brisa.upnp.didl.didl_lite.Object-class.html#from_string,Class Method brisa.upnp.didl.didl_lite.Resource.from_string()=brisa.upnp.didl.didl_lite.Resource-class.html#from_string"><a title="brisa.upnp.didl.didl_lite.Element.from_string
+brisa.upnp.didl.didl_lite.Object.from_string
+brisa.upnp.didl.didl_lite.Resource.from_string" class="py-name" href="#" onclick="return doclink('link-49', 'from_string', 'link-49');">from_string</a></tt><tt class="py-op">(</tt><tt class="py-name">browse_response</tt><tt class="py-op">[</tt><tt class="py-string">'Result'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">        <tt class="py-name">browse_response</tt><tt class="py-op">[</tt><tt class="py-string">'Result'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">elt</tt><tt class="py-op">.</tt><tt id="link-50" class="py-name" targets="Method brisa.upnp.didl.didl_lite.Element.get_items()=brisa.upnp.didl.didl_lite.Element-class.html#get_items"><a title="brisa.upnp.didl.didl_lite.Element.get_items" class="py-name" href="#" onclick="return doclink('link-50', 'get_items', 'link-50');">get_items</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">browse_response</tt> </tt>
+</div><a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line"> </tt>
+<a name="ControlPointAV.search"></a><div id="ControlPointAV.search-def"><a name="L140"></a><tt class="py-lineno">140</tt> <a class="py-toggle" href="#" id="ControlPointAV.search-toggle" onclick="return toggle('ControlPointAV.search');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#search">search</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">container_id</tt><tt class="py-op">,</tt> <tt class="py-param">search_criteria</tt><tt class="py-op">,</tt> <tt class="py-param">filter</tt><tt class="py-op">,</tt> <tt class="py-param">starting_index</tt><tt class="py-op">,</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">               <tt class="py-param">requested_count</tt><tt class="py-op">,</tt> <tt class="py-param">sort_criteria</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ControlPointAV.search-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ControlPointAV.search-expanded"><a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">        <tt class="py-docstring">""" Search items in Media Server.</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line"><tt class="py-docstring">        This method search items with search_criteria key in the container_id</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line"><tt class="py-docstring">        of current media server.</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line"><tt class="py-docstring">        @param container_id: unique identifier of the container in which</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line"><tt class="py-docstring">                             to begin searching.</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line"><tt class="py-docstring">        @param search_criteria: search criteria</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line"><tt class="py-docstring">        @param filter: a filter to indicate which metadata properties</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line"><tt class="py-docstring">                       are to be returned.</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line"><tt class="py-docstring">        @param starting_index: starting index to consider the requested</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line"><tt class="py-docstring">                               count</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line"><tt class="py-docstring">        @param requested_count: requested number of entries under the</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line"><tt class="py-docstring">                                object specified by container_id</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line"><tt class="py-docstring">        @param sort_criteria: sorting criteria</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line"><tt class="py-docstring">        @type container_id: string</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"><tt class="py-docstring">        @type search_criteria: string</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line"><tt class="py-docstring">        @type filter: string</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line"><tt class="py-docstring">        @type starting_index: int</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line"><tt class="py-docstring">        @type requested_count: int</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line"><tt class="py-docstring">        @type sort_criteria: string</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line"><tt class="py-docstring">        @return: search result</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: dict</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">        <tt id="link-51" class="py-name"><a title="brisa.upnp.control_point.service
+brisa.upnp.device.service" class="py-name" href="#" onclick="return doclink('link-51', 'service', 'link-45');">service</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-52" class="py-name"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.get_cd_service" class="py-name" href="#" onclick="return doclink('link-52', 'get_cd_service', 'link-46');">get_cd_service</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line">        <tt class="py-name">search_response</tt> <tt class="py-op">=</tt> <tt id="link-53" class="py-name"><a title="brisa.upnp.control_point.service
+brisa.upnp.device.service" class="py-name" href="#" onclick="return doclink('link-53', 'service', 'link-45');">service</a></tt><tt class="py-op">.</tt><tt class="py-name">Search</tt><tt class="py-op">(</tt><tt class="py-name">ContainerID</tt><tt class="py-op">=</tt><tt class="py-name">container_id</tt><tt class="py-op">,</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line">                                         <tt class="py-name">SearchCriteria</tt><tt class="py-op">=</tt><tt class="py-name">search_criteria</tt><tt class="py-op">,</tt> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">                                         <tt class="py-name">Filter</tt><tt class="py-op">=</tt><tt class="py-name">filter</tt><tt class="py-op">,</tt> </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line">                                         <tt class="py-name">StartingIndex</tt><tt class="py-op">=</tt><tt class="py-name">starting_index</tt><tt class="py-op">,</tt> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">                                         <tt class="py-name">RequestedCount</tt><tt class="py-op">=</tt><tt class="py-name">requested_count</tt><tt class="py-op">,</tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">                                         <tt class="py-name">SortCriteria</tt><tt class="py-op">=</tt><tt class="py-name">sort_criteria</tt><tt class="py-op">)</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line">        <tt class="py-name">elt</tt> <tt class="py-op">=</tt> <tt id="link-54" class="py-name"><a title="brisa.upnp.didl.didl_lite.Element" class="py-name" href="#" onclick="return doclink('link-54', 'Element', 'link-21');">Element</a></tt><tt class="py-op">.</tt><tt id="link-55" class="py-name"><a title="brisa.upnp.didl.didl_lite.Element.from_string
+brisa.upnp.didl.didl_lite.Object.from_string
+brisa.upnp.didl.didl_lite.Resource.from_string" class="py-name" href="#" onclick="return doclink('link-55', 'from_string', 'link-49');">from_string</a></tt><tt class="py-op">(</tt><tt class="py-name">search_response</tt><tt class="py-op">[</tt><tt class="py-string">'Result'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">elt</tt><tt class="py-op">.</tt><tt id="link-56" class="py-name"><a title="brisa.upnp.didl.didl_lite.Element.get_items" class="py-name" href="#" onclick="return doclink('link-56', 'get_items', 'link-50');">get_items</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line"> </tt>
+<a name="ControlPointAV.get_search_capabilites"></a><div id="ControlPointAV.get_search_capabilites-def"><a name="L178"></a><tt class="py-lineno">178</tt> <a class="py-toggle" href="#" id="ControlPointAV.get_search_capabilites-toggle" onclick="return toggle('ControlPointAV.get_search_capabilites');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#get_search_capabilites">get_search_capabilites</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ControlPointAV.get_search_capabilites-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ControlPointAV.get_search_capabilites-expanded"><a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">        <tt class="py-docstring">""" Return the fields supported by the server for searching.</tt> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: dict</tt> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-57" class="py-name"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.get_cd_service" class="py-name" href="#" onclick="return doclink('link-57', 'get_cd_service', 'link-46');">get_cd_service</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">GetSearchCapabilities</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line"> </tt>
+<a name="ControlPointAV.get_sort_capabilities"></a><div id="ControlPointAV.get_sort_capabilities-def"><a name="L185"></a><tt class="py-lineno">185</tt> <a class="py-toggle" href="#" id="ControlPointAV.get_sort_capabilities-toggle" onclick="return toggle('ControlPointAV.get_sort_capabilities');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#get_sort_capabilities">get_sort_capabilities</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ControlPointAV.get_sort_capabilities-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ControlPointAV.get_sort_capabilities-expanded"><a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line">        <tt class="py-docstring">""" Returns a list of fields supported by the server for sorting.</tt> </tt>
+<a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: dict</tt> </tt>
+<a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-58" class="py-name"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.get_cd_service" class="py-name" href="#" onclick="return doclink('link-58', 'get_cd_service', 'link-46');">get_cd_service</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">GetSortCapabilities</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line"> </tt>
+<a name="ControlPointAV.av_play"></a><div id="ControlPointAV.av_play-def"><a name="L192"></a><tt class="py-lineno">192</tt> <a class="py-toggle" href="#" id="ControlPointAV.av_play-toggle" onclick="return toggle('ControlPointAV.av_play');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#av_play">av_play</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">id</tt><tt class="py-op">=</tt><tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-param">uri</tt><tt class="py-op">=</tt><tt class="py-string">''</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ControlPointAV.av_play-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ControlPointAV.av_play-expanded"><a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line">        <tt class="py-docstring">""" Tells the selected media renderer to play an item given its id or</tt> </tt>
+<a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line"><tt class="py-docstring">        media URI.</tt> </tt>
+<a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line"><tt class="py-docstring">        @param id: id of the media on the media server</tt> </tt>
+<a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line"><tt class="py-docstring">        @param uri: URI where the media is available</tt> </tt>
+<a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line"><tt class="py-docstring">        @type id: string</tt> </tt>
+<a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line"><tt class="py-docstring">        @type uri: string</tt> </tt>
+<a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt id="link-59" class="py-name" targets="Variable brisa.upnp.didl.didl_lite.Item.uri=brisa.upnp.didl.didl_lite.Item-class.html#uri"><a title="brisa.upnp.didl.didl_lite.Item.uri" class="py-name" href="#" onclick="return doclink('link-59', 'uri', 'link-59');">uri</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line">            <tt class="py-name">item</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-60" class="py-name" targets="Method brisa.core.plugin.PluginInterface.browse()=brisa.core.plugin.PluginInterface-class.html#browse,Method brisa.core.plugin_manager.RootPlugin.browse()=brisa.core.plugin_manager.RootPlugin-class.html#browse,Method brisa.upnp.control_point.control_point_av.ControlPointAV.browse()=brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#browse"><a title="brisa.core.plugin.PluginInterface.browse
+brisa.core.plugin_manager.RootPlugin.browse
+brisa.upnp.control_point.control_point_av.ControlPointAV.browse" class="py-name" href="#" onclick="return doclink('link-60', 'browse', 'link-60');">browse</a></tt><tt class="py-op">(</tt><tt class="py-name">id</tt><tt class="py-op">,</tt> <tt class="py-string">'BrowseMetadata'</tt><tt class="py-op">,</tt> <tt class="py-string">'*'</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-string">''</tt><tt class="py-op">)</tt> </tt>
+<a name="L204"></a><tt class="py-lineno">204</tt>  <tt class="py-line">            <tt id="link-61" class="py-name"><a title="brisa.upnp.didl.didl_lite.Item.uri" class="py-name" href="#" onclick="return doclink('link-61', 'uri', 'link-59');">uri</a></tt> <tt class="py-op">=</tt> <tt class="py-name">item</tt><tt class="py-op">[</tt><tt class="py-string">'Result'</tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">resources</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> </tt>
+<a name="L205"></a><tt class="py-lineno">205</tt>  <tt class="py-line">        <tt class="py-name">avt</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-62" class="py-name" targets="Method brisa.upnp.control_point.control_point_av.ControlPointAV.get_avt_service()=brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#get_avt_service"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.get_avt_service" class="py-name" href="#" onclick="return doclink('link-62', 'get_avt_service', 'link-62');">get_avt_service</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L206"></a><tt class="py-lineno">206</tt>  <tt class="py-line">        <tt class="py-name">avt</tt><tt class="py-op">.</tt><tt class="py-name">SetAVTransportURI</tt><tt class="py-op">(</tt><tt class="py-name">InstanceID</tt><tt class="py-op">=</tt><tt class="py-number">0</tt><tt class="py-op">,</tt> </tt>
+<a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line">                              <tt class="py-name">CurrentURI</tt><tt class="py-op">=</tt><tt id="link-63" class="py-name"><a title="brisa.upnp.didl.didl_lite.Item.uri" class="py-name" href="#" onclick="return doclink('link-63', 'uri', 'link-59');">uri</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L208"></a><tt class="py-lineno">208</tt>  <tt class="py-line">                              <tt class="py-name">CurrentURIMetaData</tt><tt class="py-op">=</tt><tt class="py-string">''</tt><tt class="py-op">)</tt> </tt>
+<a name="L209"></a><tt class="py-lineno">209</tt>  <tt class="py-line">        <tt class="py-name">avt</tt><tt class="py-op">.</tt><tt class="py-name">Play</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L210"></a><tt class="py-lineno">210</tt>  <tt class="py-line"> </tt>
+<a name="ControlPointAV.av_stop"></a><div id="ControlPointAV.av_stop-def"><a name="L211"></a><tt class="py-lineno">211</tt> <a class="py-toggle" href="#" id="ControlPointAV.av_stop-toggle" onclick="return toggle('ControlPointAV.av_stop');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#av_stop">av_stop</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ControlPointAV.av_stop-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ControlPointAV.av_stop-expanded"><a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line">        <tt class="py-docstring">""" Stops the rendering.</tt> </tt>
+<a name="L213"></a><tt class="py-lineno">213</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L214"></a><tt class="py-lineno">214</tt>  <tt class="py-line">        <tt class="py-name">avt</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-64" class="py-name"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.get_avt_service" class="py-name" href="#" onclick="return doclink('link-64', 'get_avt_service', 'link-62');">get_avt_service</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L215"></a><tt class="py-lineno">215</tt>  <tt class="py-line">        <tt class="py-name">avt</tt><tt class="py-op">.</tt><tt class="py-name">Stop</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L216"></a><tt class="py-lineno">216</tt>  <tt class="py-line"> </tt>
+<a name="ControlPointAV.av_pause"></a><div id="ControlPointAV.av_pause-def"><a name="L217"></a><tt class="py-lineno">217</tt> <a class="py-toggle" href="#" id="ControlPointAV.av_pause-toggle" onclick="return toggle('ControlPointAV.av_pause');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#av_pause">av_pause</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ControlPointAV.av_pause-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ControlPointAV.av_pause-expanded"><a name="L218"></a><tt class="py-lineno">218</tt>  <tt class="py-line">        <tt class="py-docstring">""" Pauses the rendering.</tt> </tt>
+<a name="L219"></a><tt class="py-lineno">219</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L220"></a><tt class="py-lineno">220</tt>  <tt class="py-line">        <tt class="py-name">avt</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-65" class="py-name"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.get_avt_service" class="py-name" href="#" onclick="return doclink('link-65', 'get_avt_service', 'link-62');">get_avt_service</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L221"></a><tt class="py-lineno">221</tt>  <tt class="py-line">        <tt class="py-name">avt</tt><tt class="py-op">.</tt><tt class="py-name">Pause</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L222"></a><tt class="py-lineno">222</tt>  <tt class="py-line"> </tt>
+<a name="ControlPointAV.av_next"></a><div id="ControlPointAV.av_next-def"><a name="L223"></a><tt class="py-lineno">223</tt> <a class="py-toggle" href="#" id="ControlPointAV.av_next-toggle" onclick="return toggle('ControlPointAV.av_next');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#av_next">av_next</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ControlPointAV.av_next-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ControlPointAV.av_next-expanded"><a name="L224"></a><tt class="py-lineno">224</tt>  <tt class="py-line">        <tt class="py-docstring">""" Requests play on the next track.</tt> </tt>
+<a name="L225"></a><tt class="py-lineno">225</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L226"></a><tt class="py-lineno">226</tt>  <tt class="py-line">        <tt class="py-name">avt</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-66" class="py-name"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.get_avt_service" class="py-name" href="#" onclick="return doclink('link-66', 'get_avt_service', 'link-62');">get_avt_service</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L227"></a><tt class="py-lineno">227</tt>  <tt class="py-line">        <tt class="py-name">avt</tt><tt class="py-op">.</tt><tt class="py-name">Next</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L228"></a><tt class="py-lineno">228</tt>  <tt class="py-line"> </tt>
+<a name="ControlPointAV.av_previous"></a><div id="ControlPointAV.av_previous-def"><a name="L229"></a><tt class="py-lineno">229</tt> <a class="py-toggle" href="#" id="ControlPointAV.av_previous-toggle" onclick="return toggle('ControlPointAV.av_previous');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.control_point_av.ControlPointAV-class.html#av_previous">av_previous</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ControlPointAV.av_previous-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ControlPointAV.av_previous-expanded"><a name="L230"></a><tt class="py-lineno">230</tt>  <tt class="py-line">        <tt class="py-docstring">""" Requests play on the previous track.</tt> </tt>
+<a name="L231"></a><tt class="py-lineno">231</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L232"></a><tt class="py-lineno">232</tt>  <tt class="py-line">        <tt class="py-name">avt</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-67" class="py-name"><a title="brisa.upnp.control_point.control_point_av.ControlPointAV.get_avt_service" class="py-name" href="#" onclick="return doclink('link-67', 'get_avt_service', 'link-62');">get_avt_service</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L233"></a><tt class="py-lineno">233</tt>  <tt class="py-line">        <tt class="py-name">avt</tt><tt class="py-op">.</tt><tt class="py-name">Previous</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L234"></a><tt class="py-lineno">234</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://brisa.garage.maemo.org">python-brisa UPnP framework 0.10.0 documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Jun  9 22:24:59 2009
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

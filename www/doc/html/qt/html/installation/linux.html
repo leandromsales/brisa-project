@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. linux — Compiling/Installing on Linux &mdash; Qt BRisa UPnP framework v2.0 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Qt BRisa UPnP framework v2.0 documentation" href="../index.html" />
+    <link rel="up" title="3. installation — Installation and Compilation" href="index.html" />
+    <link rel="next" title="2. maemo4 — Compiling/Installing on Maemo 4" href="maemo4.html" />
+    <link rel="prev" title="3. installation — Installation and Compilation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="maemo4.html" title="2. maemo4 — Compiling/Installing on Maemo 4"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="3. installation — Installation and Compilation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Qt BRisa UPnP framework v2.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">3. <tt class="docutils literal docutils literal docutils literal"><span class="pre">installation</span></tt> &#8212; Installation and Compilation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="linux-compiling-installing-on-linux">
+<h1>1. <tt class="xref docutils literal"><span class="pre">linux</span></tt> &#8212; Compiling/Installing on Linux<a class="headerlink" href="#linux-compiling-installing-on-linux" title="Permalink to this headline">¶</a></h1>
+<p id="index-12">The compilation and installation proccess on Linux is very simple, and don&#8217;t take much time.</p>
+<div class="section" id="installing-libqxt-on-linux">
+<h2>1.1. Installing libqxt on linux<a class="headerlink" href="#installing-libqxt-on-linux" title="Permalink to this headline">¶</a></h2>
+<p>The first thing you need to do is to install libqxt in your system, in case you already have libqxt installed in your system you can jump to &#8220;Installing Qt BRisa on Linux&#8221; section.</p>
+<p>Qt BRisa repository has it own version of libqxt with some changes made to it in order to make things work fine in Brisa.  You can download Qt BRisa folder <a class="reference external" href="https://garage.maemo.org/frs/download.php/8365/libbrisa_0.1.1.tar.gz">tree</a> and after that go to the libqxt directory (qt-brisa/deps/libqxt/) using a command line terminal and type</p>
+<div class="highlight-python"><pre>$ ./configure
+$ make
+$ sudo make install</pre>
+</div>
+<p>You can also choose to install libqxt using .deb <a class="reference external" href="https://garage.maemo.org/frs/download.php/8111/libqxt-dev_0.5.0maemo_all.deb">file</a>, going to the folder you downloaded it and typing the following command</p>
+<div class="highlight-python"><pre>$ sudo dpkg -i libqxt-dev_0.5.0maemo_all.deb</pre>
+</div>
+<p>This will install libqxt in your computer.</p>
+</div>
+<div class="section" id="installing-qt-brisa-on-linux">
+<h2>1.2. Installing Qt BRisa on Linux<a class="headerlink" href="#installing-qt-brisa-on-linux" title="Permalink to this headline">¶</a></h2>
+<p>With libqxt installed in your system you just need to compile BRisa project, by going to the main directory (qt-brisa) inside Qt BRisa folder <a class="reference external" href="https://garage.maemo.org/frs/download.php/8365/libbrisa_0.1.1.tar.gz">tree</a> and typing</p>
+<div class="highlight-python"><pre>$ ./configure
+$ make</pre>
+</div>
+<p>And installing it typing</p>
+<div class="highlight-python"><pre>$ sudo make install</pre>
+</div>
+<p>You can also install Qt BRisa using the .deb <a class="reference external" href="https://garage.maemo.org/frs/download.php/8364/libbrisa-dev_0.1.1linux.deb">file</a>
+running the following command inside the folder you downloaded it</p>
+<div class="highlight-python"><pre>$ sudo dpkg -i libbrisa-dev_0.4.0maemo_all.deb</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">1. <tt class="docutils literal"><span class="pre">linux</span></tt> &#8212; Compiling/Installing on Linux</a><ul>
+<li><a class="reference external" href="#installing-libqxt-on-linux">1.1. Installing libqxt on linux</a></li>
+<li><a class="reference external" href="#installing-qt-brisa-on-linux">1.2. Installing Qt BRisa on Linux</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="index.html"
+                                  title="previous chapter">3. <tt class="docutils literal docutils literal"><span class="pre">installation</span></tt> &#8212; Installation and Compilation</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="maemo4.html"
+                                  title="next chapter">2. <tt class="docutils literal"><span class="pre">maemo4</span></tt> &#8212; Compiling/Installing on Maemo 4</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/installation/linux.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="maemo4.html" title="2. maemo4 — Compiling/Installing on Maemo 4"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="3. installation — Installation and Compilation"
+             >previous</a> |</li>
+        <li><a href="../index.html">Qt BRisa UPnP framework v2.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >3. <tt class="docutils literal docutils literal docutils literal"><span class="pre">installation</span></tt> &#8212; Installation and Compilation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 2010, BRisa Team.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.4.
+    </div>
+  </body>
+</html>

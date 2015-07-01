@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3. log — Logging facilities &mdash; python-brisa UPnP framework v0.10.0 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.10.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="python-brisa UPnP framework v0.10.0 documentation" href="../index.html" />
+    <link rel="up" title="3. core — Framework’s core" href="index.html" />
+    <link rel="next" title="4. threaded_call — Threaded function calls" href="threading.html" />
+    <link rel="prev" title="2. config — Configuration facilities" href="configuration.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="threading.html" title="4. threaded_call — Threaded function calls"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="configuration.html" title="2. config — Configuration facilities"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">3. <tt class="docutils literal docutils literal docutils literal"><span class="pre">core</span></tt> &#8212; Framework&#8217;s core</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="log-logging-facilities">
+<h1>3. <tt class="xref docutils literal"><span class="pre">log</span></tt> &#8212; Logging facilities<a class="headerlink" href="#log-logging-facilities" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="../glossary/index.html#python-brisa"><em>python-brisa</em></a> provides a logging module with a colored
+logging feature.</p>
+<p>The logging module is configured by the default manager
+described on <tt class="xref docutils literal"><span class="pre">config</span></tt> under the default <em>brisa</em>
+section.</p>
+<p>The two main parameters that can be adjusted are:</p>
+<ul class="simple">
+<li>brisa.logging, determines the highest logging level (ERROR, INFO, CRITICAL, DEBUG, WARNING)</li>
+<li>brisa.logging_output, which determines where the log should appear (commonly used values are <em>stdout</em>, <em>file</em> - located at ~/brisa.log).</li>
+</ul>
+<p>These parameters can be modified through the config module or using the <tt class="docutils literal"><span class="pre">brisa-conf</span></tt>
+tool. Try <tt class="docutils literal"><span class="pre">brisa-conf</span> <span class="pre">-h</span></tt> for usage.</p>
+<div class="section" id="global-logger">
+<h2>3.1. Global Logger<a class="headerlink" href="#global-logger" title="Permalink to this headline">¶</a></h2>
+<p>This module provides a global (or root) logger, which can be used simply by:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">brisa.core</span> <span class="kn">import</span> <span class="n">log</span>
+
+<span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&#39;My debug message.&#39;</span><span class="p">)</span>
+<span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">&#39;My error message.&#39;</span><span class="p">)</span>
+<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&#39;My info message.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="loggers">
+<h2>3.2. Loggers<a class="headerlink" href="#loggers" title="Permalink to this headline">¶</a></h2>
+<p>For retrieving loggers other than the global/root one, use the <tt class="docutils literal"><span class="pre">log.getLogger()</span></tt>
+function as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">brisa.core</span> <span class="kn">import</span> <span class="n">log</span>
+
+<span class="n">mylogger</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&#39;my_logger&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">3. <tt class="docutils literal"><span class="pre">log</span></tt> &#8212; Logging facilities</a><ul>
+<li><a class="reference external" href="#global-logger">3.1. Global Logger</a></li>
+<li><a class="reference external" href="#loggers">3.2. Loggers</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="configuration.html"
+                                  title="previous chapter">2. <tt class="docutils literal docutils literal"><span class="pre">config</span></tt> &#8212; Configuration facilities</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="threading.html"
+                                  title="next chapter">4. <tt class="docutils literal"><span class="pre">threaded_call</span></tt> &#8212; Threaded function calls</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/core/logging.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="threading.html" title="4. threaded_call — Threaded function calls"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="configuration.html" title="2. config — Configuration facilities"
+             >previous</a> |</li>
+        <li><a href="../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >3. <tt class="docutils literal docutils literal docutils literal"><span class="pre">core</span></tt> &#8212; Framework&#8217;s core</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 2009, Andre Dieb Martins.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+    </div>
+  </body>
+</html>

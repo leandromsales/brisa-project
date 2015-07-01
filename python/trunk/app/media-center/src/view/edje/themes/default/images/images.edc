@@ -1,0 +1,19 @@
+images {
+    image:  "background1.jpg"   COMP;
+    image:  "file.png"          COMP;
+    image:  "file_alt.png"      COMP;
+    image:  "options.png"       COMP;
+    image:  "options_alt.png"   COMP;
+    image:  "prev.png"          COMP;
+    image:  "prev_alt.png"      COMP;
+    image:  "next.png"          COMP;
+    image:  "next_alt.png"      COMP;
+    image:  "pause.png"         COMP;
+    image:  "pause_alt.png"     COMP;
+    image:  "play.png"          COMP;
+    image:  "play_alt.png"      COMP;
+    image:  "stop.png"          COMP;
+    image:  "stop_alt.png"      COMP;
+    image:  "sync.png"          COMP;
+    image:  "sync_alt.png"      COMP;
+}

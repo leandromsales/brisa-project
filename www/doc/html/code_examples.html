@@ -1,0 +1,581 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6. Code Examples &mdash; python-brisa UPnP framework v0.10.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.10.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="top" title="python-brisa UPnP framework v0.10.0 documentation" href="index.html" />
+    <link rel="next" title="7. Copyright" href="copyright.html" />
+    <link rel="prev" title="5. Applications" href="applications/index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="copyright.html" title="7. Copyright"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="applications/index.html" title="5. Applications"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="code-examples">
+<h1>6. Code Examples<a class="headerlink" href="#code-examples" title="Permalink to this headline">¶</a></h1>
+<p>These are some examples to show how simple it is to develop using BRisa.</p>
+<div class="section" id="creating-a-binary-light-device">
+<h2>6.1. Creating a Binary Light Device<a class="headerlink" href="#creating-a-binary-light-device" title="Permalink to this headline">¶</a></h2>
+<p>This is the implementation of a Binary Light Device, which the specifications
+you can find <a class="reference external" href="http://upnp.org/standardizeddcps/documents/BinaryLight1.0cc.pdf">here</a>.</p>
+<p>The first thing you have to do is to choose a reactor. After that do the imports.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">brisa.core.reactors</span> <span class="kn">import</span> <span class="n">install_default_reactor</span>
+<span class="n">reactor</span> <span class="o">=</span> <span class="n">install_default_reactor</span><span class="p">()</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">brisa.upnp.device</span> <span class="kn">import</span> <span class="n">Device</span><span class="p">,</span> <span class="n">Service</span>
+</pre></div>
+</div>
+<p>This is everything you need to implement the device. Now, you should implement your
+Service class doing the following:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">SwitchPower</span><span class="p">(</span><span class="n">Service</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">Service</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;SwitchPower&#39;</span><span class="p">,</span>
+                         <span class="s">&#39;urn:schemas-upnp-org:service:SwitchPower:1&#39;</span><span class="p">,</span>
+                         <span class="s">&#39;&#39;</span><span class="p">,</span>
+                         <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s">&#39;/SwitchPower-scpd.xml&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="bp">False</span>
+
+
+    <span class="k">def</span> <span class="nf">soap_SetTarget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;newTargetValue&#39;</span><span class="p">]</span>
+        <span class="k">print</span> <span class="s">&#39;Light switched &#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;1&#39;</span><span class="p">:</span> <span class="s">&#39;on&#39;</span><span class="p">,</span> <span class="s">&#39;0&#39;</span><span class="p">:</span> <span class="s">&#39;off&#39;</span><span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="c"># Status here is the target because our device is &quot;perfect&quot; and</span>
+        <span class="c"># no errors could occur (this is a simulation)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span>
+        <span class="k">return</span> <span class="p">{}</span>
+
+
+    <span class="k">def</span> <span class="nf">soap_GetTarget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s">&#39;RetTargetValue&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">}</span>
+
+
+    <span class="k">def</span> <span class="nf">soap_GetStatus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s">&#39;ResultStatus&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The Device will provide services to the Control Point, so, if the services
+that the Device will provide are already created, you can create the Device class</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">BinaryLight</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server_name</span> <span class="o">=</span> <span class="s">&#39;Binary Light Device&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">_create_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">project_page</span> <span class="o">=</span> <span class="s">&#39;https://garage.maemo.org/projects/brisa&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">Device</span><span class="p">(</span><span class="s">&#39;urn:schemas-upnp-org:device:BinaryLight:1&#39;</span><span class="p">,</span>
+                             <span class="bp">self</span><span class="o">.</span><span class="n">server_name</span><span class="p">,</span>
+                             <span class="n">manufacturer</span><span class="o">=</span><span class="s">&#39;Brisa Team. Embedded Laboratory &#39;</span>\
+                                          <span class="s">&#39;and INdT Brazil&#39;</span><span class="p">,</span>
+                             <span class="n">manufacturer_url</span><span class="o">=</span><span class="n">project_page</span><span class="p">,</span>
+                             <span class="n">model_name</span><span class="o">=</span><span class="s">&#39;Binary Light Device&#39;</span><span class="p">,</span>
+                             <span class="n">model_description</span><span class="o">=</span><span class="s">&#39;A UPnP Binary Light Device&#39;</span><span class="p">,</span>
+                             <span class="n">model_number</span><span class="o">=</span><span class="s">&#39;1.0&#39;</span><span class="p">,</span>
+                             <span class="n">model_url</span><span class="o">=</span><span class="n">project_page</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is the method where you&#8217;re going to specify the services</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">_add_services</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">switch</span> <span class="o">=</span> <span class="n">SwitchPower</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">add_service</span><span class="p">(</span><span class="n">switch</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After doing this, the start method and the main are created. The start method is going
+to be called in the main method and initialize the Device appending the services and
+leaving it ready to use.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_create_device</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_add_services</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">reactor</span><span class="o">.</span><span class="n">add_after_stop_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">stop</span><span class="p">)</span>
+    <span class="n">reactor</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+  <span class="n">device</span> <span class="o">=</span> <span class="n">BinaryLight</span><span class="p">()</span>
+  <span class="n">device</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Thats all it takes to implement the Binary Light Device.</p>
+<p>You could follow these steps to implement any service/device, but remember that for
+now you&#8217;ll have to write the service&#8217;s xml yourself.</p>
+<p>You can find this source code <a href="_downloads/binary_light.py"><strong class="xref">Here</strong></a>
+and the service&#8217;s xml <a href="_downloads/SwitchPower-scpd.xml"><strong class="xref">Here</strong></a>.</p>
+</div>
+<div class="section" id="creating-a-simple-control-point">
+<h2>6.2. Creating a simple Control Point<a class="headerlink" href="#creating-a-simple-control-point" title="Permalink to this headline">¶</a></h2>
+<p>This is an example of a simple Control Point, in this example we will implement
+a Binary Light command line Control Point, but this may help you to create any
+Control Point.
+This Control Point has the following features:</p>
+<ul class="simple">
+<li>Searching for devices</li>
+<li>Listing devices</li>
+<li>Handling events (new device located, removed device)</li>
+</ul>
+<p>Before everything you have to choose a reactor and then do the imports.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">brisa.core.reactors</span> <span class="kn">import</span> <span class="n">install_default_reactor</span>
+<span class="n">reactor</span> <span class="o">=</span> <span class="n">install_default_reactor</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">brisa.core.network</span> <span class="kn">import</span> <span class="n">parse_url</span>
+<span class="kn">from</span> <span class="nn">brisa.core.threaded_call</span> <span class="kn">import</span> <span class="n">run_async_function</span>
+
+<span class="kn">from</span> <span class="nn">brisa.upnp.control_point.control_point</span> <span class="kn">import</span> <span class="n">ControlPoint</span>
+</pre></div>
+</div>
+<p>Done the importing, lets implement the Control Point. To do that you have to choose
+the service that you&#8217;re going to use and create that callback functions that are
+going to be used.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">service</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;u&#39;</span><span class="p">,</span> <span class="s">&#39;urn:schemas-upnp-org:service:SwitchPower:1&#39;</span><span class="p">)</span>
+<span class="n">binary_light_type</span> <span class="o">=</span> <span class="s">&#39;urn:schemas-upnp-org:device:BinaryLight:1&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">on_new_device</span><span class="p">(</span><span class="n">dev</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">dev</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="k">print</span> <span class="s">&#39;Got new device:&#39;</span><span class="p">,</span> <span class="n">dev</span><span class="o">.</span><span class="n">udn</span>
+    <span class="k">print</span> <span class="s">&quot;Type &#39;list&#39; to see the whole list&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">on_removed_device</span><span class="p">(</span><span class="n">udn</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">&#39;Device is gone:&#39;</span><span class="p">,</span> <span class="n">udn</span>
+
+
+<span class="k">def</span> <span class="nf">get_switch_service</span><span class="p">(</span><span class="n">device</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">device</span><span class="o">.</span><span class="n">services</span><span class="p">[</span><span class="n">service</span><span class="p">[</span><span class="mf">1</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>Now you can create the events that will call the callbacks, and create the main
+method, that will initialize the Control Point.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">create_control_point</span><span class="p">():</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">ControlPoint</span><span class="p">()</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s">&#39;new_device_event&#39;</span><span class="p">,</span> <span class="n">on_new_device</span><span class="p">)</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s">&#39;removed_device_event&#39;</span><span class="p">,</span> <span class="n">on_removed_device</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">c</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">create_control_point</span><span class="p">()</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">run_async_function</span><span class="p">(</span><span class="n">_handle_cmds</span><span class="p">,</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="p">))</span>
+    <span class="n">reactor</span><span class="o">.</span><span class="n">add_after_stop_func</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">stop</span><span class="p">)</span>
+    <span class="n">reactor</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Now the functions that are going to perform the actions by the command handler,
+just like the command handler are implemented</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">_exit</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Stops the _handle_cmds loop</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">running_handle_cmds</span>
+    <span class="n">running_handle_cmds</span> <span class="o">=</span> <span class="bp">False</span>
+    
+
+<span class="k">def</span> <span class="nf">_help</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Prints the available commands that are used in &#39;_handle_cmds&#39; method.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">print</span> <span class="s">&#39;Available commands: &#39;</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;exit&#39;</span><span class="p">,</span> <span class="s">&#39;help&#39;</span><span class="p">,</span> <span class="s">&#39;search&#39;</span><span class="p">,</span> <span class="s">&#39;set_light &lt;dev number&gt;&#39;</span><span class="p">,</span>
+              <span class="s">&#39;get_status&#39;</span><span class="p">,</span> <span class="s">&#39;get_target&#39;</span><span class="p">,</span> <span class="s">&#39;turn &lt;on/off&gt;&#39;</span><span class="p">,</span> <span class="s">&#39;stop&#39;</span><span class="p">,</span>
+              <span class="s">&#39;list&#39;</span><span class="p">]:</span>
+        <span class="k">print</span> <span class="s">&#39;</span><span class="se">\t</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">x</span>
+    
+    
+<span class="k">def</span> <span class="nf">_search</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Start searching for devices of type upnp:rootdevice and repeat</span>
+<span class="sd">    search every 600 seconds (UPnP default)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">start_search</span><span class="p">(</span><span class="mf">600</span><span class="p">,</span> <span class="n">binary_light_type</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_set_light</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">command</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Gets the binary device by the number that is passed as parameter</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">devices</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">get_devices</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">current_server</span> <span class="o">=</span> <span class="n">devices</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">command</span><span class="p">)]</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&#39;BinaryLight number not found. Please run list and &#39;</span>\
+              <span class="s">&#39;check again&#39;</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">current_server</span> <span class="o">=</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">_get_status</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Gets the binary light status and print if it&#39;s on or off.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">service</span> <span class="o">=</span> <span class="n">get_switch_service</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">current_server</span><span class="p">)</span>
+        <span class="n">status_response</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">GetStatus</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">status_response</span><span class="p">[</span><span class="s">&#39;ResultStatus&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;1&#39;</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;Binary light status is on&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;Binary light status is off&#39;</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s">&#39;current_server&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">c</span><span class="o">.</span><span class="n">current_server</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;BinaryLight device not set.Please use set_light &lt;n&gt;&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;Error in get_status():&#39;</span><span class="p">,</span> <span class="n">e</span>
+
+
+<span class="k">def</span> <span class="nf">_get_target</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Gets the binary light target and print if it&#39;s on or off.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">service</span> <span class="o">=</span> <span class="n">get_switch_service</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">current_server</span><span class="p">)</span>
+        <span class="n">status_response</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">GetTarget</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">status_response</span><span class="p">[</span><span class="s">&#39;RetTargetValue&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;1&#39;</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;Binary light target is on&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;Binary light target is off&#39;</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s">&#39;current_server&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">c</span><span class="o">.</span><span class="n">current_server</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;BinaryLight device not set.Please use set_light &lt;n&gt;&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;Error in get_target():&#39;</span><span class="p">,</span> <span class="n">e</span>
+
+
+<span class="k">def</span> <span class="nf">_turn</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">command</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Turns the binary device on or off</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;on&#39;</span><span class="p">:</span> <span class="s">&#39;1&#39;</span><span class="p">,</span> <span class="s">&#39;off&#39;</span><span class="p">:</span> <span class="s">&#39;0&#39;</span><span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">print</span> <span class="n">cmd</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">cmd</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;Wrong usage. Please try turn on or turn off.&#39;</span>
+        <span class="n">service</span> <span class="o">=</span> <span class="n">get_switch_service</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">current_server</span><span class="p">)</span>
+        <span class="n">service</span><span class="o">.</span><span class="n">SetTarget</span><span class="p">(</span><span class="n">newTargetValue</span><span class="o">=</span><span class="n">cmd</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s">&#39;Turning binary light&#39;</span><span class="p">,</span> <span class="n">command</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s">&#39;current_server&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">c</span><span class="o">.</span><span class="n">current_server</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;BinaryLight device not set.Please use set_light &lt;n&gt;&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;Error in set_status():&#39;</span><span class="p">,</span> <span class="n">e</span>
+
+
+<span class="k">def</span> <span class="nf">_stop</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Stop searching</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">stop_search</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">_list_devices</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Lists the devices that are in network.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="mf">0</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">get_devices</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">print</span> <span class="s">&#39;Device no.:&#39;</span><span class="p">,</span> <span class="n">k</span>
+        <span class="k">print</span> <span class="s">&#39;UDN:&#39;</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">udn</span>
+        <span class="k">print</span> <span class="s">&#39;Name:&#39;</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">friendly_name</span>
+        <span class="k">print</span> <span class="s">&#39;Device type:&#39;</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">device_type</span>
+        <span class="k">print</span> <span class="s">&#39;Services:&#39;</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">services</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="c"># Only print services name</span>
+        <span class="k">print</span> <span class="s">&#39;Embedded devices:&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">dev</span><span class="o">.</span><span class="n">friendly_name</span> <span class="k">for</span> <span class="n">dev</span> <span class="ow">in</span> \
+             <span class="n">d</span><span class="o">.</span><span class="n">devices</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span> <span class="c"># Only print embedded devices names</span>
+        <span class="k">print</span>
+        <span class="n">k</span> <span class="o">+=</span> <span class="mf">1</span>
+
+
+<span class="c">#Control the loop at _handle_cmds method</span>
+<span class="n">running_handle_cmds</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">commands</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;exit&#39;</span><span class="p">:</span> <span class="n">_exit</span><span class="p">,</span> 
+            <span class="s">&#39;help&#39;</span><span class="p">:</span> <span class="n">_help</span><span class="p">,</span>
+            <span class="s">&#39;search&#39;</span><span class="p">:</span> <span class="n">_search</span><span class="p">,</span>
+            <span class="s">&#39;stop&#39;</span><span class="p">:</span> <span class="n">_stop</span><span class="p">,</span>
+            <span class="s">&#39;list&#39;</span><span class="p">:</span> <span class="n">_list_devices</span><span class="p">,</span>
+            <span class="s">&#39;turn&#39;</span><span class="p">:</span> <span class="n">_turn</span><span class="p">,</span>
+            <span class="s">&#39;set_light&#39;</span><span class="p">:</span> <span class="n">_set_light</span><span class="p">,</span>
+            <span class="s">&#39;get_status&#39;</span><span class="p">:</span> <span class="n">_get_status</span><span class="p">,</span>
+            <span class="s">&#39;get_target&#39;</span><span class="p">:</span> <span class="n">_get_target</span><span class="p">}</span>
+
+
+<span class="k">def</span> <span class="nf">_handle_cmds</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="k">while</span> <span class="n">running_handle_cmds</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="nb">input</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;&gt;&gt;&gt; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mf">0</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mf">1</span><span class="p">:</span>
+                        <span class="n">commands</span><span class="p">[</span><span class="nb">input</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">)[</span><span class="mf">0</span><span class="p">]](</span><span class="n">c</span><span class="p">,</span> <span class="nb">input</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">)[</span><span class="mf">1</span><span class="p">])</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">commands</span><span class="p">[</span><span class="nb">input</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">)[</span><span class="mf">0</span><span class="p">]](</span><span class="n">c</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">KeyError</span><span class="p">,</span> <span class="ne">IndexError</span><span class="p">:</span>
+                    <span class="k">print</span> <span class="s">&#39;Invalid command, try help&#39;</span>
+        <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="ne">EOFError</span><span class="p">:</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+            <span class="k">break</span>
+
+    <span class="c"># Stops the main loop</span>
+    <span class="n">reactor</span><span class="o">.</span><span class="n">main_quit</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>And, finally to allow you to run it, add to the end</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>You can find this code <a href="_downloads/cmd_line_control_point.py"><strong class="xref">here</strong></a>.</p>
+</div>
+<div class="section" id="creating-a-qt-gui-device">
+<h2>6.3. Creating a Qt Gui Device<a class="headerlink" href="#creating-a-qt-gui-device" title="Permalink to this headline">¶</a></h2>
+<p>This is very similar to create a simple device. You will need to create your
+Qt Gui, create the device, create the service and use the QtReactor</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">brisa.core.reactors.qtreactor</span> <span class="kn">import</span> <span class="n">QtReactor</span>
+<span class="n">reactor</span> <span class="o">=</span> <span class="n">QtReactor</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtGui</span>
+<span class="kn">from</span> <span class="nn">brisa.core</span> <span class="kn">import</span> <span class="n">config</span>
+<span class="kn">from</span> <span class="nn">brisa.upnp.device</span> <span class="kn">import</span> <span class="n">Device</span>
+<span class="kn">from</span> <span class="nn">brisa.upnp.device.service</span> <span class="kn">import</span> <span class="n">Service</span><span class="p">,</span> <span class="n">StateVariable</span>
+</pre></div>
+</div>
+<p>The constructor is going to be most part composed of GUI code, but these two lines(40-41)
+are going to be important on the Device creation.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">self</span><span class="o">.</span><span class="n">root_device</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">upnp_urn</span> <span class="o">=</span> <span class="s">&#39;urn:schemas-upnp-org:device:MyDevice:1&#39;</span>
+</pre></div>
+</div>
+<p>In the _add_root_device method you are going to initialize the root_device setting it
+from None to a Device object.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">_add_root_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Creates the root device object which will represent the device</span>
+<span class="sd">    description.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">project_page</span> <span class="o">=</span> <span class="s">&#39;http://brisa.garage.maemo.org&#39;</span>
+    <span class="n">serial_no</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">brisa_version</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mf">7</span><span class="p">,</span> <span class="s">&#39;0&#39;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">root_device</span> <span class="o">=</span> <span class="n">Device</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">upnp_urn</span><span class="p">,</span>
+                         <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lineEdit</span><span class="o">.</span><span class="n">text</span><span class="p">()),</span>
+                         <span class="n">manufacturer</span><span class="o">=</span><span class="s">&#39;BRisa Team. Embedded &#39;</span>\
+                                      <span class="s">&#39;Laboratory and INdT Brazil&#39;</span><span class="p">,</span>
+                         <span class="n">manufacturer_url</span><span class="o">=</span><span class="n">project_page</span><span class="p">,</span>
+                         <span class="n">model_description</span><span class="o">=</span><span class="s">&#39;An Open Source UPnP generic &#39;</span>\
+                                           <span class="s">&#39;Device&#39;</span><span class="p">,</span>
+                         <span class="n">model_name</span><span class="o">=</span><span class="s">&#39;Generic Device Example&#39;</span><span class="p">,</span>
+                         <span class="n">model_number</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">brisa_version</span><span class="p">,</span>
+                         <span class="n">model_url</span><span class="o">=</span><span class="n">project_page</span><span class="p">,</span>
+                         <span class="n">serial_number</span><span class="o">=</span><span class="n">serial_no</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the _add_services method you&#8217;re going to create the Services that the Device will
+provide.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">_add_services</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Creates the root device service.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c"># Creating the example Service</span>
+    <span class="n">service_name</span> <span class="o">=</span> <span class="s">&#39;MyService&#39;</span>
+    <span class="n">service_type</span> <span class="o">=</span> <span class="s">&#39;urn:schemas-upnp-org:service:MyService:1&#39;</span>
+    <span class="n">myservice</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="n">service_name</span><span class="p">,</span> <span class="n">service_type</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">var</span> <span class="o">=</span> <span class="n">StateVariable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&quot;A_ARG_TYPE_Variable&quot;</span><span class="p">,</span>
+                          <span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="s">&quot;string&quot;</span><span class="p">)</span>
+    <span class="n">myservice</span><span class="o">.</span><span class="n">add_state_variable</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+    <span class="c"># Inserting a service into the root device</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">root_device</span><span class="o">.</span><span class="n">add_service</span><span class="p">(</span><span class="n">myservice</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The _load method is going to initialize the device and add the services.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">_load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_add_root_device</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_add_services</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>These are the callbacks to the GUI commands, and will start or stop the root device.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Starts the root device.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_load</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">root_device</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">reactor</span><span class="o">.</span><span class="n">add_after_stop_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root_device</span><span class="o">.</span><span class="n">stop</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+     <span class="sd">&quot;&quot;&quot; Stops the root device.</span>
+<span class="sd">     &quot;&quot;&quot;</span>
+     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">root_device</span><span class="p">:</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">root_device</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">root_device</span> <span class="o">=</span> <span class="bp">None</span>
+</pre></div>
+</div>
+<p>Now you can implement the main method and call it.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">qt_dev</span> <span class="o">=</span> <span class="n">QtDevice</span><span class="p">()</span>
+    <span class="n">qt_dev</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">reactor</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>You can find this source code <a href="_downloads/simple_qt_device.py"><strong class="xref">Here</strong></a>.</p>
+</div>
+<div class="section" id="creating-a-qt-gui-control-point">
+<h2>6.4. Creating a Qt Gui Control Point<a class="headerlink" href="#creating-a-qt-gui-control-point" title="Permalink to this headline">¶</a></h2>
+<p>This is very similar to create a simple control point. You will need to create your
+Qt Gui, create the control point and use the QtReactor and do the correct Qt imports.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">brisa.core.reactors.qtreactor</span> <span class="kn">import</span> <span class="n">QtReactor</span>
+<span class="n">reactor</span> <span class="o">=</span> <span class="n">QtReactor</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtGui</span>
+<span class="kn">from</span> <span class="nn">brisa.upnp.control_point</span> <span class="kn">import</span> <span class="n">ControlPoint</span>
+</pre></div>
+</div>
+<p>Here you&#8217;re going to create the Control Point and the events (lines 16-21).</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">self</span><span class="o">.</span><span class="n">cp</span> <span class="o">=</span> <span class="n">ControlPoint</span><span class="p">()</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">cp</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s">&#39;new_device_event&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_new_device</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">cp</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s">&#39;removed_device_event&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_removed_device</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">devices</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+<p>These methods are going to be the callback methods of the events that the Control Point
+will receive from the Device.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">on_new_device</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dev</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">dev</span><span class="o">.</span><span class="n">udn</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">udn</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">devices</span><span class="p">]:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">devices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dev</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">on_removed_device</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">udn</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">dev</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">devices</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">dev</span><span class="o">.</span><span class="n">udn</span> <span class="o">==</span> <span class="n">udn</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">devices</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">dev</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>These methods are the methods that are going to be the callbacks to the GUI events.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">list_devices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Lists the devices at list view.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">listView</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">devices</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listView</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">friendly_name</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Starts search for new devices.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cp</span><span class="o">.</span><span class="n">start_search</span><span class="p">(</span><span class="mf">600</span><span class="p">,</span> <span class="s">&#39;upnp:rootdevice&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">stop_search</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Stops search for new devices.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cp</span><span class="o">.</span><span class="n">stop_search</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Now you implement and call the main method.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">qt_cp</span> <span class="o">=</span> <span class="n">QtControlPoint</span><span class="p">()</span>
+    <span class="n">qt_cp</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">reactor</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>You can find this source code <a href="_downloads/simple_qt_control_point.py"><strong class="xref">Here</strong></a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">6. Code Examples</a><ul>
+<li><a class="reference external" href="#creating-a-binary-light-device">6.1. Creating a Binary Light Device</a></li>
+<li><a class="reference external" href="#creating-a-simple-control-point">6.2. Creating a simple Control Point</a></li>
+<li><a class="reference external" href="#creating-a-qt-gui-device">6.3. Creating a Qt Gui Device</a></li>
+<li><a class="reference external" href="#creating-a-qt-gui-control-point">6.4. Creating a Qt Gui Control Point</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="applications/index.html"
+                                  title="previous chapter">5. Applications</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="copyright.html"
+                                  title="next chapter">7. Copyright</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/code_examples.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="copyright.html" title="7. Copyright"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="applications/index.html" title="5. Applications"
+             >previous</a> |</li>
+        <li><a href="index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="copyright.html">Copyright</a> 2009, Andre Dieb Martins.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+    </div>
+  </body>
+</html>

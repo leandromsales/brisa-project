@@ -1,0 +1,35 @@
+#define TIMEOUT_HIDE 0.4
+#define TIMEOUT_HOLD 0.5
+
+#define THEME_NAME "Green"
+#define FONT_COLOR 255 255 255 255
+
+images {
+    image: "images/upnp_search.png" COMP;
+}
+
+collections {
+  group {
+    name: "icon/main_item/upnp_search";
+    images.image: "images/upnp_search.png" COMP;
+    parts {
+       part {
+          name: "icon";
+          type: IMAGE;
+          mouse_events: 0;
+          description {
+             state: "default" 0.0;
+             rel1 {
+                relative: 0.0 0.0;
+               offset: 0 0;
+             }
+             rel2 {
+                relative: 1.0 1.0;
+                offset: -1 -1;
+             }
+             image.normal: "images/upnp_search.png";
+          }
+       }
+    }
+  }
+}

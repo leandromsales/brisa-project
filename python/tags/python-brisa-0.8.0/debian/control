@@ -1,0 +1,28 @@
+Source: python-brisa
+Section: user/multimedia
+Priority: optional
+Maintainer: Leandro Melo de Sales <leandroal@gmail.com>
+Build-Depends: debhelper (>= 5.0.38), python2.5-dev, python-setuptools | python2.5-setuptools
+Standards-Version: 3.6.1
+
+Package: python2.5-brisa
+Section: user/multimedia
+Architecture: all
+Depends: python2.5-brisa-base, python2.5-brisa-media-renderer, python2.5-brisa-media-server, python2.5-brisa-media-server-plugin-flickr, python2.5-brisa-media-server-plugin-shoutcast, python2.5-brisa-media-server-plugin-canola, python2.5-brisa-media-server-plugin-maemo, python2.5-brisa-media-server-plugin-youtube
+Provides: ${python:Provides}
+Description: python2.5-brisa UPnP meta package
+   Install all python2.5-brisa packages.
+
+Package: python2.5-brisa-base
+Architecture: all
+Depends: python2.5, python2.5-xml | python-xml, python2.5-cherrypy3 | python-cherrypy3
+Provides: ${python:Provides}
+Description: BRisa UPnP base package
+   BRisa UPnP Framework modules.
+
+Package: python2.5-brisa-control-point
+Architecture: all
+Depends: python2.5, python2.5-xml | python-xml, python2.5-cherrypy3 | python-cherrypy3, python2.5-brisa-base (>= 0.8.0)
+Provides: ${python:Provides}
+Description: BRisa UPnP control point package
+   BRisa UPnP Control Point

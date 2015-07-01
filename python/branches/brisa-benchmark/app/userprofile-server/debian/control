@@ -1,0 +1,13 @@
+Source: brisa-userprofile-server
+Section: multimedia
+Priority: optional
+Maintainer: Andre Dieb Martins <dieb@embedded.ufcg.edu.br>
+Build-Depends: debhelper (>= 5.0.38), python2.5-dev, python-setuptools | python2.5-setuptools
+Standards-Version: 3.6.1
+
+Package: python2.5-brisa-userprofile-server
+Section: user/multimedia
+Architecture: all
+Depends: python2.5-brisa-base
+Description: BRisa UPnP User Profile Device 1.0
+   An UPnP A/V User Profile Server device implemented using python-brisa UPnP framework.

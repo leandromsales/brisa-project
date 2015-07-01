@@ -1,0 +1,13 @@
+python-cherrypy (2.1.1-2) unstable; urgency=low
+
+  This release is incompatible with CherryPy 2.0. If you are using
+  that version, take a look at this page for how to upgrade your code:
+
+    http://www.cherrypy.org/wiki/WhatsNewIn21
+
+  This release also marks a big overhaul on the package layout, which
+  is now using python-support, and also providing EGG-INFO information
+  so that systems like TurboGears are able to find and use CherryPy.
+
+ -- Gustavo Noronha Silva <kov@debian.org>  Sun,  2 Apr 2006 12:47:11 -0300
+

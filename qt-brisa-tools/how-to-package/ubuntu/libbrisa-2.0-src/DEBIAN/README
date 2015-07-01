@@ -1,0 +1,152 @@
+This Readme was wroten by Camilo Campos <zeromaisum@gmail.com> and explans how to make a package .deb of qt-brisa-examples
+This package was made using the Ubuntu 9.10 Karmic Koala and the kernel 2.6.31-22-generic
+
+
+
+
+List of files that must be in the brisa-2.0-dev.deb
+
+
+"/usr/lib/libBrisaCore.so.0.6.0" 
+"/usr/lib/libBrisaCore.so" 
+"/usr/lib/libBrisaCore.so.0" 
+"/usr/lib/libBrisaCore.so.0.6"
+
+
+/usr/include/BRisa/BrisaCore 
+
+/usr/include/BRisa/BrisaCore/brisaconfig.h 
+/usr/include/BRisa/BrisaCore/brisacore.h 
+/usr/include/BRisa/BrisaCore/brisaglobal.h 
+/usr/include/BRisa/BrisaCore/brisawebfile.h 
+/usr/include/BRisa/BrisaCore/brisawebserver.h 
+/usr/include/BRisa/BrisaCore/brisawebservice.h 
+/usr/include/BRisa/BrisaCore/brisawebstaticcontent.h 
+/usr/include/BRisa/BrisaCore/brisawebserversession.h 
+/usr/include/BRisa/BrisaCore/httprequest.h 
+/usr/include/BRisa/BrisaCore/httpserver.h 
+/usr/include/BRisa/BrisaCore/httpsession.h 
+/usr/include/BRisa/BrisaCore/httpresponse.h 
+/usr/include/BRisa/BrisaCore/httpversion.h 
+/usr/include/BRisa/BrisaCore/httpmessage.h 
+/usr/include/BRisa/BrisaCore/httpsessionmanager.h 
+/usr/include/BRisa/BrisaCore/BrisaConfigurationManager 
+/usr/include/BRisa/BrisaCore/BrisaCore 
+/usr/include/BRisa/BrisaCore/BrisaWebFile 
+/usr/include/BRisa/BrisaCore/BrisaWebserver 
+/usr/include/BRisa/BrisaCore/BrisaWebServerSession 
+/usr/include/BRisa/BrisaCore/BrisaWebService 
+/usr/include/BRisa/BrisaCore/BrisaWebServiceProvider 
+/usr/include/BRisa/BrisaCore/BrisaWebStaticContent 
+/usr/include/BRisa/BrisaCore/HttpMessage 
+/usr/include/BRisa/BrisaCore/HttpRequest 
+/usr/include/BRisa/BrisaCore/HttpResponse 
+/usr/include/BRisa/BrisaCore/HttpServer 
+/usr/include/BRisa/BrisaCore/HttpSession 
+/usr/include/BRisa/BrisaCore/HttpVersion 
+/usr/include/BRisa/BrisaCore/TcpServer
+
+
+"/usr/lib/libBrisaUtils.so.0.6.0" 
+"/usr/lib/libBrisaUtils.so" 
+"/usr/lib/libBrisaUtils.so.0" 
+"/usr/lib/libBrisaUtils.so.0.6"
+
+/usr/include/BRisa/BrisaUtils/brisalog.h 
+/usr/include/BRisa/BrisaUtils/brisanetwork.h 
+/usr/include/BRisa/BrisaUtils/brisautils.h 
+/usr/include/BRisa/BrisaUtils/BrisaLog 
+/usr/include/BRisa/BrisaUtils/BrisaNetwork 
+/usr/include/BRisa/BrisaUtils/BrisaUtils
+
+"/usr/lib/libBrisaUpnp.so.0.6.0" 
+"/usr/lib/libBrisaUpnp.so" 
+"/usr/lib/libBrisaUpnp.so.0" 
+"/usr/lib/libBrisaUpnp.so.0.6"
+
+
+/usr/include/BRisa/BrisaUpnp/brisaabstracteventsubscription.h 
+/usr/include/BRisa/BrisaUpnp/brisaabstractservice.h 
+/usr/include/BRisa/BrisaUpnp/brisaservicexmlhandler.h 
+/usr/include/BRisa/BrisaUpnp/brisaaction.h 
+/usr/include/BRisa/BrisaUpnp/brisaargument.h 
+/usr/include/BRisa/BrisaUpnp/brisaicon.h 
+/usr/include/BRisa/BrisaUpnp/brisastatevariable.h 
+/usr/include/BRisa/BrisaUpnp/brisacontrolpoint.h 
+/usr/include/BRisa/BrisaUpnp/brisacontrolpointdevice.h 
+/usr/include/BRisa/BrisaUpnp/brisacontrolpointservice.h 
+/usr/include/BRisa/BrisaUpnp/brisadevicexmlhandlercp.h 
+/usr/include/BRisa/BrisaUpnp/brisamsearchclientcp.h 
+/usr/include/BRisa/BrisaUpnp/brisaeventproxy.h 
+/usr/include/BRisa/BrisaUpnp/brisamulticasteventreceiver.h 
+/usr/include/BRisa/BrisaUpnp/brisaudplistener.h 
+/usr/include/BRisa/BrisaUpnp/brisassdpclient.h 
+/usr/include/BRisa/BrisaUpnp/brisassdpserver.h 
+/usr/include/BRisa/BrisaUpnp/brisaactionxmlparser.h 
+/usr/include/BRisa/BrisaUpnp/brisadevice.h 
+/usr/include/BRisa/BrisaUpnp/brisadevicexmlhandler.h 
+/usr/include/BRisa/BrisaUpnp/brisaeventcontroller.h 
+/usr/include/BRisa/BrisaUpnp/brisaeventmessage.h 
+/usr/include/BRisa/BrisaUpnp/brisaservice.h 
+/usr/include/BRisa/BrisaUpnp/brisaeventsubscription.h 
+/usr/include/BRisa/BrisaUpnp/brisaabstracteventmessage.h 
+/usr/include/BRisa/BrisaUpnp/brisamulticasteventmessage.h 
+/usr/include/BRisa/BrisaUpnp/brisacontrolwebservice.h 
+/usr/include/BRisa/BrisaUpnp/qtsoap.h 
+/usr/include/BRisa/BrisaUpnp/BrisaAbstractEventMessage 
+/usr/include/BRisa/BrisaUpnp/BrisaAbstractEventSubscription 
+/usr/include/BRisa/BrisaUpnp/BrisaAbstractService 
+/usr/include/BRisa/BrisaUpnp/BrisaAction 
+/usr/include/BRisa/BrisaUpnp/BrisaActionXmlParser 
+/usr/include/BRisa/BrisaUpnp/BrisaArgument 
+/usr/include/BRisa/BrisaUpnp/BrisaControlPoint 
+/usr/include/BRisa/BrisaUpnp/BrisaControlPointDevice 
+/usr/include/BRisa/BrisaUpnp/BrisaControlPointService 
+/usr/include/BRisa/BrisaUpnp/BrisaControlWebService 
+/usr/include/BRisa/BrisaUpnp/BrisaDevice 
+/usr/include/BRisa/BrisaUpnp/BrisaDeviceXMLHandler 
+/usr/include/BRisa/BrisaUpnp/BrisaDeviceXMLHandlerCP 
+/usr/include/BRisa/BrisaUpnp/BrisaEventController 
+/usr/include/BRisa/BrisaUpnp/BrisaEventMessage 
+/usr/include/BRisa/BrisaUpnp/BrisaEventProxy 
+/usr/include/BRisa/BrisaUpnp/BrisaEventSubscription 
+/usr/include/BRisa/BrisaUpnp/BrisaIcon 
+/usr/include/BRisa/BrisaUpnp/BrisaMSearchClientCP 
+/usr/include/BRisa/BrisaUpnp/BrisaMulticastEventMessage 
+/usr/include/BRisa/BrisaUpnp/BrisaMulticastEventReceiver 
+/usr/include/BRisa/BrisaUpnp/BrisaService 
+/usr/include/BRisa/BrisaUpnp/BrisaServiceXMLHandler 
+/usr/include/BRisa/BrisaUpnp/BrisaSSDPClient 
+/usr/include/BRisa/BrisaUpnp/BrisaSSDPServer 
+/usr/include/BRisa/BrisaUpnp/BrisaStateVariable 
+/usr/include/BRisa/BrisaUpnp/BrisaUdpListener
+
+
+The first step is create a folder "DEBIAN" in "/home/username/brisa-2.0/libbrisa-2.0-dev",and the file: 
+
+"control" whose content is 
+
+Source: libbrisa-2.0-dev
+Section: devel
+Priority: optional
+Maintainer: Camilo Campos <zeromaisum@gmail.com>
+Build-Depends: debhelper (>= 5.0.38), libqt4-dev
+Standards-Version: 3.8.2
+Package: libbrisa-2.0-dev
+Architecture: all
+Section: devel
+Depends: libqt4-dev
+version:2.0
+Description: The package will install the headers and the compiled files of the BRisa framework
+
+
+
+The second step is to create the tree of folders "/home/username/brisa-2.0/libbrisa-2.0-dev/usr/include/BRisa", where you will put the .h and the compiled files of the BRisa framework.
+
+The third step is to create the tree of folders "/home/username/brisa-2.0/libbrisa-2.0-dev/opt/qtsdk-2010.05/qt/mkspecs/features, where you will put the brisa.prf file.
+
+The last step is go to the shell change the directory to "/home/username/brisa-2.0/libbrisa-2.0-dev" and type "dpkg -b libbrisa-2.0-dev" then the package libbrisa-2.0-dev.deb will be created.
+
+
+* You have to use the qmake in the /opt/qtsdk-2010.05/qt/bin/qmake *
+

@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>4. windows — Compiling/Installing on Windows &mdash; Qt BRisa UPnP framework v2.0 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Qt BRisa UPnP framework v2.0 documentation" href="../index.html" />
+    <link rel="up" title="3. installation — Installation and Compilation" href="index.html" />
+    <link rel="next" title="4. core-utils — Framework’s core and utils" href="../core/index.html" />
+    <link rel="prev" title="3. maemo5 — Compiling/Installing on Maemo 5" href="maemo5.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../core/index.html" title="4. core-utils — Framework’s core and utils"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="maemo5.html" title="3. maemo5 — Compiling/Installing on Maemo 5"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Qt BRisa UPnP framework v2.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">3. <tt class="docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">installation</span></tt> &#8212; Installation and Compilation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="windows-compiling-installing-on-windows">
+<h1>4. <tt class="xref docutils literal"><span class="pre">windows</span></tt> &#8212; Compiling/Installing on Windows<a class="headerlink" href="#windows-compiling-installing-on-windows" title="Permalink to this headline">¶</a></h1>
+<p>The compilation and installation process in Windows is very simple and don&#8217;t take much time.</p>
+<div class="section" id="compiling-qt-brisa-on-windows">
+<h2>4.1. Compiling Qt BRisa on Windows<a class="headerlink" href="#compiling-qt-brisa-on-windows" title="Permalink to this headline">¶</a></h2>
+<p>The first thing you need to do is to install libqxt in your system. Qt BRisa repository has it own version of libqxt with some changes made to it in order to make things work fine in Brisa.  You can download Qt BRisa folder <a class="reference external" href="https://garage.maemo.org/frs/download.php/8365/libbrisa_0.1.1.tar.gz">tree</a> and after that go to the libqxt directory (Qt BRisa/deps/libqxt/) using a command line terminal and type</p>
+<div class="highlight-python"><pre>$ configure.bat
+$ mingw32-make
+$ mingw32-make install</pre>
+</div>
+<p>This will install libqxt in your computer. Now you need to compile Qt BRisa project, by going to the main directory (Qt BRisa) inside Qt BRisa folder <a class="reference external" href="https://garage.maemo.org/frs/download.php/8365/libbrisa_0.1.1.tar.gz">tree</a> and typing</p>
+<div class="highlight-python"><pre>$ configure.bat
+$ mingw32-make</pre>
+</div>
+<p>And Qt BRisa will be successfully compiled.</p>
+</div>
+<div class="section" id="installing-qt-brisa-on-windows">
+<h2>4.2. Installing Qt BRisa on Windows<a class="headerlink" href="#installing-qt-brisa-on-windows" title="Permalink to this headline">¶</a></h2>
+<p>After compiling Qt BRisa you just need to type the following command in order to install it</p>
+<div class="highlight-python"><pre>$ mingw32-make install</pre>
+</div>
+<p>And Qt BRisa is finally installed in your computer.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">4. <tt class="docutils literal"><span class="pre">windows</span></tt> &#8212; Compiling/Installing on Windows</a><ul>
+<li><a class="reference external" href="#compiling-qt-brisa-on-windows">4.1. Compiling Qt BRisa on Windows</a></li>
+<li><a class="reference external" href="#installing-qt-brisa-on-windows">4.2. Installing Qt BRisa on Windows</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="maemo5.html"
+                                  title="previous chapter">3. <tt class="docutils literal docutils literal docutils literal"><span class="pre">maemo5</span></tt> &#8212; Compiling/Installing on Maemo 5</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="../core/index.html"
+                                  title="next chapter">4. <tt class="docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">core-utils</span></tt> &#8212; Framework&#8217;s core and utils</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/installation/windows.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../core/index.html" title="4. core-utils — Framework’s core and utils"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="maemo5.html" title="3. maemo5 — Compiling/Installing on Maemo 5"
+             >previous</a> |</li>
+        <li><a href="../index.html">Qt BRisa UPnP framework v2.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >3. <tt class="docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">installation</span></tt> &#8212; Installation and Compilation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 2010, BRisa Team.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.4.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>brisa.upnp.base_service_builder</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://brisa.garage.maemo.org">python-brisa UPnP framework 0.10.0 documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="brisa-module.html">Package&nbsp;brisa</a> ::
+        <a href="brisa.upnp-module.html">Package&nbsp;upnp</a> ::
+        Module&nbsp;base_service_builder
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="brisa.upnp.base_service_builder-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="brisa.upnp.base_service_builder-module.html">Module brisa.upnp.base_service_builder</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># Licensed under the MIT license</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># http://opensource.org/licenses/mit-license.php</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"># Copyright 2007-2008 Brisa Team &lt;brisa-develop@garage.maemo.org&gt;</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring">""" Builder module for services.</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">xml</tt><tt class="py-op">.</tt><tt class="py-name">etree</tt> <tt class="py-keyword">import</tt> <tt class="py-name">cElementTree</tt> <tt class="py-keyword">as</tt> <tt class="py-name">ElementTree</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package brisa=brisa-module.html"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-0', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Package brisa.core=brisa.core-module.html"><a title="brisa.core" class="py-name" href="#" onclick="return doclink('link-1', 'core', 'link-1');">core</a></tt> <tt class="py-keyword">import</tt> <tt id="link-2" class="py-name" targets="Module brisa.core.log=brisa.core.log-module.html,Variable brisa.core.plugin_manager.log=brisa.core.plugin_manager-module.html#log,Variable brisa.core.reactors._ecore.log=brisa.core.reactors._ecore-module.html#log,Variable brisa.core.reactors.gtk2.log=brisa.core.reactors.gtk2-module.html#log,Variable brisa.core.webserver.log=brisa.core.webserver-module.html#log,Variable brisa.upnp.control_point.control_point.log=brisa.upnp.control_point.control_point-module.html#log,Variable brisa.upnp.control_point.control_point_av.log=brisa.upnp.control_point.control_point_av-module.html#log,Variable brisa.upnp.device.event.log=brisa.upnp.device.event-module.html#log,Variable brisa.upnp.services.cds.content_directory.log=brisa.upnp.services.cds.content_directory-module.html#log,Variable brisa.upnp.ssdp.log=brisa.upnp.ssdp-module.html#log"><a title="brisa.core.log
+brisa.core.plugin_manager.log
+brisa.core.reactors._ecore.log
+brisa.core.reactors.gtk2.log
+brisa.core.webserver.log
+brisa.upnp.control_point.control_point.log
+brisa.upnp.control_point.control_point_av.log
+brisa.upnp.device.event.log
+brisa.upnp.services.cds.content_directory.log
+brisa.upnp.ssdp.log" class="py-name" href="#" onclick="return doclink('link-2', 'log', 'link-2');">log</a></tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-3" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-3', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Package brisa.upnp=brisa.upnp-module.html"><a title="brisa.upnp" class="py-name" href="#" onclick="return doclink('link-4', 'upnp', 'link-4');">upnp</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Module brisa.upnp.base_action=brisa.upnp.base_action-module.html"><a title="brisa.upnp.base_action" class="py-name" href="#" onclick="return doclink('link-5', 'base_action', 'link-5');">base_action</a></tt> <tt class="py-keyword">import</tt> <tt id="link-6" class="py-name" targets="Class brisa.upnp.base_action.BaseArgument=brisa.upnp.base_action.BaseArgument-class.html"><a title="brisa.upnp.base_action.BaseArgument" class="py-name" href="#" onclick="return doclink('link-6', 'BaseArgument', 'link-6');">BaseArgument</a></tt><tt class="py-op">,</tt> <tt id="link-7" class="py-name" targets="Class brisa.upnp.base_action.BaseAction=brisa.upnp.base_action.BaseAction-class.html"><a title="brisa.upnp.base_action.BaseAction" class="py-name" href="#" onclick="return doclink('link-7', 'BaseAction', 'link-7');">BaseAction</a></tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-8" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-8', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-9" class="py-name"><a title="brisa.upnp" class="py-name" href="#" onclick="return doclink('link-9', 'upnp', 'link-4');">upnp</a></tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Module brisa.upnp.base_service=brisa.upnp.base_service-module.html"><a title="brisa.upnp.base_service" class="py-name" href="#" onclick="return doclink('link-10', 'base_service', 'link-10');">base_service</a></tt> <tt class="py-keyword">import</tt> <tt id="link-11" class="py-name" targets="Class brisa.upnp.base_service.BaseStateVariable=brisa.upnp.base_service.BaseStateVariable-class.html"><a title="brisa.upnp.base_service.BaseStateVariable" class="py-name" href="#" onclick="return doclink('link-11', 'BaseStateVariable', 'link-11');">BaseStateVariable</a></tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"> </tt>
+<a name="BaseServiceBuilder"></a><div id="BaseServiceBuilder-def"><a name="L16"></a><tt class="py-lineno"> 16</tt> <a class="py-toggle" href="#" id="BaseServiceBuilder-toggle" onclick="return toggle('BaseServiceBuilder');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="brisa.upnp.base_service_builder.BaseServiceBuilder-class.html">BaseServiceBuilder</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseServiceBuilder-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="BaseServiceBuilder-expanded"><a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"> </tt>
+<a name="BaseServiceBuilder.__init__"></a><div id="BaseServiceBuilder.__init__-def"><a name="L18"></a><tt class="py-lineno"> 18</tt> <a class="py-toggle" href="#" id="BaseServiceBuilder.__init__-toggle" onclick="return toggle('BaseServiceBuilder.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">service</tt><tt class="py-op">,</tt> <tt class="py-param">fd</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseServiceBuilder.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseServiceBuilder.__init__-expanded"><a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Module brisa.upnp.control_point.service=brisa.upnp.control_point.service-module.html,Module brisa.upnp.device.service=brisa.upnp.device.service-module.html"><a title="brisa.upnp.control_point.service
+brisa.upnp.device.service" class="py-name" href="#" onclick="return doclink('link-12', 'service', 'link-12');">service</a></tt> <tt class="py-op">=</tt> <tt id="link-13" class="py-name"><a title="brisa.upnp.control_point.service
+brisa.upnp.device.service" class="py-name" href="#" onclick="return doclink('link-13', 'service', 'link-12');">service</a></tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">fd</tt> <tt class="py-op">=</tt> <tt class="py-name">fd</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_actions</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_variables</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+</div><a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"> </tt>
+<a name="BaseServiceBuilder.build"></a><div id="BaseServiceBuilder.build-def"><a name="L24"></a><tt class="py-lineno"> 24</tt> <a class="py-toggle" href="#" id="BaseServiceBuilder.build-toggle" onclick="return toggle('BaseServiceBuilder.build');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#build">build</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseServiceBuilder.build-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseServiceBuilder.build-expanded"><a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line">        <tt class="py-docstring">""" Builds a service given a file descriptor containing the SCPD XML.</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-docstring">        @return: True if service build succeeded, otherwise False.</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: bool</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Method brisa.upnp.base_service_builder.BaseServiceBuilder._parse_description()=brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#_parse_description,Method brisa.upnp.base_service_builder.BaseServiceBuilder._parse_description()=brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#_parse_description"><a title="brisa.upnp.base_service_builder.BaseServiceBuilder._parse_description
+brisa.upnp.base_service_builder.BaseServiceBuilder._parse_description" class="py-name" href="#" onclick="return doclink('link-14', '_parse_description', 'link-14');">_parse_description</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">fd</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">False</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Method brisa.upnp.base_service_builder.BaseServiceBuilder._build_service()=brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#_build_service,Method brisa.upnp.base_service_builder.BaseServiceBuilder._build_service()=brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#_build_service"><a title="brisa.upnp.base_service_builder.BaseServiceBuilder._build_service
+brisa.upnp.base_service_builder.BaseServiceBuilder._build_service" class="py-name" href="#" onclick="return doclink('link-15', '_build_service', 'link-15');">_build_service</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">True</tt> </tt>
+</div><a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"> </tt>
+<a name="BaseServiceBuilder._parse_description"></a><div id="BaseServiceBuilder._parse_description-def"><a name="L35"></a><tt class="py-lineno"> 35</tt> <a class="py-toggle" href="#" id="BaseServiceBuilder._parse_description-toggle" onclick="return toggle('BaseServiceBuilder._parse_description');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#_parse_description">_parse_description</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">fd</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseServiceBuilder._parse_description-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseServiceBuilder._parse_description-expanded"><a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">        <tt class="py-docstring">""" Parses the actions and state variables of a service given a file</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring">        descriptor containing the SCPD XML. File descriptor must be open.</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring">        @param fd: file descriptor</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-docstring">        @type fd: file</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-docstring">        @return: True if service parser succeeded, otherwise False.</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: bool</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">            <tt class="py-name">data</tt> <tt class="py-op">=</tt> <tt class="py-name">fd</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Method brisa.core.webserver.Request.read()=brisa.core.webserver.Request-class.html#read"><a title="brisa.core.webserver.Request.read" class="py-name" href="#" onclick="return doclink('link-16', 'read', 'link-16');">read</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">            <tt class="py-name">data</tt> <tt class="py-op">=</tt> <tt class="py-name">data</tt><tt class="py-op">[</tt><tt class="py-name">data</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Function brisa.upnp.didl.didl_lite.find()=brisa.upnp.didl.didl_lite-module.html#find"><a title="brisa.upnp.didl.didl_lite.find" class="py-name" href="#" onclick="return doclink('link-17', 'find', 'link-17');">find</a></tt><tt class="py-op">(</tt><tt class="py-string">"&lt;"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt><tt class="py-name">data</tt><tt class="py-op">.</tt><tt class="py-name">rfind</tt><tt class="py-op">(</tt><tt class="py-string">"&gt;"</tt><tt class="py-op">)</tt><tt class="py-op">+</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">            <tt class="py-name">tree</tt> <tt class="py-op">=</tt> <tt class="py-name">ElementTree</tt><tt class="py-op">.</tt><tt class="py-name">XML</tt><tt class="py-op">(</tt><tt class="py-name">data</tt><tt class="py-op">)</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">tree</tt><tt class="py-op">:</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name" targets="Method brisa.upnp.base_service_builder.BaseServiceBuilder._parse_actions()=brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#_parse_actions,Method brisa.upnp.base_service_builder.BaseServiceBuilder._parse_actions()=brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#_parse_actions"><a title="brisa.upnp.base_service_builder.BaseServiceBuilder._parse_actions
+brisa.upnp.base_service_builder.BaseServiceBuilder._parse_actions" class="py-name" href="#" onclick="return doclink('link-18', '_parse_actions', 'link-18');">_parse_actions</a></tt><tt class="py-op">(</tt><tt class="py-name">tree</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Method brisa.upnp.base_service_builder.BaseServiceBuilder._parse_variables()=brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#_parse_variables,Method brisa.upnp.base_service_builder.BaseServiceBuilder._parse_variables()=brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#_parse_variables"><a title="brisa.upnp.base_service_builder.BaseServiceBuilder._parse_variables
+brisa.upnp.base_service_builder.BaseServiceBuilder._parse_variables" class="py-name" href="#" onclick="return doclink('link-19', '_parse_variables', 'link-19');">_parse_variables</a></tt><tt class="py-op">(</tt><tt class="py-name">tree</tt><tt class="py-op">)</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-name">True</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">            <tt id="link-20" class="py-name"><a title="brisa.core.log
+brisa.core.plugin_manager.log
+brisa.core.reactors._ecore.log
+brisa.core.reactors.gtk2.log
+brisa.core.webserver.log
+brisa.upnp.control_point.control_point.log
+brisa.upnp.control_point.control_point_av.log
+brisa.upnp.device.event.log
+brisa.upnp.services.cds.content_directory.log
+brisa.upnp.ssdp.log" class="py-name" href="#" onclick="return doclink('link-20', 'log', 'link-2');">log</a></tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Variable brisa.core.log.debug=brisa.core.log-module.html#debug"><a title="brisa.core.log.debug" class="py-name" href="#" onclick="return doclink('link-21', 'debug', 'link-21');">debug</a></tt><tt class="py-op">(</tt><tt class="py-string">'Could not build service SCPD XML. %s'</tt> <tt class="py-op">%</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">e</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">False</tt> </tt>
+</div><a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"> </tt>
+<a name="BaseServiceBuilder._parse_actions"></a><div id="BaseServiceBuilder._parse_actions-def"><a name="L58"></a><tt class="py-lineno"> 58</tt> <a class="py-toggle" href="#" id="BaseServiceBuilder._parse_actions-toggle" onclick="return toggle('BaseServiceBuilder._parse_actions');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#_parse_actions">_parse_actions</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">tree</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseServiceBuilder._parse_actions-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseServiceBuilder._parse_actions-expanded"><a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">        <tt class="py-docstring">""" Parses actions from a fetched tree.</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"><tt class="py-docstring">        @param tree: tree containing the actions</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"><tt class="py-docstring">        @type tree: ElementTree</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt id="link-22" class="py-name" targets="Variable brisa.upnp.didl.didl_lite.ns=brisa.upnp.didl.didl_lite-module.html#ns"><a title="brisa.upnp.didl.didl_lite.ns" class="py-name" href="#" onclick="return doclink('link-22', 'ns', 'link-22');">ns</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"urn:schemas-upnp-org:service-1-0"</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">node</tt> <tt class="py-keyword">in</tt> <tt class="py-name">tree</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Function brisa.upnp.didl.didl_lite.findall()=brisa.upnp.didl.didl_lite-module.html#findall"><a title="brisa.upnp.didl.didl_lite.findall" class="py-name" href="#" onclick="return doclink('link-23', 'findall', 'link-23');">findall</a></tt><tt class="py-op">(</tt><tt class="py-string">'.//{%s}action'</tt> <tt class="py-op">%</tt> <tt id="link-24" class="py-name"><a title="brisa.upnp.didl.didl_lite.ns" class="py-name" href="#" onclick="return doclink('link-24', 'ns', 'link-22');">ns</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">            <tt id="link-25" class="py-name" targets="Variable brisa.core.plugin.PluginInterface.name=brisa.core.plugin.PluginInterface-class.html#name,Variable brisa.core.plugin_manager.RootPlugin.name=brisa.core.plugin_manager.RootPlugin-class.html#name"><a title="brisa.core.plugin.PluginInterface.name
+brisa.core.plugin_manager.RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-25', 'name', 'link-25');">name</a></tt> <tt class="py-op">=</tt> <tt class="py-name">node</tt><tt class="py-op">.</tt><tt class="py-name">findtext</tt><tt class="py-op">(</tt><tt class="py-string">'{%s}name'</tt> <tt class="py-op">%</tt> <tt id="link-26" class="py-name"><a title="brisa.upnp.didl.didl_lite.ns" class="py-name" href="#" onclick="return doclink('link-26', 'ns', 'link-22');">ns</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">            <tt class="py-name">args</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">arg</tt> <tt class="py-keyword">in</tt> <tt class="py-name">node</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name"><a title="brisa.upnp.didl.didl_lite.findall" class="py-name" href="#" onclick="return doclink('link-27', 'findall', 'link-23');">findall</a></tt><tt class="py-op">(</tt><tt class="py-string">'.//{%s}argument'</tt> <tt class="py-op">%</tt> <tt id="link-28" class="py-name"><a title="brisa.upnp.didl.didl_lite.ns" class="py-name" href="#" onclick="return doclink('link-28', 'ns', 'link-22');">ns</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">                <tt class="py-name">arg_direction</tt> <tt class="py-op">=</tt> <tt class="py-name">arg</tt><tt class="py-op">.</tt><tt class="py-name">findtext</tt><tt class="py-op">(</tt><tt class="py-string">'{%s}direction'</tt> <tt class="py-op">%</tt> <tt id="link-29" class="py-name"><a title="brisa.upnp.didl.didl_lite.ns" class="py-name" href="#" onclick="return doclink('link-29', 'ns', 'link-22');">ns</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">                <tt class="py-name">arg_state_var</tt> <tt class="py-op">=</tt> <tt class="py-name">arg</tt><tt class="py-op">.</tt><tt class="py-name">findtext</tt><tt class="py-op">(</tt><tt class="py-string">'{%s}relatedStateVariable'</tt> <tt class="py-op">%</tt> <tt id="link-30" class="py-name"><a title="brisa.upnp.didl.didl_lite.ns" class="py-name" href="#" onclick="return doclink('link-30', 'ns', 'link-22');">ns</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">                <tt class="py-name">arg_name</tt> <tt class="py-op">=</tt> <tt class="py-name">arg</tt><tt class="py-op">.</tt><tt class="py-name">findtext</tt><tt class="py-op">(</tt><tt class="py-string">'{%s}name'</tt> <tt class="py-op">%</tt> <tt id="link-31" class="py-name"><a title="brisa.upnp.didl.didl_lite.ns" class="py-name" href="#" onclick="return doclink('link-31', 'ns', 'link-22');">ns</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">                <tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">arg_name</tt><tt class="py-op">,</tt> <tt class="py-name">arg_direction</tt><tt class="py-op">,</tt> <tt class="py-name">arg_state_var</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_actions</tt><tt class="py-op">[</tt><tt id="link-32" class="py-name"><a title="brisa.core.plugin.PluginInterface.name
+brisa.core.plugin_manager.RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-32', 'name', 'link-25');">name</a></tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">args</tt> </tt>
+</div><a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"> </tt>
+<a name="BaseServiceBuilder._parse_variables"></a><div id="BaseServiceBuilder._parse_variables-def"><a name="L75"></a><tt class="py-lineno"> 75</tt> <a class="py-toggle" href="#" id="BaseServiceBuilder._parse_variables-toggle" onclick="return toggle('BaseServiceBuilder._parse_variables');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#_parse_variables">_parse_variables</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">tree</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseServiceBuilder._parse_variables-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseServiceBuilder._parse_variables-expanded"><a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-docstring">""" Parses variables from a fetched tree.</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"><tt class="py-docstring">        @param tree: tree containing the actions</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line"><tt class="py-docstring">        @type tree: ElementTree</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">        <tt id="link-33" class="py-name"><a title="brisa.upnp.didl.didl_lite.ns" class="py-name" href="#" onclick="return doclink('link-33', 'ns', 'link-22');">ns</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"urn:schemas-upnp-org:service-1-0"</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">node</tt> <tt class="py-keyword">in</tt> <tt class="py-name">tree</tt><tt class="py-op">.</tt><tt id="link-34" class="py-name"><a title="brisa.upnp.didl.didl_lite.findall" class="py-name" href="#" onclick="return doclink('link-34', 'findall', 'link-23');">findall</a></tt><tt class="py-op">(</tt><tt class="py-string">'.//{%s}stateVariable'</tt> <tt class="py-op">%</tt> <tt id="link-35" class="py-name"><a title="brisa.upnp.didl.didl_lite.ns" class="py-name" href="#" onclick="return doclink('link-35', 'ns', 'link-22');">ns</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">            <tt class="py-comment"># Avoid breaking when sendEvents is not specified.</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">            <tt class="py-name">send_events</tt> <tt class="py-op">=</tt> <tt class="py-name">node</tt><tt class="py-op">.</tt><tt class="py-name">attrib</tt><tt class="py-op">.</tt><tt class="py-name">get</tt><tt class="py-op">(</tt><tt class="py-string">'sendEvents'</tt><tt class="py-op">,</tt> <tt class="py-string">'no'</tt><tt class="py-op">)</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">            <tt class="py-comment"># Avoid breaking when multicast is not specified.</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">            <tt class="py-name">multicast</tt> <tt class="py-op">=</tt> <tt class="py-name">node</tt><tt class="py-op">.</tt><tt class="py-name">attrib</tt><tt class="py-op">.</tt><tt class="py-name">get</tt><tt class="py-op">(</tt><tt class="py-string">'multicast'</tt><tt class="py-op">,</tt> <tt class="py-string">'no'</tt><tt class="py-op">)</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">            <tt id="link-36" class="py-name"><a title="brisa.core.plugin.PluginInterface.name
+brisa.core.plugin_manager.RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-36', 'name', 'link-25');">name</a></tt> <tt class="py-op">=</tt> <tt class="py-name">node</tt><tt class="py-op">.</tt><tt class="py-name">findtext</tt><tt class="py-op">(</tt><tt class="py-string">'{%s}name'</tt> <tt class="py-op">%</tt> <tt id="link-37" class="py-name"><a title="brisa.upnp.didl.didl_lite.ns" class="py-name" href="#" onclick="return doclink('link-37', 'ns', 'link-22');">ns</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">            <tt class="py-name">data_type</tt> <tt class="py-op">=</tt> <tt class="py-name">node</tt><tt class="py-op">.</tt><tt class="py-name">findtext</tt><tt class="py-op">(</tt><tt class="py-string">'{%s}dataType'</tt> <tt class="py-op">%</tt> <tt id="link-38" class="py-name"><a title="brisa.upnp.didl.didl_lite.ns" class="py-name" href="#" onclick="return doclink('link-38', 'ns', 'link-22');">ns</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">            <tt class="py-name">values</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">a</tt><tt class="py-op">.</tt><tt class="py-name">text</tt> <tt class="py-keyword">for</tt> <tt class="py-name">a</tt> <tt class="py-keyword">in</tt> <tt class="py-name">node</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name"><a title="brisa.upnp.didl.didl_lite.findall" class="py-name" href="#" onclick="return doclink('link-39', 'findall', 'link-23');">findall</a></tt><tt class="py-op">(</tt><tt class="py-string">'.//{%s}allowedValue'</tt> <tt class="py-op">%</tt> <tt id="link-40" class="py-name"><a title="brisa.upnp.didl.didl_lite.ns" class="py-name" href="#" onclick="return doclink('link-40', 'ns', 'link-22');">ns</a></tt><tt class="py-op">)</tt><tt class="py-op">]</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_variables</tt><tt class="py-op">[</tt><tt id="link-41" class="py-name"><a title="brisa.core.plugin.PluginInterface.name
+brisa.core.plugin_manager.RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-41', 'name', 'link-25');">name</a></tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">send_events</tt><tt class="py-op">,</tt> <tt class="py-name">multicast</tt><tt class="py-op">,</tt> <tt class="py-name">data_type</tt><tt class="py-op">,</tt> <tt class="py-name">values</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"> </tt>
+<a name="BaseServiceBuilder._build_service"></a><div id="BaseServiceBuilder._build_service-def"><a name="L93"></a><tt class="py-lineno"> 93</tt> <a class="py-toggle" href="#" id="BaseServiceBuilder._build_service-toggle" onclick="return toggle('BaseServiceBuilder._build_service');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#_build_service">_build_service</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseServiceBuilder._build_service-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseServiceBuilder._build_service-expanded"><a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">        <tt class="py-docstring">""" Builds a service.</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt id="link-42" class="py-name"><a title="brisa.core.plugin.PluginInterface.name
+brisa.core.plugin_manager.RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-42', 'name', 'link-25');">name</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_variables</tt><tt class="py-op">.</tt><tt class="py-name">iterkeys</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">            <tt class="py-name">send_events</tt><tt class="py-op">,</tt> <tt class="py-name">multicast</tt><tt class="py-op">,</tt> <tt class="py-name">data_type</tt><tt class="py-op">,</tt> <tt class="py-name">values</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_variables</tt><tt class="py-op">[</tt><tt id="link-43" class="py-name"><a title="brisa.core.plugin.PluginInterface.name
+brisa.core.plugin_manager.RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-43', 'name', 'link-25');">name</a></tt><tt class="py-op">]</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">            <tt class="py-name">send_events</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> <tt class="py-keyword">if</tt> <tt class="py-name">send_events</tt> <tt class="py-op">==</tt> <tt class="py-string">'yes'</tt> <tt class="py-keyword">else</tt> <tt class="py-name">False</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">            <tt class="py-name">multicast</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> <tt class="py-keyword">if</tt> <tt class="py-name">multicast</tt> <tt class="py-op">==</tt> <tt class="py-string">'yes'</tt> <tt class="py-keyword">else</tt> <tt class="py-name">False</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-44" class="py-name"><a title="brisa.upnp.control_point.service
+brisa.upnp.device.service" class="py-name" href="#" onclick="return doclink('link-44', 'service', 'link-12');">service</a></tt><tt class="py-op">.</tt><tt id="link-45" class="py-name" targets="Method brisa.upnp.base_service.BaseService.add_state_variable()=brisa.upnp.base_service.BaseService-class.html#add_state_variable,Method brisa.upnp.base_service.BaseService.add_state_variable()=brisa.upnp.base_service.BaseService-class.html#add_state_variable,Method brisa.upnp.device.service.Service.add_state_variable()=brisa.upnp.device.service.Service-class.html#add_state_variable"><a title="brisa.upnp.base_service.BaseService.add_state_variable
+brisa.upnp.base_service.BaseService.add_state_variable
+brisa.upnp.device.service.Service.add_state_variable" class="py-name" href="#" onclick="return doclink('link-45', 'add_state_variable', 'link-45');">add_state_variable</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt>\ </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">                        <tt id="link-46" class="py-name" targets="Method brisa.upnp.base_service_builder.BaseServiceBuilder._create_state_var()=brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#_create_state_var,Method brisa.upnp.control_point.service.ServiceBuilder._create_state_var()=brisa.upnp.control_point.service.ServiceBuilder-class.html#_create_state_var,Method brisa.upnp.device.service.ServiceBuilder._create_state_var()=brisa.upnp.device.service.ServiceBuilder-class.html#_create_state_var"><a title="brisa.upnp.base_service_builder.BaseServiceBuilder._create_state_var
+brisa.upnp.control_point.service.ServiceBuilder._create_state_var
+brisa.upnp.device.service.ServiceBuilder._create_state_var" class="py-name" href="#" onclick="return doclink('link-46', '_create_state_var', 'link-46');">_create_state_var</a></tt><tt class="py-op">(</tt><tt id="link-47" class="py-name"><a title="brisa.core.plugin.PluginInterface.name
+brisa.core.plugin_manager.RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-47', 'name', 'link-25');">name</a></tt><tt class="py-op">,</tt> <tt class="py-name">send_events</tt><tt class="py-op">,</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">                                       <tt class="py-name">multicast</tt><tt class="py-op">,</tt> <tt class="py-name">data_type</tt><tt class="py-op">,</tt> <tt class="py-name">values</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">action_name</tt><tt class="py-op">,</tt> <tt class="py-name">action_args</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_actions</tt><tt class="py-op">.</tt><tt class="py-name">iteritems</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">            <tt class="py-name">args</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">arg_name</tt><tt class="py-op">,</tt> <tt class="py-name">arg_direction</tt><tt class="py-op">,</tt> <tt class="py-name">arg_state_var</tt> <tt class="py-keyword">in</tt> <tt class="py-name">action_args</tt><tt class="py-op">:</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">                <tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-48" class="py-name" targets="Method brisa.upnp.base_service_builder.BaseServiceBuilder._create_argument()=brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#_create_argument,Method brisa.upnp.control_point.service.ServiceBuilder._create_argument()=brisa.upnp.control_point.service.ServiceBuilder-class.html#_create_argument,Method brisa.upnp.device.service.ServiceBuilder._create_argument()=brisa.upnp.device.service.ServiceBuilder-class.html#_create_argument"><a title="brisa.upnp.base_service_builder.BaseServiceBuilder._create_argument
+brisa.upnp.control_point.service.ServiceBuilder._create_argument
+brisa.upnp.device.service.ServiceBuilder._create_argument" class="py-name" href="#" onclick="return doclink('link-48', '_create_argument', 'link-48');">_create_argument</a></tt><tt class="py-op">(</tt><tt class="py-name">arg_name</tt><tt class="py-op">,</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">                    <tt class="py-name">arg_direction</tt><tt class="py-op">,</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-49" class="py-name"><a title="brisa.upnp.control_point.service
+brisa.upnp.device.service" class="py-name" href="#" onclick="return doclink('link-49', 'service', 'link-12');">service</a></tt><tt class="py-op">.</tt><tt class="py-name">_state_variables</tt><tt class="py-op">[</tt><tt class="py-name">arg_state_var</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-50" class="py-name"><a title="brisa.upnp.control_point.service
+brisa.upnp.device.service" class="py-name" href="#" onclick="return doclink('link-50', 'service', 'link-12');">service</a></tt><tt class="py-op">.</tt><tt class="py-name">_actions</tt><tt class="py-op">[</tt><tt class="py-name">action_name</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt>\ </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">                <tt id="link-51" class="py-name" targets="Method brisa.upnp.base_service_builder.BaseServiceBuilder._create_action()=brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#_create_action,Method brisa.upnp.control_point.service.ServiceBuilder._create_action()=brisa.upnp.control_point.service.ServiceBuilder-class.html#_create_action,Method brisa.upnp.device.service.ServiceBuilder._create_action()=brisa.upnp.device.service.ServiceBuilder-class.html#_create_action"><a title="brisa.upnp.base_service_builder.BaseServiceBuilder._create_action
+brisa.upnp.control_point.service.ServiceBuilder._create_action
+brisa.upnp.device.service.ServiceBuilder._create_action" class="py-name" href="#" onclick="return doclink('link-51', '_create_action', 'link-51');">_create_action</a></tt><tt class="py-op">(</tt><tt class="py-name">action_name</tt><tt class="py-op">,</tt> <tt class="py-name">args</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line"> </tt>
+<a name="BaseServiceBuilder._create_argument"></a><div id="BaseServiceBuilder._create_argument-def"><a name="L112"></a><tt class="py-lineno">112</tt> <a class="py-toggle" href="#" id="BaseServiceBuilder._create_argument-toggle" onclick="return toggle('BaseServiceBuilder._create_argument');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#_create_argument">_create_argument</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">arg_name</tt><tt class="py-op">,</tt> <tt class="py-param">arg_direction</tt><tt class="py-op">,</tt> <tt class="py-param">arg_state_var</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseServiceBuilder._create_argument-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseServiceBuilder._create_argument-expanded"><a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-docstring">""" Factory method that creates an action argument.</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"><tt class="py-docstring">        @return: The argument object.</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: BaseArgument</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-52" class="py-name"><a title="brisa.upnp.base_action.BaseArgument" class="py-name" href="#" onclick="return doclink('link-52', 'BaseArgument', 'link-6');">BaseArgument</a></tt><tt class="py-op">(</tt><tt class="py-name">arg_name</tt><tt class="py-op">,</tt> <tt class="py-name">arg_direction</tt><tt class="py-op">,</tt> <tt class="py-name">arg_state_var</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"> </tt>
+<a name="BaseServiceBuilder._create_action"></a><div id="BaseServiceBuilder._create_action-def"><a name="L120"></a><tt class="py-lineno">120</tt> <a class="py-toggle" href="#" id="BaseServiceBuilder._create_action-toggle" onclick="return toggle('BaseServiceBuilder._create_action');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#_create_action">_create_action</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">,</tt> <tt class="py-param">args</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseServiceBuilder._create_action-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseServiceBuilder._create_action-expanded"><a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">        <tt class="py-docstring">""" Factory method that creates a service action.</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"><tt class="py-docstring">        @return: The action object.</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: BaseAction</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-53" class="py-name"><a title="brisa.upnp.base_action.BaseAction" class="py-name" href="#" onclick="return doclink('link-53', 'BaseAction', 'link-7');">BaseAction</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-54" class="py-name"><a title="brisa.upnp.control_point.service
+brisa.upnp.device.service" class="py-name" href="#" onclick="return doclink('link-54', 'service', 'link-12');">service</a></tt><tt class="py-op">,</tt> <tt id="link-55" class="py-name"><a title="brisa.core.plugin.PluginInterface.name
+brisa.core.plugin_manager.RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-55', 'name', 'link-25');">name</a></tt><tt class="py-op">,</tt> <tt class="py-name">args</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line"> </tt>
+<a name="BaseServiceBuilder._create_state_var"></a><div id="BaseServiceBuilder._create_state_var-def"><a name="L128"></a><tt class="py-lineno">128</tt> <a class="py-toggle" href="#" id="BaseServiceBuilder._create_state_var-toggle" onclick="return toggle('BaseServiceBuilder._create_state_var');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.base_service_builder.BaseServiceBuilder-class.html#_create_state_var">_create_state_var</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">,</tt> <tt class="py-param">send_events</tt><tt class="py-op">,</tt> <tt class="py-param">multicast</tt><tt class="py-op">,</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">                          <tt class="py-param">data_type</tt><tt class="py-op">,</tt> <tt class="py-param">values</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseServiceBuilder._create_state_var-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseServiceBuilder._create_state_var-expanded"><a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">        <tt class="py-docstring">""" Factory method that creates a service state variable.</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"><tt class="py-docstring">        @return: The state variable object.</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: BaseStateVariable</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-56" class="py-name"><a title="brisa.upnp.base_service.BaseStateVariable" class="py-name" href="#" onclick="return doclink('link-56', 'BaseStateVariable', 'link-11');">BaseStateVariable</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-57" class="py-name"><a title="brisa.upnp.control_point.service
+brisa.upnp.device.service" class="py-name" href="#" onclick="return doclink('link-57', 'service', 'link-12');">service</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">                    <tt id="link-58" class="py-name"><a title="brisa.core.plugin.PluginInterface.name
+brisa.core.plugin_manager.RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-58', 'name', 'link-25');">name</a></tt><tt class="py-op">,</tt> <tt class="py-name">send_events</tt><tt class="py-op">,</tt> <tt class="py-name">multicast</tt><tt class="py-op">,</tt> <tt class="py-name">data_type</tt><tt class="py-op">,</tt> <tt class="py-name">values</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://brisa.garage.maemo.org">python-brisa UPnP framework 0.10.0 documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Jun  9 22:25:03 2009
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

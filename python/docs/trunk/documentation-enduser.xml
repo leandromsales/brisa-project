@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+ "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd"
+[
+<!ENTITY % documentation_enduser_entities SYSTEM "documentation-enduser.ent">
+%documentation_enduser_entities;
+<!ENTITY contact_chapter SYSTEM "contact.xml">
+]>
+
+<book id="documentation-enduser">
+	<bookinfo>
+		<title>End user Documentation</title>
+
+		<author>
+			<firstname>Leandro</firstname>
+			<surname>Melo de Sales</surname>
+			<affiliation>
+				<address><email>leandro@embedded.ufcg.edu.br</email></address>
+			</affiliation>
+		</author>
+
+		<author>
+			<firstname>André</firstname>
+			<surname>Dieb Martins</surname>
+			<affiliation>
+				<address><email>dieb@embedded.ufcg.edu.br</email></address>
+			</affiliation>
+		</author>
+
+		<!-- FIXME: This is not right -->
+		<author>
+			<firstname>Embedded Systems and Pervasive Computing
+				Laboratory</firstname>
+			<affiliation>
+				<address><email>http://embedded.ufcg.edu.br/</email></address>
+			</affiliation>
+		</author>
+
+
+		<revhistory>
+
+			<revision>
+				<revnumber>1.0</revnumber>
+				<date>2008-09-24</date>
+				<revdescription>
+					<itemizedlist>
+						<listitem>
+							<para>First Version concerning python-brisa 0.9.0
+                            and brisa-apps 0.1.0.</para>
+						</listitem>
+					</itemizedlist>
+				</revdescription>
+			</revision>
+
+		</revhistory>
+
+		<abstract>
+			<para>This guide describes how to install and use BRisa applications
+			</para>
+		</abstract>
+
+
+	</bookinfo>
+
+	<chapter>
+		<title>Installing</title>
+
+		<sect1>
+			<title>Maemo Devices (N800, N810, ...)</title>
+
+			<para>
+				Single click install has not been updated yet for the latest release
+				(0.7.0). It will be updated but at this moment BRisa for maemo is
+				aimed mainly for developers with experience with ssh and scp. Please
+				consult the
+				<ulink url="&url_brisa_develop;">Developer Documentation</ulink>
+				.
+			</para>
+		</sect1>
+
+		<sect1>
+			<title>Linux</title>
+
+			<sect2>
+				<title>Installing dependencies</title>
+				<para>Ubuntu Gutsy, Hardy</para>
+				<screen>
+<userinput>sudo apt-get install python-cherrypy3 python-formencode python-pyinotify gstreamer0.10-bad python-gst python-mutagen python-dev python</userinput>
+</screen>
+
+
+				<para>Gentoo</para>
+				<screen>
+<userinput>emerge cherrypy pysqlite formencode pyinotify gst-plugins-bad gst-python mutagen</userinput>
+</screen>
+
+
+				<para>
+					If your distribution is not on the list above, please refer to
+					<xref linkend="Manual_dependencies_install" />
+					.
+				</para>
+
+			</sect2>
+
+			<sect2>
+				<title>Installing Brisa</title>
+
+				<para>
+					Download the packages
+					<ulink url="&url_brisa_download_packages;">here</ulink>
+					and install each by executing the following commands on the
+					terminal:
+				</para>				<screen>
+<userinput>tar -zxvf package.tar.gz
+cd package
+sudo python setup.py install
+</userinput>
+</screen>
+
+			</sect2>
+
+			<sect2 id="Manual_dependencies_install">
+				<title>Manual dependencies install</title>
+
+				<para>BRisa requires the following third-party packages:</para>
+
+				<itemizedlist>
+					<listitem>
+						<para>
+							Python 2.5+, Python 2.5 dev-
+							<ulink url="&url_python;">http://python.org/</ulink>
+						</para>
+					</listitem>
+
+					<listitem>
+						<para>
+							Python-inotify -
+							<ulink url="http://pyinotify.sourceforge.net/">http://pyinotify.sourceforge.net/
+							</ulink>
+						</para>
+					</listitem>
+
+					<listitem>
+						<para>
+							Python-mutagen -
+							<ulink url="http://pypi.python.org/pypi/mutagen/1.12">http://pypi.python.org/pypi/mutagen/1.12
+							</ulink>
+						</para>
+					</listitem>
+
+					<listitem>
+						<para>
+							gstreamer0.10 -
+							<ulink url="http://gstreamer.freedesktop.org/downloap">http://gstreamer.freedesktop.org/download
+							</ulink>
+						</para>
+					</listitem>
+
+					<listitem>
+						<para>
+							Python-gstreamer -
+							<ulink url="http://gstreamer.freedesktop.org/modules/gst-python.html">
+								http://gstreamer.freedesktop.org/modules/gst-python.html</ulink>
+						</para>
+					</listitem>
+
+					<listitem>
+						<para>
+							(optional) gstreamer0.10-plugins-* -
+							<ulink url="http://gstreamer.freedesktop.org/download/">http://gstreamer.freedesktop.org/download
+							</ulink>
+						</para>
+					</listitem>
+
+				</itemizedlist>
+
+				<para>Optional - only needed for the media renderer for
+					viewing some specific types of videos, like flv.</para>
+
+			</sect2>
+
+		</sect1>
+	</chapter>
+
+	<chapter>
+		<title>Using</title>
+
+		<sect1 id="Configuration_Tool">
+			<title>Setting your folders for MediaServer</title>
+
+			<para>In
+				order to BRisa find your audio, video and image files, you must tell
+				it where it is located. For that, you must use our &text_configuration_tool;
+				, which is illustrated below.
+			</para>
+
+
+			<figure>
+				<title>&text_configuration_tool;
+				</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata scalefit="1" width="100%" contentdepth="100%" fileref="&image_file_configuration_tool;" />
+					</imageobject>
+					<textobject>
+						<phrase>&text_configuration_tool;
+						</phrase>
+					</textobject>
+				</mediaobject>
+			</figure>
+
+			<para>For
+				starting the &text_configuration_tool;,
+				you can try to find it on your window manager menu (distributions
+				compliant with freedesktop) or you can type this in a terminal:
+			</para>
+
+			<screen>
+<prompt>$ </prompt><userinput>brisa-configuration-tool</userinput>
+</screen>
+
+			<para>
+				For editing configuration and fields just select and edit what you
+				want to change. Note that some fields like "connection" or
+				"database" should be automatically correct after install, you should
+				not have to change that (for problems consult
+				<xref linkend="Troubleshooting" />
+				below).
+			</para>
+
+			<para>
+				On the tab local you will find the directories to set your
+				<emphasis role="bold">audio, video and picture</emphasis>
+				folders. For selecting multiple folders click on select again after
+				selecting something.
+			</para>
+
+			<para>
+				Once you're done setting your media folders, click on the
+				<emphasis role="bold">Save</emphasis>
+				button and then on
+				<emphasis role="bold">Quit</emphasis>
+				(both on the right side of the screen).
+			</para>
+
+
+		</sect1>
+
+		<sect1>
+			<title>Starting servers on the terminal</title>
+
+			<sect2>
+				<title>Media Server</title>
+				<para>For starting the media server, just open up a terminal and
+					type the following command:</para>
+				<screen>
+<prompt>$ </prompt><userinput>brisa-media-server</userinput>
+</screen>
+			</sect2>
+
+			<sect2>
+				<title>Media Renderer</title>
+				<para>For starting the media renderer, juts open up a terminal
+					and type the following command:</para>
+				<screen>
+<prompt>$ </prompt><userinput>brisa-media-renderer</userinput>
+</screen>
+			</sect2>
+
+			<para>
+				If you want debug messages, use the
+				<link linkend="Configuration_Tool">Configuration Tool</link>
+				and on the first tab (General) set the logging level to DEBUG.
+			</para>
+
+		</sect1>
+
+	</chapter>
+
+	<chapter id="Troubleshooting">
+		<title>Troubleshooting &amp; Common Problems</title>
+
+    <sect1>
+      <title>IOError: [Errno 2] No such file or directory: '/home/user/.meta_storage'</title>
+<para><emphasis role="bold">Problem:</emphasis> you have the metacrawler plugin on, but you probably aren't running on a maemo device. That storage is directed  maemo devices.</para>
+<para><emphasis role="bold">Solution:</emphasis> using the &text_configuration_tool; disable the <emphasis>maemo multimedia plugin</emphasis></para>
+    </sect1>
+
+    <sect1>
+      <title>Known issue: text and buttons on maemo looking weird</title>
+<para><emphasis role="bold">Status:</emphasis> this is a known issue that have been detected recently. It will be fixed on version 0.1.1</para>
+    </sect1>
+
+  </chapter>
+
+	&contact_chapter;	
+
+
+</book>
+

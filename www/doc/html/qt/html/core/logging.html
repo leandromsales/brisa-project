@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. log — Logging facilities &mdash; Qt BRisa UPnP framework v2.0 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Qt BRisa UPnP framework v2.0 documentation" href="../index.html" />
+    <link rel="up" title="4. core-utils — Framework’s core and utils" href="index.html" />
+    <link rel="next" title="3. network — Network facilities" href="network.html" />
+    <link rel="prev" title="1. config — Configuration facilities" href="configuration.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="network.html" title="3. network — Network facilities"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="configuration.html" title="1. config — Configuration facilities"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Qt BRisa UPnP framework v2.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">4. <tt class="docutils literal docutils literal docutils literal docutils literal"><span class="pre">core-utils</span></tt> &#8212; Framework&#8217;s core and utils</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="log-logging-facilities">
+<h1>2. <tt class="xref docutils literal"><span class="pre">log</span></tt> &#8212; Logging facilities<a class="headerlink" href="#log-logging-facilities" title="Permalink to this headline">¶</a></h1>
+<p id="index-9">Qt BRisa provides logging functions with a colored
+logging feature.</p>
+<p>By using the log function, it&#8217;s possible to create debug, warning, critical or fatal messages. The use is very simple and will be exemplified next</p>
+<div class="section" id="global-logger">
+<h2>2.1. Global Logger<a class="headerlink" href="#global-logger" title="Permalink to this headline">¶</a></h2>
+<p>This module provides a global (or root) logger. It&#8217;s simple to use, as you can see the the following example</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">#include &lt;BrisaLog&gt;</span>
+
+<span class="n">brisaLogInitialize</span><span class="p">()</span>
+
+<span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;My debug message&quot;</span><span class="p">;</span>
+<span class="n">qWarning</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;My warning message&quot;</span><span class="p">;</span>
+<span class="n">qCritical</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;My critical message&quot;</span><span class="p">;</span>
+<span class="n">qFatal</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;My fatal message&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">2. <tt class="docutils literal"><span class="pre">log</span></tt> &#8212; Logging facilities</a><ul>
+<li><a class="reference external" href="#global-logger">2.1. Global Logger</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="configuration.html"
+                                  title="previous chapter">1. <tt class="docutils literal docutils literal docutils literal"><span class="pre">config</span></tt> &#8212; Configuration facilities</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="network.html"
+                                  title="next chapter">3. <tt class="docutils literal"><span class="pre">network</span></tt> &#8212; Network facilities</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/core/logging.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="network.html" title="3. network — Network facilities"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="configuration.html" title="1. config — Configuration facilities"
+             >previous</a> |</li>
+        <li><a href="../index.html">Qt BRisa UPnP framework v2.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >4. <tt class="docutils literal docutils literal docutils literal docutils literal"><span class="pre">core-utils</span></tt> &#8212; Framework&#8217;s core and utils</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 2010, BRisa Team.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.4.
+    </div>
+  </body>
+</html>

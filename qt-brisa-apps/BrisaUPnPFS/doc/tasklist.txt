@@ -1,0 +1,20 @@
+=========== Bugs ============
+
+---- Hight Priority ----
+a) none
+
+---- Low Priority ----
+a) Se o Módulo BRisa morre, após o umount os arquivos do diretório .upnpfs não serão excluídos.
+b) Processo upnpfs_brisa continua vivo se houver erro nos argumentos do FUSE e o FS não for iniciado.
+c) Mistério do "Usage fantasma" no --help
+d) Módulo BRisa para quando envia arquivo para a lixeira (via Nautilus).
+
+=========== Task List ===========
+- Separar eventos de actions
+- Icone das pastas (devices e services)
+- Tentar arrumar alguma forma de melhorar a recepção de eventos 
+- Evitar append no arquivo de event, usar dois... discussões sobre multi-threading etc.
+- Caso a “rede caia”, as pastas permanecerão? - TESTAR
+
+
+

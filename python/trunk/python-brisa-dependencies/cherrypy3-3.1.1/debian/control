@@ -1,0 +1,13 @@
+Source: cherrypy
+Section: user/network
+Priority: optional
+Maintainer: André Dieb Martins <dieb@embedded.ufcg.edu.br>
+Build-Depends: debhelper (>= 5.0.38), python-distutils | python2.5-distutils, python2.5-dev | python-dev
+Standards-Version: 3.6.1
+
+Package: python2.5-cherrypy3
+Section: user/development
+Architecture: all
+Depends: python2.5
+Provides: ${python:Provides}
+Description: cherrypy web server facilities

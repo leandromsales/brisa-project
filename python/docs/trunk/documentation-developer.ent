@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!ENTITY image_file_cp_mr_ms "images/cp_mr_ms.png">
+<!ENTITY image_file_cp_mr_ms_high_res "images/cp_mr_ms-high-res.png">
+<!ENTITY image_file_cp_mr_ms_vet "images/cp_mr_ms-high-res.png">
+<!ENTITY image_file_plugin_internals "images/plugin_internals.png">
+<!ENTITY image_file_plugin_internals_high_res "images/plugin_internals-high-res.png">
+<!ENTITY image_file_upnp_up_mr_ms_cp "images/upnp_up_mr_ms_cp.png">
+<!ENTITY image_file_upnp_up_mr_ms_cp_high_res "images/upnp_up_mr_ms_cp-high-res.png">
+<!ENTITY image_file_upnp_up_plugin_internals "images/upnp_up_plugin_internals.png">
+<!ENTITY image_file_upnp_up_plugin_internals_high_res "images/upnp_up_plugin_internals-high-res.png">
+<!ENTITY image_file_upnp_up_plugin_internals_vet "images/upnp_up_plugin_internals.svg">
+<!ENTITY image_file_flowofcontrol "images/flow_of_control.png">
+
+<!ENTITY text_cp_mr_ms "Basic communication schema between UPnP devices.">
+<!ENTITY text_plugin_internals "CDS and plugin-based architecture">
+<!ENTITY text_upnp_up_mr_ms_cp "Communication schema between UPnP devices with UPnP-UP.">
+<!ENTITY text_upnp_up_plugin_internals "CDS and plugin-based architecture in UPnP-UP">
+<!ENTITY text_flowofcontrol "Flow of Control of ThreadManager, ThreadObject and ThreadedCall">
+
+
+<!ENTITY % general_documentation_entities SYSTEM "documentation.ent">
+%general_documentation_entities;

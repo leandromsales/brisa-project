@@ -1,0 +1,68 @@
+# Licensed under the MIT license
+# http://opensource.org/licenses/mit-license.php
+# Copyright 2007 Brisa Team <brisa-develop@garage.maemo.org>
+
+# Simple Manual to start and have fun!
+
+Installation Instructions
+*************************
+
+1 - PRE-REQUISITES
+--------------------
+
+To run the Brisa Media Server the following packages are needed:
+    1.1 Zope
+    1.2 TwistedCore
+    1.3 TwistedWeb
+    1.4 Elementtree
+    1.5 SOAPpy
+    1.6 pyTagger
+	1.7 pyShoutcast
+	1.8 pysqllite
+	
+On Nokia 770 additionally to the standard python runtime, these files are needed:
+    BaseHttpServer(.py/.pyc)
+    fpconst(.py/.pyc)
+    cgi(.py/.pyc)
+
+As doesn't exist an official version of twisted and some packets listed above
+for the Nokia 770/Maemo platform, this packets were packeted on debian's like package 
+brisa-deps.deb on our svn trunk.
+
+To install this files on 770/Maemo is only needed to copy the file brisa-deps.deb
+to any place on 770 and just type:
+
+> dpkg -i brisa-deps.deb
+
+
+2 - Running Brisa Media Server
+---------------------------------
+
+After installing the brisa-deps.deb package, it is just necessary to copy the source code of
+Brisa (from svn repository), and run brisaserver.py from terminal as follow:
+
+> python brisaMediaServer.py
+
+But, before run BrisaServer, you need to edit the brisaPluginConfig.ini at the directory .brisa/
+in your home folder ex.: /home/danilo/.brisa/brisaPluginConfig.ini
+
+example:
+
+> python brisaMediaServer.py
+
+For more options type:
+
+> python brisaMediaServer.py --help
+
+For terminate the execution of Brisa MediaServer type Ctrl+C or kill the process
+
+3 - Running Brisa Media Renderer
+---------------------------------
+
+As simple as possible:
+
+> python brisaMediaRenderer.py
+
+For terminate the execution of Brisa MediaRenderer type Ctrl+C or kill the process
+
+have fun!

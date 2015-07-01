@@ -1,0 +1,6 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=0.1
+Name=BRisa Media App. Controller
+Type=Application
+Exec=/usr/bin/brisa-media-apps-control

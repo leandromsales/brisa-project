@@ -1,0 +1,49 @@
+============ UPNP-FS History ============
+--- 2010 ---
+Agosto-Setembro/2010 -> Inicio da disciplina
+Outubro/2010 -> Definiçao de escopo e prazo
+Novembro/2010 -> Pesquisa, instalaçao e configuraçao do FUSE
+Novembro-Dezembro/2010 -> Binding FUSE para C++
+Dezembro/2010 -> Inicio da implementaçao.
+Dezembro/2010 -> Resolvido problema na inicialização dos parâmetros que gerava loop infinito
+Dezembro/2010 -> Resolvido problemas nos nomes dos métodos que gerava loop infinito graças à recursão
+Dezembro/2010 -> Versao Hello World do FUSE em C++.
+--- 2011 ---
+Janeiro/2011 -> Descoberta incompatibilidade do FUSE com alguns módulos do Qt (especialmente QThread)
+Janeiro/2011 -> Definiçao trabalhar com DBUS. Processo Filesystem notifica processo Brisa (Controlpoint)
+Janeiro/2011 -> Pesquisa sobre DBUS. Inicio de implementação.
+Fevereiro/2011 -> Primeira versao com DBUS.
+Fevereiro/2011 -> Início do refatoramento do código e busca por estabilidade e eliminiação de bugs.
+Março/2011 -> Resolvido problema com o Vi.
+Março/2011 -> Resolvido problema com o Gedit. Função rename não pegava o camimho absoluto do arquivo.
+Março/2011 -> Resolvido problema ao renomear arquivos. Era a causa do problema com o Gedit.
+Junho/2011 -> Resolvido novo problema com a função rename e o Gedit.
+Julho/2011 -> Logger implementado
+Agosto/2011 -> Implementado a captura de argumentos de linha de comando para opções do FUSE.
+--- 2012 ---
+Janeiro/2012 -> Resolvido problema unicast no BRisa. Falta implementar no UPnP-FS
+Fevereiro/2012 -> Implementado eventos unicast no UPnP-FS
+Março/2012 -> Extensão do Arquivo passa a ser utilizada para indicar se ele é uma action ou um event.
+Março/2012 -> Resolvido problema do processo upnpfs continuar vivo após desmontar sistema de arquivos
+Abril/2012 -> Log em diretório oculto ".debug", conforme djmount.
+Abril/2012 -> Resolvido problemas com entradas do usuário. Ex: Param=<espaço>Valor
+Agosto/2012 -> TCC "UPnP-FS: Um Sistema de Arquivos Baseado no Padrão UPnP" apresentado e aprovado
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

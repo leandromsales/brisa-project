@@ -1,0 +1,3 @@
+[install]
+repo_name = Nokia Research Center Cambridge, MA, US
+repo_deb_3  = deb http://repository.nrcc.noklab.com bora extras

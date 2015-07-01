@@ -1,0 +1,8 @@
+Package: upnpfs
+Priority: optional
+Version: 0.0.1
+Architecture: amd64
+Maintainer: Wendell S. Soares <wensiso2000@gmail.com>
+Depends: fuse
+Description: The package with the UPnP-FS binaries
+

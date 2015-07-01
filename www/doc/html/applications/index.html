@@ -1,0 +1,543 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5. Applications &mdash; python-brisa UPnP framework v0.10.0 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.10.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="python-brisa UPnP framework v0.10.0 documentation" href="../index.html" />
+    <link rel="next" title="6. Code Examples" href="../code_examples.html" />
+    <link rel="prev" title="4. ssdp — SSDP Server implementation" href="../upnp/ssdp.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../code_examples.html" title="6. Code Examples"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../upnp/ssdp.html" title="4. ssdp — SSDP Server implementation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="applications">
+<span id="applications-index"></span><h1>5. Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dbus-support">
+<h2>5.1. DBus Support<a class="headerlink" href="#dbus-support" title="Permalink to this headline">¶</a></h2>
+<p>Both BRisa Media Server and BRisa Media Renderer applications support DBus,
+allowing them to integrate with a wide range of media systems. In this section
+we specify both interfaces.</p>
+<div class="section" id="brisa-media-server">
+<h3>5.1.1. BRisa Media Server<a class="headerlink" href="#brisa-media-server" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="dbus-specification">
+<h4>5.1.1.1. DBus specification<a class="headerlink" href="#dbus-specification" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<ul class="simple">
+<li>Object path: <tt class="docutils literal"><span class="pre">/br/edu/ufcg/embedded/brisa/MediaServer</span></tt></li>
+<li>Interface: <tt class="docutils literal"><span class="pre">br.edu.ufcg.embedded.brisa.MediaServer</span></tt></li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="available-methods">
+<h4>5.1.1.2. Available Methods<a class="headerlink" href="#available-methods" title="Permalink to this headline">¶</a></h4>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">A watched folder is a folder whose files are being watched, that is, are
+served by the media server.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>DMS = DLNA Media Server</li>
+<li>CDS = Content Directory Subsystem or Service</li>
+<li>CM = Connection Manager service</li>
+</ul>
+</div>
+<dl class="function">
+<dt>
+<tt class="descname">dms_halt():</tt></dt>
+<dd>Halts the media server.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_get_server_info():</tt></dt>
+<dd>Returns a 7-tuple containing information about the device. The
+format is <tt class="docutils literal"><span class="pre">(device</span> <span class="pre">version,</span> <span class="pre">brisa</span> <span class="pre">framework</span> <span class="pre">version,</span> <span class="pre">application</span>
+<span class="pre">version,</span> <span class="pre">server</span> <span class="pre">name,</span> <span class="pre">xbox</span> <span class="pre">compatibility,</span> <span class="pre">logging</span> <span class="pre">level,</span> <span class="pre">logging</span>
+<span class="pre">output)</span></tt>.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_reload_config():</tt></dt>
+<dd>Reloads the configuration from the database.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_save_config():</tt></dt>
+<dd>Saves the runtime configuration.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_set_xbox_compatibility(enable=True):</tt></dt>
+<dd>Enables or disables the XBox compatibility.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_cds_list_watched_audio_folders():</tt></dt>
+<dd>Returns a list with the watched audio folders.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_cds_list_watched_video_folders():</tt></dt>
+<dd>Returns a list with the watched video folders.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_cds_list_watched_picture_folders():</tt></dt>
+<dd>Returns a list of the watched picture folders.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_cds_remove_watched_audio_folder(folder):</tt></dt>
+<dd>Removes an audio folder from being watched.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_cds_remove_watched_video_folder(folder):</tt></dt>
+<dd>Removes a video folder from being watched.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_cds_remove_watched_picture_folder(folder):</tt></dt>
+<dd>Removes a picture folder from being watched.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_cds_add_watch_audio_folder(folder):</tt></dt>
+<dd>Add an audio folder to be watched.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_cds_add_watch_video_folder(folder):</tt></dt>
+<dd>Add a video folder to be watched.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_cds_add_watch_picture_folder(folder):</tt></dt>
+<dd>Add a picture folder to be watched.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_cds_rescan_folders():</tt></dt>
+<dd>Rescans all folders for changes (added or removed files).</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_cds_browse(object_id, browse_flag, filter, starting_index, requested_count, sort_criteria):</tt></dt>
+<dd>Browses the CDS. Returns a DIDL XML string containing the result entries.
+The module <strong>brisa.upnp.didl.didl_lite.Element</strong> can be used for converting
+it into python objects.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_cds_search(container_id, search_criteria, filter, starting_index, requested_count, sort_criteria):</tt></dt>
+<dd>Searches a CDS container for entries. Returns a DIDL XML string containing
+the result entries. The module <strong>brisa.upnp.didl.didl_lite.Element</strong> can be used for
+converting it into python objects.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_cds_get_search_caps():</tt></dt>
+<dd>Retrieves the search capabilities of the CDS service.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_cds_get_sort_caps():</tt></dt>
+<dd>Retrieves the sort capabilities of the CDS service.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_cds_get_system_update_id():</tt></dt>
+<dd>Retrieves the CDS system update ID.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_cm_get_protocol_info():</tt></dt>
+<dd>Retrieves the CM protocol info.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_cm_get_current_connection_ids():</tt></dt>
+<dd>Retrieves CM current connection IDs.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dms_cm_get_current_connection_info():</tt></dt>
+<dd>Retrieves CM current connection info.</dd></dl>
+
+</div>
+</div>
+<div class="section" id="brisa-media-renderer">
+<h3>5.1.2. BRisa Media Renderer<a class="headerlink" href="#brisa-media-renderer" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h4>5.1.2.1. DBus specification<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<ul class="simple">
+<li>Object path: <tt class="docutils literal"><span class="pre">/br/edu/ufcg/embedded/brisa/MediaRenderer</span></tt></li>
+<li>Interface: <tt class="docutils literal"><span class="pre">br.edu.ufcg.embedded.brisa.MediaRenderer</span></tt></li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="id2">
+<h4>5.1.2.2. Available Methods<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>DMR = DLNA Media Renderer</li>
+<li>AVT = AVTransport service, where AV stands for Audio/Video</li>
+<li>RC = Render Control service</li>
+<li>CM = Connnection Manager service</li>
+</ul>
+</div>
+<dl class="function">
+<dt>
+<tt class="descname">dmr_halt():</tt></dt>
+<dd>Halts the media renderer.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dmr_get_renderer_info():</tt></dt>
+<dd>Returns a 6-tuple containing information about the device. The
+format is <tt class="docutils literal"><span class="pre">(device</span> <span class="pre">version,</span> <span class="pre">brisa</span> <span class="pre">framework</span> <span class="pre">version,</span> <span class="pre">application</span>
+<span class="pre">version,</span> <span class="pre">renderer</span> <span class="pre">name,</span> <span class="pre">logging</span> <span class="pre">level,</span> <span class="pre">logging</span> <span class="pre">output)</span></tt>.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dmr_avt_set_av_transport_uri(instance_id, current_uri, current_uri_metadata):</tt></dt>
+<dd>Sets the AVT work URI (the one used for play(), pause(), stop(), and so on).</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dmr_avt_get_media_info():</tt></dt>
+<dd>Retrieves AVT media info.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dmr_avt_get_media_info_ext():</tt></dt>
+<dd>Retrieves AVT extended media info.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dmr_avt_get_transport_info():</tt></dt>
+<dd>Retrieves AVT transport info.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dmr_avt_get_position_info():</tt></dt>
+<dd>Retrieves AVT position info.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dmr_avt_get_device_caps():</tt></dt>
+<dd>Retrieves AVT device capabilities.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dmr_avt_get_transport_settings():</tt></dt>
+<dd>Retrieves AVT transport settings.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dmr_avt_play():</tt></dt>
+<dd>Starts the playback of the current URI.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dmr_avt_stop():</tt></dt>
+<dd>Stops the playback.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dmr_avt_pause():</tt></dt>
+<dd>Pauses the playback.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dmr_avt_seek(instance_id, unit, target):</tt></dt>
+<dd>Seeks the playback.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dmr_avt_next():</tt></dt>
+<dd>Plays next track (not implemented).</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dmr_avt_previous():</tt></dt>
+<dd>Plays previous track (not implemented).</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dmr_rc_list_presets():</tt></dt>
+<dd>Returns a list of RC presets.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dmr_rc_select_preset(preset):</tt></dt>
+<dd>Select a preset for the RC.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dmr_rc_get_volume(instance_id, channel):</tt></dt>
+<dd>Retrieves the volume of a channel.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dmr_rc_set_volume(instance_id, channel, desired_volume):</tt></dt>
+<dd>Sets the volume of a channel.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dmr_cm_get_protocol_info():</tt></dt>
+<dd>Retrieves CM protocol info.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dmr_cm_get_current_connection_info():</tt></dt>
+<dd>Retrieves CM current connection info.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dmr_cm_get_current_connection_ids():</tt></dt>
+<dd>Retrieves CM current connection IDs.</dd></dl>
+
+</div>
+</div>
+</div>
+<div class="section" id="writing-plugins-for-brisa-media-server">
+<h2>5.2. Writing plugins for BRisa Media Server<a class="headerlink" href="#writing-plugins-for-brisa-media-server" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="introduction">
+<h3>5.2.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h3>
+<p>BRisa Media Server can be easily extended to serve more content with plugins. We
+have a few plugins already implemented which can serve as code example:</p>
+<blockquote>
+<ul class="simple">
+<li>Flickr: enables access to Flickr pictures, such as user pictures or even featured ones.</li>
+<li>Youtube: enables access to Youtube user and featured videos.</li>
+</ul>
+</blockquote>
+<p>Examples: <a href="../_downloads/media_library_implementation.py"><strong class="xref">Media Library Plugin</strong></a>.</p>
+</div>
+<div class="section" id="organization">
+<h3>5.2.2. Organization<a class="headerlink" href="#organization" title="Permalink to this headline">¶</a></h3>
+<p>Concerning files, your plugin must be placed in
+<tt class="docutils literal"><span class="pre">$PREFIX/brisa_media_server/plugins/yourplugin</span></tt>, where $PREFIX is usually
+<tt class="docutils literal"><span class="pre">/usr/lib/python2.5/site-packages</span></tt> or
+<tt class="docutils literal"><span class="pre">/usr/local/lib/python2.6/dist-packages</span></tt> and so on. On your <tt class="docutils literal"><span class="pre">__init__.py</span></tt> file
+you must import your plugin individual module, so that your plugin class is
+visible as subclass of our plugin interface (future plan is to have an automatic
+plugin install mechanism).</p>
+<p>BRisa Media Server basic directory structure is composed only by a root folder,
+which belongs to what we call <tt class="docutils literal"><span class="pre">RootPlugin</span></tt>. When plugins are being loaded,
+they can add folders to the root folder or register themselves on other folders.</p>
+</div>
+<div class="section" id="interface">
+<h3>5.2.3. Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h3>
+<p>Plugins must be implemented using the <tt class="docutils literal"><span class="pre">brisa.core.plugin.PluginInterface</span></tt>
+interface.</p>
+<p>Attributes that must be set during construction:</p>
+<blockquote>
+<ul>
+<li><p class="first"><tt class="docutils literal"><span class="pre">name</span></tt>: plugin name</p>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">usage</span></tt>: True if your plugin is supposed to load, False otherwise. This is</dt>
+<dd><p class="first last">usually loaded from a configuration file.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">has_browse_filter</span></tt>: can be <tt class="xref docutils literal"><span class="pre">True</span></tt> or <tt class="xref docutils literal"><span class="pre">False</span></tt>. If your plugin</dt>
+<dd><p class="first last">implements the browse() function with slicing/sorting
+capabilities (i.e. it uses <tt class="docutils literal"><span class="pre">starting_index</span></tt>,
+<tt class="docutils literal"><span class="pre">requested_count</span></tt>, <tt class="docutils literal"><span class="pre">sort_criteria</span></tt> parameters),
+this attribute must be <tt class="xref docutils literal"><span class="pre">True</span></tt>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</blockquote>
+<p>Methods that must be implemented (part of the interface):</p>
+<dl class="function">
+<dt>
+<tt class="descname">PluginInterface.load():</tt></dt>
+<dd>Loads the plugin.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">PluginInterface.unload():</tt></dt>
+<dd>Unloads the plugin.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">PluginInterface.browse(object_id, browse_flag, filter, starting_index, requested_count, sort_criteria):</tt></dt>
+<dd>Browses plugin folders or items. Must return a list of DIDL objects
+(brisa.upnp.didl.didl_lite) representing the browse result.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">PluginInterface.search(object_id, search_flag, filter, starting_index, requested_count, sort_criteria):</tt></dt>
+<dd>Searches the plugin folder for items.</dd></dl>
+
+<p>If your plugin folder was correctly copied into
+<tt class="docutils literal"><span class="pre">brisa_media_server/plugins/your_plugin</span></tt> and on your file
+<tt class="docutils literal"><span class="pre">/your_plugin/__init__.py</span></tt> you import the module that contains your plugin
+class implementation, then the media server should load it automatically. For
+examples on that, please refer to our media_library example, currently on our
+<cite>SVN repository &lt;https://garage.maemo.org/svn/brisa&gt;</cite> under <tt class="docutils literal"><span class="pre">trunk/app/media-server/src/plugins/media_library</span></tt>.</p>
+<p>Once your plugin is created, python-brisa automatically sets the
+<tt class="docutils literal"><span class="pre">plugin_manager</span></tt> attribute of your plugin, which points to our PluginManager.
+You will be using the PluginManager for retrieving the RootPlugin, which
+contains the root directory, for adding your plugin&#8217;s own custom folders.</p>
+<p>For retrieving the root plugin, consider the following code:</p>
+<div class="highlight-python"><pre>from brisa.core.plugin import PluginInterface
+
+
+class MyPlugin(PluginInterface):
+
+   (implement as the description we gave above)
+
+   def load(self):
+      # Retrieve the root plugin
+      root_plugin = self.plugin_manager.root_plugin
+
+      audio_container = root_plugin.get_container('Audio')
+
+      if not audio_container:
+            # Does not exist yet, add it
+            audio_container = root_plugin.add_container('Audio')
+
+      (...)</pre>
+</div>
+<p>Specific implementation details of browse and search methods are better
+visualized on the media library example, as it uses everything that a plugin can
+do. In a nutshell, you should keep a dictionary of containers you added, keys
+being the container id attribute and values the container itself. When browsed,
+you query on this dictionary, and do the appropriate action that may vary from
+a plugin to another.</p>
+<p>For instance, on a Flickr plugin we do not have actual files, but links to the
+web, so, you can cache the links on your containers (expensive) or just fetch
+the links when the browse() function tells it wants the contents of a container.</p>
+<p>Plugins can also serve local files, which is also illustrated on the media
+library example.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">5. Applications</a><ul>
+<li><a class="reference external" href="#dbus-support">5.1. DBus Support</a><ul>
+<li><a class="reference external" href="#brisa-media-server">5.1.1. BRisa Media Server</a><ul>
+<li><a class="reference external" href="#dbus-specification">5.1.1.1. DBus specification</a></li>
+<li><a class="reference external" href="#available-methods">5.1.1.2. Available Methods</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#brisa-media-renderer">5.1.2. BRisa Media Renderer</a><ul>
+<li><a class="reference external" href="#id1">5.1.2.1. DBus specification</a></li>
+<li><a class="reference external" href="#id2">5.1.2.2. Available Methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference external" href="#writing-plugins-for-brisa-media-server">5.2. Writing plugins for BRisa Media Server</a><ul>
+<li><a class="reference external" href="#introduction">5.2.1. Introduction</a></li>
+<li><a class="reference external" href="#organization">5.2.2. Organization</a></li>
+<li><a class="reference external" href="#interface">5.2.3. Interface</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="../upnp/ssdp.html"
+                                  title="previous chapter">4. <tt class="docutils literal"><span class="pre">ssdp</span></tt> &#8212; SSDP Server implementation</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="../code_examples.html"
+                                  title="next chapter">6. Code Examples</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/applications/index.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../code_examples.html" title="6. Code Examples"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../upnp/ssdp.html" title="4. ssdp — SSDP Server implementation"
+             >previous</a> |</li>
+        <li><a href="../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 2009, Andre Dieb Martins.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+    </div>
+  </body>
+</html>

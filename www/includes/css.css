@@ -1,0 +1,215 @@
+body
+{
+	margin:          0;
+	padding:         0;
+    background: #AAAAAA;
+    color: #232323;
+}
+
+#container
+{
+	margin:          0 auto;
+	position:        relative;
+    background-color: #fff;
+}
+#faixa {
+	height:			2px;
+	background-color:#18d441;
+}
+#menu
+{
+	height:				61px;
+	background-image:   url(../images/bg_topo.jpg);
+	background-repeat:  repeat-x;
+	
+}
+.menu_opc {
+	float:				right;
+	font-family:        Arial, Helvetica, sans-serif;
+	font-size:          14px;
+	margin:             8px;
+	padding:            12px 6px 2px 2px;
+	text-decoration:    none;
+	color:              #525252;
+}
+a:hover {
+	color:            #3c3c3c;
+	cursor:           pointer;
+}
+a:active {
+	color:            #18d441;
+	cursor:           pointer;
+}
+
+
+img {
+border: none;
+
+}
+
+#opc {
+	background-color: #2e535c;
+	font-family:        Arial, Helvetica, sans-serif;
+	font-size:          12px;
+	color:              #50757e;
+	display:            block;
+	text-decoration:    none;
+	height:             80px;
+	padding:            5px;
+}
+.download_box {
+    background-color: #FFFFFF;
+	font-family:        Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #000000;
+    display: block;
+    padding: 10px;
+}
+#esq_opc, #meio_opc, #dir_opc {
+	float:              left;
+	text-align:         left;
+	padding-left:       10px;
+}
+#esq_opc:hover, #meio_opc:hover, #dir_opc:hover {
+	color:            #fff;
+}
+#banner { 
+	text-align: center;
+}
+#content
+{
+	margin:          0 auto;
+	font-family:        Arial, Helvetica, sans-serif;
+	font-size:          12px;
+	text-decoration:    none;
+	background-color:   #fff;
+	min-height:         500px;
+	padding-right:      15px;
+    padding-bottom:     45px;
+    width:              780px;
+    position:           relative;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#insidecontent
+{
+	float:           left;
+    width:           50%;
+	padding-left:    10px;
+    text-align:     justify
+}
+
+#sidebar
+{
+	float:           right;
+	padding-left:      10px;
+    text-align: justify;
+    width: 40%;
+}
+#footer
+{
+	margin:          0 auto;
+	height: 30px; 
+	text-align:right; 
+	font-family:        Arial, Helvetica, sans-serif;
+	font-size:          11px;
+	color:              #000000;
+	padding-right:      10px;
+	clear: both;
+	padding-top:        3px;
+}
+
+#sub_footer { 	
+	margin:          0 auto;
+	background-color:   #000;
+	color: #000000; 
+	height: 37px; 
+	text-align:center; 
+	font-family:        Arial, Helvetica, sans-serif;
+	font-size:          10px;
+    float: bottom;
+}
+.codigo {
+	font-weight:      normal;
+	font-size: 		  12px;
+	border: 1px dashed #CCCCCC;
+	padding:		  5px;
+}
+.fe {
+	list-style-image: url(../images/fe.png);
+	list-style-position: inside;	
+}
+.func {
+	list-style-image: url(../images/ico_fe.jpg);
+	list-style-position: inside;
+}
+.bug {
+	list-style-image: url(../images/ico_bu.jpg);
+	list-style-position: inside;
+}
+.ok {
+	list-style-image: url(../images/ico_ok.jpg);
+	list-style-position: inside;	
+}
+.add {
+	list-style-image: url(../images/ic_add.jpg);
+	list-style-position: inside;
+}
+.fix {
+	list-style-image: url(../images/ic_fix.jpg);
+	list-style-position: inside;
+}
+.rem {
+	list-style-image: url(../images/ic_rem.jpg);
+	list-style-position: inside;
+}
+.upd{
+	list-style-image: url(../images/ic_upd.jpg);
+	list-style-position: inside;
+}
+.sub {
+	font-family:        Arial, Helvetica, sans-serif;
+	font-size:          12px;
+	color:              #555555;
+	text-decoration:    none;
+	background-color:   #fff;
+	padding:            10px;
+	text-align:         justify;
+}
+
+.box {
+    border: 1px solid #DDDDDD;
+    text-align: justify;
+    padding: 20px;
+    background-color: #EEEEEE;
+    display: block;
+    float: center;
+}
+
+p {
+	text-align: justify;
+}
+h1 {
+    font-size: 16px;
+    margin: .15em 1em 0 0;
+}
+h2 {
+    font-size: 13px;
+}
+h3 {
+    font-size: 10px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #C8C8C8;
+    margin: 2em 0;
+}
+
+.centeredImage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

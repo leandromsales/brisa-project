@@ -1,0 +1,2 @@
+#!/bin/sh
+maemo-select-menu-location brisa_media_applet.desktop

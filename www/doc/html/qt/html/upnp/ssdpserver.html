@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ssdpserver — SSDP Server implementation &mdash; Qt BRisa UPnP framework v2.0 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Qt BRisa UPnP framework v2.0 documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../index.html">Qt BRisa UPnP framework v2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="ssdpserver-ssdp-server-implementation">
+<h1><tt class="xref docutils literal"><span class="pre">ssdpserver</span></tt> &#8212; SSDP Server implementation<a class="headerlink" href="#ssdpserver-ssdp-server-implementation" title="Permalink to this headline">¶</a></h1>
+<p>Brisa Qt provides SSDP server (Simple Service Discovery
+Protocol) class which can be used on the device&#8217;s side for annoucing the device, its embedded devices and all services..</p>
+<div class="section" id="brisassdpserver-class">
+<h2>BrisaSSDPServer class<a class="headerlink" href="#brisassdpserver-class" title="Permalink to this headline">¶</a></h2>
+<p>Implementation of a SSDP Server.</p>
+<div class="section" id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h3>
+<p>The attribute of the BrisaSSDPServer class are:</p>
+<ul class="simple">
+<li>running - Bool to tell if server is running or not</li>
+<li>SSDP_ADDR - SSDP address</li>
+<li>SSDP_PORT - SSDP port</li>
+<li>S_SSDP_PORT - QString port, used in bind</li>
+<li>udpSocket - Udp Socket to join multicast group</li>
+</ul>
+</div>
+<div class="section" id="methods-and-slots">
+<h3>Methods and Slots<a class="headerlink" href="#methods-and-slots" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="isRunning">
+<tt class="descname">isRunning</tt><big>(</big><big>)</big><a class="headerlink" href="#isRunning" title="Permalink to this definition">¶</a></dt>
+<dd>Returns True if the BrisaSSDPServer is running, False otherwise.</dd></dl>
+
+<dl class="function">
+<dt id="start">
+<tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#start" title="Permalink to this definition">¶</a></dt>
+<dd>Call this method to join the multicast group and start listening for UPnP msearch responses.</dd></dl>
+
+<dl class="function">
+<dt id="stop">
+<tt class="descname">stop</tt><big>(</big><big>)</big><a class="headerlink" href="#stop" title="Permalink to this definition">¶</a></dt>
+<dd>Sends bye bye notifications and stops the BrisaSSDPServer.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">doNotify(const QString &amp;usn, const QString &amp;location, const QString &amp;st,</tt></dt>
+<dt>
+<tt class="descname">const QString &amp;server, const QString &amp;cacheControl)</tt></dt>
+<dd>Sends a UPnP notify alive message to the multicast group with the given information.</dd></dl>
+
+<dl class="function">
+<dt id="doByeBye">
+<tt class="descname">doByeBye</tt><big>(</big><em>const QString &amp;usn</em>, <em>const QString &amp;st</em><big>)</big><a class="headerlink" href="#doByeBye" title="Permalink to this definition">¶</a></dt>
+<dd>Sends a UPnP notify byebye message to the multicast group with the given information.</dd></dl>
+
+<dl class="function">
+<dt id="datagramReceived">
+<tt class="descname">datagramReceived</tt><big>(</big><big>)</big><a class="headerlink" href="#datagramReceived" title="Permalink to this definition">¶</a></dt>
+<dd>This slot is called when the readyRead() signal is emmited by the QUdpSocket listening to incoming messages.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">msearchReceived(QHttpRequestHeader *datagram, QHostAddress *senderIp,</tt></dt>
+<dt>
+<tt class="descname">quint16 senderPort)</tt></dt>
+<dd>Emits msearchRequestReceived if the incoming message is a valid msearch.</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">respondMSearch(const QString &amp;senderIp, quint16 senderPort,</tt></dt>
+<dt>
+<tt class="descname">const QString &amp;cacheControl, const QString &amp;date,</tt></dt>
+<dt>
+<tt class="descname">const QString &amp;location, const QString &amp;server,</tt></dt>
+<dt>
+<tt class="descname">const QString &amp;st, const QString &amp;usn)</tt></dt>
+<dd>Connect this slot to a proper signal to get synchronous response for msearch requests.</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#"><tt class="docutils literal"><span class="pre">ssdpserver</span></tt> &#8212; SSDP Server implementation</a><ul>
+<li><a class="reference external" href="#brisassdpserver-class">BrisaSSDPServer class</a><ul>
+<li><a class="reference external" href="#attributes">Attributes</a></li>
+<li><a class="reference external" href="#methods-and-slots">Methods and Slots</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/upnp/ssdpserver.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../index.html">Qt BRisa UPnP framework v2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 2010, BRisa Team.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.4.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+Source: cherrypy3
+Section: python
+Priority: optional
+Maintainer: Jose Luis do Nascimento <jluisn@garage.maemo.org>
+Build-Depends: debhelper (>= 5.0.38), python2.5, python2.5-dev
+Standards-Version: 3.7.3
+XS-Python-Version: >= 2.3
+
+Package: python2.5-cherrypy3
+Architecture: all
+Depends: ${python:Depends}, python2.5
+Provides: ${python:Provides}
+XB-Python-Version: ${python:Versions}
+Description: Python web development framework - version 3
+ CherryPy is a pythonic, object-oriented web development framework. It
+ provides the foundation over which complex web-based applications can
+ be written, with little or no knowledge of the underlying
+ protocols. CherryPy allows developers to build web applications in
+ much the same way they would build any other object-oriented Python
+ program. This usually results in smaller source code developed in
+ less time.
+ .
+ CherryPy is up-to-date with the latest developments on using Python
+ for web development: it features a bundled WSGI server, and is able
+ to integrate with other dispatching mechanisms, such as
+ Routes. CherryPy can be run as a standalone application, since it
+ provides its own HTTP server; setting it up behind another HTTP
+ server, such as Apache, or even with mod_python are also options.
+ .
+ This version is backwards incompatible with the 2.2 version in some
+ ways. See http://www.cherrypy.org/wiki/UpgradeTo30.

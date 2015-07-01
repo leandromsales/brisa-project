@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5. network — Network facilities &mdash; python-brisa UPnP framework v0.10.0 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.10.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="python-brisa UPnP framework v0.10.0 documentation" href="../index.html" />
+    <link rel="up" title="3. core — Framework’s core" href="index.html" />
+    <link rel="next" title="6. network_listeners — Network listening facilities" href="network_listeners.html" />
+    <link rel="prev" title="4. threaded_call — Threaded function calls" href="threading.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="network_listeners.html" title="6. network_listeners — Network listening facilities"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="threading.html" title="4. threaded_call — Threaded function calls"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">3. <tt class="docutils literal docutils literal docutils literal docutils literal"><span class="pre">core</span></tt> &#8212; Framework&#8217;s core</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="network-network-facilities">
+<h1>5. <tt class="xref docutils literal"><span class="pre">network</span></tt> &#8212; Network facilities<a class="headerlink" href="#network-network-facilities" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="../glossary/index.html#python-brisa"><em>python-brisa</em></a> provides a network module with some functions
+which will simplify networking related tasks.</p>
+<div class="section" id="using-the-parse-url-function">
+<h2>5.1. Using the parse_url() function<a class="headerlink" href="#using-the-parse-url-function" title="Permalink to this headline">¶</a></h2>
+<p>This little example shows a simple and generic use of the parse_url() function</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">brisa.core.network</span> <span class="kn">import</span> <span class="n">parse_url</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">&#39;http://brisa.garage.maemo.org&#39;</span>
+<span class="n">parse_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It will return a 6-tuple: (scheme, netloc, path, params, query, fragment)
+which in the example above will look like this</p>
+<div class="highlight-python"><pre>('http', brisa.garage.maemo.org', '/', '', '', '')</pre>
+</div>
+</div>
+<div class="section" id="getting-the-ip-of-interfaces">
+<h2>5.2. Getting the ip of interfaces<a class="headerlink" href="#getting-the-ip-of-interfaces" title="Permalink to this headline">¶</a></h2>
+<p>When you need to get the ip of one of your interfaces you can do as following</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">brisa.core.network</span> <span class="kn">import</span> <span class="n">get_ip_address</span><span class="p">,</span> <span class="n">get_active_ifaces</span>
+<span class="k">for</span> <span class="n">interfaces</span> <span class="ow">in</span> <span class="n">get_active_ifaces</span><span class="p">():</span>
+    <span class="n">get_ip_address</span><span class="p">(</span><span class="n">interfaces</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will output strings containing the active interfaces&#8217; IP address</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">5. <tt class="docutils literal"><span class="pre">network</span></tt> &#8212; Network facilities</a><ul>
+<li><a class="reference external" href="#using-the-parse-url-function">5.1. Using the parse_url() function</a></li>
+<li><a class="reference external" href="#getting-the-ip-of-interfaces">5.2. Getting the ip of interfaces</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="threading.html"
+                                  title="previous chapter">4. <tt class="docutils literal docutils literal"><span class="pre">threaded_call</span></tt> &#8212; Threaded function calls</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="network_listeners.html"
+                                  title="next chapter">6. <tt class="docutils literal"><span class="pre">network_listeners</span></tt> &#8212; Network listening facilities</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/core/network.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="network_listeners.html" title="6. network_listeners — Network listening facilities"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="threading.html" title="4. threaded_call — Threaded function calls"
+             >previous</a> |</li>
+        <li><a href="../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >3. <tt class="docutils literal docutils literal docutils literal docutils literal"><span class="pre">core</span></tt> &#8212; Framework&#8217;s core</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 2009, Andre Dieb Martins.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+    </div>
+  </body>
+</html>

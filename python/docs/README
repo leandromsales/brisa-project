@@ -1,0 +1,13 @@
+Install the package xmlto, which will pull in the other dependencies you need to work with docbook.
+
+To generate the html, go to the trunk and run:
+make html
+
+Use blufish to help you to write the docbook xml.
+
+Using CSS with docbook:
+http://www.sagehill.net/docbookxsl/UsingCSS.html
+
+Reference:
+http://www.docbook.org/tdg/en/html/part2.html
+http://www.sagehill.net/docbookxsl/index.html

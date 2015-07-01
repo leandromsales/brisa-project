@@ -1,0 +1,18 @@
+[UPnP UI]
+modname = upnp.ui
+enabled = True
+rank = 256
+filter_map = Controller/Media/Audio/Shared/UPnP - AudioPlayerController
+         Controller/Media/Video/Shared/UPnP - VideoPlayerController
+         Controller/Media/Image/Shared/UPnP - ImagePlayerController
+
+[UPnP Model]
+modname = upnp.model
+enabled = True
+rank = 253
+filter_map = Model/Folder/Task/Shared/UPnPSearchDevices - UPnPSearchDevicesModelFolder
+         Icon/Folder/Task/Shared/UPnPSearchDevices - UPnPSearchDevicesIcon
+         Model/Folder/Directory/Shared/UPnP - UPnPModelFolder
+         Model/Media/Audio/Shared/UPnP - UPnPModelAudio
+         Model/Media/Video/Shared/UPnP - UPnPModelVideo
+         Model/Media/Image/Shared/UPnP - UPnPModelImage

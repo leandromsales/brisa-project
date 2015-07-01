@@ -1,0 +1,8 @@
+Package: BrisaExamplesLinux
+Priority: optional
+Version: 1.1
+Architecture: i386
+Maintainer: Flavio Fabricio <flaviofabricio@gmail.com>
+Depends: libqt4-dev, libbrisa-dev
+Description: There are the Brisa Examples
+

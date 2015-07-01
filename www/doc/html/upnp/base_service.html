@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. base_service — Basic service classes &mdash; python-brisa UPnP framework v0.10.0 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.10.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="python-brisa UPnP framework v0.10.0 documentation" href="../index.html" />
+    <link rel="up" title="4. UPnP" href="index.html" />
+    <link rel="next" title="3. ssdp — SSDP Server implementation" href="ssdp.html" />
+    <link rel="prev" title="1. base_device — Basic device classes" href="base_device.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ssdp.html" title="3. ssdp — SSDP Server implementation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="base_device.html" title="1. base_device — Basic device classes"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">4. UPnP</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="base-service-basic-service-classes">
+<h1>2. <tt class="xref docutils literal"><span class="pre">base_service</span></tt> &#8212; Basic service classes<a class="headerlink" href="#base-service-basic-service-classes" title="Permalink to this headline">¶</a></h1>
+<p>BaseService contains all the attributes that are common to services on both
+control-point and device sides.</p>
+<div class="section" id="module-s-methods">
+<h2>2.1. Module&#8217;s methods<a class="headerlink" href="#module-s-methods" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="format_rel_url">
+<tt class="descname">format_rel_url</tt><big>(</big><em>url</em><big>)</big><a class="headerlink" href="#format_rel_url" title="Permalink to this definition">¶</a></dt>
+<dd>Formats the given url from the form path/to to /path/to, if required and
+returns it as a string.</dd></dl>
+
+<dl class="function">
+<dt id="parse_base_url">
+<tt class="descname">parse_base_url</tt><big>(</big><em>url</em><big>)</big><a class="headerlink" href="#parse_base_url" title="Permalink to this definition">¶</a></dt>
+<dd>Parses the given url and return a string in the form scheme://netloc</dd></dl>
+
+</div>
+<div class="section" id="baseservice-class">
+<h2>2.2. BaseService class<a class="headerlink" href="#baseservice-class" title="Permalink to this headline">¶</a></h2>
+<p>BaseService is the base class for services. The BaseService class contains
+attributes that are common for both device-side and control-point-side services.
+Even so, its very unlikely for users to use BaseService directly.</p>
+<div class="section" id="attributes">
+<h3>2.2.1. Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h3>
+<p>The BaseService&#8217;s attributes describe some of the service&#8217;s basic information.</p>
+<ul class="simple">
+<li>Service&#8217;s id.</li>
+<li>Service type.</li>
+<li>Several urls such as scpd url, control url, event and presentation.</li>
+<li>Eventing variables.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="basestatevariable-class">
+<h2>2.3. BaseStateVariable class<a class="headerlink" href="#basestatevariable-class" title="Permalink to this headline">¶</a></h2>
+<p>This class represents the service state variables.</p>
+<div class="section" id="id1">
+<h3>2.3.1. Attributes<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>These attributes describes the state variables of a service which holds them.
+They are:</p>
+<ul class="simple">
+<li>parent_service - Service which holds this variable.</li>
+<li>name - Variable name.</li>
+<li>send_events - Send events option.</li>
+<li>data_type - Data type.</li>
+<li>allowed_values - Values that are allowed.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">2. <tt class="docutils literal"><span class="pre">base_service</span></tt> &#8212; Basic service classes</a><ul>
+<li><a class="reference external" href="#module-s-methods">2.1. Module&#8217;s methods</a></li>
+<li><a class="reference external" href="#baseservice-class">2.2. BaseService class</a><ul>
+<li><a class="reference external" href="#attributes">2.2.1. Attributes</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#basestatevariable-class">2.3. BaseStateVariable class</a><ul>
+<li><a class="reference external" href="#id1">2.3.1. Attributes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="base_device.html"
+                                  title="previous chapter">1. <tt class="docutils literal docutils literal"><span class="pre">base_device</span></tt> &#8212; Basic device classes</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="ssdp.html"
+                                  title="next chapter">3. <tt class="docutils literal"><span class="pre">ssdp</span></tt> &#8212; SSDP Server implementation</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/upnp/base_service.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ssdp.html" title="3. ssdp — SSDP Server implementation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="base_device.html" title="1. base_device — Basic device classes"
+             >previous</a> |</li>
+        <li><a href="../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >4. UPnP</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 2009, Andre Dieb Martins.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.1.
+    </div>
+  </body>
+</html>

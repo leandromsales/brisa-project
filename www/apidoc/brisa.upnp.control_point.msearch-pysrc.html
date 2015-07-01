@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>brisa.upnp.control_point.msearch</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://brisa.garage.maemo.org">python-brisa UPnP framework 0.10.0 documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="brisa-module.html">Package&nbsp;brisa</a> ::
+        <a href="brisa.upnp-module.html">Package&nbsp;upnp</a> ::
+        <a href="brisa.upnp.control_point-module.html">Package&nbsp;control_point</a> ::
+        Module&nbsp;msearch
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="brisa.upnp.control_point.msearch-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="brisa.upnp.control_point.msearch-module.html">Module brisa.upnp.control_point.msearch</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># Licensed under the MIT license</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># http://opensource.org/licenses/mit-license.php or see LICENSE file.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (C) 2006 Fluendo, S.A. (www.fluendo.com).</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># Copyright 2006, Frank Scholz &lt;coherence@beebits.net&gt;</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"># Copyright 2007-2008 Brisa Team &lt;brisa-develop@garage.maemo.org&gt;</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-docstring">""" Contains the MSearch class which can search for devices.</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package brisa=brisa-module.html"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-0', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Package brisa.core=brisa.core-module.html"><a title="brisa.core" class="py-name" href="#" onclick="return doclink('link-1', 'core', 'link-1');">core</a></tt> <tt class="py-keyword">import</tt> <tt id="link-2" class="py-name" targets="Module brisa.core.log=brisa.core.log-module.html,Variable brisa.core.plugin_manager.log=brisa.core.plugin_manager-module.html#log,Variable brisa.core.reactors._ecore.log=brisa.core.reactors._ecore-module.html#log,Variable brisa.core.reactors.gtk2.log=brisa.core.reactors.gtk2-module.html#log,Variable brisa.core.webserver.log=brisa.core.webserver-module.html#log,Variable brisa.upnp.control_point.control_point.log=brisa.upnp.control_point.control_point-module.html#log,Variable brisa.upnp.control_point.control_point_av.log=brisa.upnp.control_point.control_point_av-module.html#log,Variable brisa.upnp.device.event.log=brisa.upnp.device.event-module.html#log,Variable brisa.upnp.services.cds.content_directory.log=brisa.upnp.services.cds.content_directory-module.html#log,Variable brisa.upnp.ssdp.log=brisa.upnp.ssdp-module.html#log"><a title="brisa.core.log
+brisa.core.plugin_manager.log
+brisa.core.reactors._ecore.log
+brisa.core.reactors.gtk2.log
+brisa.core.webserver.log
+brisa.upnp.control_point.control_point.log
+brisa.upnp.control_point.control_point_av.log
+brisa.upnp.device.event.log
+brisa.upnp.services.cds.content_directory.log
+brisa.upnp.ssdp.log" class="py-name" href="#" onclick="return doclink('link-2', 'log', 'link-2');">log</a></tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-3" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-3', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-4" class="py-name"><a title="brisa.core" class="py-name" href="#" onclick="return doclink('link-4', 'core', 'link-1');">core</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Module brisa.core.network=brisa.core.network-module.html"><a title="brisa.core.network" class="py-name" href="#" onclick="return doclink('link-5', 'network', 'link-5');">network</a></tt> <tt class="py-keyword">import</tt> <tt id="link-6" class="py-name" targets="Function brisa.core.network.parse_http_response()=brisa.core.network-module.html#parse_http_response"><a title="brisa.core.network.parse_http_response" class="py-name" href="#" onclick="return doclink('link-6', 'parse_http_response', 'link-6');">parse_http_response</a></tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-7" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-7', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-8" class="py-name"><a title="brisa.core" class="py-name" href="#" onclick="return doclink('link-8', 'core', 'link-1');">core</a></tt><tt class="py-op">.</tt><tt id="link-9" class="py-name" targets="Module brisa.core.network_senders=brisa.core.network_senders-module.html"><a title="brisa.core.network_senders" class="py-name" href="#" onclick="return doclink('link-9', 'network_senders', 'link-9');">network_senders</a></tt> <tt class="py-keyword">import</tt> <tt id="link-10" class="py-name" targets="Class brisa.core.network_senders.UDPTransport=brisa.core.network_senders.UDPTransport-class.html"><a title="brisa.core.network_senders.UDPTransport" class="py-name" href="#" onclick="return doclink('link-10', 'UDPTransport', 'link-10');">UDPTransport</a></tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-11" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-11', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="brisa.core" class="py-name" href="#" onclick="return doclink('link-12', 'core', 'link-1');">core</a></tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Module brisa.core.network_listeners=brisa.core.network_listeners-module.html"><a title="brisa.core.network_listeners" class="py-name" href="#" onclick="return doclink('link-13', 'network_listeners', 'link-13');">network_listeners</a></tt> <tt class="py-keyword">import</tt> <tt id="link-14" class="py-name" targets="Class brisa.core.network_listeners.UDPListener=brisa.core.network_listeners.UDPListener-class.html"><a title="brisa.core.network_listeners.UDPListener" class="py-name" href="#" onclick="return doclink('link-14', 'UDPListener', 'link-14');">UDPListener</a></tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-15" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-15', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Package brisa.utils=brisa.utils-module.html"><a title="brisa.utils" class="py-name" href="#" onclick="return doclink('link-16', 'utils', 'link-16');">utils</a></tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Module brisa.utils.looping_call=brisa.utils.looping_call-module.html"><a title="brisa.utils.looping_call" class="py-name" href="#" onclick="return doclink('link-17', 'looping_call', 'link-17');">looping_call</a></tt> <tt class="py-keyword">import</tt> <tt id="link-18" class="py-name" targets="Class brisa.utils.looping_call.LoopingCall=brisa.utils.looping_call.LoopingCall-class.html"><a title="brisa.utils.looping_call.LoopingCall" class="py-name" href="#" onclick="return doclink('link-18', 'LoopingCall', 'link-18');">LoopingCall</a></tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-19" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-19', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Package brisa.upnp=brisa.upnp-module.html"><a title="brisa.upnp" class="py-name" href="#" onclick="return doclink('link-20', 'upnp', 'link-20');">upnp</a></tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Module brisa.upnp.upnp_defaults=brisa.upnp.upnp_defaults-module.html"><a title="brisa.upnp.upnp_defaults" class="py-name" href="#" onclick="return doclink('link-21', 'upnp_defaults', 'link-21');">upnp_defaults</a></tt> <tt class="py-keyword">import</tt> <tt id="link-22" class="py-name" targets="Class brisa.upnp.upnp_defaults.UPnPDefaults=brisa.upnp.upnp_defaults.UPnPDefaults-class.html"><a title="brisa.upnp.upnp_defaults.UPnPDefaults" class="py-name" href="#" onclick="return doclink('link-22', 'UPnPDefaults', 'link-22');">UPnPDefaults</a></tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt id="link-23" class="py-name" targets="Variable brisa.upnp.control_point.msearch.DEFAULT_SEARCH_TIME=brisa.upnp.control_point.msearch-module.html#DEFAULT_SEARCH_TIME"><a title="brisa.upnp.control_point.msearch.DEFAULT_SEARCH_TIME" class="py-name" href="#" onclick="return doclink('link-23', 'DEFAULT_SEARCH_TIME', 'link-23');">DEFAULT_SEARCH_TIME</a></tt> <tt class="py-op">=</tt> <tt id="link-24" class="py-name"><a title="brisa.upnp.upnp_defaults.UPnPDefaults" class="py-name" href="#" onclick="return doclink('link-24', 'UPnPDefaults', 'link-22');">UPnPDefaults</a></tt><tt class="py-op">.</tt><tt id="link-25" class="py-name" targets="Variable brisa.upnp.upnp_defaults.UPnPDefaults.MSEARCH_DEFAULT_SEARCH_TIME=brisa.upnp.upnp_defaults.UPnPDefaults-class.html#MSEARCH_DEFAULT_SEARCH_TIME"><a title="brisa.upnp.upnp_defaults.UPnPDefaults.MSEARCH_DEFAULT_SEARCH_TIME" class="py-name" href="#" onclick="return doclink('link-25', 'MSEARCH_DEFAULT_SEARCH_TIME', 'link-25');">MSEARCH_DEFAULT_SEARCH_TIME</a></tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt id="link-26" class="py-name" targets="Variable brisa.upnp.control_point.msearch.DEFAULT_SEARCH_TYPE=brisa.upnp.control_point.msearch-module.html#DEFAULT_SEARCH_TYPE"><a title="brisa.upnp.control_point.msearch.DEFAULT_SEARCH_TYPE" class="py-name" href="#" onclick="return doclink('link-26', 'DEFAULT_SEARCH_TYPE', 'link-26');">DEFAULT_SEARCH_TYPE</a></tt> <tt class="py-op">=</tt> <tt id="link-27" class="py-name"><a title="brisa.upnp.upnp_defaults.UPnPDefaults" class="py-name" href="#" onclick="return doclink('link-27', 'UPnPDefaults', 'link-22');">UPnPDefaults</a></tt><tt class="py-op">.</tt><tt id="link-28" class="py-name" targets="Variable brisa.upnp.upnp_defaults.UPnPDefaults.MSEARCH_DEFAULT_SEARCH_TYPE=brisa.upnp.upnp_defaults.UPnPDefaults-class.html#MSEARCH_DEFAULT_SEARCH_TYPE"><a title="brisa.upnp.upnp_defaults.UPnPDefaults.MSEARCH_DEFAULT_SEARCH_TYPE" class="py-name" href="#" onclick="return doclink('link-28', 'MSEARCH_DEFAULT_SEARCH_TYPE', 'link-28');">MSEARCH_DEFAULT_SEARCH_TYPE</a></tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"> </tt>
+<a name="MSearch"></a><div id="MSearch-def"><a name="L23"></a><tt class="py-lineno"> 23</tt> <a class="py-toggle" href="#" id="MSearch-toggle" onclick="return toggle('MSearch');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="brisa.upnp.control_point.msearch.MSearch-class.html">MSearch</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MSearch-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MSearch-expanded"><a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line">    <tt class="py-docstring">""" Represents a MSearch. Contains some control functions for starting and</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring">    stopping the search. While running, search will be repeated in regular</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring">    intervals specified at construction or passed to the start() method.</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">    <tt id="link-29" class="py-name" targets="Variable brisa.core.webserver.WebServer.msg_already_started=brisa.core.webserver.WebServer-class.html#msg_already_started,Variable brisa.upnp.control_point.control_point.ControlPoint.msg_already_started=brisa.upnp.control_point.control_point.ControlPoint-class.html#msg_already_started,Variable brisa.upnp.control_point.msearch.MSearch.msg_already_started=brisa.upnp.control_point.msearch.MSearch-class.html#msg_already_started,Variable brisa.upnp.ssdp.SSDPServer.msg_already_started=brisa.upnp.ssdp.SSDPServer-class.html#msg_already_started,Variable brisa.utils.looping_call.LoopingCall.msg_already_started=brisa.utils.looping_call.LoopingCall-class.html#msg_already_started"><a title="brisa.core.webserver.WebServer.msg_already_started
+brisa.upnp.control_point.control_point.ControlPoint.msg_already_started
+brisa.upnp.control_point.msearch.MSearch.msg_already_started
+brisa.upnp.ssdp.SSDPServer.msg_already_started
+brisa.utils.looping_call.LoopingCall.msg_already_started" class="py-name" href="#" onclick="return doclink('link-29', 'msg_already_started', 'link-29');">msg_already_started</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'tried to start() MSearch when already started'</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">    <tt id="link-30" class="py-name" targets="Variable brisa.core.webserver.WebServer.msg_already_stopped=brisa.core.webserver.WebServer-class.html#msg_already_stopped,Variable brisa.upnp.control_point.control_point.ControlPoint.msg_already_stopped=brisa.upnp.control_point.control_point.ControlPoint-class.html#msg_already_stopped,Variable brisa.upnp.control_point.msearch.MSearch.msg_already_stopped=brisa.upnp.control_point.msearch.MSearch-class.html#msg_already_stopped,Variable brisa.upnp.ssdp.SSDPServer.msg_already_stopped=brisa.upnp.ssdp.SSDPServer-class.html#msg_already_stopped,Variable brisa.utils.looping_call.LoopingCall.msg_already_stopped=brisa.utils.looping_call.LoopingCall-class.html#msg_already_stopped"><a title="brisa.core.webserver.WebServer.msg_already_stopped
+brisa.upnp.control_point.control_point.ControlPoint.msg_already_stopped
+brisa.upnp.control_point.msearch.MSearch.msg_already_stopped
+brisa.upnp.ssdp.SSDPServer.msg_already_stopped
+brisa.utils.looping_call.LoopingCall.msg_already_stopped" class="py-name" href="#" onclick="return doclink('link-30', 'msg_already_stopped', 'link-30');">msg_already_stopped</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'tried to stop() MSearch when already stopped'</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"> </tt>
+<a name="MSearch.__init__"></a><div id="MSearch.__init__-def"><a name="L32"></a><tt class="py-lineno"> 32</tt> <a class="py-toggle" href="#" id="MSearch.__init__-toggle" onclick="return toggle('MSearch.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.msearch.MSearch-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">ssdp</tt><tt class="py-op">,</tt> <tt class="py-param">start</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-param">interval</tt><tt class="py-op">=</tt><tt id="link-31" class="py-name"><a title="brisa.upnp.control_point.msearch.DEFAULT_SEARCH_TIME" class="py-name" href="#" onclick="return doclink('link-31', 'DEFAULT_SEARCH_TIME', 'link-23');">DEFAULT_SEARCH_TIME</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">                 <tt class="py-param">ssdp_addr</tt><tt class="py-op">=</tt><tt class="py-string">'239.255.255.250'</tt><tt class="py-op">,</tt> <tt class="py-param">ssdp_port</tt><tt class="py-op">=</tt><tt class="py-number">1900</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MSearch.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MSearch.__init__-expanded"><a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">        <tt class="py-docstring">""" Constructor for the MSearch class.</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring">        @param ssdp: ssdp server instance that will receive new device events</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring">        and subscriptions</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring">        @param start: if True starts the search when constructed</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring">        @param interval: interval between searchs</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-docstring">        @param ssdp_addr: ssdp address for listening (UDP)</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring">        @param ssdp_port: ssdp port for listening (UDP)</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-docstring">        @type ssdp: SSDPServer</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-docstring">        @type start: boolean</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt class="py-docstring">        @type interval: float</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"><tt class="py-docstring">        @type ssdp_addr: string</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt class="py-docstring">        @type ssdp_port integer</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name" targets="Module brisa.upnp.ssdp=brisa.upnp.ssdp-module.html"><a title="brisa.upnp.ssdp" class="py-name" href="#" onclick="return doclink('link-32', 'ssdp', 'link-32');">ssdp</a></tt> <tt class="py-op">=</tt> <tt id="link-33" class="py-name"><a title="brisa.upnp.ssdp" class="py-name" href="#" onclick="return doclink('link-33', 'ssdp', 'link-32');">ssdp</a></tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ssdp_addr</tt> <tt class="py-op">=</tt> <tt class="py-name">ssdp_addr</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ssdp_port</tt> <tt class="py-op">=</tt> <tt class="py-name">ssdp_port</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">search_type</tt> <tt class="py-op">=</tt> <tt id="link-34" class="py-name"><a title="brisa.upnp.control_point.msearch.DEFAULT_SEARCH_TYPE" class="py-name" href="#" onclick="return doclink('link-34', 'DEFAULT_SEARCH_TYPE', 'link-26');">DEFAULT_SEARCH_TYPE</a></tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">udp_transport</tt> <tt class="py-op">=</tt> <tt id="link-35" class="py-name"><a title="brisa.core.network_senders.UDPTransport" class="py-name" href="#" onclick="return doclink('link-35', 'UDPTransport', 'link-10');">UDPTransport</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listen_udp</tt> <tt class="py-op">=</tt> <tt id="link-36" class="py-name"><a title="brisa.core.network_listeners.UDPListener" class="py-name" href="#" onclick="return doclink('link-36', 'UDPListener', 'link-14');">UDPListener</a></tt><tt class="py-op">(</tt><tt class="py-name">ssdp_addr</tt><tt class="py-op">,</tt> <tt class="py-name">ssdp_port</tt><tt class="py-op">,</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">                                      <tt class="py-name">data_callback</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-37" class="py-name" targets="Method brisa.upnp.control_point.msearch.MSearch._datagram_received()=brisa.upnp.control_point.msearch.MSearch-class.html#_datagram_received,Method brisa.upnp.ssdp.SSDPServer._datagram_received()=brisa.upnp.ssdp.SSDPServer-class.html#_datagram_received"><a title="brisa.upnp.control_point.msearch.MSearch._datagram_received
+brisa.upnp.ssdp.SSDPServer._datagram_received" class="py-name" href="#" onclick="return doclink('link-37', '_datagram_received', 'link-37');">_datagram_received</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">                                      <tt class="py-name">shared_socket</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">udp_transport</tt><tt class="py-op">.</tt><tt class="py-name">socket</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">loopcall</tt> <tt class="py-op">=</tt> <tt id="link-38" class="py-name"><a title="brisa.utils.looping_call.LoopingCall" class="py-name" href="#" onclick="return doclink('link-38', 'LoopingCall', 'link-18');">LoopingCall</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name" targets="Method brisa.upnp.control_point.msearch.MSearch.double_discover()=brisa.upnp.control_point.msearch.MSearch-class.html#double_discover"><a title="brisa.upnp.control_point.msearch.MSearch.double_discover" class="py-name" href="#" onclick="return doclink('link-39', 'double_discover', 'link-39');">double_discover</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt id="link-40" class="py-name" targets="Method brisa.core.network_listeners.NetworkListener.start()=brisa.core.network_listeners.NetworkListener-class.html#start,Method brisa.core.network_listeners.UDPListener.start()=brisa.core.network_listeners.UDPListener-class.html#start,Method brisa.core.webserver.AdapterInterface.start()=brisa.core.webserver.AdapterInterface-class.html#start,Method brisa.core.webserver.CherrypyAdapter.start()=brisa.core.webserver.CherrypyAdapter-class.html#start,Method brisa.core.webserver.CircuitsWebAdapter.start()=brisa.core.webserver.CircuitsWebAdapter-class.html#start,Method brisa.core.webserver.PasteAdapter.start()=brisa.core.webserver.PasteAdapter-class.html#start,Method brisa.core.webserver.WebServer.start()=brisa.core.webserver.WebServer-class.html#start,Method brisa.upnp.control_point.control_point.ControlPoint.start()=brisa.upnp.control_point.control_point.ControlPoint-class.html#start,Method brisa.upnp.control_point.control_point.ControlPoint.start()=brisa.upnp.control_point.control_point.ControlPoint-class.html#start,Method brisa.upnp.control_point.event.EventListenerServer.start()=brisa.upnp.control_point.event.EventListenerServer-class.html#start,Method brisa.upnp.control_point.msearch.MSearch.start()=brisa.upnp.control_point.msearch.MSearch-class.html#start,Method brisa.upnp.device.device.Device.start()=brisa.upnp.device.device.Device-class.html#start,Method brisa.upnp.device.service.Service.start()=brisa.upnp.device.service.Service-class.html#start,Method brisa.upnp.services.cds.content_directory.ContentDirectory.start()=brisa.upnp.services.cds.content_directory.ContentDirectory-class.html#start,Method brisa.upnp.ssdp.SSDPServer.start()=brisa.upnp.ssdp.SSDPServer-class.html#start,Method brisa.utils.looping_call.LoopingCall.start()=brisa.utils.looping_call.LoopingCall-class.html#start"><a title="brisa.core.network_listeners.NetworkListener.start
+brisa.core.network_listeners.UDPListener.start
+brisa.core.webserver.AdapterInterface.start
+brisa.core.webserver.CherrypyAdapter.start
+brisa.core.webserver.CircuitsWebAdapter.start
+brisa.core.webserver.PasteAdapter.start
+brisa.core.webserver.WebServer.start
+brisa.upnp.control_point.control_point.ControlPoint.start
+brisa.upnp.control_point.control_point.ControlPoint.start
+brisa.upnp.control_point.event.EventListenerServer.start
+brisa.upnp.control_point.msearch.MSearch.start
+brisa.upnp.device.device.Device.start
+brisa.upnp.device.service.Service.start
+brisa.upnp.services.cds.content_directory.ContentDirectory.start
+brisa.upnp.ssdp.SSDPServer.start
+brisa.utils.looping_call.LoopingCall.start" class="py-name" href="#" onclick="return doclink('link-40', 'start', 'link-40');">start</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-41" class="py-name"><a title="brisa.core.network_listeners.NetworkListener.start
+brisa.core.network_listeners.UDPListener.start
+brisa.core.webserver.AdapterInterface.start
+brisa.core.webserver.CherrypyAdapter.start
+brisa.core.webserver.CircuitsWebAdapter.start
+brisa.core.webserver.PasteAdapter.start
+brisa.core.webserver.WebServer.start
+brisa.upnp.control_point.control_point.ControlPoint.start
+brisa.upnp.control_point.control_point.ControlPoint.start
+brisa.upnp.control_point.event.EventListenerServer.start
+brisa.upnp.control_point.msearch.MSearch.start
+brisa.upnp.device.device.Device.start
+brisa.upnp.device.service.Service.start
+brisa.upnp.services.cds.content_directory.ContentDirectory.start
+brisa.upnp.ssdp.SSDPServer.start
+brisa.utils.looping_call.LoopingCall.start" class="py-name" href="#" onclick="return doclink('link-41', 'start', 'link-40');">start</a></tt><tt class="py-op">(</tt><tt class="py-name">interval</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"> </tt>
+<a name="MSearch.is_running"></a><div id="MSearch.is_running-def"><a name="L61"></a><tt class="py-lineno"> 61</tt> <a class="py-toggle" href="#" id="MSearch.is_running-toggle" onclick="return toggle('MSearch.is_running');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.msearch.MSearch-class.html#is_running">is_running</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MSearch.is_running-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MSearch.is_running-expanded"><a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">        <tt class="py-docstring">""" Returns True if the search is running (it's being repeated in the</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"><tt class="py-docstring">        interval given).</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: boolean</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">loopcall</tt><tt class="py-op">.</tt><tt id="link-42" class="py-name" targets="Method brisa.core.ireactor.ReactorInterface.is_running()=brisa.core.ireactor.ReactorInterface-class.html#is_running,Method brisa.core.network_listeners.NetworkListener.is_running()=brisa.core.network_listeners.NetworkListener-class.html#is_running,Method brisa.core.reactors._ecore.EcoreReactor.is_running()=brisa.core.reactors._ecore.EcoreReactor-class.html#is_running,Method brisa.core.reactors._select.SelectReactor.is_running()=brisa.core.reactors._select.SelectReactor-class.html#is_running,Method brisa.core.reactors.glib2.GLib2Reactor.is_running()=brisa.core.reactors.glib2.GLib2Reactor-class.html#is_running,Method brisa.core.reactors.gtk2.Gtk2Reactor.is_running()=brisa.core.reactors.gtk2.Gtk2Reactor-class.html#is_running,Method brisa.core.webserver.WebServer.is_running()=brisa.core.webserver.WebServer-class.html#is_running,Method brisa.upnp.control_point.control_point.ControlPoint.is_running()=brisa.upnp.control_point.control_point.ControlPoint-class.html#is_running,Method brisa.upnp.control_point.control_point.ControlPoint.is_running()=brisa.upnp.control_point.control_point.ControlPoint-class.html#is_running,Method brisa.upnp.control_point.event.EventListenerServer.is_running()=brisa.upnp.control_point.event.EventListenerServer-class.html#is_running,Method brisa.upnp.control_point.msearch.MSearch.is_running()=brisa.upnp.control_point.msearch.MSearch-class.html#is_running,Method brisa.upnp.device.device.Device.is_running()=brisa.upnp.device.device.Device-class.html#is_running,Method brisa.upnp.ssdp.SSDPServer.is_running()=brisa.upnp.ssdp.SSDPServer-class.html#is_running,Method brisa.utils.looping_call.LoopingCall.is_running()=brisa.utils.looping_call.LoopingCall-class.html#is_running"><a title="brisa.core.ireactor.ReactorInterface.is_running
+brisa.core.network_listeners.NetworkListener.is_running
+brisa.core.reactors._ecore.EcoreReactor.is_running
+brisa.core.reactors._select.SelectReactor.is_running
+brisa.core.reactors.glib2.GLib2Reactor.is_running
+brisa.core.reactors.gtk2.Gtk2Reactor.is_running
+brisa.core.webserver.WebServer.is_running
+brisa.upnp.control_point.control_point.ControlPoint.is_running
+brisa.upnp.control_point.control_point.ControlPoint.is_running
+brisa.upnp.control_point.event.EventListenerServer.is_running
+brisa.upnp.control_point.msearch.MSearch.is_running
+brisa.upnp.device.device.Device.is_running
+brisa.upnp.ssdp.SSDPServer.is_running
+brisa.utils.looping_call.LoopingCall.is_running" class="py-name" href="#" onclick="return doclink('link-42', 'is_running', 'link-42');">is_running</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"> </tt>
+<a name="MSearch.start"></a><div id="MSearch.start-def"><a name="L69"></a><tt class="py-lineno"> 69</tt> <a class="py-toggle" href="#" id="MSearch.start-toggle" onclick="return toggle('MSearch.start');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.msearch.MSearch-class.html#start">start</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">interval</tt><tt class="py-op">=</tt><tt id="link-43" class="py-name"><a title="brisa.upnp.control_point.msearch.DEFAULT_SEARCH_TIME" class="py-name" href="#" onclick="return doclink('link-43', 'DEFAULT_SEARCH_TIME', 'link-23');">DEFAULT_SEARCH_TIME</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">              <tt class="py-param">search_type</tt><tt class="py-op">=</tt><tt id="link-44" class="py-name"><a title="brisa.upnp.control_point.msearch.DEFAULT_SEARCH_TYPE" class="py-name" href="#" onclick="return doclink('link-44', 'DEFAULT_SEARCH_TYPE', 'link-26');">DEFAULT_SEARCH_TYPE</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MSearch.start-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MSearch.start-expanded"><a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-docstring">""" Starts the search.</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"><tt class="py-docstring">        @param interval: interval between searchs. Default is 600.0 seconds</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt class="py-docstring">        @param search_type: type of the search, default is "ssdp:all"</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"><tt class="py-docstring">        @type interval: float</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"><tt class="py-docstring">        @type search_type: string</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-45" class="py-name"><a title="brisa.core.ireactor.ReactorInterface.is_running
+brisa.core.network_listeners.NetworkListener.is_running
+brisa.core.reactors._ecore.EcoreReactor.is_running
+brisa.core.reactors._select.SelectReactor.is_running
+brisa.core.reactors.glib2.GLib2Reactor.is_running
+brisa.core.reactors.gtk2.Gtk2Reactor.is_running
+brisa.core.webserver.WebServer.is_running
+brisa.upnp.control_point.control_point.ControlPoint.is_running
+brisa.upnp.control_point.control_point.ControlPoint.is_running
+brisa.upnp.control_point.event.EventListenerServer.is_running
+brisa.upnp.control_point.msearch.MSearch.is_running
+brisa.upnp.device.device.Device.is_running
+brisa.upnp.ssdp.SSDPServer.is_running
+brisa.utils.looping_call.LoopingCall.is_running" class="py-name" href="#" onclick="return doclink('link-45', 'is_running', 'link-42');">is_running</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">search_type</tt> <tt class="py-op">=</tt> <tt class="py-name">search_type</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listen_udp</tt><tt class="py-op">.</tt><tt id="link-46" class="py-name"><a title="brisa.core.network_listeners.NetworkListener.start
+brisa.core.network_listeners.UDPListener.start
+brisa.core.webserver.AdapterInterface.start
+brisa.core.webserver.CherrypyAdapter.start
+brisa.core.webserver.CircuitsWebAdapter.start
+brisa.core.webserver.PasteAdapter.start
+brisa.core.webserver.WebServer.start
+brisa.upnp.control_point.control_point.ControlPoint.start
+brisa.upnp.control_point.control_point.ControlPoint.start
+brisa.upnp.control_point.event.EventListenerServer.start
+brisa.upnp.control_point.msearch.MSearch.start
+brisa.upnp.device.device.Device.start
+brisa.upnp.device.service.Service.start
+brisa.upnp.services.cds.content_directory.ContentDirectory.start
+brisa.upnp.ssdp.SSDPServer.start
+brisa.utils.looping_call.LoopingCall.start" class="py-name" href="#" onclick="return doclink('link-46', 'start', 'link-40');">start</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">loopcall</tt><tt class="py-op">.</tt><tt id="link-47" class="py-name"><a title="brisa.core.network_listeners.NetworkListener.start
+brisa.core.network_listeners.UDPListener.start
+brisa.core.webserver.AdapterInterface.start
+brisa.core.webserver.CherrypyAdapter.start
+brisa.core.webserver.CircuitsWebAdapter.start
+brisa.core.webserver.PasteAdapter.start
+brisa.core.webserver.WebServer.start
+brisa.upnp.control_point.control_point.ControlPoint.start
+brisa.upnp.control_point.control_point.ControlPoint.start
+brisa.upnp.control_point.event.EventListenerServer.start
+brisa.upnp.control_point.msearch.MSearch.start
+brisa.upnp.device.device.Device.start
+brisa.upnp.device.service.Service.start
+brisa.upnp.services.cds.content_directory.ContentDirectory.start
+brisa.upnp.ssdp.SSDPServer.start
+brisa.utils.looping_call.LoopingCall.start" class="py-name" href="#" onclick="return doclink('link-47', 'start', 'link-40');">start</a></tt><tt class="py-op">(</tt><tt class="py-name">interval</tt><tt class="py-op">,</tt> <tt class="py-name">now</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">            <tt id="link-48" class="py-name"><a title="brisa.core.log
+brisa.core.plugin_manager.log
+brisa.core.reactors._ecore.log
+brisa.core.reactors.gtk2.log
+brisa.core.webserver.log
+brisa.upnp.control_point.control_point.log
+brisa.upnp.control_point.control_point_av.log
+brisa.upnp.device.event.log
+brisa.upnp.services.cds.content_directory.log
+brisa.upnp.ssdp.log" class="py-name" href="#" onclick="return doclink('link-48', 'log', 'link-2');">log</a></tt><tt class="py-op">.</tt><tt id="link-49" class="py-name" targets="Variable brisa.core.log.debug=brisa.core.log-module.html#debug"><a title="brisa.core.log.debug" class="py-name" href="#" onclick="return doclink('link-49', 'debug', 'link-49');">debug</a></tt><tt class="py-op">(</tt><tt class="py-string">'MSearch started'</tt><tt class="py-op">)</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">            <tt id="link-50" class="py-name"><a title="brisa.core.log
+brisa.core.plugin_manager.log
+brisa.core.reactors._ecore.log
+brisa.core.reactors.gtk2.log
+brisa.core.webserver.log
+brisa.upnp.control_point.control_point.log
+brisa.upnp.control_point.control_point_av.log
+brisa.upnp.device.event.log
+brisa.upnp.services.cds.content_directory.log
+brisa.upnp.ssdp.log" class="py-name" href="#" onclick="return doclink('link-50', 'log', 'link-2');">log</a></tt><tt class="py-op">.</tt><tt id="link-51" class="py-name" targets="Variable brisa.core.log.warning=brisa.core.log-module.html#warning"><a title="brisa.core.log.warning" class="py-name" href="#" onclick="return doclink('link-51', 'warning', 'link-51');">warning</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-52" class="py-name"><a title="brisa.core.webserver.WebServer.msg_already_started
+brisa.upnp.control_point.control_point.ControlPoint.msg_already_started
+brisa.upnp.control_point.msearch.MSearch.msg_already_started
+brisa.upnp.ssdp.SSDPServer.msg_already_started
+brisa.utils.looping_call.LoopingCall.msg_already_started" class="py-name" href="#" onclick="return doclink('link-52', 'msg_already_started', 'link-29');">msg_already_started</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"> </tt>
+<a name="MSearch.stop"></a><div id="MSearch.stop-def"><a name="L87"></a><tt class="py-lineno"> 87</tt> <a class="py-toggle" href="#" id="MSearch.stop-toggle" onclick="return toggle('MSearch.stop');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.msearch.MSearch-class.html#stop">stop</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MSearch.stop-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MSearch.stop-expanded"><a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt class="py-docstring">""" Stops the search.</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-53" class="py-name"><a title="brisa.core.ireactor.ReactorInterface.is_running
+brisa.core.network_listeners.NetworkListener.is_running
+brisa.core.reactors._ecore.EcoreReactor.is_running
+brisa.core.reactors._select.SelectReactor.is_running
+brisa.core.reactors.glib2.GLib2Reactor.is_running
+brisa.core.reactors.gtk2.Gtk2Reactor.is_running
+brisa.core.webserver.WebServer.is_running
+brisa.upnp.control_point.control_point.ControlPoint.is_running
+brisa.upnp.control_point.control_point.ControlPoint.is_running
+brisa.upnp.control_point.event.EventListenerServer.is_running
+brisa.upnp.control_point.msearch.MSearch.is_running
+brisa.upnp.device.device.Device.is_running
+brisa.upnp.ssdp.SSDPServer.is_running
+brisa.utils.looping_call.LoopingCall.is_running" class="py-name" href="#" onclick="return doclink('link-53', 'is_running', 'link-42');">is_running</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">            <tt id="link-54" class="py-name"><a title="brisa.core.log
+brisa.core.plugin_manager.log
+brisa.core.reactors._ecore.log
+brisa.core.reactors.gtk2.log
+brisa.core.webserver.log
+brisa.upnp.control_point.control_point.log
+brisa.upnp.control_point.control_point_av.log
+brisa.upnp.device.event.log
+brisa.upnp.services.cds.content_directory.log
+brisa.upnp.ssdp.log" class="py-name" href="#" onclick="return doclink('link-54', 'log', 'link-2');">log</a></tt><tt class="py-op">.</tt><tt id="link-55" class="py-name"><a title="brisa.core.log.debug" class="py-name" href="#" onclick="return doclink('link-55', 'debug', 'link-49');">debug</a></tt><tt class="py-op">(</tt><tt class="py-string">'MSearch stopped'</tt><tt class="py-op">)</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listen_udp</tt><tt class="py-op">.</tt><tt id="link-56" class="py-name" targets="Method brisa.core.network_listeners.NetworkListener.stop()=brisa.core.network_listeners.NetworkListener-class.html#stop,Method brisa.core.network_listeners.UDPListener.stop()=brisa.core.network_listeners.UDPListener-class.html#stop,Method brisa.core.threaded_call.ThreadedCall.stop()=brisa.core.threaded_call.ThreadedCall-class.html#stop,Method brisa.core.webserver.AdapterInterface.stop()=brisa.core.webserver.AdapterInterface-class.html#stop,Method brisa.core.webserver.CherrypyAdapter.stop()=brisa.core.webserver.CherrypyAdapter-class.html#stop,Method brisa.core.webserver.CircuitsWebAdapter.stop()=brisa.core.webserver.CircuitsWebAdapter-class.html#stop,Method brisa.core.webserver.PasteAdapter.stop()=brisa.core.webserver.PasteAdapter-class.html#stop,Method brisa.core.webserver.WebServer.stop()=brisa.core.webserver.WebServer-class.html#stop,Method brisa.upnp.control_point.control_point.ControlPoint.stop()=brisa.upnp.control_point.control_point.ControlPoint-class.html#stop,Method brisa.upnp.control_point.control_point.ControlPoint.stop()=brisa.upnp.control_point.control_point.ControlPoint-class.html#stop,Method brisa.upnp.control_point.event.EventListenerServer.stop()=brisa.upnp.control_point.event.EventListenerServer-class.html#stop,Method brisa.upnp.control_point.msearch.MSearch.stop()=brisa.upnp.control_point.msearch.MSearch-class.html#stop,Method brisa.upnp.device.device.Device.stop()=brisa.upnp.device.device.Device-class.html#stop,Method brisa.upnp.device.event.Subscriber.stop()=brisa.upnp.device.event.Subscriber-class.html#stop,Method brisa.upnp.services.cds.content_directory.ContentDirectory.stop()=brisa.upnp.services.cds.content_directory.ContentDirectory-class.html#stop,Method brisa.upnp.ssdp.SSDPServer.stop()=brisa.upnp.ssdp.SSDPServer-class.html#stop,Method brisa.utils.looping_call.LoopingCall.stop()=brisa.utils.looping_call.LoopingCall-class.html#stop"><a title="brisa.core.network_listeners.NetworkListener.stop
+brisa.core.network_listeners.UDPListener.stop
+brisa.core.threaded_call.ThreadedCall.stop
+brisa.core.webserver.AdapterInterface.stop
+brisa.core.webserver.CherrypyAdapter.stop
+brisa.core.webserver.CircuitsWebAdapter.stop
+brisa.core.webserver.PasteAdapter.stop
+brisa.core.webserver.WebServer.stop
+brisa.upnp.control_point.control_point.ControlPoint.stop
+brisa.upnp.control_point.control_point.ControlPoint.stop
+brisa.upnp.control_point.event.EventListenerServer.stop
+brisa.upnp.control_point.msearch.MSearch.stop
+brisa.upnp.device.device.Device.stop
+brisa.upnp.device.event.Subscriber.stop
+brisa.upnp.services.cds.content_directory.ContentDirectory.stop
+brisa.upnp.ssdp.SSDPServer.stop
+brisa.utils.looping_call.LoopingCall.stop" class="py-name" href="#" onclick="return doclink('link-56', 'stop', 'link-56');">stop</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">loopcall</tt><tt class="py-op">.</tt><tt id="link-57" class="py-name"><a title="brisa.core.network_listeners.NetworkListener.stop
+brisa.core.network_listeners.UDPListener.stop
+brisa.core.threaded_call.ThreadedCall.stop
+brisa.core.webserver.AdapterInterface.stop
+brisa.core.webserver.CherrypyAdapter.stop
+brisa.core.webserver.CircuitsWebAdapter.stop
+brisa.core.webserver.PasteAdapter.stop
+brisa.core.webserver.WebServer.stop
+brisa.upnp.control_point.control_point.ControlPoint.stop
+brisa.upnp.control_point.control_point.ControlPoint.stop
+brisa.upnp.control_point.event.EventListenerServer.stop
+brisa.upnp.control_point.msearch.MSearch.stop
+brisa.upnp.device.device.Device.stop
+brisa.upnp.device.event.Subscriber.stop
+brisa.upnp.services.cds.content_directory.ContentDirectory.stop
+brisa.upnp.ssdp.SSDPServer.stop
+brisa.utils.looping_call.LoopingCall.stop" class="py-name" href="#" onclick="return doclink('link-57', 'stop', 'link-56');">stop</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">            <tt id="link-58" class="py-name"><a title="brisa.core.log
+brisa.core.plugin_manager.log
+brisa.core.reactors._ecore.log
+brisa.core.reactors.gtk2.log
+brisa.core.webserver.log
+brisa.upnp.control_point.control_point.log
+brisa.upnp.control_point.control_point_av.log
+brisa.upnp.device.event.log
+brisa.upnp.services.cds.content_directory.log
+brisa.upnp.ssdp.log" class="py-name" href="#" onclick="return doclink('link-58', 'log', 'link-2');">log</a></tt><tt class="py-op">.</tt><tt id="link-59" class="py-name"><a title="brisa.core.log.warning" class="py-name" href="#" onclick="return doclink('link-59', 'warning', 'link-51');">warning</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-60" class="py-name"><a title="brisa.core.webserver.WebServer.msg_already_stopped
+brisa.upnp.control_point.control_point.ControlPoint.msg_already_stopped
+brisa.upnp.control_point.msearch.MSearch.msg_already_stopped
+brisa.upnp.ssdp.SSDPServer.msg_already_stopped
+brisa.utils.looping_call.LoopingCall.msg_already_stopped" class="py-name" href="#" onclick="return doclink('link-60', 'msg_already_stopped', 'link-30');">msg_already_stopped</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"> </tt>
+<a name="MSearch.destroy"></a><div id="MSearch.destroy-def"><a name="L97"></a><tt class="py-lineno"> 97</tt> <a class="py-toggle" href="#" id="MSearch.destroy-toggle" onclick="return toggle('MSearch.destroy');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.msearch.MSearch-class.html#destroy">destroy</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MSearch.destroy-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MSearch.destroy-expanded"><a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">        <tt class="py-docstring">""" Destroys and quits MSearch.</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-61" class="py-name"><a title="brisa.core.ireactor.ReactorInterface.is_running
+brisa.core.network_listeners.NetworkListener.is_running
+brisa.core.reactors._ecore.EcoreReactor.is_running
+brisa.core.reactors._select.SelectReactor.is_running
+brisa.core.reactors.glib2.GLib2Reactor.is_running
+brisa.core.reactors.gtk2.Gtk2Reactor.is_running
+brisa.core.webserver.WebServer.is_running
+brisa.upnp.control_point.control_point.ControlPoint.is_running
+brisa.upnp.control_point.control_point.ControlPoint.is_running
+brisa.upnp.control_point.event.EventListenerServer.is_running
+brisa.upnp.control_point.msearch.MSearch.is_running
+brisa.upnp.device.device.Device.is_running
+brisa.upnp.ssdp.SSDPServer.is_running
+brisa.utils.looping_call.LoopingCall.is_running" class="py-name" href="#" onclick="return doclink('link-61', 'is_running', 'link-42');">is_running</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-62" class="py-name"><a title="brisa.core.network_listeners.NetworkListener.stop
+brisa.core.network_listeners.UDPListener.stop
+brisa.core.threaded_call.ThreadedCall.stop
+brisa.core.webserver.AdapterInterface.stop
+brisa.core.webserver.CherrypyAdapter.stop
+brisa.core.webserver.CircuitsWebAdapter.stop
+brisa.core.webserver.PasteAdapter.stop
+brisa.core.webserver.WebServer.stop
+brisa.upnp.control_point.control_point.ControlPoint.stop
+brisa.upnp.control_point.control_point.ControlPoint.stop
+brisa.upnp.control_point.event.EventListenerServer.stop
+brisa.upnp.control_point.msearch.MSearch.stop
+brisa.upnp.device.device.Device.stop
+brisa.upnp.device.event.Subscriber.stop
+brisa.upnp.services.cds.content_directory.ContentDirectory.stop
+brisa.upnp.ssdp.SSDPServer.stop
+brisa.utils.looping_call.LoopingCall.stop" class="py-name" href="#" onclick="return doclink('link-62', 'stop', 'link-56');">stop</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listen_udp</tt><tt class="py-op">.</tt><tt id="link-63" class="py-name" targets="Method brisa.core.network_listeners.NetworkListener.destroy()=brisa.core.network_listeners.NetworkListener-class.html#destroy,Method brisa.core.network_listeners.UDPListener.destroy()=brisa.core.network_listeners.UDPListener-class.html#destroy,Method brisa.upnp.control_point.control_point.ControlPoint.destroy()=brisa.upnp.control_point.control_point.ControlPoint-class.html#destroy,Method brisa.upnp.control_point.control_point.ControlPoint.destroy()=brisa.upnp.control_point.control_point.ControlPoint-class.html#destroy,Method brisa.upnp.control_point.event.EventListenerServer.destroy()=brisa.upnp.control_point.event.EventListenerServer-class.html#destroy,Method brisa.upnp.control_point.msearch.MSearch.destroy()=brisa.upnp.control_point.msearch.MSearch-class.html#destroy,Method brisa.upnp.device.device.Device.destroy()=brisa.upnp.device.device.Device-class.html#destroy,Method brisa.upnp.ssdp.SSDPServer.destroy()=brisa.upnp.ssdp.SSDPServer-class.html#destroy,Method brisa.utils.looping_call.LoopingCall.destroy()=brisa.utils.looping_call.LoopingCall-class.html#destroy"><a title="brisa.core.network_listeners.NetworkListener.destroy
+brisa.core.network_listeners.UDPListener.destroy
+brisa.upnp.control_point.control_point.ControlPoint.destroy
+brisa.upnp.control_point.control_point.ControlPoint.destroy
+brisa.upnp.control_point.event.EventListenerServer.destroy
+brisa.upnp.control_point.msearch.MSearch.destroy
+brisa.upnp.device.device.Device.destroy
+brisa.upnp.ssdp.SSDPServer.destroy
+brisa.utils.looping_call.LoopingCall.destroy" class="py-name" href="#" onclick="return doclink('link-63', 'destroy', 'link-63');">destroy</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">loopcall</tt><tt class="py-op">.</tt><tt id="link-64" class="py-name"><a title="brisa.core.network_listeners.NetworkListener.destroy
+brisa.core.network_listeners.UDPListener.destroy
+brisa.upnp.control_point.control_point.ControlPoint.destroy
+brisa.upnp.control_point.control_point.ControlPoint.destroy
+brisa.upnp.control_point.event.EventListenerServer.destroy
+brisa.upnp.control_point.msearch.MSearch.destroy
+brisa.upnp.device.device.Device.destroy
+brisa.upnp.ssdp.SSDPServer.destroy
+brisa.utils.looping_call.LoopingCall.destroy" class="py-name" href="#" onclick="return doclink('link-64', 'destroy', 'link-63');">destroy</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-65" class="py-name" targets="Method brisa.core.network_listeners.NetworkListener._cleanup()=brisa.core.network_listeners.NetworkListener-class.html#_cleanup,Method brisa.upnp.control_point.control_point.ControlPoint._cleanup()=brisa.upnp.control_point.control_point.ControlPoint-class.html#_cleanup,Method brisa.upnp.control_point.control_point.ControlPoint._cleanup()=brisa.upnp.control_point.control_point.ControlPoint-class.html#_cleanup,Method brisa.upnp.control_point.event.EventListenerServer._cleanup()=brisa.upnp.control_point.event.EventListenerServer-class.html#_cleanup,Method brisa.upnp.control_point.msearch.MSearch._cleanup()=brisa.upnp.control_point.msearch.MSearch-class.html#_cleanup,Method brisa.upnp.device.device.Device._cleanup()=brisa.upnp.device.device.Device-class.html#_cleanup,Method brisa.upnp.ssdp.SSDPServer._cleanup()=brisa.upnp.ssdp.SSDPServer-class.html#_cleanup,Method brisa.utils.looping_call.LoopingCall._cleanup()=brisa.utils.looping_call.LoopingCall-class.html#_cleanup"><a title="brisa.core.network_listeners.NetworkListener._cleanup
+brisa.upnp.control_point.control_point.ControlPoint._cleanup
+brisa.upnp.control_point.control_point.ControlPoint._cleanup
+brisa.upnp.control_point.event.EventListenerServer._cleanup
+brisa.upnp.control_point.msearch.MSearch._cleanup
+brisa.upnp.device.device.Device._cleanup
+brisa.upnp.ssdp.SSDPServer._cleanup
+brisa.utils.looping_call.LoopingCall._cleanup" class="py-name" href="#" onclick="return doclink('link-65', '_cleanup', 'link-65');">_cleanup</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"> </tt>
+<a name="MSearch.double_discover"></a><div id="MSearch.double_discover-def"><a name="L106"></a><tt class="py-lineno">106</tt> <a class="py-toggle" href="#" id="MSearch.double_discover-toggle" onclick="return toggle('MSearch.double_discover');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.msearch.MSearch-class.html#double_discover">double_discover</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">search_type</tt><tt class="py-op">=</tt><tt id="link-66" class="py-name"><a title="brisa.upnp.control_point.msearch.DEFAULT_SEARCH_TYPE" class="py-name" href="#" onclick="return doclink('link-66', 'DEFAULT_SEARCH_TYPE', 'link-26');">DEFAULT_SEARCH_TYPE</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MSearch.double_discover-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MSearch.double_discover-expanded"><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">        <tt class="py-docstring">""" Sends a MSearch imediatelly. Each call to this method will yield a</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line"><tt class="py-docstring">        MSearch message, that is, it won't repeat automatically.</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-67" class="py-name" targets="Method brisa.upnp.control_point.msearch.MSearch.discover()=brisa.upnp.control_point.msearch.MSearch-class.html#discover"><a title="brisa.upnp.control_point.msearch.MSearch.discover" class="py-name" href="#" onclick="return doclink('link-67', 'discover', 'link-67');">discover</a></tt><tt class="py-op">(</tt><tt class="py-name">search_type</tt><tt class="py-op">)</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-68" class="py-name"><a title="brisa.upnp.control_point.msearch.MSearch.discover" class="py-name" href="#" onclick="return doclink('link-68', 'discover', 'link-67');">discover</a></tt><tt class="py-op">(</tt><tt class="py-name">search_type</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line"> </tt>
+<a name="MSearch.discover"></a><div id="MSearch.discover-def"><a name="L113"></a><tt class="py-lineno">113</tt> <a class="py-toggle" href="#" id="MSearch.discover-toggle" onclick="return toggle('MSearch.discover');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.msearch.MSearch-class.html#discover">discover</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">type</tt><tt class="py-op">=</tt><tt class="py-string">"ssdp:all"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MSearch.discover-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MSearch.discover-expanded"><a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">        <tt class="py-docstring">""" Mounts and sends the discover message (MSearch).</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"><tt class="py-docstring">        @param type: search type</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"><tt class="py-docstring">        @type type: string</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">        <tt class="py-name">req</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-string">'M-SEARCH * HTTP/1.1'</tt><tt class="py-op">,</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">                <tt class="py-string">'HOST: %s:%d'</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ssdp_addr</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ssdp_port</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">                <tt class="py-string">'MAN: "ssdp:discover"'</tt><tt class="py-op">,</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">                <tt class="py-string">'MX: 5'</tt><tt class="py-op">,</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">                <tt class="py-string">'ST: '</tt> <tt class="py-op">+</tt> <tt class="py-name">type</tt><tt class="py-op">,</tt> <tt class="py-string">''</tt><tt class="py-op">,</tt> <tt class="py-string">''</tt><tt class="py-op">]</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">        <tt class="py-name">req</tt> <tt class="py-op">=</tt> <tt class="py-string">'\r\n'</tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">req</tt><tt class="py-op">)</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">udp_transport</tt><tt class="py-op">.</tt><tt id="link-69" class="py-name" targets="Method brisa.core.network_senders.TCPTransport.send_data()=brisa.core.network_senders.TCPTransport-class.html#send_data,Method brisa.core.network_senders.UDPTransport.send_data()=brisa.core.network_senders.UDPTransport-class.html#send_data"><a title="brisa.core.network_senders.TCPTransport.send_data
+brisa.core.network_senders.UDPTransport.send_data" class="py-name" href="#" onclick="return doclink('link-69', 'send_data', 'link-69');">send_data</a></tt><tt class="py-op">(</tt><tt class="py-name">req</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ssdp_addr</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ssdp_port</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"> </tt>
+<a name="MSearch._datagram_received"></a><div id="MSearch._datagram_received-def"><a name="L127"></a><tt class="py-lineno">127</tt> <a class="py-toggle" href="#" id="MSearch._datagram_received-toggle" onclick="return toggle('MSearch._datagram_received');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.msearch.MSearch-class.html#_datagram_received">_datagram_received</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">data</tt><tt class="py-op">,</tt> <tt class="py-op">(</tt><tt class="py-param">host</tt><tt class="py-op">,</tt> <tt class="py-param">port</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MSearch._datagram_received-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MSearch._datagram_received-expanded"><a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">        <tt class="py-docstring">""" Callback for the UDPListener when messages arrive.</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"><tt class="py-docstring">        @param data: raw data received</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"><tt class="py-docstring">        @param host: host where data came from</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"><tt class="py-docstring">        @param port: port where data came from</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"><tt class="py-docstring">        @type data: string</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line"><tt class="py-docstring">        @type host: string</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"><tt class="py-docstring">        @type port: integer</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">        <tt class="py-name">cmd</tt><tt class="py-op">,</tt> <tt class="py-name">headers</tt> <tt class="py-op">=</tt> <tt id="link-70" class="py-name"><a title="brisa.core.network.parse_http_response" class="py-name" href="#" onclick="return doclink('link-70', 'parse_http_response', 'link-6');">parse_http_response</a></tt><tt class="py-op">(</tt><tt class="py-name">data</tt><tt class="py-op">)</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">cmd</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> <tt class="py-op">==</tt> <tt class="py-string">'HTTP/1.1'</tt> <tt class="py-keyword">and</tt> <tt class="py-name">cmd</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> <tt class="py-op">==</tt> <tt class="py-string">'200'</tt><tt class="py-op">:</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-71" class="py-name"><a title="brisa.upnp.ssdp" class="py-name" href="#" onclick="return doclink('link-71', 'ssdp', 'link-32');">ssdp</a></tt> <tt class="py-op">!=</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-72" class="py-name"><a title="brisa.upnp.ssdp" class="py-name" href="#" onclick="return doclink('link-72', 'ssdp', 'link-32');">ssdp</a></tt><tt class="py-op">.</tt><tt id="link-73" class="py-name" targets="Method brisa.upnp.ssdp.SSDPServer.is_known_device()=brisa.upnp.ssdp.SSDPServer-class.html#is_known_device"><a title="brisa.upnp.ssdp.SSDPServer.is_known_device" class="py-name" href="#" onclick="return doclink('link-73', 'is_known_device', 'link-73');">is_known_device</a></tt><tt class="py-op">(</tt><tt class="py-name">headers</tt><tt class="py-op">[</tt><tt class="py-string">'usn'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">                    <tt id="link-74" class="py-name"><a title="brisa.core.log
+brisa.core.plugin_manager.log
+brisa.core.reactors._ecore.log
+brisa.core.reactors.gtk2.log
+brisa.core.webserver.log
+brisa.upnp.control_point.control_point.log
+brisa.upnp.control_point.control_point_av.log
+brisa.upnp.device.event.log
+brisa.upnp.services.cds.content_directory.log
+brisa.upnp.ssdp.log" class="py-name" href="#" onclick="return doclink('link-74', 'log', 'link-2');">log</a></tt><tt class="py-op">.</tt><tt id="link-75" class="py-name"><a title="brisa.core.log.debug" class="py-name" href="#" onclick="return doclink('link-75', 'debug', 'link-49');">debug</a></tt><tt class="py-op">(</tt><tt class="py-string">'Received MSearch answer %s,%s from %s:%s'</tt><tt class="py-op">,</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">                              <tt class="py-name">headers</tt><tt class="py-op">[</tt><tt class="py-string">'usn'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">headers</tt><tt class="py-op">[</tt><tt class="py-string">'st'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt id="link-76" class="py-name" targets="Method brisa.upnp.control_point.event.EventListenerServer.host()=brisa.upnp.control_point.event.EventListenerServer-class.html#host"><a title="brisa.upnp.control_point.event.EventListenerServer.host" class="py-name" href="#" onclick="return doclink('link-76', 'host', 'link-76');">host</a></tt><tt class="py-op">,</tt> <tt class="py-name">port</tt><tt class="py-op">)</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-77" class="py-name"><a title="brisa.upnp.ssdp" class="py-name" href="#" onclick="return doclink('link-77', 'ssdp', 'link-32');">ssdp</a></tt><tt class="py-op">.</tt><tt id="link-78" class="py-name" targets="Method brisa.upnp.ssdp.SSDPServer._register()=brisa.upnp.ssdp.SSDPServer-class.html#_register,Method brisa.utils.looping_call.LoopingCall._register()=brisa.utils.looping_call.LoopingCall-class.html#_register"><a title="brisa.upnp.ssdp.SSDPServer._register
+brisa.utils.looping_call.LoopingCall._register" class="py-name" href="#" onclick="return doclink('link-78', '_register', 'link-78');">_register</a></tt><tt class="py-op">(</tt><tt class="py-name">headers</tt><tt class="py-op">[</tt><tt class="py-string">'usn'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">                                        <tt class="py-name">headers</tt><tt class="py-op">[</tt><tt class="py-string">'st'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">                                        <tt class="py-name">headers</tt><tt class="py-op">[</tt><tt class="py-string">'location'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">                                        <tt class="py-name">headers</tt><tt class="py-op">[</tt><tt class="py-string">'server'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">                                        <tt class="py-name">headers</tt><tt class="py-op">[</tt><tt class="py-string">'cache-control'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line"> </tt>
+<a name="MSearch._cleanup"></a><div id="MSearch._cleanup-def"><a name="L150"></a><tt class="py-lineno">150</tt> <a class="py-toggle" href="#" id="MSearch._cleanup-toggle" onclick="return toggle('MSearch._cleanup');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.upnp.control_point.msearch.MSearch-class.html#_cleanup">_cleanup</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MSearch._cleanup-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MSearch._cleanup-expanded"><a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">        <tt class="py-docstring">""" Clean up references.</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-79" class="py-name"><a title="brisa.upnp.ssdp" class="py-name" href="#" onclick="return doclink('link-79', 'ssdp', 'link-32');">ssdp</a></tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listen_udp</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">loopcall</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+</div></div><a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://brisa.garage.maemo.org">python-brisa UPnP framework 0.10.0 documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Jun  9 22:24:59 2009
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1.2. service — Service classes &mdash; python-brisa UPnP framework v0.10.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.10.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="top" title="python-brisa UPnP framework v0.10.0 documentation" href="../../index.html" />
+    <link rel="up" title="1. device — Device building and deploying" href="index.html" />
+    <link rel="next" title="2. control_point — Control Point API" href="../control_point/index.html" />
+    <link rel="prev" title="1.1. device — Device classes" href="device.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../control_point/index.html" title="2. control_point — Control Point API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="device.html" title="1.1. device — Device classes"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >4. <tt class="docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">upnp</span></tt> &#8212; UPnP modules</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">1. <tt class="docutils literal docutils literal docutils literal docutils literal"><span class="pre">device</span></tt> &#8212; Device building and deploying</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="service-service-classes">
+<h1>1.2. <tt class="xref docutils literal"><span class="pre">service</span></tt> &#8212; Service classes<a class="headerlink" href="#service-service-classes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="implementing-a-simple-service">
+<h2>1.2.1. Implementing a simple service.<a class="headerlink" href="#implementing-a-simple-service" title="Permalink to this headline">¶</a></h2>
+<p>There is two ways of implement a service: using your own scpd.xml file or
+programatically describes it.</p>
+</div>
+<div class="section" id="implementing-a-service-with-a-scpd-xml-file">
+<h2>1.2.2. Implementing a service with a scpd.xml file.<a class="headerlink" href="#implementing-a-service-with-a-scpd-xml-file" title="Permalink to this headline">¶</a></h2>
+<p>Write your scpd.xml file.</p>
+<div class="highlight-python"><pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;scpd xmlns="urn:schemas-upnp-org:service-1-0"&gt;
+    &lt;specVersion&gt;
+        &lt;major&gt;1&lt;/major&gt;
+        &lt;minor&gt;0&lt;/minor&gt;
+    &lt;/specVersion&gt;
+    &lt;actionList&gt;
+        &lt;action&gt;
+            &lt;name&gt;MyMethod&lt;/name&gt;
+            &lt;argumentList&gt;
+                &lt;argument&gt;
+                    &lt;name&gt;TextIn&lt;/name&gt;
+                    &lt;direction&gt;in&lt;/direction&gt;
+                    &lt;relatedStateVariable&gt;A_ARG_TYPE_Textin&lt;/relatedStateVariable&gt;
+                &lt;/argument&gt;
+                &lt;argument&gt;
+                    &lt;name&gt;TextOut&lt;/name&gt;
+                    &lt;direction&gt;out&lt;/direction&gt;
+                    &lt;relatedStateVariable&gt;A_ARG_TYPE_Textout&lt;/relatedStateVariable&gt;
+                &lt;/argument&gt;
+            &lt;/argumentList&gt;
+        &lt;/action&gt;
+    &lt;/actionList&gt;
+    &lt;serviceStateTable&gt;
+        &lt;stateVariable sendEvents="no"&gt;
+            &lt;name&gt;A_ARG_TYPE_Textout&lt;/name&gt;
+            &lt;dataType&gt;string&lt;/dataType&gt;
+        &lt;/stateVariable&gt;
+        &lt;stateVariable sendEvents="yes"&gt;
+            &lt;name&gt;A_ARG_TYPE_Textin&lt;/name&gt;
+            &lt;dataType&gt;string&lt;/dataType&gt;
+        &lt;/stateVariable&gt;
+    &lt;/serviceStateTable&gt;
+&lt;/scpd&gt;
+
+</pre>
+</div>
+<p>Now, create your service class and inherits from Service class. You will need
+to specify the service name, the service type, the scpd.xml file and implement
+a function to run a service action. The function name must begin with &#8220;soap&#8221; and
+ends with the action name:</p>
+<div class="highlight-python"><pre>from brisa.upnp.device.service import Service
+
+service_name = 'MyService'
+service_type = 'urn:schemas-upnp-org:service:MyService:1'
+
+class MyService(Service):
+
+    def __init__(self):
+        Service.__init__(self, service_name, service_type, url_base='', scpd_xml_filepath='/path/to/file/myservice-scpd.xml'))
+
+    def soap_MyMethod(self, *args, **kwargs):
+    # Pay attention to the case sensitive arguments used here
+    # and in the xml file you create for the service
+    inArg = kwargs['TextIn']
+    return {'TextOut': inArg + "Out!!"}</pre>
+</div>
+</div>
+<div class="section" id="implementing-a-service-without-a-scpd-xml-file">
+<h2>1.2.3. Implementing a service without a scpd.xml file.<a class="headerlink" href="#implementing-a-service-without-a-scpd-xml-file" title="Permalink to this headline">¶</a></h2>
+<p>You will need to specify your service definition programatically. Don&#8217;t forget
+to specify at least one state variable and to set the &#8220;run_function&#8221; at each action.
+The &#8220;run_function&#8221; can have any name at this situation; it doesn&#8217;t need to have the
+action name:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">brisa.upnp.device.service</span> <span class="kn">import</span> <span class="n">Service</span>
+<span class="kn">from</span> <span class="nn">brisa.upnp.device.action</span> <span class="kn">import</span> <span class="n">Action</span><span class="p">,</span> <span class="n">Argument</span>
+<span class="kn">from</span> <span class="nn">brisa.upnp.device.service</span> <span class="kn">import</span> <span class="n">StateVariable</span>
+
+<span class="n">service_name</span> <span class="o">=</span> <span class="s">&#39;MyService&#39;</span>
+<span class="n">service_type</span> <span class="o">=</span> <span class="s">&#39;urn:schemas-upnp-org:service:MyService:1&#39;</span>
+
+<span class="k">def</span> <span class="nf">MyMethod</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="c"># Pay attention to the case sensitive arguments used here</span>
+    <span class="c"># and in the xml file you create for the service</span>
+    <span class="n">inArg</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;TextIn&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">&#39;TextOut&#39;</span><span class="p">:</span> <span class="n">inArg</span> <span class="o">+</span> <span class="s">&quot;Out!!&quot;</span><span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">MyService</span><span class="p">(</span><span class="n">Service</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">Service</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service_name</span><span class="p">,</span> <span class="n">service_type</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+
+        <span class="n">varIn</span> <span class="o">=</span> <span class="n">StateVariable</span><span class="p">(</span><span class="n">service</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;A_ARG_TYPE_Textin&quot;</span><span class="p">,</span>
+                              <span class="n">send_events</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s">&quot;string&quot;</span><span class="p">)</span>
+        <span class="n">varOut</span> <span class="o">=</span> <span class="n">StateVariable</span><span class="p">(</span><span class="n">service</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;A_ARG_TYPE_Textout&quot;</span><span class="p">,</span>
+                               <span class="n">send_events</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s">&quot;string&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_state_variable</span><span class="p">(</span><span class="n">varIn</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_state_variable</span><span class="p">(</span><span class="n">varOut</span><span class="p">)</span>
+
+        <span class="n">argIn</span> <span class="o">=</span> <span class="n">Argument</span><span class="p">(</span><span class="n">arg_name</span><span class="o">=</span><span class="s">&quot;TextIn&quot;</span><span class="p">,</span> <span class="n">arg_direction</span><span class="o">=</span><span class="n">Argument</span><span class="o">.</span><span class="n">IN</span><span class="p">,</span> <span class="n">arg_state_var</span><span class="o">=</span><span class="n">varIn</span><span class="p">)</span>
+        <span class="n">argOut</span> <span class="o">=</span> <span class="n">Argument</span><span class="p">(</span><span class="n">arg_name</span><span class="o">=</span><span class="s">&quot;TextOut&quot;</span><span class="p">,</span> <span class="n">arg_direction</span><span class="o">=</span><span class="n">Argument</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">arg_state_var</span><span class="o">=</span><span class="n">varOut</span><span class="p">)</span>
+
+        <span class="n">actionMyMethod</span> <span class="o">=</span> <span class="n">Action</span><span class="p">(</span><span class="n">service</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;MyMethod&quot;</span><span class="p">,</span> <span class="n">arguments</span><span class="o">=</span><span class="p">[</span><span class="n">argIn</span><span class="p">,</span> <span class="n">argOut</span><span class="p">])</span>
+        <span class="n">actionMyMethod</span><span class="o">.</span><span class="n">run_function</span> <span class="o">=</span> <span class="n">MyMethod</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_action</span><span class="p">(</span><span class="n">actionMyMethod</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">1.2. <tt class="docutils literal"><span class="pre">service</span></tt> &#8212; Service classes</a><ul>
+<li><a class="reference external" href="#implementing-a-simple-service">1.2.1. Implementing a simple service.</a></li>
+<li><a class="reference external" href="#implementing-a-service-with-a-scpd-xml-file">1.2.2. Implementing a service with a scpd.xml file.</a></li>
+<li><a class="reference external" href="#implementing-a-service-without-a-scpd-xml-file">1.2.3. Implementing a service without a scpd.xml file.</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="device.html"
+                                  title="previous chapter">1.1. <tt class="docutils literal docutils literal docutils literal"><span class="pre">device</span></tt> &#8212; Device classes</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="../control_point/index.html"
+                                  title="next chapter">2. <tt class="docutils literal docutils literal docutils literal docutils literal"><span class="pre">control_point</span></tt> &#8212; Control Point API</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../../_sources/upnp/device/service.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../control_point/index.html" title="2. control_point — Control Point API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="device.html" title="1.1. device — Device classes"
+             >previous</a> |</li>
+        <li><a href="../../index.html">python-brisa UPnP framework v0.10.0 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >4. <tt class="docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">upnp</span></tt> &#8212; UPnP modules</a> &raquo;</li>
+          <li><a href="index.html" >1. <tt class="docutils literal docutils literal docutils literal docutils literal"><span class="pre">device</span></tt> &#8212; Device building and deploying</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../../copyright.html">Copyright</a> 2009, Andre Dieb Martins.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.2.
+    </div>
+  </body>
+</html>

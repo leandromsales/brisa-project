@@ -1,0 +1,12 @@
+Source: brisa-apps
+Section: user/multimedia
+Priority: optional
+Maintainer: Leandro Melo de Sales <leandroal@gmail.com>
+Build-Depends: debhelper (>= 5.0.38)
+Standards-Version: 3.6.1
+
+Package: python2.5-brisa-apps
+Section: user/multimedia
+Architecture: all
+Depends: python2.5-brisa-media-tools, python2.5-brisa-media-renderer, python2.5-brisa-media-server, python2.5-brisa-media-server-plugin-flickr, python2.5-brisa-media-server-plugin-shoutcast, python2.5-brisa-media-server-plugin-canola, python2.5-brisa-media-server-plugin-maemo, python2.5-brisa-media-server-plugin-youtube
+Description: installs all BRisa applications

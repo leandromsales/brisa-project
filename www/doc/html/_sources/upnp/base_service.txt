@@ -1,0 +1,50 @@
+:mod:`base_service` --- Basic service classes
+==============================================
+
+.. module: base_service
+    :synopsis: Basic service related classes
+
+BaseService contains all the attributes that are common to services on both
+control-point and device sides.
+
+Module's methods
+-----------------
+
+.. function:: format_rel_url(url)
+
+    Formats the given url from the form path/to to /path/to, if required and
+    returns it as a string.
+
+.. function:: parse_base_url(url)
+
+    Parses the given url and return a string in the form scheme://netloc
+
+BaseService class
+------------------
+BaseService is the base class for services. The BaseService class contains
+attributes that are common for both device-side and control-point-side services.
+Even so, its very unlikely for users to use BaseService directly.
+
+Attributes
+^^^^^^^^^^^
+The BaseService's attributes describe some of the service's basic information.
+
+* Service's id.
+* Service type.
+* Several urls such as scpd url, control url, event and presentation.
+* Eventing variables.
+
+BaseStateVariable class
+------------------------
+This class represents the service state variables.
+
+Attributes
+^^^^^^^^^^^
+These attributes describes the state variables of a service which holds them.
+They are:
+
+* parent_service - Service which holds this variable.
+* name - Variable name.
+* send_events - Send events option.
+* data_type - Data type.
+* allowed_values - Values that are allowed.

@@ -1,0 +1,14 @@
+setup.py
+src/__init__.py
+src/flickr/__init__.py
+src/flickr/_basic_config.py
+src/flickr/brisa_flickr.py
+src/flickr/implementation.py
+src/shoutcast/__init__.py
+src/shoutcast/_basic_config.py
+src/shoutcast/brisa_shoutcast.py
+src/shoutcast/implementation.py
+src/youtube/__init__.py
+src/youtube/_basic_config.py
+src/youtube/implementation.py
+src/youtube/youtube_api.py

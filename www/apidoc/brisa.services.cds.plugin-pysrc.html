@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>brisa.services.cds.plugin</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >BRisa UPnP Framework</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="brisa-module.html">Package&nbsp;brisa</a> ::
+        Package&nbsp;services ::
+        <a href="brisa.services.cds-module.html">Package&nbsp;cds</a> ::
+        Module&nbsp;plugin
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="brisa.services.cds.plugin-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="brisa.services.cds.plugin-module.html">Module brisa.services.cds.plugin</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># Licensed under the MIT license</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># http://opensource.org/licenses/mit-license.php or see LICENSE file.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># Copyright 2007-2008 Brisa Team &lt;brisa-develop@garage.maemo.org&gt;</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring">""" Plugin architecture. Contains the base for writing new plugins and</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring">facilities managing it.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-docstring">Singletons</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-docstring">==========</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-docstring">- RootPluginSingleton: root plugin for the media server, initial target of any</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-docstring">                       browse. All plugin folders are added inside this root</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-docstring">                       plugin.</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-docstring">- PluginManagerSingleton: takes care of automatically finding the plugins (on</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-docstring">                          the plugin folder), instantiating them and loading</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-docstring">                          them asynchronously using PluginLoader.</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring">Basic use</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring">=========</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring">The basic use of the plugin manager is to set some class of yours as a listener</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring">and load the plugins. Note that your class MUST have both on_start_plugin() and</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring">on_end_plugin() methods implemented.</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-docstring">&gt;&gt;&gt; from brisa.services.cds.plugin import PluginManagerSingleton</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-docstring">&gt;&gt;&gt; someclass = SomeClass()</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring">&gt;&gt;&gt; PluginManagerSingleton.listener = someclass</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring">&gt;&gt;&gt; PluginManagerSingleton.load_plugins()</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-docstring">Among other uses you might not want to set up a listener and only load the</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-docstring">plugins. Setting a listener is completely optional.</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package brisa=brisa-module.html"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-0', 'brisa', 'link-0');">brisa</a></tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Package brisa.log=brisa.log-module.html,Variable brisa.services.cds.plugin.log=brisa.services.cds.plugin-module.html#log"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-1', 'log', 'link-1');">log</a></tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-2" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-2', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Package brisa.threading=brisa.threading-module.html"><a title="brisa.threading" class="py-name" href="#" onclick="return doclink('link-3', 'threading', 'link-3');">threading</a></tt> <tt class="py-keyword">import</tt> <tt id="link-4" class="py-name" targets="Function brisa.threading.thread_manager.ThreadManager()=brisa.threading.thread_manager-module.html#ThreadManager"><a title="brisa.threading.thread_manager.ThreadManager" class="py-name" href="#" onclick="return doclink('link-4', 'ThreadManager', 'link-4');">ThreadManager</a></tt><tt class="py-op">,</tt> <tt id="link-5" class="py-name" targets="Class brisa.threading.thread_object.ThreadObject=brisa.threading.thread_object.ThreadObject-class.html"><a title="brisa.threading.thread_object.ThreadObject" class="py-name" href="#" onclick="return doclink('link-5', 'ThreadObject', 'link-5');">ThreadObject</a></tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-6" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-6', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Package brisa.upnp=brisa.upnp-module.html"><a title="brisa.upnp" class="py-name" href="#" onclick="return doclink('link-7', 'upnp', 'link-7');">upnp</a></tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Package brisa.upnp.didl=brisa.upnp.didl-module.html"><a title="brisa.upnp.didl" class="py-name" href="#" onclick="return doclink('link-8', 'didl', 'link-8');">didl</a></tt><tt class="py-op">.</tt><tt id="link-9" class="py-name" targets="Module brisa.upnp.didl.didl_lite=brisa.upnp.didl.didl_lite-module.html"><a title="brisa.upnp.didl.didl_lite" class="py-name" href="#" onclick="return doclink('link-9', 'didl_lite', 'link-9');">didl_lite</a></tt> <tt class="py-keyword">import</tt> <tt id="link-10" class="py-name" targets="Class brisa.upnp.didl.didl_lite.Object=brisa.upnp.didl.didl_lite.Object-class.html"><a title="brisa.upnp.didl.didl_lite.Object" class="py-name" href="#" onclick="return doclink('link-10', 'Object', 'link-10');">Object</a></tt><tt class="py-op">,</tt> <tt id="link-11" class="py-name" targets="Class brisa.upnp.didl.didl_lite.Container=brisa.upnp.didl.didl_lite.Container-class.html"><a title="brisa.upnp.didl.didl_lite.Container" class="py-name" href="#" onclick="return doclink('link-11', 'Container', 'link-11');">Container</a></tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt id="link-12" class="py-name"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-12', 'log', 'link-1');">log</a></tt> <tt class="py-op">=</tt> <tt id="link-13" class="py-name"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-13', 'log', 'link-1');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-string">"PluginManager"</tt><tt class="py-op">)</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"> </tt>
+<a name="Plugin"></a><div id="Plugin-def"><a name="L39"></a><tt class="py-lineno"> 39</tt> <a class="py-toggle" href="#" id="Plugin-toggle" onclick="return toggle('Plugin');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="brisa.services.cds.plugin.Plugin-class.html">Plugin</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Plugin-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Plugin-expanded"><a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">    <tt class="py-docstring">""" The base class to all plugins. For writing plugins inherit from this</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring">    class and set the appropriate values for your plugin:</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-docstring">        - name: friendly name for your plugin. All objects inside your plugin</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-docstring">          will be named in the form name:id.</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"><tt class="py-docstring">        - usage: can be on or off. This value is automatically set when your</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt class="py-docstring">          plugin has an entry on the configuration file. When set to 'off', the</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-docstring">          plugin manager will not instantiate the plugin.</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"><tt class="py-docstring">        - watch: can be on or off.  When set to 'on', the variable usage will</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"><tt class="py-docstring">          be watched for changes and the brisa.conf entry will also be watched.</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"><tt class="py-docstring">          This means that the plugin will get loaded/unloaded automatically</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"><tt class="py-docstring">          according to these variables.</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"><tt class="py-docstring">        - has_browse_filter: can be True or False. If your plugin implements</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"><tt class="py-docstring">          the browse() function in a way that it uses the slicing/sorting</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt class="py-docstring">          (filters) parameters, has_browse_filter should be set to True. If</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-docstring">          not, it should be False (which means that the filter will be applied</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"><tt class="py-docstring">          by the plugin manager - your plugin returns browse result).</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">    <tt id="link-14" class="py-name" targets="Variable brisa.services.cds.plugin.Plugin.name=brisa.services.cds.plugin.Plugin-class.html#name,Variable brisa.services.cds.plugin._RootPlugin.name=brisa.services.cds.plugin._RootPlugin-class.html#name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-14', 'name', 'link-14');">name</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'plugin_stub'</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">    <tt id="link-15" class="py-name" targets="Variable brisa.services.cds.plugin.Plugin.usage=brisa.services.cds.plugin.Plugin-class.html#usage"><a title="brisa.services.cds.plugin.Plugin.usage" class="py-name" href="#" onclick="return doclink('link-15', 'usage', 'link-15');">usage</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">    <tt id="link-16" class="py-name" targets="Variable brisa.services.cds.plugin.Plugin.watch=brisa.services.cds.plugin.Plugin-class.html#watch"><a title="brisa.services.cds.plugin.Plugin.watch" class="py-name" href="#" onclick="return doclink('link-16', 'watch', 'link-16');">watch</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">    <tt id="link-17" class="py-name" targets="Variable brisa.services.cds.plugin.Plugin.has_browse_filter=brisa.services.cds.plugin.Plugin-class.html#has_browse_filter"><a title="brisa.services.cds.plugin.Plugin.has_browse_filter" class="py-name" href="#" onclick="return doclink('link-17', 'has_browse_filter', 'link-17');">has_browse_filter</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"> </tt>
+<a name="Plugin.__init__"></a><div id="Plugin.__init__-def"><a name="L66"></a><tt class="py-lineno"> 66</tt> <a class="py-toggle" href="#" id="Plugin.__init__-toggle" onclick="return toggle('Plugin.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin.Plugin-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-param">args</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-param">kwargs</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Plugin.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Plugin.__init__-expanded"><a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">        <tt class="py-docstring">""" Initializes the base plugin. If overwritten, remember to set</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-docstring">        plugin_manager to PluginManagerSingleton.</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">plugin_manager</tt> <tt class="py-op">=</tt> <tt id="link-18" class="py-name" targets="Variable brisa.services.cds.plugin.PluginManagerSingleton=brisa.services.cds.plugin-module.html#PluginManagerSingleton"><a title="brisa.services.cds.plugin.PluginManagerSingleton" class="py-name" href="#" onclick="return doclink('link-18', 'PluginManagerSingleton', 'link-18');">PluginManagerSingleton</a></tt> </tt>
+</div><a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"> </tt>
+<a name="Plugin.execute"></a><div id="Plugin.execute-def"><a name="L72"></a><tt class="py-lineno"> 72</tt> <a class="py-toggle" href="#" id="Plugin.execute-toggle" onclick="return toggle('Plugin.execute');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin.Plugin-class.html#execute">execute</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Plugin.execute-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Plugin.execute-expanded"><a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-docstring">""" Loads the plugin media information into the database.</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Method brisa.services.cds.plugin.Plugin.load()=brisa.services.cds.plugin.Plugin-class.html#load,Method brisa.services.cds.plugin._RootPlugin.load()=brisa.services.cds.plugin._RootPlugin-class.html#load"><a title="brisa.services.cds.plugin.Plugin.load
+brisa.services.cds.plugin._RootPlugin.load" class="py-name" href="#" onclick="return doclink('link-19', 'load', 'link-19');">load</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">plugin_manager</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Method brisa.services.cds.plugin._PluginManager.notify_plugin_loaded()=brisa.services.cds.plugin._PluginManager-class.html#notify_plugin_loaded"><a title="brisa.services.cds.plugin._PluginManager.notify_plugin_loaded" class="py-name" href="#" onclick="return doclink('link-20', 'notify_plugin_loaded', 'link-20');">notify_plugin_loaded</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-21', 'name', 'link-14');">name</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"> </tt>
+<a name="Plugin.load"></a><div id="Plugin.load-def"><a name="L78"></a><tt class="py-lineno"> 78</tt> <a class="py-toggle" href="#" id="Plugin.load-toggle" onclick="return toggle('Plugin.load');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin.Plugin-class.html#load">load</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Plugin.load-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Plugin.load-expanded"><a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-docstring">""" Forces subclasses to implement the load method.</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">NotImplementedError</tt><tt class="py-op">(</tt><tt class="py-string">"%s: load method not implemented"</tt> <tt class="py-op">%</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">                                  <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-22', 'name', 'link-14');">name</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"> </tt>
+<a name="Plugin.unload"></a><div id="Plugin.unload-def"><a name="L84"></a><tt class="py-lineno"> 84</tt> <a class="py-toggle" href="#" id="Plugin.unload-toggle" onclick="return toggle('Plugin.unload');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin.Plugin-class.html#unload">unload</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Plugin.unload-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Plugin.unload-expanded"><a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-docstring">""" Unloads the plugin media information from memory.</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">NotImplementedError</tt><tt class="py-op">(</tt><tt class="py-string">"%s: unload method not implemented"</tt> <tt class="py-op">%</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">                                  <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-23', 'name', 'link-14');">name</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"> </tt>
+<a name="Plugin.browse"></a><div id="Plugin.browse-def"><a name="L90"></a><tt class="py-lineno"> 90</tt> <a class="py-toggle" href="#" id="Plugin.browse-toggle" onclick="return toggle('Plugin.browse');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin.Plugin-class.html#browse">browse</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">str_object_id</tt><tt class="py-op">,</tt> <tt class="py-param">browse_flag</tt><tt class="py-op">,</tt> <tt class="py-param">filter</tt><tt class="py-op">,</tt> <tt class="py-param">starting_index</tt><tt class="py-op">,</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">                <tt class="py-param">requested_count</tt><tt class="py-op">,</tt> <tt class="py-param">sort_criteria</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Plugin.browse-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Plugin.browse-expanded"><a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">        <tt class="py-docstring">""" Browse implementation for the plugin. See Plugin documentation for</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring">        information about the has_browse_filter flag.</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">NotImplementedError</tt><tt class="py-op">(</tt><tt class="py-string">"browse not implemented for plugin %s"</tt> <tt class="py-op">%</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">                                  <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-24', 'name', 'link-14');">name</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"> </tt>
+<a name="Plugin.search"></a><div id="Plugin.search-def"><a name="L98"></a><tt class="py-lineno"> 98</tt> <a class="py-toggle" href="#" id="Plugin.search-toggle" onclick="return toggle('Plugin.search');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin.Plugin-class.html#search">search</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">str_object_id</tt><tt class="py-op">,</tt> <tt class="py-param">browse_flag</tt><tt class="py-op">,</tt> <tt class="py-param">filter</tt><tt class="py-op">,</tt> <tt class="py-param">starting_index</tt><tt class="py-op">,</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">                <tt class="py-param">requested_count</tt><tt class="py-op">,</tt> <tt class="py-param">sort_criteria</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Plugin.search-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Plugin.search-expanded"><a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-docstring">""" Search implementation for the plugin.</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">NotImplementedError</tt><tt class="py-op">(</tt><tt class="py-string">"search not implemented for plugin %s"</tt> <tt class="py-op">%</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">                                  <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-25', 'name', 'link-14');">name</a></tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"> </tt>
+<a name="MemObject"></a><div id="MemObject-def"><a name="L106"></a><tt class="py-lineno">106</tt> <a class="py-toggle" href="#" id="MemObject-toggle" onclick="return toggle('MemObject');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="brisa.services.cds.plugin.MemObject-class.html">MemObject</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MemObject-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MemObject-expanded"><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">    <tt class="py-docstring">""" Represents an object with the the minimum information.</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"> </tt>
+<a name="MemObject.__init__"></a><div id="MemObject.__init__-def"><a name="L110"></a><tt class="py-lineno">110</tt> <a class="py-toggle" href="#" id="MemObject.__init__-toggle" onclick="return toggle('MemObject.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin.MemObject-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">id</tt><tt class="py-op">,</tt> <tt class="py-param">title</tt><tt class="py-op">,</tt> <tt class="py-param">parent_container_id</tt><tt class="py-op">=</tt><tt class="py-string">'-1'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MemObject.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MemObject.__init__-expanded"><a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">id</tt> <tt class="py-op">=</tt> <tt class="py-name">id</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">title</tt> <tt class="py-op">=</tt> <tt class="py-name">title</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">parent_container_id</tt> <tt class="py-op">=</tt> <tt class="py-name">parent_container_id</tt> </tt>
+</div><a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"> </tt>
+<a name="MemObject.__repr__"></a><div id="MemObject.__repr__-def"><a name="L115"></a><tt class="py-lineno">115</tt> <a class="py-toggle" href="#" id="MemObject.__repr__-toggle" onclick="return toggle('MemObject.__repr__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin.MemObject-class.html#__repr__">__repr__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MemObject.__repr__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MemObject.__repr__-expanded"><a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">        <tt class="py-docstring">""" Representation of the MemObject is his title.</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">title</tt> </tt>
+</div></div><a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"> </tt>
+<a name="MemDIDLObject"></a><div id="MemDIDLObject-def"><a name="L121"></a><tt class="py-lineno">121</tt> <a class="py-toggle" href="#" id="MemDIDLObject-toggle" onclick="return toggle('MemDIDLObject');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="brisa.services.cds.plugin.MemDIDLObject-class.html">MemDIDLObject</a><tt class="py-op">(</tt><tt class="py-base-class">Object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MemDIDLObject-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MemDIDLObject-expanded"><a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">    <tt class="py-docstring">""" Represents an object with all DIDL Object information.</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line"> </tt>
+<a name="MemDIDLObject.__init__"></a><div id="MemDIDLObject.__init__-def"><a name="L125"></a><tt class="py-lineno">125</tt> <a class="py-toggle" href="#" id="MemDIDLObject.__init__-toggle" onclick="return toggle('MemDIDLObject.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin.MemDIDLObject-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-param">args</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-param">kargs</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MemDIDLObject.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MemDIDLObject.__init__-expanded"><a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">didlobject</tt> <tt class="py-op">=</tt> <tt id="link-26" class="py-name" targets="Class brisa.services.cds.plugin.MemObject=brisa.services.cds.plugin.MemObject-class.html"><a title="brisa.services.cds.plugin.MemObject" class="py-name" href="#" onclick="return doclink('link-26', 'MemObject', 'link-26');">MemObject</a></tt><tt class="py-op">(</tt><tt class="py-op">*</tt><tt class="py-name">args</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-name">kargs</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line"> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"> </tt>
+<a name="MemContainer"></a><div id="MemContainer-def"><a name="L129"></a><tt class="py-lineno">129</tt> <a class="py-toggle" href="#" id="MemContainer-toggle" onclick="return toggle('MemContainer');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="brisa.services.cds.plugin.MemContainer-class.html">MemContainer</a><tt class="py-op">(</tt><tt class="py-base-class">MemObject</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MemContainer-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MemContainer-expanded"><a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">    <tt class="py-docstring">""" Represents an container with the minimum information.</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"> </tt>
+<a name="MemContainer.__init__"></a><div id="MemContainer.__init__-def"><a name="L133"></a><tt class="py-lineno">133</tt> <a class="py-toggle" href="#" id="MemContainer.__init__-toggle" onclick="return toggle('MemContainer.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin.MemContainer-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">id</tt><tt class="py-op">,</tt> <tt class="py-param">title</tt><tt class="py-op">,</tt> <tt class="py-param">parent_container_id</tt><tt class="py-op">=</tt><tt class="py-string">'-1'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MemContainer.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MemContainer.__init__-expanded"><a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">        <tt id="link-27" class="py-name"><a title="brisa.services.cds.plugin.MemObject" class="py-name" href="#" onclick="return doclink('link-27', 'MemObject', 'link-26');">MemObject</a></tt><tt class="py-op">.</tt><tt id="link-28" class="py-name" targets="Method brisa.config.BrisaConf.__init__()=brisa.config.BrisaConf-class.html#__init__,Method brisa.control_point.control_point.ControlPoint.__init__()=brisa.control_point.control_point.ControlPoint-class.html#__init__,Method brisa.control_point.event.EventListener.__init__()=brisa.control_point.event.EventListener-class.html#__init__,Method brisa.control_point.event.EventListenerServer.__init__()=brisa.control_point.event.EventListenerServer-class.html#__init__,Method brisa.services.cds.content_directory.ContentDirectory.__init__()=brisa.services.cds.content_directory.ContentDirectory-class.html#__init__,Method brisa.services.cds.plugin.MemContainer.__init__()=brisa.services.cds.plugin.MemContainer-class.html#__init__,Method brisa.services.cds.plugin.MemDIDLContainer.__init__()=brisa.services.cds.plugin.MemDIDLContainer-class.html#__init__,Method brisa.services.cds.plugin.MemDIDLObject.__init__()=brisa.services.cds.plugin.MemDIDLObject-class.html#__init__,Method brisa.services.cds.plugin.MemObject.__init__()=brisa.services.cds.plugin.MemObject-class.html#__init__,Method brisa.services.cds.plugin.Plugin.__init__()=brisa.services.cds.plugin.Plugin-class.html#__init__,Method brisa.services.cds.plugin.PluginLoader.__init__()=brisa.services.cds.plugin.PluginLoader-class.html#__init__,Method brisa.services.cds.plugin._PluginManager.__init__()=brisa.services.cds.plugin._PluginManager-class.html#__init__,Method brisa.services.cds.plugin._RootPlugin.__init__()=brisa.services.cds.plugin._RootPlugin-class.html#__init__,Method brisa.services.web_server.resource.Resource.__init__()=brisa.services.web_server.resource.Resource-class.html#__init__,Method brisa.services.web_server.static.Data.__init__()=brisa.services.web_server.static.Data-class.html#__init__,Method brisa.services.web_server.static.StaticFile.__init__()=brisa.services.web_server.static.StaticFile-class.html#__init__,Method brisa.services.web_server.web_server_impl._BrisaWebServer.__init__()=brisa.services.web_server.web_server_impl._BrisaWebServer-class.html#__init__,Method brisa.threading.thread_manager._ThreadManager.__init__()=brisa.threading.thread_manager._ThreadManager-class.html#__init__,Method brisa.threading.thread_object.ThreadObject.__init__()=brisa.threading.thread_object.ThreadObject-class.html#__init__,Method brisa.threading.threaded_call.ThreadedCall.__init__()=brisa.threading.threaded_call.ThreadedCall-class.html#__init__,Method brisa.upnp.device.Device.__init__()=brisa.upnp.device.Device-class.html#__init__,Method brisa.upnp.device.DeviceIcon.__init__()=brisa.upnp.device.DeviceIcon-class.html#__init__,Method brisa.upnp.device.RootDevice.__init__()=brisa.upnp.device.RootDevice-class.html#__init__,Method brisa.upnp.didl.didl_lite.Album.__init__()=brisa.upnp.didl.didl_lite.Album-class.html#__init__,Method brisa.upnp.didl.didl_lite.AudioItem.__init__()=brisa.upnp.didl.didl_lite.AudioItem-class.html#__init__,Method brisa.upnp.didl.didl_lite.Container.__init__()=brisa.upnp.didl.didl_lite.Container-class.html#__init__,Method brisa.upnp.didl.didl_lite.Element.__init__()=brisa.upnp.didl.didl_lite.Element-class.html#__init__,Method brisa.upnp.didl.didl_lite.Genre.__init__()=brisa.upnp.didl.didl_lite.Genre-class.html#__init__,Method brisa.upnp.didl.didl_lite.Item.__init__()=brisa.upnp.didl.didl_lite.Item-class.html#__init__,Method brisa.upnp.didl.didl_lite.Movie.__init__()=brisa.upnp.didl.didl_lite.Movie-class.html#__init__,Method brisa.upnp.didl.didl_lite.MusicAlbum.__init__()=brisa.upnp.didl.didl_lite.MusicAlbum-class.html#__init__,Method brisa.upnp.didl.didl_lite.MusicTrack.__init__()=brisa.upnp.didl.didl_lite.MusicTrack-class.html#__init__,Method brisa.upnp.didl.didl_lite.MusicVideoClip.__init__()=brisa.upnp.didl.didl_lite.MusicVideoClip-class.html#__init__,Method brisa.upnp.didl.didl_lite.Object.__init__()=brisa.upnp.didl.didl_lite.Object-class.html#__init__,Method brisa.upnp.didl.didl_lite.Person.__init__()=brisa.upnp.didl.didl_lite.Person-class.html#__init__,Method brisa.upnp.didl.didl_lite.Photo.__init__()=brisa.upnp.didl.didl_lite.Photo-class.html#__init__,Method brisa.upnp.didl.didl_lite.Resource.__init__()=brisa.upnp.didl.didl_lite.Resource-class.html#__init__,Method brisa.upnp.didl.didl_lite.VideoItem.__init__()=brisa.upnp.didl.didl_lite.VideoItem-class.html#__init__,Method brisa.upnp.message_handle.device_description_message.DeviceDescriptionMessage.__init__()=brisa.upnp.message_handle.device_description_message.DeviceDescriptionMessage-class.html#__init__,Method brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject.__init__()=brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject-class.html#__init__,Method brisa.upnp.message_handle.device_message.DeviceMessage.__init__()=brisa.upnp.message_handle.device_message.DeviceMessage-class.html#__init__,Method brisa.upnp.message_handle.device_object.DeviceObject.__init__()=brisa.upnp.message_handle.device_object.DeviceObject-class.html#__init__,Method brisa.upnp.message_handle.user_preference_description_message.UserPreferenceDescriptionMessage.__init__()=brisa.upnp.message_handle.user_preference_description_message.UserPreferenceDescriptionMessage-class.html#__init__,Method brisa.upnp.message_handle.user_preference_description_object.UserPreferenceDescriptionObject.__init__()=brisa.upnp.message_handle.user_preference_description_object.UserPreferenceDescriptionObject-class.html#__init__,Method brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage.__init__()=brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage-class.html#__init__,Method brisa.upnp.message_handle.user_profile_description_object.UserProfileDescriptionObject.__init__()=brisa.upnp.message_handle.user_profile_description_object.UserProfileDescriptionObject-class.html#__init__,Method brisa.upnp.msearch.MSearch.__init__()=brisa.upnp.msearch.MSearch-class.html#__init__,Method brisa.upnp.service.Action.__init__()=brisa.upnp.service.Action-class.html#__init__,Method brisa.upnp.service.Argument.__init__()=brisa.upnp.service.Argument-class.html#__init__,Method brisa.upnp.service.Service.__init__()=brisa.upnp.service.Service-class.html#__init__,Method brisa.upnp.service.StateVariable.__init__()=brisa.upnp.service.StateVariable-class.html#__init__,Method brisa.upnp.service.SubscribeRequest.__init__()=brisa.upnp.service.SubscribeRequest-class.html#__init__,Method brisa.upnp.service.UnsubscribeRequest.__init__()=brisa.upnp.service.UnsubscribeRequest-class.html#__init__,Method brisa.upnp.soap.HTTPError.__init__()=brisa.upnp.soap.HTTPError-class.html#__init__,Method brisa.upnp.soap.SOAPProxy.__Method.__init__()=brisa.upnp.soap.SOAPProxy.__Method-class.html#__init__,Method brisa.upnp.soap.SOAPProxy.__init__()=brisa.upnp.soap.SOAPProxy-class.html#__init__,Method brisa.upnp.ssdp.SSDPServer.__init__()=brisa.upnp.ssdp.SSDPServer-class.html#__init__,Method brisa.upnp.upnp_handler.DeviceHandler.__init__()=brisa.upnp.upnp_handler.DeviceHandler-class.html#__init__,Method brisa.upnp.upnp_publisher.ErrorCode.__init__()=brisa.upnp.upnp_publisher.ErrorCode-class.html#__init__,Method brisa.upnp.upnp_publisher.UPnPPublisher.__init__()=brisa.upnp.upnp_publisher.UPnPPublisher-class.html#__init__,Method brisa.utils.network_listeners.CannotListenError.__init__()=brisa.utils.network_listeners.CannotListenError-class.html#__init__,Method brisa.utils.network_listeners.NetworkListener.__init__()=brisa.utils.network_listeners.NetworkListener-class.html#__init__,Method brisa.utils.network_listeners.TCPListener.__init__()=brisa.utils.network_listeners.TCPListener-class.html#__init__,Method brisa.utils.network_listeners.UDPListener.__init__()=brisa.utils.network_listeners.UDPListener-class.html#__init__,Method brisa.utils.network_senders.TCPTransport.__init__()=brisa.utils.network_senders.TCPTransport-class.html#__init__,Method brisa.utils.network_senders.UDPTransport.__init__()=brisa.utils.network_senders.UDPTransport-class.html#__init__,Method brisa.utils.python.failure.Failure.__init__()=brisa.utils.python.failure.Failure-class.html#__init__,Method brisa.utils.python.looping_call.LoopingCall.__init__()=brisa.utils.python.looping_call.LoopingCall-class.html#__init__"><a title="brisa.config.BrisaConf.__init__
+brisa.control_point.control_point.ControlPoint.__init__
+brisa.control_point.event.EventListener.__init__
+brisa.control_point.event.EventListenerServer.__init__
+brisa.services.cds.content_directory.ContentDirectory.__init__
+brisa.services.cds.plugin.MemContainer.__init__
+brisa.services.cds.plugin.MemDIDLContainer.__init__
+brisa.services.cds.plugin.MemDIDLObject.__init__
+brisa.services.cds.plugin.MemObject.__init__
+brisa.services.cds.plugin.Plugin.__init__
+brisa.services.cds.plugin.PluginLoader.__init__
+brisa.services.cds.plugin._PluginManager.__init__
+brisa.services.cds.plugin._RootPlugin.__init__
+brisa.services.web_server.resource.Resource.__init__
+brisa.services.web_server.static.Data.__init__
+brisa.services.web_server.static.StaticFile.__init__
+brisa.services.web_server.web_server_impl._BrisaWebServer.__init__
+brisa.threading.thread_manager._ThreadManager.__init__
+brisa.threading.thread_object.ThreadObject.__init__
+brisa.threading.threaded_call.ThreadedCall.__init__
+brisa.upnp.device.Device.__init__
+brisa.upnp.device.DeviceIcon.__init__
+brisa.upnp.device.RootDevice.__init__
+brisa.upnp.didl.didl_lite.Album.__init__
+brisa.upnp.didl.didl_lite.AudioItem.__init__
+brisa.upnp.didl.didl_lite.Container.__init__
+brisa.upnp.didl.didl_lite.Element.__init__
+brisa.upnp.didl.didl_lite.Genre.__init__
+brisa.upnp.didl.didl_lite.Item.__init__
+brisa.upnp.didl.didl_lite.Movie.__init__
+brisa.upnp.didl.didl_lite.MusicAlbum.__init__
+brisa.upnp.didl.didl_lite.MusicTrack.__init__
+brisa.upnp.didl.didl_lite.MusicVideoClip.__init__
+brisa.upnp.didl.didl_lite.Object.__init__
+brisa.upnp.didl.didl_lite.Person.__init__
+brisa.upnp.didl.didl_lite.Photo.__init__
+brisa.upnp.didl.didl_lite.Resource.__init__
+brisa.upnp.didl.didl_lite.VideoItem.__init__
+brisa.upnp.message_handle.device_description_message.DeviceDescriptionMessage.__init__
+brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject.__init__
+brisa.upnp.message_handle.device_message.DeviceMessage.__init__
+brisa.upnp.message_handle.device_object.DeviceObject.__init__
+brisa.upnp.message_handle.user_preference_description_message.UserPreferenceDescriptionMessage.__init__
+brisa.upnp.message_handle.user_preference_description_object.UserPreferenceDescriptionObject.__init__
+brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage.__init__
+brisa.upnp.message_handle.user_profile_description_object.UserProfileDescriptionObject.__init__
+brisa.upnp.msearch.MSearch.__init__
+brisa.upnp.service.Action.__init__
+brisa.upnp.service.Argument.__init__
+brisa.upnp.service.Service.__init__
+brisa.upnp.service.StateVariable.__init__
+brisa.upnp.service.SubscribeRequest.__init__
+brisa.upnp.service.UnsubscribeRequest.__init__
+brisa.upnp.soap.HTTPError.__init__
+brisa.upnp.soap.SOAPProxy.__Method.__init__
+brisa.upnp.soap.SOAPProxy.__init__
+brisa.upnp.ssdp.SSDPServer.__init__
+brisa.upnp.upnp_handler.DeviceHandler.__init__
+brisa.upnp.upnp_publisher.ErrorCode.__init__
+brisa.upnp.upnp_publisher.UPnPPublisher.__init__
+brisa.utils.network_listeners.CannotListenError.__init__
+brisa.utils.network_listeners.NetworkListener.__init__
+brisa.utils.network_listeners.TCPListener.__init__
+brisa.utils.network_listeners.UDPListener.__init__
+brisa.utils.network_senders.TCPTransport.__init__
+brisa.utils.network_senders.UDPTransport.__init__
+brisa.utils.python.failure.Failure.__init__
+brisa.utils.python.looping_call.LoopingCall.__init__" class="py-name" href="#" onclick="return doclink('link-28', '__init__', 'link-28');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">id</tt><tt class="py-op">,</tt> <tt class="py-name">title</tt><tt class="py-op">,</tt> <tt class="py-name">parent_container_id</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line"> </tt>
+<a name="MemContainer._get_childCount"></a><div id="MemContainer._get_childCount-def"><a name="L136"></a><tt class="py-lineno">136</tt> <a class="py-toggle" href="#" id="MemContainer._get_childCount-toggle" onclick="return toggle('MemContainer._get_childCount');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin.MemContainer-class.html#_get_childCount">_get_childCount</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MemContainer._get_childCount-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MemContainer._get_childCount-expanded"><a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">        <tt class="py-docstring">""" Returns the number of children of a MemContainer.</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name" targets="Variable brisa.services.cds.plugin._RootPlugin.containers=brisa.services.cds.plugin._RootPlugin-class.html#containers"><a title="brisa.services.cds.plugin._RootPlugin.containers" class="py-name" href="#" onclick="return doclink('link-29', 'containers', 'link-29');">containers</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line"> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">    <tt id="link-30" class="py-name" targets="Variable brisa.services.cds.plugin.MemContainer.childCount=brisa.services.cds.plugin.MemContainer-class.html#childCount,Variable brisa.upnp.didl.didl_lite.Container.childCount=brisa.upnp.didl.didl_lite.Container-class.html#childCount"><a title="brisa.services.cds.plugin.MemContainer.childCount
+brisa.upnp.didl.didl_lite.Container.childCount" class="py-name" href="#" onclick="return doclink('link-30', 'childCount', 'link-30');">childCount</a></tt> <tt class="py-op">=</tt> <tt class="py-name">property</tt><tt class="py-op">(</tt><tt id="link-31" class="py-name" targets="Method brisa.services.cds.plugin.MemContainer._get_childCount()=brisa.services.cds.plugin.MemContainer-class.html#_get_childCount,Method brisa.upnp.didl.didl_lite.Container._get_childCount()=brisa.upnp.didl.didl_lite.Container-class.html#_get_childCount"><a title="brisa.services.cds.plugin.MemContainer._get_childCount
+brisa.upnp.didl.didl_lite.Container._get_childCount" class="py-name" href="#" onclick="return doclink('link-31', '_get_childCount', 'link-31');">_get_childCount</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line"> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line"> </tt>
+<a name="MemDIDLContainer"></a><div id="MemDIDLContainer-def"><a name="L144"></a><tt class="py-lineno">144</tt> <a class="py-toggle" href="#" id="MemDIDLContainer-toggle" onclick="return toggle('MemDIDLContainer');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="brisa.services.cds.plugin.MemDIDLContainer-class.html">MemDIDLContainer</a><tt class="py-op">(</tt><tt class="py-base-class">Container</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MemDIDLContainer-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MemDIDLContainer-expanded"><a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">    <tt class="py-docstring">""" Represents an container with all DIDL Container information.</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line"> </tt>
+<a name="MemDIDLContainer.__init__"></a><div id="MemDIDLContainer.__init__-def"><a name="L148"></a><tt class="py-lineno">148</tt> <a class="py-toggle" href="#" id="MemDIDLContainer.__init__-toggle" onclick="return toggle('MemDIDLContainer.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin.MemDIDLContainer-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-param">args</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-param">kargs</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MemDIDLContainer.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MemDIDLContainer.__init__-expanded"><a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">        <tt id="link-32" class="py-name"><a title="brisa.upnp.didl.didl_lite.Container" class="py-name" href="#" onclick="return doclink('link-32', 'Container', 'link-11');">Container</a></tt><tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="brisa.config.BrisaConf.__init__
+brisa.control_point.control_point.ControlPoint.__init__
+brisa.control_point.event.EventListener.__init__
+brisa.control_point.event.EventListenerServer.__init__
+brisa.services.cds.content_directory.ContentDirectory.__init__
+brisa.services.cds.plugin.MemContainer.__init__
+brisa.services.cds.plugin.MemDIDLContainer.__init__
+brisa.services.cds.plugin.MemDIDLObject.__init__
+brisa.services.cds.plugin.MemObject.__init__
+brisa.services.cds.plugin.Plugin.__init__
+brisa.services.cds.plugin.PluginLoader.__init__
+brisa.services.cds.plugin._PluginManager.__init__
+brisa.services.cds.plugin._RootPlugin.__init__
+brisa.services.web_server.resource.Resource.__init__
+brisa.services.web_server.static.Data.__init__
+brisa.services.web_server.static.StaticFile.__init__
+brisa.services.web_server.web_server_impl._BrisaWebServer.__init__
+brisa.threading.thread_manager._ThreadManager.__init__
+brisa.threading.thread_object.ThreadObject.__init__
+brisa.threading.threaded_call.ThreadedCall.__init__
+brisa.upnp.device.Device.__init__
+brisa.upnp.device.DeviceIcon.__init__
+brisa.upnp.device.RootDevice.__init__
+brisa.upnp.didl.didl_lite.Album.__init__
+brisa.upnp.didl.didl_lite.AudioItem.__init__
+brisa.upnp.didl.didl_lite.Container.__init__
+brisa.upnp.didl.didl_lite.Element.__init__
+brisa.upnp.didl.didl_lite.Genre.__init__
+brisa.upnp.didl.didl_lite.Item.__init__
+brisa.upnp.didl.didl_lite.Movie.__init__
+brisa.upnp.didl.didl_lite.MusicAlbum.__init__
+brisa.upnp.didl.didl_lite.MusicTrack.__init__
+brisa.upnp.didl.didl_lite.MusicVideoClip.__init__
+brisa.upnp.didl.didl_lite.Object.__init__
+brisa.upnp.didl.didl_lite.Person.__init__
+brisa.upnp.didl.didl_lite.Photo.__init__
+brisa.upnp.didl.didl_lite.Resource.__init__
+brisa.upnp.didl.didl_lite.VideoItem.__init__
+brisa.upnp.message_handle.device_description_message.DeviceDescriptionMessage.__init__
+brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject.__init__
+brisa.upnp.message_handle.device_message.DeviceMessage.__init__
+brisa.upnp.message_handle.device_object.DeviceObject.__init__
+brisa.upnp.message_handle.user_preference_description_message.UserPreferenceDescriptionMessage.__init__
+brisa.upnp.message_handle.user_preference_description_object.UserPreferenceDescriptionObject.__init__
+brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage.__init__
+brisa.upnp.message_handle.user_profile_description_object.UserProfileDescriptionObject.__init__
+brisa.upnp.msearch.MSearch.__init__
+brisa.upnp.service.Action.__init__
+brisa.upnp.service.Argument.__init__
+brisa.upnp.service.Service.__init__
+brisa.upnp.service.StateVariable.__init__
+brisa.upnp.service.SubscribeRequest.__init__
+brisa.upnp.service.UnsubscribeRequest.__init__
+brisa.upnp.soap.HTTPError.__init__
+brisa.upnp.soap.SOAPProxy.__Method.__init__
+brisa.upnp.soap.SOAPProxy.__init__
+brisa.upnp.ssdp.SSDPServer.__init__
+brisa.upnp.upnp_handler.DeviceHandler.__init__
+brisa.upnp.upnp_publisher.ErrorCode.__init__
+brisa.upnp.upnp_publisher.UPnPPublisher.__init__
+brisa.utils.network_listeners.CannotListenError.__init__
+brisa.utils.network_listeners.NetworkListener.__init__
+brisa.utils.network_listeners.TCPListener.__init__
+brisa.utils.network_listeners.UDPListener.__init__
+brisa.utils.network_senders.TCPTransport.__init__
+brisa.utils.network_senders.UDPTransport.__init__
+brisa.utils.python.failure.Failure.__init__
+brisa.utils.python.looping_call.LoopingCall.__init__" class="py-name" href="#" onclick="return doclink('link-33', '__init__', 'link-28');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-name">args</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-name">kargs</tt><tt class="py-op">)</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">didlobject</tt> <tt class="py-op">=</tt> <tt id="link-34" class="py-name" targets="Class brisa.services.cds.plugin.MemContainer=brisa.services.cds.plugin.MemContainer-class.html"><a title="brisa.services.cds.plugin.MemContainer" class="py-name" href="#" onclick="return doclink('link-34', 'MemContainer', 'link-34');">MemContainer</a></tt><tt class="py-op">(</tt><tt class="py-op">*</tt><tt class="py-name">args</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-name">kargs</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line"> </tt>
+<a name="MemDIDLContainer.add_child"></a><div id="MemDIDLContainer.add_child-def"><a name="L152"></a><tt class="py-lineno">152</tt> <a class="py-toggle" href="#" id="MemDIDLContainer.add_child-toggle" onclick="return toggle('MemDIDLContainer.add_child');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin.MemDIDLContainer-class.html#add_child">add_child</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">container</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MemDIDLContainer.add_child-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MemDIDLContainer.add_child-expanded"><a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">        <tt class="py-docstring">""" Adds a child container to the MemDIDLContainer.</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">        <tt class="py-name">container</tt><tt class="py-op">.</tt><tt class="py-name">parent_container_id</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">didlobject</tt><tt class="py-op">.</tt><tt class="py-name">id</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-35" class="py-name"><a title="brisa.services.cds.plugin._RootPlugin.containers" class="py-name" href="#" onclick="return doclink('link-35', 'containers', 'link-29');">containers</a></tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">container</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line"> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line"> </tt>
+<a name="_RootPlugin"></a><div id="_RootPlugin-def"><a name="L159"></a><tt class="py-lineno">159</tt> <a class="py-toggle" href="#" id="_RootPlugin-toggle" onclick="return toggle('_RootPlugin');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="brisa.services.cds.plugin._RootPlugin-class.html">_RootPlugin</a><tt class="py-op">(</tt><tt class="py-base-class">Plugin</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_RootPlugin-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="_RootPlugin-expanded"><a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">    <tt class="py-docstring">""" Root plugin for all plugins. Receives the first browse which returns</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line"><tt class="py-docstring">    the initial folder structure.</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">    <tt id="link-36" class="py-name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-36', 'name', 'link-14');">name</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"rootplugin"</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">    <tt id="link-37" class="py-name"><a title="brisa.services.cds.plugin._RootPlugin.containers" class="py-name" href="#" onclick="return doclink('link-37', 'containers', 'link-29');">containers</a></tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line"> </tt>
+<a name="_RootPlugin.__init__"></a><div id="_RootPlugin.__init__-def"><a name="L166"></a><tt class="py-lineno">166</tt> <a class="py-toggle" href="#" id="_RootPlugin.__init__-toggle" onclick="return toggle('_RootPlugin.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin._RootPlugin-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_RootPlugin.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_RootPlugin.__init__-expanded"><a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line"> </tt>
+<a name="_RootPlugin.load"></a><div id="_RootPlugin.load-def"><a name="L169"></a><tt class="py-lineno">169</tt> <a class="py-toggle" href="#" id="_RootPlugin.load-toggle" onclick="return toggle('_RootPlugin.load');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin._RootPlugin-class.html#load">load</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_RootPlugin.load-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_RootPlugin.load-expanded"><a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line">        <tt class="py-docstring">""" Adds root containers for the root plugin.</tt> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-38" class="py-name" targets="Method brisa.services.cds.plugin._RootPlugin.add_container()=brisa.services.cds.plugin._RootPlugin-class.html#add_container,Method brisa.upnp.didl.didl_lite.Element.add_container()=brisa.upnp.didl.didl_lite.Element-class.html#add_container"><a title="brisa.services.cds.plugin._RootPlugin.add_container
+brisa.upnp.didl.didl_lite.Element.add_container" class="py-name" href="#" onclick="return doclink('link-38', 'add_container', 'link-38');">add_container</a></tt><tt class="py-op">(</tt><tt class="py-string">"brisaServerRoot"</tt><tt class="py-op">,</tt> <tt class="py-string">"0"</tt><tt class="py-op">)</tt> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name"><a title="brisa.services.cds.plugin._RootPlugin.add_container
+brisa.upnp.didl.didl_lite.Element.add_container" class="py-name" href="#" onclick="return doclink('link-39', 'add_container', 'link-38');">add_container</a></tt><tt class="py-op">(</tt><tt class="py-string">"Music"</tt><tt class="py-op">,</tt> <tt class="py-string">"1"</tt><tt class="py-op">,</tt> <tt class="py-string">"0"</tt><tt class="py-op">)</tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-40" class="py-name"><a title="brisa.services.cds.plugin._RootPlugin.add_container
+brisa.upnp.didl.didl_lite.Element.add_container" class="py-name" href="#" onclick="return doclink('link-40', 'add_container', 'link-38');">add_container</a></tt><tt class="py-op">(</tt><tt class="py-string">"Pictures"</tt><tt class="py-op">,</tt> <tt class="py-string">"3"</tt><tt class="py-op">,</tt> <tt class="py-string">"0"</tt><tt class="py-op">)</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-41" class="py-name"><a title="brisa.services.cds.plugin._RootPlugin.add_container
+brisa.upnp.didl.didl_lite.Element.add_container" class="py-name" href="#" onclick="return doclink('link-41', 'add_container', 'link-38');">add_container</a></tt><tt class="py-op">(</tt><tt class="py-string">"Playlists"</tt><tt class="py-op">,</tt> <tt class="py-string">"12"</tt><tt class="py-op">,</tt> <tt class="py-string">"0"</tt><tt class="py-op">)</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-42" class="py-name"><a title="brisa.services.cds.plugin._RootPlugin.add_container
+brisa.upnp.didl.didl_lite.Element.add_container" class="py-name" href="#" onclick="return doclink('link-42', 'add_container', 'link-38');">add_container</a></tt><tt class="py-op">(</tt><tt class="py-string">"Video"</tt><tt class="py-op">,</tt> <tt class="py-string">"2"</tt><tt class="py-op">,</tt> <tt class="py-string">"0"</tt><tt class="py-op">)</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-43" class="py-name"><a title="brisa.services.cds.plugin._RootPlugin.add_container
+brisa.upnp.didl.didl_lite.Element.add_container" class="py-name" href="#" onclick="return doclink('link-43', 'add_container', 'link-38');">add_container</a></tt><tt class="py-op">(</tt><tt class="py-string">"Audio Broadcast"</tt><tt class="py-op">,</tt> <tt class="py-string">"4"</tt><tt class="py-op">,</tt> <tt class="py-string">"1"</tt><tt class="py-op">)</tt> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-44" class="py-name"><a title="brisa.services.cds.plugin._RootPlugin.add_container
+brisa.upnp.didl.didl_lite.Element.add_container" class="py-name" href="#" onclick="return doclink('link-44', 'add_container', 'link-38');">add_container</a></tt><tt class="py-op">(</tt><tt class="py-string">"Video Broadcast"</tt><tt class="py-op">,</tt> <tt class="py-string">"5"</tt><tt class="py-op">,</tt> <tt class="py-string">"2"</tt><tt class="py-op">)</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-45" class="py-name"><a title="brisa.services.cds.plugin._RootPlugin.add_container
+brisa.upnp.didl.didl_lite.Element.add_container" class="py-name" href="#" onclick="return doclink('link-45', 'add_container', 'link-38');">add_container</a></tt><tt class="py-op">(</tt><tt class="py-string">"Remote Pictures"</tt><tt class="py-op">,</tt> <tt class="py-string">"6"</tt><tt class="py-op">,</tt> <tt class="py-string">"3"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line"> </tt>
+<a name="_RootPlugin.unload"></a><div id="_RootPlugin.unload-def"><a name="L181"></a><tt class="py-lineno">181</tt> <a class="py-toggle" href="#" id="_RootPlugin.unload-toggle" onclick="return toggle('_RootPlugin.unload');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin._RootPlugin-class.html#unload">unload</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_RootPlugin.unload-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_RootPlugin.unload-expanded"><a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line">        <tt class="py-docstring">""" Unload implementation.</tt> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-46" class="py-name"><a title="brisa.services.cds.plugin._RootPlugin.containers" class="py-name" href="#" onclick="return doclink('link-46', 'containers', 'link-29');">containers</a></tt><tt class="py-op">.</tt><tt class="py-name">clear</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line"> </tt>
+<a name="_RootPlugin.browse"></a><div id="_RootPlugin.browse-def"><a name="L186"></a><tt class="py-lineno">186</tt> <a class="py-toggle" href="#" id="_RootPlugin.browse-toggle" onclick="return toggle('_RootPlugin.browse');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin._RootPlugin-class.html#browse">browse</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">id</tt><tt class="py-op">,</tt> <tt class="py-param">browse_flag</tt><tt class="py-op">,</tt> <tt class="py-param">filter</tt><tt class="py-op">,</tt> <tt class="py-param">starting_index</tt><tt class="py-op">,</tt> </tt>
+<a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line">                <tt class="py-param">requested_count</tt><tt class="py-op">,</tt> <tt class="py-param">sort_criteria</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_RootPlugin.browse-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_RootPlugin.browse-expanded"><a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line">        <tt class="py-docstring">""" Browse implementation.</tt> </tt>
+<a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line">        <tt id="link-47" class="py-name"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-47', 'log', 'link-1');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'Browse: id= %s, browse_flag= %s, filter= %s,\</tt> </tt>
+<a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line"><tt class="py-string">        starting_index= %s, requested_count= %s, sort_criteria= %s'</tt><tt class="py-op">,</tt> </tt>
+<a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line">        <tt class="py-name">id</tt><tt class="py-op">,</tt> <tt class="py-name">browse_flag</tt><tt class="py-op">,</tt> <tt class="py-name">filter</tt><tt class="py-op">,</tt> <tt class="py-name">starting_index</tt><tt class="py-op">,</tt> <tt class="py-name">requested_count</tt><tt class="py-op">,</tt> </tt>
+<a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line">        <tt class="py-name">sort_criteria</tt><tt class="py-op">)</tt> </tt>
+<a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">browse_flag</tt> <tt class="py-op">==</tt> <tt class="py-string">"BrowseDirectChildren"</tt><tt class="py-op">:</tt> </tt>
+<a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-48" class="py-name"><a title="brisa.services.cds.plugin._RootPlugin.containers" class="py-name" href="#" onclick="return doclink('link-48', 'containers', 'link-29');">containers</a></tt><tt class="py-op">[</tt><tt class="py-name">id</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-49" class="py-name"><a title="brisa.services.cds.plugin._RootPlugin.containers" class="py-name" href="#" onclick="return doclink('link-49', 'containers', 'link-29');">containers</a></tt> </tt>
+<a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-50" class="py-name"><a title="brisa.services.cds.plugin._RootPlugin.containers" class="py-name" href="#" onclick="return doclink('link-50', 'containers', 'link-29');">containers</a></tt><tt class="py-op">[</tt><tt class="py-name">id</tt><tt class="py-op">]</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line"> </tt>
+<a name="_RootPlugin.search"></a><div id="_RootPlugin.search-def"><a name="L199"></a><tt class="py-lineno">199</tt> <a class="py-toggle" href="#" id="_RootPlugin.search-toggle" onclick="return toggle('_RootPlugin.search');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin._RootPlugin-class.html#search">search</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">id</tt><tt class="py-op">,</tt> <tt class="py-param">browse_flag</tt><tt class="py-op">,</tt> <tt class="py-param">filter</tt><tt class="py-op">,</tt> <tt class="py-param">starting_index</tt><tt class="py-op">,</tt> <tt class="py-param">requested_count</tt><tt class="py-op">,</tt> </tt>
+<a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line">                <tt class="py-param">sort_criteria</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_RootPlugin.search-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_RootPlugin.search-expanded"><a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line">        <tt class="py-docstring">""" TODO Search implementation.</tt> </tt>
+<a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">None</tt> </tt>
+</div><a name="L204"></a><tt class="py-lineno">204</tt>  <tt class="py-line"> </tt>
+<a name="_RootPlugin.add_container"></a><div id="_RootPlugin.add_container-def"><a name="L205"></a><tt class="py-lineno">205</tt> <a class="py-toggle" href="#" id="_RootPlugin.add_container-toggle" onclick="return toggle('_RootPlugin.add_container');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin._RootPlugin-class.html#add_container">add_container</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">title</tt><tt class="py-op">,</tt> <tt class="py-param">object_id</tt><tt class="py-op">,</tt> <tt class="py-param">parent_container_id</tt><tt class="py-op">=</tt><tt class="py-string">"-1"</tt><tt class="py-op">,</tt> </tt>
+<a name="L206"></a><tt class="py-lineno">206</tt>  <tt class="py-line">                      <tt class="py-param">plugin</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_RootPlugin.add_container-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_RootPlugin.add_container-expanded"><a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line">        <tt class="py-docstring">""" Adds a container to the root plugin.</tt> </tt>
+<a name="L208"></a><tt class="py-lineno">208</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L209"></a><tt class="py-lineno">209</tt>  <tt class="py-line"><tt class="py-docstring">        @param title: title</tt> </tt>
+<a name="L210"></a><tt class="py-lineno">210</tt>  <tt class="py-line"><tt class="py-docstring">        @param object_id: id</tt> </tt>
+<a name="L211"></a><tt class="py-lineno">211</tt>  <tt class="py-line"><tt class="py-docstring">        @param parent_container_id: parent id</tt> </tt>
+<a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line"><tt class="py-docstring">        @param plugin: container owner plugin</tt> </tt>
+<a name="L213"></a><tt class="py-lineno">213</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L214"></a><tt class="py-lineno">214</tt>  <tt class="py-line"><tt class="py-docstring">        @type title: string</tt> </tt>
+<a name="L215"></a><tt class="py-lineno">215</tt>  <tt class="py-line"><tt class="py-docstring">        @type object_id: string</tt> </tt>
+<a name="L216"></a><tt class="py-lineno">216</tt>  <tt class="py-line"><tt class="py-docstring">        @type parent_container_id: string</tt> </tt>
+<a name="L217"></a><tt class="py-lineno">217</tt>  <tt class="py-line"><tt class="py-docstring">        @type plugin: Plugin</tt> </tt>
+<a name="L218"></a><tt class="py-lineno">218</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L219"></a><tt class="py-lineno">219</tt>  <tt class="py-line"><tt class="py-docstring">        @return: the added container</tt> </tt>
+<a name="L220"></a><tt class="py-lineno">220</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: MemDIDLContainer</tt> </tt>
+<a name="L221"></a><tt class="py-lineno">221</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L222"></a><tt class="py-lineno">222</tt>  <tt class="py-line">        <tt id="link-51" class="py-name" targets="Variable brisa.upnp.didl.didl_lite.Object.object_id=brisa.upnp.didl.didl_lite.Object-class.html#object_id"><a title="brisa.upnp.didl.didl_lite.Object.object_id" class="py-name" href="#" onclick="return doclink('link-51', 'object_id', 'link-51');">object_id</a></tt> <tt class="py-op">=</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt id="link-52" class="py-name"><a title="brisa.upnp.didl.didl_lite.Object.object_id" class="py-name" href="#" onclick="return doclink('link-52', 'object_id', 'link-51');">object_id</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L223"></a><tt class="py-lineno">223</tt>  <tt class="py-line">        <tt class="py-name">parent_container_id</tt> <tt class="py-op">=</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">parent_container_id</tt><tt class="py-op">)</tt> </tt>
+<a name="L224"></a><tt class="py-lineno">224</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt id="link-53" class="py-name" targets="Module brisa.services.cds.plugin=brisa.services.cds.plugin-module.html,Variable brisa.services.cds.plugin.PluginLoader.plugin=brisa.services.cds.plugin.PluginLoader-class.html#plugin"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-53', 'plugin', 'link-53');">plugin</a></tt> <tt class="py-op">!=</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L225"></a><tt class="py-lineno">225</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt id="link-54" class="py-name"><a title="brisa.upnp.didl.didl_lite.Object.object_id" class="py-name" href="#" onclick="return doclink('link-54', 'object_id', 'link-51');">object_id</a></tt> <tt class="py-op">==</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L226"></a><tt class="py-lineno">226</tt>  <tt class="py-line">                <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"Error adding root plugin container: you must \</tt> </tt>
+<a name="L227"></a><tt class="py-lineno">227</tt>  <tt class="py-line"><tt class="py-string">define the object_id"</tt><tt class="py-op">)</tt> </tt>
+<a name="L228"></a><tt class="py-lineno">228</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">hasattr</tt><tt class="py-op">(</tt><tt id="link-55" class="py-name"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-55', 'plugin', 'link-53');">plugin</a></tt><tt class="py-op">,</tt> <tt class="py-string">"browse"</tt><tt class="py-op">)</tt> <tt class="py-keyword">or</tt> <tt class="py-keyword">not</tt> <tt class="py-name">hasattr</tt><tt class="py-op">(</tt><tt id="link-56" class="py-name"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-56', 'plugin', 'link-53');">plugin</a></tt><tt class="py-op">,</tt> <tt class="py-string">"name"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L229"></a><tt class="py-lineno">229</tt>  <tt class="py-line">                <tt class="py-keyword">raise</tt> <tt class="py-name">NotImplementedError</tt><tt class="py-op">(</tt><tt class="py-string">"The plugin must implement the \</tt> </tt>
+<a name="L230"></a><tt class="py-lineno">230</tt>  <tt class="py-line"><tt class="py-string">'browse' method and assign an attribute 'name'."</tt><tt class="py-op">)</tt> </tt>
+<a name="L231"></a><tt class="py-lineno">231</tt>  <tt class="py-line">            <tt id="link-57" class="py-name"><a title="brisa.upnp.didl.didl_lite.Object.object_id" class="py-name" href="#" onclick="return doclink('link-57', 'object_id', 'link-51');">object_id</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"%s:%s"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt id="link-58" class="py-name"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-58', 'plugin', 'link-53');">plugin</a></tt><tt class="py-op">.</tt><tt id="link-59" class="py-name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-59', 'name', 'link-14');">name</a></tt><tt class="py-op">,</tt> <tt id="link-60" class="py-name"><a title="brisa.upnp.didl.didl_lite.Object.object_id" class="py-name" href="#" onclick="return doclink('link-60', 'object_id', 'link-51');">object_id</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L232"></a><tt class="py-lineno">232</tt>  <tt class="py-line"> </tt>
+<a name="L233"></a><tt class="py-lineno">233</tt>  <tt class="py-line">        <tt class="py-name">new_container</tt> <tt class="py-op">=</tt> <tt id="link-61" class="py-name" targets="Class brisa.services.cds.plugin.MemDIDLContainer=brisa.services.cds.plugin.MemDIDLContainer-class.html"><a title="brisa.services.cds.plugin.MemDIDLContainer" class="py-name" href="#" onclick="return doclink('link-61', 'MemDIDLContainer', 'link-61');">MemDIDLContainer</a></tt><tt class="py-op">(</tt><tt class="py-name">id</tt><tt class="py-op">=</tt><tt id="link-62" class="py-name"><a title="brisa.upnp.didl.didl_lite.Object.object_id" class="py-name" href="#" onclick="return doclink('link-62', 'object_id', 'link-51');">object_id</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L234"></a><tt class="py-lineno">234</tt>  <tt class="py-line">                                         <tt class="py-name">title</tt><tt class="py-op">=</tt><tt class="py-name">title</tt><tt class="py-op">,</tt> </tt>
+<a name="L235"></a><tt class="py-lineno">235</tt>  <tt class="py-line">                                         <tt class="py-name">parent_container_id</tt><tt class="py-op">=</tt>\ </tt>
+<a name="L236"></a><tt class="py-lineno">236</tt>  <tt class="py-line">                                         <tt class="py-name">parent_container_id</tt><tt class="py-op">)</tt> </tt>
+<a name="L237"></a><tt class="py-lineno">237</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-63" class="py-name"><a title="brisa.services.cds.plugin._RootPlugin.containers" class="py-name" href="#" onclick="return doclink('link-63', 'containers', 'link-29');">containers</a></tt><tt class="py-op">[</tt><tt id="link-64" class="py-name"><a title="brisa.upnp.didl.didl_lite.Object.object_id" class="py-name" href="#" onclick="return doclink('link-64', 'object_id', 'link-51');">object_id</a></tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">new_container</tt> </tt>
+<a name="L238"></a><tt class="py-lineno">238</tt>  <tt class="py-line"> </tt>
+<a name="L239"></a><tt class="py-lineno">239</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">parent_container_id</tt> <tt class="py-op">!=</tt> <tt class="py-string">"-1"</tt><tt class="py-op">:</tt> </tt>
+<a name="L240"></a><tt class="py-lineno">240</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-65" class="py-name"><a title="brisa.services.cds.plugin._RootPlugin.containers" class="py-name" href="#" onclick="return doclink('link-65', 'containers', 'link-29');">containers</a></tt><tt class="py-op">[</tt><tt class="py-name">parent_container_id</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-66" class="py-name" targets="Method brisa.services.cds.plugin.MemDIDLContainer.add_child()=brisa.services.cds.plugin.MemDIDLContainer-class.html#add_child"><a title="brisa.services.cds.plugin.MemDIDLContainer.add_child" class="py-name" href="#" onclick="return doclink('link-66', 'add_child', 'link-66');">add_child</a></tt><tt class="py-op">(</tt><tt class="py-name">new_container</tt><tt class="py-op">)</tt> </tt>
+<a name="L241"></a><tt class="py-lineno">241</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">new_container</tt> </tt>
+</div></div><a name="L242"></a><tt class="py-lineno">242</tt>  <tt class="py-line"> </tt>
+<a name="L243"></a><tt class="py-lineno">243</tt>  <tt class="py-line"><tt id="link-67" class="py-name" targets="Variable brisa.services.cds.plugin.RootPluginSingleton=brisa.services.cds.plugin-module.html#RootPluginSingleton"><a title="brisa.services.cds.plugin.RootPluginSingleton" class="py-name" href="#" onclick="return doclink('link-67', 'RootPluginSingleton', 'link-67');">RootPluginSingleton</a></tt> <tt class="py-op">=</tt> <tt id="link-68" class="py-name" targets="Class brisa.services.cds.plugin._RootPlugin=brisa.services.cds.plugin._RootPlugin-class.html"><a title="brisa.services.cds.plugin._RootPlugin" class="py-name" href="#" onclick="return doclink('link-68', '_RootPlugin', 'link-68');">_RootPlugin</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L244"></a><tt class="py-lineno">244</tt>  <tt class="py-line"> </tt>
+<a name="L245"></a><tt class="py-lineno">245</tt>  <tt class="py-line"> </tt>
+<a name="PluginLoader"></a><div id="PluginLoader-def"><a name="L246"></a><tt class="py-lineno">246</tt> <a class="py-toggle" href="#" id="PluginLoader-toggle" onclick="return toggle('PluginLoader');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="brisa.services.cds.plugin.PluginLoader-class.html">PluginLoader</a><tt class="py-op">(</tt><tt class="py-base-class">ThreadObject</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PluginLoader-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="PluginLoader-expanded"><a name="L247"></a><tt class="py-lineno">247</tt>  <tt class="py-line">    <tt class="py-docstring">""" Class that loads a plugin asynchronously.</tt> </tt>
+<a name="L248"></a><tt class="py-lineno">248</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L249"></a><tt class="py-lineno">249</tt>  <tt class="py-line"> </tt>
+<a name="L250"></a><tt class="py-lineno">250</tt>  <tt class="py-line">    <tt id="link-69" class="py-name"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-69', 'plugin', 'link-53');">plugin</a></tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L251"></a><tt class="py-lineno">251</tt>  <tt class="py-line"> </tt>
+<a name="PluginLoader.__init__"></a><div id="PluginLoader.__init__-def"><a name="L252"></a><tt class="py-lineno">252</tt> <a class="py-toggle" href="#" id="PluginLoader.__init__-toggle" onclick="return toggle('PluginLoader.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin.PluginLoader-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">plugin</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PluginLoader.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="PluginLoader.__init__-expanded"><a name="L253"></a><tt class="py-lineno">253</tt>  <tt class="py-line">        <tt class="py-docstring">""" Constructor for class PluginLoader.</tt> </tt>
+<a name="L254"></a><tt class="py-lineno">254</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L255"></a><tt class="py-lineno">255</tt>  <tt class="py-line"><tt class="py-docstring">        @param plugin: plugin instance</tt> </tt>
+<a name="L256"></a><tt class="py-lineno">256</tt>  <tt class="py-line"><tt class="py-docstring">        @type plugin: Plugin</tt> </tt>
+<a name="L257"></a><tt class="py-lineno">257</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L258"></a><tt class="py-lineno">258</tt>  <tt class="py-line">        <tt id="link-70" class="py-name"><a title="brisa.threading.thread_object.ThreadObject" class="py-name" href="#" onclick="return doclink('link-70', 'ThreadObject', 'link-5');">ThreadObject</a></tt><tt class="py-op">.</tt><tt id="link-71" class="py-name"><a title="brisa.config.BrisaConf.__init__
+brisa.control_point.control_point.ControlPoint.__init__
+brisa.control_point.event.EventListener.__init__
+brisa.control_point.event.EventListenerServer.__init__
+brisa.services.cds.content_directory.ContentDirectory.__init__
+brisa.services.cds.plugin.MemContainer.__init__
+brisa.services.cds.plugin.MemDIDLContainer.__init__
+brisa.services.cds.plugin.MemDIDLObject.__init__
+brisa.services.cds.plugin.MemObject.__init__
+brisa.services.cds.plugin.Plugin.__init__
+brisa.services.cds.plugin.PluginLoader.__init__
+brisa.services.cds.plugin._PluginManager.__init__
+brisa.services.cds.plugin._RootPlugin.__init__
+brisa.services.web_server.resource.Resource.__init__
+brisa.services.web_server.static.Data.__init__
+brisa.services.web_server.static.StaticFile.__init__
+brisa.services.web_server.web_server_impl._BrisaWebServer.__init__
+brisa.threading.thread_manager._ThreadManager.__init__
+brisa.threading.thread_object.ThreadObject.__init__
+brisa.threading.threaded_call.ThreadedCall.__init__
+brisa.upnp.device.Device.__init__
+brisa.upnp.device.DeviceIcon.__init__
+brisa.upnp.device.RootDevice.__init__
+brisa.upnp.didl.didl_lite.Album.__init__
+brisa.upnp.didl.didl_lite.AudioItem.__init__
+brisa.upnp.didl.didl_lite.Container.__init__
+brisa.upnp.didl.didl_lite.Element.__init__
+brisa.upnp.didl.didl_lite.Genre.__init__
+brisa.upnp.didl.didl_lite.Item.__init__
+brisa.upnp.didl.didl_lite.Movie.__init__
+brisa.upnp.didl.didl_lite.MusicAlbum.__init__
+brisa.upnp.didl.didl_lite.MusicTrack.__init__
+brisa.upnp.didl.didl_lite.MusicVideoClip.__init__
+brisa.upnp.didl.didl_lite.Object.__init__
+brisa.upnp.didl.didl_lite.Person.__init__
+brisa.upnp.didl.didl_lite.Photo.__init__
+brisa.upnp.didl.didl_lite.Resource.__init__
+brisa.upnp.didl.didl_lite.VideoItem.__init__
+brisa.upnp.message_handle.device_description_message.DeviceDescriptionMessage.__init__
+brisa.upnp.message_handle.device_description_object.DeviceDescriptionObject.__init__
+brisa.upnp.message_handle.device_message.DeviceMessage.__init__
+brisa.upnp.message_handle.device_object.DeviceObject.__init__
+brisa.upnp.message_handle.user_preference_description_message.UserPreferenceDescriptionMessage.__init__
+brisa.upnp.message_handle.user_preference_description_object.UserPreferenceDescriptionObject.__init__
+brisa.upnp.message_handle.user_profile_description_message.UserProfileDescriptionMessage.__init__
+brisa.upnp.message_handle.user_profile_description_object.UserProfileDescriptionObject.__init__
+brisa.upnp.msearch.MSearch.__init__
+brisa.upnp.service.Action.__init__
+brisa.upnp.service.Argument.__init__
+brisa.upnp.service.Service.__init__
+brisa.upnp.service.StateVariable.__init__
+brisa.upnp.service.SubscribeRequest.__init__
+brisa.upnp.service.UnsubscribeRequest.__init__
+brisa.upnp.soap.HTTPError.__init__
+brisa.upnp.soap.SOAPProxy.__Method.__init__
+brisa.upnp.soap.SOAPProxy.__init__
+brisa.upnp.ssdp.SSDPServer.__init__
+brisa.upnp.upnp_handler.DeviceHandler.__init__
+brisa.upnp.upnp_publisher.ErrorCode.__init__
+brisa.upnp.upnp_publisher.UPnPPublisher.__init__
+brisa.utils.network_listeners.CannotListenError.__init__
+brisa.utils.network_listeners.NetworkListener.__init__
+brisa.utils.network_listeners.TCPListener.__init__
+brisa.utils.network_listeners.UDPListener.__init__
+brisa.utils.network_senders.TCPTransport.__init__
+brisa.utils.network_senders.UDPTransport.__init__
+brisa.utils.python.failure.Failure.__init__
+brisa.utils.python.looping_call.LoopingCall.__init__" class="py-name" href="#" onclick="return doclink('link-71', '__init__', 'link-28');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L259"></a><tt class="py-lineno">259</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-72" class="py-name"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-72', 'plugin', 'link-53');">plugin</a></tt> <tt class="py-op">=</tt> <tt id="link-73" class="py-name"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-73', 'plugin', 'link-53');">plugin</a></tt> </tt>
+</div><a name="L260"></a><tt class="py-lineno">260</tt>  <tt class="py-line"> </tt>
+<a name="PluginLoader.run"></a><div id="PluginLoader.run-def"><a name="L261"></a><tt class="py-lineno">261</tt> <a class="py-toggle" href="#" id="PluginLoader.run-toggle" onclick="return toggle('PluginLoader.run');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin.PluginLoader-class.html#run">run</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PluginLoader.run-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="PluginLoader.run-expanded"><a name="L262"></a><tt class="py-lineno">262</tt>  <tt class="py-line">        <tt class="py-docstring">""" ThreadObject main actions. Call start() instead of calling this</tt> </tt>
+<a name="L263"></a><tt class="py-lineno">263</tt>  <tt class="py-line"><tt class="py-docstring">        run() directly.</tt> </tt>
+<a name="L264"></a><tt class="py-lineno">264</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L265"></a><tt class="py-lineno">265</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L266"></a><tt class="py-lineno">266</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-74" class="py-name"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-74', 'plugin', 'link-53');">plugin</a></tt><tt class="py-op">.</tt><tt id="link-75" class="py-name" targets="Method brisa.services.cds.plugin.Plugin.execute()=brisa.services.cds.plugin.Plugin-class.html#execute"><a title="brisa.services.cds.plugin.Plugin.execute" class="py-name" href="#" onclick="return doclink('link-75', 'execute', 'link-75');">execute</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L267"></a><tt class="py-lineno">267</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L268"></a><tt class="py-lineno">268</tt>  <tt class="py-line">            <tt id="link-76" class="py-name"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-76', 'log', 'link-1');">log</a></tt><tt class="py-op">.</tt><tt id="link-77" class="py-name" targets="Method brisa.upnp.service.SubscribeRequest.error()=brisa.upnp.service.SubscribeRequest-class.html#error,Method brisa.upnp.service.UnsubscribeRequest.error()=brisa.upnp.service.UnsubscribeRequest-class.html#error"><a title="brisa.upnp.service.SubscribeRequest.error
+brisa.upnp.service.UnsubscribeRequest.error" class="py-name" href="#" onclick="return doclink('link-77', 'error', 'link-77');">error</a></tt><tt class="py-op">(</tt><tt class="py-string">"ERROR loading %s plugin: %s"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-78" class="py-name"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-78', 'plugin', 'link-53');">plugin</a></tt><tt class="py-op">.</tt><tt id="link-79" class="py-name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-79', 'name', 'link-14');">name</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L269"></a><tt class="py-lineno">269</tt>  <tt class="py-line">                                                         <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">e</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L270"></a><tt class="py-lineno">270</tt>  <tt class="py-line"> </tt>
+<a name="PluginLoader.prepare_to_stop"></a><div id="PluginLoader.prepare_to_stop-def"><a name="L271"></a><tt class="py-lineno">271</tt> <a class="py-toggle" href="#" id="PluginLoader.prepare_to_stop-toggle" onclick="return toggle('PluginLoader.prepare_to_stop');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin.PluginLoader-class.html#prepare_to_stop">prepare_to_stop</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PluginLoader.prepare_to_stop-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="PluginLoader.prepare_to_stop-expanded"><a name="L272"></a><tt class="py-lineno">272</tt>  <tt class="py-line">        <tt class="py-docstring">""" Unloads the plugin when stopped.</tt> </tt>
+<a name="L273"></a><tt class="py-lineno">273</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L274"></a><tt class="py-lineno">274</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-80" class="py-name"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-80', 'plugin', 'link-53');">plugin</a></tt><tt class="py-op">.</tt><tt id="link-81" class="py-name" targets="Method brisa.services.cds.plugin.Plugin.unload()=brisa.services.cds.plugin.Plugin-class.html#unload,Method brisa.services.cds.plugin._RootPlugin.unload()=brisa.services.cds.plugin._RootPlugin-class.html#unload"><a title="brisa.services.cds.plugin.Plugin.unload
+brisa.services.cds.plugin._RootPlugin.unload" class="py-name" href="#" onclick="return doclink('link-81', 'unload', 'link-81');">unload</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L275"></a><tt class="py-lineno">275</tt>  <tt class="py-line"> </tt>
+<a name="L276"></a><tt class="py-lineno">276</tt>  <tt class="py-line"> </tt>
+<a name="_PluginManager"></a><div id="_PluginManager-def"><a name="L277"></a><tt class="py-lineno">277</tt> <a class="py-toggle" href="#" id="_PluginManager-toggle" onclick="return toggle('_PluginManager');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="brisa.services.cds.plugin._PluginManager-class.html">_PluginManager</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_PluginManager-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="_PluginManager-expanded"><a name="L278"></a><tt class="py-lineno">278</tt>  <tt class="py-line">    <tt class="py-docstring">""" Manages the loading of plugins.</tt> </tt>
+<a name="L279"></a><tt class="py-lineno">279</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L280"></a><tt class="py-lineno">280</tt>  <tt class="py-line">    <tt class="py-comment"># Plugins instances</tt> </tt>
+<a name="L281"></a><tt class="py-lineno">281</tt>  <tt class="py-line"><tt class="py-comment"></tt>    <tt id="link-82" class="py-name" targets="Variable brisa.services.cds.plugin._PluginManager.plugins_instances=brisa.services.cds.plugin._PluginManager-class.html#plugins_instances"><a title="brisa.services.cds.plugin._PluginManager.plugins_instances" class="py-name" href="#" onclick="return doclink('link-82', 'plugins_instances', 'link-82');">plugins_instances</a></tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L282"></a><tt class="py-lineno">282</tt>  <tt class="py-line"> </tt>
+<a name="L283"></a><tt class="py-lineno">283</tt>  <tt class="py-line">    <tt class="py-comment"># Plugins classes</tt> </tt>
+<a name="L284"></a><tt class="py-lineno">284</tt>  <tt class="py-line"><tt class="py-comment"></tt>    <tt id="link-83" class="py-name" targets="Variable brisa.services.cds.plugin._PluginManager.plugins_classes=brisa.services.cds.plugin._PluginManager-class.html#plugins_classes"><a title="brisa.services.cds.plugin._PluginManager.plugins_classes" class="py-name" href="#" onclick="return doclink('link-83', 'plugins_classes', 'link-83');">plugins_classes</a></tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L285"></a><tt class="py-lineno">285</tt>  <tt class="py-line"> </tt>
+<a name="_PluginManager.__init__"></a><div id="_PluginManager.__init__-def"><a name="L286"></a><tt class="py-lineno">286</tt> <a class="py-toggle" href="#" id="_PluginManager.__init__-toggle" onclick="return toggle('_PluginManager.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin._PluginManager-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_PluginManager.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_PluginManager.__init__-expanded"><a name="L287"></a><tt class="py-lineno">287</tt>  <tt class="py-line">        <tt class="py-docstring">""" Instantiates the plugin manager and recognizes the plugins.</tt> </tt>
+<a name="L288"></a><tt class="py-lineno">288</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L289"></a><tt class="py-lineno">289</tt>  <tt class="py-line">        <tt class="py-keyword">from</tt> <tt id="link-84" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-84', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt class="py-name">services</tt><tt class="py-op">.</tt><tt id="link-85" class="py-name" targets="Package brisa.services.cds=brisa.services.cds-module.html"><a title="brisa.services.cds" class="py-name" href="#" onclick="return doclink('link-85', 'cds', 'link-85');">cds</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">plugins</tt> </tt>
+<a name="L290"></a><tt class="py-lineno">290</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">root_plugin</tt> <tt class="py-op">=</tt> <tt id="link-86" class="py-name"><a title="brisa.services.cds.plugin.RootPluginSingleton" class="py-name" href="#" onclick="return doclink('link-86', 'RootPluginSingleton', 'link-67');">RootPluginSingleton</a></tt> </tt>
+<a name="L291"></a><tt class="py-lineno">291</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">root_plugin</tt><tt class="py-op">.</tt><tt id="link-87" class="py-name"><a title="brisa.services.cds.plugin.Plugin.load
+brisa.services.cds.plugin._RootPlugin.load" class="py-name" href="#" onclick="return doclink('link-87', 'load', 'link-19');">load</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L292"></a><tt class="py-lineno">292</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-88" class="py-name"><a title="brisa.services.cds.plugin._PluginManager.plugins_classes" class="py-name" href="#" onclick="return doclink('link-88', 'plugins_classes', 'link-83');">plugins_classes</a></tt><tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">root_plugin</tt><tt class="py-op">.</tt><tt id="link-89" class="py-name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-89', 'name', 'link-14');">name</a></tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> \ </tt>
+<a name="L293"></a><tt class="py-lineno">293</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">root_plugin</tt><tt class="py-op">.</tt><tt class="py-name">__class__</tt> </tt>
+<a name="L294"></a><tt class="py-lineno">294</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-90" class="py-name" targets="Method brisa.services.cds.plugin._PluginManager._recognize_plugins()=brisa.services.cds.plugin._PluginManager-class.html#_recognize_plugins"><a title="brisa.services.cds.plugin._PluginManager._recognize_plugins" class="py-name" href="#" onclick="return doclink('link-90', '_recognize_plugins', 'link-90');">_recognize_plugins</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L295"></a><tt class="py-lineno">295</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listener</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+</div><a name="L296"></a><tt class="py-lineno">296</tt>  <tt class="py-line"> </tt>
+<a name="_PluginManager.load_plugins"></a><div id="_PluginManager.load_plugins-def"><a name="L297"></a><tt class="py-lineno">297</tt> <a class="py-toggle" href="#" id="_PluginManager.load_plugins-toggle" onclick="return toggle('_PluginManager.load_plugins');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin._PluginManager-class.html#load_plugins">load_plugins</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_PluginManager.load_plugins-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_PluginManager.load_plugins-expanded"><a name="L298"></a><tt class="py-lineno">298</tt>  <tt class="py-line">        <tt class="py-docstring">""" Instantiates plugins and loads them using PluginLoader.</tt> </tt>
+<a name="L299"></a><tt class="py-lineno">299</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L300"></a><tt class="py-lineno">300</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-91" class="py-name" targets="Method brisa.services.cds.plugin._PluginManager._instantiate_plugins()=brisa.services.cds.plugin._PluginManager-class.html#_instantiate_plugins"><a title="brisa.services.cds.plugin._PluginManager._instantiate_plugins" class="py-name" href="#" onclick="return doclink('link-91', '_instantiate_plugins', 'link-91');">_instantiate_plugins</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L301"></a><tt class="py-lineno">301</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-92" class="py-name" targets="Method brisa.services.cds.plugin._PluginManager._load_plugins()=brisa.services.cds.plugin._PluginManager-class.html#_load_plugins"><a title="brisa.services.cds.plugin._PluginManager._load_plugins" class="py-name" href="#" onclick="return doclink('link-92', '_load_plugins', 'link-92');">_load_plugins</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L302"></a><tt class="py-lineno">302</tt>  <tt class="py-line">        <tt id="link-93" class="py-name"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-93', 'log', 'link-1');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'Available plugins: %s'</tt><tt class="py-op">,</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-94" class="py-name"><a title="brisa.services.cds.plugin._PluginManager.plugins_classes" class="py-name" href="#" onclick="return doclink('link-94', 'plugins_classes', 'link-83');">plugins_classes</a></tt><tt class="py-op">.</tt><tt class="py-name">keys</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L303"></a><tt class="py-lineno">303</tt>  <tt class="py-line"> </tt>
+<a name="_PluginManager._recognize_plugins"></a><div id="_PluginManager._recognize_plugins-def"><a name="L304"></a><tt class="py-lineno">304</tt> <a class="py-toggle" href="#" id="_PluginManager._recognize_plugins-toggle" onclick="return toggle('_PluginManager._recognize_plugins');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin._PluginManager-class.html#_recognize_plugins">_recognize_plugins</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_PluginManager._recognize_plugins-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_PluginManager._recognize_plugins-expanded"><a name="L305"></a><tt class="py-lineno">305</tt>  <tt class="py-line">        <tt class="py-docstring">""" Recognizes plugins classes.</tt> </tt>
+<a name="L306"></a><tt class="py-lineno">306</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L307"></a><tt class="py-lineno">307</tt>  <tt class="py-line">        <tt class="py-name">classes</tt> <tt class="py-op">=</tt> <tt id="link-95" class="py-name" targets="Class brisa.services.cds.plugin.Plugin=brisa.services.cds.plugin.Plugin-class.html"><a title="brisa.services.cds.plugin.Plugin" class="py-name" href="#" onclick="return doclink('link-95', 'Plugin', 'link-95');">Plugin</a></tt><tt class="py-op">.</tt><tt class="py-name">__subclasses__</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L308"></a><tt class="py-lineno">308</tt>  <tt class="py-line"> </tt>
+<a name="L309"></a><tt class="py-lineno">309</tt>  <tt class="py-line">        <tt class="py-name">plugins_class_ref</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-96" class="py-name"><a title="brisa.services.cds.plugin._PluginManager.plugins_classes" class="py-name" href="#" onclick="return doclink('link-96', 'plugins_classes', 'link-83');">plugins_classes</a></tt><tt class="py-op">.</tt><tt class="py-name">values</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L310"></a><tt class="py-lineno">310</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">_class</tt> <tt class="py-keyword">in</tt> <tt class="py-name">classes</tt><tt class="py-op">:</tt> </tt>
+<a name="L311"></a><tt class="py-lineno">311</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">_class</tt> <tt class="py-keyword">not</tt> <tt class="py-keyword">in</tt> <tt class="py-name">plugins_class_ref</tt><tt class="py-op">:</tt> </tt>
+<a name="L312"></a><tt class="py-lineno">312</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-97" class="py-name"><a title="brisa.services.cds.plugin._PluginManager.plugins_classes" class="py-name" href="#" onclick="return doclink('link-97', 'plugins_classes', 'link-83');">plugins_classes</a></tt><tt class="py-op">[</tt><tt class="py-name">_class</tt><tt class="py-op">.</tt><tt id="link-98" class="py-name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-98', 'name', 'link-14');">name</a></tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">_class</tt> </tt>
+</div><a name="L313"></a><tt class="py-lineno">313</tt>  <tt class="py-line"> </tt>
+<a name="_PluginManager._instantiate_plugins"></a><div id="_PluginManager._instantiate_plugins-def"><a name="L314"></a><tt class="py-lineno">314</tt> <a class="py-toggle" href="#" id="_PluginManager._instantiate_plugins-toggle" onclick="return toggle('_PluginManager._instantiate_plugins');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin._PluginManager-class.html#_instantiate_plugins">_instantiate_plugins</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_PluginManager._instantiate_plugins-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_PluginManager._instantiate_plugins-expanded"><a name="L315"></a><tt class="py-lineno">315</tt>  <tt class="py-line">        <tt class="py-docstring">""" Instantiates all plugin classes into the plugin manager.</tt> </tt>
+<a name="L316"></a><tt class="py-lineno">316</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L317"></a><tt class="py-lineno">317</tt>  <tt class="py-line">        <tt class="py-name">plugins</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-99" class="py-name"><a title="brisa.services.cds.plugin._PluginManager.plugins_classes" class="py-name" href="#" onclick="return doclink('link-99', 'plugins_classes', 'link-83');">plugins_classes</a></tt><tt class="py-op">.</tt><tt class="py-name">values</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L318"></a><tt class="py-lineno">318</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt id="link-100" class="py-name"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-100', 'plugin', 'link-53');">plugin</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">plugins</tt><tt class="py-op">:</tt> </tt>
+<a name="L319"></a><tt class="py-lineno">319</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt id="link-101" class="py-name"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-101', 'plugin', 'link-53');">plugin</a></tt><tt class="py-op">.</tt><tt id="link-102" class="py-name"><a title="brisa.services.cds.plugin.Plugin.usage" class="py-name" href="#" onclick="return doclink('link-102', 'usage', 'link-15');">usage</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L320"></a><tt class="py-lineno">320</tt>  <tt class="py-line">                <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L321"></a><tt class="py-lineno">321</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-103" class="py-name"><a title="brisa.services.cds.plugin._PluginManager.plugins_instances" class="py-name" href="#" onclick="return doclink('link-103', 'plugins_instances', 'link-82');">plugins_instances</a></tt><tt class="py-op">[</tt><tt id="link-104" class="py-name"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-104', 'plugin', 'link-53');">plugin</a></tt><tt class="py-op">.</tt><tt id="link-105" class="py-name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-105', 'name', 'link-14');">name</a></tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt id="link-106" class="py-name"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-106', 'plugin', 'link-53');">plugin</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L322"></a><tt class="py-lineno">322</tt>  <tt class="py-line">                <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L323"></a><tt class="py-lineno">323</tt>  <tt class="py-line">                    <tt id="link-107" class="py-name"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-107', 'log', 'link-1');">log</a></tt><tt class="py-op">.</tt><tt id="link-108" class="py-name"><a title="brisa.upnp.service.SubscribeRequest.error
+brisa.upnp.service.UnsubscribeRequest.error" class="py-name" href="#" onclick="return doclink('link-108', 'error', 'link-77');">error</a></tt><tt class="py-op">(</tt><tt class="py-string">"Error while instantiating %s: %s"</tt> <tt class="py-op">%</tt> \ </tt>
+<a name="L324"></a><tt class="py-lineno">324</tt>  <tt class="py-line">                              <tt class="py-op">(</tt><tt id="link-109" class="py-name"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-109', 'plugin', 'link-53');">plugin</a></tt><tt class="py-op">.</tt><tt id="link-110" class="py-name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-110', 'name', 'link-14');">name</a></tt><tt class="py-op">,</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">e</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L325"></a><tt class="py-lineno">325</tt>  <tt class="py-line"> </tt>
+<a name="_PluginManager.load_plugin"></a><div id="_PluginManager.load_plugin-def"><a name="L326"></a><tt class="py-lineno">326</tt> <a class="py-toggle" href="#" id="_PluginManager.load_plugin-toggle" onclick="return toggle('_PluginManager.load_plugin');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin._PluginManager-class.html#load_plugin">load_plugin</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">plugin</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_PluginManager.load_plugin-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_PluginManager.load_plugin-expanded"><a name="L327"></a><tt class="py-lineno">327</tt>  <tt class="py-line">        <tt class="py-docstring">""" Loads a plugin using PluginLoader.</tt> </tt>
+<a name="L328"></a><tt class="py-lineno">328</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L329"></a><tt class="py-lineno">329</tt>  <tt class="py-line"><tt class="py-docstring">        @param plugin: plugin instance to be loaded</tt> </tt>
+<a name="L330"></a><tt class="py-lineno">330</tt>  <tt class="py-line"><tt class="py-docstring">        @type plugin: Plugin</tt> </tt>
+<a name="L331"></a><tt class="py-lineno">331</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L332"></a><tt class="py-lineno">332</tt>  <tt class="py-line">        <tt class="py-name">plugins_loader</tt> <tt class="py-op">=</tt> <tt id="link-111" class="py-name" targets="Class brisa.services.cds.plugin.PluginLoader=brisa.services.cds.plugin.PluginLoader-class.html"><a title="brisa.services.cds.plugin.PluginLoader" class="py-name" href="#" onclick="return doclink('link-111', 'PluginLoader', 'link-111');">PluginLoader</a></tt><tt class="py-op">(</tt><tt id="link-112" class="py-name"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-112', 'plugin', 'link-53');">plugin</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L333"></a><tt class="py-lineno">333</tt>  <tt class="py-line">        <tt class="py-name">plugins_loader</tt><tt class="py-op">.</tt><tt class="py-name">setName</tt><tt class="py-op">(</tt><tt class="py-string">"BRisa Plugin Loader (%s)"</tt> <tt class="py-op">%</tt> <tt id="link-113" class="py-name"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-113', 'plugin', 'link-53');">plugin</a></tt><tt class="py-op">.</tt><tt id="link-114" class="py-name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-114', 'name', 'link-14');">name</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L334"></a><tt class="py-lineno">334</tt>  <tt class="py-line">        <tt class="py-name">plugins_loader</tt><tt class="py-op">.</tt><tt id="link-115" class="py-name" targets="Method brisa.services.cds.content_directory.ContentDirectory.start()=brisa.services.cds.content_directory.ContentDirectory-class.html#start,Method brisa.threading.thread_object.ThreadObject.start()=brisa.threading.thread_object.ThreadObject-class.html#start,Method brisa.upnp.msearch.MSearch.start()=brisa.upnp.msearch.MSearch-class.html#start,Method brisa.upnp.ssdp.SSDPServer.start()=brisa.upnp.ssdp.SSDPServer-class.html#start,Method brisa.utils.python.looping_call.LoopingCall.start()=brisa.utils.python.looping_call.LoopingCall-class.html#start"><a title="brisa.services.cds.content_directory.ContentDirectory.start
+brisa.threading.thread_object.ThreadObject.start
+brisa.upnp.msearch.MSearch.start
+brisa.upnp.ssdp.SSDPServer.start
+brisa.utils.python.looping_call.LoopingCall.start" class="py-name" href="#" onclick="return doclink('link-115', 'start', 'link-115');">start</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L335"></a><tt class="py-lineno">335</tt>  <tt class="py-line"> </tt>
+<a name="_PluginManager._load_plugins"></a><div id="_PluginManager._load_plugins-def"><a name="L336"></a><tt class="py-lineno">336</tt> <a class="py-toggle" href="#" id="_PluginManager._load_plugins-toggle" onclick="return toggle('_PluginManager._load_plugins');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin._PluginManager-class.html#_load_plugins">_load_plugins</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_PluginManager._load_plugins-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_PluginManager._load_plugins-expanded"><a name="L337"></a><tt class="py-lineno">337</tt>  <tt class="py-line">        <tt class="py-docstring">""" Loads all plugins selected using load_plugin() method.</tt> </tt>
+<a name="L338"></a><tt class="py-lineno">338</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L339"></a><tt class="py-lineno">339</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L340"></a><tt class="py-lineno">340</tt>  <tt class="py-line">            <tt class="py-name">plugins</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-116" class="py-name"><a title="brisa.services.cds.plugin._PluginManager.plugins_instances" class="py-name" href="#" onclick="return doclink('link-116', 'plugins_instances', 'link-82');">plugins_instances</a></tt><tt class="py-op">.</tt><tt class="py-name">values</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L341"></a><tt class="py-lineno">341</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt id="link-117" class="py-name"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-117', 'plugin', 'link-53');">plugin</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">plugins</tt><tt class="py-op">:</tt> </tt>
+<a name="L342"></a><tt class="py-lineno">342</tt>  <tt class="py-line">                <tt id="link-118" class="py-name"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-118', 'log', 'link-1');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">"START loading plugin %s"</tt><tt class="py-op">,</tt> <tt id="link-119" class="py-name"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-119', 'plugin', 'link-53');">plugin</a></tt><tt class="py-op">.</tt><tt id="link-120" class="py-name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-120', 'name', 'link-14');">name</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L343"></a><tt class="py-lineno">343</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-121" class="py-name" targets="Method brisa.services.cds.plugin._PluginManager.load_plugin()=brisa.services.cds.plugin._PluginManager-class.html#load_plugin"><a title="brisa.services.cds.plugin._PluginManager.load_plugin" class="py-name" href="#" onclick="return doclink('link-121', 'load_plugin', 'link-121');">load_plugin</a></tt><tt class="py-op">(</tt><tt id="link-122" class="py-name"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-122', 'plugin', 'link-53');">plugin</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L344"></a><tt class="py-lineno">344</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listener</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L345"></a><tt class="py-lineno">345</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listener</tt><tt class="py-op">.</tt><tt id="link-123" class="py-name" targets="Method brisa.services.cds.content_directory.ContentDirectory.on_start_plugin()=brisa.services.cds.content_directory.ContentDirectory-class.html#on_start_plugin"><a title="brisa.services.cds.content_directory.ContentDirectory.on_start_plugin" class="py-name" href="#" onclick="return doclink('link-123', 'on_start_plugin', 'link-123');">on_start_plugin</a></tt><tt class="py-op">(</tt><tt id="link-124" class="py-name"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-124', 'plugin', 'link-53');">plugin</a></tt><tt class="py-op">.</tt><tt id="link-125" class="py-name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-125', 'name', 'link-14');">name</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L346"></a><tt class="py-lineno">346</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L347"></a><tt class="py-lineno">347</tt>  <tt class="py-line">            <tt id="link-126" class="py-name"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-126', 'log', 'link-1');">log</a></tt><tt class="py-op">.</tt><tt id="link-127" class="py-name" targets="Function brisa.log.show_exception()=brisa.log-module.html#show_exception"><a title="brisa.log.show_exception" class="py-name" href="#" onclick="return doclink('link-127', 'show_exception', 'link-127');">show_exception</a></tt><tt class="py-op">(</tt><tt class="py-string">"Error while loading plugin %s"</tt> <tt class="py-op">%</tt> <tt id="link-128" class="py-name"><a title="brisa.services.cds.plugin
+brisa.services.cds.plugin.PluginLoader.plugin" class="py-name" href="#" onclick="return doclink('link-128', 'plugin', 'link-53');">plugin</a></tt><tt class="py-op">.</tt><tt id="link-129" class="py-name"><a title="brisa.services.cds.plugin.Plugin.name
+brisa.services.cds.plugin._RootPlugin.name" class="py-name" href="#" onclick="return doclink('link-129', 'name', 'link-14');">name</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L348"></a><tt class="py-lineno">348</tt>  <tt class="py-line">                                   <tt class="py-name">e</tt><tt class="py-op">,</tt> <tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L349"></a><tt class="py-lineno">349</tt>  <tt class="py-line"> </tt>
+<a name="_PluginManager.notify_plugin_loaded"></a><div id="_PluginManager.notify_plugin_loaded-def"><a name="L350"></a><tt class="py-lineno">350</tt> <a class="py-toggle" href="#" id="_PluginManager.notify_plugin_loaded-toggle" onclick="return toggle('_PluginManager.notify_plugin_loaded');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.services.cds.plugin._PluginManager-class.html#notify_plugin_loaded">notify_plugin_loaded</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">plugin_name</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_PluginManager.notify_plugin_loaded-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_PluginManager.notify_plugin_loaded-expanded"><a name="L351"></a><tt class="py-lineno">351</tt>  <tt class="py-line">        <tt class="py-docstring">""" Notifies the listener and through the logger that a plugin has</tt> </tt>
+<a name="L352"></a><tt class="py-lineno">352</tt>  <tt class="py-line"><tt class="py-docstring">        finished loading.</tt> </tt>
+<a name="L353"></a><tt class="py-lineno">353</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L354"></a><tt class="py-lineno">354</tt>  <tt class="py-line">        <tt id="link-130" class="py-name"><a title="brisa.log
+brisa.services.cds.plugin.log" class="py-name" href="#" onclick="return doclink('link-130', 'log', 'link-1');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">"END loading plugin %s"</tt><tt class="py-op">,</tt> <tt class="py-name">plugin_name</tt><tt class="py-op">)</tt> </tt>
+<a name="L355"></a><tt class="py-lineno">355</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listener</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L356"></a><tt class="py-lineno">356</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listener</tt><tt class="py-op">.</tt><tt id="link-131" class="py-name" targets="Method brisa.services.cds.content_directory.ContentDirectory.on_end_plugin()=brisa.services.cds.content_directory.ContentDirectory-class.html#on_end_plugin"><a title="brisa.services.cds.content_directory.ContentDirectory.on_end_plugin" class="py-name" href="#" onclick="return doclink('link-131', 'on_end_plugin', 'link-131');">on_end_plugin</a></tt><tt class="py-op">(</tt><tt class="py-name">plugin_name</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L357"></a><tt class="py-lineno">357</tt>  <tt class="py-line"> </tt>
+<a name="L358"></a><tt class="py-lineno">358</tt>  <tt class="py-line"><tt id="link-132" class="py-name"><a title="brisa.services.cds.plugin.PluginManagerSingleton" class="py-name" href="#" onclick="return doclink('link-132', 'PluginManagerSingleton', 'link-18');">PluginManagerSingleton</a></tt> <tt class="py-op">=</tt> <tt id="link-133" class="py-name" targets="Class brisa.services.cds.plugin._PluginManager=brisa.services.cds.plugin._PluginManager-class.html"><a title="brisa.services.cds.plugin._PluginManager" class="py-name" href="#" onclick="return doclink('link-133', '_PluginManager', 'link-133');">_PluginManager</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L359"></a><tt class="py-lineno">359</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >BRisa UPnP Framework</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Sat Oct 11 01:30:31 2008
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

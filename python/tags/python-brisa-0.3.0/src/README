@@ -1,0 +1,36 @@
+Brisa UPnP A/V Framework
+========================
+
+Introduction
+------------
+
+Brisa is a UPnP implementation written in python. Brisa provides
+the ability to create UPnP devices like MediaServers and 
+MediaRenderers (not implemented yet). It will offer a plugin
+architecture enabling the addition of new services such as Flickr,
+Rhapsody, etc, and use them as UPnP services. Brisa is compatible with
+the UPnP A/V specifications:
+	MediaServer 1.0
+	ConnectionManager 1.0
+	ContentDirectory 1.0
+	MediaRenderer 1.0
+
+The main target of this project is the Maemo Platform, but it should work on any O.S. with
+python interpreter installed.
+
+
+License
+------------
+
+Brisa is Licensed under the MIT license, please refer to:
+
+http://opensource.org/licenses/mit-license.php
+
+
+References
+--------------
+
+[1] Maemo Platform,  http://www.maemo.org/
+[2] UPnP Forum, http://www.upnp.org/
+[3] Python, http://www.python.org/
+[4] PymedS, http://resnet.uoregon.edu/~gurney_j/jmpc/pymeds.html

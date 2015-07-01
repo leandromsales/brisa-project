@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>brisa.core.reactors._ecore</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://brisa.garage.maemo.org">python-brisa UPnP framework 0.10.0 documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="brisa-module.html">Package&nbsp;brisa</a> ::
+        <a href="brisa.core-module.html">Package&nbsp;core</a> ::
+        <a href="brisa.core.reactors-module.html">Package&nbsp;reactors</a> ::
+        Module&nbsp;_ecore
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="brisa.core.reactors._ecore-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="brisa.core.reactors._ecore-module.html">Module brisa.core.reactors._ecore</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># Licensed under the MIT license</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># http://opensource.org/licenses/mit-license.php or see LICENSE file.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"># Copyright 2007-2008 Brisa Team &lt;brisa-develop@garage.maemo.org&gt;</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring">""" Ecore based reactor.</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package brisa=brisa-module.html"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-0', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Package brisa.core=brisa.core-module.html"><a title="brisa.core" class="py-name" href="#" onclick="return doclink('link-1', 'core', 'link-1');">core</a></tt> <tt class="py-keyword">import</tt> <tt id="link-2" class="py-name" targets="Module brisa.core.log=brisa.core.log-module.html,Variable brisa.core.plugin_manager.log=brisa.core.plugin_manager-module.html#log,Variable brisa.core.reactors._ecore.log=brisa.core.reactors._ecore-module.html#log,Variable brisa.core.reactors.gtk2.log=brisa.core.reactors.gtk2-module.html#log,Variable brisa.core.webserver.log=brisa.core.webserver-module.html#log,Variable brisa.upnp.control_point.control_point.log=brisa.upnp.control_point.control_point-module.html#log,Variable brisa.upnp.control_point.control_point_av.log=brisa.upnp.control_point.control_point_av-module.html#log,Variable brisa.upnp.device.event.log=brisa.upnp.device.event-module.html#log,Variable brisa.upnp.services.cds.content_directory.log=brisa.upnp.services.cds.content_directory-module.html#log,Variable brisa.upnp.ssdp.log=brisa.upnp.ssdp-module.html#log"><a title="brisa.core.log
+brisa.core.plugin_manager.log
+brisa.core.reactors._ecore.log
+brisa.core.reactors.gtk2.log
+brisa.core.webserver.log
+brisa.upnp.control_point.control_point.log
+brisa.upnp.control_point.control_point_av.log
+brisa.upnp.device.event.log
+brisa.upnp.services.cds.content_directory.log
+brisa.upnp.ssdp.log" class="py-name" href="#" onclick="return doclink('link-2', 'log', 'link-2');">log</a></tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-3" class="py-name"><a title="brisa" class="py-name" href="#" onclick="return doclink('link-3', 'brisa', 'link-0');">brisa</a></tt><tt class="py-op">.</tt><tt id="link-4" class="py-name"><a title="brisa.core" class="py-name" href="#" onclick="return doclink('link-4', 'core', 'link-1');">core</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Module brisa.core.ireactor=brisa.core.ireactor-module.html"><a title="brisa.core.ireactor" class="py-name" href="#" onclick="return doclink('link-5', 'ireactor', 'link-5');">ireactor</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line">    <tt class="py-keyword">import</tt> <tt class="py-name">ecore</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line">    <tt class="py-name">__all__</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-string">'EcoreReactor'</tt><tt class="py-op">,</tt> <tt class="py-op">)</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-keyword">except</tt> <tt class="py-name">ImportError</tt><tt class="py-op">:</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line">    <tt class="py-name">__all__</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt id="link-6" class="py-name"><a title="brisa.core.log
+brisa.core.plugin_manager.log
+brisa.core.reactors._ecore.log
+brisa.core.reactors.gtk2.log
+brisa.core.webserver.log
+brisa.upnp.control_point.control_point.log
+brisa.upnp.control_point.control_point_av.log
+brisa.upnp.device.event.log
+brisa.upnp.services.cds.content_directory.log
+brisa.upnp.ssdp.log" class="py-name" href="#" onclick="return doclink('link-6', 'log', 'link-2');">log</a></tt> <tt class="py-op">=</tt> <tt id="link-7" class="py-name"><a title="brisa.core.log
+brisa.core.plugin_manager.log
+brisa.core.reactors._ecore.log
+brisa.core.reactors.gtk2.log
+brisa.core.webserver.log
+brisa.upnp.control_point.control_point.log
+brisa.upnp.control_point.control_point_av.log
+brisa.upnp.device.event.log
+brisa.upnp.services.cds.content_directory.log
+brisa.upnp.ssdp.log" class="py-name" href="#" onclick="return doclink('link-7', 'log', 'link-2');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-string">'reactor.ecore'</tt><tt class="py-op">)</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"> </tt>
+<a name="EcoreReactor"></a><div id="EcoreReactor-def"><a name="L21"></a><tt class="py-lineno"> 21</tt> <a class="py-toggle" href="#" id="EcoreReactor-toggle" onclick="return toggle('EcoreReactor');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="brisa.core.reactors._ecore.EcoreReactor-class.html">EcoreReactor</a><tt class="py-op">(</tt><tt class="py-base-class">ReactorInterface</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EcoreReactor-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="EcoreReactor-expanded"><a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line">    <tt id="link-8" class="py-name" targets="Variable brisa.core.reactors._ecore.EcoreReactor._stop_funcs=brisa.core.reactors._ecore.EcoreReactor-class.html#_stop_funcs,Variable brisa.core.reactors._select.SelectReactor._stop_funcs=brisa.core.reactors._select.SelectReactor-class.html#_stop_funcs,Variable brisa.core.reactors.glib2.GLib2Reactor._stop_funcs=brisa.core.reactors.glib2.GLib2Reactor-class.html#_stop_funcs,Variable brisa.core.reactors.gtk2.Gtk2Reactor._stop_funcs=brisa.core.reactors.gtk2.Gtk2Reactor-class.html#_stop_funcs"><a title="brisa.core.reactors._ecore.EcoreReactor._stop_funcs
+brisa.core.reactors._select.SelectReactor._stop_funcs
+brisa.core.reactors.glib2.GLib2Reactor._stop_funcs
+brisa.core.reactors.gtk2.Gtk2Reactor._stop_funcs" class="py-name" href="#" onclick="return doclink('link-8', '_stop_funcs', 'link-8');">_stop_funcs</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line">    <tt id="link-9" class="py-name" targets="Variable brisa.core.reactors._ecore.EcoreReactor._start_funcs=brisa.core.reactors._ecore.EcoreReactor-class.html#_start_funcs,Variable brisa.core.reactors._select.SelectReactor._start_funcs=brisa.core.reactors._select.SelectReactor-class.html#_start_funcs,Variable brisa.core.reactors.glib2.GLib2Reactor._start_funcs=brisa.core.reactors.glib2.GLib2Reactor-class.html#_start_funcs,Variable brisa.core.reactors.gtk2.Gtk2Reactor._start_funcs=brisa.core.reactors.gtk2.Gtk2Reactor-class.html#_start_funcs"><a title="brisa.core.reactors._ecore.EcoreReactor._start_funcs
+brisa.core.reactors._select.SelectReactor._start_funcs
+brisa.core.reactors.glib2.GLib2Reactor._start_funcs
+brisa.core.reactors.gtk2.Gtk2Reactor._start_funcs" class="py-name" href="#" onclick="return doclink('link-9', '_start_funcs', 'link-9');">_start_funcs</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"> </tt>
+<a name="EcoreReactor.add_timer"></a><div id="EcoreReactor.add_timer-def"><a name="L26"></a><tt class="py-lineno"> 26</tt> <a class="py-toggle" href="#" id="EcoreReactor.add_timer-toggle" onclick="return toggle('EcoreReactor.add_timer');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.core.reactors._ecore.EcoreReactor-class.html#add_timer">add_timer</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">interval</tt><tt class="py-op">,</tt> <tt class="py-param">callback</tt><tt class="py-op">,</tt> <tt class="py-param">threshold</tt><tt class="py-op">=</tt><tt class="py-number">0</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EcoreReactor.add_timer-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="EcoreReactor.add_timer-expanded"><a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line">        <tt class="py-docstring">""" Add timer.</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-docstring">        @note: should return an ID assigned to the timer, so that it can be</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-docstring">               removed by rem_timer().</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">ecore</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Class brisa.core.reactors._select.Timer=brisa.core.reactors._select.Timer-class.html"><a title="brisa.core.reactors._select.Timer" class="py-name" href="#" onclick="return doclink('link-10', 'Timer', 'link-10');">Timer</a></tt><tt class="py-op">(</tt><tt class="py-name">interval</tt><tt class="py-op">,</tt> <tt class="py-name">callback</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"> </tt>
+<a name="EcoreReactor.rem_timer"></a><div id="EcoreReactor.rem_timer-def"><a name="L34"></a><tt class="py-lineno"> 34</tt> <a class="py-toggle" href="#" id="EcoreReactor.rem_timer-toggle" onclick="return toggle('EcoreReactor.rem_timer');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.core.reactors._ecore.EcoreReactor-class.html#rem_timer">rem_timer</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">timer</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EcoreReactor.rem_timer-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="EcoreReactor.rem_timer-expanded"><a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">        <tt class="py-docstring">""" Removes a timer.</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">timer</tt><tt class="py-op">.</tt><tt class="py-name">delete</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"> </tt>
+<a name="EcoreReactor.add_fd"></a><div id="EcoreReactor.add_fd-def"><a name="L39"></a><tt class="py-lineno"> 39</tt> <a class="py-toggle" href="#" id="EcoreReactor.add_fd-toggle" onclick="return toggle('EcoreReactor.add_fd');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.core.reactors._ecore.EcoreReactor-class.html#add_fd">add_fd</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">fd</tt><tt class="py-op">,</tt> <tt class="py-param">event_callback</tt><tt class="py-op">,</tt> <tt class="py-param">event_type</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EcoreReactor.add_fd-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="EcoreReactor.add_fd-expanded"><a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">        <tt class="py-docstring">""" Adds a fd for watch.</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-name">condition</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">event_type</tt> <tt class="py-op">&amp;</tt> <tt class="py-name">EVENT_TYPE_READ</tt><tt class="py-op">:</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">            <tt class="py-name">condition</tt> <tt class="py-op">=</tt> <tt class="py-name">ecore</tt><tt class="py-op">.</tt><tt class="py-name">ECORE_FD_READ</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">event_type</tt> <tt class="py-op">&amp;</tt> <tt class="py-name">EVENT_TYPE_WRITE</tt><tt class="py-op">:</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">condition</tt><tt class="py-op">:</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">                <tt class="py-name">condition</tt> <tt class="py-op">=</tt> <tt class="py-name">ecore</tt><tt class="py-op">.</tt><tt class="py-name">ECORE_FD_WRITE</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">            <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">                <tt class="py-name">condition</tt> <tt class="py-op">=</tt> <tt class="py-name">condition</tt> <tt class="py-op">|</tt> <tt class="py-name">ecore</tt><tt class="py-op">.</tt><tt class="py-name">ECORE_FD_WRITE</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">event_type</tt> <tt class="py-op">&amp;</tt> <tt class="py-name">EVENT_TYPE_EXCEPTION</tt><tt class="py-op">:</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">condition</tt><tt class="py-op">:</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">                <tt class="py-name">condition</tt> <tt class="py-op">=</tt> <tt class="py-name">ecore</tt><tt class="py-op">.</tt><tt class="py-name">ECORE_FD_ERROR</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">            <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">                <tt class="py-name">condition</tt> <tt class="py-op">=</tt> <tt class="py-name">condition</tt> <tt class="py-op">|</tt> <tt class="py-name">ecore</tt><tt class="py-op">.</tt><tt class="py-name">ECORE_FD_ERROR</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">ecore</tt><tt class="py-op">.</tt><tt class="py-name">fd_handler_add</tt><tt class="py-op">(</tt><tt class="py-name">fd</tt><tt class="py-op">,</tt> <tt class="py-name">condition</tt><tt class="py-op">,</tt> <tt class="py-name">event_callback</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"> </tt>
+<a name="EcoreReactor.rem_fd"></a><div id="EcoreReactor.rem_fd-def"><a name="L58"></a><tt class="py-lineno"> 58</tt> <a class="py-toggle" href="#" id="EcoreReactor.rem_fd-toggle" onclick="return toggle('EcoreReactor.rem_fd');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.core.reactors._ecore.EcoreReactor-class.html#rem_fd">rem_fd</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">fd_handler</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EcoreReactor.rem_fd-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="EcoreReactor.rem_fd-expanded"><a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">        <tt class="py-docstring">""" Removes a fd from being watched.</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">fd_handler</tt><tt class="py-op">.</tt><tt class="py-name">delete</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"> </tt>
+<a name="EcoreReactor.add_after_stop_func"></a><div id="EcoreReactor.add_after_stop_func-def"><a name="L63"></a><tt class="py-lineno"> 63</tt> <a class="py-toggle" href="#" id="EcoreReactor.add_after_stop_func-toggle" onclick="return toggle('EcoreReactor.add_after_stop_func');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.core.reactors._ecore.EcoreReactor-class.html#add_after_stop_func">add_after_stop_func</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">func</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EcoreReactor.add_after_stop_func-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="EcoreReactor.add_after_stop_func-expanded"><a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt class="py-docstring">""" Registers a function to be called before entering the STOPPED</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"><tt class="py-docstring">        state.</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring">        @param func: function</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-docstring">        @type func: callable</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">func</tt> <tt class="py-keyword">not</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name"><a title="brisa.core.reactors._ecore.EcoreReactor._stop_funcs
+brisa.core.reactors._select.SelectReactor._stop_funcs
+brisa.core.reactors.glib2.GLib2Reactor._stop_funcs
+brisa.core.reactors.gtk2.Gtk2Reactor._stop_funcs" class="py-name" href="#" onclick="return doclink('link-11', '_stop_funcs', 'link-8');">_stop_funcs</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="brisa.core.reactors._ecore.EcoreReactor._stop_funcs
+brisa.core.reactors._select.SelectReactor._stop_funcs
+brisa.core.reactors.glib2.GLib2Reactor._stop_funcs
+brisa.core.reactors.gtk2.Gtk2Reactor._stop_funcs" class="py-name" href="#" onclick="return doclink('link-12', '_stop_funcs', 'link-8');">_stop_funcs</a></tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">func</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"> </tt>
+<a name="EcoreReactor.rem_after_stop_func"></a><div id="EcoreReactor.rem_after_stop_func-def"><a name="L73"></a><tt class="py-lineno"> 73</tt> <a class="py-toggle" href="#" id="EcoreReactor.rem_after_stop_func-toggle" onclick="return toggle('EcoreReactor.rem_after_stop_func');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.core.reactors._ecore.EcoreReactor-class.html#rem_after_stop_func">rem_after_stop_func</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">func</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EcoreReactor.rem_after_stop_func-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="EcoreReactor.rem_after_stop_func-expanded"><a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">        <tt class="py-docstring">""" Removes a registered function.</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"><tt class="py-docstring">        @param func: function</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"><tt class="py-docstring">        @type func: callable</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">func</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="brisa.core.reactors._ecore.EcoreReactor._stop_funcs
+brisa.core.reactors._select.SelectReactor._stop_funcs
+brisa.core.reactors.glib2.GLib2Reactor._stop_funcs
+brisa.core.reactors.gtk2.Gtk2Reactor._stop_funcs" class="py-name" href="#" onclick="return doclink('link-13', '_stop_funcs', 'link-8');">_stop_funcs</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="brisa.core.reactors._ecore.EcoreReactor._stop_funcs
+brisa.core.reactors._select.SelectReactor._stop_funcs
+brisa.core.reactors.glib2.GLib2Reactor._stop_funcs
+brisa.core.reactors.gtk2.Gtk2Reactor._stop_funcs" class="py-name" href="#" onclick="return doclink('link-14', '_stop_funcs', 'link-8');">_stop_funcs</a></tt><tt class="py-op">.</tt><tt class="py-name">remove</tt><tt class="py-op">(</tt><tt class="py-name">func</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"> </tt>
+<a name="EcoreReactor.add_before_start_func"></a><div id="EcoreReactor.add_before_start_func-def"><a name="L82"></a><tt class="py-lineno"> 82</tt> <a class="py-toggle" href="#" id="EcoreReactor.add_before_start_func-toggle" onclick="return toggle('EcoreReactor.add_before_start_func');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.core.reactors._ecore.EcoreReactor-class.html#add_before_start_func">add_before_start_func</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">func</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EcoreReactor.add_before_start_func-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="EcoreReactor.add_before_start_func-expanded"><a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">        <tt class="py-docstring">""" Registers a function to be called before starting the main loop.</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"><tt class="py-docstring">        @param func: function</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"><tt class="py-docstring">        @type func: callable</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">func</tt> <tt class="py-keyword">not</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name"><a title="brisa.core.reactors._ecore.EcoreReactor._start_funcs
+brisa.core.reactors._select.SelectReactor._start_funcs
+brisa.core.reactors.glib2.GLib2Reactor._start_funcs
+brisa.core.reactors.gtk2.Gtk2Reactor._start_funcs" class="py-name" href="#" onclick="return doclink('link-15', '_start_funcs', 'link-9');">_start_funcs</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="brisa.core.reactors._ecore.EcoreReactor._start_funcs
+brisa.core.reactors._select.SelectReactor._start_funcs
+brisa.core.reactors.glib2.GLib2Reactor._start_funcs
+brisa.core.reactors.gtk2.Gtk2Reactor._start_funcs" class="py-name" href="#" onclick="return doclink('link-16', '_start_funcs', 'link-9');">_start_funcs</a></tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">func</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"> </tt>
+<a name="EcoreReactor.rem_before_start_func"></a><div id="EcoreReactor.rem_before_start_func-def"><a name="L91"></a><tt class="py-lineno"> 91</tt> <a class="py-toggle" href="#" id="EcoreReactor.rem_before_start_func-toggle" onclick="return toggle('EcoreReactor.rem_before_start_func');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.core.reactors._ecore.EcoreReactor-class.html#rem_before_start_func">rem_before_start_func</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">func</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EcoreReactor.rem_before_start_func-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="EcoreReactor.rem_before_start_func-expanded"><a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">        <tt class="py-docstring">""" Removes a registered function.</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring">        @param func: function</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt class="py-docstring">        @type func: callable</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">func</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name"><a title="brisa.core.reactors._ecore.EcoreReactor._start_funcs
+brisa.core.reactors._select.SelectReactor._start_funcs
+brisa.core.reactors.glib2.GLib2Reactor._start_funcs
+brisa.core.reactors.gtk2.Gtk2Reactor._start_funcs" class="py-name" href="#" onclick="return doclink('link-17', '_start_funcs', 'link-9');">_start_funcs</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="brisa.core.reactors._ecore.EcoreReactor._start_funcs
+brisa.core.reactors._select.SelectReactor._start_funcs
+brisa.core.reactors.glib2.GLib2Reactor._start_funcs
+brisa.core.reactors.gtk2.Gtk2Reactor._start_funcs" class="py-name" href="#" onclick="return doclink('link-18', '_start_funcs', 'link-9');">_start_funcs</a></tt><tt class="py-op">.</tt><tt class="py-name">remove</tt><tt class="py-op">(</tt><tt class="py-name">func</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"> </tt>
+<a name="EcoreReactor.main_loop_iterate"></a><div id="EcoreReactor.main_loop_iterate-def"><a name="L100"></a><tt class="py-lineno">100</tt> <a class="py-toggle" href="#" id="EcoreReactor.main_loop_iterate-toggle" onclick="return toggle('EcoreReactor.main_loop_iterate');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.core.reactors._ecore.EcoreReactor-class.html#main_loop_iterate">main_loop_iterate</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EcoreReactor.main_loop_iterate-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="EcoreReactor.main_loop_iterate-expanded"><a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt class="py-docstring">""" Runs a single iteration of the main loop. Reactor enters the</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"><tt class="py-docstring">        RUNNING state while this method executes.</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt class="py-name">ecore</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Method brisa.core.ireactor.ReactorInterface.main_loop_iterate()=brisa.core.ireactor.ReactorInterface-class.html#main_loop_iterate,Method brisa.core.reactors._ecore.EcoreReactor.main_loop_iterate()=brisa.core.reactors._ecore.EcoreReactor-class.html#main_loop_iterate,Method brisa.core.reactors._select.SelectReactor.main_loop_iterate()=brisa.core.reactors._select.SelectReactor-class.html#main_loop_iterate,Method brisa.core.reactors.glib2.GLib2Reactor.main_loop_iterate()=brisa.core.reactors.glib2.GLib2Reactor-class.html#main_loop_iterate,Method brisa.core.reactors.gtk2.Gtk2Reactor.main_loop_iterate()=brisa.core.reactors.gtk2.Gtk2Reactor-class.html#main_loop_iterate"><a title="brisa.core.ireactor.ReactorInterface.main_loop_iterate
+brisa.core.reactors._ecore.EcoreReactor.main_loop_iterate
+brisa.core.reactors._select.SelectReactor.main_loop_iterate
+brisa.core.reactors.glib2.GLib2Reactor.main_loop_iterate
+brisa.core.reactors.gtk2.Gtk2Reactor.main_loop_iterate" class="py-name" href="#" onclick="return doclink('link-19', 'main_loop_iterate', 'link-19');">main_loop_iterate</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"> </tt>
+<a name="EcoreReactor.main"></a><div id="EcoreReactor.main-def"><a name="L106"></a><tt class="py-lineno">106</tt> <a class="py-toggle" href="#" id="EcoreReactor.main-toggle" onclick="return toggle('EcoreReactor.main');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.core.reactors._ecore.EcoreReactor-class.html#main">main</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EcoreReactor.main-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="EcoreReactor.main-expanded"><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">        <tt class="py-docstring">""" Enters the RUNNING state by running the main loop until</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line"><tt class="py-docstring">        main_quit() is called.</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Method brisa.core.reactors._ecore.EcoreReactor._main_call_before_start_funcs()=brisa.core.reactors._ecore.EcoreReactor-class.html#_main_call_before_start_funcs,Method brisa.core.reactors._select.SelectReactor._main_call_before_start_funcs()=brisa.core.reactors._select.SelectReactor-class.html#_main_call_before_start_funcs,Method brisa.core.reactors.glib2.GLib2Reactor._main_call_before_start_funcs()=brisa.core.reactors.glib2.GLib2Reactor-class.html#_main_call_before_start_funcs,Method brisa.core.reactors.gtk2.Gtk2Reactor._main_call_before_start_funcs()=brisa.core.reactors.gtk2.Gtk2Reactor-class.html#_main_call_before_start_funcs"><a title="brisa.core.reactors._ecore.EcoreReactor._main_call_before_start_funcs
+brisa.core.reactors._select.SelectReactor._main_call_before_start_funcs
+brisa.core.reactors.glib2.GLib2Reactor._main_call_before_start_funcs
+brisa.core.reactors.gtk2.Gtk2Reactor._main_call_before_start_funcs" class="py-name" href="#" onclick="return doclink('link-20', '_main_call_before_start_funcs', 'link-20');">_main_call_before_start_funcs</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Variable brisa.core.ireactor.ReactorInterface.state=brisa.core.ireactor.ReactorInterface-class.html#state,Variable brisa.core.reactors._select.SelectReactor.state=brisa.core.reactors._select.SelectReactor-class.html#state"><a title="brisa.core.ireactor.ReactorInterface.state
+brisa.core.reactors._select.SelectReactor.state" class="py-name" href="#" onclick="return doclink('link-21', 'state', 'link-21');">state</a></tt> <tt class="py-op">=</tt> <tt class="py-name">REACTOR_STATE_RUNNING</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">        <tt class="py-name">ecore</tt><tt class="py-op">.</tt><tt class="py-name">main_loop_begin</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="brisa.core.ireactor.ReactorInterface.state
+brisa.core.reactors._select.SelectReactor.state" class="py-name" href="#" onclick="return doclink('link-22', 'state', 'link-21');">state</a></tt> <tt class="py-op">=</tt> <tt class="py-name">REACTOR_STATE_STOPPED</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Method brisa.core.reactors._ecore.EcoreReactor._main_call_after_stop_funcs()=brisa.core.reactors._ecore.EcoreReactor-class.html#_main_call_after_stop_funcs,Method brisa.core.reactors.glib2.GLib2Reactor._main_call_after_stop_funcs()=brisa.core.reactors.glib2.GLib2Reactor-class.html#_main_call_after_stop_funcs,Method brisa.core.reactors.gtk2.Gtk2Reactor._main_call_after_stop_funcs()=brisa.core.reactors.gtk2.Gtk2Reactor-class.html#_main_call_after_stop_funcs"><a title="brisa.core.reactors._ecore.EcoreReactor._main_call_after_stop_funcs
+brisa.core.reactors.glib2.GLib2Reactor._main_call_after_stop_funcs
+brisa.core.reactors.gtk2.Gtk2Reactor._main_call_after_stop_funcs" class="py-name" href="#" onclick="return doclink('link-23', '_main_call_after_stop_funcs', 'link-23');">_main_call_after_stop_funcs</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"> </tt>
+<a name="EcoreReactor.main_quit"></a><div id="EcoreReactor.main_quit-def"><a name="L116"></a><tt class="py-lineno">116</tt> <a class="py-toggle" href="#" id="EcoreReactor.main_quit-toggle" onclick="return toggle('EcoreReactor.main_quit');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.core.reactors._ecore.EcoreReactor-class.html#main_quit">main_quit</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EcoreReactor.main_quit-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="EcoreReactor.main_quit-expanded"><a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">        <tt class="py-docstring">""" Terminates the main loop.</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">        <tt class="py-name">ecore</tt><tt class="py-op">.</tt><tt class="py-name">main_loop_quit</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"> </tt>
+<a name="EcoreReactor.is_running"></a><div id="EcoreReactor.is_running-def"><a name="L121"></a><tt class="py-lineno">121</tt> <a class="py-toggle" href="#" id="EcoreReactor.is_running-toggle" onclick="return toggle('EcoreReactor.is_running');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.core.reactors._ecore.EcoreReactor-class.html#is_running">is_running</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EcoreReactor.is_running-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="EcoreReactor.is_running-expanded"><a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">        <tt class="py-docstring">""" Returns True if the main loop is running</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">True</tt> <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="brisa.core.ireactor.ReactorInterface.state
+brisa.core.reactors._select.SelectReactor.state" class="py-name" href="#" onclick="return doclink('link-24', 'state', 'link-21');">state</a></tt> <tt class="py-keyword">else</tt> <tt class="py-name">False</tt> </tt>
+</div><a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"> </tt>
+<a name="EcoreReactor._main_call_after_stop_funcs"></a><div id="EcoreReactor._main_call_after_stop_funcs-def"><a name="L126"></a><tt class="py-lineno">126</tt> <a class="py-toggle" href="#" id="EcoreReactor._main_call_after_stop_funcs-toggle" onclick="return toggle('EcoreReactor._main_call_after_stop_funcs');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.core.reactors._ecore.EcoreReactor-class.html#_main_call_after_stop_funcs">_main_call_after_stop_funcs</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EcoreReactor._main_call_after_stop_funcs-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="EcoreReactor._main_call_after_stop_funcs-expanded"><a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">        <tt class="py-docstring">""" Calls registered functions to be called after the main loop is</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"><tt class="py-docstring">        stopped.</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">cb</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name"><a title="brisa.core.reactors._ecore.EcoreReactor._stop_funcs
+brisa.core.reactors._select.SelectReactor._stop_funcs
+brisa.core.reactors.glib2.GLib2Reactor._stop_funcs
+brisa.core.reactors.gtk2.Gtk2Reactor._stop_funcs" class="py-name" href="#" onclick="return doclink('link-25', '_stop_funcs', 'link-8');">_stop_funcs</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">            <tt class="py-name">cb</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"> </tt>
+<a name="EcoreReactor._main_call_before_start_funcs"></a><div id="EcoreReactor._main_call_before_start_funcs-def"><a name="L133"></a><tt class="py-lineno">133</tt> <a class="py-toggle" href="#" id="EcoreReactor._main_call_before_start_funcs-toggle" onclick="return toggle('EcoreReactor._main_call_before_start_funcs');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="brisa.core.reactors._ecore.EcoreReactor-class.html#_main_call_before_start_funcs">_main_call_before_start_funcs</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EcoreReactor._main_call_before_start_funcs-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="EcoreReactor._main_call_before_start_funcs-expanded"><a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">        <tt class="py-docstring">""" Call registered functions to be called before starting the main</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line"><tt class="py-docstring">        loop.</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">cb</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-26" class="py-name"><a title="brisa.core.reactors._ecore.EcoreReactor._start_funcs
+brisa.core.reactors._select.SelectReactor._start_funcs
+brisa.core.reactors.glib2.GLib2Reactor._start_funcs
+brisa.core.reactors.gtk2.Gtk2Reactor._start_funcs" class="py-name" href="#" onclick="return doclink('link-26', '_start_funcs', 'link-9');">_start_funcs</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">            <tt class="py-name">cb</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://brisa.garage.maemo.org">python-brisa UPnP framework 0.10.0 documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Jun  9 22:25:02 2009
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

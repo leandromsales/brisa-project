@@ -1,0 +1,7 @@
+BRISA_MODULES = core upnp utils
+BRISA_INSTALL_PREFIX = /usr
+BRISA_INSTALL_LIBS = /usr/lib
+BRISA_INSTALL_BINS = /usr/bin
+BRISA_INSTALL_HEADERS = /usr/include/BRisa
+BRISA_INSTALL_FEATURES = /opt/necessitas/Android/4.7.60/mkspecs/features
+BRISA_INSTALL_DOCS = /usr/doc

@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>BRisa Project - FAQ</title>
+	<meta name="resource-type" content="document" />
+	<meta http-equiv="content-type" content="text/html; charset: iso-8859-1" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<link href="includes/css.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="includes/lightbox.css" type="text/css" media="screen" />
+	
+    <script src="includes/actions.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/prototype.js"></script>
+	<script type="text/javascript" src="js/scriptaculous.js?load=effects"></script>
+	<script type="text/javascript" src="js/lightbox.js"></script>
+</head>
+
+<body>
+
+
+<div id='container'>
+    <div id="faixa"> </div>
+	<div id="menu">
+		<img src="images/marca.png" alt="logo" title="logo" align="left"
+	style="padding-top: 10px; padding-left: 10px;"/>
+        <a href="publications.html" class="menu_opc">publications</a>
+        <a href="downloads.html" class="menu_opc">downloads</a>
+        <a href="development.html" class="menu_opc">developers corner</a>
+        <a href="documentation.html" class="menu_opc">docs</a>
+        <a href="faq.html" class="menu_opc">faq</a>
+        <a href="http://brisa.garage.maemo.org/" class="menu_opc">home</a>
+	</div>
+
+    <div id='content'>
+
+    <br/>
+
+<div class="box" align="center">
+<h1>Frequently Asked Questions</h1>
+<br/>
+
+<div class="box" align="center">
+<h2>Q: What is BRisa?</h2>
+BRisa (or <i>python-brisa</i>) is an UPnP framework written in Python and licensed under the <a
+href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
+The project also provides a few user applications:
+<ul type=square>
+    <li><b>Media Server</b> serves your media over the network</li>
+    <li><b>Media Renderer</b> plays media served somewhere over the network
+    (e.g. from a media server)</li>
+    <li><b>Media Applet</b> can easily start/stop media servers/renderers</li>
+</ul>
+</div>
+<br/>
+
+<div class="box" align="center">
+
+<h2>Q: What is UPnP?</h2>
+UPnP is a technology that eliminates all the complexity of adding devices to a
+network. For example, suppose you buy a new printer and you want it to be available
+on your home network for all PC's to use it. For having that, you'll usually need to install the
+drivers and attach the printer to a computer.
+
+<br/><br/>An UPnP-enabled printer would
+need just its cord plugged into the wall and connected to the network with a
+cable or wireless (if present in the printer). No need for drivers.
+
+<br/><br/><b>*</b> Actually, UPnP is much more than that (the explanation above is very brief and
+for introductory purposes only). For more information, please
+see the <a href="http://upnp.org/about/default.asp">UPnP about</a> webpage. It
+describes throughly the goodies of this technology.
+</div>
+
+<br/>
+
+<div class="box" align="center">
+
+<h2>Q: What is a device? What is a control point? (Terminology)</h2>
+A <b>device</b> in the UPnP world is some piece of equipment that can
+communicate using the UPnP protocol. This means that there are devices that
+are just computer programs and devices that are both the program and the hardware.
+<br/>
+<br/>Examples: UPnP-enabled printer (hardware and program), media server running on your
+desktop computer (just a program), an UPnP binary light (hardware and program) and so on.
+
+<br/><br/>
+A <b>control point</b> is a program that can control UPnP <b>devices</b>. For
+example, a binary light can be switched on/off using a control point. This
+control point might be a simple one that controls only binary lights or a more
+complex one, that is able to control a range of devices types that includes binary
+lights.
+<br/><br/>
+An example of control point would be an application that controls the lights,
+audio ambience and security of a house. A simpler one would be just a wireless
+switch that switches off a light.
+</div>
+
+
+<br/>
+
+
+<div class="box" align="center">
+
+<h2>Q: What can BRisa do for me?</h2>
+    <ul type=square>
+        <li>Create UPnP devices and services of any kind</li>
+        <li>Create UPnP control points for any kind of device</li>
+        <li>A lot more! Check what we have on our <a
+        href="documentation.html">Documentation</a></li>
+    </ul>
+</div>
+
+<br/>
+
+
+<div class="box" align="center">
+<h2>Q: Where can I run it?</h2>
+Linux, Mac OSX, Nokia maemo devices (N800, N810).
+<br/><br/>
+BRisa might also run on *BSD, *UNIX.
+
+BRisa really needs your help and feedback so
+that it run out of the box on these systems. Please report problems to the <a
+href="mailto:brisa-develop@garage.maemo.org">development list</a> and we will
+surely try to fix it.
+<br/><br/>There's also a plan of porting it to Symbian S60.
+</p>
+</div>
+
+<br/>
+<div class="box" align="center">
+<h2>Q: Where should I look for help?</h2>
+<ul type=square>
+    <li><b>E-mail</b> your problem to the <a
+    href="mailto:brisa-discuss@garage.maemo.org">discussion
+    list</a> (brisa-discuss@garage.maemo.org)</li>
+    <li><b>IRC</b> #brisa at irc.freenode.org</li>
+</ul>
+</p>
+</div>
+
+<br/>
+<div class="box" align="center">
+
+<h2>Q: I want to contribute. Where should I start?</h2>
+Please consider <a href="hacking_brisa.html">Hackers Guide</a> as reference. You
+should also contact us on IRC or through the mailing list in case you have
+problems for the project. We will also appreciate ideas and features requests.
+</p>
+</div>
+
+<br/>
+
+</div>
+</div>
+	  <div id="sub_footer">
+	  	<img src="images/li_rodape.jpg" alt="logo" usemap="#Map" title="logo" border="0">
+		<map name="Map" id="Map">
+			<area shape="rect" coords="1,3,79,33" href="http://brisa.garage.maemo.org/">
+			<area shape="rect" coords="135,3,227,30" href="http://percomp.org/" target="_blank">
+			<area shape="rect" coords="300,5,399,30" href="http://embedded.ufcg.edu.br/" target="_blank">
+			<area shape="rect" coords="499,3,543,40" href="http://www.indt.org/" target="_blank">
+			<area shape="rect" coords="577,3,911,108" href="http://maemo.org/" target="_blank">
+        </map>
+    </div>
+</div>P
+	  <div id="footer"> &copy; Copyright 2007 - 2009, <span style="color: rgb(255, 255, 255);"><b>INdT</b></span></div>
+</body>
+</html>

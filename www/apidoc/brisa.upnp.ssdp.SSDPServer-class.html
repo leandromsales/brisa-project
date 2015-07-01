@@ -1,0 +1,1040 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>brisa.upnp.ssdp.SSDPServer</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://brisa.garage.maemo.org">python-brisa UPnP framework 0.10.0 documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="brisa-module.html">Package&nbsp;brisa</a> ::
+        <a href="brisa.upnp-module.html">Package&nbsp;upnp</a> ::
+        <a href="brisa.upnp.ssdp-module.html">Module&nbsp;ssdp</a> ::
+        Class&nbsp;SSDPServer
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="brisa.upnp.ssdp.SSDPServer-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class SSDPServer</h1><p class="nomargin-top"><span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer">source&nbsp;code</a></span></p>
+<pre class="base-tree">
+object --+
+         |
+        <strong class="uidshort">SSDPServer</strong>
+</pre>
+
+<hr />
+<p>Implementation of a SSDP server.</p>
+  <p>The notify_received and search_received methods are called when the 
+  appropriate type of datagram is received by the server.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.ssdp.SSDPServer-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">server_name</span>,
+        <span class="summary-sig-arg">xml_description_filename</span>,
+        <span class="summary-sig-arg">max_age</span>=<span class="summary-sig-default">1800</span>,
+        <span class="summary-sig-arg">receive_notify</span>=<span class="summary-sig-default">True</span>)</span><br />
+      Constructor for the SSDPServer class.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="is_running"></a><span class="summary-sig-name">is_running</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns True if the SSDPServer is running, False otherwise.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer.is_running">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="start"></a><span class="summary-sig-name">start</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Starts the SSDPServer.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer.start">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="stop"></a><span class="summary-sig-name">stop</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Sends bye bye notifications and stops the SSDPServer.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer.stop">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="destroy"></a><span class="summary-sig-name">destroy</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Destroys the SSDPServer.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer.destroy">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="clear_device_list"></a><span class="summary-sig-name">clear_device_list</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Clears the device list.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer.clear_device_list">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="discovered_device_failed"></a><span class="summary-sig-name">discovered_device_failed</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">dev</span>)</span><br />
+      Device could not be fully built, so forget it.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer.discovered_device_failed">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">boolean</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.ssdp.SSDPServer-class.html#is_known_device" class="summary-sig-name">is_known_device</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">usn</span>)</span><br />
+      Returns if the device with the passed usn is already known.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer.is_known_device">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.ssdp.SSDPServer-class.html#subscribe" class="summary-sig-name">subscribe</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">callback</span>)</span><br />
+      Subscribes a callback for an event.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer.subscribe">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.ssdp.SSDPServer-class.html#unsubscribe" class="summary-sig-name">unsubscribe</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">callback</span>)</span><br />
+      Unsubscribes a callback for an event.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer.unsubscribe">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="announce_device"></a><span class="summary-sig-name">announce_device</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Announces the device.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer.announce_device">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.ssdp.SSDPServer-class.html#register_device" class="summary-sig-name">register_device</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">device</span>)</span><br />
+      Registers a device on the SSDP server.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer.register_device">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.ssdp.SSDPServer-class.html#_datagram_received" class="summary-sig-name" onclick="show_private();">_datagram_received</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">data</span>,
+        <span class="summary-sig-arg">(host, port)</span>)</span><br />
+      Handles a received multicast datagram.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer._datagram_received">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.ssdp.SSDPServer-class.html#_discovery_request" class="summary-sig-name" onclick="show_private();">_discovery_request</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">headers</span>,
+        <span class="summary-sig-arg">(host, port)</span>)</span><br />
+      Processes discovery requests and responds accordingly.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer._discovery_request">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.ssdp.SSDPServer-class.html#_notify_received" class="summary-sig-name" onclick="show_private();">_notify_received</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">headers</span>,
+        <span class="summary-sig-arg">(host, port)</span>)</span><br />
+      Processes a presence announcement.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer._notify_received">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.ssdp.SSDPServer-class.html#_register" class="summary-sig-name" onclick="show_private();">_register</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">usn</span>,
+        <span class="summary-sig-arg">st</span>,
+        <span class="summary-sig-arg">location</span>,
+        <span class="summary-sig-arg">server</span>,
+        <span class="summary-sig-arg">cache_control</span>,
+        <span class="summary-sig-arg">where</span>=<span class="summary-sig-default">'remote'</span>)</span><br />
+      Registers a service or device.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer._register">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_local_register"></a><span class="summary-sig-name">_local_register</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">usn</span>,
+        <span class="summary-sig-arg">st</span>,
+        <span class="summary-sig-arg">location</span>,
+        <span class="summary-sig-arg">server</span>,
+        <span class="summary-sig-arg">cache_control</span>)</span><br />
+      Registers locally a new service or device.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer._local_register">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_register_device"></a><span class="summary-sig-name">_register_device</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">device</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer._register_device">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_renew_notifications"></a><span class="summary-sig-name">_renew_notifications</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Renew notifications (sends a notify</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer._renew_notifications">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_unregister"></a><span class="summary-sig-name">_unregister</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">usn</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer._unregister">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.ssdp.SSDPServer-class.html#_do_notify" class="summary-sig-name" onclick="show_private();">_do_notify</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">usn</span>)</span><br />
+      Do a notification for the usn specified.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer._do_notify">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="brisa.upnp.ssdp.SSDPServer-class.html#_do_byebye" class="summary-sig-name" onclick="show_private();">_do_byebye</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">usn</span>)</span><br />
+      Do byebye notification for the usn specified.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer._do_byebye">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_callback"></a><span class="summary-sig-name">_callback</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">*args</span>)</span><br />
+      Performs callbacks for events.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer._callback">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_cleanup"></a><span class="summary-sig-name">_cleanup</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Cleans the SSDPServer by removing known devices and internal cache.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer._cleanup">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="brisa.upnp.ssdp.SSDPServer-class.html#msg_already_started" class="summary-name">msg_already_started</a> = <code title="'tried to start() SSDPServer when already started'">'tried to start() SSDPServer when alread<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="brisa.upnp.ssdp.SSDPServer-class.html#msg_already_stopped" class="summary-name">msg_already_stopped</a> = <code title="'tried to stop() SSDPServer when already stopped'">'tried to stop() SSDPServer when already<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">server_name</span>,
+        <span class="sig-arg">xml_description_filename</span>,
+        <span class="sig-arg">max_age</span>=<span class="sig-default">1800</span>,
+        <span class="sig-arg">receive_notify</span>=<span class="sig-default">True</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Constructor for the SSDPServer class.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>server_name</code></strong> (string) - server name</li>
+        <li><strong class="pname"><code>xml_description_filename</code></strong> () - XML description filename</li>
+        <li><strong class="pname"><code>max_age</code></strong> (integer) - max age parameter, default 1800.</li>
+        <li><strong class="pname"><code>receive_notify</code></strong> (boolean) - if False, ignores notify messages</li>
+    </ul></dd>
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="is_known_device"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">is_known_device</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">usn</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer.is_known_device">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns if the device with the passed usn is already known.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>usn</code></strong> (string) - device's usn</li>
+    </ul></dd>
+    <dt>Returns: boolean</dt>
+        <dd>True if it is known</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="subscribe"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">subscribe</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">name</span>,
+        <span class="sig-arg">callback</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer.subscribe">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Subscribes a callback for an event.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>name</code></strong> (string) - name of the event. May be &quot;new_device_event&quot; or 
+          &quot;removed_device_event&quot;</li>
+        <li><strong class="pname"><code>callback</code></strong> (callable) - callback</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="unsubscribe"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">unsubscribe</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">name</span>,
+        <span class="sig-arg">callback</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer.unsubscribe">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Unsubscribes a callback for an event.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>name</code></strong> (string) - name of the event</li>
+        <li><strong class="pname"><code>callback</code></strong> (callable) - callback</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="register_device"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">register_device</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">device</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer.register_device">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Registers a device on the SSDP server.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>device</code></strong> (Device) - device to be registered</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_datagram_received"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_datagram_received</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">data</span>,
+        <span class="sig-arg">(host, port)</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer._datagram_received">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Handles a received multicast datagram.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>data</code></strong> (string) - raw data</li>
+        <li><strong class="pname"><code>host</code></strong> (string) - datagram source host</li>
+        <li><strong class="pname"><code>port</code></strong> (integer) - datagram source port</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_discovery_request"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_discovery_request</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">headers</span>,
+        <span class="sig-arg">(host, port)</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer._discovery_request">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Processes discovery requests and responds accordingly.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>headers</code></strong> (dictionary) - discovery headers</li>
+        <li><strong class="pname"><code>host</code></strong> (string @type port integer) - discovery source host</li>
+        <li><strong class="pname"><code>port</code></strong> - discovery source port</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_notify_received"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_notify_received</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">headers</span>,
+        <span class="sig-arg">(host, port)</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer._notify_received">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Processes a presence announcement.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>headers</code></strong> (dictionary) - notify headers</li>
+        <li><strong class="pname"><code>host</code></strong> (string) - notify source host</li>
+        <li><strong class="pname"><code>port</code></strong> (integer) - notify source port</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_register"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_register</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">usn</span>,
+        <span class="sig-arg">st</span>,
+        <span class="sig-arg">location</span>,
+        <span class="sig-arg">server</span>,
+        <span class="sig-arg">cache_control</span>,
+        <span class="sig-arg">where</span>=<span class="sig-default">'remote'</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer._register">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Registers a service or device.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>usn</code></strong> (string) - usn</li>
+        <li><strong class="pname"><code>st</code></strong> (string) - st</li>
+        <li><strong class="pname"><code>location</code></strong> (string) - location</li>
+        <li><strong class="pname"><code>server</code></strong> (string) - server</li>
+        <li><strong class="pname"><code>cache_control</code></strong> (string) - cache control</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Note:</strong>
+        these parameters are part of the UPnP Specification. Even though 
+        they're abstracted by the framework (devices and services messages 
+        already contain these parameters), if you want to understand it 
+        please refer to the UPnP specification. Links can be found at our 
+        developer documentation homepage.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="_do_notify"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_do_notify</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">usn</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer._do_notify">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Do a notification for the usn specified.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>usn</code></strong> (string) - st</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_do_byebye"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_do_byebye</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">usn</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="brisa.upnp.ssdp-pysrc.html#SSDPServer._do_byebye">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Do byebye notification for the usn specified.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>usn</code></strong> (string) - usn</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== CLASS VARIABLE DETAILS ==================== -->
+<a name="section-ClassVariableDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variable Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariableDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="msg_already_started"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">msg_already_started</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+'tried to start() SSDPServer when already started'
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="msg_already_stopped"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">msg_already_stopped</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+'tried to stop() SSDPServer when already stopped'
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="brisa-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://brisa.garage.maemo.org">python-brisa UPnP framework 0.10.0 documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Jun  9 22:24:59 2009
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

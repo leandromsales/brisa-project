@@ -1,0 +1,35 @@
+#!/usr/bin/env python
+# Licensed under the MIT license
+# http://opensource.org/licenses/mit-license.php or see LICENSE file.
+# Copyright 2007-2008 Brisa Team <brisa-develop@garage.maemo.org>
+
+# Implementation of a simple daemon Application of UPnP Media Renderer
+
+import socket
+
+from brisa import config
+from brisa import log
+from brisa.utils import options
+from brisa.utils.system import daemonize
+
+from brisa_media_renderer import MediaRendererDevice
+
+def show_startup_message(listen_url):
+    log.info("BRisa UPnP Media Renderer v. %s",
+             config.manager.brisa_version)
+    log.info("Renderer is listening at address %s", listen_url)
+    log.info("Press Ctrl+C to stop the server")
+    print "BRisa Media Renderer version %s started. Please refer to %s for" \
+          "more information." % (config.manager.brisa_version, log.filename)
+    print "Listen address: %s" % listen_url
+
+
+if __name__ == '__main__':
+    listen_url, daemon = options.parse_args('Media Renderer')
+    if daemon:
+        daemonize()
+    renderer_name = config.get_parameter('media_renderer', 'name')
+    server_name = "%s at %s" % (renderer_name, socket.gethostname())
+    show_startup_message(listen_url)
+    media_renderer_device = MediaRendererDevice(server_name, listen_url)
+    media_renderer_device.start()
