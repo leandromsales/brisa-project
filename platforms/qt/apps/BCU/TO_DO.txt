@@ -4,16 +4,16 @@
 
 - incluir arquivos do BRisa (OK)
 - criar uma classe baseada em um control point (OK)
-- modificações no control point original (em progresso):
+- filtrar o deviceType por org.compelab.AppServer:1
+- modificações no control point original (OK):
   * o device encontrado deve possuir os serviços que possuam as ações abaixo,
-    caso contrário, o device não será válido (OK)
+    caso contrário, o device não será válido
     ~> getListOfApps
     ~> getAppInfo
     ~> getApp
     ** o método relativo aos serviços que será modificado no novo cp
     será replyFinished de ControlPoint (no BRisa, em upnp/controlpoint)
-  * o control point deve ser capaz de decodificação a compactação .compe
-    (conversar com o Bruno sobre essa compactação)
+  * o control point deve ser capaz de decodificação a compactação .compe (OK)
 - realizar a inicialização de todos os serviços necessários a um cp (OK)
 - criar uma interface gráfica; inicialmente, será uma tela em branco e os
   devices válidos deverão ser listados de forma semelhante ao que acontece num

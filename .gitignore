@@ -29,10 +29,6 @@ arm/
 # Other files     #
 ###################
 *.pro.user*
-brisa-src/build*
-Apps/build*
-examples/build*
+platforms/qt/apps/build*
+platforms/qt/build*
 *~
-
-###################
-Apps/BCU/src

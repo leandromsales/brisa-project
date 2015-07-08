@@ -6,34 +6,28 @@ using namespace controlpoint;
 
 MyClassTest::MyClassTest()
 {
-    qDebug() << "Iniciando a classe de testes";
 }
 
 void MyClassTest::startCP()
 {
-    qDebug() << "Iniciando o cpBCU";
+    qDebug() << "BCU: Starting";
     ControlPointBCU *controlPoint = new ControlPointBCU();
     controlPoint->start();
     controlPoint->discover();
-    qDebug() << "cpBCU iniciado";
-}
-
-void MyClassTest::startDevice()
-{
-
+    qDebug() << "BCU: Started";
 }
 
 void MyClassTest::compress(QString source, QString destination)
 {
     FolderCompressor * fc = new FolderCompressor();
     bool status = fc->compressFolder(source, destination);
-    qDebug() << "compressed: " << status;
+    qDebug() << "BCU: Compressed" << status;
 }
 
 void MyClassTest::uncompress(QString source, QString destination)
 {
     FolderCompressor * fc = new FolderCompressor();
-    bool status2 = fc->decompressFolder(source, destination);
-    qDebug() << "uncompressed: " << status2;
+    bool status = fc->decompressFolder(source, destination);
+    qDebug() << "BCU: Uncompressed" << status;
 }
 

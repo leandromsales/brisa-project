@@ -93,46 +93,54 @@ void ControlPointBCU::replyFinished(QNetworkReply *reply) {
 
         Device *device = new Device(rootXml, urlBase);
 
-        QList<Service*> serviceList = device->getServiceList();
+        qDebug() << "-----------------------------------";
+        qDebug() << device->getAttribute(device->deviceType);
+        qDebug() << device->getAttribute(device->DeviceType);
+        qDebug() << "-----------------------------------";
 
-        bool has3gets = false;
+        QString deviceType = device->getAttribute(device->deviceType);
 
-        // foreach service, search by actions getListOfApps, getAppInfo, getApp
-        foreach (Service *s, serviceList) {
-            foreach (Action *a, s->getActionList()) {
-                qDebug() << a->getName();
-            }
-            Action * list = s->getAction(QString("getListOfApps"));
-            Action * info = s->getAction(QString("getAppInfo"));
-            Action * app = s->getAction(QString("getApp"));
+        if (deviceType == "urn:org.compelab.AppServer:1") {
+            bool has3gets = false;
+            QList<Service*> serviceList = device->getServiceList();
 
-            // if 3 actions exists, break foreach
-            if (list != 0 && info != 0 && app != 0) {
-                has3gets = true;
-                break;
-            }
-        }
+            // foreach service, search by actions getListOfApps, getAppInfo, getApp
+            foreach (Service *s, serviceList) {
+                Action * list = s->getAction(QString("getListOfApps"));
+                Action * info = s->getAction(QString("getAppInfo"));
+                Action * app = s->getAction(QString("getApp"));
 
-        // if has3gets (it means, if 3 actions exists), go on
-        // otherwise, this device is not compatible with bcu, so ignore it
-        if (has3gets) {
-            qDebug() << "has3gets";
-            foreach(Service *s, serviceList) {
-                s->setAttribute(Service::Host, urlBase->host());
-                s->setAttribute(Service::Port,
-                                QString().setNum(urlBase->port()));
+                // if 3 actions exists, break foreach
+                if (list != 0 && info != 0 && app != 0) {
+                    has3gets = true;
+                    break;
+                }
             }
 
-            rootXml->remove();
-            delete rootXml;
-            delete urlBase;
-            reply->deleteLater();
+            // if has3gets (it means, if 3 actions exists), go on
+            // otherwise, this device is not compatible with bcu, so ignore it
+            if (has3gets) {
+                qDebug() << "has3gets";
+                foreach(Service *s, serviceList) {
+                    s->setAttribute(Service::Host, urlBase->host());
+                    s->setAttribute(Service::Port,
+                                    QString().setNum(urlBase->port()));
+                }
 
-            // aqui virá o código que adiciona o icone do app no BCU
+                rootXml->remove();
+                delete rootXml;
+                delete urlBase;
+                reply->deleteLater();
 
-            emit deviceFound(device);
+                // aqui virá o código que adiciona o icone do app no BCU
+
+                emit deviceFound(device);
+            } else {
+                qDebug() << "BCU: Incompatible device - device hasn't 3 gets";
+            }
+
         } else {
-            qDebug() << "BCU: Incompatible device";
+            qDebug() << "BCU: Incompatible device - device hasn't correct deviceType";
         }
     }
 }

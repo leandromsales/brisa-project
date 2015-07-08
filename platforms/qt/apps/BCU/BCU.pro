@@ -16,6 +16,7 @@ DISTFILES += \
 HEADERS += \
     controlpointbcu.h \
     myclasstest.h \
+    FolderCompressor.h \
     src/network/brisanetwork.h \
     src/shared/soap/qtsoap.h \
     src/shared/soap/soap.h \
@@ -79,12 +80,12 @@ HEADERS += \
     src/upnp/brisautils.h \
     src/upnp/icon.h \
     src/upnp/servicexmlhandler.h \
-    src/upnp/statevariable.h \
-    FolderCompressor.h
+    src/upnp/statevariable.h
 
 SOURCES += main.cpp \
     controlpointbcu.cpp \
     myclasstest.cpp \
+    FolderCompressor.cpp \
     src/network/brisanetwork.cpp \
     src/shared/soap/qtsoap.cpp \
     src/shared/soap/soap.cpp \
@@ -143,5 +144,4 @@ SOURCES += main.cpp \
     src/upnp/argument.cpp \
     src/upnp/icon.cpp \
     src/upnp/servicexmlhandler.cpp \
-    src/upnp/statevariable.cpp \
-    FolderCompressor.cpp
+    src/upnp/statevariable.cpp
