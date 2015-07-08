@@ -4,7 +4,7 @@
 
 - incluir arquivos do BRisa (OK)
 - criar uma classe baseada em um control point (OK)
-- filtrar o deviceType por org.compelab.AppServer:1
+- filtrar o deviceType por org.compelab.AppServer:1 (OK)
 - modificações no control point original (OK):
   * o device encontrado deve possuir os serviços que possuam as ações abaixo,
     caso contrário, o device não será válido
@@ -23,4 +23,3 @@
   app. Durante esse processo, uma splash screen é exibida. (OK)
 - criar um novo device no grid toda vez que um device válido for encontrado
 - carregar app (em qml) dinamicamente após o download
-

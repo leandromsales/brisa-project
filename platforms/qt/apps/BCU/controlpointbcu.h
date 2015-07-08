@@ -10,6 +10,18 @@
 #include "src/shared/ssdp/ssdpclient.h"
 #include "src/shared/webserver/webserversession.h"
 
+/*
+ * Esta classe é bem parecida com a classe ControlPoint do BRisa. Inicialmente,
+ * acreditava que poderia estendê-la e apenas sobreescrever os slots. Após algumas
+ * tentativas e testes, percebi que isso não é possível. Assim, grande parte da
+ * classe ControlPointBCU é igual a classe ControlPoint. As modificações ocorrem
+ * no slot replyFinished, onde foram adicionadas condições que:
+ *   1. verificam se o dispositivo possui o device type correto
+ *   2. se a resposta a [1] for verdadeira, as estruturas condicionais verificam
+ *      se o dispositivo possui os 3 gets obrigatórios
+ * Para o caso de uma dessas condições falharem, uma mensagem adequada é mostrada.
+ */
+
 namespace brisa {
 
 using namespace network;
@@ -112,7 +124,8 @@ signals:
 
 private slots:
     /*!
-     *  Slot called when receive a newDevice event, this slot start the device's xml download.
+     *  Slot called when receive a newDevice event, this slot start the device's
+     *  xml download.
      *  \param udn \a empty
      *  \param location \a empty
      *  \param ext \a empty
@@ -123,22 +136,24 @@ private slots:
             QString server, QString cacheControl);
 
     /*!
-     *  Slot called when ssdp client emits a removed device event, this slot emit the deviceGone signal
-     *  which has as parameter the device's udn.
+     *  Slot called when ssdp client emits a removed device event, this slot
+     *  emit the deviceGone signal which has as parameter the device's udn.
      *  \param udn empty
      */
     void deviceRemoved(const QString udn);
 
     /*!
-     *  Write the content of the downloaded xml in a new xml temporary file to set the device's
-     *  attributes emits the deviceFound signal when finished.
+     * Write the content of the downloaded xml in a new xml temporary file to set
+     * the device's attributes emits the deviceFound signal when finished. Also
+     * verify some conditions of device, like device type (must be
+     * org.compelab.AppServer:1) and service list.
      *  \param reply \a empty
      */
     void replyFinished(QNetworkReply *reply);
 
     /*!
-     *  Slot to get the response of the http request, made by BrisaEventProxy class and set the SID
-     *  of the subscription object.
+     *  Slot to get the response of the http request, made by BrisaEventProxy
+     *  class and set the SID of the subscription object.
      *  \param i \a empty
      *  \param error \a empty
      */
