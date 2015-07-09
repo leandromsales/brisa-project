@@ -50,17 +50,21 @@ ApplicationWindow {
         }
     }
 
-    GridLayout {
-        id: grid
-        columns: parent.width / 75
-        anchors.top: topBar.bottom
+    // a criação desses caras deverá ser dinâmica: sempre que um
+    // device compatível for encontrado, um appIcon será mostrado
 
-        // a criação desses caras deverá ser dinâmica: sempre que um
-        // device compatível for encontrado, um appIcon será mostrado
-        AppIcon {}
-        AppIcon {}
-        AppIcon {}
-    }
+        GridView {
+            cellWidth: 90
+            cellHeight: 110
+            width: parent.width
+            height: Screen.desktopAvailableHeight*0.9
+            anchors.top: topBar.bottom
+            model: myModel
+            delegate: AppIcon{}
+            focus: true
+            highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
+        }
+
 
     Rectangle {
         id: statusBar

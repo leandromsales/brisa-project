@@ -80,7 +80,8 @@ HEADERS += \
     src/upnp/brisautils.h \
     src/upnp/icon.h \
     src/upnp/servicexmlhandler.h \
-    src/upnp/statevariable.h
+    src/upnp/statevariable.h \
+    dataobject.h
 
 SOURCES += main.cpp \
     controlpointbcu.cpp \
@@ -144,4 +145,5 @@ SOURCES += main.cpp \
     src/upnp/argument.cpp \
     src/upnp/icon.cpp \
     src/upnp/servicexmlhandler.cpp \
-    src/upnp/statevariable.cpp
+    src/upnp/statevariable.cpp \
+    dataobject.cpp

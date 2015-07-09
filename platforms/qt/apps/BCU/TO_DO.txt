@@ -22,4 +22,8 @@
   a respeito do aplicativo e a segunda fará o download / atualização / abrirá o
   app. Durante esse processo, uma splash screen é exibida. (OK)
 - criar um novo device no grid toda vez que um device válido for encontrado
+   * pelo que andei pesquisando, a solução é usar um GridView. Essas referências
+     devem ajudar.
+     ~> http://doc.qt.io/qt-5/qtquick-modelviewsdata-cppmodels.html#exposing-c-data-models-to-qml
+     ~> http://doc.qt.io/qt-5/qml-qtquick-gridview.html
 - carregar app (em qml) dinamicamente após o download
