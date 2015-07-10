@@ -50,17 +50,33 @@ ApplicationWindow {
         }
     }
 
-    GridView {
-        id: grid
-        cellWidth: 90
-        cellHeight: 110
+    Rectangle {
+        id: containerGrid
         width: parent.width
         height: Screen.desktopAvailableHeight*0.9
         anchors.top: topBar.bottom
-        model: myModel
-        delegate: AppIcon {}
-    }
 
+        Flickable {
+            id: flickArea
+            anchors.fill: parent
+            contentWidth: parent.width
+            contentHeight: parent.height
+            // testar essa parte melhor, parece que o stop at bounds não está ok
+            boundsBehavior: Flickable.StopAtBounds
+            flickableDirection: Flickable.VerticalFlick
+            clip: true
+
+            GridView {
+                id: grid
+                cellWidth: 90
+                cellHeight: 110
+                width: parent.width
+                height: parent.height
+                model: myModel
+                delegate: AppIcon {}
+            }
+        }
+    }
 
     Rectangle {
         id: statusBar

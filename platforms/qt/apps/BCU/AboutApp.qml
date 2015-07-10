@@ -28,6 +28,7 @@ Rectangle {
                 anchors.fill: parent
                 contentWidth: aboutText.width;
                 contentHeight: aboutText.height
+                boundsBehavior: Flickable.StopAtBounds
                 flickableDirection: Flickable.HorizontalAndVerticalFlick
                 clip: true
 
