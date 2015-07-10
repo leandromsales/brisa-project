@@ -12,8 +12,9 @@ Rectangle {
     }
 
     Text {
-        text: "nome do app"
+        text: name
         anchors.top: image.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
     }
     
     MouseArea {

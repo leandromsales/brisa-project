@@ -4,15 +4,23 @@
 class DataObject : public QObject {
     Q_OBJECT
 
-//    Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
-//    Q_PROPERTY(QString color READ color WRITE setColor NOTIFY colorChanged)
+    Q_PROPERTY(QString name READ getName WRITE setName NOTIFY nameChanged)
+    Q_PROPERTY(QString info READ getInfo WRITE setInfo NOTIFY infoChanged)
 
 public:
     DataObject();
-    DataObject(QString name, QString color);
+    DataObject(QString name, QString info);
     ~DataObject();
+    Q_INVOKABLE QString getName();
+    Q_INVOKABLE QString getInfo();
+    void setName(QString newName);
+    void setInfo(QString newInfo);
 
-private:
+signals:
+    void nameChanged();
+    void infoChanged();
+
+public:
     QString name;
-    QString color;
+    QString info;
 };

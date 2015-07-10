@@ -37,7 +37,6 @@ Rectangle {
                 anchors.fill: about
                 hoverEnabled : true
                 onClicked: loader.source = "AboutApp.qml"
-
             }
         }
 

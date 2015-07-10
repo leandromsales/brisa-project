@@ -5,10 +5,10 @@ DataObject::DataObject()
 
 }
 
-DataObject::DataObject(QString name, QString color)
+DataObject::DataObject(QString name, QString info)
 {
     this->name = name;
-    this->color = color;
+    this->info = info;
 }
 
 DataObject::~DataObject()
@@ -16,3 +16,22 @@ DataObject::~DataObject()
 
 }
 
+QString DataObject::getName()
+{
+    return this->name;
+}
+
+QString DataObject::getInfo()
+{
+    return this->info;
+}
+
+void DataObject::setName(QString newName)
+{
+    this->name = newName;
+}
+
+void DataObject::setInfo(QString newInfo)
+{
+    this->info = newInfo;
+}

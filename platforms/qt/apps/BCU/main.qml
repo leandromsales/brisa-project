@@ -50,20 +50,19 @@ ApplicationWindow {
         }
     }
 
-    // a criação desses caras deverá ser dinâmica: sempre que um
-    // device compatível for encontrado, um appIcon será mostrado
-
-        GridView {
-            cellWidth: 90
-            cellHeight: 110
-            width: parent.width
-            height: Screen.desktopAvailableHeight*0.9
-            anchors.top: topBar.bottom
-            model: myModel
-            delegate: AppIcon{}
-            focus: true
-            highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
+    GridView {
+        id: grid
+        cellWidth: 90
+        cellHeight: 110
+        width: parent.width
+        height: Screen.desktopAvailableHeight*0.9
+        anchors.top: topBar.bottom
+        model: myModel
+        delegate: Loader {
+            AppIcon{}
+            property variant modelData: grid.model.get(index)
         }
+    }
 
 
     Rectangle {

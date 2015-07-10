@@ -30,7 +30,7 @@ Rectangle {
             }
 
             Text {
-                text: "Carregando o app..."
+                text: "Carregando app..."
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.bottom: load.bottom
             }
