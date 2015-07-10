@@ -19,7 +19,11 @@ Rectangle {
     
     MouseArea {
         anchors.fill: parent
-        onClicked: loader.source = "AppOptions.qml"
+        onClicked: {
+            loader.source = "AppOptions.qml"
+            dtS.name = name;
+            dtS.info = info;
+        }
     }
 }
 

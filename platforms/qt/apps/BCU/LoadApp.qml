@@ -30,7 +30,7 @@ Rectangle {
             }
 
             Text {
-                text: "Carregando app..."
+                text: "Carregando " + dtS.name
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.bottom: load.bottom
             }

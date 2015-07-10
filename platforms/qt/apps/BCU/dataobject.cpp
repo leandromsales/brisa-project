@@ -29,9 +29,11 @@ QString DataObject::getInfo()
 void DataObject::setName(QString newName)
 {
     this->name = newName;
+    emit nameChanged();
 }
 
 void DataObject::setInfo(QString newInfo)
 {
     this->info = newInfo;
+    emit infoChanged();
 }

@@ -58,10 +58,7 @@ ApplicationWindow {
         height: Screen.desktopAvailableHeight*0.9
         anchors.top: topBar.bottom
         model: myModel
-        delegate: Loader {
-            AppIcon{}
-            property variant modelData: grid.model.get(index)
-        }
+        delegate: AppIcon {}
     }
 
 

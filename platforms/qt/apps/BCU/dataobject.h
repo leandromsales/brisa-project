@@ -13,8 +13,8 @@ public:
     ~DataObject();
     Q_INVOKABLE QString getName();
     Q_INVOKABLE QString getInfo();
-    void setName(QString newName);
-    void setInfo(QString newInfo);
+    Q_INVOKABLE void setName(QString newName);
+    Q_INVOKABLE void setInfo(QString newInfo);
 
 signals:
     void nameChanged();

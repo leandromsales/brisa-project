@@ -37,7 +37,7 @@ Rectangle {
                     width:mainRec.width;
                     readOnly:true
 
-                    text: "info - com rolagem"
+                    text: dtS.info
                 }
             }
         }

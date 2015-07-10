@@ -15,9 +15,11 @@ int main(int argc, char *argv[])
     dataList.append(new DataObject("Item 2", "green"));
     dataList.append(new DataObject("Item 3", "blue"));
     dataList.append(new DataObject("Item 4", "yellow"));
+    DataObject * dtSelected = new DataObject();
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty(QString("myModel"), QVariant::fromValue(dataList));
+    engine.rootContext()->setContextProperty(QString("dtS"), dtSelected);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     MyClassTest *mct = new MyClassTest();
