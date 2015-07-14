@@ -31,6 +31,6 @@
    * adicionar as outras propriedades em dataobject.h, como o ícone e a url para
      download do app (OK)
    * fazer o download do ícone para mostrar no GridView
-   * fazer o download do app
-   * remover o device do grid quando ele sair da rede
-- carregar app (em qml) dinamicamente após o download
+   * remover o device do grid quando ele sair da rede (implementado mas não
+     testado, pois o BCA não está emitindo um "ssdp:bye bye")
+- baixar o app e carregar (em qml) dinamicamente

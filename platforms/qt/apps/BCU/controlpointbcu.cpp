@@ -161,6 +161,7 @@ void ControlPointBCU::deviceFound(QString, QString location, QString,
 }
 
 void ControlPointBCU::deviceRemoved(const QString udn) {
+    removeAppFromDataList(udn);
     emit deviceGone(udn);
 }
 

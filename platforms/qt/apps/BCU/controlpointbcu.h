@@ -189,6 +189,17 @@ public:
         engine.rootContext()->setContextProperty(QString("myModel"),
                                                  QVariant::fromValue(dataList));
     }
+    void removeAppFromDataList (QString udn) {
+        foreach (QObject* q, dataList){
+            DataObject * d = (DataObject *) q;
+            if (d->getUdn() == udn) {
+                dataList.removeOne(q);
+            }
+        }
+
+        engine.rootContext()->setContextProperty(QString("myModel"),
+                                                 QVariant::fromValue(dataList));
+    }
 
 private:
     QNetworkAccessManager *m_networkAccessManager;
