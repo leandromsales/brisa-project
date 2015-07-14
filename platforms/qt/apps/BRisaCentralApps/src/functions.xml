@@ -6,7 +6,7 @@
   </specVersion>
   <actionList>
     <action>
-    <name>GetListOfApps</name>
+    <name>getListOfApps</name>
       <argumentList>
         <argument>
           <name>ListOfApps</name>
@@ -16,7 +16,7 @@
       </argumentList>
     </action>
     <action>
-    <name>GetInfoOfApp</name>
+    <name>getAppInfo</name>
       <argumentList>
       <argument>
         <name>SelectedApp</name>
@@ -31,7 +31,7 @@
       </argumentList>
     </action>
     <action>
-    <name>GetApp</name>
+    <name>getApp</name>
       <argumentList>
       <argument>
         <name>TheApp</name>
