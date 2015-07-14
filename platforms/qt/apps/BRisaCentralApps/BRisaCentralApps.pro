@@ -1,13 +1,14 @@
 TEMPLATE = app
 
-QT += qml quick widgets
+QT += qml quick
 
 SOURCES += main.cpp \
     brisaapplication.cpp \
     brisaapplicationmanager.cpp \
     bcadevice.cpp \
     functions.cpp \
-    serviceApp.cpp
+    serviceApp.cpp \
+    bcajson.cpp
 
 RESOURCES += qml.qrc
 
@@ -23,4 +24,5 @@ HEADERS += \
     brisaapplicationmanager.h \
     bcadevice.h \
     functions.h \
-    serviceApp.h
+    serviceApp.h \
+    bcajson.h

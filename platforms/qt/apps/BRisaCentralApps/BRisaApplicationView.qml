@@ -6,7 +6,6 @@ Rectangle {
     anchors.fill: parent
     anchors.margins: 20
 
-
     property string iconPath
     property string title
     property string description
@@ -106,12 +105,12 @@ Rectangle {
         TableViewColumn {
             role: "title"
             title: "Title"
-            width: parent.width*(0.46)
+            width: parent.width*(0.10)
         }
         TableViewColumn {
             role: "description"
             title: "Description"
-            width: parent.width*(0.46)
+            width: parent.width*(0.83)
         }
         model: servicesModel
     }
@@ -130,6 +129,22 @@ Rectangle {
         text:"Back"
 
         onClicked: mainRoot.state="menu"
+    }
+
+    Button {
+
+        anchors.bottom : parent.bottom
+        anchors.right: parent.right
+
+        anchors.rightMargin: 0
+        anchors.bottomMargin: 0
+
+        width:parent.width/5
+        height: parent.height/10
+
+        text:"Run"
+
+        onClicked: manager.run(title)
     }
 }
 

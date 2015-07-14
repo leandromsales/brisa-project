@@ -1,9 +1,8 @@
 import QtQuick 2.4
 import QtQuick.Controls 1.3
-import QtQuick.Window 2.2
-import QtQuick.Dialogs 1.2
 
 ApplicationWindow {
+    id:appRoot
     title: qsTr("BCA")
     width: 640
     height: 480
@@ -57,6 +56,7 @@ ApplicationWindow {
 
             Grid {
                 id:layout
+                columns:6
                 anchors.fill: parent
                 anchors.margins: 5
 
@@ -67,8 +67,8 @@ ApplicationWindow {
 
                     delegate: BRisaApplication {
 
-                        height: layout.height/6
-                        width: layout.width/7
+                        height: appRoot.height/6
+                        width: appRoot.width/7
 
                         iconPath:manager.getListApps()[index].getIconPath();
                         title:manager.getListApps()[index].getTitle();

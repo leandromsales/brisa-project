@@ -8,6 +8,21 @@ BRisaApplication::BRisaApplication(QString newIconPath, QString newTitle, QStrin
     title = newTitle;
 }
 
+BRisaApplication::BRisaApplication(QString newIconPath, QString newTitle, QString newUrl, QList<QString> *jsonFile)
+{
+    title = newTitle;
+    iconPath = newIconPath;
+
+    url = newUrl;
+
+    description = jsonFile->at(0);
+    jsonFile->removeAt(0);
+
+    for(int i = 0; i < jsonFile->size(); i += 2) {
+        services.append(new ServiceApp(jsonFile->at(i), jsonFile->at(i + 1)));
+    }
+}
+
 BRisaApplication::~BRisaApplication(){}
 
 QStringList BRisaApplication::getString() const
@@ -28,3 +43,5 @@ QString BRisaApplication::getDescription() const{    return description;    }
 QString BRisaApplication::getIconPath() const{    return iconPath;  }
 
 QString BRisaApplication::getTitle() const{    return title;    }
+
+QString BRisaApplication::getUrl() const{   return url;     }

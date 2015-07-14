@@ -1,0 +1,10 @@
+{
+	"Description":"A Streamer of Musics",
+	"Services":[
+		{
+		"Play":"play the Music",
+		"Pause":"pause the Music",
+		"Share":"share the Music in the social networks"
+		}	
+	]
+}

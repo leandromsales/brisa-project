@@ -4,6 +4,7 @@
 #include <QStringList>
 #include <QString>
 #include <QObject>
+#include <QDebug>
 #include <QList>
 
 #include "serviceApp.h"
@@ -19,14 +20,17 @@ public:
     Q_PROPERTY(QString description READ getDescription)
     Q_PROPERTY(QString iconPath READ getIconPath)
     Q_PROPERTY(QString title READ getTitle)
+    Q_PROPERTY(QString url READ getTitle)
 
     BRisaApplication(QString newIconPath, QString newTitle, QString newDescription, QList<ServiceApp *>newServices);
+    BRisaApplication(QString newIconPath, QString newTitle, QString newUrl, QList<QString> *jsonFile);
     ~BRisaApplication();
 
     Q_INVOKABLE QStringList getString() const;
     Q_INVOKABLE QString getDescription() const;
     Q_INVOKABLE QString getIconPath() const;
     Q_INVOKABLE QString getTitle() const;
+    Q_INVOKABLE QString getUrl() const;
 
     QList<ServiceApp *> getServices();
 
@@ -36,6 +40,7 @@ private:
     QString description;
     QString iconPath;
     QString title;
+    QString url;
 
 };
 

@@ -1,0 +1,11 @@
+{
+	"Description":"A good camera.",
+	"Services":[
+		{
+		"Take":"take a picture",
+		"Delete":"delete a picture",
+		"Show":"show all the pictures",
+		"Share":"share the picture in the social networks"
+		}	
+	]
+}

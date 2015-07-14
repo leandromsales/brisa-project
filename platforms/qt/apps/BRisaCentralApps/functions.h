@@ -32,7 +32,7 @@ public:
 private slots:
 
     OutArgument *getListOfApps();
-    OutArgument *getInfoOfApp(InArgument * const inArguments);
+    OutArgument *getAppInfo(InArgument * const inArguments);
     OutArgument *getApp(InArgument * const inArguments);
 
 private:

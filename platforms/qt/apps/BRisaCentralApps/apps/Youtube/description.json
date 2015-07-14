@@ -1,0 +1,10 @@
+{
+	"Description":"A Streamer of Videos",
+	"Services":[
+		{
+		"Play":"play the Video",
+		"Pause":"pause the Video",
+		"Share":"share the Video in the social networks"
+		}	
+	]
+}

@@ -40,7 +40,7 @@ OutArgument *Functions::getListOfApps()
     return outArgs;
 }
 
-OutArgument *Functions::getInfoOfApp(InArgument * const inArguments)
+OutArgument *Functions::getAppInfo(InArgument * const inArguments)
 {
     QString appName = (*inArguments)["SelectedApp"];
     QString appInfo = "";
@@ -52,6 +52,7 @@ OutArgument *Functions::getInfoOfApp(InArgument * const inArguments)
         appInfo += "{\nTitle:" + app->getTitle() + ",\n";
         appInfo += "Icon:" + app->getIconPath() + ",\n";
         appInfo += "Description:" + app->getDescription() + ",\n";
+        appInfo += "Url:" + app->getUrl() + ",\n";
         appInfo += "Services:[";
 
         QList<ServiceApp *> services = app->getServices();

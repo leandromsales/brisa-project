@@ -9,7 +9,7 @@
 
 #include "brisaapplicationmanager.h"
 
-#define DEVICE_TYPE              "org.compelab.AppServer:1"
+#define DEVICE_TYPE              "urn:org.compelab.AppServer:1"
 #define DEVICE_FRIENDLY_NAME     "BRisa Central Applications"
 #define DEVICE_MANUFACTURER      "Brisa Team. Embedded Laboratory and INdT Brazil"
 #define DEVICE_MANUFACTURER_URL  "https://garage.maemo.org/projects/brisa"

@@ -13,7 +13,6 @@ Rectangle {
 
     color:"transparent"
 
-
     Image {
         anchors.fill:parent
         source: iconPath
@@ -46,14 +45,14 @@ Rectangle {
             }
             onEntered: {
 
-                root.width=layout.width/5
-                root.height=layout.height/4
+                root.width=root.width*(1.2)
+                root.height=root.height*(1.2)
 
             }
             onExited: {
 
-                root.width=layout.width/7
-                root.height=layout.height/6
+                root.width=root.width*(0.8333333333)
+                root.height=root.height*(0.8333333333)
 
             }
         }

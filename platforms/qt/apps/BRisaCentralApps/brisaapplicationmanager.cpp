@@ -1,9 +1,9 @@
 #include "brisaapplicationmanager.h"
 
-BRisaApplicationManager::BRisaApplicationManager()
+BRisaApplicationManager::BRisaApplicationManager(QQmlApplicationEngine &engine)
 {
     numOfApps = 0;
-
+    ctxt = engine.rootContext();
 }
 
 BRisaApplicationManager::~BRisaApplicationManager()
@@ -19,6 +19,11 @@ QList<QObject *> BRisaApplicationManager::getListApps()
 int BRisaApplicationManager::getNumOfApps()
 {
     return numOfApps;
+}
+
+QString BRisaApplicationManager::getCurrentAppDir()
+{
+    return currentAppDir;
 }
 
 BRisaApplication *BRisaApplicationManager::getAppByName(QString appName)
@@ -38,6 +43,18 @@ void BRisaApplicationManager::addApp(QObject *app)
 {
     apps.append(app);
     numOfApps++;
+}
+
+void BRisaApplicationManager::run(QString name)
+{
+    QQuickView *view = new QQuickView(QUrl(getAppByName(name)->getUrl()));
+
+    QString dirPath = getAppByName(name)->getIconPath();
+    dirPath.resize(dirPath.size() - 9);
+
+    currentAppDir = dirPath;
+
+    view->show();
 }
 
 
