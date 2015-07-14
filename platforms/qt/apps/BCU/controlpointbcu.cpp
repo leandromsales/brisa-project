@@ -1,7 +1,3 @@
-#include <QtCore>
-#include <QtDebug>
-#include <QNetworkAccessManager>
-
 #include "controlpointbcu.h"
 
 namespace brisa {
@@ -15,6 +11,12 @@ namespace controlpoint {
 
 ControlPointBCU::ControlPointBCU(QObject *parent, QString st, int mx) :
     QObject(parent) {
+
+    engine.rootContext()->setContextProperty(QString("myModel"),
+                                             QVariant::fromValue(dataList));
+    engine.rootContext()->setContextProperty(QString("dtS"), new DataObject());
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+
     this->discoverNetworkAddress();
     this->buildUrlBase();
     this->deliveryPath = 0;
@@ -84,6 +86,7 @@ void ControlPointBCU::discover() {
 
 void ControlPointBCU::replyFinished(QNetworkReply *reply) {
     QTemporaryFile *rootXml = new QTemporaryFile();
+    // qDebug() << reply->readAll();
     if (!rootXml->open()) {
         qWarning() << "BCU: Failed to open file for writing root XML.";
     } else {
@@ -93,14 +96,19 @@ void ControlPointBCU::replyFinished(QNetworkReply *reply) {
 
         Device *device = new Device(rootXml, urlBase);
 
-        qDebug() << "-----------------------------------";
-        qDebug() << device->getAttribute(device->deviceType);
-        qDebug() << device->getAttribute(device->DeviceType);
-        qDebug() << "-----------------------------------";
+        // check if this device was already recognized
+        bool hasUdn = false;
+        QString udn = device->getAttribute(device->udn);
+        foreach (QObject* q, dataList){
+            DataObject * d = (DataObject *) q;
+            if (d->getUdn() == udn) {
+                hasUdn = true;
+                break;
+            }
+        }
 
         QString deviceType = device->getAttribute(device->deviceType);
-
-        if (deviceType == "urn:org.compelab.AppServer:1") {
+        if (!hasUdn && deviceType == "org.compelab.AppServer:1") {
             bool has3gets = false;
             QList<Service*> serviceList = device->getServiceList();
 
@@ -120,7 +128,6 @@ void ControlPointBCU::replyFinished(QNetworkReply *reply) {
             // if has3gets (it means, if 3 actions exists), go on
             // otherwise, this device is not compatible with bcu, so ignore it
             if (has3gets) {
-                qDebug() << "has3gets";
                 foreach(Service *s, serviceList) {
                     s->setAttribute(Service::Host, urlBase->host());
                     s->setAttribute(Service::Port,
@@ -132,7 +139,10 @@ void ControlPointBCU::replyFinished(QNetworkReply *reply) {
                 delete urlBase;
                 reply->deleteLater();
 
-                // aqui virá o código que adiciona o icone do app no BCU
+                // adding founded app on grid
+                QString name = device->getAttribute(device->FriendlyName);
+                QString info = device->getAttribute(device->ModelDescription);
+                addAppOnDataList(udn, name, info, QUrl("icon4"), QUrl("url4"));
 
                 emit deviceFound(device);
             } else {

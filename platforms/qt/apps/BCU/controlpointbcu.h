@@ -1,6 +1,11 @@
 #include <QMap>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include <QQmlContext>
+#include <QQmlApplicationEngine>
+#include <QtCore>
+#include <QtDebug>
+#include <QNetworkAccessManager>
 
 #include "src/upnp/controlpoint/cpdevice.h"
 #include "src/upnp/controlpoint/eventproxy.h"
@@ -9,6 +14,7 @@
 #include "src/upnp/controlpoint/msearchclientcp.h"
 #include "src/shared/ssdp/ssdpclient.h"
 #include "src/shared/webserver/webserversession.h"
+#include "dataobject.h"
 
 /*
  * Esta classe é bem parecida com a classe ControlPoint do BRisa. Inicialmente,
@@ -32,7 +38,7 @@ namespace upnp {
 namespace controlpoint {
 
 class ControlPointBCU: public QObject {
-Q_OBJECT
+    Q_OBJECT
 
 public:
     /*!
@@ -133,7 +139,7 @@ private slots:
      *  \param cacheControl \a empty
      */
     void deviceFound(QString udn, QString location, QString st, QString ext,
-            QString server, QString cacheControl);
+                     QString server, QString cacheControl);
 
     /*!
      *  Slot called when ssdp client emits a removed device event, this slot
@@ -174,6 +180,15 @@ public:
     int getActivePort() {
         return port;
     }
+    QList<QObject*> getDataList () {
+        return this->dataList;
+    }
+    void addAppOnDataList (QString udn, QString name, QString info, QUrl iconURL, QUrl appURL) {
+        dataList.append(new DataObject(udn, name, info, iconURL, appURL));
+
+        engine.rootContext()->setContextProperty(QString("myModel"),
+                                                 QVariant::fromValue(dataList));
+    }
 
 private:
     QNetworkAccessManager *m_networkAccessManager;
@@ -190,6 +205,8 @@ private:
     QMap<int, EventProxy*> requests;
     QMap<QString, int> subscriptions;
     QMap<int, int> requestsMapping;
+    QList<QObject*> dataList;
+    QQmlApplicationEngine engine;
 };
 
 }

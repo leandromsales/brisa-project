@@ -24,7 +24,7 @@ Rectangle {
             dtS.name = name;
             dtS.info = info;
             dtS.iconURL = iconURL;
-            dtS.appInfo = appInfo;
+            dtS.appURL = appURL;
         }
     }
 }

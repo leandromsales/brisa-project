@@ -15,7 +15,6 @@ DISTFILES += \
 
 HEADERS += \
     controlpointbcu.h \
-    myclasstest.h \
     FolderCompressor.h \
     src/network/brisanetwork.h \
     src/shared/soap/qtsoap.h \
@@ -85,7 +84,6 @@ HEADERS += \
 
 SOURCES += main.cpp \
     controlpointbcu.cpp \
-    myclasstest.cpp \
     FolderCompressor.cpp \
     src/network/brisanetwork.cpp \
     src/shared/soap/qtsoap.cpp \
