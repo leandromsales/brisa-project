@@ -142,7 +142,13 @@ void ControlPointBCU::replyFinished(QNetworkReply *reply) {
                 // adding founded app on grid
                 QString name = device->getAttribute(device->FriendlyName);
                 QString info = device->getAttribute(device->ModelDescription);
-                addAppOnDataList(udn, name, info, QUrl("icon4"), QUrl("url4"));
+                QString appUrl = device->getAttribute(device->UrlBase);
+                QString iconUrl = "qrc:/pics/qtlogo.png";
+                if (!device->getIconList().isEmpty()) {
+                    Icon * icon = device->getIconList().first();
+                    iconUrl = icon->getAttribute(icon->Url);
+                }
+                addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
 
                 emit deviceFound(device);
             } else {

@@ -6,7 +6,7 @@ Rectangle {
 
     Image {
         id: image
-        source: "qrc:/pics/qtlogo.png"
+        source: iconURL
         sourceSize.height: 72
         anchors.centerIn: parent;
     }
@@ -25,6 +25,8 @@ Rectangle {
             dtS.info = info;
             dtS.iconURL = iconURL;
             dtS.appURL = appURL;
+            console.log (iconURL);
+            console.log (dtS.iconURL);
         }
     }
 }
