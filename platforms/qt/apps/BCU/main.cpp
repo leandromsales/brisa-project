@@ -11,10 +11,10 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     QList<QObject*> dataList;
-    dataList.append(new DataObject("Item 1", "red"));
-    dataList.append(new DataObject("Item 2", "green"));
-    dataList.append(new DataObject("Item 3", "blue"));
-    dataList.append(new DataObject("Item 4", "yellow"));
+    dataList.append(new DataObject("Item 1", "red", "icon1", "url1"));
+    dataList.append(new DataObject("Item 2", "green", "icon2", "url2");
+    dataList.append(new DataObject("Item 3", "blue", "icon3", "url3"));
+    dataList.append(new DataObject("Item 4", "yellow", "icon4", "url4"));
     DataObject * dtSelected = new DataObject();
 
     QQmlApplicationEngine engine;

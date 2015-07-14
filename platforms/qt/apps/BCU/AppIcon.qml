@@ -23,6 +23,8 @@ Rectangle {
             loader.source = "AppOptions.qml"
             dtS.name = name;
             dtS.info = info;
+            dtS.iconURL = iconURL;
+            dtS.appInfo = appInfo;
         }
     }
 }
