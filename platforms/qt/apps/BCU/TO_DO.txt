@@ -4,7 +4,7 @@
 
 - incluir arquivos do BRisa (OK)
 - criar uma classe baseada em um control point (OK)
-- filtrar o deviceType por org.compelab.AppServer:1 (OK)
+- filtrar o deviceType por urn:org.compelab.AppServer:1 (OK)
 - modificações no control point original (OK):
   * o device encontrado deve possuir os serviços que possuam as ações abaixo,
     caso contrário, o device não será válido
@@ -33,4 +33,5 @@
    * Se houver, usar o ícone do app no GridView. Se não, usar um ícone padrão (OK)
    * remover o device do grid quando ele sair da rede (implementado mas não
      testado, pois o BCA não está emitindo um "ssdp:bye bye")
+- alterar o passo acima, o correto seria criar um novo ícone para cada app de getListOfApps
 - baixar o app e carregar (em qml) dinamicamente
