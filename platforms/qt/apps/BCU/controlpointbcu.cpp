@@ -108,13 +108,15 @@ void ControlPointBCU::replyFinished(QNetworkReply *reply) {
         }
 
         QString deviceType = device->getAttribute(device->deviceType);
-        if (!hasUdn && deviceType == "org.compelab.AppServer:1") {
+        if (!hasUdn && deviceType == "urn:org.compelab.AppServer:1") {
             bool has3gets = false;
             QList<Service*> serviceList = device->getServiceList();
 
             // foreach service, search by actions getListOfApps, getAppInfo, getApp
             foreach (Service *s, serviceList) {
                 Action * list = s->getAction(QString("getListOfApps"));
+                OutArgument * oa = new OutArgument();
+                qDebug() << list->call(new InArgument(), oa);
                 Action * info = s->getAction(QString("getAppInfo"));
                 Action * app = s->getAction(QString("getApp"));
 
