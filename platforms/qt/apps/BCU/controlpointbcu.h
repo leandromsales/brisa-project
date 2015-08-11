@@ -172,23 +172,31 @@ private slots:
      */
     void receiveMulticast(QMap<QString, QString> attributes);
 
+    void serviceCall(OutArgument, QString);
+    void requestError(QString errorMessage, QString methodName);
+
 public:
     EventProxy *getSubscriptionProxy(Service *service);
+
     QString getActiveIpAddress() {
         return ipAddress;
     }
+
     int getActivePort() {
         return port;
     }
+
     QList<QObject*> getDataList () {
         return this->dataList;
     }
+
     void addAppOnDataList (QString udn, QString name, QString info, QUrl iconURL, QUrl appURL) {
         dataList.append(new DataObject(udn, name, info, iconURL, appURL));
 
         engine.rootContext()->setContextProperty(QString("myModel"),
                                                  QVariant::fromValue(dataList));
     }
+
     void removeAppFromDataList (QString udn) {
         foreach (QObject* q, dataList){
             DataObject * d = (DataObject *) q;

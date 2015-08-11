@@ -107,6 +107,7 @@ void ControlPointBCU::replyFinished(QNetworkReply *reply) {
             }
         }
 
+        Service * serv;
         QString deviceType = device->getAttribute(device->deviceType);
         if (!hasUdn && deviceType == "urn:org.compelab.AppServer:1") {
             bool has3gets = false;
@@ -115,13 +116,13 @@ void ControlPointBCU::replyFinished(QNetworkReply *reply) {
             // foreach service, search by actions getListOfApps, getAppInfo, getApp
             foreach (Service *s, serviceList) {
                 Action * list = s->getAction(QString("getListOfApps"));
-                OutArgument * oa = new OutArgument();
-                qDebug() << list->call(new InArgument(), oa);
                 Action * info = s->getAction(QString("getAppInfo"));
                 Action * app = s->getAction(QString("getApp"));
 
+                // melhorar isso
                 // if 3 actions exists, break foreach
                 if (list != 0 && info != 0 && app != 0) {
+                    serv = s;
                     has3gets = true;
                     break;
                 }
@@ -136,10 +137,18 @@ void ControlPointBCU::replyFinished(QNetworkReply *reply) {
                                     QString().setNum(urlBase->port()));
                 }
 
+                addAppOnDataList(udn, "", "", QUrl(""), QUrl(""));
+
                 rootXml->remove();
                 delete rootXml;
                 delete urlBase;
                 reply->deleteLater();
+
+                connect(serv, SIGNAL(requestFinished(OutArgument, QString)), this, SLOT(serviceCall(OutArgument, QString)));
+                connect(serv, SIGNAL(requestError(QString, QString)), this, SLOT(requestError(QString,QString)));
+                serv->call("getListOfApps", InArgument);
+
+                // decode JSON
 
                 // adding founded app on grid
                 QString name = device->getAttribute(device->FriendlyName);
@@ -244,6 +253,23 @@ void ControlPointBCU::receiveMulticast(OutArgument attributes)
 {
     emit multicastReceived(attributes.value("variableName"), attributes.value("newValue"));
     emit multicastReceivedRaw(attributes);
+}
+
+void ControlPointBCU::serviceCall(OutArgument arguments, QString method)
+{
+    QString returnMessage = "";
+    QMapIterator<QString, QString> it(arguments);
+    while (it.hasNext()) {
+        it.next();
+        returnMessage.append(it.key() + " = " + it.value() + "\n");
+    }
+
+    qDebug() << "Calling method: " << method << "Returned: \n" << returnMessage;
+}
+
+void ControlPointBCU::requestError(QString errorMessage, QString methodName)
+{
+    qDebug() << errorMessage  << " when calling " << methodName;
 }
 
 }
