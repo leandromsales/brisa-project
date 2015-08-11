@@ -146,20 +146,11 @@ void ControlPointBCU::replyFinished(QNetworkReply *reply) {
 
                 connect(serv, SIGNAL(requestFinished(OutArgument, QString)), this, SLOT(serviceCall(OutArgument, QString)));
                 connect(serv, SIGNAL(requestError(QString, QString)), this, SLOT(requestError(QString,QString)));
-                serv->call("getListOfApps", InArgument);
 
-                // decode JSON
+                InArgument parameters;
+                serv->call("getListOfApps", parameters);
 
-                // adding founded app on grid
-                QString name = device->getAttribute(device->FriendlyName);
-                QString info = device->getAttribute(device->ModelDescription);
-                QString appUrl = device->getAttribute(device->UrlBase);
-                QString iconUrl = "qrc:/pics/qtlogo.png";
-                if (!device->getIconList().isEmpty()) {
-                    Icon * icon = device->getIconList().first();
-                    iconUrl = icon->getAttribute(icon->Url);
-                }
-                addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
+                this->auxDev = device;
 
                 emit deviceFound(device);
             } else {
@@ -265,11 +256,34 @@ void ControlPointBCU::serviceCall(OutArgument arguments, QString method)
     }
 
     qDebug() << "Calling method: " << method << "Returned: \n" << returnMessage;
+    this->auxMsg = returnMessage;
+    auxMethod();
+
 }
 
 void ControlPointBCU::requestError(QString errorMessage, QString methodName)
 {
     qDebug() << errorMessage  << " when calling " << methodName;
+}
+
+void ControlPointBCU::auxMethod()
+{
+    // decode JSON
+    qDebug() << "------------------------------------------";
+    qDebug() << this->auxMsg;
+    qDebug() << "------------------------------------------";
+
+    // adding founded app on grid
+    QString udn = auxDev->getAttribute(auxDev->udn);
+    QString name = auxDev->getAttribute(auxDev->FriendlyName);
+    QString info = auxDev->getAttribute(auxDev->ModelDescription);
+    QString appUrl = auxDev->getAttribute(auxDev->UrlBase);
+    QString iconUrl = "qrc:/pics/qtlogo.png";
+    if (!auxDev->getIconList().isEmpty()) {
+        Icon * icon = auxDev->getIconList().first();
+        iconUrl = icon->getAttribute(icon->Url);
+    }
+    addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
 }
 
 }

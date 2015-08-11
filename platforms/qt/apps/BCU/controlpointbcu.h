@@ -90,6 +90,8 @@ private:
      */
     void discoverNetworkAddress();
 
+    void auxMethod();
+
 signals:
     /*!
      *    \fn void BrisaControlPoint::deviceFound(BrisaControlPointDevice *device)
@@ -226,6 +228,9 @@ private:
     QMap<int, int> requestsMapping;
     QList<QObject*> dataList;
     QQmlApplicationEngine engine;
+
+    QString auxMsg;
+    Device * auxDev;
 };
 
 }
