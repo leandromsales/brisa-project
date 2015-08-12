@@ -1,14 +1,16 @@
 \documentclass[journal]{IEEEtran}
 
+  \usepackage{natbib}
   \usepackage[pdftex]{graphicx}
   \usepackage[justification=centering]{caption}
+  
   \DeclareGraphicsExtensions{.png}
 
 \hyphenation{op-tical net-works semi-conduc-tor}
 
 
 \begin{document}
-
+  
 \title{An Infrastructure for Automatic Installation of Applications Based on the User's Current Location}
 
 \author{
@@ -26,11 +28,9 @@ This paper presents a context-aware middleware that allows automatic installatio
 
 \IEEEpeerreviewmaketitle
 
-
-
 \section{Introduction}
 
-\IEEEPARstart{B}{ased} on the term of Ubiquitous Computing, Mark Weiser envisioned a world where computing is embedded into our everyday devices, providing useful services to  users without requiring much effort or technical knowledges~\cite{weiser1991,weiser2001}. However, nowadays, the distribution of mobile applications is centralized in virtual stores, which means that users need to access a virtual store, search for the applications and than select the desired one for downloading. When the download is finished, the user needs to install the application, which also requires user's authorization in order to application get access to the phone's main hardware features, such as camera, microphone and bluetooth. The Mark's goal is hard to achieve since it is still required much effort from the users to download the application from the store, rather than get it automatically installed when needed. Therefore, in this paper, we propose a middelware that allows self-installable applications based on the services available on the users' everyday environments. The middleware is based on the Universal Plug and Play (UPnP) standards and provides two main modules: the BRisa Central Apps (BCA) and the BRisa Central User (BCU), which are detailed in the next section.
+\IEEEPARstart{B}{ased} on the term of Ubiquitous Computing, Mark Weiser envisioned a world where computing is embedded into our everyday devices, providing useful services to  users without requiring much effort or technical knowledges~\cite{weiser1991computer}. However, nowadays, the distribution of mobile applications is centralized in virtual stores, which means that users need to access a virtual store, search for the applications and than select the desired one for downloading. When the download is finished, the user needs to install the application, which also requires user's authorization in order to application get access to the phone's main hardware features, such as camera, microphone and bluetooth. The Mark's goal is hard to achieve since it is still required much effort from the users to download the application from the store, rather than get it automatically installed when needed. Therefore, in this paper, we propose a middelware that allows self-installable applications based on the services available on the users' everyday environments. The middleware is based on the Universal Plug and Play (UPnP) standards and provides two main modules: the BRisa Central Apps (BCA) and the BRisa Central User (BCU), which are detailed in the next section.
 
 \section{Architecture}
 
@@ -74,22 +74,8 @@ In this paper, we proposed a middleware for context-aware self-installable appli
   \newpage
 \fi 
 
-\begin{thebibliography}{1}
-
-\bibitem{weiser1991}
-M.~Weiser, \emph{The computer for the 21st century.}\hskip 1em plus
-  0.5em minus 0.4em\relax Scientiﬁc American, vol. 265, no. 3, pp. 94–104, Sep. 1991. 
-\bibitem{weiser2001}
-M.~Satyanarayanan, \emph{Pervasive Computing: Vision and Challenges.}\hskip 1em plus 0.5em minus 0.4em\relax Personal Communications, IEEE, vol. 8, no. 4, pp. 10–17, Aug 2001.
-\bibitem{IEEEhowto:kopka}
-L.~de~Sales et al., \emph{BRisa UPnP A/V Framework.}\hskip 1em plus 0.5em minus 0.4em\relax in International Conference on Consumer Electronics, 2008, pp. 1-2. 
-\bibitem{IEEEhowto:kopka}
-L.~Sherwin, \emph{UPnP Speciﬁcations Named International Standard for Device Interoperability for IP-Based Devices}\hskip 1em plus 0.5em minus 0.4em\relax 2009, UPnP Website. 
-%\bibitem{IEEEhowto:kopka}
-%R.~F. et al, \emph{Hypertext Transfer Protocol – HTTP/1.1}\hskip 1em plus
-%  0.5em minus 0.4em\relax RFC 2616, Internet Engineering Task Force, 1999. [Online]. Available: http://www.ietf.org/rfc/rfc2616.txt.
-
-\end{thebibliography}
+\bibliography{references}{}
+\bibliographystyle{plain}
 
 \end{document}
 
