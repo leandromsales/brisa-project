@@ -18,20 +18,20 @@ OutArgument *Functions::getListOfApps()
 {
     QString listOfApps;
 
-    listOfApps = "{\nApps :\n[";
+    listOfApps = "{ \"Apps\":[";
     foreach (QObject *obj, appManager->getListApps()) {
 
-        listOfApps += "\n{\n";
+        listOfApps += "{";
 
         BRisaApplication *app = (BRisaApplication *) obj;
-        listOfApps += "Title: " + app->getTitle() + ",\n";
-        listOfApps += "Icon: " + app->getIconPath() + "\n";
+        listOfApps += "\"Title\":\"" + app->getTitle() + "\",";
+        listOfApps += "\"Icon\":\"" + app->getIconPath() + "\"";
 
         listOfApps += "},";
     }
 
     listOfApps.remove(listOfApps.length() - 1, 1);
-    listOfApps += "\n]\n}";
+    listOfApps += "]}";
 
     this->getVariable("ListApps")->setAttribute(StateVariable::Value, listOfApps);
 
@@ -49,20 +49,20 @@ OutArgument *Functions::getAppInfo(InArgument * const inArguments)
     OutArgument *outArgs = new OutArgument();
 
     if(app) {
-        appInfo += "{\nTitle:" + app->getTitle() + ",\n";
-        appInfo += "Icon:" + app->getIconPath() + ",\n";
-        appInfo += "Description:" + app->getDescription() + ",\n";
-        appInfo += "Url:" + app->getUrl() + ",\n";
-        appInfo += "Services:[";
+        appInfo += "{\"Title\":\"" + app->getTitle() + "\",";
+        appInfo += "\"Icon\":\"" + app->getIconPath() + "\",";
+        appInfo += "\"Description\":\"" + app->getDescription() + "\",";
+        appInfo += "\"Url\":\"" + app->getUrl() + "\",";
+        appInfo += "\"Services\":[";
 
         QList<ServiceApp *> services = app->getServices();
 
         foreach (ServiceApp *s, services) {
-            appInfo += "\n" + s->getTitle() + " : " + s->getDescription() + ",";
+            appInfo += "\"" + s->getTitle() + "\":\"" + s->getDescription() + "\",";
         }
 
         appInfo.remove(appInfo.length() - 1, 1);
-        appInfo += "\n]\n}";
+        appInfo += "]}";
         outArgs->insert("InfoOfApp", appInfo);
     } else {
         outArgs->insert("InfoOfApp", "App doesn't exist!");
