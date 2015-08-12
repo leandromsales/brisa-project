@@ -39,13 +39,7 @@ The BCU module is a UPnP Control Point that searches for BCA devices in the netw
 The protocol that manages all the communications among BCAs and BCUs is called BRisa Apps Communication Protocol (BACP). The architecture offers a peer-to-peer pervasive network connectivity among all types of devices, including laptops and desktops. The communication process between the BCU and the BCA is summarized in Fig. 1. In Step 1, when the BCU enters into a new environment and connects to the local network, it sends a UPnP SSDP (Service Discovery Protocol) request to discover BCA devices. In Step 2, upon receiving the BCU's discovery message, one or more BCA devices reply to the BCU by sending a message that contains important information about the BCA device and other information regarding its services, which allows the BCU to install the available applications. In Step 3, the BCU sends a request to each BCA device available in the local network, asking for the name and icon of each application available in BCA. Once the BCU receives such data from the BCA (Step 4), each application icon is exposed on the applications menu of the BCU. In Step 5, if the user is interested in any of the applications that has been shown on the screen, (s)he can select its icon. In Step 6, the BCU sends a request to the respective BCA in order to download the files needed. In Step 7, these files are downloaded in a compressed format and extracted on the BCU. The main application file� is than executed on user's BCU. When the user leaves the environment, the application is automatically removed, freeing up storage space on the device.
 
 \begin{figure}[tb]
-    \includegraphics[scale = 0.26]{FIG1}    
-    \rule[1ex]{10cm}{0.5pt}
-\end{figure}
-
-\begin{figure}[tb]
-    \includegraphics[scale = 0.26]{FIG2}
-    \caption{Automatic application installation process.}
+    \includegraphics[scale = 0.36]{FIG1}    
 \end{figure}
 
 Optionally, the user can activate a caching mechanism to avoid downloading applications that were previously executed. However, before the client eventually executes the application stored in the cache, the client module checks if a newer version of the application is available in the BCA device that hosts the application. So, the BCU executes the BRisa Application Communication Protocol (BACP). The details of such communication  is depicted in Fig. 2.
