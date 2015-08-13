@@ -252,7 +252,7 @@ void ControlPointBCU::serviceCall(OutArgument arguments, QString method)
     QMapIterator<QString, QString> it(arguments);
     while (it.hasNext()) {
         it.next();
-        returnMessage.append(it.key() + " = " + it.value() + "\n");
+        returnMessage.append(it.value());
     }
 
     qDebug() << "Calling method: " << method << "Returned: \n" << returnMessage;
@@ -269,9 +269,19 @@ void ControlPointBCU::requestError(QString errorMessage, QString methodName)
 void ControlPointBCU::auxMethod()
 {
     // decode JSON
-    qDebug() << "------------------------------------------";
-    qDebug() << this->auxMsg;
-    qDebug() << "------------------------------------------";
+    QJsonParseError error;
+    QJsonDocument doc = QJsonDocument::fromJson(this->auxMsg.toLatin1(), &error);
+    if (error.errorString() != "")
+        qDebug() << error.errorString();
+
+    QList<QVariant>	listApps = doc.object().toVariantHash()["Apps"].toList();
+
+    for(int i = 0; i < listApps.length(); i++) {
+        QMap<QString,QVariant> app = listApps.at(i).toMap();
+
+        qDebug() << "Title is" << app["Title"].toString();
+        qDebug() << "Icon is" << app["Icon"].toString();
+    }
 
     // adding founded app on grid
     QString udn = auxDev->getAttribute(auxDev->udn);
