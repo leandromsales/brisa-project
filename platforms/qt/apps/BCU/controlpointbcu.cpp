@@ -107,7 +107,6 @@ void ControlPointBCU::replyFinished(QNetworkReply *reply) {
             }
         }
 
-        Service * serv;
         QString deviceType = device->getAttribute(device->deviceType);
         if (!hasUdn && deviceType == "urn:org.compelab.AppServer:1") {
             bool has3gets = false;
@@ -122,7 +121,7 @@ void ControlPointBCU::replyFinished(QNetworkReply *reply) {
                 // melhorar isso
                 // if 3 actions exists, break foreach
                 if (list != 0 && info != 0 && app != 0) {
-                    serv = s;
+                    this->auxServ = s;
                     has3gets = true;
                     break;
                 }
@@ -144,12 +143,13 @@ void ControlPointBCU::replyFinished(QNetworkReply *reply) {
                 delete urlBase;
                 reply->deleteLater();
 
-                connect(serv, SIGNAL(requestFinished(OutArgument, QString)), this, SLOT(serviceCall(OutArgument, QString)));
-                connect(serv, SIGNAL(requestError(QString, QString)), this, SLOT(requestError(QString,QString)));
+                connect(this->auxServ, SIGNAL(requestFinished(OutArgument, QString)),
+                        this, SLOT(serviceCall(OutArgument, QString)));
+                connect(this->auxServ, SIGNAL(requestError(QString, QString)),
+                        this, SLOT(requestError(QString,QString)));
 
                 InArgument parameters;
-                serv->call("getListOfApps", parameters);
-
+                this->auxServ->call("getListOfApps", parameters);
                 this->auxDev = device;
 
                 emit deviceFound(device);
@@ -256,8 +256,14 @@ void ControlPointBCU::serviceCall(OutArgument arguments, QString method)
     }
 
     qDebug() << "Calling method: " << method << "Returned: \n" << returnMessage;
+
     this->jsonMsg = returnMessage;
-    decodeJSON();
+
+    if (method == "getListOfApps") {
+        decodeJsonList();
+    } else if (method == "getAppInfo") {
+        decodeJsonInfo();
+    }
 
 }
 
@@ -266,29 +272,55 @@ void ControlPointBCU::requestError(QString errorMessage, QString methodName)
     qDebug() << errorMessage  << " when calling " << methodName;
 }
 
-void ControlPointBCU::decodeJSON()
+void ControlPointBCU::decodeJsonList()
+{
+    // decode JSON
+    QString json = this->jsonMsg;
+    QJsonParseError error;
+    QJsonDocument doc = QJsonDocument::fromJson(json.toLatin1(), &error);
+    if (error.errorString() != "error not occurred") {
+        qDebug() << error.errorString();
+    }
+
+    QList<QVariant>	listApps = doc.object().toVariantHash()["Apps"].toList();
+
+    // get more info about each app
+    for(int i = 0; i < listApps.length(); i++) {
+        QMap<QString,QVariant> app = listApps.at(i).toMap();
+
+        QMap<QString, QString> param;
+        param["SelectedApp"] = app["Title"].toString();
+
+        qDebug() << ">>>>>>>>>>>>>>> " << app["Title"].toString();
+        this->auxServ->call("getAppInfo", param);
+    }
+}
+
+void ControlPointBCU::decodeJsonInfo()
 {
     // decode JSON
     QJsonParseError error;
     QJsonDocument doc = QJsonDocument::fromJson(this->jsonMsg.toLatin1(), &error);
-    if (error.errorString() != "")
+    if (error.errorString() != "error not occurred") {
         qDebug() << error.errorString();
-
-    QList<QVariant>	listApps = doc.object().toVariantHash()["Apps"].toList();
-
-    QString udn = auxDev->getAttribute(auxDev->udn);
+    }
 
     // adding founded apps on grid
-    for(int i = 0; i < listApps.length(); i++) {
-        QMap<QString,QVariant> app = listApps.at(i).toMap();
+    QVariantHash app = doc.object().toVariantHash();
 
-        QString name = app["Title"].toString();
-        QString info = "info about app";
-        QString appUrl = "app url";
-        QString iconUrl = app["Icon"].toString();
+    qDebug() << "------------------------------------------";
+    qDebug() << app["Title"];
+    qDebug() << app["Description"];
+    qDebug() << app["Icon"];
+    qDebug() << app["Url"];
+    qDebug() << "------------------------------------------";
 
-        addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
-    }
+    QString udn = auxDev->getAttribute(auxDev->udn);
+    QString name = app["Title"].toString();
+    QString info = app["Description"].toString();
+    QString iconUrl = app["Icon"].toString();
+    QString appUrl = app["Url"].toString();
+    addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
 }
 
 }

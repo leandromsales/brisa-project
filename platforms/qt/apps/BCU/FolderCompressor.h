@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QObject>
 #include <QDir>
+#include <QDataStream>
 
 class FolderCompressor : public QObject
 {
