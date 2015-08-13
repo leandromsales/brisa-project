@@ -259,7 +259,7 @@ void ControlPointBCU::serviceCall(OutArgument arguments, QString method)
 
     this->jsonMsg = returnMessage;
 
-    if (method == "geListOfApps") {
+    if (method == "getListOfApps") {
         decodeJsonList();
     } else if (method == "getAppInfo") {
         decodeJsonInfo();
@@ -291,6 +291,7 @@ void ControlPointBCU::decodeJsonList()
         QMap<QString, QString> param;
         param["SelectedApp"] = app["Title"].toString();
 
+        qDebug() << ">>>>>>>>>>>>>>> " << app["Title"].toString();
         this->auxServ->call("getAppInfo", param);
     }
 }
@@ -304,16 +305,22 @@ void ControlPointBCU::decodeJsonInfo()
         qDebug() << error.errorString();
     }
 
+    // adding founded apps on grid
+    QVariantHash app = doc.object().toVariantHash();
+
     qDebug() << "------------------------------------------";
-    qDebug() << doc.object().toVariantHash()["Title"];
-    qDebug() << doc.object().toVariantHash()["Description"];
-    qDebug() << doc.object().toVariantHash()["Icon"];
-    qDebug() << doc.object().toVariantHash()["URL"];
+    qDebug() << app["Title"];
+    qDebug() << app["Description"];
+    qDebug() << app["Icon"];
+    qDebug() << app["Url"];
     qDebug() << "------------------------------------------";
 
-    // adding founded apps on grid
-    // QString udn = auxDev->getAttribute(auxDev->udn);
-    // addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
+    QString udn = auxDev->getAttribute(auxDev->udn);
+    QString name = app["Title"].toString();
+    QString info = app["Description"].toString();
+    QString iconUrl = app["Icon"].toString();
+    QString appUrl = app["Url"].toString();
+    addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
 }
 
 }
