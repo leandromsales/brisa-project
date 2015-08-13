@@ -5,9 +5,7 @@ import "." as Comp
 
 Rectangle {
     id: appWindow
-    width: 600
-    height: 800
-    visible: true
+	anchors.fill:parent
 
     color: "black"
 

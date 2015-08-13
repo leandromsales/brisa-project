@@ -53,16 +53,25 @@ OutArgument *Functions::getAppInfo(InArgument * const inArguments)
         appInfo += "\"Icon\":\"" + app->getIconPath() + "\",";
         appInfo += "\"Description\":\"" + app->getDescription() + "\",";
         appInfo += "\"Url\":\"" + app->getUrl() + "\",";
-        appInfo += "\"Services\":[{";
+        appInfo += "\"Services\":[";
 
         QList<ServiceApp *> services = app->getServices();
+
+        if(!services.isEmpty())
+            appInfo += "{";
 
         foreach (ServiceApp *s, services) {
             appInfo += "\"" + s->getTitle() + "\":\"" + s->getDescription() + "\",";
         }
 
-        appInfo.remove(appInfo.length() - 1, 1);
-        appInfo += "}]}";
+        if(!services.isEmpty()){
+
+            appInfo.remove(appInfo.length() - 1, 1);
+            appInfo += "}";
+
+        }
+
+        appInfo += "]}";
         outArgs->insert("InfoOfApp", appInfo);
     } else {
         outArgs->insert("InfoOfApp", "App doesn't exist!");

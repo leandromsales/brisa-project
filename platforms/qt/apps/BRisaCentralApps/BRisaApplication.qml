@@ -25,12 +25,7 @@ Rectangle {
 
             onClicked: {
 
-                appFrame.iconPath=iconPath
-                appFrame.title=title
-                appFrame.description=description
-
-                var i;
-                for(i = 0; i < servicesModel.length; i++) {
+                for(var i = 0; i < servicesModel.length; i++) {
 
                     list.append({
                                     "title": servicesModel[i],
@@ -39,21 +34,33 @@ Rectangle {
 
                 }
 
-                appFrame.servicesModel=list
-                mainRoot.state="app"
+                stackPages.push(appPageComponent);
 
             }
             onEntered: {
-
-                root.width=root.width*(1.2)
-                root.height=root.height*(1.2)
-
+                root.scale = 1.5
             }
             onExited: {
+                root.scale = 1
+            }
+        }
+    }
 
-                root.width=root.width*(0.8333333333)
-                root.height=root.height*(0.8333333333)
+    Component {
 
+        id:appPageComponent
+
+        Rectangle {
+            property string iconPath
+            property string title
+            property string description
+            property var servicesModel
+
+            BRisaApplicationView {
+                iconPath: root.iconPath
+                title : root.title
+                description: root.description
+                servicesModel: list
             }
         }
     }

@@ -3,6 +3,7 @@
 BRisaApplicationManager::BRisaApplicationManager(QQmlApplicationEngine &engine)
 {
     numOfApps = 0;
+    mainEngine = &engine;
     ctxt = engine.rootContext();
 }
 
@@ -47,14 +48,20 @@ void BRisaApplicationManager::addApp(QObject *app)
 
 void BRisaApplicationManager::run(QString name)
 {
-    QQuickView *view = new QQuickView(QUrl(getAppByName(name)->getUrl()));
+    QQmlComponent window(mainEngine);
+    window.loadUrl(QUrl(getAppByName(name)->getUrl()));
 
-    QString dirPath = getAppByName(name)->getIconPath();
-    dirPath.resize(dirPath.size() - 9);
+    QObject *stack = mainEngine->rootObjects()[0]->findChild<QObject *>("stack");
 
-    currentAppDir = dirPath;
+    QQuickItem *object = qobject_cast<QQuickItem*>(window.create(mainEngine->rootContext()));
+    qDebug() << mainEngine->rootObjects()[0]->findChild<QObject *>("appExec");
 
-    view->show();
+    object->setParentItem(qobject_cast<QQuickItem*>(mainEngine->rootObjects()[0]->findChild<QObject *>("appExec")));
+    object->setParent(mainEngine);
+
+    QMetaObject::invokeMethod(stack,"pushObject");
+
+    qDebug() << "OK";
 }
 
 

@@ -5,8 +5,7 @@ import QtQuick.Controls.Styles 1.3
 Rectangle {
 
     id:root
-    width:600
-    height:600
+	anchors.fill:parent
 
     Text{
         anchors.centerIn: parent

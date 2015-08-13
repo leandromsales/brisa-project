@@ -8,76 +8,71 @@ ApplicationWindow {
     height: 480
     visible: true
 
-    Rectangle {
-        id:mainRoot
-
+    StackView {
+        id:stackPages
+        objectName: "stack"
         anchors.fill: parent
 
-        states: [
-            State {
-                name: "app"
-                PropertyChanges {
-                    target: menuFrame
-                    visible:false
-                }
-            },
-            State {
-                name: "menu"
-                PropertyChanges {
-                    target: menuFrame
-                    visible:true
+        function pushObject() {
+            appRunnable.visible = true
+            stackPages.push(appRunnable);
+        }
+
+        initialItem: layout
+
+        Grid {
+            id:layout
+            columns:4
+
+            spacing:layout.width/20
+
+            Repeater {
+                model:manager.getNumOfApps();
+
+                delegate: BRisaApplication {
+
+                    height: layout.height/5
+                    width: layout.width/5
+
+                    iconPath:manager.getListApps()[index].getIconPath();
+                    title:manager.getListApps()[index].getTitle();
+                    description:manager.getListApps()[index].getDescription();
+
+                    servicesModel: manager.getListApps()[index].getString();
+
                 }
             }
-        ]
+        }
+    }
 
-        state:"menu"
+    Rectangle {
+        id:appRunnable
 
+        height:parent.height
+        width:parent.width
 
-        Rectangle {
-            id:appFrame
+        visible:false
+
+        Rectangle{
+            objectName: "appExec"
             anchors.fill: parent
-
-            property string iconPath
-            property string title
-            property string description
-            property var servicesModel
-
-            BRisaApplicationView {
-                iconPath: appFrame.iconPath
-                title : appFrame.title
-                description: appFrame.description
-                servicesModel: appFrame.servicesModel
-            }
         }
 
         Rectangle {
-            id:menuFrame
-            anchors.fill: parent
+            id:bottomBar
+            width:parent.width
+            height:parent.height/10
 
-            Grid {
-                id:layout
-                columns:6
-                anchors.fill: parent
-                anchors.margins: 5
+            color:"transparent"
 
-                spacing:10
+            anchors.bottom: parent.bottom
+            Button{
+                text:"Back"
 
-                Repeater {
-                    model:manager.getNumOfApps();
+                height:parent.height
+                width:parent.width/5
 
-                    delegate: BRisaApplication {
-
-                        height: appRoot.height/6
-                        width: appRoot.width/7
-
-                        iconPath:manager.getListApps()[index].getIconPath();
-                        title:manager.getListApps()[index].getTitle();
-                        description:manager.getListApps()[index].getDescription();
-
-                        servicesModel: manager.getListApps()[index].getString();
-
-                    }
-                }
+                onClicked: stackPages.pop();
             }
         }
     }

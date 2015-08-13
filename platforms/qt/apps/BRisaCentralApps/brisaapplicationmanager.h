@@ -6,7 +6,9 @@
 #include <QDebug>
 
 #include <QQmlApplicationEngine>
+#include <QQmlComponent>
 #include <QQmlContext>
+#include <QQuickItem>
 
 #include "brisaapplication.h"
 
@@ -34,6 +36,7 @@ private:
 
     QString currentAppDir;
 
+    QQmlApplicationEngine *mainEngine;
     QQmlContext *ctxt;
     int numOfApps;
 
