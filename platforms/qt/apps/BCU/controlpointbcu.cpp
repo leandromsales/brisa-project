@@ -252,12 +252,12 @@ void ControlPointBCU::serviceCall(OutArgument arguments, QString method)
     QMapIterator<QString, QString> it(arguments);
     while (it.hasNext()) {
         it.next();
-        returnMessage.append(it.key() + " = " + it.value() + "\n");
+        returnMessage.append(it.value());
     }
 
     qDebug() << "Calling method: " << method << "Returned: \n" << returnMessage;
-    this->auxMsg = returnMessage;
-    auxMethod();
+    this->jsonMsg = returnMessage;
+    decodeJSON();
 
 }
 
@@ -266,24 +266,29 @@ void ControlPointBCU::requestError(QString errorMessage, QString methodName)
     qDebug() << errorMessage  << " when calling " << methodName;
 }
 
-void ControlPointBCU::auxMethod()
+void ControlPointBCU::decodeJSON()
 {
     // decode JSON
-    qDebug() << "------------------------------------------";
-    qDebug() << this->auxMsg;
-    qDebug() << "------------------------------------------";
+    QJsonParseError error;
+    QJsonDocument doc = QJsonDocument::fromJson(this->jsonMsg.toLatin1(), &error);
+    if (error.errorString() != "")
+        qDebug() << error.errorString();
 
-    // adding founded app on grid
+    QList<QVariant>	listApps = doc.object().toVariantHash()["Apps"].toList();
+
     QString udn = auxDev->getAttribute(auxDev->udn);
-    QString name = auxDev->getAttribute(auxDev->FriendlyName);
-    QString info = auxDev->getAttribute(auxDev->ModelDescription);
-    QString appUrl = auxDev->getAttribute(auxDev->UrlBase);
-    QString iconUrl = "qrc:/pics/qtlogo.png";
-    if (!auxDev->getIconList().isEmpty()) {
-        Icon * icon = auxDev->getIconList().first();
-        iconUrl = icon->getAttribute(icon->Url);
+
+    // adding founded apps on grid
+    for(int i = 0; i < listApps.length(); i++) {
+        QMap<QString,QVariant> app = listApps.at(i).toMap();
+
+        QString name = app["Title"].toString();
+        QString info = "info about app";
+        QString appUrl = "app url";
+        QString iconUrl = app["Icon"].toString();
+
+        addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
     }
-    addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
 }
 
 }
