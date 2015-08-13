@@ -94,7 +94,8 @@ private:
      *  This function decode JSON received by getListOfApps of BCA and create a icon
      *  on grid foreach app on JSON.
      */
-    void decodeJSON();
+    void decodeJsonList();
+    void decodeJsonInfo();
 
 signals:
     /*!
@@ -234,6 +235,7 @@ private:
     QQmlApplicationEngine engine;
     QString jsonMsg;
     Device * auxDev;
+    Service * auxServ;
 };
 
 }
