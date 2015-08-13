@@ -27,7 +27,7 @@ Rectangle {
             color: maAbout.containsMouse ? "grey" : "white"
 
             Text {
-                text: "sobre o app"
+                text: "Sobre o app"
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
             }
@@ -49,7 +49,7 @@ Rectangle {
             color: maLoad.containsMouse ? "grey" : "white"
 
             Text {
-                text: "carregar o app"
+                text: "Carregar o app"
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
             }

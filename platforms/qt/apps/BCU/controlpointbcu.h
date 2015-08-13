@@ -90,7 +90,11 @@ private:
      */
     void discoverNetworkAddress();
 
-    void auxMethod();
+    /*!
+     *  This function decode JSON received by getListOfApps of BCA and create a icon
+     *  on grid foreach app on JSON.
+     */
+    void decodeJSON();
 
 signals:
     /*!
@@ -193,7 +197,7 @@ public:
     }
 
     void addAppOnDataList (QString udn, QString name, QString info, QUrl iconURL, QUrl appURL) {
-        dataList.append(new DataObject(udn, name, info, iconURL, appURL));
+        dataList.insert(dataList.size() - 1, new DataObject(udn, name, info, iconURL, appURL));
 
         engine.rootContext()->setContextProperty(QString("myModel"),
                                                  QVariant::fromValue(dataList));
@@ -228,8 +232,7 @@ private:
     QMap<int, int> requestsMapping;
     QList<QObject*> dataList;
     QQmlApplicationEngine engine;
-
-    QString auxMsg;
+    QString jsonMsg;
     Device * auxDev;
 };
 

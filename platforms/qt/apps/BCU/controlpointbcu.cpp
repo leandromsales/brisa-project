@@ -256,8 +256,8 @@ void ControlPointBCU::serviceCall(OutArgument arguments, QString method)
     }
 
     qDebug() << "Calling method: " << method << "Returned: \n" << returnMessage;
-    this->auxMsg = returnMessage;
-    auxMethod();
+    this->jsonMsg = returnMessage;
+    decodeJSON();
 
 }
 
@@ -266,11 +266,11 @@ void ControlPointBCU::requestError(QString errorMessage, QString methodName)
     qDebug() << errorMessage  << " when calling " << methodName;
 }
 
-void ControlPointBCU::auxMethod()
+void ControlPointBCU::decodeJSON()
 {
     // decode JSON
     QJsonParseError error;
-    QJsonDocument doc = QJsonDocument::fromJson(this->auxMsg.toLatin1(), &error);
+    QJsonDocument doc = QJsonDocument::fromJson(this->jsonMsg.toLatin1(), &error);
     if (error.errorString() != "")
         qDebug() << error.errorString();
 
