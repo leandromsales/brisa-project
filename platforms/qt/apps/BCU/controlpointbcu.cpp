@@ -276,24 +276,19 @@ void ControlPointBCU::auxMethod()
 
     QList<QVariant>	listApps = doc.object().toVariantHash()["Apps"].toList();
 
+    QString udn = auxDev->getAttribute(auxDev->udn);
+
+    // adding founded apps on grid
     for(int i = 0; i < listApps.length(); i++) {
         QMap<QString,QVariant> app = listApps.at(i).toMap();
 
-        qDebug() << "Title is" << app["Title"].toString();
-        qDebug() << "Icon is" << app["Icon"].toString();
-    }
+        QString name = app["Title"].toString();
+        QString info = "info about app";
+        QString appUrl = "app url";
+        QString iconUrl = app["Icon"].toString();
 
-    // adding founded app on grid
-    QString udn = auxDev->getAttribute(auxDev->udn);
-    QString name = auxDev->getAttribute(auxDev->FriendlyName);
-    QString info = auxDev->getAttribute(auxDev->ModelDescription);
-    QString appUrl = auxDev->getAttribute(auxDev->UrlBase);
-    QString iconUrl = "qrc:/pics/qtlogo.png";
-    if (!auxDev->getIconList().isEmpty()) {
-        Icon * icon = auxDev->getIconList().first();
-        iconUrl = icon->getAttribute(icon->Url);
+        addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
     }
-    addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
 }
 
 }
