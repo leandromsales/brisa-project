@@ -101,6 +101,23 @@ ApplicationWindow {
                 anchors.bottom: parent.bottom
                 height: Screen.desktopAvailableHeight*0.05
 
+                Rectangle {
+                    height: 1
+                    width: parent.width
+                    anchors.bottom: parent.top
+
+                    LinearGradient {
+                        anchors.fill: parent
+                        start: Qt.point(0, 0)
+                        end: Qt.point(parent.width, 0)
+                        gradient: Gradient {
+                            GradientStop { position: 0.0; color: "white" }
+                            GradientStop { position: 0.5; color: "black" }
+                            GradientStop { position: 1.0; color: "white" }
+                        }
+                    }
+                }
+
                 Text {
                     text: "Pesquisando por outros dispositivos..."
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -119,23 +136,76 @@ ApplicationWindow {
         visible:false
 
         Rectangle {
+            id: topBarApp
+            width: parent.width
+            anchors.top: parent.top
+            height: Screen.desktopAvailableHeight*0.05
+
+            Text {
+                text: "Aplicativo " + dtS.name
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+            }
+
+            Rectangle {
+                height: 1
+                width: parent.width
+                anchors.bottom: parent.bottom
+
+                LinearGradient {
+                    anchors.fill: parent
+                    start: Qt.point(0, 0)
+                    end: Qt.point(parent.width, 0)
+                    gradient: Gradient {
+                        GradientStop { position: 0.0; color: "white" }
+                        GradientStop { position: 0.5; color: "black" }
+                        GradientStop { position: 1.0; color: "white" }
+                    }
+                }
+            }
+        }
+
+        Rectangle {
             objectName: "appExec"
-            anchors.fill: parent
+            width: parent.width
+            height: Screen.desktopAvailableHeight*0.9
+            anchors.top: topBarApp.bottom
         }
 
         Rectangle {
             id: backButtonBar
             width: parent.width
-            height: Screen.desktopAvailableHeight*0.05
             anchors.bottom: parent.bottom
-            color:"transparent"
+            height: Screen.desktopAvailableHeight*0.05
 
-            Button {
+            Rectangle {
+                height: 1
+                width: parent.width
+                anchors.bottom: parent.top
+
+                LinearGradient {
+                    anchors.fill: parent
+                    start: Qt.point(0, 0)
+                    end: Qt.point(parent.width, 0)
+                    gradient: Gradient {
+                        GradientStop { position: 0.0; color: "white" }
+                        GradientStop { position: 0.5; color: "black" }
+                        GradientStop { position: 1.0; color: "white" }
+                    }
+                }
+            }
+
+            Text {
                 text: "Voltar"
-                height: parent.height
-                width: parent.width/5
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+            }
+
+            MouseArea {
+                anchors.fill: parent
                 onClicked: stackPages.pop();
             }
         }
     }
+
 }
