@@ -33,8 +33,8 @@
    * Se houver, usar o ícone do app no GridView. Se não, usar um ícone padrão (OK)
    * remover o device do grid quando ele sair da rede (implementado mas não
      testado, pois o BCA não está emitindo um "ssdp:bye bye")
-- alterar o passo acima, o correto seria criar um novo ícone para cada app de getListOfApps
+- alterar o passo acima, o correto seria criar um novo ícone para cada app de getListOfApps (OK)
    * recuperar informações de getListOfApps (OK)
-   * implementar um decode pro JSON
-   * alterar a criação dos ícones no grid
+   * implementar um decode pro JSON (OK)
+   * alterar a criação dos ícones no grid (OK)
 - baixar o app e carregar (em qml) dinamicamente

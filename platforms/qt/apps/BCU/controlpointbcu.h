@@ -7,6 +7,11 @@
 #include <QtDebug>
 #include <QNetworkAccessManager>
 
+#include <QQmlApplicationEngine>
+#include <QQmlComponent>
+#include <QQmlContext>
+#include <QQuickItem>
+
 #include "src/upnp/controlpoint/cpdevice.h"
 #include "src/upnp/controlpoint/eventproxy.h"
 #include "src/upnp/controlpoint/multicasteventreceiver.h"
@@ -192,6 +197,8 @@ public:
     int getActivePort() {
         return port;
     }
+
+    Q_INVOKABLE void run(QString appURL);
 
     QList<QObject*> getDataList () {
         return this->dataList;

@@ -12,6 +12,7 @@ namespace controlpoint {
 ControlPointBCU::ControlPointBCU(QObject *parent, QString st, int mx) :
     QObject(parent) {
 
+    engine.rootContext()->setContextProperty(QString("manager"), this);
     engine.rootContext()->setContextProperty(QString("myModel"),
                                              QVariant::fromValue(dataList));
     engine.rootContext()->setContextProperty(QString("dtS"), new DataObject());
@@ -201,6 +202,24 @@ EventProxy *ControlPointBCU::getSubscriptionProxy(Service *service) {
 
     //    return subscription;
     return NULL;
+}
+
+void ControlPointBCU::run(QString appURL)
+{
+    QQmlComponent window(&engine);
+    window.loadUrl(QUrl(appURL));
+
+    QObject *stack = engine.rootObjects()[0]->findChild<QObject *>("stack");
+
+    QQuickItem *object = qobject_cast<QQuickItem*>(window.create(engine.rootContext()));
+    qDebug() << engine.rootObjects()[0]->findChild<QObject *>("appExec");
+
+    object->setParentItem(qobject_cast<QQuickItem*>(engine.rootObjects()[0]->findChild<QObject *>("appExec")));
+    object->setParent(&engine);
+
+    QMetaObject::invokeMethod(stack,"pushObject");
+
+    qDebug() << "OK";
 }
 
 void ControlPointBCU::httpResponse(QNetworkReply *networkReply) {

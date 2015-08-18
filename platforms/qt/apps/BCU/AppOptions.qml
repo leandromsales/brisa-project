@@ -6,11 +6,11 @@ Rectangle {
     color: "white"
     opacity: 0.75
     focus: true
-        Keys.onPressed: {
-            if (event.key == Qt.Key_Backspace) {
-                loader.source = ""
-            }
+    Keys.onPressed: {
+        if (event.key == Qt.Key_Backspace) {
+            loader.source = ""
         }
+    }
 
     Rectangle {
         id: mainRec
@@ -58,7 +58,10 @@ Rectangle {
                 id: maLoad
                 anchors.fill: load
                 hoverEnabled : true
-                onClicked: loader.source = "LoadApp.qml"
+                onClicked: {
+                    loader.source = "";
+                    manager.run(dtS.appURL)
+                }
             }
         }
     }
