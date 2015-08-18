@@ -78,7 +78,6 @@ ApplicationWindow {
                     anchors.fill: parent
                     contentWidth: parent.width
                     contentHeight: parent.height
-                    // testar essa parte melhor, parece que o stop at bounds não está ok
                     boundsBehavior: Flickable.StopAtBounds
                     flickableDirection: Flickable.VerticalFlick
                     clip: true
@@ -167,9 +166,10 @@ ApplicationWindow {
 
         Rectangle {
             objectName: "appExec"
-            width: parent.width
+            width: root.width
             height: Screen.desktopAvailableHeight*0.9
             anchors.top: topBarApp.bottom
+            color: "white"
         }
 
         Rectangle {
