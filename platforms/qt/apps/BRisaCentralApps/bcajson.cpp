@@ -1,27 +1,15 @@
 #include "bcajson.h"
 
-BCAJson::BCAJson(const char *path)
+BCAJson::BCAJson(QString path)
 {
-    ifstream i(path);
+    QFile i(path);
+    i.open(QIODevice::ReadOnly);
 
     //Get file size
-    i.seekg (0, i.end);
-    int length = i.tellg();
-    i.seekg (0, i.beg);
-
-    //Creating a buffer
-    char * buffer = new char[length];
-    i.read(buffer,length);
-
-    QString str(buffer);
-
-    //Remove the trash
-    if(str.length() != length) {
-        str.remove(length, str.length() - length);
-    }
+    int length = i.size();
 
     //Reading the JSON
-    QJsonDocument d = QJsonDocument::fromJson(QString(str).toUtf8());
+    QJsonDocument d = QJsonDocument::fromJson(i.readAll());
     mainObject = d.object();
 }
 
