@@ -20,6 +20,11 @@
 
 #include "brisaapplicationmanager.h"
 
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonValue>
+#include <QJsonArray>
+
 class Functions : public brisa::upnp::device::Service
 {
     Q_OBJECT

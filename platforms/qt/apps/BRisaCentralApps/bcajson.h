@@ -4,18 +4,18 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
-#include <QString>
 #include <QDebug>
+#include <QString>
 #include <QList>
+#include <QFile>
 
-#include <fstream>
 
 using namespace std;
 
 class BCAJson
 {
 public:
-    BCAJson(const char *path);
+    BCAJson(QString path);
     ~BCAJson();
 
     QList<QString> *toBRisaApp();

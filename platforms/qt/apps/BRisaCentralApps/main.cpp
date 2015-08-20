@@ -9,22 +9,22 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-
     QQmlApplicationEngine engine;
 
     QQmlContext *ctxt = engine.rootContext();
 
     BRisaApplicationManager *manager = new BRisaApplicationManager(engine);
 
-
     QDir dir("../BRisaCentralApps/apps");
     QStringList listApps = dir.entryList();
 
     for(int i = 2; i < listApps.size(); i++) {
 
-        BCAJson json(qPrintable(dir.absoluteFilePath(listApps[i]) + "/" + "description.json"));
+        BCAJson json(dir.absoluteFilePath(listApps[i]) + "/description.json");
         QString icon = "file:///" + dir.absoluteFilePath(listApps[i]) + "/icon.png";
-        QString url = "file:///" + dir.absoluteFilePath(listApps[i]) + "/main.qml";
+        QString url = "file:///" + dir.absoluteFilePath(listApps[i]) + "/" + listApps[i] + ".compe";
+
+        qDebug() << url;
 
         manager->addApp(new BRisaApplication(icon, listApps[i], url, json.toBRisaApp()));
     }

@@ -34,6 +34,11 @@
     <name>getApp</name>
       <argumentList>
       <argument>
+        <name>SelectedApp</name>
+        <direction>in</direction>
+        <relatedStateVariable>AppSelector</relatedStateVariable>
+      </argument>
+      <argument>
         <name>TheApp</name>
         <direction>out</direction>
         <relatedStateVariable>App</relatedStateVariable>
