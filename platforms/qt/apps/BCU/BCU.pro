@@ -80,7 +80,8 @@ HEADERS += \
     src/upnp/icon.h \
     src/upnp/servicexmlhandler.h \
     src/upnp/statevariable.h \
-    dataobject.h
+    dataobject.h \
+    filedownloader.h
 
 SOURCES += main.cpp \
     controlpointbcu.cpp \
@@ -144,4 +145,5 @@ SOURCES += main.cpp \
     src/upnp/icon.cpp \
     src/upnp/servicexmlhandler.cpp \
     src/upnp/statevariable.cpp \
-    dataobject.cpp
+    dataobject.cpp \
+    filedownloader.cpp

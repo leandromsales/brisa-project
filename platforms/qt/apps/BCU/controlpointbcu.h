@@ -20,6 +20,7 @@
 #include "src/shared/ssdp/ssdpclient.h"
 #include "src/shared/webserver/webserversession.h"
 #include "dataobject.h"
+#include "filedownloader.h"
 
 /*
  * Esta classe é bem parecida com a classe ControlPoint do BRisa. Inicialmente,
@@ -100,7 +101,15 @@ private:
      *  on grid foreach app on JSON.
      */
     void decodeJsonList();
+    /*!
+     *  This function decode JSON received by getAppInfo of BCA to set description of
+     * app and download it
+     */
     void decodeJsonInfo();
+    /*!
+     *  This function helps to download files
+     */
+    void download (QString url, QString filename);
 
 signals:
     /*!
@@ -184,8 +193,20 @@ private slots:
      */
     void receiveMulticast(QMap<QString, QString> attributes);
 
+    /*!
+     *  This slot call a service of BCA
+     */
     void serviceCall(OutArgument, QString);
+
+    /*!
+     * This slot get errors on call of BCA' services
+     */
     void requestError(QString errorMessage, QString methodName);
+
+    /*!
+     * This slot download images .jpg e .png and .compe files
+     */
+    void load();
 
 public:
     EventProxy *getSubscriptionProxy(Service *service);
@@ -243,6 +264,8 @@ private:
     QString jsonMsg;
     Device * auxDev;
     Service * auxServ;
+    QString m_filename, m_url;
+    FileDownloader *m_ctrl;
 };
 
 }

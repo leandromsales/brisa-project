@@ -286,6 +286,43 @@ void ControlPointBCU::requestError(QString errorMessage, QString methodName)
     qDebug() << errorMessage  << " when calling " << methodName;
 }
 
+void ControlPointBCU::load()
+{
+    qDebug() << "getting file " << m_filename;
+
+        if (m_url.endsWith(".jpg", Qt::CaseInsensitive)) {
+            QImage image = QImage::fromData(m_ctrl->downloadedData());
+            QFile outFile("pics/" + m_filename + ".png");
+            outFile.open(QIODevice::WriteOnly);
+            image.save(&outFile, "JPEG");
+            outFile.close();
+            qDebug() << "end" << m_filename << "JPG";
+        } else if (m_url.endsWith(".png", Qt::CaseInsensitive)) {
+            QImage image = QImage::fromData(m_ctrl->downloadedData());
+            QFile outFile("pics/" + m_filename + ".jpg");
+            outFile.open(QIODevice::WriteOnly);
+            image.save(&outFile, "PNG");
+            outFile.close();
+            qDebug() << "end" << m_filename << "PNG";
+        } else if (m_url.endsWith(".compe", Qt::CaseInsensitive)) {
+            QFile file("files/" + m_filename + ".compe");
+            file.open(QIODevice::WriteOnly);
+            QDataStream out(&file);
+            out << m_ctrl->downloadedData();
+            qDebug() << "end" << m_filename << "PDF";
+        } else {
+            qDebug() << "invalid extension";
+        }
+}
+
+void ControlPointBCU::download(QString url, QString filename)
+{
+    m_filename = filename;
+    m_url = url;
+    m_ctrl->setURL(QUrl(url));
+    connect(m_ctrl, SIGNAL (downloaded()), this, SLOT (load()));
+}
+
 void ControlPointBCU::decodeJsonList()
 {
     // decode JSON
@@ -321,19 +358,21 @@ void ControlPointBCU::decodeJsonInfo()
 
     // adding founded apps on grid
     QVariantHash app = doc.object().toVariantHash();
-
-    qDebug() << "------------------------------------------";
-    qDebug() << app["Title"];
-    qDebug() << app["Description"];
-    qDebug() << app["Icon"];
-    qDebug() << app["Url"];
-    qDebug() << "------------------------------------------";
-
     QString udn = auxDev->getAttribute(auxDev->udn);
     QString name = app["Title"].toString();
     QString info = app["Description"].toString();
-    QString iconUrl = app["Icon"].toString();
     QString appUrl = app["Url"].toString();
+
+    QString iconUrl;
+    if (app["Icon"].toString().startsWith("http://")) {
+        download(app["Icon"].toString(), app["Title"].toString().replace(" ", ""));
+         iconUrl = "pics/" + app["Title"].toString().replace(" ", "").append(".png");
+    } else {
+        iconUrl = app["Icon"].toString();
+    }
+
+    qDebug() << appUrl;
+
     addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
 }
 

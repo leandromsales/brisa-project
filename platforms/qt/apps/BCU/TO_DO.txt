@@ -37,4 +37,7 @@
    * recuperar informações de getListOfApps (OK)
    * implementar um decode pro JSON (OK)
    * alterar a criação dos ícones no grid (OK)
-- baixar o app e carregar (em qml) dinamicamente
+- baixar ícone do app e arquivo .compe (OK, a função funciona corretamente sozinha, mas não foi testado
+  quando BCA e BCU estão em máquinas diferentes, nem em integração com o BCA, pois ele ainda não
+  retornar arquivos .compe)
+- carregar app (em qml) dinamicamente (OK)

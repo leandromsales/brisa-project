@@ -9,8 +9,7 @@ class FileDownloader : public QObject
     Q_OBJECT
 public:
     FileDownloader();
-    explicit FileDownloader(QUrl imageUrl);
-    virtual ~FileDownloader();
+    ~FileDownloader();
     QByteArray downloadedData() const;
     void setURL(QUrl url);
 
