@@ -329,7 +329,7 @@ void ControlPointBCU::decodeJsonList()
     QString json = this->jsonMsg;
     QJsonParseError error;
     QJsonDocument doc = QJsonDocument::fromJson(json.toLatin1(), &error);
-    if (error.errorString() != "error not occurred") {
+    if (error.errorString() != "no error occurred") {
         qDebug() << error.errorString();
     }
 
@@ -342,7 +342,6 @@ void ControlPointBCU::decodeJsonList()
         QMap<QString, QString> param;
         param["SelectedApp"] = app["Title"].toString();
 
-        qDebug() << ">>>>>>>>>>>>>>> " << app["Title"].toString();
         this->auxServ->call("getAppInfo", param);
     }
 }
@@ -352,7 +351,7 @@ void ControlPointBCU::decodeJsonInfo()
     // decode JSON
     QJsonParseError error;
     QJsonDocument doc = QJsonDocument::fromJson(this->jsonMsg.toLatin1(), &error);
-    if (error.errorString() != "error not occurred") {
+    if (error.errorString() != "no error occurred") {
         qDebug() << error.errorString();
     }
 

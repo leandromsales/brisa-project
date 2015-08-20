@@ -40,4 +40,7 @@
 - baixar ícone do app e arquivo .compe (OK, a função funciona corretamente sozinha, mas não foi testado
   quando BCA e BCU estão em máquinas diferentes, nem em integração com o BCA, pois ele ainda não
   retornar arquivos .compe)
+- descomprimir o arquivo .compe baixado (OK, a função funciona corretamente sozinha, mas não foi testado
+  quando BCA e BCU estão em máquinas diferentes, nem em integração com o BCA, pois ele ainda não
+  retornar arquivos .compe)
 - carregar app (em qml) dinamicamente (OK)

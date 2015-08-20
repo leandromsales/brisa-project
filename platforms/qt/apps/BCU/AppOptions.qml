@@ -60,6 +60,9 @@ Rectangle {
                 hoverEnabled : true
                 onClicked: {
                     loader.source = "";
+                    // 1. chamar a função de download usando como parametros
+                    //    o nome do app e a url com final .compe
+                    // 2. descomprimir o .compe
                     manager.run(dtS.appURL)
                 }
             }
