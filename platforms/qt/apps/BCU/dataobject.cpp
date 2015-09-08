@@ -20,6 +20,7 @@ DataObject::~DataObject()
     this->info = "";
     this->iconURL = "";
     this->appURL = "";
+    this->udn = udn;
 }
 
 QString DataObject::getUdn()

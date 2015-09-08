@@ -1,3 +1,5 @@
+#include <QFile>
+#include <QImage>
 #include <QObject>
 #include <QByteArray>
 #include <QNetworkAccessManager>
@@ -8,14 +10,13 @@ class FileDownloader : public QObject
 {
     Q_OBJECT
 public:
-    FileDownloader();
-    explicit FileDownloader(QUrl imageUrl);
+    explicit FileDownloader(QUrl url, QString filename, QObject *parent = 0);
     virtual ~FileDownloader();
     QByteArray downloadedData() const;
-    void setURL(QUrl url);
 
 signals:
     void downloaded();
+    void ready();
 
 private slots:
     void fileDownloaded(QNetworkReply* pReply);
@@ -23,4 +24,6 @@ private slots:
 private:
     QNetworkAccessManager m_WebCtrl;
     QByteArray m_DownloadedData;
+    QString m_filename;
+    QUrl m_url;
 };

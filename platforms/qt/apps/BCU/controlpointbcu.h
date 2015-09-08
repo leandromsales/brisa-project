@@ -19,7 +19,9 @@
 #include "src/upnp/controlpoint/msearchclientcp.h"
 #include "src/shared/ssdp/ssdpclient.h"
 #include "src/shared/webserver/webserversession.h"
+
 #include "dataobject.h"
+#include "filedownloader.h"
 
 /*
  * Esta classe é bem parecida com a classe ControlPoint do BRisa. Inicialmente,
@@ -187,6 +189,12 @@ private slots:
     void serviceCall(OutArgument, QString);
     void requestError(QString errorMessage, QString methodName);
 
+    void add () {
+        addAppOnDataList(auxDO->getUdn(), auxDO->getName(), auxDO->getInfo(),
+                         auxDO->getIconURL(), auxDO->getAppURL());
+        delete auxDO;
+    }
+
 public:
     EventProxy *getSubscriptionProxy(Service *service);
 
@@ -243,6 +251,7 @@ private:
     QString jsonMsg;
     Device * auxDev;
     Service * auxServ;
+    DataObject *auxDO;
 };
 
 }

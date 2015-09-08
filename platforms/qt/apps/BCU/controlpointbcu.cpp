@@ -269,7 +269,7 @@ void ControlPointBCU::serviceCall(OutArgument arguments, QString method)
         returnMessage.append(it.value());
     }
 
-    qDebug() << "Calling method: " << method << "Returned: \n" << returnMessage;
+    // qDebug() << "Calling method: " << method << "Returned: \n" << returnMessage;
 
     this->jsonMsg = returnMessage;
 
@@ -322,21 +322,35 @@ void ControlPointBCU::decodeJsonInfo()
     // adding founded apps on grid
     QVariantHash app = doc.object().toVariantHash();
 
-    qDebug() << "------------------------------------------";
-    qDebug() << app["Title"];
-    qDebug() << app["Description"];
-    qDebug() << app["Icon"];
-    qDebug() << app["Url"];
-    qDebug() << "------------------------------------------";
-
     QString udn = auxDev->getAttribute(auxDev->udn);
     QString name = app["Title"].toString();
     QString info = app["Description"].toString();
-    QString iconUrl = app["Icon"].toString();
     QString appUrl = app["Url"].toString();
-    addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
-}
 
+    QString iconUrl;
+    // begin teste
+    if (name == "Calculator") {
+        iconUrl = "http://icons.iconarchive.com/icons/wwalczyszyn/android-style-honeycomb/256/Calculator-icon.png";
+        QUrl url(iconUrl);
+        FileDownloader *fd = new FileDownloader(url, name.replace(" ", ""), this);
+
+        auxDO = new DataObject(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
+
+        connect(fd, SIGNAL (ready()), this, SLOT (add()));
+    } else {
+    // end test
+        if (app["Icon"].toString().startsWith("file://")) {
+            iconUrl = app["Icon"].toString();
+            addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
+        } else {
+            iconUrl = "pics/" + name.replace(" ", "") + ".png";
+            QUrl url(iconUrl);
+            auxDO = new DataObject(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
+            FileDownloader *fd = new FileDownloader(url, name.replace(" ", ""), this);
+            connect(fd, SIGNAL (ready()), this, SLOT (add()));
+        }
+    }
+}
 }
 }
 }
