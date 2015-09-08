@@ -22,6 +22,7 @@
 
 #include "dataobject.h"
 #include "filedownloader.h"
+#include "FolderCompressor.h"
 
 /*
  * Esta classe é bem parecida com a classe ControlPoint do BRisa. Inicialmente,
@@ -103,6 +104,7 @@ private:
      */
     void decodeJsonList();
     void decodeJsonInfo();
+    void getApp(QString appURL);
 
 signals:
     /*!
@@ -141,6 +143,7 @@ signals:
      * \param raw attributes of the multicast event message.
      */
     void multicastReceivedRaw(OutArgument raw);
+    void decompressed();
 
 private slots:
     /*!
@@ -195,6 +198,9 @@ private slots:
         delete auxDO;
     }
 
+    void finishedGetApp();
+    void decompressedFinished();
+
 public:
     EventProxy *getSubscriptionProxy(Service *service);
 
@@ -207,6 +213,8 @@ public:
     }
 
     Q_INVOKABLE void run(QString appURL);
+
+    void execApp(QString appURL);
 
     QList<QObject*> getDataList () {
         return this->dataList;
@@ -249,9 +257,11 @@ private:
     QList<QObject*> dataList;
     QQmlApplicationEngine engine;
     QString jsonMsg;
+
     Device * auxDev;
     Service * auxServ;
     DataObject *auxDO;
+    QString auxAppURL;
 };
 
 }

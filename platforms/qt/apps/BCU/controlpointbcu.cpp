@@ -206,6 +206,14 @@ EventProxy *ControlPointBCU::getSubscriptionProxy(Service *service) {
 
 void ControlPointBCU::run(QString appURL)
 {
+    auxAppURL = appURL;
+    FileDownloader *fd = new FileDownloader(QUrl(appURL), appURL.replace(" ", ""), this);
+    connect(fd, SIGNAL (ready()), this, SLOT (finishedGetApp()));
+
+}
+
+void ControlPointBCU::execApp(QString appURL)
+{
     QQmlComponent window(&engine);
     window.loadUrl(QUrl(appURL));
 
@@ -286,6 +294,28 @@ void ControlPointBCU::requestError(QString errorMessage, QString methodName)
     qDebug() << errorMessage  << " when calling " << methodName;
 }
 
+void ControlPointBCU::finishedGetApp()
+{
+    connect(this, SIGNAL (decompressed()), this, SLOT (decompressedFinished()));
+
+    FolderCompressor *fc = new FolderCompressor();
+    QDir dir("files/");
+    QStringList listCompeFiles = dir.entryList();
+
+    foreach (QString file, listCompeFiles) {
+        if (file.endsWith(".compe")) {
+            fc->decompressFolder(file, file.replace(".compe", ""));
+        }
+    }
+
+    emit decompressed();
+}
+
+void ControlPointBCU::decompressedFinished()
+{
+    execApp(auxAppURL);
+}
+
 void ControlPointBCU::decodeJsonList()
 {
     // decode JSON
@@ -338,7 +368,7 @@ void ControlPointBCU::decodeJsonInfo()
 
         connect(fd, SIGNAL (ready()), this, SLOT (add()));
     } else {
-    // end test
+        // end test
         if (app["Icon"].toString().startsWith("file://")) {
             iconUrl = app["Icon"].toString();
             addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
@@ -351,6 +381,7 @@ void ControlPointBCU::decodeJsonInfo()
         }
     }
 }
+
 }
 }
 }
