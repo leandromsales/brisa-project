@@ -1,0 +1,17 @@
+[
+    {
+        "data": "{\n\t\"Description\":\"A Streamer of Videos\",\n\t\"Services\":[\n\t\t{\n\t\t\"Play\":\"play the Video\",\n\t\t\"Pause\":\"pause the Video\",\n\t\t\"Share\":\"share the Video in the social networks\"\n\t\t}\t\n\t]\n}",
+        "length": "175",
+        "name": "description.json"
+    },
+    {
+        "data": "�PNG\r\n\u001a\n",
+        "length": "25716",
+        "name": "icon.png"
+    },
+    {
+        "data": "import QtQuick 2.4\nimport QtQuick.Controls 1.3\n\nimport \".\" as Comp\n\nRectangle {\n    width: 640\n    height: 480\n    visible: true\n\n    color:\"#922\"\n\n    Text{\n        anchors.centerIn: parent\n        font.pixelSize: 60\n        font.bold : true\n\n        color:\"white\"\n\n        text:\"Youtube\"\n    }\n}\n",
+        "length": "298",
+        "name": "main.qml"
+    }
+]
