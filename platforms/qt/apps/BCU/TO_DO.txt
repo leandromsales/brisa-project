@@ -37,7 +37,8 @@
    * recuperar informações de getListOfApps (OK)
    * implementar um decode pro JSON (OK)
    * alterar a criação dos ícones no grid (OK)
-- baixar o app, descomprimir e carregar (em qml) dinamicamente (OK)
+- carregar (em qml) dinamicamente (OK)
+- baixar o app, descomprimir e, só depois carregar (implementado mas não testado)
 - add tela de loading durante o download do app
 - listar apps instalados
 - apagar apps instalados

@@ -1,3 +1,4 @@
+#include <QDir>
 #include "filedownloader.h"
 
 FileDownloader::FileDownloader(QUrl url, QString filename, QObject *parent) :
@@ -17,32 +18,29 @@ FileDownloader::~FileDownloader() { }
 void FileDownloader::fileDownloaded(QNetworkReply* pReply) {
     m_DownloadedData = pReply->readAll();
 
-    qDebug() << "empty" << m_DownloadedData.isEmpty();
-    qDebug() << "null" << m_DownloadedData.isNull();
-
     QString url = m_url.toString();
     if (url.endsWith(".jpg", Qt::CaseInsensitive)) {
         QImage image = QImage::fromData(m_DownloadedData);
-        QFile outFile("pics/" + m_filename + ".jpg");
+        QFile outFile("../BCU/pics/" + m_filename + ".jpg");
         outFile.open(QIODevice::WriteOnly);
         image.save(&outFile, "JPEG");
         outFile.close();
-        qDebug() << "get file" << m_filename << "jpg";
+        qDebug() << "BCU: get file" << m_filename << "jpg";
     } else if (url.endsWith(".png", Qt::CaseInsensitive)) {
         QImage image = QImage::fromData(m_DownloadedData);
-        QFile outFile("pics/" + m_filename + ".png");
+        QFile outFile("../BCU/pics/" + m_filename + ".png");
         outFile.open(QIODevice::WriteOnly);
         image.save(&outFile, "PNG");
         outFile.close();
-        qDebug() << "get file" << m_filename << "png";
+        qDebug() << "BCU: get file" << m_filename << "png";
     } else if (url.endsWith(".compe", Qt::CaseInsensitive)) {
-        QFile file("files/" + m_filename + ".compe");
+        QFile file("../BCU/files/" + m_filename + ".compe");
         file.open(QIODevice::WriteOnly);
         QDataStream out(&file);
         out << m_DownloadedData;
-        qDebug() << "get file" << m_filename << "compe";
+        qDebug() << "BCU: get file" << m_filename << "compe";
     } else {
-        qDebug() << "invalid extension";
+        qDebug() << "BCU: invalid extension" << url;
     }
 
     emit ready();

@@ -207,7 +207,7 @@ EventProxy *ControlPointBCU::getSubscriptionProxy(Service *service) {
 void ControlPointBCU::run(QString appURL)
 {
     auxAppURL = appURL;
-    FileDownloader *fd = new FileDownloader(QUrl(appURL), appURL.replace(" ", ""), this);
+    FileDownloader *fd = new FileDownloader(QUrl(appURL), "compe-file", this);
     connect(fd, SIGNAL (ready()), this, SLOT (finishedGetApp()));
 
 }
@@ -223,6 +223,27 @@ void ControlPointBCU::execApp(QString appURL)
     object->setParent(&engine);
 
     QMetaObject::invokeMethod(stack,"pushObject");
+}
+
+void ControlPointBCU::addAppOnDataList(QString udn, QString name, QString info, QUrl iconURL, QUrl appURL)
+{
+    dataList.insert(dataList.size() - 1, new DataObject(udn, name, info, iconURL, appURL));
+
+    engine.rootContext()->setContextProperty(QString("myModel"),
+                                             QVariant::fromValue(dataList));
+}
+
+void ControlPointBCU::removeAppFromDataList(QString udn)
+{
+    foreach (QObject* q, dataList){
+        DataObject * d = (DataObject *) q;
+        if (d->getUdn() == udn) {
+            dataList.removeOne(q);
+        }
+    }
+
+    engine.rootContext()->setContextProperty(QString("myModel"),
+                                             QVariant::fromValue(dataList));
 }
 
 void ControlPointBCU::httpResponse(QNetworkReply *networkReply) {
@@ -294,6 +315,13 @@ void ControlPointBCU::requestError(QString errorMessage, QString methodName)
     qDebug() << errorMessage  << " when calling " << methodName;
 }
 
+void ControlPointBCU::add()
+{
+    addAppOnDataList(auxDO->getUdn(), auxDO->getName(), auxDO->getInfo(),
+                     auxDO->getIconURL(), auxDO->getAppURL());
+    delete auxDO;
+}
+
 void ControlPointBCU::finishedGetApp()
 {
     connect(this, SIGNAL (decompressed()), this, SLOT (decompressedFinished()));
@@ -305,6 +333,7 @@ void ControlPointBCU::finishedGetApp()
     foreach (QString file, listCompeFiles) {
         if (file.endsWith(".compe")) {
             fc->decompressFolder(file, file.replace(".compe", ""));
+            QFile (file).remove();
         }
     }
 
@@ -322,7 +351,7 @@ void ControlPointBCU::decodeJsonList()
     QString json = this->jsonMsg;
     QJsonParseError error;
     QJsonDocument doc = QJsonDocument::fromJson(json.toLatin1(), &error);
-    if (error.errorString() != "error not occurred") {
+    if (error.errorString() != "no error occurred") {
         qDebug() << error.errorString();
     }
 
@@ -335,7 +364,6 @@ void ControlPointBCU::decodeJsonList()
         QMap<QString, QString> param;
         param["SelectedApp"] = app["Title"].toString();
 
-        qDebug() << ">>>>>>>>>>>>>>> " << app["Title"].toString();
         this->auxServ->call("getAppInfo", param);
     }
 }
@@ -345,7 +373,7 @@ void ControlPointBCU::decodeJsonInfo()
     // decode JSON
     QJsonParseError error;
     QJsonDocument doc = QJsonDocument::fromJson(this->jsonMsg.toLatin1(), &error);
-    if (error.errorString() != "error not occurred") {
+    if (error.errorString() != "no error occurred") {
         qDebug() << error.errorString();
     }
 
@@ -358,30 +386,19 @@ void ControlPointBCU::decodeJsonInfo()
     QString appUrl = app["Url"].toString();
 
     QString iconUrl;
-    // begin teste
-    if (name == "Calculator") {
-        iconUrl = "http://icons.iconarchive.com/icons/wwalczyszyn/android-style-honeycomb/256/Calculator-icon.png";
-        QUrl url(iconUrl);
-        FileDownloader *fd = new FileDownloader(url, name.replace(" ", ""), this);
 
-        auxDO = new DataObject(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
-
-        connect(fd, SIGNAL (ready()), this, SLOT (add()));
+    if (app["Icon"].toString().startsWith("file://")) {
+        iconUrl = app["Icon"].toString();
+        addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
     } else {
-        // end test
-        if (app["Icon"].toString().startsWith("file://")) {
-            iconUrl = app["Icon"].toString();
-            addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
-        } else {
-            iconUrl = "pics/" + name.replace(" ", "") + ".png";
-            QUrl url(iconUrl);
-            auxDO = new DataObject(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
-            FileDownloader *fd = new FileDownloader(url, name.replace(" ", ""), this);
-            connect(fd, SIGNAL (ready()), this, SLOT (add()));
-        }
+        iconUrl = "pics/" + name.replace(" ", "") + ".png";
+        QUrl url(iconUrl);
+        auxDO = new DataObject(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
+        FileDownloader *fd = new FileDownloader(url, name.replace(" ", ""), this);
+        connect(fd, SIGNAL (ready()), this, SLOT (add()));
     }
 }
-
 }
+
 }
 }
