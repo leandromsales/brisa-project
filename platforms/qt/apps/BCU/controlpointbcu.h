@@ -191,13 +191,7 @@ private slots:
 
     void serviceCall(OutArgument, QString);
     void requestError(QString errorMessage, QString methodName);
-
-    void add () {
-        addAppOnDataList(auxDO->getUdn(), auxDO->getName(), auxDO->getInfo(),
-                         auxDO->getIconURL(), auxDO->getAppURL());
-        delete auxDO;
-    }
-
+    void add ();
     void finishedGetApp();
     void decompressedFinished();
 
@@ -220,24 +214,10 @@ public:
         return this->dataList;
     }
 
-    void addAppOnDataList (QString udn, QString name, QString info, QUrl iconURL, QUrl appURL) {
-        dataList.insert(dataList.size() - 1, new DataObject(udn, name, info, iconURL, appURL));
+    void addAppOnDataList (QString udn, QString name, QString info,
+                           QUrl iconURL, QUrl appURL);
 
-        engine.rootContext()->setContextProperty(QString("myModel"),
-                                                 QVariant::fromValue(dataList));
-    }
-
-    void removeAppFromDataList (QString udn) {
-        foreach (QObject* q, dataList){
-            DataObject * d = (DataObject *) q;
-            if (d->getUdn() == udn) {
-                dataList.removeOne(q);
-            }
-        }
-
-        engine.rootContext()->setContextProperty(QString("myModel"),
-                                                 QVariant::fromValue(dataList));
-    }
+    void removeAppFromDataList (QString udn);
 
 private:
     QNetworkAccessManager *m_networkAccessManager;
