@@ -207,6 +207,7 @@ EventProxy *ControlPointBCU::getSubscriptionProxy(Service *service) {
 void ControlPointBCU::run(QString appURL)
 {
     auxAppURL = appURL;
+    // improve here to use name of app, not compe-file
     FileDownloader *fd = new FileDownloader(QUrl(appURL), "compe-file", this);
     connect(fd, SIGNAL (ready()), this, SLOT (finishedGetApp()));
 
@@ -214,6 +215,11 @@ void ControlPointBCU::run(QString appURL)
 
 void ControlPointBCU::execApp(QString appURL)
 {
+    qDebug() << "-----------------------";
+    qDebug() << appURL;
+    appURL.replace(".compe", "/main.qml");
+    qDebug() << appURL;
+    qDebug() << "-----------------------";
     QQmlComponent window(&engine);
     window.loadUrl(QUrl(appURL));
 
@@ -327,22 +333,51 @@ void ControlPointBCU::finishedGetApp()
     connect(this, SIGNAL (decompressed()), this, SLOT (decompressedFinished()));
 
     FolderCompressor *fc = new FolderCompressor();
-    QDir dir("files/");
+    // improved here to not use full path, but a relative one
+    QString path = "/home/larissa/UFAL/Compelab/git/brisa-project/platforms/qt/apps/BCU/files/";
+    QDir dir(path);
     QStringList listCompeFiles = dir.entryList();
 
+    bool status;
     foreach (QString file, listCompeFiles) {
         if (file.endsWith(".compe")) {
-            fc->decompressFolder(file, file.replace(".compe", ""));
-            QFile (file).remove();
+            QString fullPath = file.prepend(path);
+            QString filename = fullPath;
+            filename.replace(".compe", "");
+            status = fc->decompressFolder(fullPath, filename);
+            QFile (fullPath).remove();
+
+            qDebug() << "BCU: " << status << "\n" << fullPath << "\n" << filename;
         }
     }
 
-    emit decompressed();
+    if (status) {
+        emit decompressed();
+    } else {
+        qDebug() << "BCU: invalid file";
+    }
 }
 
 void ControlPointBCU::decompressedFinished()
 {
-    execApp(auxAppURL);
+    qDebug() << "descompressed";
+    QQmlComponent window(&engine);
+    qDebug() << "descompressed1";
+    // improve this path, absolute path is bad!
+    QString path = "/home/larissa/UFAL/Compelab/git/brisa-project/platforms/qt/apps/BCU/files/compe-file/main.qml";
+    qDebug() << "descompressed2";
+    window.loadUrl(QUrl(path));
+    qDebug() << "a";
+    QObject *stack = engine.rootObjects()[0]->findChild<QObject *>("stack");
+    qDebug() << "a1";
+    QQuickItem *object = qobject_cast<QQuickItem*>(window.create(engine.rootContext()));
+    qDebug() << "a2";
+    object->setParentItem(qobject_cast<QQuickItem*>(engine.rootObjects()[0]->findChild<QObject *>("appExec")));
+    qDebug() << "a3";
+    object->setParent(&engine);
+    qDebug() << "a4";
+    QMetaObject::invokeMethod(stack,"pushObject");
+    qDebug() << "a5";
 }
 
 void ControlPointBCU::decodeJsonList()

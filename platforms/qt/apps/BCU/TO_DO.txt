@@ -38,7 +38,9 @@
    * implementar um decode pro JSON (OK)
    * alterar a criação dos ícones no grid (OK)
 - carregar (em qml) dinamicamente (OK)
-- baixar o app, descomprimir e, só depois carregar (implementado mas não testado)
+- baixar o app, descomprimir e, só depois carregar (OK)
+- melhorar os caminhos absolutos usados no download e descomrpressão, isso resolverá a sobrescrita de arquivos
+  que acontece quando 2 ou mais apps são baixados
 - add tela de loading durante o download do app
 - listar apps instalados
 - apagar apps instalados

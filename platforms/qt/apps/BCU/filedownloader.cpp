@@ -36,8 +36,8 @@ void FileDownloader::fileDownloaded(QNetworkReply* pReply) {
     } else if (url.endsWith(".compe", Qt::CaseInsensitive)) {
         QFile file("../BCU/files/" + m_filename + ".compe");
         file.open(QIODevice::WriteOnly);
-        QDataStream out(&file);
-        out << m_DownloadedData;
+        file.write(m_DownloadedData);
+        file.close();
         qDebug() << "BCU: get file" << m_filename << "compe";
     } else {
         qDebug() << "BCU: invalid extension" << url;
