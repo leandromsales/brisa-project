@@ -49,12 +49,14 @@ void BRisaApplicationManager::addApp(QObject *app)
 void BRisaApplicationManager::run(QString name)
 {
     QQmlComponent window(mainEngine);
-    window.loadUrl(QUrl(getAppByName(name)->getUrl()));
+    window.loadUrl(QUrl(getAppByName(name)->getMainQMLFile()));
 
     QObject *stack = mainEngine->rootObjects()[0]->findChild<QObject *>("stack");
 
+    qDebug() << window.status();
     QQuickItem *object = qobject_cast<QQuickItem*>(window.create(mainEngine->rootContext()));
-    qDebug() << mainEngine->rootObjects()[0]->findChild<QObject *>("appExec");
+    qDebug() << mainEngine->rootContext();
+    qDebug() << object;
 
     object->setParentItem(qobject_cast<QQuickItem*>(mainEngine->rootObjects()[0]->findChild<QObject *>("appExec")));
     object->setParent(mainEngine);

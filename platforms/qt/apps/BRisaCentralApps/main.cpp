@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
         FolderCompressor compressor;
         qDebug() << "Compressão : " << compressor.compressFolder(dir.absoluteFilePath(listApps[i]), dir.absoluteFilePath(listApps[i]) + "/" + listApps[i] + ".compe");
 
-        QString url = "file:///" + dir.absoluteFilePath(listApps[i]) + "/" + listApps[i] + ".compe";
+        QString url = "file:///" + dir.absoluteFilePath(listApps[i]);
 
         manager->addApp(new BRisaApplication(icon, listApps[i], url, json.toBRisaApp()));
     }

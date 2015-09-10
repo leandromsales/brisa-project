@@ -1,4 +1,5 @@
 import QtQuick 2.4
+import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.3
 
 ApplicationWindow {
@@ -13,35 +14,34 @@ ApplicationWindow {
         objectName: "stack"
 
         anchors.fill: parent
-        anchors.margins: parent.height/20
 
         function pushObject() {
             appRunnable.visible = true
             stackPages.push(appRunnable);
         }
 
-        initialItem: layout
+        initialItem: Rectangle {
 
-        Grid {
-            id:layout
-            columns:4
+            Grid {
+                id:gridApps
+                columns:4
+                spacing:width/15
 
-            spacing:layout.width/20
+                anchors.fill : parent
+                anchors.margins: parent.width/20
 
-            Repeater {
-                model:manager.getNumOfApps();
+                Repeater {
+                    model:manager.getNumOfApps();
 
-                delegate: BRisaApplication {
+                    delegate: BRisaApplication {
 
-                    height: layout.height/5
-                    width: layout.width/5
+                        iconPath:manager.getListApps()[index].getIconPath();
+                        title:manager.getListApps()[index].getTitle();
+                        description:manager.getListApps()[index].getDescription();
 
-                    iconPath:manager.getListApps()[index].getIconPath();
-                    title:manager.getListApps()[index].getTitle();
-                    description:manager.getListApps()[index].getDescription();
+                        servicesModel: manager.getListApps()[index].getString();
 
-                    servicesModel: manager.getListApps()[index].getString();
-
+                    }
                 }
             }
         }
@@ -49,6 +49,8 @@ ApplicationWindow {
 
     Rectangle {
         id:appRunnable
+
+        color:"transparent"
 
         height:parent.height
         width:parent.width

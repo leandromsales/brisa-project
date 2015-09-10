@@ -2,37 +2,44 @@ import QtQuick 2.0
 import QtQuick.Controls 1.3
 
 Rectangle {
-    id:root
-    anchors.fill: parent
 
     property string iconPath
     property string title
     property string description
     property variant servicesModel
 
+    id:root
+
     Rectangle {
-        width:parent.width
-        height: parent.height*(0.9)
+
+        color:"transparent"
+
+        anchors {
+            fill:parent
+            margins:20
+        }
 
         Image {
             id: appIcon
 
-            anchors.top : parent.top
-            anchors.left: parent.left
+            anchors {
+                top : parent.top
+                left : parent.left
+            }
 
-
-            width: parent.width/5
-            height: parent.height/4
+            width: parent.width/6
+            height: width
             source: iconPath
         }
 
         Text {
             id: appTitle
 
-            anchors.top : parent.top
-            anchors.left : parent.left
-
-            anchors.leftMargin: parent.width/4
+            anchors {
+                top : appIcon.top
+                left : appIcon.right
+                leftMargin: 20
+            }
 
             text: qsTr(title)
             font.bold: true
@@ -45,27 +52,32 @@ Rectangle {
 
         Button {
 
-            anchors.top : parent.top
-            anchors.right: parent.right
+            anchors.bottom : appIcon.bottom
+            anchors.left: appTitle.left
 
-            anchors.rightMargin: parent.width/10
-            anchors.topMargin: parent.height/7
-
-            width:parent.width/5
+            width:appTitle.contentWidth
             height: parent.height/10
 
-            text:"Run"
-
             onClicked: manager.run(title)
+
+            Text {
+                anchors.fill: parent
+
+                font.pixelSize: height/3
+
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+
+                color:"#444"
+                text:"Run"
+            }
         }
 
         Text {
             id: descriptionLabel
 
-            anchors.top : parent.top
+            anchors.top : appIcon.bottom
             anchors.left: parent.left
-
-            anchors.topMargin: parent.height/3.5
 
             text: qsTr("Description:")
 
@@ -81,10 +93,10 @@ Rectangle {
 
             frameVisible: true
 
-            anchors.top : parent.top
+            anchors.top : descriptionLabel.bottom
             anchors.left: parent.left
 
-            anchors.topMargin: parent.height/2.8
+            anchors.topMargin: 10
 
             contentItem:Text {
                 id: descriptionText
@@ -98,10 +110,10 @@ Rectangle {
         Text {
             id: servicesLabel
 
-            anchors.top : parent.top
+            anchors.top : descriptionScrollView.bottom
             anchors.left: parent.left
 
-            anchors.topMargin: parent.height*(.52)
+            anchors.topMargin:5
 
             text: qsTr("Services:")
 
@@ -112,10 +124,10 @@ Rectangle {
         TableView {
             id:servicesTable
 
-            anchors.top : parent.top
+            anchors.top : servicesLabel.bottom
             anchors.left: parent.left
 
-            anchors.topMargin: parent.height*(.6)
+            anchors.topMargin:10
 
             width: parent.width
             height: parent.height/4
@@ -133,22 +145,33 @@ Rectangle {
             }
             model: servicesModel
         }
-    }
 
-    Button {
+        Button {
 
-        anchors.bottom : parent.bottom
-        anchors.left: parent.left
+            anchors{
+                top : servicesTable.bottom
+                left: parent.left
+                topMargin:5
+            }
 
-        anchors.leftMargin: 0
-        anchors.bottomMargin: 0
+            Text {
+                anchors.fill: parent
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
 
-        width:parent.width/5
-        height: parent.height/10
+                id:backButtonText
+                text:"Back"
 
-        text:"Back"
+                font.pixelSize: height/3
 
-        onClicked: stackPages.pop();
+                color:"#444"
+            }
+
+            width:parent.width/6
+            height: parent.height/12
+
+            onClicked: stackPages.pop();
+        }
     }
 }
 

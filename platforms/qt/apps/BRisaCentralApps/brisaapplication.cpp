@@ -8,12 +8,13 @@ BRisaApplication::BRisaApplication(QString newIconPath, QString newTitle, QStrin
     title = newTitle;
 }
 
-BRisaApplication::BRisaApplication(QString newIconPath, QString newTitle, QString newUrl, QList<QString> *jsonFile)
+BRisaApplication::BRisaApplication(QString newIconPath, QString newTitle, QString pathDir, QList<QString> *jsonFile)
 {
     title = newTitle;
     iconPath = newIconPath;
 
-    url = newUrl;
+    url = pathDir + "/" + title + ".compe";
+    mainQMLFile = pathDir + "/main.qml";
 
     description = jsonFile->at(0);
     jsonFile->removeAt(0);
@@ -45,3 +46,5 @@ QString BRisaApplication::getIconPath() const{    return iconPath;  }
 QString BRisaApplication::getTitle() const{    return title;    }
 
 QString BRisaApplication::getUrl() const{   return url;     }
+
+QString BRisaApplication::getMainQMLFile() const{    return mainQMLFile;   }

@@ -2,66 +2,63 @@ import QtQuick 2.0
 import QtQuick.Controls 1.3
 import QtQuick.Controls.Styles 1.3
 
-Rectangle {
+Image {
 
-    id:root
+    id:imageApp
+
     property string iconPath: "qrc:/image/icon.png"
     property string title
     property string description
     property var servicesModel
     property ListModel list : ListModel{}
 
-    color:"transparent"
+    width: parent.width/5
+    height:width
 
-    Image {
-        anchors.fill:parent
-        source: iconPath
-        antialiasing: true
-        smooth: true
+    source: iconPath
+    antialiasing: true
+    smooth: true
 
-        MouseArea{
-            hoverEnabled: true
-            anchors.fill:parent
-
-            onClicked: {
-
-                for(var i = 0; i < servicesModel.length; i++) {
-
-                    list.append({
-                                    "title": servicesModel[i],
-                                    "description" : servicesModel[++i]
-                                });
-
-                }
-
-                stackPages.push(appPageComponent);
-
-            }
-            onEntered: {
-                root.scale = 1.5
-            }
-            onExited: {
-                root.scale = 1
-            }
+    Behavior on scale {
+        NumberAnimation {
+            duration: 100
         }
     }
 
+    MouseArea{
+        hoverEnabled: true
+        anchors.fill:parent
+
+        onClicked: {
+
+            for(var i = 0; i < servicesModel.length; i++) {
+
+                list.append({
+                                "title": servicesModel[i],
+                                "description" : servicesModel[++i]
+                            });
+
+            }
+
+            stackPages.push(appPageComponent);
+
+        }
+        onEntered: {
+            imageApp.scale = 1.4
+        }
+        onExited: {
+            imageApp.scale = 1
+        }
+    }
     Component {
 
         id:appPageComponent
 
-        Rectangle {
-            property string iconPath
-            property string title
-            property string description
-            property var servicesModel
-
-            BRisaApplicationView {
-                iconPath: root.iconPath
-                title : root.title
-                description: root.description
-                servicesModel: list
-            }
+        BRisaApplicationView {
+            iconPath: imageApp.iconPath
+            title : imageApp.title
+            description: imageApp.description
+            servicesModel: list
         }
     }
 }
