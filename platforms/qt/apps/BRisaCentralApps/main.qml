@@ -11,7 +11,9 @@ ApplicationWindow {
     StackView {
         id:stackPages
         objectName: "stack"
+
         anchors.fill: parent
+        anchors.margins: parent.height/20
 
         function pushObject() {
             appRunnable.visible = true

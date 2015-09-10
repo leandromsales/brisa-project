@@ -8,7 +8,8 @@ SOURCES += main.cpp \
     bcadevice.cpp \
     functions.cpp \
     serviceApp.cpp \
-    bcajson.cpp
+    bcajson.cpp \
+    FolderCompressor.cpp
 
 RESOURCES += qml.qrc
 
@@ -25,4 +26,5 @@ HEADERS += \
     bcadevice.h \
     functions.h \
     serviceApp.h \
-    bcajson.h
+    bcajson.h\
+    FolderCompressor.h

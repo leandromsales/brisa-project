@@ -4,6 +4,7 @@
 
 #include "bcajson.h"
 #include "bcadevice.h"
+#include "FolderCompressor.h"
 
 int main(int argc, char *argv[])
 {
@@ -22,9 +23,11 @@ int main(int argc, char *argv[])
 
         BCAJson json(dir.absoluteFilePath(listApps[i]) + "/description.json");
         QString icon = "file:///" + dir.absoluteFilePath(listApps[i]) + "/icon.png";
-        QString url = "file:///" + dir.absoluteFilePath(listApps[i]) + "/" + listApps[i] + ".compe";
 
-        qDebug() << url;
+        FolderCompressor compressor;
+        qDebug() << "Compressão : " << compressor.compressFolder(dir.absoluteFilePath(listApps[i]), dir.absoluteFilePath(listApps[i]) + "/" + listApps[i] + ".compe");
+
+        QString url = "file:///" + dir.absoluteFilePath(listApps[i]) + "/" + listApps[i] + ".compe";
 
         manager->addApp(new BRisaApplication(icon, listApps[i], url, json.toBRisaApp()));
     }
