@@ -16,9 +16,8 @@ Rectangle {
         WebView {
             id: webView
             anchors.fill: parent
-            url: "http://www.google.com.br"
+            url: "http://www.tecmundo.com.br"
         }
     }
 }
-
 

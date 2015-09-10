@@ -1,22 +1,23 @@
-import QtQuick 2.4
+import QtQuick 2.2
 import QtQuick.Controls 1.3
-
-import "." as Comp
+import QtWebView 1.0
 
 Rectangle {
-    width: 640
-    height: 480
-    visible: true
 
-    color:"#292"
+	anchors.fill : parent
+    
+    Rectangle {
+        id:gamePanel
 
-    Text{
-        anchors.centerIn: parent
-        font.pixelSize: 60
-        font.bold: true
+        color:"transparent"
 
-        color:"white"
+        anchors.fill: parent
 
-        text:"Spotify"
+        WebView {
+            id: webView
+            anchors.fill: parent
+            url: "https://play.spotify.com/"
+        }
     }
 }
+
