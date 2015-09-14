@@ -2,6 +2,7 @@
 #include <QQuickView>
 #include <QApplication>
 #include <QQmlApplicationEngine>
+#include <QDebug>
 
 #include "controlpointbcu.h"
 

@@ -204,11 +204,11 @@ EventProxy *ControlPointBCU::getSubscriptionProxy(Service *service) {
     return NULL;
 }
 
-void ControlPointBCU::run(QString appURL)
+void ControlPointBCU::run(QString appURL, QString name)
 {
     auxAppURL = appURL;
-    // improve here to use name of app, not compe-file
-    FileDownloader *fd = new FileDownloader(QUrl(appURL), "compe-file", this);
+    auxAppName = name;
+    FileDownloader *fd = new FileDownloader(QUrl(appURL), name, this);
     connect(fd, SIGNAL (ready()), this, SLOT (finishedGetApp()));
 
 }
@@ -333,8 +333,7 @@ void ControlPointBCU::finishedGetApp()
     connect(this, SIGNAL (decompressed()), this, SLOT (decompressedFinished()));
 
     FolderCompressor *fc = new FolderCompressor();
-    // improved here to not use full path, but a relative one
-    QString path = "/home/larissa/UFAL/Compelab/git/brisa-project/platforms/qt/apps/BCU/files/";
+    QString path = "../BCU/files/";
     QDir dir(path);
     QStringList listCompeFiles = dir.entryList();
 
@@ -345,7 +344,6 @@ void ControlPointBCU::finishedGetApp()
             QString filename = fullPath;
             filename.replace(".compe", "");
             status = fc->decompressFolder(fullPath, filename);
-            QFile (fullPath).remove();
 
             qDebug() << "BCU: " << status << "\n" << fullPath << "\n" << filename;
         }
@@ -360,24 +358,16 @@ void ControlPointBCU::finishedGetApp()
 
 void ControlPointBCU::decompressedFinished()
 {
-    qDebug() << "descompressed";
     QQmlComponent window(&engine);
-    qDebug() << "descompressed1";
-    // improve this path, absolute path is bad!
-    QString path = "/home/larissa/UFAL/Compelab/git/brisa-project/platforms/qt/apps/BCU/files/compe-file/main.qml";
-    qDebug() << "descompressed2";
+    QString path = "../BCU/files/";
+    path.append(auxAppName);
+    path.append("/main.qml");
     window.loadUrl(QUrl(path));
-    qDebug() << "a";
     QObject *stack = engine.rootObjects()[0]->findChild<QObject *>("stack");
-    qDebug() << "a1";
     QQuickItem *object = qobject_cast<QQuickItem*>(window.create(engine.rootContext()));
-    qDebug() << "a2";
     object->setParentItem(qobject_cast<QQuickItem*>(engine.rootObjects()[0]->findChild<QObject *>("appExec")));
-    qDebug() << "a3";
     object->setParent(&engine);
-    qDebug() << "a4";
     QMetaObject::invokeMethod(stack,"pushObject");
-    qDebug() << "a5";
 }
 
 void ControlPointBCU::decodeJsonList()

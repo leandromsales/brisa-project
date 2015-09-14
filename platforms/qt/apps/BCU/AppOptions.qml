@@ -60,7 +60,7 @@ Rectangle {
                 hoverEnabled : true
                 onClicked: {
                     loader.source = "";
-                    manager.run(dtS.appURL)
+                    manager.run(dtS.appURL, dtS.name)
                 }
             }
         }

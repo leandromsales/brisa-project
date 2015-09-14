@@ -206,7 +206,7 @@ public:
         return port;
     }
 
-    Q_INVOKABLE void run(QString appURL);
+    Q_INVOKABLE void run(QString appURL, QString name);
 
     void execApp(QString appURL);
 
@@ -241,7 +241,7 @@ private:
     Device * auxDev;
     Service * auxServ;
     DataObject *auxDO;
-    QString auxAppURL;
+    QString auxAppURL, auxAppName;
 };
 
 }
