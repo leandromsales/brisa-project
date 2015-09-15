@@ -59,7 +59,7 @@ Rectangle {
                 anchors.fill: load
                 hoverEnabled : true
                 onClicked: {
-                    loader.source = "";
+                    loader.source = "LoadApp.qml";
                     manager.run(dtS.appURL, dtS.name)
                 }
             }

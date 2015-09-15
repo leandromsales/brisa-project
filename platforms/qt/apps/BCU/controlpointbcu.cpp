@@ -215,11 +215,7 @@ void ControlPointBCU::run(QString appURL, QString name)
 
 void ControlPointBCU::execApp(QString appURL)
 {
-    qDebug() << "-----------------------";
-    qDebug() << appURL;
     appURL.replace(".compe", "/main.qml");
-    qDebug() << appURL;
-    qDebug() << "-----------------------";
     QQmlComponent window(&engine);
     window.loadUrl(QUrl(appURL));
 
@@ -365,7 +361,11 @@ void ControlPointBCU::decompressedFinished()
     QString path = "../BCU/files/";
     path.append(auxAppName);
     path.append("/main.qml");
+
+    QObject *loader = engine.rootObjects()[0]->findChild<QObject*>("loader");
+    loader->setProperty("source", "");
     window.loadUrl(QUrl(path));
+
     QObject *stack = engine.rootObjects()[0]->findChild<QObject *>("stack");
     QQuickItem *object = qobject_cast<QQuickItem*>(window.create(engine.rootContext()));
     object->setParentItem(qobject_cast<QQuickItem*>(engine.rootObjects()[0]->findChild<QObject *>("appExec")));

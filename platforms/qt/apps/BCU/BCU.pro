@@ -11,7 +11,8 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 DISTFILES += \
-    TO_DO.txt
+    TO_DO.txt \
+    pics/brisa-logo.png
 
 HEADERS += \
     controlpointbcu.h \

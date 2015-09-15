@@ -41,8 +41,8 @@
 - baixar o app, descomprimir e, só depois carregar (OK)
 - melhorar os caminhos absolutos usados no download e descomrpressão, isso resolverá a sobrescrita de arquivos
   que acontece quando 2 ou mais apps são baixados (OK)
-- remover arquivo .compe após a descompressão
-- add tela de loading durante o download do app
+- remover arquivo .compe após a descompressão (OK)
+- add tela de loading durante o download do app (OK)
 - listar apps instalados
 - apagar apps instalados
 - adicionar ícone do BCU

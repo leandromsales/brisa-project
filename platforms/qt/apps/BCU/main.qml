@@ -15,6 +15,7 @@ ApplicationWindow {
 
     Loader {
         id: loader
+        objectName: "loader"
         focus: true
         z: 100
         anchors.fill: parent
@@ -41,7 +42,7 @@ ApplicationWindow {
                 id: topBar
                 width: parent.width
                 anchors.top: parent.top
-                height: Screen.desktopAvailableHeight*0.05
+                height: root.height*0.05
 
                 Text {
                     text: "Dispositivos disponíveis"
@@ -70,7 +71,7 @@ ApplicationWindow {
             Rectangle {
                 id: containerGrid
                 width: parent.width
-                height: Screen.desktopAvailableHeight*0.9
+                height: root.height*0.9
                 anchors.top: topBar.bottom
 
                 Flickable {
@@ -98,7 +99,7 @@ ApplicationWindow {
                 id: statusBar
                 width: parent.width
                 anchors.bottom: parent.bottom
-                height: Screen.desktopAvailableHeight*0.05
+                height: root.height*0.05
 
                 Rectangle {
                     height: 1
