@@ -30,7 +30,7 @@
    * descobrir como passar os dados de model adiante (OK)
    * adicionar as outras propriedades em dataobject.h, como o ícone e a url para
      download do app (OK)
-   * Se houver, usar o ícone do app no GridView. Se não, usar um ícone padrão (OK)
+   * Se houver, usar o ícone do app no GridView. Se não, usar um ícone padrão (desnecessário, pois o ícone é obrigatório)
    * remover o device do grid quando ele sair da rede (implementado mas não
      testado, pois o BCA não está emitindo um "ssdp:bye bye")
 - alterar o passo acima, o correto seria criar um novo ícone para cada app de getListOfApps (OK)
@@ -41,6 +41,7 @@
 - baixar o app, descomprimir e, só depois carregar (OK)
 - melhorar os caminhos absolutos usados no download e descomrpressão, isso resolverá a sobrescrita de arquivos
   que acontece quando 2 ou mais apps são baixados (OK)
+- remover arquivo .compe após a descompressão
 - add tela de loading durante o download do app
 - listar apps instalados
 - apagar apps instalados

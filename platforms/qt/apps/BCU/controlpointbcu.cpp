@@ -345,6 +345,9 @@ void ControlPointBCU::finishedGetApp()
             filename.replace(".compe", "");
             status = fc->decompressFolder(fullPath, filename);
 
+            QFile f(fullPath);
+            f.remove();
+
             qDebug() << "BCU: " << status << "\n" << fullPath << "\n" << filename;
         }
     }
