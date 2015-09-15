@@ -43,7 +43,7 @@
   que acontece quando 2 ou mais apps são baixados (OK)
 - remover arquivo .compe após a descompressão (OK)
 - add tela de loading durante o download do app (OK)
-- listar apps instalados
+- listar apps instalados (em progresso)
 - apagar apps instalados
 - adicionar ícone do BCU
 

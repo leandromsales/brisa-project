@@ -12,7 +12,10 @@ include(deployment.pri)
 
 DISTFILES += \
     TO_DO.txt \
-    pics/brisa-logo.png
+    pics/brisa-logo.png \
+    pics/delete.png \
+    pics/settings.png \
+    pics/back.png \
 
 HEADERS += \
     controlpointbcu.h \

@@ -118,10 +118,56 @@ ApplicationWindow {
                     }
                 }
 
-                Text {
-                    text: "Pesquisando por outros dispositivos..."
-                    anchors.horizontalCenter: parent.horizontalCenter
+
+                Rectangle {
+                    id: exit
+                    width: parent.width*0.2
+                    anchors.left: statusBar.left
                     anchors.verticalCenter: parent.verticalCenter
+
+                    Image {
+                        source: "qrc:/pics/quit.png"
+                        sourceSize.height: backButtonBar.height*0.6
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.horizontalCenter: parent.horizontalCenter
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: Qt.quit();
+                        }
+                    }
+                }
+
+                Rectangle {
+                    id: searching
+                    width: parent.width*0.6
+                    anchors.left: exit.right
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    Text {
+                        text: "Pesquisando por outros dispositivos"
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
+                }
+
+                Rectangle {
+                    id: settings
+                    width: parent.width*0.2
+                    anchors.left: searching.right
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    Image {
+                        source: "qrc:/pics/delete.png"
+                        sourceSize.height: backButtonBar.height*0.6
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.horizontalCenter: parent.horizontalCenter
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: stackPages.push("qrc:/Settings.qml");
+                        }
+                    }
                 }
             }
         }
@@ -196,8 +242,9 @@ ApplicationWindow {
                 }
             }
 
-            Text {
-                text: "Voltar"
+            Image {
+                source: "qrc:/pics/back.png"
+                sourceSize.height: backButtonBar.height*0.6
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
             }
