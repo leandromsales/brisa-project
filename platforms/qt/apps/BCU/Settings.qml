@@ -64,15 +64,14 @@ Rectangle {
 
                 FolderListModel {
                     id: folderModel
-                    // folder: Qt.resolvedUrl("../BCU/files/Calculator"); CORRIGIR AQUI
+                    folder: filesFolder
                     showDirs: true
-                    showDotAndDotDot: true
                 }
 
                 Component {
                     id: fileDelegate
                     Text {
-                        text: "    "  + fileName + "\n"
+                        text: "\n    "  + fileName;
                     }
                 }
             }

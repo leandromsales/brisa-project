@@ -12,6 +12,11 @@ namespace controlpoint {
 ControlPointBCU::ControlPointBCU(QObject *parent, QString st, int mx) :
     QObject(parent) {
 
+    QDir filesFolder(QDir::current());
+    filesFolder.cdUp();
+    filesFolder.cd("BCU/files");
+
+    engine.rootContext()->setContextProperty("filesFolder", filesFolder.path().prepend("file://"));
     engine.rootContext()->setContextProperty(QString("manager"), this);
     engine.rootContext()->setContextProperty(QString("myModel"),
                                              QVariant::fromValue(dataList));
@@ -342,6 +347,7 @@ void ControlPointBCU::finishedGetApp()
             status = fc->decompressFolder(fullPath, filename);
 
             QFile f(fullPath);
+            qDebug() << fullPath;
             f.remove();
 
             qDebug() << "BCU: " << status << "\n" << fullPath << "\n" << filename;
