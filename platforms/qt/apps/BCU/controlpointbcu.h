@@ -208,6 +208,8 @@ public:
 
     Q_INVOKABLE void run(QString appURL, QString name);
 
+    Q_INVOKABLE bool deleteApp(QString name);
+
     void execApp(QString appURL);
 
     QList<QObject*> getDataList () {

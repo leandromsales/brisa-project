@@ -44,7 +44,7 @@
 - remover arquivo .compe após a descompressão (OK)
 - add tela de loading durante o download do app (OK)
 - listar apps instalados (OK)
-- apagar apps instalados
+- apagar apps instalados (OK)
 - adicionar ícone do BCU
 
 

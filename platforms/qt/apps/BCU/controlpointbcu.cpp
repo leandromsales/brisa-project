@@ -218,6 +218,25 @@ void ControlPointBCU::run(QString appURL, QString name)
 
 }
 
+bool ControlPointBCU::deleteApp(QString name)
+{
+    QString path = "../BCU/files/";
+    QDir dir(path);
+    QStringList filesList = dir.entryList();
+
+    bool status;
+    foreach (QString file, filesList) {
+        if (file == name) {
+            QDir dir(path.append(file));
+            status = dir.removeRecursively();
+
+            qDebug() << "BCU: delete app - " << status << "\n" << path;
+        }
+    }
+
+    return status;
+}
+
 void ControlPointBCU::execApp(QString appURL)
 {
     appURL.replace(".compe", "/main.qml");
@@ -347,7 +366,6 @@ void ControlPointBCU::finishedGetApp()
             status = fc->decompressFolder(fullPath, filename);
 
             QFile f(fullPath);
-            qDebug() << fullPath;
             f.remove();
 
             qDebug() << "BCU: " << status << "\n" << fullPath << "\n" << filename;

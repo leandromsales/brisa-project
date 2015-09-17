@@ -8,14 +8,14 @@ import Qt.labs.folderlistmodel 2.1
 
 Rectangle {
     id: settingsPage
-    height:root.height
-    width:root.width
+    width: 480 // Screen.desktopAvailableWidth
+    height: 600 // Screen.desktopAvailableHeight*0.95
 
     Rectangle {
         id: topBar
         width: parent.width
         anchors.top: parent.top
-        height: root.height*0.05
+        height: settingsPage.height*0.05
 
         Text {
             text: "Aplicativos Instalados"
@@ -44,7 +44,7 @@ Rectangle {
     Rectangle {
         id: content
         width: parent.width
-        height: root.height*0.9
+        height: settingsPage.height*0.9
         anchors.top: topBar.bottom
 
         Flickable {
@@ -70,8 +70,37 @@ Rectangle {
 
                 Component {
                     id: fileDelegate
-                    Text {
-                        text: "\n    "  + fileName;
+
+                    Rectangle {
+                        height: nameApp.height*2
+                        width: settingsPage.width
+
+                        Text {
+                            id: nameApp
+                            text: fileName;
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.left: parent.left
+                            anchors.leftMargin: 20
+                        }
+
+                        Image {
+                            source: "qrc:/pics/delete.png"
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.right: parent.right
+                            anchors.rightMargin: 20
+                            sourceSize.height: nameApp.height*1.5
+
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: {
+                                    if (manager.deleteApp(nameApp.text.toString())) {
+                                        loader.source = "okMessage.qml"
+                                    } else {
+                                        console.log("ERRO");
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -82,7 +111,7 @@ Rectangle {
         id: backButtonBar
         width: parent.width
         anchors.bottom: parent.bottom
-        height: root.height*0.05
+        height: settingsPage.height*0.05
 
         Rectangle {
             height: 1
