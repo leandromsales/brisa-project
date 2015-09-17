@@ -96,7 +96,7 @@ Rectangle {
                                     if (manager.deleteApp(nameApp.text.toString())) {
                                         loader.source = "okMessage.qml"
                                     } else {
-                                        console.log("ERRO");
+                                        loader.source = "erroMessage.qml"
                                     }
                                 }
                             }

@@ -12,5 +12,7 @@
         <file>pics/qtlogo.png</file>
         <file>pics/quit.png</file>
         <file>pics/settings.png</file>
+        <file>okMessage.qml</file>
+        <file>errorMessage.qml</file>
     </qresource>
 </RCC>
