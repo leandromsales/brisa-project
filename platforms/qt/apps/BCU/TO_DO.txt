@@ -45,7 +45,7 @@
 - add tela de loading durante o download do app (OK)
 - listar apps instalados (OK)
 - apagar apps instalados (OK)
-- adicionar ícone do BCU
+- adicionar ícone do BCU (qual ícone???)
 
 
 
