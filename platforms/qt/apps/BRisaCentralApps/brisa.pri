@@ -1,6 +1,6 @@
 #This file was auto-generated. Don't edit this.
 
-BASEDIR = /home/bruno/Documentos/brisa/brisa-project/platforms/qt/lib
+BASEDIR = /home/larissa/UFAL/Compelab/git/brisa-project/platforms/qt/lib
 
 INCLUDEPATH += $$BASEDIR/include
 unix {

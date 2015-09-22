@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick widgets xml
+QT += qml quick widgets xml webengine
 
 RESOURCES += qml.qrc
 
