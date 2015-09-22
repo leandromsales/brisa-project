@@ -1,6 +1,9 @@
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.3
+import QtQuick.Window 2.0
+
+import "qrc:/components"
 
 ApplicationWindow {
     id:appRoot
@@ -8,6 +11,8 @@ ApplicationWindow {
     width: 640
     height: 480
     visible: true
+
+    property Component dialog
 
     StackView {
         id:stackPages
@@ -24,8 +29,8 @@ ApplicationWindow {
 
             Grid {
                 id:gridApps
-                columns:4
-                spacing:width/15
+                columns:6
+                spacing:width/16
 
                 anchors.fill : parent
                 anchors.margins: parent.width/20
@@ -42,6 +47,22 @@ ApplicationWindow {
                         servicesModel: manager.getListApps()[index].getString();
 
                     }
+                }
+            }
+
+            FloatActionButton {
+                raio:parent.width/12
+                icon:"qrc:/assets/plus.png"
+                mainRectColor: "#0099FF"
+                anchors {
+                    bottom: parent.bottom
+                    right: parent.right
+                    bottomMargin: parent.height*(0.04)
+                    rightMargin: parent.width*(0.04)
+                }
+                mouseArea.onClicked : {
+                    dialog = Qt.createComponent("qrc:/components/AppCreateDialog.qml");
+                    dialog.createObject(parent).show();
                 }
             }
         }
@@ -79,5 +100,10 @@ ApplicationWindow {
                 onClicked: stackPages.pop();
             }
         }
+    }
+
+    function destroyDialog() {
+        dialog.destroy();
+        console.log("DIALOG DESTROYED!");
     }
 }

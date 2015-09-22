@@ -1,12 +1,11 @@
 {
-	"Description":"A web browser, developed by google.",
-	"Services":[
-		{
-		"Go":"go to a webpage",
-		"Back":"return one webpage",
-		"Next":"go to the next webpage",
-		"History":"show the history of webpages you have visit",
-		"Share":"share the content of the current webpage on social networks"
-		}	
-	]
+    "Description": "A Browser Powered by google!",
+    "Services": [
+        {
+            "Navigate": "Navigate in the Internet"
+        },
+        {
+            "Download": "Download files"
+        }
+    ]
 }
