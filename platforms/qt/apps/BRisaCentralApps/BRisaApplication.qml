@@ -2,20 +2,22 @@ import QtQuick 2.0
 import QtQuick.Controls 1.3
 import QtQuick.Controls.Styles 1.3
 
+import "qrc:/pages"
+
 Image {
 
     id:imageApp
 
-    property string iconPath: "qrc:/image/icon.png"
+    property string iconPath
     property string title
     property string description
     property var servicesModel
     property ListModel list : ListModel{}
 
-    width: parent.width/5
+    width: parent.width/9
     height:width
 
-    source: iconPath
+    source: (manager.fileExists(iconPath.replace("file:///",""))) ? iconPath : "qrc:/assets/icon.png";
     antialiasing: true
     smooth: true
 

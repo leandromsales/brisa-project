@@ -5,11 +5,8 @@ import QtWebView 1.0
 Rectangle {
 
 	anchors.fill : parent
-    
-    Rectangle {
-        id:gamePanel
 
-        color:"transparent"
+    Rectangle {
 
         anchors.fill: parent
 
