@@ -214,7 +214,7 @@ ApplicationWindow {
         Rectangle {
             objectName: "appExec"
             width: root.width
-            height: Screen.desktopAvailableHeight*0.9
+            height: root.height*0.9
             anchors.top: topBarApp.bottom
             color: "white"
         }
