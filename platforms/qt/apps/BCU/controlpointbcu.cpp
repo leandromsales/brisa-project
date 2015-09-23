@@ -213,8 +213,26 @@ void ControlPointBCU::run(QString appURL, QString name)
 {
     auxAppURL = appURL;
     auxAppName = name;
-    FileDownloader *fd = new FileDownloader(QUrl(appURL), name, this);
-    connect(fd, SIGNAL (ready()), this, SLOT (finishedGetApp()));
+
+    QString path = "../BCU/files/";
+    QDir dir(path);
+    QStringList filesList = dir.entryList();
+
+    bool status = true;
+    foreach (QString file, filesList) {
+        if (file == name) {
+            status = false;
+            qDebug() << "BCU: already downloaded" << name;
+        }
+    }
+
+    if (status) {
+        FileDownloader *fd = new FileDownloader(QUrl(appURL), name, this);
+        connect(fd, SIGNAL (ready()), this, SLOT (finishedGetApp()));
+    } else {
+        connect(this, SIGNAL (decompressed()), this, SLOT (decompressedFinished()));
+        emit decompressed();
+    }
 
 }
 
@@ -235,20 +253,6 @@ bool ControlPointBCU::deleteApp(QString name)
     }
 
     return status;
-}
-
-void ControlPointBCU::execApp(QString appURL)
-{
-    appURL.replace(".compe", "/main.qml");
-    QQmlComponent window(&engine);
-    window.loadUrl(QUrl(appURL));
-
-    QObject *stack = engine.rootObjects()[0]->findChild<QObject *>("stack");
-    QQuickItem *object = qobject_cast<QQuickItem*>(window.create(engine.rootContext()));
-    object->setParentItem(qobject_cast<QQuickItem*>(engine.rootObjects()[0]->findChild<QObject *>("appExec")));
-    object->setParent(&engine);
-
-    QMetaObject::invokeMethod(stack,"pushObject");
 }
 
 void ControlPointBCU::addAppOnDataList(QString udn, QString name, QString info, QUrl iconURL, QUrl appURL)
@@ -385,15 +389,16 @@ void ControlPointBCU::decompressedFinished()
     QString path = "../BCU/files/";
     path.append(auxAppName);
     path.append("/main.qml");
+    window.loadUrl(QUrl::fromLocalFile(path));
 
-    QObject *loader = engine.rootObjects()[0]->findChild<QObject*>("loader");
-    loader->setProperty("source", "");
-    window.loadUrl(QUrl(path));
-
-    QObject *stack = engine.rootObjects()[0]->findChild<QObject *>("stack");
     QQuickItem *object = qobject_cast<QQuickItem*>(window.create(engine.rootContext()));
     object->setParentItem(qobject_cast<QQuickItem*>(engine.rootObjects()[0]->findChild<QObject *>("appExec")));
     object->setParent(&engine);
+
+    QObject *loader = engine.rootObjects()[0]->findChild<QObject*>("loader");
+    loader->setProperty("source", "");
+
+    QObject *stack = engine.rootObjects()[0]->findChild<QObject *>("stack");
     QMetaObject::invokeMethod(stack,"pushObject");
 }
 
