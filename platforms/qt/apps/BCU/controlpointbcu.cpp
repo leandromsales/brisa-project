@@ -257,10 +257,21 @@ bool ControlPointBCU::deleteApp(QString name)
 
 void ControlPointBCU::addAppOnDataList(QString udn, QString name, QString info, QUrl iconURL, QUrl appURL)
 {
-    dataList.insert(dataList.size() - 1, new DataObject(udn, name, info, iconURL, appURL));
+    bool status = true;
+    for (int i = 0; i < dataList.size(); i++) {
+        DataObject *dobj = qobject_cast<DataObject*>(dataList.at(i));
+        if (dobj->udn == udn && dobj->name == "") {
+            dataList.replace(i, new DataObject(udn, name, info, iconURL, appURL));
+            status = false;
+        }
+    }
+    if (status)
+        dataList.append(new DataObject(udn, name, info, iconURL, appURL));
 
     engine.rootContext()->setContextProperty(QString("myModel"),
                                              QVariant::fromValue(dataList));
+
+    qDebug() << "BCU: addded app - " << name;
 }
 
 void ControlPointBCU::removeAppFromDataList(QString udn)
