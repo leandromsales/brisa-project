@@ -2,23 +2,12 @@
 
 BRisaApplicationManager::BRisaApplicationManager(QQmlApplicationEngine &engine)
 {
-    numOfApps = 0;
+    m_numOfApps = 0;
     ctxt = engine.rootContext();
 }
-
-BRisaApplicationManager::~BRisaApplicationManager()
-{
-
-}
-
 QList<QObject *> BRisaApplicationManager::getListApps()
 {
     return apps;
-}
-
-int BRisaApplicationManager::getNumOfApps()
-{
-    return numOfApps;
 }
 
 QString BRisaApplicationManager::getCurrentAppDir()
@@ -31,7 +20,7 @@ BRisaApplication *BRisaApplicationManager::getAppByName(QString appName)
     foreach (QObject *obj, apps) {
         BRisaApplication *app = (BRisaApplication *)obj;
 
-        if(app->getTitle().toLower() == appName.toLower()) {
+        if(app->get_title().toLower() == appName.toLower()) {
             return app;
         }
     }
@@ -42,14 +31,14 @@ BRisaApplication *BRisaApplicationManager::getAppByName(QString appName)
 void BRisaApplicationManager::addApp(QObject *app)
 {
     apps.append(app);
-    numOfApps++;
+    m_numOfApps++;
 }
 
 void BRisaApplicationManager::run(QString name)
 {
-    QQuickView *view = new QQuickView(QUrl(getAppByName(name)->getUrl()));
+    QQuickView *view = new QQuickView(QUrl(getAppByName(name)->get_url()));
 
-    QString dirPath = getAppByName(name)->getIconPath();
+    QString dirPath = getAppByName(name)->get_iconPath();
     dirPath.resize(dirPath.size() - 9);
 
     currentAppDir = dirPath;

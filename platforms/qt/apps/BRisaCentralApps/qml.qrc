@@ -1,13 +1,13 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>BRisaApplicationView.qml</file>
-        <file>BRisaApplication.qml</file>
+        <file alias="BRisaApplicationView.qml">assets/qml/BRisaApplicationView.qml</file>
+        <file alias="BRisaApplication.qml">assets/qml/BRisaApplication.qml</file>
     </qresource>
     <qresource prefix="/image">
-        <file>icon.png</file>
+        <file alias="icon.png">assets/img/icon.png</file>
     </qresource>
     <qresource prefix="/src">
-        <file>src/functions.xml</file>
+        <file alias="functions.xml">assets/src/functions.xml</file>
     </qresource>
 </RCC>

@@ -11,9 +11,6 @@ Functions::Functions(BRisaApplicationManager *manager) : Service(SERVICE_TYPE, S
     appManager = manager;
 }
 
-Functions::~Functions()
-{}
-
 OutArgument *Functions::getListOfApps()
 {
     QString listOfApps;
@@ -24,8 +21,8 @@ OutArgument *Functions::getListOfApps()
         listOfApps += "\n{\n";
 
         BRisaApplication *app = (BRisaApplication *) obj;
-        listOfApps += "Title: " + app->getTitle() + ",\n";
-        listOfApps += "Icon: " + app->getIconPath() + "\n";
+        listOfApps += "Title: " + app->get_title() + ",\n";
+        listOfApps += "Icon: " + app->get_iconPath() + "\n";
 
         listOfApps += "},";
     }
@@ -49,16 +46,16 @@ OutArgument *Functions::getAppInfo(InArgument * const inArguments)
     OutArgument *outArgs = new OutArgument();
 
     if(app) {
-        appInfo += "{\nTitle:" + app->getTitle() + ",\n";
-        appInfo += "Icon:" + app->getIconPath() + ",\n";
-        appInfo += "Description:" + app->getDescription() + ",\n";
-        appInfo += "Url:" + app->getUrl() + ",\n";
+        appInfo += "{\nTitle:" + app->get_title() + ",\n";
+        appInfo += "Icon:" + app->get_iconPath() + ",\n";
+        appInfo += "Description:" + app->get_description() + ",\n";
+        appInfo += "Url:" + app->get_url() + ",\n";
         appInfo += "Services:[";
 
-        QList<ServiceApp *> services = app->getServices();
+        QList<ServiceApp *> services = app->get_services();
 
         foreach (ServiceApp *s, services) {
-            appInfo += "\n" + s->getTitle() + " : " + s->getDescription() + ",";
+            appInfo += "\n" + s->get_title() + " : " + s->get_description() + ",";
         }
 
         appInfo.remove(appInfo.length() - 1, 1);

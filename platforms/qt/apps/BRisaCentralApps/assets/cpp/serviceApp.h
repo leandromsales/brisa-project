@@ -5,26 +5,16 @@
 #include <QString>
 #include <QObject>
 
+#include "essencials/qqmlhelpers.h"
+
 class ServiceApp : public QObject
 {
     Q_OBJECT
-
+    QML_READONLY_PROPERTY(QString, title)
+    QML_READONLY_PROPERTY(QString, description)
 public:
     explicit ServiceApp(QString newTitle, QString newDescription);
-    ~ServiceApp();
-
-    Q_PROPERTY(QString title READ getTitle)
-    Q_PROPERTY(QString description READ getDescription)
-
-    QString getTitle();
-    QString getDescription();
-
     QStringList getString();
-
-
-private:
-    QString title;
-    QString description;
 };
 
 #endif // SERVICEAPP_H

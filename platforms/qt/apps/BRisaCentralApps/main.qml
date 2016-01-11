@@ -63,16 +63,16 @@ ApplicationWindow {
                 spacing:10
 
                 Repeater {
-                    model:manager.getNumOfApps();
+                    model:manager.numOfApps;
 
                     delegate: BRisaApplication {
 
                         height: appRoot.height/6
                         width: appRoot.width/7
 
-                        iconPath:manager.getListApps()[index].getIconPath();
-                        title:manager.getListApps()[index].getTitle();
-                        description:manager.getListApps()[index].getDescription();
+                        iconPath:manager.getListApps()[index].iconPath;
+                        title:manager.getListApps()[index].title;
+                        description:manager.getListApps()[index].description;
 
                         servicesModel: manager.getListApps()[index].getString();
 

@@ -25,21 +25,14 @@ using namespace brisa::upnp::device;
 class BCADevice : public Device
 {
     Q_OBJECT
-
 public:
-
     BCADevice(BRisaApplicationManager *manager);
-
     void printAllApps();
-
 private:
-
     BRisaApplicationManager *appManager;
-
     brisa::upnp::StateVariable *listApps;
     brisa::upnp::StateVariable *appInfo;
     brisa::upnp::StateVariable *app;
-
 };
 
 #endif // BCADEVICE_H

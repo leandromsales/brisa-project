@@ -24,9 +24,6 @@ BCAJson::BCAJson(const char *path)
     QJsonDocument d = QJsonDocument::fromJson(QString(str).toUtf8());
     mainObject = d.object();
 }
-
-BCAJson::~BCAJson(){}
-
 QList<QString> *BCAJson::toBRisaApp()
 {
     QList<QString> *list = new QList<QString>();

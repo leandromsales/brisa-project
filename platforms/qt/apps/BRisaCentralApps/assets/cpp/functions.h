@@ -23,21 +23,14 @@
 class Functions : public brisa::upnp::device::Service
 {
     Q_OBJECT
-
 public:
-
     Functions(BRisaApplicationManager *manager);
-    ~Functions();
-
 private slots:
-
     OutArgument *getListOfApps();
     OutArgument *getAppInfo(InArgument * const inArguments);
     OutArgument *getApp(InArgument * const inArguments);
-
 private:
     BRisaApplicationManager *appManager;
-
 };
 
 

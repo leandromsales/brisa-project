@@ -13,14 +13,11 @@
 class BRisaApplicationManager : public QObject
 {
     Q_OBJECT
-
+    QML_WRITABLE_PROPERTY(int, numOfApps)
 public:
 
     BRisaApplicationManager(QQmlApplicationEngine &engine);
-    ~BRisaApplicationManager();
-
     Q_INVOKABLE QList<QObject *> getListApps();
-    Q_INVOKABLE int getNumOfApps();
     Q_INVOKABLE QString getCurrentAppDir();
 
     Q_INVOKABLE void run(QString name);
@@ -35,7 +32,6 @@ private:
     QString currentAppDir;
 
     QQmlContext *ctxt;
-    int numOfApps;
 
 };
 

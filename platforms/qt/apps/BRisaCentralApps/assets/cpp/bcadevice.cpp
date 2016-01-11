@@ -26,8 +26,8 @@ void BCADevice::printAllApps()
 {
     foreach (QObject *obj, appManager->getListApps()) {
         BRisaApplication *app = (BRisaApplication *)obj;
-        qDebug() << "Title : " << app->getTitle() ;
-        qDebug() << "Description : " << app->getDescription() ;
+        qDebug() << "Title : " << app->get_title() ;
+        qDebug() << "Description : " << app->get_description() ;
     }
 }
 

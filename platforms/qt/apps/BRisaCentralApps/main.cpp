@@ -2,20 +2,16 @@
 #include <QApplication>
 #include <QQmlContext>
 
-#include "bcajson.h"
-#include "bcadevice.h"
+#include "assets/cpp/bcajson.h"
+#include "assets/cpp/bcadevice.h"
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-
-
     QQmlApplicationEngine engine;
-
     QQmlContext *ctxt = engine.rootContext();
 
     BRisaApplicationManager *manager = new BRisaApplicationManager(engine);
-
 
     QDir dir("../BRisaCentralApps/apps");
     QStringList listApps = dir.entryList();
