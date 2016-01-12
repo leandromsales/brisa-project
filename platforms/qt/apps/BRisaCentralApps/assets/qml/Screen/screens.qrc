@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/screen">
+        <file>BRisaApplicationView.qml</file>
+    </qresource>
+</RCC>

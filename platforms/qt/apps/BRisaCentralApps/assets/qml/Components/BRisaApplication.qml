@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 1.3
 import QtQuick.Controls.Styles 1.3
 
-import "qrc:/pages"
+import "qrc:/screen" as Screen
 
 Image {
 
@@ -56,7 +56,7 @@ Image {
 
         id:appPageComponent
 
-        BRisaApplicationView {
+        Screen.BRisaApplicationView {
             iconPath: imageApp.iconPath
             title : imageApp.title
             description: imageApp.description

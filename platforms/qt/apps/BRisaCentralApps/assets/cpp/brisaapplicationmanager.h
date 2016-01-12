@@ -18,19 +18,17 @@
 #include <QJsonValue>
 
 #include "brisaapplication.h"
+#include "essencials/qqmlhelpers.h"
 
 class BRisaApplicationManager : public QObject
 {
     Q_OBJECT
-
+    QML_WRITABLE_PROPERTY(QList<QObject *>, apps)
+    QML_WRITABLE_PROPERTY(int, numOfApps)
+    QML_WRITABLE_PROPERTY(QString, currentAppDir)
 public:
 
     BRisaApplicationManager(QQmlApplicationEngine &engine);
-    ~BRisaApplicationManager();
-
-    Q_INVOKABLE QList<QObject *> getListApps();
-    Q_INVOKABLE int getNumOfApps();
-    Q_INVOKABLE QString getCurrentAppDir();
 
     Q_INVOKABLE bool fileExists(QString path);
     Q_INVOKABLE bool createAnApp(QJSValue theApp);
@@ -40,14 +38,8 @@ public:
     BRisaApplication *getAppByName(QString appName);
 
 private:
-
-    QList<QObject *> apps;
-
-    QString currentAppDir;
-
     QQmlApplicationEngine *mainEngine;
     QQmlContext *ctxt;
-    int numOfApps;
 
 };
 

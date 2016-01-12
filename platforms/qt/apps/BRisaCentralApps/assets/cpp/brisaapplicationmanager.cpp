@@ -2,29 +2,9 @@
 
 BRisaApplicationManager::BRisaApplicationManager(QQmlApplicationEngine &engine)
 {
-    numOfApps = 0;
+    m_numOfApps = 0;
     mainEngine = &engine;
     ctxt = engine.rootContext();
-}
-
-BRisaApplicationManager::~BRisaApplicationManager()
-{
-
-}
-
-QList<QObject *> BRisaApplicationManager::getListApps()
-{
-    return apps;
-}
-
-int BRisaApplicationManager::getNumOfApps()
-{
-    return numOfApps;
-}
-
-QString BRisaApplicationManager::getCurrentAppDir()
-{
-    return currentAppDir;
 }
 
 bool BRisaApplicationManager::fileExists(QString path)
@@ -106,27 +86,23 @@ bool BRisaApplicationManager::createAnApp(QJSValue theApp)
 
 BRisaApplication *BRisaApplicationManager::getAppByName(QString appName)
 {
-    foreach (QObject *obj, apps) {
+    foreach (QObject *obj, m_apps) {
         BRisaApplication *app = (BRisaApplication *)obj;
-
-        if(app->getTitle().toLower() == appName.toLower()) {
-            return app;
-        }
+        if(app->get_title().toLower() == appName.toLower()) return app;
     }
-
     return 0;
 }
 
 void BRisaApplicationManager::addApp(QObject *app)
 {
-    apps.append(app);
-    numOfApps++;
+    m_apps.append(app);
+    m_numOfApps++;
 }
 
 void BRisaApplicationManager::run(QString name)
 {
     QQmlComponent window(mainEngine);
-    window.loadUrl(QUrl(getAppByName(name)->getMainQMLFile()));
+    window.loadUrl(QUrl(getAppByName(name)->get_mainQMLFile()));
 
     QObject *stack = mainEngine->rootObjects()[0]->findChild<QObject *>("stack");
 

@@ -3,23 +3,11 @@
         <file>main.qml</file>
     </qresource>
     <qresource prefix="/assets">
-        <file alias="plus.png">assets/plus.png</file>
-        <file alias="folder.png">assets/folder.png</file>
-        <file alias="icon.png">assets/icon.png</file>
-    </qresource>
-    <qresource prefix="/pages">
-        <file>BRisaApplicationView.qml</file>
-        <file>FirstPageAppCreation.qml</file>
-        <file>SecondPageAppCreation.qml</file>
-        <file>ThirdPageAppCreation.qml</file>
-    </qresource>
-    <qresource prefix="/components">
-        <file>BRisaApplication.qml</file>
-        <file>FloatActionButton.qml</file>
-        <file>AppCreateDialog.qml</file>
-        <file>CommonButton.qml</file>
+        <file alias="plus.png">assets/img/plus.png</file>
+        <file alias="folder.png">assets/img/folder.png</file>
+        <file alias="icon.png">assets/img/icon.png</file>
     </qresource>
     <qresource prefix="/src">
-        <file>src/functions.xml</file>
+        <file>assets/src/functions.xml</file>
     </qresource>
 </RCC>

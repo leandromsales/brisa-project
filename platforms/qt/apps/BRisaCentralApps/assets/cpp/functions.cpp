@@ -18,14 +18,14 @@ OutArgument *Functions::getListOfApps()
 {
     QJsonArray jsonListOfApps;
 
-    foreach (QObject *obj, appManager->getListApps()) {
+    foreach (QObject *obj, appManager->get_apps()) {
 
         QJsonObject jsonApp;
 
         BRisaApplication *app = (BRisaApplication *) obj;
 
-        jsonApp.insert("Title",QJsonValue(app->getTitle()));
-        jsonApp.insert("Icon",app->getIconPath());
+        jsonApp.insert("Title",QJsonValue(app->get_title()));
+        jsonApp.insert("Icon",app->get_iconPath());
 
         jsonListOfApps.append(jsonApp);
     }
@@ -51,17 +51,17 @@ OutArgument *Functions::getAppInfo(InArgument * const inArguments)
     if(app) {
 
         QJsonObject jsonApp;
-        jsonApp.insert("Title", app->getTitle());
-        jsonApp.insert("Icon",app->getIconPath());
-        jsonApp.insert("Description",app->getDescription());
-        jsonApp.insert("Url",app->getUrl());
+        jsonApp.insert("Title", app->get_title());
+        jsonApp.insert("Icon",app->get_iconPath());
+        jsonApp.insert("Description",app->get_description());
+        jsonApp.insert("Url",app->get_url());
 
-        QList<ServiceApp *> services = app->getServices();
+        QList<ServiceApp *> services = app->get_services();
         QJsonArray jsonServices;
 
         foreach (ServiceApp *s, services) {
             QJsonObject jsonService;
-            jsonService.insert(s->getTitle(), QJsonValue(s->getDescription()));
+            jsonService.insert(s->get_title(), QJsonValue(s->get_description()));
             jsonServices.append(jsonService);
         }
 
@@ -86,7 +86,7 @@ OutArgument *Functions::getApp(InArgument * const inArguments)
     if(app) {
 
         QJsonObject jsonApp;
-        jsonApp.insert("Url", QJsonValue(app->getUrl()));
+        jsonApp.insert("Url", QJsonValue(app->get_url()));
 
         QJsonDocument jsonDoc(jsonApp);
 

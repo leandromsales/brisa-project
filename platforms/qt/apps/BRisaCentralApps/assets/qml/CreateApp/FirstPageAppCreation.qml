@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 1.2
 import QtQuick.Dialogs 1.2
 
-import "qrc:/components"
+import "qrc:/components" as C
 
 Rectangle {
     Text {
@@ -167,7 +167,7 @@ Rectangle {
         fillMode: Image.PreserveAspectFit
     }
 
-    CommonButton {
+    C.Button {
         anchors {
             right:parent.right
             bottom:parent.bottom
@@ -176,9 +176,9 @@ Rectangle {
             bottomMargin: parent.height/25
         }
 
-        btnText: "Next"
+        text: "Next"
 
-        mouseArea.onClicked: {
+        action.onClicked: {
             textTopBar.text = "Create an App (2/3)"
             centerRectStackPages.push(secondPageComponent)
         }

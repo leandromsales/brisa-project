@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.4
 
-import "qrc:/components"
+import "qrc:/components" as C
 
 
 Rectangle {
@@ -37,7 +37,7 @@ Rectangle {
         font.pixelSize: parent.height/25
     }
 
-    CommonButton {
+    C.Button {
         id:backButton
         anchors {
             left:parent.left
@@ -46,15 +46,15 @@ Rectangle {
             bottomMargin: parent.height/25
         }
 
-        btnText:"Back"
+        text:"Back"
 
-        mouseArea.onClicked: {
+        action.onClicked: {
             textTopBar.text = "Create an App (1/3)"
             centerRectStackPages.pop()
         }
     }
 
-    CommonButton {
+    C.Button {
         id:nextButton
         anchors {
             right:parent.right
@@ -63,9 +63,9 @@ Rectangle {
             bottomMargin: parent.height/25
         }
 
-        btnText:"Next"
+        text:"Next"
 
-        mouseArea.onClicked: {
+        action.onClicked: {
             textTopBar.text = "Create an App (3/3)"
             centerRectStackPages.push(thirdPageAppCreationComponent);
         }

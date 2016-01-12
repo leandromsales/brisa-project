@@ -7,17 +7,6 @@ qtHaveModule(webengine) {
         DEFINES += QT_WEBVIEW_WEBENGINE_BACKEND
 }
 
-SOURCES += main.cpp \
-    brisaapplication.cpp \
-    brisaapplicationmanager.cpp \
-    bcadevice.cpp \
-    functions.cpp \
-    serviceApp.cpp \
-    bcajson.cpp \
-    FolderCompressor.cpp
-
-RESOURCES += qml.qrc
-
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
 
@@ -25,11 +14,24 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 include(brisa.pri)
 
-HEADERS += \
-    brisaapplication.h \
-    brisaapplicationmanager.h \
-    bcadevice.h \
-    functions.h \
-    serviceApp.h \
-    bcajson.h\
-    FolderCompressor.h
+SOURCES +=  main.cpp \
+            assets/cpp/bcadevice.cpp \
+            assets/cpp/bcajson.cpp \
+            assets/cpp/brisaapplication.cpp \
+            assets/cpp/brisaapplicationmanager.cpp \
+            assets/cpp/FolderCompressor.cpp \
+            assets/cpp/functions.cpp \
+            assets/cpp/serviceApp.cpp
+
+HEADERS +=  assets/cpp/bcadevice.h \
+            assets/cpp/bcajson.h \
+            assets/cpp/brisaapplication.h \
+            assets/cpp/brisaapplicationmanager.h \
+            assets/cpp/FolderCompressor.h \
+            assets/cpp/functions.h \
+            assets/cpp/serviceApp.h
+
+RESOURCES += qml.qrc \
+            assets/qml/CreateApp/createApp.qrc \
+            assets/qml/Components/components.qrc \
+            assets/qml/Screen/screens.qrc

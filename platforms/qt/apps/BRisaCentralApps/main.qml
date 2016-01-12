@@ -3,7 +3,7 @@ import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.3
 import QtQuick.Window 2.0
 
-import "qrc:/components"
+import "qrc:/components" as C
 
 ApplicationWindow {
     id:appRoot
@@ -36,21 +36,21 @@ ApplicationWindow {
                 anchors.margins: parent.width/20
 
                 Repeater {
-                    model:manager.getNumOfApps();
+                    model:manager.numOfApps;
 
-                    delegate: BRisaApplication {
+                    delegate: C.BRisaApplication {
 
-                        iconPath:manager.getListApps()[index].getIconPath();
-                        title:manager.getListApps()[index].getTitle();
-                        description:manager.getListApps()[index].getDescription();
+                        iconPath:manager.apps[index].iconPath;
+                        title:manager.apps[index].title;
+                        description:manager.apps[index].description;
 
-                        servicesModel: manager.getListApps()[index].getString();
+                        servicesModel: manager.apps[index].getString();
 
                     }
                 }
             }
 
-            FloatActionButton {
+            C.FloatActionButton {
                 raio:parent.width/12
                 icon:"qrc:/assets/plus.png"
                 mainRectColor: "#0099FF"
@@ -61,7 +61,7 @@ ApplicationWindow {
                     rightMargin: parent.width*(0.04)
                 }
                 mouseArea.onClicked : {
-                    dialog = Qt.createComponent("qrc:/components/AppCreateDialog.qml");
+                    dialog = Qt.createComponent("qrc:/createApp/AppCreateDialog.qml");
                     dialog.createObject(parent).show();
                 }
             }

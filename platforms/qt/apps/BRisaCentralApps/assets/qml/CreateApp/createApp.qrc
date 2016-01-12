@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/createApp">
+        <file>AppCreateDialog.qml</file>
+        <file>FirstPageAppCreation.qml</file>
+        <file>SecondPageAppCreation.qml</file>
+        <file>ThirdPageAppCreation.qml</file>
+    </qresource>
+</RCC>

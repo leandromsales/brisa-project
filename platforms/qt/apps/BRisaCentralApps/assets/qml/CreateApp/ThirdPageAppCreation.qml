@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.2
 
-import "qrc:/components"
+import "qrc:/components" as C
 
 Rectangle {
 
@@ -37,9 +37,9 @@ Rectangle {
         }
     }
 
-    CommonButton {
+    C.Button {
         id:addButton
-        btnText: "Add"
+        text: "Add"
         anchors {
             top : parent.top
             right: parent.right
@@ -47,7 +47,7 @@ Rectangle {
             topMargin: parent.height/25
         }
 
-        mouseArea.onClicked: {
+        action.onClicked: {
             if(titleTextField.text != "" && descriptionTextField.text != "") {
                 serviceTableListModel.append({
                                                  title:titleTextField.text,
@@ -100,7 +100,7 @@ Rectangle {
         }
     }
 
-    CommonButton {
+    C.Button {
         id:backButton
         anchors {
             left:parent.left
@@ -109,15 +109,15 @@ Rectangle {
             bottomMargin: parent.height/25
         }
 
-        btnText:"Back"
+        text:"Back"
 
-        mouseArea.onClicked: {
+        action.onClicked: {
             textTopBar.text = "Create an App (2/3)"
             centerRectStackPages.pop()
         }
     }
 
-    CommonButton {
+    C.Button {
         id:createButton
         anchors {
             right:parent.right
@@ -126,9 +126,9 @@ Rectangle {
             bottomMargin: parent.height/25
         }
 
-        btnText:"Create"
+        text:"Create"
 
-        mouseArea.onClicked: {
+        action.onClicked: {
 
             var theApp = {};
             theApp.name = nameAppTextField.text;
