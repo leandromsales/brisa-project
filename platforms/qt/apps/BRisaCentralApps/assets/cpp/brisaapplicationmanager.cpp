@@ -1,10 +1,30 @@
 #include "brisaapplicationmanager.h"
 
-BRisaApplicationManager::BRisaApplicationManager(QQmlApplicationEngine &engine)
+BRisaApplicationManager::BRisaApplicationManager(QQmlApplicationEngine &engine, QByteArray dirPath)
 {
     m_numOfApps = 0;
     mainEngine = &engine;
     ctxt = engine.rootContext();
+
+    QDir dir(dirPath);
+    QFile appsJsonFile(dir.absoluteFilePath("apps.json"));
+    if(!appsJsonFile.exists()) {
+        FolderCompressor compressor;
+        QStringList listApps = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs);
+        for(int i = 0; i < listApps.size(); i++) {
+            qDebug() << "Compressão : " << compressor.compressFolder(
+                            dir.absoluteFilePath(listApps[i]),
+                            dir.absoluteFilePath(listApps[i]) + "/" + listApps[i] + ".compe"
+                            );
+            BCAJson json(dir.absoluteFilePath(listApps[i]) + "/description.json");
+            addApp(new BRisaApplication(json.toBRisaApp(),QDir(dir.absoluteFilePath(listApps[i]))));
+        }
+    }
+}
+
+bool BRisaApplicationManager::generateJSONFile(QByteArray dirPath)
+{
+
 }
 
 bool BRisaApplicationManager::fileExists(QString path)
@@ -93,11 +113,7 @@ BRisaApplication *BRisaApplicationManager::getAppByName(QString appName)
     return 0;
 }
 
-void BRisaApplicationManager::addApp(QObject *app)
-{
-    m_apps.append(app);
-    m_numOfApps++;
-}
+void BRisaApplicationManager::addApp(QObject *app) { m_apps.append(app); m_numOfApps++; }
 
 void BRisaApplicationManager::run(QString name)
 {

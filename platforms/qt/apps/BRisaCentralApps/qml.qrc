@@ -2,7 +2,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
     </qresource>
-    <qresource prefix="/assets">
+    <qresource prefix="/img">
         <file alias="plus.png">assets/img/plus.png</file>
         <file alias="folder.png">assets/img/folder.png</file>
         <file alias="icon.png">assets/img/icon.png</file>

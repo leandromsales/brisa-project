@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/brisaComponents">
+        <file>BRisaApplication.qml</file>
+    </qresource>
+</RCC>

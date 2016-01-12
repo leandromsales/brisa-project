@@ -56,7 +56,7 @@ OutArgument *Functions::getAppInfo(InArgument * const inArguments)
         jsonApp.insert("Description",app->get_description());
         jsonApp.insert("Url",app->get_url());
 
-        QList<ServiceApp *> services = app->get_services();
+        QList<ServiceApp *> services = app->get_services()->toList();
         QJsonArray jsonServices;
 
         foreach (ServiceApp *s, services) {

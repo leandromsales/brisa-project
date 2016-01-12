@@ -1,36 +1,21 @@
 #include "brisaapplication.h"
 
-BRisaApplication::BRisaApplication(QString newIconPath, QString newTitle, QString newDescription, QList<ServiceApp *> newServiceApps)
+BRisaApplication::BRisaApplication(QVariantMap app, QDir dir)
 {
-    m_description = newDescription;
-    m_services = newServiceApps;
-    m_iconPath = newIconPath;
-    m_title = newTitle;
-}
+    m_services = new QQmlObjectListModel<ServiceApp>(this,"title","title");
+    m_title = app["Title"].toString();
+    m_description = app["Description"].toString();
+    m_url = "file:///" + dir.absoluteFilePath(app["Url"].toString());
+    m_iconPath = "file:///" + dir.absoluteFilePath(app["Icon"].toString());
+    m_mainQMLFile = "file:///" + dir.absoluteFilePath(app["MainQMLFile"].toString());
 
-BRisaApplication::BRisaApplication(QString newIconPath, QString newTitle, QString pathDir, QList<QString> *jsonFile)
-{
-    m_title = newTitle;
-    m_iconPath = newIconPath;
+    if(app["Type"].toString() != "WebApp" && app["Type"].toString() != "QMLApp") qFatal(QString("TYPE WRONG " + m_title + "!").toLatin1());
+    m_type = (app["Type"].toString() == "WebApp") ? WebApp : QMLApp;
+    QVariantList services = app["Services"].toList();
 
-    m_url = pathDir + "/" + m_title + ".compe";
-    m_mainQMLFile = pathDir + "/main.qml";
-
-    m_description = jsonFile->at(0);
-    jsonFile->removeAt(0);
-
-    for(int i = 0; i < jsonFile->size(); i += 2) {
-        m_services.append(new ServiceApp(jsonFile->at(i), jsonFile->at(i + 1)));
+    foreach (QVariant s, services) {
+        QMap<QString,QVariant> map = s.toMap();
+        if(!map.isEmpty())
+            m_services->append(new ServiceApp(map.lastKey(),map.last().toString()));
     }
-}
-
-QStringList BRisaApplication::getString() const
-{
-    QStringList aux;
-
-    foreach (ServiceApp *s, m_services) {
-        aux.append(s->getString());
-    }
-
-    return aux;
 }

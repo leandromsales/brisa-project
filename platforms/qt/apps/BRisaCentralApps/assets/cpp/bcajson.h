@@ -16,14 +16,9 @@ class BCAJson
 {
 public:
     BCAJson(QString path);
-    ~BCAJson();
-
-    QList<QString> *toBRisaApp();
-
+    QVariantMap toBRisaApp();
 private:
-
     QJsonObject mainObject;
-
 };
 
 #endif // BCAJSON_H

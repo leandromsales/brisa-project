@@ -1,5 +1,10 @@
 {
+	"Title":"Tecmundo",
+	"Icon":"icon.png",
+	"MainQMLFile":"main.qml",
+	"Url":"Tecmundo.compe",
 	"Description":"A Tech Website.",
+	"Type":"WebApp",
 	"Services":[
 		{
 		"Info":"Info about the TechWorld"

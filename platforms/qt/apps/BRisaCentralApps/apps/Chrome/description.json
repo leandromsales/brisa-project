@@ -1,5 +1,10 @@
 {
+	"Title":"Chrome",
+	"Icon":"icon.png",
+	"MainQMLFile":"main.qml",
+	"Url":"Chrome.compe",
     "Description": "A Browser Powered by google!",
+	"Type":"WebApp",
     "Services": [
         {
             "Navigate": "Navigate in the Internet"

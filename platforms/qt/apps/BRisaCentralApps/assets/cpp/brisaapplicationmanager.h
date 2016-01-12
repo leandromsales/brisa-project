@@ -17,7 +17,9 @@
 #include <QJsonArray>
 #include <QJsonValue>
 
+#include "bcajson.h"
 #include "brisaapplication.h"
+#include "FolderCompressor.h"
 #include "essencials/qqmlhelpers.h"
 
 class BRisaApplicationManager : public QObject
@@ -27,16 +29,13 @@ class BRisaApplicationManager : public QObject
     QML_WRITABLE_PROPERTY(int, numOfApps)
     QML_WRITABLE_PROPERTY(QString, currentAppDir)
 public:
-
-    BRisaApplicationManager(QQmlApplicationEngine &engine);
-
+    BRisaApplicationManager(QQmlApplicationEngine &engine, QByteArray dirPath);
+    Q_INVOKABLE bool generateJSONFile(QByteArray dirPath);
     Q_INVOKABLE bool fileExists(QString path);
     Q_INVOKABLE bool createAnApp(QJSValue theApp);
     Q_INVOKABLE void run(QString name);
-
     void addApp(QObject *app);
     BRisaApplication *getAppByName(QString appName);
-
 private:
     QQmlApplicationEngine *mainEngine;
     QQmlContext *ctxt;

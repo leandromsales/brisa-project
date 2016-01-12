@@ -1,10 +1,19 @@
 {
+	"Title":"Youtube",
+	"Icon":"icon.png",
+	"MainQMLFile":"main.qml",
+	"Url":"Youtube.compe",
 	"Description":"A Streamer of Videos",
+	"Type":"WebApp",
 	"Services":[
-		{
-		"Play":"play the Video",
-		"Pause":"pause the Video",
-		"Share":"share the Video in the social networks"
-		}	
+        {
+            "Play": "Play the Video"
+        },
+        {
+            "Pause": "Pause the Video"
+        },
+        {
+            "Share": "Share the Video in the social networks"
+        }	
 	]
 }

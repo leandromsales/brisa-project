@@ -86,7 +86,7 @@ Rectangle {
 
         width:parent.width/25
         height: width
-        source: "qrc:/assets/folder.png"
+        source: "qrc:/img/folder.png"
 
         MouseArea {
             anchors.fill: parent
@@ -140,7 +140,7 @@ Rectangle {
 
         width:parent.width/25
         height: width
-        source: "qrc:/assets/folder.png"
+        source: "qrc:/img/folder.png"
 
         MouseArea {
             anchors.fill: parent
@@ -163,7 +163,7 @@ Rectangle {
             leftMargin: parent.width*(0.05)
         }
 
-        source: "qrc:/assets/icon.png"
+        source: "qrc:/img/icon.png"
         fillMode: Image.PreserveAspectFit
     }
 

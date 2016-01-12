@@ -1,5 +1,10 @@
 {
+	"Title":"Calculator",
+	"Icon":"icon.png",
+	"MainQMLFile":"main.qml",
+	"Url":"Calculator.compe",
 	"Description":"A qml calculator",
+	"Type":"QMLApp",
 	"Services":[
 		{
 		}

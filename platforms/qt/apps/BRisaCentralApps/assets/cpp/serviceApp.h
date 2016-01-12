@@ -14,7 +14,6 @@ class ServiceApp : public QObject
     QML_WRITABLE_PROPERTY(QString,description)
 public:
     explicit ServiceApp(QString newTitle, QString newDescription);
-    QStringList getString();
 };
 
 #endif // SERVICEAPP_H
