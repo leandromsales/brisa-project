@@ -4,11 +4,12 @@ import "qrc:/components" as C
 import "qrc:/components/functions.js" as JS
 
 Rectangle {
+    id:root
     property alias iconPath : appIcon.source
     property alias title : appTitle.text
     property alias description : descriptionLabel.text
     property alias servicesModel : servicesTable.model
-    id:root
+    property var type
     Item {
         id:item
         width: JS.wpercent(90,root); height: JS.hpercent(90,root)
@@ -29,7 +30,11 @@ Rectangle {
             pixelSize: JS.hpercent(40,this); text:"Run"; textColor:"#444"
             width: JS.wpercent(15,parent)
             height: JS.hpercent(8,parent)
-            action.onClicked: manager.run(title)
+            action.onClicked: {
+                if(type==0) stackPages.push(qmlLoaderFileComponent)
+                else if(type==1) stackPages.push(webLoaderFileComponent)
+                manager.run(title,type)
+            }
         }
         Text {
             id: descriptionLabel
@@ -56,7 +61,7 @@ Rectangle {
         TableView {
             id:servicesTable
             anchors { top : servicesLabel.bottom; left: parent.left; topMargin:JS.hpercent(2,parent) }
-            width: JS.wpercent(100,parent); height:JS.hpercent(25,parent)
+            width: JS.wpercent(100,parent); height:JS.hpercent(35,parent)
             TableViewColumn {
                 role: "title"
                 title: "Title"
@@ -68,13 +73,14 @@ Rectangle {
                 width: JS.wpercent(70,parent)
             }
         }
-        C.Button {
-            anchors{ top : servicesTable.bottom; left: parent.left; topMargin:JS.hpercent(2,parent) }
-            pixelSize: JS.hpercent(40,this); text:"Back"; textColor:"#444"
-            width: JS.wpercent(15,parent)
-            height: JS.hpercent(8,parent)
-            action.onClicked: stackPages.pop();
-        }
+    }
+    Component {
+        id:qmlLoaderFileComponent
+        QMLLoaderFile {}
+    }
+    Component {
+        id:webLoaderFileComponent
+        WebLoaderFile {}
     }
 }
 

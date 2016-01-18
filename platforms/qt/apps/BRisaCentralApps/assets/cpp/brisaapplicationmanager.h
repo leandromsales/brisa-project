@@ -30,16 +30,21 @@ class BRisaApplicationManager : public QObject
     QML_WRITABLE_PROPERTY(QString, currentAppDir)
 public:
     BRisaApplicationManager(QQmlApplicationEngine &engine, QByteArray dirPath);
-    Q_INVOKABLE bool generateJSONFile(QByteArray dirPath);
+    bool generateJSONFile();
+    bool readJSONFile();
+    Q_INVOKABLE void refreshAppList();
     Q_INVOKABLE bool fileExists(QString path);
     Q_INVOKABLE bool createAnApp(QJSValue theApp);
-    Q_INVOKABLE void run(QString name);
+    Q_INVOKABLE void run(QString name, int type);
     void addApp(QObject *app);
     BRisaApplication *getAppByName(QString appName);
+signals:
+    void mainQMLPathSetted();
+    void webSourceUrlSetted();
 private:
     QQmlApplicationEngine *mainEngine;
     QQmlContext *ctxt;
-
+    QByteArray m_dirPath;
 };
 
 #endif // BRISAAPPLICATIONMANAGER_H

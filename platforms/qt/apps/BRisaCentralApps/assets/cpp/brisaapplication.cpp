@@ -1,17 +1,28 @@
 #include "brisaapplication.h"
 
-BRisaApplication::BRisaApplication(QVariantMap app, QDir dir)
+BRisaApplication::BRisaApplication(QVariantMap app)
 {
+    QDir dir(app["dirPath"].toString());
+    BCAJson bcaJson(app["descriptionFile"].toString());
+    QVariantMap descriptionFileMap = bcaJson.toBRisaApp();
     m_services = new QQmlObjectListModel<ServiceApp>(this,"title","title");
-    m_title = app["Title"].toString();
-    m_description = app["Description"].toString();
-    m_url = "file:///" + dir.absoluteFilePath(app["Url"].toString());
-    m_iconPath = "file:///" + dir.absoluteFilePath(app["Icon"].toString());
-    m_mainQMLFile = "file:///" + dir.absoluteFilePath(app["MainQMLFile"].toString());
+    m_title = descriptionFileMap["Title"].toString();
+    m_description = descriptionFileMap["Description"].toString();
+    m_url = "file:///" + dir.absoluteFilePath(descriptionFileMap["Url"].toString());
+    m_iconPath = "file:///" + app["iconPath"].toString();
 
-    if(app["Type"].toString() != "WebApp" && app["Type"].toString() != "QMLApp") qFatal(QString("TYPE WRONG " + m_title + "!").toLatin1());
-    m_type = (app["Type"].toString() == "WebApp") ? WebApp : QMLApp;
-    QVariantList services = app["Services"].toList();
+    if(
+            descriptionFileMap["Type"].toString() != "WebApp" &&
+            descriptionFileMap["Type"].toString() != "QMLApp"
+            ) qFatal(QString("TYPE WRONG " + m_title + "!").toLatin1());
+
+    if(descriptionFileMap["Type"].toString() == "WebApp")
+        m_execPath = descriptionFileMap["execPath"].toString();
+    if(descriptionFileMap["Type"].toString() == "QMLApp")
+        m_execPath = "file:///" + dir.absoluteFilePath(descriptionFileMap["execPath"].toString());
+
+    m_type = (descriptionFileMap["Type"].toString() == "WebApp") ? WebApp : QMLApp;
+    QVariantList services = descriptionFileMap["Services"].toList();
 
     foreach (QVariant s, services) {
         QMap<QString,QVariant> map = s.toMap();

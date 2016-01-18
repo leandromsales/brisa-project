@@ -1,7 +1,7 @@
 {
 	"Title":"Youtube",
 	"Icon":"icon.png",
-	"MainQMLFile":"main.qml",
+	"execPath":"https://www.youtube.com",
 	"Url":"Youtube.compe",
 	"Description":"A Streamer of Videos",
 	"Type":"WebApp",

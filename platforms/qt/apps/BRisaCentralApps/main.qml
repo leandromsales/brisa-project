@@ -20,8 +20,29 @@ ApplicationWindow {
 
     C.Frame {
         anchors.fill: parent
-        bottomBarHeightPercent: 0; topBarHeightPercent:10
+        bottomBarHeightPercent: 0; topBarHeightPercent:8
         topBarColor: "#795548"
+        topBarContent: Item {
+            anchors.fill: parent
+            Row {
+                anchors.fill: parent
+                C.ImageButton {
+                    visible: stackPages.depth == 1
+                    height:JS.hpercent(100,parent); width: height
+                    source:"qrc:/img/refresh.png"; color: "transparent"
+                    action.onClicked: {
+                        manager.refreshAppList()
+                        gridApps.model = manager.apps
+                    }
+                }
+                C.ImageButton {
+                    visible: stackPages.depth > 1
+                    height:JS.hpercent(100,parent); width: height
+                    source:"qrc:/img/back.png"; color: "transparent"
+                    action.onClicked: stackPages.pop()
+                }
+            }
+        }
         content: StackView {
             id:stackPages
             function pushObject() {
@@ -35,14 +56,14 @@ ApplicationWindow {
                     id:gridApps
                     anchors { fill : parent; margins: JS.wpercent(5,parent); leftMargin:JS.wpercent(7.5,parent) }
                     cellWidth: JS.wpercent(20,this); cellHeight: cellWidth
-                    model:manager.numOfApps;
+                    model:manager.apps;
                     delegate: BRisaApplication {
-                        property var app: manager.apps[index]
                         width:JS.wpercent(15,parent); height:width
-                        iconPath:app.iconPath;
-                        title:app.title;
-                        description:app.description;
-                        servicesModel: app.services
+                        iconPath:modelData.iconPath;
+                        title:modelData.title;
+                        description:modelData.description;
+                        servicesModel:modelData.services
+                        type:modelData.type
                     }
                 }
                 C.ImageButton {

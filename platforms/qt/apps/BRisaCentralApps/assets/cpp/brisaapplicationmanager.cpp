@@ -5,26 +5,83 @@ BRisaApplicationManager::BRisaApplicationManager(QQmlApplicationEngine &engine, 
     m_numOfApps = 0;
     mainEngine = &engine;
     ctxt = engine.rootContext();
+    m_dirPath = dirPath;
 
     QDir dir(dirPath);
-    QFile appsJsonFile(dir.absoluteFilePath("apps.json"));
-    if(!appsJsonFile.exists()) {
-        FolderCompressor compressor;
+    if(!generateJSONFile()) { qDebug() << "ERROR TO GENERATE APPSJSON"; return; }
+    if(!readJSONFile())  { qDebug() << "ERROR TO READ APPSJSON"; return; }
+}
+
+bool BRisaApplicationManager::generateJSONFile()
+{
+    QDir dir(m_dirPath);
+    QFile appsJson(dir.absoluteFilePath("apps.json"));
+    if(!appsJson.exists()) {
         QStringList listApps = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs);
-        for(int i = 0; i < listApps.size(); i++) {
-            qDebug() << "Compressão : " << compressor.compressFolder(
-                            dir.absoluteFilePath(listApps[i]),
-                            dir.absoluteFilePath(listApps[i]) + "/" + listApps[i] + ".compe"
-                            );
-            BCAJson json(dir.absoluteFilePath(listApps[i]) + "/description.json");
-            addApp(new BRisaApplication(json.toBRisaApp(),QDir(dir.absoluteFilePath(listApps[i]))));
+        QJsonObject *mainJson = new QJsonObject();
+        QJsonArray *jsonArrayApps = new QJsonArray();
+        foreach (QString app, listApps) {
+            QJsonObject *jsonApp = new QJsonObject();
+            dir.cd(app);
+
+            QFile iconFile(dir.absoluteFilePath("icon.png"));
+            if(!iconFile.exists()) {
+                qDebug() << "App :" << app << ", the icon.png doesn't exist";
+                dir.cdUp();
+                continue;
+            }
+            QFile descriptionFile(dir.absoluteFilePath("description.json"));
+            if(!descriptionFile.exists()) {
+                qDebug() << "App :" << app << ", the description.json doesn't exist";
+                dir.cdUp();
+                continue;
+            }
+
+            jsonApp->insert("appName",app);
+            jsonApp->insert("dirPath",dir.absolutePath());
+            jsonApp->insert("descriptionFile",dir.absoluteFilePath("description.json"));
+            jsonApp->insert("iconPath",dir.absoluteFilePath("icon.png"));
+            jsonArrayApps->append(*jsonApp);
+            dir.cdUp();
         }
+        mainJson->insert("apps",*jsonArrayApps);
+        QJsonDocument *jsonDoc = new QJsonDocument(*mainJson);
+        if(!appsJson.open(QIODevice::WriteOnly)) {
+            qDebug() << "ERROR OPEN APPSJSON";
+            return false;
+        }
+        appsJson.write(jsonDoc->toJson());
+        appsJson.close();
+    }
+    return true;
+}
+
+bool BRisaApplicationManager::readJSONFile()
+{
+    QDir dir(m_dirPath);
+    QFile appsJson(dir.absoluteFilePath("apps.json"));
+    if(!appsJson.exists()) generateJSONFile();
+    if(!appsJson.open(QIODevice::ReadOnly)) {
+        qDebug() << "APPSJSON COULDN'T BE OPENED!";
+        return false;
+    }
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(appsJson.readAll());
+    appsJson.close();
+    QJsonArray apps = jsonDoc.object()["apps"].toArray();
+    foreach (QJsonValue app, apps) {
+        addApp(new BRisaApplication(app.toObject().toVariantMap()));
     }
 }
 
-bool BRisaApplicationManager::generateJSONFile(QByteArray dirPath)
+void BRisaApplicationManager::refreshAppList()
 {
-
+    QDir dir(m_dirPath);
+    if(!dir.exists()) { qDebug() << "M_DIRPATH DOESN'T EXISTS!"; return; }
+    if(!dir.remove("apps.json")) { qDebug() << "ERROR: REMOVE APPSJSON FILE!"; return; }
+    m_apps.clear(); m_numOfApps = 0;
+    if(!generateJSONFile()) { qDebug() << "ERROR TO GENERATE APPSJSON"; return; }
+    if(!readJSONFile())  { qDebug() << "ERROR TO READ APPSJSON"; return; }
+    qDebug() << "REFRESH ENDED!" << m_numOfApps;
 }
 
 bool BRisaApplicationManager::fileExists(QString path)
@@ -104,6 +161,19 @@ bool BRisaApplicationManager::createAnApp(QJSValue theApp)
     return true;
 }
 
+void BRisaApplicationManager::run(QString name, int type)
+{
+    if(type == BRisaApplication::QMLApp) {
+        QObject *qmlInterpreter = mainEngine->rootObjects()[0]->findChild<QObject *>("qmlInterpreter");
+        qmlInterpreter->setProperty("mainQMLSource",QUrl(getAppByName(name)->get_execPath()));
+        emit mainQMLPathSetted();
+    } else if(type == BRisaApplication::WebApp) {
+        QObject *webInterpreter = mainEngine->rootObjects()[0]->findChild<QObject *>("webInterpreter");
+        webInterpreter->setProperty("webSource",QUrl(getAppByName(name)->get_execPath()));
+        emit webSourceUrlSetted();
+    }
+}
+
 BRisaApplication *BRisaApplicationManager::getAppByName(QString appName)
 {
     foreach (QObject *obj, m_apps) {
@@ -114,25 +184,5 @@ BRisaApplication *BRisaApplicationManager::getAppByName(QString appName)
 }
 
 void BRisaApplicationManager::addApp(QObject *app) { m_apps.append(app); m_numOfApps++; }
-
-void BRisaApplicationManager::run(QString name)
-{
-    QQmlComponent window(mainEngine);
-    window.loadUrl(QUrl(getAppByName(name)->get_mainQMLFile()));
-
-    QObject *stack = mainEngine->rootObjects()[0]->findChild<QObject *>("stack");
-
-    qDebug() << window.status();
-    QQuickItem *object = qobject_cast<QQuickItem*>(window.create(mainEngine->rootContext()));
-    qDebug() << mainEngine->rootContext();
-    qDebug() << object;
-
-    object->setParentItem(qobject_cast<QQuickItem*>(mainEngine->rootObjects()[0]->findChild<QObject *>("appExec")));
-    object->setParent(mainEngine);
-
-    QMetaObject::invokeMethod(stack,"pushObject");
-
-    qDebug() << "OK";
-}
 
 

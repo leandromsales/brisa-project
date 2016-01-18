@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/screen">
         <file>BRisaApplicationView.qml</file>
+        <file>QMLLoaderFile.qml</file>
+        <file>WebLoaderFile.qml</file>
     </qresource>
 </RCC>

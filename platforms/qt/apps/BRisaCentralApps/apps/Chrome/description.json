@@ -1,7 +1,7 @@
 {
 	"Title":"Chrome",
 	"Icon":"icon.png",
-	"MainQMLFile":"main.qml",
+	"execPath":"https://www.google.com.br/chrome/browser/desktop/",
 	"Url":"Chrome.compe",
     "Description": "A Browser Powered by google!",
 	"Type":"WebApp",

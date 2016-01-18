@@ -6,6 +6,8 @@
         <file alias="plus.png">assets/img/plus.png</file>
         <file alias="folder.png">assets/img/folder.png</file>
         <file alias="icon.png">assets/img/icon.png</file>
+        <file alias="back.png">assets/img/back.png</file>
+        <file alias="refresh.png">assets/img/refresh.png</file>
     </qresource>
     <qresource prefix="/src">
         <file>assets/src/functions.xml</file>

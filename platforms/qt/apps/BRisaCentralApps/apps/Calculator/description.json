@@ -1,7 +1,7 @@
 {
 	"Title":"Calculator",
 	"Icon":"icon.png",
-	"MainQMLFile":"main.qml",
+	"execPath":"main.qml",
 	"Url":"Calculator.compe",
 	"Description":"A qml calculator",
 	"Type":"QMLApp",

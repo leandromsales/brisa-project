@@ -1,0 +1,28 @@
+{
+    "apps": [
+        {
+            "appName": "Calculator",
+            "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Calculator/description.json",
+            "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Calculator",
+            "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Calculator/icon.png"
+        },
+        {
+            "appName": "Chrome",
+            "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Chrome/description.json",
+            "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Chrome",
+            "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Chrome/icon.png"
+        },
+        {
+            "appName": "Tecmundo",
+            "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Tecmundo/description.json",
+            "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Tecmundo",
+            "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Tecmundo/icon.png"
+        },
+        {
+            "appName": "Youtube",
+            "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Youtube/description.json",
+            "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Youtube",
+            "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Youtube/icon.png"
+        }
+    ]
+}
