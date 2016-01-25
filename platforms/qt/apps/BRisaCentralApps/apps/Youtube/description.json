@@ -1,19 +1,14 @@
 {
-	"Title":"Youtube",
-	"Icon":"icon.png",
-	"execPath":"https://www.youtube.com",
-	"Url":"Youtube.compe",
-	"Description":"A Streamer of Videos",
-	"Type":"WebApp",
-	"Services":[
+    "Description": "Video Streamer",
+    "Services": [
         {
-            "Play": "Play the Video"
+            "Play": "Start Video"
         },
         {
-            "Pause": "Pause the Video"
-        },
-        {
-            "Share": "Share the Video in the social networks"
-        }	
-	]
+            "Pause": "Stop Video"
+        }
+    ],
+    "Title": "Youtube",
+    "Type": "WebApp",
+    "execPath": "https://www.youtube.com"
 }

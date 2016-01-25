@@ -1,12 +1,11 @@
 {
-	"Title":"Calculator",
-	"Icon":"icon.png",
-	"execPath":"main.qml",
-	"Url":"Calculator.compe",
-	"Description":"A qml calculator",
-	"Type":"QMLApp",
-	"Services":[
-		{
-		}
-	]
+    "Description": "A Calculator built in QML",
+    "Services": [
+        {
+            "Sum": "Sum two numbers"
+        }
+    ],
+    "Title": "Calculator",
+    "Type": "QMLApp",
+    "execPath": "main.qml"
 }

@@ -10,8 +10,8 @@ import "qrc:/components/functions.js" as JS
 ApplicationWindow {
     id:appRoot
 
-    property Component dialog
-    function destroyDialog() { dialog.destroy(); console.log("DIALOG DESTROYED!"); }
+    property var dialog
+    function destroyDialog() { dialog.destroy(); createAppBtn.wasClicked = false; console.log("DIALOG DESTROYED!"); }
 
     title: qsTr("BCA")
     width: 640
@@ -67,6 +67,8 @@ ApplicationWindow {
                     }
                 }
                 C.ImageButton {
+                    id:createAppBtn
+                    property bool wasClicked: false
                     width: JS.minorThan(JS.wpercent(10,parent),JS.hpercent(10,parent)); height:width
                     radius:width/2
                     source:"qrc:/img/plus.png"; color: "#009688"
@@ -78,35 +80,18 @@ ApplicationWindow {
                     }
                     responsive: true; zoom: 1.5
                     action.onClicked : {
-                        dialog = Qt.createComponent("qrc:/createApp/AppCreateDialog.qml");
-                        dialog.createObject(parent).show();
+                        if(!wasClicked) {
+                            dialog = Qt.createComponent("qrc:/createApp/AppCreateDialog.qml");
+                            dialog.createObject(parent).open();
+                        }
+                        wasClicked = true
                     }
                 }
             }
         }
     }
-    Rectangle {
-        id:appRunnable
-        color:"transparent"
-        height:parent.height
-        width:parent.width
-        visible:false
-        Rectangle{
-            objectName: "appExec"
-            anchors.fill: parent
-        }
-        Rectangle {
-            id:bottomBar
-            width:parent.width
-            height:parent.height/10
-            color:"transparent"
-            anchors.bottom: parent.bottom
-            Button{
-                text:"Back"
-                height:parent.height
-                width:parent.width/5
-                onClicked: stackPages.pop();
-            }
-        }
+    C.NotificationSystem {
+        id:notificationSystem
+        centralized: true; isOnTheTop: true
     }
 }

@@ -92,8 +92,7 @@ bool BRisaApplicationManager::fileExists(QString path)
 
 bool BRisaApplicationManager::createAnApp(QJSValue theApp)
 {
-    QDir dir("../BRisaCentralApps/apps");
-
+    QDir dir(m_dirPath);
     if(!dir.mkdir(theApp.property("name").toString())) {
         qDebug() << "The folder already exists!";
         return false;
@@ -119,35 +118,43 @@ bool BRisaApplicationManager::createAnApp(QJSValue theApp)
 
     qDebug() << "Icon copied with sucess!";
 
-    QDir mainQMLFolder("/" + theApp.property("mainPath").toString());
+    if(theApp.property("appType").toString() == "QML") {
+        QDir mainQMLFolder("/" + theApp.property("execPath").toString());
 
-    QStringList qmlFiles = mainQMLFolder.entryList(QDir::Files);
+        QStringList qmlFiles = mainQMLFolder.entryList(QDir::Files);
 
-    foreach (QString f, qmlFiles) {
-        if(!QFile::copy(mainQMLFolder.absoluteFilePath(f), dir.absoluteFilePath(f))) {
-            qDebug() << "Error in the copy of the files!";
-            return false;
-        } else {
-            qDebug() << "The file " + f + " was copied with sucess!";
+        foreach (QString f, qmlFiles) {
+            QFile file(dir.absoluteFilePath(f));
+            if (!file.exists()) {
+                if(!QFile::copy(mainQMLFolder.absoluteFilePath(f), dir.absoluteFilePath(f))) {
+                    qDebug() << "Error in the copy of the files! File : " + dir.absoluteFilePath(f);
+                    return false;
+                } else {
+                    qDebug() << "The file " + f + " was copied with sucess!";
+                }
+            }
         }
-    }
 
-    qDebug() << "Files copied with Sucess!";
+        qDebug() << "Files copied with Sucess!";
+    }
 
     QJsonObject json;
+    json["Title"] = theApp.property("name").toString();
+    json["Type"] = theApp.property("appType").toString() + "App";
     json["Description"] = theApp.property("description").toString();
 
+    if(theApp.property("appType").toString() == "QML")
+        json["execPath"] = "main.qml";
+    else
+        json["execPath"] = theApp.property("execPath").toString();
+
     QJsonArray services;
-
-    QList<QVariant> titles = theApp.property("serviceTitles").toVariant().toList();
-    QList<QVariant> descriptions = theApp.property("serviceDescriptions").toVariant().toList();
-
-    for(int i = 0; i < titles.length(); i++) {
+    QList<QVariant> appServices = theApp.property("services").toVariant().toList();
+    foreach (QVariant service, appServices) {
         QJsonObject aux;
-        aux[titles.at(i).toString()] = descriptions.at(i).toString();
+        aux[service.toMap()["title"].toString()] = service.toMap()["description"].toString();
         services.append(aux);
     }
-
     json["Services"] = services;
 
     QFile jsonFile (dir.absolutePath() + "/description.json");
@@ -157,7 +164,6 @@ bool BRisaApplicationManager::createAnApp(QJSValue theApp)
     jsonFile.write(jsonDoc.toJson());
 
     qDebug() << "JSON Created with Sucess!";
-
     return true;
 }
 

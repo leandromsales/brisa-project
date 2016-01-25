@@ -24,7 +24,6 @@ private:
     QML_WRITABLE_PROPERTY(QString, description)
     QML_WRITABLE_PROPERTY(QString, iconPath)
     QML_WRITABLE_PROPERTY(QString, title)
-    QML_WRITABLE_PROPERTY(QString, url)
     QML_WRITABLE_PROPERTY(QString, execPath)
     QML_WRITABLE_PROPERTY(AppType,type)
 public:

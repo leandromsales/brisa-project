@@ -1,13 +1,11 @@
 {
-	"Title":"Tecmundo",
-	"Icon":"icon.png",
-	"execPath":"https://www.tecmundo.com.br",
-	"Url":"Tecmundo.compe",
-	"Description":"A Tech Website.",
-	"Type":"WebApp",
-	"Services":[
-		{
-		"Info":"Info about the TechWorld"
-		}	
-	]
+    "Description": "Nerd World's website ",
+    "Services": [
+        {
+            "Info": "Information about the Nerd's World"
+        }
+    ],
+    "Title": "Tecmundo",
+    "Type": "WebApp",
+    "execPath": "https://www.tecmundo.com.br"
 }

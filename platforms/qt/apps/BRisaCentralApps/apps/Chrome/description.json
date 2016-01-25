@@ -1,16 +1,14 @@
 {
-	"Title":"Chrome",
-	"Icon":"icon.png",
-	"execPath":"https://www.google.com.br/chrome/browser/desktop/",
-	"Url":"Chrome.compe",
-    "Description": "A Browser Powered by google!",
-	"Type":"WebApp",
+    "Description": "Google Browser",
     "Services": [
         {
-            "Navigate": "Navigate in the Internet"
+            "Browse": "Search in the Web"
         },
         {
-            "Download": "Download files"
+            "Download": "Download all the files you want"
         }
-    ]
+    ],
+    "Title": "Chrome",
+    "Type": "WebApp",
+    "execPath": "https://www.google.com.br/chrome/browser/desktop/"
 }

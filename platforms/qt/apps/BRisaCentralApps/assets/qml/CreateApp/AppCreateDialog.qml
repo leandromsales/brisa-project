@@ -2,164 +2,60 @@ import QtQuick 2.0
 import QtQuick.Controls 1.2
 
 import "qrc:/screen"
-
-Rectangle {
-    id:acd
-    width: parent.width
-    height: parent.height
-
-    x:-width
-    color: "transparent"
-
-    anchors.verticalCenter: parent.verticalCenter
-
-    Rectangle {
-        id:backRect
+import "qrc:/components" as C
+import "qrc:/components/functions.js" as JS
+C.PopUpWindow {
+    color:"White"
+    onImminentHide : destroyDialog();
+    content: MouseArea {
         anchors.fill: parent
-        color:"black"
-        opacity: 0.5
-
-        MouseArea {
+        C.Frame {
+            id:topBarFrame
             anchors.fill: parent
-            hoverEnabled: true
-
-            onClicked: hide();
-        }
-    }
-
-    Rectangle {
-        id:centerRect
-        width:parent.width*(0.75)
-        height:parent.height*(0.75)
-        anchors.centerIn: parent
-
-        Rectangle {
-            id:topBar
-            anchors {
-                fill:parent
-                bottomMargin: parent.height*(0.8)
-            }
-
-            color: "#0099FF"
-
-            Text {
-                id:textTopBar
-                anchors.fill: parent
-                anchors.leftMargin: parent.width/20
-
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
-
-                color: "white"
-
-                font {
-                    pixelSize: height/2
-                }
-            }
-        }
-
-        MouseArea {
-            anchors.fill: parent
-            hoverEnabled: true
-        }
-
-        StackView {
-            id:centerRectStackPages
-            anchors.fill: parent
-            anchors.topMargin: topBar.height
-            initialItem: firstPage
-
-            delegate: StackViewDelegate {
-                function transitionFinished(properties)
-                {
-                    properties.exitItem.scale = 1
-                }
-
+            topBarHeightPercent: 10
+            topBarColor: "#09A"
+            bottomBarVisible: false
+            stack.delegate: StackViewDelegate {
+                function transitionFinished(properties) { properties.exitItem.opacity = 1 }
                 pushTransition: StackViewTransition {
-
                     PropertyAnimation {
                         target: enterItem
-                        property: "scale"
-                        from: 0
-                        to: 1
+                        property: "opacity"
+                        from: 0; to: 1; duration: 100
                     }
                     PropertyAnimation {
                         target: exitItem
-                        property: "scale"
-                        from: 1
-                        to: 0
+                        property: "opacity"
+                        from: 1; to: 0; duration: 100
                     }
-
-                }
-
-                popTransition: StackViewTransition {
-
-                    PropertyAnimation {
-                        target: exitItem
-                        property: "scale"
-                        from: 1
-                        to: 0
-                    }
-                    PropertyAnimation {
-                        target: enterItem
-                        property: "scale"
-                        from: 0
-                        to: 1
-                    }
-
                 }
             }
-        }
-
-        FirstPageAppCreation {
-            id:firstPage
-        }
-    }
-    //Animations
-    SequentialAnimation {
-        id:showAnimation
-        running: false
-
-        SmoothedAnimation {
-            target:acd
-            property: "x"
-            to:(acd.parent.width/2 - acd.width/2)
-            duration: 150
-        }
-        PropertyAnimation {
-            target:backRect
-            property: "opacity"
-            to:0.5
-            duration: 150
-        }
-
-    }
-
-    SequentialAnimation {
-        id:hideAnimation
-        running: false
-
-        PropertyAnimation {
-            target:backRect
-            property: "opacity"
-            to:0
-            duration: 150
-        }
-        SmoothedAnimation {
-            target:acd
-            property: "x"
-            to:-acd.width
-            duration: 150
+            topBarContent: Item{
+                anchors.fill: parent
+                Row {
+                    anchors.fill: parent
+                    C.ImageButton {
+                        height:JS.hpercent(70,parent); width: height
+                        anchors.verticalCenter: parent.verticalCenter
+                        source:"qrc:/img/close.png"; color: "transparent"
+                        action.onClicked: closed()
+                    }
+                    Text {
+                        height:JS.hpercent(70,parent); width: JS.wpercent(40,parent)
+                        anchors.verticalCenter: parent.verticalCenter
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment: Text.AlignHCenter
+                        text:"Create an App ("+topBarFrame.stack.depth+"/3)"; color:"White"
+                        font { bold:true; pixelSize: JS.hpercent(70,this) }
+                    }
+                }
+            }
+            content: firstPageComponent
         }
     }
-
-    //Methods
-    function hide(){
-        hideAnimation.start();
-        destroyDialog();
-    }
-    function show(){
-        showAnimation.start();
+    Component {
+        id:firstPageComponent
+        FirstPageAppCreation {}
     }
 }
 

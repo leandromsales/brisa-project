@@ -2,79 +2,69 @@ import QtQuick 2.0
 import QtQuick.Controls 1.4
 
 import "qrc:/components" as C
+import "qrc:/components/functions.js" as JS
 
 
 Rectangle {
-
     Text {
         id:descriptionLabel
         anchors {
-            top : parent.top
-            left: parent.left
-            leftMargin: parent.width/20
-            topMargin: parent.height/25
+            top : parent.top; left: parent.left
+            leftMargin: JS.wpercent(3,parent)
+            topMargin: JS.hpercent(4,parent)
         }
-
-        text:"Description:"
-        color:"#444"
-
-        font.pixelSize: parent.height/20
+        text:"Description:"; color:"#444"
+        font.pixelSize: JS.hpercent(4,parent)
     }
-
-    TextArea {
-        id:descriptionTextArea
+    Rectangle {
+        id:descriptionTextInputRect
         anchors {
-            left:descriptionLabel.right
-            leftMargin: parent.width/20
-            right:parent.right
-            rightMargin: parent.width/20
+            left:descriptionLabel.right; leftMargin: JS.wpercent(2,parent)
+            right:parent.right; rightMargin: JS.wpercent(2,parent)
+            bottom :nextButton.top; bottomMargin: JS.hpercent(5,parent)
             top:descriptionLabel.top
-            bottom :nextButton.top
-            bottomMargin: parent.height/25
         }
-
-        wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere
-        font.pixelSize: parent.height/25
+        color:"#DDD"
+        border { color: Qt.darker(color); width: 1 }
+        TextInput {
+            id:descriptionTextInput
+            anchors { fill: parent; margins: JS.wpercent(1,parent) }
+            wrapMode: TextEdit.Wrap; clip:true
+            color: "#444"
+            font.pixelSize: JS.hpercent(6,parent)
+        }
     }
-
     C.Button {
         id:backButton
         anchors {
-            left:parent.left
-            bottom:parent.bottom
-            leftMargin: parent.width/20
-            bottomMargin: parent.height/25
+            left:descriptionTextInputRect.left;
+            bottom:parent.bottom; bottomMargin: JS.hpercent(5,parent)
         }
-
+        height: JS.hpercent(12,parent); width: JS.wpercent(18,parent)
+        pixelSize: JS.hpercent(35,this); color:"#CDCDCD"
+        textColor: "#212121"; bold: true; wave: true
         text:"Back"
-
         action.onClicked: {
-            textTopBar.text = "Create an App (1/3)"
-            centerRectStackPages.pop()
+            topBarFrame.stack.pop()
         }
     }
-
     C.Button {
         id:nextButton
         anchors {
-            right:parent.right
-            bottom:parent.bottom
-            rightMargin: parent.width/20
-            bottomMargin: parent.height/25
+            right:parent.right; bottom:parent.bottom
+            rightMargin: JS.hpercent(5,parent); bottomMargin: JS.hpercent(5,parent)
         }
-
+        height: JS.hpercent(12,parent); width: JS.wpercent(18,parent)
+        pixelSize: JS.hpercent(35,this); color:"#4CAF50"
+        textColor: "white"; bold: true; wave: true
         text:"Next"
-
         action.onClicked: {
-            textTopBar.text = "Create an App (3/3)"
-            centerRectStackPages.push(thirdPageAppCreationComponent);
+            topBarFrame.stack.push(thirdPageAppCreationComponent);
         }
     }
-
     Component {
         id:thirdPageAppCreationComponent
         ThirdPageAppCreation {}
     }
-
 }
 

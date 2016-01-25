@@ -1,224 +1,145 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.2
 import QtQuick.Dialogs 1.2
+import QtQuick.Layouts 1.1
 
 import "qrc:/components" as C
+import "qrc:/components/functions.js" as JS
 
 Rectangle {
-    Text {
-        id:nameAppLabel
+    Column {
+        id:mainColumn
         anchors {
-            top : parent.top
-            left: parent.left
-            leftMargin: parent.width/20
-            topMargin: parent.height/25
+            top: parent.top; right:parent.right;
+            left:parent.left; margins: JS.hpercent(10,parent)
         }
-
-        text:"Name of the App:"
-        color:"#444"
-
-        font.pixelSize: parent.height/20
+        height: JS.hpercent(50,parent)
+        spacing: JS.hpercent(8,parent)
+        Row {
+            width:JS.wpercent(90,parent); height: JS.hpercent(15,parent)
+            anchors.horizontalCenter: parent.horizontalCenter
+            spacing: JS.wpercent(5,parent)
+            C.TextLine {
+                id:nameAppTextField
+                width:JS.wpercent(65,parent); height: JS.hpercent(100,parent)
+                anchors.verticalCenter: parent.verticalCenter
+                placeholder: "Name";
+            }
+            GroupBox {
+                title: "App Type"
+                RowLayout {
+                    ExclusiveGroup {
+                        id: appTypeGroup
+                        onCurrentChanged: {
+                            if(current.text == "Web")
+                                mainQMLtextLine.text = "https://"
+                            else
+                                mainQMLtextLine.text = ""
+                        }
+                    }
+                    RadioButton {
+                        text: "Web"
+                        exclusiveGroup: appTypeGroup
+                    }
+                    RadioButton {
+                        text: "QML"
+                        checked: true
+                        exclusiveGroup: appTypeGroup
+                    }
+                }
+            }
+        }
+        Row {
+            width:JS.wpercent(90,parent); height: JS.hpercent(15,parent)
+            anchors.horizontalCenter: parent.horizontalCenter
+            spacing: JS.wpercent(5,parent)
+            C.TextLine {
+                id:iconTextLine
+                width:JS.wpercent(85,parent); height: JS.hpercent(100,parent)
+                anchors.verticalCenter: parent.verticalCenter
+                placeholder: "Icon"
+            }
+            C.ImageButton {
+                width: JS.wpercent(10,parent); height: width
+                source: "qrc:/img/folder.png"; radius: width/2
+                color: "transparent"; responsive: true
+                action.onClicked: fileDialog.open()
+            }
+        }
+        Row {
+            width:JS.wpercent(90,parent); height: JS.hpercent(15,parent)
+            anchors.horizontalCenter: parent.horizontalCenter
+            spacing: JS.wpercent(5,parent)
+            C.TextLine {
+                id:mainQMLtextLine
+                width:appTypeGroup.current.text == "QML"?JS.wpercent(85,parent):JS.wpercent(100,parent)
+                height: JS.hpercent(100,parent)
+                anchors.verticalCenter: parent.verticalCenter
+                placeholder: appTypeGroup.current.text == "QML"?"Main QML":"WebSite";
+            }
+            C.ImageButton {
+                visible:appTypeGroup.current.text == "QML"
+                width: JS.wpercent(10,parent); height: width
+                source: "qrc:/img/folder.png"; radius: width/2
+                color: "transparent"; responsive: true
+                action.onClicked: folderDialog.open()
+            }
+        }
     }
-
-    TextField {
-        id:nameAppTextField
-
-        font {
-            pixelSize: height*(0.6)
-        }
-
-        height: nameAppLabel.contentHeight
-        textColor: "#444"
-
-        anchors{
-            right: parent.right
-            rightMargin: parent.width*(0.05)
-            top : parent.top
-            left: nameAppLabel.right
-            leftMargin: parent.width/20
-            topMargin: parent.height/25
-        }
-    }
-
-    Text {
-        id:iconLabel
+    Item {
         anchors {
-            top : nameAppLabel.bottom
-            left: parent.left
-            leftMargin: parent.width/20
-            topMargin: parent.height/25
+            right:parent.right; left:parent.left
+            top:mainColumn.bottom; bottom: parent.bottom
+            margins: JS.hpercent(5,parent); leftMargin: JS.wpercent(10,parent)
         }
-
-        text:"Icon:"
-        color:"#444"
-
-        font.pixelSize: parent.height/20
-    }
-
-    TextField {
-        id:iconTextField
-
-        font {
-            pixelSize: height*(0.6)
+        Image {
+            id:imgPreview
+            height: JS.hpercent(100,parent); width: height
+            source: "qrc:/img/icon.png"
+            anchors.verticalCenter: parent.verticalCenter
+            fillMode: Image.PreserveAspectFit
         }
-
-        height: iconLabel.contentHeight
-        textColor: "#444"
-
-        anchors{
-            right: fileDialogImage.right
-            rightMargin: parent.width*(0.05)
-            top : nameAppLabel.bottom
-            left: nameAppLabel.right
-            leftMargin: parent.width/20
-            topMargin: parent.height/25
+        C.Button {
+            text: "Next"
+            anchors { right:parent.right; bottom:parent.bottom }
+            height: JS.hpercent(40,parent); width: JS.wpercent(20,parent)
+            pixelSize: JS.hpercent(35,this); color:"#4CAF50"
+            textColor: "white"; bold: true; wave: true
+            action.onClicked: {
+                if(nameAppTextField.text.length != 0 &&
+                        iconTextLine.text.length != 0 &&
+                        mainQMLtextLine.text.length != 0)
+                    topBarFrame.stack.push(secondPageComponent)
+                else
+                    notificationSystem.coloredNotify("Fill all the fields","Red")
+            }
         }
     }
-
-    Image {
-        id:fileDialogImage
-        anchors {
-            right: parent.right
-            rightMargin: parent.width/40
-
-            verticalCenter: iconTextField.verticalCenter
-        }
-
-        width:parent.width/25
-        height: width
-        source: "qrc:/img/folder.png"
-
-        MouseArea {
-            anchors.fill: parent
-            onClicked: fileDialog.open()
-        }
-    }
-
-    Text {
-        id:folderLabel
-        anchors {
-            top : iconLabel.bottom
-            left: parent.left
-            leftMargin: parent.width/20
-            topMargin: parent.height/25
-        }
-
-        text:"App Folder:"
-        color:"#444"
-
-        font.pixelSize: parent.height/20
-    }
-
-    TextField {
-        id:folderTextField
-
-        font {
-            pixelSize: height*(0.6)
-        }
-
-        height: folderLabel.contentHeight
-        textColor: "#444"
-
-        anchors{
-            right: folderDialogImage.right
-            rightMargin: parent.width*(0.05)
-            top : iconLabel.bottom
-            left: nameAppLabel.right
-            leftMargin: parent.width/20
-            topMargin: parent.height/25
-        }
-    }
-
-    Image {
-        id:folderDialogImage
-        anchors {
-            right: parent.right
-            rightMargin: parent.width/40
-
-            verticalCenter: folderTextField.verticalCenter
-        }
-
-        width:parent.width/25
-        height: width
-        source: "qrc:/img/folder.png"
-
-        MouseArea {
-            anchors.fill: parent
-            onClicked: folderDialog.open()
-        }
-    }
-
-    Image {
-        id:imgPreview
-        anchors {
-            top: folderTextField.bottom
-            topMargin: parent.height/8
-
-            bottom:parent.bottom
-            right:parent.right
-            left:parent.left
-
-            bottomMargin: parent.height/8
-            rightMargin: parent.width*(0.75)
-            leftMargin: parent.width*(0.05)
-        }
-
-        source: "qrc:/img/icon.png"
-        fillMode: Image.PreserveAspectFit
-    }
-
-    C.Button {
-        anchors {
-            right:parent.right
-            bottom:parent.bottom
-
-            rightMargin:parent.width/20
-            bottomMargin: parent.height/25
-        }
-
-        text: "Next"
-
-        action.onClicked: {
-            textTopBar.text = "Create an App (2/3)"
-            centerRectStackPages.push(secondPageComponent)
-        }
-    }
-
-    Component.onCompleted: textTopBar.text = "Create an App (1/3)"
-
     //Components
     Component {
         id:secondPageComponent
         SecondPageAppCreation {}
     }
-
     //Dialogs
     FileDialog {
         id:fileDialog
-
         title:"Choose an Icon to your App"
-
-        selectFolder: false
-        selectMultiple: false
+        selectFolder: false; selectMultiple: false
         nameFilters: [ "Image files (*.png)", "All files (*)" ]
-
         onAccepted: {
-            iconTextField.text = fileUrl
+            iconTextLine.text = fileUrl
+            iconTextLine.edited = true
             imgPreview.source = fileUrl
         }
     }
     FileDialog {
         id:folderDialog
-
         title:"Select the main QML of your Application"
-
-        selectFolder: false
-        selectMultiple: false
-
+        selectFolder: false; selectMultiple: false
         nameFilters: [ "QML files (*.qml)", "All files (*)" ]
-
         onAccepted: {
-            folderTextField.text = folder
+            mainQMLtextLine.text = folder
+            mainQMLtextLine.edited = true
         }
     }
 }

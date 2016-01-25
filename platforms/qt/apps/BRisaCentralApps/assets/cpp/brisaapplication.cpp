@@ -8,7 +8,6 @@ BRisaApplication::BRisaApplication(QVariantMap app)
     m_services = new QQmlObjectListModel<ServiceApp>(this,"title","title");
     m_title = descriptionFileMap["Title"].toString();
     m_description = descriptionFileMap["Description"].toString();
-    m_url = "file:///" + dir.absoluteFilePath(descriptionFileMap["Url"].toString());
     m_iconPath = "file:///" + app["iconPath"].toString();
 
     if(
