@@ -7,12 +7,6 @@
             "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Calculator/icon.png"
         },
         {
-            "appName": "Chrome",
-            "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Chrome/description.json",
-            "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Chrome",
-            "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Chrome/icon.png"
-        },
-        {
             "appName": "ColorPreview",
             "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/ColorPreview/description.json",
             "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/ColorPreview",
@@ -25,28 +19,10 @@
             "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Drive/icon.png"
         },
         {
-            "appName": "Facebook",
-            "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Facebook/description.json",
-            "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Facebook",
-            "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Facebook/icon.png"
-        },
-        {
             "appName": "Inbox",
             "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Inbox/description.json",
             "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Inbox",
             "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Inbox/icon.png"
-        },
-        {
-            "appName": "Photos",
-            "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Photos/description.json",
-            "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Photos",
-            "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Photos/icon.png"
-        },
-        {
-            "appName": "Tecmundo",
-            "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Tecmundo/description.json",
-            "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Tecmundo",
-            "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Tecmundo/icon.png"
         },
         {
             "appName": "Youtube",

@@ -35,6 +35,7 @@ public:
     Q_INVOKABLE void refreshAppList();
     Q_INVOKABLE bool fileExists(QString path);
     Q_INVOKABLE bool createAnApp(QJSValue theApp);
+    Q_INVOKABLE bool removeAnApp(QByteArray appName);
     Q_INVOKABLE void run(QString name, int type);
     void addApp(QObject *app);
     BRisaApplication *getAppByName(QString appName);

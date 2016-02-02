@@ -29,14 +29,28 @@ Rectangle {
                 verticalAlignment: Text.AlignVCenter; horizontalAlignment: Text.AlignLeft
             }
             C.Button {
+                id:runBtn
                 anchors { top : appTitle.bottom; horizontalCenter: appTitle.horizontalCenter; margins: JS.hpercent(10,parent) }
-                pixelSize: JS.hpercent(40,this); text:"Run"; textColor:"#444"
+                pixelSize: JS.hpercent(50,this); text:"Run"; textColor:"#444"
                 width: JS.wpercent(50,parent)
-                height: JS.hpercent(40,parent)
+                height: JS.hpercent(30,parent)
                 action.onClicked: {
                     if(type==0) stackPages.push(qmlLoaderFileComponent)
                     else if(type==1) stackPages.push(webLoaderFileComponent)
                     manager.run(title,type)
+                }
+            }
+            C.Button {
+                anchors { top : runBtn.bottom; horizontalCenter: runBtn.horizontalCenter; margins: JS.hpercent(10,parent) }
+                pixelSize: JS.hpercent(50,this); text:"Remove"; color:"#902"; textColor: "#111"
+                width: JS.wpercent(50,parent)
+                height: JS.hpercent(30,parent)
+                action.onClicked: {
+                    var reply = manager.removeAnApp(title);
+                    if(reply) {
+                        stackPages.pop(); notificationSystem.coloredNotify("App removed with sucess!","#092");
+                    } else
+                        notificationSystem.coloredNotify("App couldn't be removed!","#902");
                 }
             }
         }
@@ -87,4 +101,3 @@ Rectangle {
         WebLoaderFile {}
     }
 }
-

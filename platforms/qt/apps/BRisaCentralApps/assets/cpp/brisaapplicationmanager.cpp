@@ -167,6 +167,42 @@ bool BRisaApplicationManager::createAnApp(QJSValue theApp)
     return true;
 }
 
+bool BRisaApplicationManager::removeAnApp(QByteArray appName)
+{
+    QDir dir(m_dirPath);
+    if(!dir.cd(appName)) {
+        qDebug() << "DIR NOT FOUND!";
+        return false;
+    }
+
+    QStringList files = dir.entryList(QDir::NoDotAndDotDot | QDir::Files);
+    QStringList dirs = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs);
+
+    foreach (QString f, files) {
+        bool reply = dir.remove(f);
+        if(!reply) {
+            qDebug() << "ERROR REMOVE FILE :: " << f;
+            return false;
+        }
+    }
+    foreach (QString d, dirs) {
+        bool reply = dir.rmdir(d);
+        if(!reply) {
+            qDebug() << "ERROR REMOVE DIR :: " << d;
+            return false;
+        }
+    }
+
+    if(!dir.cdUp()) {
+        qDebug() << "ERROR CDUP DIR :: " << appName; return false;
+    }
+    if(!dir.rmdir(appName)) {
+        qDebug() << "ERROR REMOVE DIR :: " << appName; return false;
+    }
+
+    return true;
+}
+
 void BRisaApplicationManager::run(QString name, int type)
 {
     if(type == BRisaApplication::QMLApp) {
