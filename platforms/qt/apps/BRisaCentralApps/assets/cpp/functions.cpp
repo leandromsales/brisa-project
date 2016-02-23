@@ -16,24 +16,7 @@ Functions::~Functions()
 
 OutArgument *Functions::getListOfApps()
 {
-    QJsonArray jsonListOfApps;
-
-    foreach (QObject *obj, appManager->get_apps()) {
-
-        QJsonObject jsonApp;
-
-        BRisaApplication *app = (BRisaApplication *) obj;
-
-        jsonApp.insert("Title",QJsonValue(app->get_title()));
-        jsonApp.insert("Icon",app->get_iconPath());
-
-        jsonListOfApps.append(jsonApp);
-    }
-
-    QJsonObject mainJsonObj;
-    mainJsonObj.insert("Apps",QJsonValue(jsonListOfApps));
-    QJsonDocument jsonDoc(mainJsonObj);
-
+    QJsonDocument jsonDoc(appManager->toJson());
     this->getVariable("ListApps")->setAttribute(StateVariable::Value, jsonDoc.toJson());
 
     OutArgument *outArgs = new OutArgument();
@@ -49,23 +32,7 @@ OutArgument *Functions::getAppInfo(InArgument * const inArguments)
     OutArgument *outArgs = new OutArgument();
 
     if(app) {
-
-        QJsonObject jsonApp;
-        jsonApp.insert("Title", app->get_title());
-        jsonApp.insert("Icon",app->get_iconPath());
-        jsonApp.insert("Description",app->get_description());
-
-        QList<ServiceApp *> services = app->get_services()->toList();
-        QJsonArray jsonServices;
-
-        foreach (ServiceApp *s, services) {
-            QJsonObject jsonService;
-            jsonService.insert(s->get_title(), QJsonValue(s->get_description()));
-            jsonServices.append(jsonService);
-        }
-
-        jsonApp.insert("Services",QJsonValue(jsonServices));
-        QJsonDocument jsonDoc(jsonApp);
+        QJsonDocument jsonDoc(app->toJsonObject());
         outArgs->insert("InfoOfApp", jsonDoc.toJson());
 
     } else {
@@ -83,13 +50,10 @@ OutArgument *Functions::getApp(InArgument * const inArguments)
     OutArgument *outArgs = new OutArgument();
 
     if(app) {
-
         QJsonObject jsonApp;
-
+        jsonApp.insert("path",app->compePath());
         QJsonDocument jsonDoc(jsonApp);
-
         outArgs->insert("TheApp",jsonDoc.toJson());
-
     } else
         outArgs->insert("TheApp", "App Doesn't exists!");
 

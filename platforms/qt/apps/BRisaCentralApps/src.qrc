@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/src">
+        <file alias="functions.xml">assets/src/functions.xml</file>
+    </qresource>
+</RCC>

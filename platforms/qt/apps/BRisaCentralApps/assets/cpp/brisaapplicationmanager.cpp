@@ -225,6 +225,27 @@ BRisaApplication *BRisaApplicationManager::getAppByName(QString appName)
     return 0;
 }
 
+QJsonObject BRisaApplicationManager::toJson()
+{
+    QJsonArray jsonListOfApps;
+
+    foreach (QObject *obj, get_apps()) {
+
+        QJsonObject jsonApp;
+
+        BRisaApplication *app = (BRisaApplication *) obj;
+
+        jsonApp.insert("Title",QJsonValue(app->get_title()));
+        jsonApp.insert("Icon",app->get_iconPath());
+
+        jsonListOfApps.append(jsonApp);
+    }
+
+    QJsonObject mainJsonObj;
+    mainJsonObj.insert("Apps",QJsonValue(jsonListOfApps));
+    return mainJsonObj;
+}
+
 void BRisaApplicationManager::addApp(QObject *app) { m_apps.append(app); m_numOfApps++; }
 
 

@@ -39,6 +39,7 @@ public:
     Q_INVOKABLE void run(QString name, int type);
     void addApp(QObject *app);
     BRisaApplication *getAppByName(QString appName);
+    QJsonObject toJson();
 signals:
     void mainQMLPathSetted();
     void webSourceUrlSetted();

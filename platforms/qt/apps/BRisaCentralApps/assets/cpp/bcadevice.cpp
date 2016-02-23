@@ -10,7 +10,7 @@ BCADevice::BCADevice(BRisaApplicationManager *manager = 0) : Device(DEVICE_TYPE,
     appManager = manager;
 
     Functions *functions = new Functions(appManager);
-    functions->setDescriptionFile(":/src/src/functions.xml");
+    functions->setDescriptionFile(":/src/functions.xml");
 
     this->addService(functions);
 

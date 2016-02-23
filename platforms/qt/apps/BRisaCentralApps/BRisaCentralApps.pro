@@ -37,4 +37,5 @@ RESOURCES += qml.qrc \
             assets/qml/CreateApp/createApp.qrc \
             assets/qml/Components/essencials/components.qrc \
             assets/qml/Components/brisaComponents.qrc \
-            assets/qml/Screen/screens.qrc
+            assets/qml/Screen/screens.qrc \
+    src.qrc

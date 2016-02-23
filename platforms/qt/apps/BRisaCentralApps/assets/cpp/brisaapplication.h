@@ -10,6 +10,7 @@
 
 #include "bcajson.h"
 #include "serviceApp.h"
+#include "FolderCompressor.h"
 #include "essencials/qqmlhelpers.h"
 #include "essencials/qqmlobjectlistmodel.h"
 
@@ -28,6 +29,8 @@ private:
     QML_WRITABLE_PROPERTY(AppType,type)
 public:
     BRisaApplication(QVariantMap app);
+    QJsonObject toJsonObject();
+    QString compePath();
 };
 
 #endif // BRISAAPPLICATION_H

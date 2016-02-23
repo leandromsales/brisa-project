@@ -20,8 +20,8 @@ int main(int argc, char *argv[])
 
     BRisaApplicationManager *manager = new BRisaApplicationManager(engine,"../BRisaCentralApps/apps");
 
-    //    BCADevice *bca = new BCADevice(manager);
-    //    bca->printAllApps();
+    BCADevice *bca = new BCADevice(manager);
+    bca->printAllApps();
 
     ctxt->setContextProperty("manager", manager);
 
