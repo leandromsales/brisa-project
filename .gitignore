@@ -32,3 +32,6 @@ arm/
 platforms/qt/apps/build*
 platforms/qt/build*
 *~
+
+# Larissa's files
+/home/larissa/brisa-project/platforms/qt/apps/BCU/src

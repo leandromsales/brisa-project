@@ -1,6 +1,7 @@
 #ifndef FOLDERCOMPRESSOR_H
 #define FOLDERCOMPRESSOR_H
 
+#include <QDataStream>
 #include <QFile>
 #include <QObject>
 #include <QDir>

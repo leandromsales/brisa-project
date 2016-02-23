@@ -60,16 +60,11 @@ ApplicationWindow {
             id: flickArea
             anchors.fill: parent
             contentWidth: parent.width
-            contentHeight: parent.height
-            // testar essa parte melhor, parece que o stop at bounds não está ok
-            boundsBehavior: Flickable.StopAtBounds
             flickableDirection: Flickable.VerticalFlick
             clip: true
 
-            GridView {
+            ListView {
                 id: grid
-                cellWidth: 90
-                cellHeight: 110
                 width: parent.width
                 height: parent.height
                 model: myModel

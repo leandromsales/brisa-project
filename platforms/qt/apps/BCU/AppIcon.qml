@@ -1,20 +1,21 @@
 import QtQuick 2.3
 
 Rectangle {
-    width: 90
-    height: 90
+    height: 50
+    width: parent.width
 
     Image {
         id: image
         source: iconURL
-        sourceSize.height: 72
-        anchors.centerIn: parent;
+        sourceSize.height: 48
+        anchors.left: parent.left
+        anchors.leftMargin: 5
     }
 
     Text {
-        text: name
-        anchors.top: image.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
+        text: "    " + name
+        anchors.left: image.right
+        anchors.verticalCenter: parent
     }
     
     MouseArea {
@@ -30,5 +31,3 @@ Rectangle {
         }
     }
 }
-
-

@@ -33,4 +33,7 @@
    * Se houver, usar o ícone do app no GridView. Se não, usar um ícone padrão (OK)
    * remover o device do grid quando ele sair da rede (implementado mas não
      testado, pois o BCA não está emitindo um "ssdp:bye bye")
-- baixar o app e carregar (em qml) dinamicamente
+- baixar o app e carregar (em qml) dinamicamente (OK)
+
+- trocar o gridView por um listView
+- add sections no listView
