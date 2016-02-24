@@ -2,17 +2,9 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>AppIcon.qml</file>
+        <file>pics/qtlogo.png</file>
         <file>AppOptions.qml</file>
         <file>AboutApp.qml</file>
         <file>LoadApp.qml</file>
-        <file>Settings.qml</file>
-        <file>pics/back.png</file>
-        <file>pics/brisa-logo.png</file>
-        <file>pics/delete.png</file>
-        <file>pics/qtlogo.png</file>
-        <file>pics/quit.png</file>
-        <file>pics/settings.png</file>
-        <file>okMessage.qml</file>
-        <file>errorMessage.qml</file>
     </qresource>
 </RCC>
