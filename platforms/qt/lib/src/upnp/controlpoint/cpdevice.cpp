@@ -61,6 +61,7 @@ Device::Device(QString udn,
                                                  QString serialNumber,
                                                  QString upc,
                                                  QString presentationURL,
+                                                 QString section,
                                                  QObject *parent) : QObject(parent)
 {
     this->_udn = udn;
@@ -78,6 +79,7 @@ Device::Device(QString udn,
     this->_upc = upc;
     this->_presentationUrl = presentationURL;
     this->_fileAddress = friendlyName.remove(QChar(' ')).append(this->_udn).append(".xml");
+    this->_section = section;
 }
 
 Device::Device(Device &dev,
@@ -183,6 +185,10 @@ void Device::setAttribute(xmlTags key, QString v)
     case fileAddress:
         this->_fileAddress = v;
         break;
+    case Section:
+    case section:
+        this->_section = v;
+        break;
     }
 }
 
@@ -252,6 +258,10 @@ QString Device::getAttribute(xmlTags key)
     case FileAddress:
     case fileAddress:
         return this->_fileAddress;
+        break;
+    case section:
+    case Section:
+        return this->_section;
         break;
     default:
         qDebug() << "WARNING:BrisaControlPointDevice::getAttribute: there is no tag for the key " << key;

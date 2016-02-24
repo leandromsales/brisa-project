@@ -108,6 +108,7 @@ public:
                             QString serialNumber = "",
                             QString UPC = "",
                             QString presentationURL = "",
+                            QString section = "",
                             QObject *parent = 0);
 
     /*!
@@ -168,7 +169,9 @@ public:
         PresentationUrl,
         presentationUrl,
         FileAddress,
-        fileAddress
+        fileAddress,
+        section,
+        Section
     } xmlTags;
 
     /*!
@@ -290,6 +293,7 @@ private:
     QString _upc;
     QString _presentationUrl;
     QString _fileAddress;
+    QString _section;
 };
 
 }
