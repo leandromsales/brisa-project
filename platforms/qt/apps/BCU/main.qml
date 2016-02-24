@@ -65,16 +65,50 @@ ApplicationWindow {
 
             Component {
                 id: sectionHeading
+
                 Rectangle {
                     width: parent.width
                     height: 25
-                    color: "lightsteelblue"
+
+                    Rectangle {
+                        height: 1
+                        width: parent.width
+                        anchors.bottom: parent.top
+
+                        LinearGradient {
+                            anchors.fill: parent
+                            start: Qt.point(0, 0)
+                            end: Qt.point(parent.width, 0)
+                            gradient: Gradient {
+                                GradientStop { position: 0.0; color: "white" }
+                                GradientStop { position: 0.5; color: "black" }
+                                GradientStop { position: 1.0; color: "white" }
+                            }
+                        }
+                    }
 
                     Text {
                         text: section
                         font.pixelSize: 14
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.verticalCenter: parent.verticalCenter
+                    }
+
+                    Rectangle {
+                        height: 1
+                        width: parent.width
+                        anchors.bottom: parent.bottom
+
+                        LinearGradient {
+                            anchors.fill: parent
+                            start: Qt.point(0, 0)
+                            end: Qt.point(parent.width, 0)
+                            gradient: Gradient {
+                                GradientStop { position: 0.0; color: "white" }
+                                GradientStop { position: 0.5; color: "black" }
+                                GradientStop { position: 1.0; color: "white" }
+                            }
+                        }
                     }
                 }
             }

@@ -16,7 +16,7 @@ Rectangle {
     Text {
         text: "    " + name
         anchors.left: image.right
-        anchors.verticalCenter: parent
+        anchors.verticalCenter: parent.verticalCenter
     }
     
     MouseArea {

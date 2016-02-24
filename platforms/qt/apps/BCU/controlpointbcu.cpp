@@ -44,9 +44,9 @@ ControlPointBCU::ControlPointBCU(QObject *parent, QString st, int mx) :
     this->multicastReceiver->start();
 
     // para fins de testes
-    addAppOnDataList("udn1", "name", "info", QUrl("qrc:/pics/qtlogo.png"), QUrl("appUrl"), "section1");
-    addAppOnDataList("udn2", "name", "info", QUrl("qrc:/pics/qtlogo.png"), QUrl("appUrl"), "section1");
-    addAppOnDataList("udn3", "name", "info", QUrl("qrc:/pics/qtlogo.png"), QUrl("appUrl"), "section2");
+    addAppOnDataList("udn1", "Nome1", "info1", QUrl("qrc:/pics/qtlogo.png"), QUrl("appUrl"), "Seção1");
+    addAppOnDataList("udn2", "Nome2", "info2", QUrl("qrc:/pics/qtlogo.png"), QUrl("appUrl"), "Seção1");
+    addAppOnDataList("udn3", "Nome3", "info3", QUrl("qrc:/pics/qtlogo.png"), QUrl("appUrl"), "Seção2");
     // para fins de testes
 }
 
