@@ -5,13 +5,14 @@ DataObject::DataObject()
 
 }
 
-DataObject::DataObject(QString udn, QString name, QString info, QUrl iconURL, QUrl appURL)
+DataObject::DataObject(QString udn, QString name, QString info, QUrl iconURL, QUrl appURL, QString section)
 {
     this->name = name;
     this->info = info;
     this->iconURL = iconURL;
     this->appURL = appURL;
     this->udn = udn;
+    this->section = section;
 }
 
 DataObject::~DataObject()
@@ -20,6 +21,7 @@ DataObject::~DataObject()
     this->info = "";
     this->iconURL = "";
     this->appURL = "";
+    this->section = "";
 }
 
 QString DataObject::getUdn()
@@ -47,6 +49,11 @@ QUrl DataObject::getAppURL()
     return this->appURL;
 }
 
+QString DataObject::getSection()
+{
+    return this->section;
+}
+
 void DataObject::setUdn(QString newUdn)
 {
     this->udn = newUdn;
@@ -72,4 +79,9 @@ void DataObject::setIconURL(QUrl newIcon)
 void DataObject::setAppURL(QUrl newApp)
 {
     this->appURL = newApp;
+}
+
+void DataObject::setSection(QString newSection)
+{
+    this->section = newSection;
 }

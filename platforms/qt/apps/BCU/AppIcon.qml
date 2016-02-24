@@ -7,8 +7,9 @@ Rectangle {
     Image {
         id: image
         source: iconURL
-        sourceSize.height: 48
+        sourceSize.height: 42
         anchors.left: parent.left
+        anchors.verticalCenter: parent.verticalCenter
         anchors.leftMargin: 5
     }
 

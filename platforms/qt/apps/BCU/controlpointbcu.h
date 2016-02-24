@@ -183,8 +183,8 @@ public:
     QList<QObject*> getDataList () {
         return this->dataList;
     }
-    void addAppOnDataList (QString udn, QString name, QString info, QUrl iconURL, QUrl appURL) {
-        dataList.append(new DataObject(udn, name, info, iconURL, appURL));
+    void addAppOnDataList (QString udn, QString name, QString info, QUrl iconURL, QUrl appURL, QString section) {
+        dataList.append(new DataObject(udn, name, info, iconURL, appURL, section));
 
         engine.rootContext()->setContextProperty(QString("myModel"),
                                                  QVariant::fromValue(dataList));

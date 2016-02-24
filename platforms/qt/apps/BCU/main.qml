@@ -63,12 +63,32 @@ ApplicationWindow {
             flickableDirection: Flickable.VerticalFlick
             clip: true
 
+            Component {
+                id: sectionHeading
+                Rectangle {
+                    width: parent.width
+                    height: 25
+                    color: "lightsteelblue"
+
+                    Text {
+                        text: section
+                        font.pixelSize: 14
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                }
+            }
+
             ListView {
                 id: grid
                 width: parent.width
                 height: parent.height
                 model: myModel
                 delegate: AppIcon {}
+
+                section.property: "section"
+                section.criteria: ViewSection.FullString
+                section.delegate: sectionHeading
             }
         }
     }

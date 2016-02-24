@@ -35,5 +35,6 @@
      testado, pois o BCA não está emitindo um "ssdp:bye bye")
 - baixar o app e carregar (em qml) dinamicamente (OK)
 
+ ## adicionei section em cpdevice
 - trocar o gridView por um listView
 - add sections no listView

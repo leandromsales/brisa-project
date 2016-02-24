@@ -42,6 +42,12 @@ ControlPointBCU::ControlPointBCU(QObject *parent, QString st, int mx) :
     connect(this->multicastReceiver, SIGNAL(multicastReceived(QMap<QString,QString>)),
             this, SLOT(receiveMulticast(QMap<QString,QString>)));
     this->multicastReceiver->start();
+
+    // para fins de testes
+    addAppOnDataList("udn1", "name", "info", QUrl("qrc:/pics/qtlogo.png"), QUrl("appUrl"), "section1");
+    addAppOnDataList("udn2", "name", "info", QUrl("qrc:/pics/qtlogo.png"), QUrl("appUrl"), "section1");
+    addAppOnDataList("udn3", "name", "info", QUrl("qrc:/pics/qtlogo.png"), QUrl("appUrl"), "section2");
+    // para fins de testes
 }
 
 ControlPointBCU::~ControlPointBCU() {
@@ -143,12 +149,13 @@ void ControlPointBCU::replyFinished(QNetworkReply *reply) {
                 QString name = device->getAttribute(device->FriendlyName);
                 QString info = device->getAttribute(device->ModelDescription);
                 QString appUrl = device->getAttribute(device->UrlBase);
+                QString section = device->getAttribute(device->Section);
                 QString iconUrl = "qrc:/pics/qtlogo.png";
                 if (!device->getIconList().isEmpty()) {
                     Icon * icon = device->getIconList().first();
                     iconUrl = icon->getAttribute(icon->Url);
                 }
-                addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
+                addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl), section);
 
                 emit deviceFound(device);
             } else {
