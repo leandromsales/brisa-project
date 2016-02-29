@@ -12,6 +12,12 @@ namespace controlpoint {
 ControlPointBCU::ControlPointBCU(QObject *parent, QString st, int mx) :
     QObject(parent) {
 
+    QDir filesFolder(QDir::current());
+    filesFolder.cdUp();
+    filesFolder.cd("BCU/files");
+
+    engine.rootContext()->setContextProperty("filesFolder", filesFolder.path().prepend("file://"));
+    engine.rootContext()->setContextProperty(QString("manager"), this);
     engine.rootContext()->setContextProperty(QString("myModel"),
                                              QVariant::fromValue(dataList));
     engine.rootContext()->setContextProperty(QString("dtS"), new DataObject());
@@ -42,7 +48,6 @@ ControlPointBCU::ControlPointBCU(QObject *parent, QString st, int mx) :
     connect(this->multicastReceiver, SIGNAL(multicastReceived(QMap<QString,QString>)),
             this, SLOT(receiveMulticast(QMap<QString,QString>)));
     this->multicastReceiver->start();
-
 }
 
 ControlPointBCU::~ControlPointBCU() {
@@ -100,19 +105,15 @@ void ControlPointBCU::replyFinished(QNetworkReply *reply) {
         // check if this device was already recognized
         bool hasUdn = false;
         QString udn = device->getAttribute(device->udn);
-        qDebug() << udn;
-        if (!dataList.isEmpty()) {
-            foreach (QObject* q, dataList){
-                DataObject * d = (DataObject *) q;
-                if (d->getUdn() == udn) {
-                    hasUdn = true;
-                    break;
-                }
+        foreach (QObject* q, dataList){
+            DataObject * d = (DataObject *) q;
+            if (d->getUdn() == udn) {
+                hasUdn = true;
+                break;
             }
         }
 
         QString deviceType = device->getAttribute(device->deviceType);
-        qDebug() << deviceType;
         if (!hasUdn && deviceType == "urn:org.compelab.AppServer:1") {
             bool has3gets = false;
             QList<Service*> serviceList = device->getServiceList();
@@ -123,12 +124,14 @@ void ControlPointBCU::replyFinished(QNetworkReply *reply) {
                 Action * info = s->getAction(QString("getAppInfo"));
                 Action * app = s->getAction(QString("getApp"));
 
+                // melhorar isso
                 // if 3 actions exists, break foreach
                 if (list != 0 && info != 0 && app != 0) {
+                    this->auxServ = s;
                     has3gets = true;
                     break;
                 }
-           }
+            }
 
             // if has3gets (it means, if 3 actions exists), go on
             // otherwise, this device is not compatible with bcu, so ignore it
@@ -139,22 +142,21 @@ void ControlPointBCU::replyFinished(QNetworkReply *reply) {
                                     QString().setNum(urlBase->port()));
                 }
 
+                addAppOnDataList(udn, "", "", QUrl(""), QUrl(""), "");
+
                 rootXml->remove();
                 delete rootXml;
                 delete urlBase;
                 reply->deleteLater();
 
-                // adding founded app on grid
-                QString name = device->getAttribute(device->FriendlyName);
-                QString info = device->getAttribute(device->ModelDescription);
-                QString appUrl = device->getAttribute(device->UrlBase);
-                QString section = ""; // device->getAttribute(device->Section);
-                QString iconUrl = "qrc:/pics/qtlogo.png";
-                if (!device->getIconList().isEmpty()) {
-                    Icon * icon = device->getIconList().first();
-                    iconUrl = icon->getAttribute(icon->Url);
-                }
-                addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl), section);
+                connect(this->auxServ, SIGNAL(requestFinished(OutArgument, QString)),
+                        this, SLOT(serviceCall(OutArgument, QString)));
+                connect(this->auxServ, SIGNAL(requestError(QString, QString)),
+                        this, SLOT(requestError(QString,QString)));
+
+                InArgument parameters;
+                this->auxServ->call("getListOfApps", parameters);
+                this->auxDev = device;
 
                 emit deviceFound(device);
             } else {
@@ -207,6 +209,84 @@ EventProxy *ControlPointBCU::getSubscriptionProxy(Service *service) {
     return NULL;
 }
 
+void ControlPointBCU::run(QString appURL, QString name)
+{
+    auxAppURL = appURL;
+    auxAppName = name;
+
+    QString path = "../BCU/files/";
+    QDir dir(path);
+    QStringList filesList = dir.entryList();
+
+    bool status = true;
+    foreach (QString file, filesList) {
+        if (file == name) {
+            status = false;
+            qDebug() << "BCU: already downloaded" << name;
+        }
+    }
+
+    if (status) {
+        FileDownloader *fd = new FileDownloader(QUrl(appURL), name, this);
+        connect(fd, SIGNAL (ready()), this, SLOT (finishedGetApp()));
+    } else {
+        connect(this, SIGNAL (decompressed()), this, SLOT (decompressedFinished()));
+        emit decompressed();
+    }
+
+}
+
+bool ControlPointBCU::deleteApp(QString name)
+{
+    QString path = "../BCU/files/";
+    QDir dir(path);
+    QStringList filesList = dir.entryList();
+
+    bool status;
+    foreach (QString file, filesList) {
+        if (file == name) {
+            QDir dir(path.append(file));
+            status = dir.removeRecursively();
+
+            qDebug() << "BCU: delete app - " << status << "\n" << path;
+        }
+    }
+
+    return status;
+}
+
+void ControlPointBCU::addAppOnDataList(QString udn, QString name, QString info, QUrl iconURL, QUrl appURL, QString section)
+{
+    bool status = true;
+    for (int i = 0; i < dataList.size(); i++) {
+        DataObject *dobj = qobject_cast<DataObject*>(dataList.at(i));
+        if (dobj->udn == udn && dobj->name == "") {
+            dataList.replace(i, new DataObject(udn, name, info, iconURL, appURL, section));
+            status = false;
+        }
+    }
+    if (status)
+        dataList.append(new DataObject(udn, name, info, iconURL, appURL, section));
+
+    engine.rootContext()->setContextProperty(QString("myModel"),
+                                             QVariant::fromValue(dataList));
+
+    qDebug() << "BCU: addded app - " << name;
+}
+
+void ControlPointBCU::removeAppFromDataList(QString udn)
+{
+    foreach (QObject* q, dataList){
+        DataObject * d = (DataObject *) q;
+        if (d->getUdn() == udn) {
+            dataList.removeOne(q);
+        }
+    }
+
+    engine.rootContext()->setContextProperty(QString("myModel"),
+                                             QVariant::fromValue(dataList));
+}
+
 void ControlPointBCU::httpResponse(QNetworkReply *networkReply) {
     EventProxy *subscription = NULL;
     foreach(int deliveryPath, requests.keys()) {
@@ -250,6 +330,144 @@ void ControlPointBCU::receiveMulticast(OutArgument attributes)
     emit multicastReceivedRaw(attributes);
 }
 
+void ControlPointBCU::serviceCall(OutArgument arguments, QString method)
+{
+    QString returnMessage = "";
+    QMapIterator<QString, QString> it(arguments);
+    while (it.hasNext()) {
+        it.next();
+        returnMessage.append(it.value());
+    }
+
+    // qDebug() << "Calling method: " << method << "Returned: \n" << returnMessage;
+
+    this->jsonMsg = returnMessage;
+
+    if (method == "getListOfApps") {
+        decodeJsonList();
+    } else if (method == "getAppInfo") {
+        decodeJsonInfo();
+    }
+
 }
+
+void ControlPointBCU::requestError(QString errorMessage, QString methodName)
+{
+    qDebug() << errorMessage  << " when calling " << methodName;
+}
+
+void ControlPointBCU::add()
+{
+    addAppOnDataList(auxDO->getUdn(), auxDO->getName(), auxDO->getInfo(),
+                     auxDO->getIconURL(), auxDO->getAppURL(), auxDO->getSection());
+    delete auxDO;
+}
+
+void ControlPointBCU::finishedGetApp()
+{
+    connect(this, SIGNAL (decompressed()), this, SLOT (decompressedFinished()));
+
+    FolderCompressor *fc = new FolderCompressor();
+    QString path = "../BCU/files/";
+    QDir dir(path);
+    QStringList listCompeFiles = dir.entryList();
+
+    bool status;
+    foreach (QString file, listCompeFiles) {
+        if (file.endsWith(".compe")) {
+            QString fullPath = file.prepend(path);
+            QString filename = fullPath;
+            filename.replace(".compe", "");
+            status = fc->decompressFolder(fullPath, filename);
+
+            QFile f(fullPath);
+            f.remove();
+
+            qDebug() << "BCU: " << status << "\n" << fullPath << "\n" << filename;
+        }
+    }
+
+    if (status) {
+        emit decompressed();
+    } else {
+        qDebug() << "BCU: invalid file";
+    }
+}
+
+void ControlPointBCU::decompressedFinished()
+{
+    QQmlComponent window(&engine);
+    QString path = "../BCU/files/";
+    path.append(auxAppName);
+    path.append("/main.qml");
+    window.loadUrl(QUrl::fromLocalFile(path));
+
+    QQuickItem *object = qobject_cast<QQuickItem*>(window.create(engine.rootContext()));
+    object->setParentItem(qobject_cast<QQuickItem*>(engine.rootObjects()[0]->findChild<QObject *>("appExec")));
+    object->setParent(&engine);
+
+    QObject *loader = engine.rootObjects()[0]->findChild<QObject*>("loader");
+    loader->setProperty("source", "");
+
+    QObject *stack = engine.rootObjects()[0]->findChild<QObject *>("stack");
+    QMetaObject::invokeMethod(stack,"pushObject");
+}
+
+void ControlPointBCU::decodeJsonList()
+{
+    // decode JSON
+    QString json = this->jsonMsg;
+    QJsonParseError error;
+    QJsonDocument doc = QJsonDocument::fromJson(json.toLatin1(), &error);
+    if (error.errorString() != "no error occurred") {
+        qDebug() << error.errorString();
+    }
+
+    QList<QVariant>	listApps = doc.object().toVariantHash()["Apps"].toList();
+
+    // get more info about each app
+    for(int i = 0; i < listApps.length(); i++) {
+        QMap<QString,QVariant> app = listApps.at(i).toMap();
+
+        QMap<QString, QString> param;
+        param["SelectedApp"] = app["Title"].toString();
+
+        this->auxServ->call("getAppInfo", param);
+    }
+}
+
+void ControlPointBCU::decodeJsonInfo()
+{
+    // decode JSON
+    QJsonParseError error;
+    QJsonDocument doc = QJsonDocument::fromJson(this->jsonMsg.toLatin1(), &error);
+    if (error.errorString() != "no error occurred") {
+        qDebug() << error.errorString();
+    }
+
+    // adding founded apps on grid
+    QVariantHash app = doc.object().toVariantHash();
+
+    QString udn = auxDev->getAttribute(auxDev->udn);
+    QString name = app["Title"].toString();
+    QString info = app["Description"].toString();
+    QString appUrl = app["Url"].toString();
+    QString section = app["Section"].toString();
+
+    QString iconUrl;
+
+    if (app["Icon"].toString().startsWith("file://")) {
+        iconUrl = app["Icon"].toString();
+        addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl), section);
+    } else {
+        iconUrl = "pics/" + name.replace(" ", "") + ".png";
+        QUrl url(iconUrl);
+        auxDO = new DataObject(udn, name, info, QUrl(iconUrl), QUrl(appUrl), section);
+        FileDownloader *fd = new FileDownloader(url, name.replace(" ", ""), this);
+        connect(fd, SIGNAL (ready()), this, SLOT (add()));
+    }
+}
+}
+
 }
 }

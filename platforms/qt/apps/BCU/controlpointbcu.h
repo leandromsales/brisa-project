@@ -7,6 +7,11 @@
 #include <QtDebug>
 #include <QNetworkAccessManager>
 
+#include <QQmlApplicationEngine>
+#include <QQmlComponent>
+#include <QQmlContext>
+#include <QQuickItem>
+
 #include "src/upnp/controlpoint/cpdevice.h"
 #include "src/upnp/controlpoint/eventproxy.h"
 #include "src/upnp/controlpoint/multicasteventreceiver.h"
@@ -14,7 +19,10 @@
 #include "src/upnp/controlpoint/msearchclientcp.h"
 #include "src/shared/ssdp/ssdpclient.h"
 #include "src/shared/webserver/webserversession.h"
+
 #include "dataobject.h"
+#include "filedownloader.h"
+#include "FolderCompressor.h"
 
 /*
  * Esta classe é bem parecida com a classe ControlPoint do BRisa. Inicialmente,
@@ -90,6 +98,14 @@ private:
      */
     void discoverNetworkAddress();
 
+    /*!
+     *  This function decode JSON received by getListOfApps of BCA and create a icon
+     *  on grid foreach app on JSON.
+     */
+    void decodeJsonList();
+    void decodeJsonInfo();
+    void getApp(QString appURL);
+
 signals:
     /*!
      *    \fn void BrisaControlPoint::deviceFound(BrisaControlPointDevice *device)
@@ -127,6 +143,7 @@ signals:
      * \param raw attributes of the multicast event message.
      */
     void multicastReceivedRaw(OutArgument raw);
+    void decompressed();
 
 private slots:
     /*!
@@ -172,34 +189,35 @@ private slots:
      */
     void receiveMulticast(QMap<QString, QString> attributes);
 
+    void serviceCall(OutArgument, QString);
+    void requestError(QString errorMessage, QString methodName);
+    void add ();
+    void finishedGetApp();
+    void decompressedFinished();
+
 public:
     EventProxy *getSubscriptionProxy(Service *service);
+
     QString getActiveIpAddress() {
         return ipAddress;
     }
+
     int getActivePort() {
         return port;
     }
+
+    Q_INVOKABLE void run(QString appURL, QString name);
+
+    Q_INVOKABLE bool deleteApp(QString name);
+
     QList<QObject*> getDataList () {
         return this->dataList;
     }
-    void addAppOnDataList (QString udn, QString name, QString info, QUrl iconURL, QUrl appURL, QString section) {
-        dataList.append(new DataObject(udn, name, info, iconURL, appURL, section));
 
-        engine.rootContext()->setContextProperty(QString("myModel"),
-                                                 QVariant::fromValue(dataList));
-    }
-    void removeAppFromDataList (QString udn) {
-        foreach (QObject* q, dataList){
-            DataObject * d = (DataObject *) q;
-            if (d->getUdn() == udn) {
-                dataList.removeOne(q);
-            }
-        }
+    void addAppOnDataList (QString udn, QString name, QString info,
+                           QUrl iconURL, QUrl appURL, QString section);
 
-        engine.rootContext()->setContextProperty(QString("myModel"),
-                                                 QVariant::fromValue(dataList));
-    }
+    void removeAppFromDataList (QString udn);
 
 private:
     QNetworkAccessManager *m_networkAccessManager;
@@ -218,6 +236,12 @@ private:
     QMap<int, int> requestsMapping;
     QList<QObject*> dataList;
     QQmlApplicationEngine engine;
+    QString jsonMsg;
+
+    Device * auxDev;
+    Service * auxServ;
+    DataObject *auxDO;
+    QString auxAppURL, auxAppName;
 };
 
 }

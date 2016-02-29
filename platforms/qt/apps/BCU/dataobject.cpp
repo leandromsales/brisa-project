@@ -1,4 +1,3 @@
-#include <QDebug>
 #include "dataobject.h"
 
 DataObject::DataObject()
@@ -22,6 +21,7 @@ DataObject::~DataObject()
     this->info = "";
     this->iconURL = "";
     this->appURL = "";
+    this->udn = "";
     this->section = "";
 }
 
@@ -85,4 +85,5 @@ void DataObject::setAppURL(QUrl newApp)
 void DataObject::setSection(QString newSection)
 {
     this->section = newSection;
+    emit sectionChanged();
 }
