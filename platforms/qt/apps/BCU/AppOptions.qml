@@ -27,7 +27,7 @@ Rectangle {
             color: maAbout.containsMouse ? "grey" : "white"
 
             Text {
-                text: "Sobre o app"
+                text: "Sobre o aplicativo"
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
             }
@@ -49,7 +49,7 @@ Rectangle {
             color: maLoad.containsMouse ? "grey" : "white"
 
             Text {
-                text: "Carregar o app"
+                text: "Carregar o aplicativo"
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
             }
@@ -62,6 +62,7 @@ Rectangle {
                     loader.source = "LoadApp.qml";
                     manager.run(dtS.appURL, dtS.name)
                 }
+                // onClicked: loader.source = "LoadApp.qml"
             }
         }
     }

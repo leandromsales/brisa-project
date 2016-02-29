@@ -48,6 +48,11 @@ ControlPointBCU::ControlPointBCU(QObject *parent, QString st, int mx) :
     connect(this->multicastReceiver, SIGNAL(multicastReceived(QMap<QString,QString>)),
             this, SLOT(receiveMulticast(QMap<QString,QString>)));
     this->multicastReceiver->start();
+
+    addAppOnDataList("udn1", "name1", "info1", QUrl("qrc:/pics/qtlogo.png"), QUrl("empty"), "section1");
+    addAppOnDataList("udn2", "name2", "info1", QUrl("qrc:/pics/qtlogo.png"), QUrl("empty"), "section2");
+    addAppOnDataList("udn3", "name3", "info1", QUrl("qrc:/pics/qtlogo.png"), QUrl("empty"), "section1");
+    addAppOnDataList("udn3", "name4", "info1", QUrl("qrc:/pics/qtlogo.png"), QUrl("empty"), "section1");
 }
 
 ControlPointBCU::~ControlPointBCU() {
