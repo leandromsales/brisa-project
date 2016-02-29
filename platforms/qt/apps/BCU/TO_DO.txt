@@ -45,7 +45,10 @@
 - add tela de loading durante o download do app (OK)
 - listar apps instalados (OK)
 - apagar apps instalados (OK)
-- adicionar ícone do BCU (qual ícone???)
+- trocar o gridView por um listView (OK)
+- add sections no listView (OK)
+- melhorar o design do listView (OK)
+- testar implementação com o BCA
 
 
 
