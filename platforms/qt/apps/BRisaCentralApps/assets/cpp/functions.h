@@ -19,6 +19,7 @@
 #include "upnp/device/Service"
 
 #include "brisaapplicationmanager.h"
+#include "bcatcpserver.h"
 
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -42,7 +43,7 @@ private slots:
 
 private:
     BRisaApplicationManager *appManager;
-
+    BCATcpServer *m_server;
 };
 
 

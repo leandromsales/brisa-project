@@ -44,6 +44,7 @@ OutArgument *Functions::getAppInfo(InArgument * const inArguments)
 
 OutArgument *Functions::getApp(InArgument * const inArguments)
 {
+    qsrand(time(0));
     QString appName = (*inArguments)["SelectedApp"];
 
     BRisaApplication *app = appManager->getAppByName(appName);
@@ -51,9 +52,10 @@ OutArgument *Functions::getApp(InArgument * const inArguments)
 
     if(app) {
         QJsonObject jsonApp;
-        jsonApp.insert("path",app->compePath());
-        QJsonDocument jsonDoc(jsonApp);
-        outArgs->insert("TheApp",jsonDoc.toJson());
+        quint16 port = (qrand()%55535)+10000;
+        m_server = new BCATcpServer(app->compePath(),port);
+        QString ret = m_server->ip() + ":" + QString::number(port) + app->compePath().replace("file:///","/");
+        outArgs->insert("TheApp",ret);
     } else
         outArgs->insert("TheApp", "App Doesn't exists!");
 

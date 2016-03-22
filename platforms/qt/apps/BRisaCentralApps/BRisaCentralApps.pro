@@ -1,7 +1,7 @@
 ls
 TEMPLATE = app
 
-QT += qml quick widgets
+QT += qml quick widgets network
 
 qtHaveModule(webengine) {
         QT += webengine
@@ -23,7 +23,8 @@ SOURCES +=  main.cpp \
             assets/cpp/FolderCompressor.cpp \
             assets/cpp/functions.cpp \
             assets/cpp/serviceApp.cpp \
-            assets/cpp/essencials/qqmlobjectlistmodel.cpp
+            assets/cpp/essencials/qqmlobjectlistmodel.cpp \
+    bcatcpserver.cpp
 
 HEADERS +=  assets/cpp/bcadevice.h \
             assets/cpp/bcajson.h \
@@ -32,7 +33,8 @@ HEADERS +=  assets/cpp/bcadevice.h \
             assets/cpp/FolderCompressor.h \
             assets/cpp/functions.h \
             assets/cpp/serviceApp.h \
-            assets/cpp/essencials/qqmlobjectlistmodel.h
+            assets/cpp/essencials/qqmlobjectlistmodel.h \
+    bcatcpserver.h
 
 RESOURCES += qml.qrc \
             assets/qml/CreateApp/createApp.qrc \
