@@ -106,15 +106,17 @@ bool BRisaApplicationManager::createAnApp(QJSValue theApp)
 
     QFile iconFile(theApp.property("icon").toString());
 
-    if(iconFile.exists()) {
+    if(!iconFile.exists()) {
         qDebug() << "The icon selected doesn't exists " + iconFile.fileName();;
-        return false;
-    }
-
-    if(!QFile::copy("/" + iconFile.fileName(), dir.absoluteFilePath("icon.png"))) {
-        qDebug() << "Error in the copy of the Icon " + iconFile.fileName();
-        return false;
-    }
+        if(!QFile::copy(":/img/icon.png", dir.absoluteFilePath("icon.png"))) {
+            qDebug() << "Error in the copy of the Icon " + iconFile.fileName();
+            return false;
+        }
+    } else
+        if(!QFile::copy("/" + iconFile.fileName(), dir.absoluteFilePath("icon.png"))) {
+            qDebug() << "Error in the copy of the Icon " + iconFile.fileName();
+            return false;
+        }
 
     qDebug() << "Icon copied with sucess!";
 
@@ -205,15 +207,9 @@ bool BRisaApplicationManager::removeAnApp(QByteArray appName)
 
 void BRisaApplicationManager::run(QString name, int type)
 {
-    if(type == BRisaApplication::QMLApp) {
-        QObject *qmlInterpreter = mainEngine->rootObjects()[0]->findChild<QObject *>("qmlInterpreter");
-        qmlInterpreter->setProperty("mainQMLSource",QUrl(getAppByName(name)->get_execPath()));
-        emit mainQMLPathSetted();
-    } else if(type == BRisaApplication::WebApp) {
-        QObject *webInterpreter = mainEngine->rootObjects()[0]->findChild<QObject *>("webInterpreter");
-        webInterpreter->setProperty("webSource",QUrl(getAppByName(name)->get_execPath()));
-        emit webSourceUrlSetted();
-    }
+    QObject *qmlInterpreter = mainEngine->rootObjects()[0]->findChild<QObject *>("qmlInterpreter");
+    qmlInterpreter->setProperty("mainQMLSource",QUrl("file:///" + getAppByName(name)->get_execPath()));
+    emit mainQMLPathSetted();
 }
 
 BRisaApplication *BRisaApplicationManager::getAppByName(QString appName)

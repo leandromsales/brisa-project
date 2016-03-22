@@ -35,8 +35,7 @@ Rectangle {
                 width: JS.wpercent(50,parent)
                 height: JS.hpercent(30,parent)
                 action.onClicked: {
-                    if(type==0) stackPages.push(qmlLoaderFileComponent)
-                    else if(type==1) stackPages.push(webLoaderFileComponent)
+                    stackPages.push(qmlLoaderFileComponent)
                     manager.run(title,type)
                 }
             }
@@ -95,9 +94,5 @@ Rectangle {
     Component {
         id:qmlLoaderFileComponent
         QMLLoaderFile {}
-    }
-    Component {
-        id:webLoaderFileComponent
-        WebLoaderFile {}
     }
 }

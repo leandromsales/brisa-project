@@ -1,0 +1,8 @@
+{
+    "Description": "",
+    "Services": [
+    ],
+    "Title": "Trello",
+    "Type": "WebApp",
+    "execPath": "https://trello.com"
+}

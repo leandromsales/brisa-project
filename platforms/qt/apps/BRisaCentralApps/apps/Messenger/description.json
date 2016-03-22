@@ -2,7 +2,7 @@
     "Description": "",
     "Services": [
     ],
-    "Title": "Inbox",
+    "Title": "Messenger",
     "Type": "WebApp",
-    "execPath": "https://inbox.google.com/"
+    "execPath": "https://messenger.com"
 }

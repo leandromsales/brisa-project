@@ -31,6 +31,8 @@ public:
     BRisaApplication(QVariantMap app);
     QJsonObject toJsonObject();
     QString compePath();
+private:
+    bool createWebviewQML();
 };
 
 #endif // BRISAAPPLICATION_H

@@ -13,22 +13,22 @@
             "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/ColorPreview/icon.png"
         },
         {
-            "appName": "Drive",
-            "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Drive/description.json",
-            "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Drive",
-            "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Drive/icon.png"
+            "appName": "Messenger",
+            "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Messenger/description.json",
+            "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Messenger",
+            "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Messenger/icon.png"
         },
         {
-            "appName": "Inbox",
-            "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Inbox/description.json",
-            "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Inbox",
-            "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Inbox/icon.png"
+            "appName": "Trello",
+            "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Trello/description.json",
+            "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Trello",
+            "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Trello/icon.png"
         },
         {
-            "appName": "Youtube",
-            "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Youtube/description.json",
-            "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Youtube",
-            "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Youtube/icon.png"
+            "appName": "Ufal",
+            "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Ufal/description.json",
+            "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Ufal",
+            "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Ufal/icon.png"
         }
     ]
 }

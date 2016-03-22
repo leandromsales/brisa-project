@@ -2,7 +2,7 @@
     "Description": "",
     "Services": [
     ],
-    "Title": "Drive",
+    "Title": "Ufal",
     "Type": "WebApp",
-    "execPath": "https://drive.google.com"
+    "execPath": "http://www.ufal.edu.br"
 }

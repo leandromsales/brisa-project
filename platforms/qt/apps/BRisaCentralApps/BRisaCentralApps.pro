@@ -1,3 +1,4 @@
+ls
 TEMPLATE = app
 
 QT += qml quick widgets

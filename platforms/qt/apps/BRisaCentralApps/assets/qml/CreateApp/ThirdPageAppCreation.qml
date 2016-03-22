@@ -119,7 +119,9 @@ Rectangle {
         action.onClicked: {
             var theApp = {};
             theApp.name = nameAppTextField.text;
-            theApp.icon = iconTextLine.text.replace("file:///","");
+            theApp.icon = iconTextLine.text.length != 0 ?
+                        iconTextLine.text.replace("file:///","") :
+                        "";
             theApp.appType = appTypeGroup.current.text;
             theApp.execPath = theApp.appType == "QML" ?
                         mainQMLtextLine.text.replace("file:///","") : mainQMLtextLine.text;

@@ -107,7 +107,6 @@ Rectangle {
             textColor: "white"; bold: true; wave: true
             action.onClicked: {
                 if(nameAppTextField.text.length != 0 &&
-                        iconTextLine.text.length != 0 &&
                         mainQMLtextLine.text.length != 0)
                     topBarFrame.stack.push(secondPageComponent)
                 else
