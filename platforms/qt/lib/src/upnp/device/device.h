@@ -125,6 +125,8 @@ public:
             "", const QString &SCPDURL = "", const QString &controlURL = "",
                     const QString &eventSubURL = "");
 
+    void addFile(const QString &realPath, const QString &relativePath);
+
     /*!
      *  Overloads addService().
      *  Create a \a Service and add it to the device. We recommend using this method for better

@@ -324,7 +324,12 @@ void Device::addService(const QString &serviceType,
 {
         Service *serviceSwap = new Service(serviceType, serviceId,
                         SCPDURL, controlURL, eventSubURL, this->urlBase);
-    this->addService(serviceSwap);
+        this->addService(serviceSwap);
+}
+
+void Device::addFile(const QString &realPath, const QString &relativePath)
+{
+    this->webserver->addService(relativePath.toUtf8(),new WebFile(realPath,this));
 }
 
 void Device::addService(Service *servdev)
