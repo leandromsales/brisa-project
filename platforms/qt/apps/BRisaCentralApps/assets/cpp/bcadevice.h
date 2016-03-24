@@ -30,7 +30,6 @@ public slots:
 private:
     void addAllWebFiles();
     void addAllIconFiles();
-    QString parseHexInt(QString hex);
     brisa::upnp::StateVariable *listApps;
     brisa::upnp::StateVariable *appInfo;
     brisa::upnp::StateVariable *app;
