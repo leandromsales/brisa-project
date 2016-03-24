@@ -8,7 +8,7 @@ BRisaApplication::BRisaApplication(QVariantMap app)
     m_services = new QQmlObjectListModel<ServiceApp>(this,"title","title");
     m_title = descriptionFileMap["Title"].toString();
     m_description = descriptionFileMap["Description"].toString();
-    m_iconPath = "file:///" + app["iconPath"].toString();
+    m_iconPath = app["iconPath"].toString();
 
     if(
             descriptionFileMap["Type"].toString() != "WebApp" &&
@@ -38,7 +38,7 @@ QJsonObject BRisaApplication::toJsonObject()
 {
     QJsonObject jsonApp;
     jsonApp.insert("Title", get_title());
-    jsonApp.insert("Icon",get_iconPath());
+    jsonApp.insert("Icon",get_iconRelPath());
     jsonApp.insert("Description",get_description());
 
     QList<ServiceApp *> services = get_services()->toList();

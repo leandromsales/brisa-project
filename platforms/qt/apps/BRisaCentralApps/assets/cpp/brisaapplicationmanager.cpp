@@ -225,7 +225,7 @@ QJsonObject BRisaApplicationManager::toJson()
         BRisaApplication *app = (BRisaApplication *) obj;
 
         jsonApp.insert("Title",QJsonValue(app->get_title()));
-        jsonApp.insert("Icon",app->get_iconPath());
+        jsonApp.insert("Icon",app->get_iconRelPath());
 
         jsonListOfApps.append(jsonApp);
     }

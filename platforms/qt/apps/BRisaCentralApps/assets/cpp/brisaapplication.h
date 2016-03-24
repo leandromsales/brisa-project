@@ -24,6 +24,7 @@ private:
     QML_OBJMODEL_PROPERTY(ServiceApp, services)
     QML_WRITABLE_PROPERTY(QString, description)
     QML_WRITABLE_PROPERTY(QString, iconPath)
+    QML_WRITABLE_PROPERTY(QString, iconRelPath)
     QML_WRITABLE_PROPERTY(QString, title)
     QML_WRITABLE_PROPERTY(QString, execPath)
     QML_WRITABLE_PROPERTY(AppType,type)

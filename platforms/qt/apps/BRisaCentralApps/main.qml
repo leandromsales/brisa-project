@@ -59,7 +59,7 @@ ApplicationWindow {
                     model:manager.apps;
                     delegate: BRisaApplication {
                         width:JS.wpercent(15,parent); height:width
-                        iconPath:modelData.iconPath;
+                        iconPath:"file:///" + modelData.iconPath;
                         title:modelData.title;
                         description:modelData.description;
                         servicesModel:modelData.services

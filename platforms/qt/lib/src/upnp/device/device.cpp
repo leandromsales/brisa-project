@@ -300,7 +300,7 @@ QString Device::getAttribute(xmlTags key) const
                 return ipAddress;
                 break;
         case Port:
-                return QString(port);
+                return QString::number(port);
                 break;
         case Running:
                 return (this->running) ? "TRUE" : "FALSE";

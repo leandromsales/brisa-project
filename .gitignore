@@ -7,6 +7,9 @@
 *.o
 *.so
 
+# BCU IGNORES
+./plataforms/qt/apps/BCU/src/
+
 # OS generated files #
 ###################
 .DS_Store

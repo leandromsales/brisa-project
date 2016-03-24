@@ -11,13 +11,11 @@ BCADevice::BCADevice(QQmlApplicationEngine &engine, QByteArray dirPath) : Device
     m_appManager = new BRisaApplicationManager(engine, dirPath);
     connect(m_appManager,SIGNAL(listWasUpdated()),
             this,SLOT(onListOfAppsUpdated()));
-    addAllWebFiles();
+
+    addAllWebFiles(); addAllIconFiles();
+
     engine.rootContext()->setContextProperty("manager", m_appManager);
 
-
-    qDebug() << "+++++++++++++++++++++++++++++++++++++++++";
-    qDebug() << QString::number(getAttribute(Port),16);
-    qDebug() << "+++++++++++++++++++++++++++++++++++++++++";
     Functions *functions = new Functions(m_appManager,getAttribute(IpAddress)+":"+getAttribute(Port));
     functions->setDescriptionFile(":/src/functions.xml");
 
@@ -42,11 +40,17 @@ void BCADevice::addAllWebFiles()
     }
 }
 
-QString BCADevice::parseHexInt(QString hex)
+void BCADevice::addAllIconFiles()
 {
-    int decNum = 0;
-    for(int i=0;i<hex.length();i++) {
-
+    foreach (QObject *o, m_appManager->get_apps()) {
+        BRisaApplication *bApp = (BRisaApplication *) o;
+        this->addFile(bApp->get_iconPath(),"apps/" + bApp->get_title() + "/icons/icon.png");
+        bApp->set_iconRelPath(
+                    getAttribute(IpAddress)+
+                    ":"+getAttribute(Port)+
+                    "/apps/"+bApp->get_title()+
+                    "/icons/icon.png"
+                    );
     }
 }
 
