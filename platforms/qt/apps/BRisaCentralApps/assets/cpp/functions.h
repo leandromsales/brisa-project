@@ -17,9 +17,7 @@
 
 #include "upnp/Action"
 #include "upnp/device/Service"
-
 #include "brisaapplicationmanager.h"
-#include "bcatcpserver.h"
 
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -29,21 +27,16 @@
 class Functions : public brisa::upnp::device::Service
 {
     Q_OBJECT
-
 public:
-
-    Functions(BRisaApplicationManager *manager);
+    Functions(BRisaApplicationManager *manager, QString portIP);
     ~Functions();
-
 private slots:
-
     OutArgument *getListOfApps();
     OutArgument *getAppInfo(InArgument * const inArguments);
     OutArgument *getApp(InArgument * const inArguments);
-
 private:
     BRisaApplicationManager *appManager;
-    BCATcpServer *m_server;
+    QString m_portIP;
 };
 
 

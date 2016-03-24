@@ -16,7 +16,7 @@ BCADevice::BCADevice(QQmlApplicationEngine &engine, QByteArray dirPath) : Device
 
 
     qDebug() << "+++++++++++++++++++++++++++++++++++++++++";
-    qDebug() << QString::number(getAttribute(Port),16);
+    qDebug() << QString::number(getAttribute(Port));
     qDebug() << "+++++++++++++++++++++++++++++++++++++++++";
     Functions *functions = new Functions(m_appManager,getAttribute(IpAddress)+":"+getAttribute(Port));
     functions->setDescriptionFile(":/src/functions.xml");

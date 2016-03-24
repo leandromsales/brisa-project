@@ -1,4 +1,3 @@
-ls
 TEMPLATE = app
 
 QT += qml quick widgets network
@@ -23,8 +22,7 @@ SOURCES +=  main.cpp \
             assets/cpp/FolderCompressor.cpp \
             assets/cpp/functions.cpp \
             assets/cpp/serviceApp.cpp \
-            assets/cpp/essencials/qqmlobjectlistmodel.cpp \
-    bcatcpserver.cpp
+            assets/cpp/essencials/qqmlobjectlistmodel.cpp
 
 HEADERS +=  assets/cpp/bcadevice.h \
             assets/cpp/bcajson.h \
@@ -33,8 +31,7 @@ HEADERS +=  assets/cpp/bcadevice.h \
             assets/cpp/FolderCompressor.h \
             assets/cpp/functions.h \
             assets/cpp/serviceApp.h \
-            assets/cpp/essencials/qqmlobjectlistmodel.h \
-    bcatcpserver.h
+            assets/cpp/essencials/qqmlobjectlistmodel.h
 
 RESOURCES += qml.qrc \
             assets/qml/CreateApp/createApp.qrc \

@@ -4,15 +4,14 @@ using namespace brisa;
 using namespace brisa::upnp;
 using namespace brisa::upnp::device;
 
-Functions::Functions(BRisaApplicationManager *manager) : Service(SERVICE_TYPE, SERVICE_ID,
+Functions::Functions(BRisaApplicationManager *manager, QString portIP) : Service(SERVICE_TYPE, SERVICE_ID,
                                  SERVICE_XML_PATH, SERVICE_CONTROL,
                                  SERVICE_EVENT_SUB)
 {
-    appManager = manager;
+    appManager = manager; m_portIP = portIP;
 }
 
-Functions::~Functions()
-{}
+Functions::~Functions() {}
 
 OutArgument *Functions::getListOfApps()
 {
@@ -27,35 +26,25 @@ OutArgument *Functions::getListOfApps()
 OutArgument *Functions::getAppInfo(InArgument * const inArguments)
 {
     QString appName = (*inArguments)["SelectedApp"];
-
     BRisaApplication *app = appManager->getAppByName(appName);
     OutArgument *outArgs = new OutArgument();
-
     if(app) {
         QJsonDocument jsonDoc(app->toJsonObject());
         outArgs->insert("InfoOfApp", jsonDoc.toJson());
-
-    } else {
-        outArgs->insert("InfoOfApp", "App doesn't exist!");
-    }
-
+    } else outArgs->insert("InfoOfApp", "App doesn't exist!");
     return outArgs;
 }
 
 OutArgument *Functions::getApp(InArgument * const inArguments)
 {
-    qsrand(time(0));
     QString appName = (*inArguments)["SelectedApp"];
-
     BRisaApplication *app = appManager->getAppByName(appName);
     OutArgument *outArgs = new OutArgument();
-
     if(app) {
         QJsonObject jsonApp;
-        quint16 port = (qrand()%55535)+10000;
-        m_server = new BCATcpServer(app->compePath(),port);
-        QString ret = m_server->ip() + ":" + QString::number(port) + app->compePath().replace("file:///","/");
-        outArgs->insert("TheApp",ret);
+        QString ret = m_portIP + "/" + app->get_title();
+        jsonApp.insert("path",ret);
+        outArgs->insert("TheApp",QJsonDocument(jsonApp).toJson());
     } else
         outArgs->insert("TheApp", "App Doesn't exists!");
 

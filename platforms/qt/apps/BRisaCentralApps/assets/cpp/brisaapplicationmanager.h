@@ -42,7 +42,7 @@ public:
     QJsonObject toJson();
 signals:
     void mainQMLPathSetted();
-    void webSourceUrlSetted();
+    void listWasUpdated();
 private:
     QQmlApplicationEngine *mainEngine;
     QQmlContext *ctxt;

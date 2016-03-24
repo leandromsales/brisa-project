@@ -16,15 +16,7 @@ int main(int argc, char *argv[])
 #endif // QT_WEBVIEW_WEBENGINE_BACKEND
 
     QQmlApplicationEngine engine;
-    QQmlContext *ctxt = engine.rootContext();
-
-    BRisaApplicationManager *manager = new BRisaApplicationManager(engine,"../BRisaCentralApps/apps");
-
-    BCADevice *bca = new BCADevice(manager);
-    bca->printAllApps();
-
-    ctxt->setContextProperty("manager", manager);
-
+    BCADevice *bcaDevice = new BCADevice(engine,"../BRisaCentralApps/apps");
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     return app.exec();

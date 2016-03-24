@@ -5,8 +5,6 @@
 #include <QDebug>
 
 #include "upnp/device/Device"
-#include "functions.h"
-
 #include "brisaapplicationmanager.h"
 
 #define DEVICE_TYPE              "urn:org.compelab.AppServer:1"
@@ -25,21 +23,17 @@ using namespace brisa::upnp::device;
 class BCADevice : public Device
 {
     Q_OBJECT
-
 public:
-
-    BCADevice(BRisaApplicationManager *manager);
-
-    void printAllApps();
-
+    BCADevice(QQmlApplicationEngine &engine, QByteArray dirPath);
+public slots:
+    void onListOfAppsUpdated();
 private:
-
-    BRisaApplicationManager *appManager;
-
+    void addAllWebFiles();
+    QString parseHexInt(QString hex);
     brisa::upnp::StateVariable *listApps;
     brisa::upnp::StateVariable *appInfo;
     brisa::upnp::StateVariable *app;
-
+    BRisaApplicationManager *m_appManager;
 };
 
 #endif // BCADEVICE_H

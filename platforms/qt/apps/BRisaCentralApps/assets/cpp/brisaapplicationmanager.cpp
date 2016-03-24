@@ -42,6 +42,7 @@ bool BRisaApplicationManager::generateJSONFile()
             jsonApp->insert("descriptionFile",dir.absoluteFilePath("description.json"));
             jsonApp->insert("iconPath",dir.absoluteFilePath("icon.png"));
             jsonArrayApps->append(*jsonApp);
+
             dir.cdUp();
         }
         mainJson->insert("apps",*jsonArrayApps);
@@ -82,6 +83,7 @@ void BRisaApplicationManager::refreshAppList()
     if(!generateJSONFile()) { qDebug() << "ERROR TO GENERATE APPSJSON"; return; }
     if(!readJSONFile())  { qDebug() << "ERROR TO READ APPSJSON"; return; }
     qDebug() << "REFRESH ENDED!" << m_numOfApps;
+    emit listWasUpdated();
 }
 
 bool BRisaApplicationManager::fileExists(QString path)
@@ -131,9 +133,7 @@ bool BRisaApplicationManager::createAnApp(QJSValue theApp)
                 if(!QFile::copy(mainQMLFolder.absoluteFilePath(f), dir.absoluteFilePath(f))) {
                     qDebug() << "Error in the copy of the files! File : " + dir.absoluteFilePath(f);
                     return false;
-                } else {
-                    qDebug() << "The file " + f + " was copied with sucess!";
-                }
+                } else qDebug() << "The file " + f + " was copied with sucess!";
             }
         }
 
@@ -147,8 +147,7 @@ bool BRisaApplicationManager::createAnApp(QJSValue theApp)
 
     if(theApp.property("appType").toString() == "QML")
         json["execPath"] = "main.qml";
-    else
-        json["execPath"] = theApp.property("execPath").toString();
+    else json["execPath"] = theApp.property("execPath").toString();
 
     QJsonArray services;
     QList<QVariant> appServices = theApp.property("services").toVariant().toList();
@@ -195,13 +194,8 @@ bool BRisaApplicationManager::removeAnApp(QByteArray appName)
         }
     }
 
-    if(!dir.cdUp()) {
-        qDebug() << "ERROR CDUP DIR :: " << appName; return false;
-    }
-    if(!dir.rmdir(appName)) {
-        qDebug() << "ERROR REMOVE DIR :: " << appName; return false;
-    }
-
+    if(!dir.cdUp()) qDebug() << "ERROR CDUP DIR :: " << appName; return false;
+    if(!dir.rmdir(appName)) qDebug() << "ERROR REMOVE DIR :: " << appName; return false;
     return true;
 }
 
@@ -226,7 +220,6 @@ QJsonObject BRisaApplicationManager::toJson()
     QJsonArray jsonListOfApps;
 
     foreach (QObject *obj, get_apps()) {
-
         QJsonObject jsonApp;
 
         BRisaApplication *app = (BRisaApplication *) obj;
