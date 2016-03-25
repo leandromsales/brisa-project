@@ -1,7 +1,6 @@
 TEMPLATE = app
 
 QT += qml quick widgets xml
-
 qtHaveModule(webengine) {
         QT += webengine
         DEFINES += QT_WEBVIEW_WEBENGINE_BACKEND
