@@ -15,8 +15,10 @@
 #define SERVICE_CONTROL "/Functions/control"
 #define SERVICE_EVENT_SUB "/Functions/eventSub"
 
-#include "upnp/Action"
-#include "upnp/device/Service"
+// #include "upnp/Action"
+#include "src/upnp/action.h"
+// #include "upnp/device/Service"
+#include "src/upnp/device/service.h"
 #include "brisaapplicationmanager.h"
 
 #include <QJsonDocument>
