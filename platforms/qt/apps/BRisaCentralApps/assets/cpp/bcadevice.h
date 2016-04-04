@@ -5,7 +5,7 @@
 #include <QDebug>
 
 // #include "upnp/device/Device"
-#include "src/upnp/device/device.h"
+#include "upnp/device/Device"
 #include "brisaapplicationmanager.h"
 
 #define DEVICE_TYPE              "urn:org.compelab.AppServer:1"

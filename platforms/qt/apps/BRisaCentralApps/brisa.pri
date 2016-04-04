@@ -8,6 +8,6 @@ INCLUDEPATH += $$BASEDIR_BRUNO/include
 unix {
     message("BRisa Unix config.")
     QT += network xml
-    # LIBS += -lbrisa
-    # LIBS += -L$$BASEDIR_BRUNO/../build-brisa
+    LIBS += -lbrisa
+    LIBS += -L$$BASEDIR_BRUNO/../build-brisa
 }
