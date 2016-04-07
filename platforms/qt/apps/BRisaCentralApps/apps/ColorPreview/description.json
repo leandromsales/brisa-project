@@ -1,10 +1,5 @@
 {
     "Description": "Color Previewer",
-    "Services": [
-        {
-            "View": "Color viewer"
-        }
-    ],
     "Title": "ColorPreview",
     "Type": "QMLApp",
     "execPath": "main.qml"

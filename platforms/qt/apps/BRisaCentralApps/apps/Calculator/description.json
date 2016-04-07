@@ -1,10 +1,5 @@
 {
     "Description": "A Calculator built in QML",
-    "Services": [
-        {
-            "Sum": "Sum two numbers"
-        }
-    ],
     "Title": "Calculator",
     "Type": "QMLApp",
     "execPath": "main.qml"

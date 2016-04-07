@@ -1,7 +1,5 @@
 {
     "Description": "",
-    "Services": [
-    ],
     "Title": "Messenger",
     "Type": "WebApp",
     "execPath": "https://messenger.com"

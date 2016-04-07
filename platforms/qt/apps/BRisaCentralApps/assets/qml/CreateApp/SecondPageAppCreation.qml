@@ -21,7 +21,7 @@ Rectangle {
         anchors {
             left:descriptionLabel.right; leftMargin: JS.wpercent(2,parent)
             right:parent.right; rightMargin: JS.wpercent(2,parent)
-            bottom :nextButton.top; bottomMargin: JS.hpercent(5,parent)
+            bottom :createButton.top; bottomMargin: JS.hpercent(5,parent)
             top:descriptionLabel.top
         }
         color:"#DDD"
@@ -49,7 +49,7 @@ Rectangle {
         }
     }
     C.Button {
-        id:nextButton
+        id:createButton
         anchors {
             right:parent.right; bottom:parent.bottom
             rightMargin: JS.hpercent(5,parent); bottomMargin: JS.hpercent(5,parent)
@@ -57,9 +57,29 @@ Rectangle {
         height: JS.hpercent(12,parent); width: JS.wpercent(18,parent)
         pixelSize: JS.hpercent(35,this); color:"#4CAF50"
         textColor: "white"; bold: true; wave: true
-        text:"Next"
+        text:"Create"
         action.onClicked: {
-            topBarFrame.stack.push(thirdPageAppCreationComponent);
+            var theApp = {};
+            theApp.name = nameAppTextField.text;
+            theApp.icon = iconTextLine.text.length != 0 ?
+                        iconTextLine.text.replace("file:///","") :
+                        "";
+            theApp.appType = appTypeGroup.current.text;
+            theApp.execPath = theApp.appType == "QML" ?
+                        mainQMLtextLine.text.replace("file:///","") : mainQMLtextLine.text;
+            theApp.description = descriptionTextInput.text;
+//            theApp.services = [];
+//            //Services
+//            var list = serviceTableListModel;
+//            for(var i = 0; i < list.count; i++) {
+//                var service = {};
+//                service.title = list.get(i).title;
+//                service.description = list.get(i).description;
+//                theApp.services.push(service);
+//            }
+            manager.createAnApp(theApp);
+            notificationSystem.coloredNotify("App created with Sucess","Green");
+            closed();
         }
     }
     Component {

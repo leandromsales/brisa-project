@@ -8,7 +8,7 @@ Rectangle {
     property alias iconPath : appIcon.source
     property alias title : appTitle.text
     property alias description : descriptionText.text
-    property alias servicesModel : servicesTable.model
+    //    property alias servicesModel : servicesTable.model
     property var type
     Item {
         id:item
@@ -55,41 +55,38 @@ Rectangle {
         }
         Text {
             id: descriptionLabel
-            anchors { top : appIcon.bottom; left: parent.left }
+            anchors { top : appIcon.bottom; topMargin: JS.hpercent(5,parent); left: parent.left }
             text: "Description:"; color: "#444"
-            font { underline: true; pixelSize: JS.hpercent(5,parent) }
+            font { underline: true; pixelSize: JS.hpercent(6,parent) }
         }
-        ScrollView{
-            id: descriptionScrollView
-            width:JS.wpercent(100,parent); height:JS.hpercent(20,parent)
-            frameVisible: true
+        TextArea {
+            id: descriptionText
+            width:JS.wpercent(100,parent); height:JS.hpercent(55,parent)
             anchors { top : descriptionLabel.bottom; left: parent.left ; topMargin: JS.hpercent(2,parent) }
-            contentItem:Text {
-                id: descriptionText
-                text: qsTr(description); wrapMode: Text.WordWrap
-                font.pixelSize: JS.hpercent(3.33,root); color:"#222"
-            }
+            text: qsTr(description); wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            readOnly: true; textColor: "#555"
+            font.pixelSize: JS.hpercent(4,root);
         }
-        Text {
-            id: servicesLabel
-            anchors { top : descriptionScrollView.bottom; left: parent.left; topMargin:JS.hpercent(2,parent) }
-            text: qsTr("Services:"); font { underline: true; pixelSize: parent.height/20 } color:"#444"
-        }
-        TableView {
-            id:servicesTable
-            anchors { top : servicesLabel.bottom; left: parent.left; topMargin:JS.hpercent(2,parent) }
-            width: JS.wpercent(100,parent); height:JS.hpercent(35,parent)
-            TableViewColumn {
-                role: "title"
-                title: "Title"
-                width: JS.wpercent(20,parent)
-            }
-            TableViewColumn {
-                role: "description"
-                title: "Description"
-                width: JS.wpercent(70,parent)
-            }
-        }
+        //        Text {
+        //            id: servicesLabel
+        //            anchors { top : descriptionScrollView.bottom; left: parent.left; topMargin:JS.hpercent(2,parent) }
+        //            text: qsTr("Services:"); font { underline: true; pixelSize: parent.height/20 } color:"#444"
+        //        }
+        //        TableView {
+        //            id:servicesTable
+        //            anchors { top : servicesLabel.bottom; left: parent.left; topMargin:JS.hpercent(2,parent) }
+        //            width: JS.wpercent(100,parent); height:JS.hpercent(35,parent)
+        //            TableViewColumn {
+        //                role: "title"
+        //                title: "Title"
+        //                width: JS.wpercent(20,parent)
+        //            }
+        //            TableViewColumn {
+        //                role: "description"
+        //                title: "Description"
+        //                width: JS.wpercent(70,parent)
+        //            }
+        //        }
     }
     Component {
         id:qmlLoaderFileComponent

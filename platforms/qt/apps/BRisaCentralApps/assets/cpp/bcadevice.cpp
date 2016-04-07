@@ -8,7 +8,7 @@ BCADevice::BCADevice(QQmlApplicationEngine &engine, QByteArray dirPath) : Device
                                    DEVICE_MODEL_DESCRIPTION, DEVICE_MODEL_NAME, DEVICE_MODEL_NUMBER,
                                    DEVICE_MODEL_URL, DEVICE_SERIAL_NUMBER, getCompleteUuid())
 {
-    m_appManager = new BRisaApplicationManager(engine, dirPath);
+    m_appManager = new BRisaApplicationManager(engine, dirPath,getAttribute(IpAddress),getAttribute(Port));
     connect(m_appManager,SIGNAL(listWasUpdated()),
             this,SLOT(onListOfAppsUpdated()));
 
@@ -16,7 +16,7 @@ BCADevice::BCADevice(QQmlApplicationEngine &engine, QByteArray dirPath) : Device
 
     engine.rootContext()->setContextProperty("manager", m_appManager);
 
-    Functions *functions = new Functions(m_appManager,getAttribute(IpAddress)+":"+getAttribute(Port));
+    Functions *functions = new Functions(m_appManager);
     functions->setDescriptionFile(":/src/functions.xml");
 
     this->addService(functions);

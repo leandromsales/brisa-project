@@ -126,15 +126,15 @@ Rectangle {
             theApp.execPath = theApp.appType == "QML" ?
                         mainQMLtextLine.text.replace("file:///","") : mainQMLtextLine.text;
             theApp.description = descriptionTextInput.text;
-            theApp.services = [];
-            //Services
-            var list = serviceTableListModel;
-            for(var i = 0; i < list.count; i++) {
-                var service = {};
-                service.title = list.get(i).title;
-                service.description = list.get(i).description;
-                theApp.services.push(service);
-            }
+//            theApp.services = [];
+//            //Services
+//            var list = serviceTableListModel;
+//            for(var i = 0; i < list.count; i++) {
+//                var service = {};
+//                service.title = list.get(i).title;
+//                service.description = list.get(i).description;
+//                theApp.services.push(service);
+//            }
             manager.createAnApp(theApp);
             notificationSystem.coloredNotify("App created with Sucess","Green");
             closed();

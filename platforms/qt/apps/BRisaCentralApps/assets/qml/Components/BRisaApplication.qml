@@ -25,7 +25,7 @@ Image {
             iconPath: imageApp.iconPath
             title : imageApp.title
             description: imageApp.description
-            servicesModel: imageApp.servicesModel
+//            servicesModel: imageApp.servicesModel
             type:imageApp.type
         }
     }

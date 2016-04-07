@@ -13,6 +13,12 @@
             "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/ColorPreview/icon.png"
         },
         {
+            "appName": "Github",
+            "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Github/description.json",
+            "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Github",
+            "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Github/icon.png"
+        },
+        {
             "appName": "Messenger",
             "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Messenger/description.json",
             "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Messenger",
