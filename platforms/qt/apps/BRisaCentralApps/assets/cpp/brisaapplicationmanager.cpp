@@ -206,10 +206,10 @@ QJsonObject BRisaApplicationManager::toJson()
         BRisaApplication *app = (BRisaApplication *) obj;
 
         jsonApp.insert("Title",QJsonValue(app->get_title()));
-        jsonApp.insert("Icon", "http://" + app->get_iconRelPath());
+        jsonApp.insert("Icon", QJsonValue("http://" + app->get_iconRelPath()));
         jsonApp.insert("Info", QJsonValue(app->get_description()));
         QString url = m_ip + ":" + m_port + "/apps/" + app->get_title() + ".compe";
-        jsonApp.insert("Url", "http://" + QJsonValue(url));
+        jsonApp.insert("Url", QJsonValue("http://" + url));
 
         jsonListOfApps.append(jsonApp);
     }
