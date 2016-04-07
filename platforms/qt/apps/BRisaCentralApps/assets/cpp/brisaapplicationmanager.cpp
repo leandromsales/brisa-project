@@ -1,11 +1,13 @@
 #include "brisaapplicationmanager.h"
 
-BRisaApplicationManager::BRisaApplicationManager(QQmlApplicationEngine &engine, QByteArray dirPath)
+BRisaApplicationManager::BRisaApplicationManager(QQmlApplicationEngine &engine, QByteArray dirPath, QString ip, QString port)
 {
     m_numOfApps = 0;
     mainEngine = &engine;
     ctxt = engine.rootContext();
     m_dirPath = dirPath;
+    m_ip = ip;
+    m_port = port;
 
     QDir dir(dirPath);
     if(!generateJSONFile()) { qDebug() << "ERROR TO GENERATE APPSJSON"; return; }
@@ -149,14 +151,14 @@ bool BRisaApplicationManager::createAnApp(QJSValue theApp)
         json["execPath"] = "main.qml";
     else json["execPath"] = theApp.property("execPath").toString();
 
-    QJsonArray services;
-    QList<QVariant> appServices = theApp.property("services").toVariant().toList();
-    foreach (QVariant service, appServices) {
-        QJsonObject aux;
-        aux[service.toMap()["title"].toString()] = service.toMap()["description"].toString();
-        services.append(aux);
-    }
-    json["Services"] = services;
+//    QJsonArray services;
+//    QList<QVariant> appServices = theApp.property("services").toVariant().toList();
+//    foreach (QVariant service, appServices) {
+//        QJsonObject aux;
+//        aux[service.toMap()["title"].toString()] = service.toMap()["description"].toString();
+//        services.append(aux);
+//    }
+//    json["Services"] = services;
 
     QFile jsonFile (dir.absolutePath() + "/description.json");
     QJsonDocument jsonDoc(json);
@@ -226,6 +228,9 @@ QJsonObject BRisaApplicationManager::toJson()
 
         jsonApp.insert("Title",QJsonValue(app->get_title()));
         jsonApp.insert("Icon",app->get_iconRelPath());
+        jsonApp.insert("Info", QJsonValue(app->get_description()));
+        QString url = m_ip + ":" + m_port + "/apps/" + app->get_title() + ".compe";
+        jsonApp.insert("Url", QJsonValue(url));
 
         jsonListOfApps.append(jsonApp);
     }

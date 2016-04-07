@@ -28,8 +28,10 @@ class BRisaApplicationManager : public QObject
     QML_WRITABLE_PROPERTY(QList<QObject *>, apps)
     QML_WRITABLE_PROPERTY(int, numOfApps)
     QML_WRITABLE_PROPERTY(QString, currentAppDir)
+    QML_READONLY_PROPERTY(QString, ip)
+    QML_READONLY_PROPERTY(QString, port)
 public:
-    BRisaApplicationManager(QQmlApplicationEngine &engine, QByteArray dirPath);
+    BRisaApplicationManager(QQmlApplicationEngine &engine, QByteArray dirPath, QString ip, QString port);
     bool generateJSONFile();
     bool readJSONFile();
     Q_INVOKABLE void refreshAppList();

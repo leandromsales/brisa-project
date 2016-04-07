@@ -21,7 +21,7 @@ public:
     enum AppType { QMLApp, WebApp };
     Q_ENUM(AppType)
 private:
-    QML_OBJMODEL_PROPERTY(ServiceApp, services)
+//    QML_OBJMODEL_PROPERTY(ServiceApp, services)
     QML_WRITABLE_PROPERTY(QString, description)
     QML_WRITABLE_PROPERTY(QString, iconPath)
     QML_WRITABLE_PROPERTY(QString, iconRelPath)
