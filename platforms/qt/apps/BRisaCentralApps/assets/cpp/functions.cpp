@@ -42,7 +42,7 @@ OutArgument *Functions::getApp(InArgument * const inArguments)
     OutArgument *outArgs = new OutArgument();
     if(app) {
         QJsonObject jsonApp;
-        QString ret = m_portIP + "/" + app->get_title();
+        QString ret = m_portIP + "/apps/" + app->get_title() + ".compe";
         jsonApp.insert("path",ret);
         outArgs->insert("TheApp",QJsonDocument(jsonApp).toJson());
     } else

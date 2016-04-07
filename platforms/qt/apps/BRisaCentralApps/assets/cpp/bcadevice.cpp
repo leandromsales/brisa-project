@@ -36,7 +36,7 @@ void BCADevice::addAllWebFiles()
 {
     foreach (QObject *o, m_appManager->get_apps()) {
         BRisaApplication *bApp = (BRisaApplication *) o;
-        this->addFile(bApp->compePath(),"apps/" + bApp->get_title());
+        this->addFile(bApp->compePath(),"apps/" + bApp->get_title() + ".compe");
     }
 }
 
