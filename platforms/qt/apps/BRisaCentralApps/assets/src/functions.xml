@@ -15,7 +15,7 @@
         </argument>
       </argumentList>
     </action>
-    <action>
+    <!--<action>
     <name>getAppInfo</name>
       <argumentList>
       <argument>
@@ -44,7 +44,7 @@
         <relatedStateVariable>App</relatedStateVariable>
       </argument>
       </argumentList>
-    </action>
+    </action>-->
   </actionList>
   <serviceStateTable>
   <stateVariable sendEvents="yes" multicast="yes">
@@ -52,7 +52,7 @@
     <dataType>string</dataType>
     <defaultValue>Default</defaultValue>
   </stateVariable>
-  <stateVariable sendEvents="yes">
+  <!--<stateVariable sendEvents="yes">
     <name>AppInfo</name>
     <dataType>string</dataType>
     <defaultValue>Default</defaultValue>
@@ -66,6 +66,6 @@
     <name>AppSelector</name>
     <dataType>string</dataType>
     <defaultValue>Default</defaultValue>
-  </stateVariable>
+  </stateVariable>-->
   </serviceStateTable>
 </scpd>

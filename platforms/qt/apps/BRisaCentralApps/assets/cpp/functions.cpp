@@ -4,14 +4,12 @@ using namespace brisa;
 using namespace brisa::upnp;
 using namespace brisa::upnp::device;
 
-Functions::Functions(BRisaApplicationManager *manager, QString portIP) : Service(SERVICE_TYPE, SERVICE_ID,
+Functions::Functions(BRisaApplicationManager *manager) : Service(SERVICE_TYPE, SERVICE_ID,
                                  SERVICE_XML_PATH, SERVICE_CONTROL,
                                  SERVICE_EVENT_SUB)
 {
-    appManager = manager; m_portIP = portIP;
+    appManager = manager;
 }
-
-Functions::~Functions() {}
 
 OutArgument *Functions::getListOfApps()
 {
@@ -23,30 +21,30 @@ OutArgument *Functions::getListOfApps()
     return outArgs;
 }
 
-OutArgument *Functions::getAppInfo(InArgument * const inArguments)
-{
-    QString appName = (*inArguments)["SelectedApp"];
-    BRisaApplication *app = appManager->getAppByName(appName);
-    OutArgument *outArgs = new OutArgument();
-    if(app) {
-        QJsonDocument jsonDoc(app->toJsonObject());
-        outArgs->insert("InfoOfApp", jsonDoc.toJson());
-    } else outArgs->insert("InfoOfApp", "App doesn't exist!");
-    return outArgs;
-}
+//OutArgument *Functions::getAppInfo(InArgument * const inArguments)
+//{
+//    QString appName = (*inArguments)["SelectedApp"];
+//    BRisaApplication *app = appManager->getAppByName(appName);
+//    OutArgument *outArgs = new OutArgument();
+//    if(app) {
+//        QJsonDocument jsonDoc(app->toJsonObject());
+//        outArgs->insert("InfoOfApp", jsonDoc.toJson());
+//    } else outArgs->insert("InfoOfApp", "App doesn't exist!");
+//    return outArgs;
+//}
 
-OutArgument *Functions::getApp(InArgument * const inArguments)
-{
-    QString appName = (*inArguments)["SelectedApp"];
-    BRisaApplication *app = appManager->getAppByName(appName);
-    OutArgument *outArgs = new OutArgument();
-    if(app) {
-        QJsonObject jsonApp;
-        QString ret = m_portIP + "/apps/" + app->get_title() + ".compe";
-        jsonApp.insert("path",ret);
-        outArgs->insert("TheApp",QJsonDocument(jsonApp).toJson());
-    } else
-        outArgs->insert("TheApp", "App Doesn't exists!");
+//OutArgument *Functions::getApp(InArgument * const inArguments)
+//{
+//    QString appName = (*inArguments)["SelectedApp"];
+//    BRisaApplication *app = appManager->getAppByName(appName);
+//    OutArgument *outArgs = new OutArgument();
+//    if(app) {
+//        QJsonObject jsonApp;
+//        QString ret = m_portIP + "/apps/" + app->get_title() + ".compe";
+//        jsonApp.insert("path",ret);
+//        outArgs->insert("TheApp",QJsonDocument(jsonApp).toJson());
+//    } else
+//        outArgs->insert("TheApp", "App Doesn't exists!");
 
-    return outArgs;
-}
+//    return outArgs;
+//}

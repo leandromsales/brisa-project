@@ -28,15 +28,13 @@ class Functions : public brisa::upnp::device::Service
 {
     Q_OBJECT
 public:
-    Functions(BRisaApplicationManager *manager, QString portIP);
-    ~Functions();
+    Functions(BRisaApplicationManager *manager);
 private slots:
     OutArgument *getListOfApps();
-    OutArgument *getAppInfo(InArgument * const inArguments);
-    OutArgument *getApp(InArgument * const inArguments);
+//    OutArgument *getAppInfo(InArgument * const inArguments);
+//    OutArgument *getApp(InArgument * const inArguments);
 private:
     BRisaApplicationManager *appManager;
-    QString m_portIP;
 };
 
 
