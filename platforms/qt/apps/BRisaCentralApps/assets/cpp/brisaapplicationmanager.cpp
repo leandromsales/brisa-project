@@ -108,7 +108,7 @@ bool BRisaApplicationManager::createAnApp(QJSValue theApp)
 
     qDebug() << "Change the folder to " + theApp.property("name").toString();
 
-    QFile iconFile(theApp.property("icon").toString());
+    QFile iconFile("/" + theApp.property("icon").toString());
 
     if(!iconFile.exists()) {
         qDebug() << "The icon selected doesn't exists " + iconFile.fileName();;
@@ -177,28 +177,7 @@ bool BRisaApplicationManager::removeAnApp(QByteArray appName)
         qDebug() << "DIR NOT FOUND!";
         return false;
     }
-
-    QStringList files = dir.entryList(QDir::NoDotAndDotDot | QDir::Files);
-    QStringList dirs = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs);
-
-    foreach (QString f, files) {
-        bool reply = dir.remove(f);
-        if(!reply) {
-            qDebug() << "ERROR REMOVE FILE :: " << f;
-            return false;
-        }
-    }
-    foreach (QString d, dirs) {
-        bool reply = dir.rmdir(d);
-        if(!reply) {
-            qDebug() << "ERROR REMOVE DIR :: " << d;
-            return false;
-        }
-    }
-
-    if(!dir.cdUp()) qDebug() << "ERROR CDUP DIR :: " << appName; return false;
-    if(!dir.rmdir(appName)) qDebug() << "ERROR REMOVE DIR :: " << appName; return false;
-    return true;
+    return dir.removeRecursively();
 }
 
 void BRisaApplicationManager::run(QString name, int type)
