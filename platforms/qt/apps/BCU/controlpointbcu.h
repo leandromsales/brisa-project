@@ -103,8 +103,6 @@ private:
      *  on grid foreach app on JSON.
      */
     void decodeJsonList();
-    void decodeJsonInfo();
-    void getApp(QString appURL);
 
 signals:
     /*!
@@ -215,7 +213,7 @@ public:
     }
 
     void addAppOnDataList (QString udn, QString name, QString info,
-                           QUrl iconURL, QUrl appURL, QString section);
+                           QUrl iconURL, QUrl appURL);
 
     void removeAppFromDataList (QString udn);
 
