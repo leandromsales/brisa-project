@@ -48,10 +48,6 @@ ControlPointBCU::ControlPointBCU(QObject *parent, QString st, int mx) :
     connect(this->multicastReceiver, SIGNAL(multicastReceived(QMap<QString,QString>)),
             this, SLOT(receiveMulticast(QMap<QString,QString>)));
     this->multicastReceiver->start();
-
-    // addAppOnDataList("udn2", "name2", "info1", QUrl("qrc:/pics/qtlogo.png"), QUrl("empty"), "section2");
-    // addAppOnDataList("udn3", "name3", "info1", QUrl("qrc:/pics/qtlogo.png"), QUrl("empty"), "section1");
-    // addAppOnDataList("udn3", "name4", "info1", QUrl("qrc:/pics/qtlogo.png"), QUrl("empty"), "section1");
 }
 
 ControlPointBCU::~ControlPointBCU() {
@@ -146,7 +142,7 @@ void ControlPointBCU::replyFinished(QNetworkReply *reply) {
                                     QString().setNum(urlBase->port()));
                 }
 
-                addAppOnDataList(udn, "", "", QUrl(""), QUrl(""), "");
+                addAppOnDataList(udn, "", "", QUrl(""), QUrl(""));
 
                 rootXml->remove();
                 delete rootXml;
@@ -259,18 +255,18 @@ bool ControlPointBCU::deleteApp(QString name)
     return status;
 }
 
-void ControlPointBCU::addAppOnDataList(QString udn, QString name, QString info, QUrl iconURL, QUrl appURL, QString section)
+void ControlPointBCU::addAppOnDataList(QString udn, QString name, QString info, QUrl iconURL, QUrl appURL)
 {
     bool status = true;
     for (int i = 0; i < dataList.size(); i++) {
         DataObject *dobj = qobject_cast<DataObject*>(dataList.at(i));
         if (dobj->udn == udn && dobj->name == "") {
-            dataList.replace(i, new DataObject(udn, name, info, iconURL, appURL, section));
+            dataList.replace(i, new DataObject(udn, name, info, iconURL, appURL));
             status = false;
         }
     }
     if (status)
-        dataList.append(new DataObject(udn, name, info, iconURL, appURL, section));
+        dataList.append(new DataObject(udn, name, info, iconURL, appURL));
 
     engine.rootContext()->setContextProperty(QString("myModel"),
                                              QVariant::fromValue(dataList));
@@ -363,7 +359,7 @@ void ControlPointBCU::requestError(QString errorMessage, QString methodName)
 void ControlPointBCU::add()
 {
     addAppOnDataList(auxDO->getUdn(), auxDO->getName(), auxDO->getInfo(),
-                     auxDO->getIconURL(), auxDO->getAppURL(), auxDO->getSection());
+                     auxDO->getIconURL(), auxDO->getAppURL());
     delete auxDO;
 }
 
@@ -456,17 +452,16 @@ void ControlPointBCU::decodeJsonInfo()
     QString name = app["Title"].toString();
     QString info = app["Description"].toString();
     QString appUrl = app["Url"].toString();
-    QString section = app["Section"].toString();
 
     QString iconUrl;
 
     if (app["Icon"].toString().startsWith("file://")) {
         iconUrl = app["Icon"].toString();
-        addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl), section);
+        addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
     } else {
         iconUrl = "pics/" + name.replace(" ", "") + ".png";
         QUrl url(iconUrl);
-        auxDO = new DataObject(udn, name, info, QUrl(iconUrl), QUrl(appUrl), section);
+        auxDO = new DataObject(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
         FileDownloader *fd = new FileDownloader(url, name.replace(" ", ""), this);
         connect(fd, SIGNAL (ready()), this, SLOT (add()));
     }

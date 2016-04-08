@@ -215,7 +215,7 @@ public:
     }
 
     void addAppOnDataList (QString udn, QString name, QString info,
-                           QUrl iconURL, QUrl appURL, QString section);
+                           QUrl iconURL, QUrl appURL);
 
     void removeAppFromDataList (QString udn);
 
