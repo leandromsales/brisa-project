@@ -16,7 +16,14 @@ int main(int argc, char *argv[])
 #endif // QT_WEBVIEW_WEBENGINE_BACKEND
 
     QQmlApplicationEngine engine;
-    BCADevice *bcaDevice = new BCADevice(engine,"../BRisaCentralApps/apps");
+    QDir dir(QCoreApplication::applicationDirPath());
+    if(!dir.cdUp())
+        qFatal(qPrintable("ERROR : COULDNT FIND .. directory. Current Directory : " + dir.absolutePath()));
+    if(!dir.cd("BRisaCentralApps"))
+        qFatal(qPrintable("ERROR : COULDNT FIND BRisaCentralApps directory. Current Directory : " + dir.absolutePath()));
+    if(!dir.cd("apps"))
+        qFatal(qPrintable("ERROR : COULDNT FIND apps directory. Current Directory : " + dir.absolutePath()));
+    BCADevice *bcaDevice = new BCADevice(engine,dir.absolutePath().toLatin1());
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     return app.exec();
