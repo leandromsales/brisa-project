@@ -103,8 +103,6 @@ private:
      *  on grid foreach app on JSON.
      */
     void decodeJsonList();
-    void decodeJsonInfo();
-    void getApp(QString appURL);
 
 signals:
     /*!

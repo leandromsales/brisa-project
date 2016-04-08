@@ -121,12 +121,12 @@ void ControlPointBCU::replyFinished(QNetworkReply *reply) {
             // foreach service, search by actions getListOfApps, getAppInfo, getApp
             foreach (Service *s, serviceList) {
                 Action * list = s->getAction(QString("getListOfApps"));
-                Action * info = s->getAction(QString("getAppInfo"));
-                Action * app = s->getAction(QString("getApp"));
+                // Action * info = s->getAction(QString("getAppInfo"));
+                // Action * app = s->getAction(QString("getApp"));
 
-                // melhorar isso
                 // if 3 actions exists, break foreach
-                if (list != 0 && info != 0 && app != 0) {
+                // if (list != 0 && info != 0 && app != 0) {
+                if (list != 0) {
                     this->auxServ = s;
                     has3gets = true;
                     break;
@@ -142,7 +142,7 @@ void ControlPointBCU::replyFinished(QNetworkReply *reply) {
                                     QString().setNum(urlBase->port()));
                 }
 
-                addAppOnDataList(udn, "", "", QUrl(""), QUrl(""));
+                addAppOnDataList(udn, QString(""), QString(""), QUrl(""), QUrl(""));
 
                 rootXml->remove();
                 delete rootXml;
@@ -345,8 +345,8 @@ void ControlPointBCU::serviceCall(OutArgument arguments, QString method)
 
     if (method == "getListOfApps") {
         decodeJsonList();
-    } else if (method == "getAppInfo") {
-        decodeJsonInfo();
+    } else { // } else if (method == "getAppInfo") decodeJsonInfo();
+        qDebug() << "BCU: I receive an unexpected call for method" << method;
     }
 
 }
@@ -424,49 +424,30 @@ void ControlPointBCU::decodeJsonList()
     }
 
     QList<QVariant>	listApps = doc.object().toVariantHash()["Apps"].toList();
+    QString udn = auxDev->getAttribute(auxDev->udn);
 
     // get more info about each app
     for(int i = 0; i < listApps.length(); i++) {
         QMap<QString,QVariant> app = listApps.at(i).toMap();
 
-        QMap<QString, QString> param;
-        param["SelectedApp"] = app["Title"].toString();
+        // QMap<QString, QString> param;
+        // param["SelectedApp"] = app["Title"].toString();
 
-        this->auxServ->call("getAppInfo", param);
-    }
-}
+        QString name = app["Title"].toString();
+        QString info = app["Description"].toString();
+        QString appUrl = app["Url"].toString();
+        QString iconUrl = app["Icon"].toString();
 
-void ControlPointBCU::decodeJsonInfo()
-{
-    // decode JSON
-    QJsonParseError error;
-    QJsonDocument doc = QJsonDocument::fromJson(this->jsonMsg.toLatin1(), &error);
-    if (error.errorString() != "no error occurred") {
-        qDebug() << error.errorString();
-    }
+        qDebug() << name << info << appUrl << iconUrl << "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
 
-    // adding founded apps on grid
-    QVariantHash app = doc.object().toVariantHash();
-
-    QString udn = auxDev->getAttribute(auxDev->udn);
-    QString name = app["Title"].toString();
-    QString info = app["Description"].toString();
-    QString appUrl = app["Url"].toString();
-
-    QString iconUrl;
-
-    if (app["Icon"].toString().startsWith("file://")) {
-        iconUrl = app["Icon"].toString();
-        addAppOnDataList(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
-    } else {
-        iconUrl = "pics/" + name.replace(" ", "") + ".png";
         QUrl url(iconUrl);
-        auxDO = new DataObject(udn, name, info, QUrl(iconUrl), QUrl(appUrl));
         FileDownloader *fd = new FileDownloader(url, name.replace(" ", ""), this);
         connect(fd, SIGNAL (ready()), this, SLOT (add()));
+
+        auxDO = new DataObject(udn, name, info, url, QUrl(appUrl));
     }
 }
 }
-
 }
+
 }
