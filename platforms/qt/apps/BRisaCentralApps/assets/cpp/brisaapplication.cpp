@@ -13,7 +13,7 @@ BRisaApplication::BRisaApplication(QVariantMap app)
     if(
             descriptionFileMap["Type"].toString() != "WebApp" &&
             descriptionFileMap["Type"].toString() != "QMLApp"
-            ) qFatal(QString("TYPE WRONG " + m_title + "!").toLatin1());
+            ) qFatal(QString("TYPE WRONG " + m_title + "!\nPlease, delete /apps/apps.json and try again").toLatin1());
 
     if(descriptionFileMap["Type"].toString() == "WebApp") {
         m_execPath = dir.absoluteFilePath("main.qml");
