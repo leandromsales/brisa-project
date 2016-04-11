@@ -4,7 +4,6 @@
 #include <QWidget>
 #include <QDebug>
 
-// #include "upnp/device/Device"
 #include "upnp/device/Device"
 #include "brisaapplicationmanager.h"
 

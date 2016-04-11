@@ -10,6 +10,9 @@
 # BCU IGNORES
 ./plataforms/qt/apps/BCU/src/
 
+# BCA IGNORES
+./platforms/qt/apps/BRisaCentralApps/apps/apps.json
+
 # OS generated files #
 ###################
 .DS_Store

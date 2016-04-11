@@ -51,7 +51,9 @@ bool BRisaApplicationManager::generateJSONFile()
         QJsonDocument *jsonDoc = new QJsonDocument(*mainJson);
         if(!appsJson.open(QIODevice::WriteOnly)) {
             qDebug() << "ERROR OPEN APPSJSON";
-            return false;
+            qDebug() << "REFRESHING APPSJSON";
+            refreshAppList();
+            if(!appsJson.open(QIODevice::WriteOnly)) { qDebug() << "ERROR OPEN APPSJSON"; return false; }
         }
         appsJson.write(jsonDoc->toJson());
         appsJson.close();
@@ -79,7 +81,7 @@ bool BRisaApplicationManager::readJSONFile()
 void BRisaApplicationManager::refreshAppList()
 {
     QDir dir(m_dirPath);
-    if(!dir.exists()) { qDebug() << "M_DIRPATH DOESN'T EXISTS!"; return; }
+    if(!dir.exists()) { qDebug() << "M_DIRPATH DOESN'T EXISTS!" << m_dirPath; return; }
     if(!dir.remove("apps.json")) { qDebug() << "ERROR: REMOVE APPSJSON FILE!"; return; }
     m_apps.clear(); m_numOfApps = 0;
     if(!generateJSONFile()) { qDebug() << "ERROR TO GENERATE APPSJSON"; return; }

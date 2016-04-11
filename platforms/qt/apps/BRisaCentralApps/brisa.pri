@@ -10,5 +10,6 @@ unix {
     QT += network xml
     LIBS += -lbrisa
     LIBS += -L$$BASEDIR_BRUNO/../build-brisa
+    LIBS += -L$$BASEDIR_LARISSA/../build-brisa
 }
 
