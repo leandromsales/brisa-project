@@ -356,10 +356,9 @@ void ControlPointBCU::requestError(QString errorMessage, QString methodName)
     qDebug() << errorMessage  << " when calling " << methodName;
 }
 
-void ControlPointBCU::add()
+void ControlPointBCU::downloaded()
 {
-    addAppOnDataList(auxDO->getUdn(), auxDO->getName(), auxDO->getInfo(),
-                     auxDO->getIconURL(), auxDO->getAppURL());
+    qDebug() << "Donwload OK";
 }
 
 void ControlPointBCU::finishedGetApp()
@@ -441,11 +440,11 @@ void ControlPointBCU::decodeJsonList()
 
          QUrl url(iconUrl);
          FileDownloader *fd = new FileDownloader(url, name.replace(" ", ""), this);
-         connect(fd, SIGNAL (ready()), this, SLOT (add()));
+         connect(fd, SIGNAL (ready()), this, SLOT (downloaded()));
 
          auxDO = new DataObject(udn, name, info, url, QUrl(appUrl));
         // auxDO = new DataObject(udn, name, info, QUrl("qrc:/pics/qtlogo.png"), QUrl(appUrl));
-        add();
+         addAppOnDataList(udn, name, info, url, QUrl(appUrl));
     }
 }
 }
