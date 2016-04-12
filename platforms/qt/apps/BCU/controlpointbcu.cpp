@@ -360,7 +360,6 @@ void ControlPointBCU::add()
 {
     addAppOnDataList(auxDO->getUdn(), auxDO->getName(), auxDO->getInfo(),
                      auxDO->getIconURL(), auxDO->getAppURL());
-    delete auxDO;
 }
 
 void ControlPointBCU::finishedGetApp()
@@ -440,11 +439,13 @@ void ControlPointBCU::decodeJsonList()
 
         qDebug() << name << info << appUrl << iconUrl << "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
 
-        QUrl url(iconUrl);
-        FileDownloader *fd = new FileDownloader(url, name.replace(" ", ""), this);
-        connect(fd, SIGNAL (ready()), this, SLOT (add()));
+         QUrl url(iconUrl);
+         FileDownloader *fd = new FileDownloader(url, name.replace(" ", ""), this);
+         connect(fd, SIGNAL (ready()), this, SLOT (add()));
 
-        auxDO = new DataObject(udn, name, info, url, QUrl(appUrl));
+         auxDO = new DataObject(udn, name, info, url, QUrl(appUrl));
+        // auxDO = new DataObject(udn, name, info, QUrl("qrc:/pics/qtlogo.png"), QUrl(appUrl));
+        add();
     }
 }
 }
