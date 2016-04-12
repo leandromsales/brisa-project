@@ -366,7 +366,7 @@ void ControlPointBCU::finishedGetApp()
     connect(this, SIGNAL (decompressed()), this, SLOT (decompressedFinished()));
 
     FolderCompressor *fc = new FolderCompressor();
-    QString path = "../BCU/files/";
+    QString path = "../BCU/files/"; // importante esse caminho estar certo
     QDir dir(path);
     QStringList listCompeFiles = dir.entryList();
 
@@ -436,15 +436,13 @@ void ControlPointBCU::decodeJsonList()
         QString appUrl = app["Url"].toString();
         QString iconUrl = app["Icon"].toString();
 
-        qDebug() << name << info << appUrl << iconUrl << "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+        QUrl url(iconUrl);
+        FileDownloader *fd = new FileDownloader(url, name.replace(" ", ""), this);
+        connect(fd, SIGNAL (ready()), this, SLOT (downloaded()));
 
-         QUrl url(iconUrl);
-         FileDownloader *fd = new FileDownloader(url, name.replace(" ", ""), this);
-         connect(fd, SIGNAL (ready()), this, SLOT (downloaded()));
-
-         auxDO = new DataObject(udn, name, info, url, QUrl(appUrl));
+        auxDO = new DataObject(udn, name, info, url, QUrl(appUrl));
         // auxDO = new DataObject(udn, name, info, QUrl("qrc:/pics/qtlogo.png"), QUrl(appUrl));
-         addAppOnDataList(udn, name, info, url, QUrl(appUrl));
+        addAppOnDataList(udn, name, info, url, QUrl(appUrl));
     }
 }
 }

@@ -13,7 +13,7 @@ DISTFILES += \
     pics/brisa-logo.png \
     pics/delete.png \
     pics/settings.png \
-    pics/back.png \
+    pics/back.png
 
 HEADERS += \
     controlpointbcu.h \

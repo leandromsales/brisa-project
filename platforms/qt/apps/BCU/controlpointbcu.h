@@ -189,7 +189,7 @@ private slots:
 
     void serviceCall(OutArgument, QString);
     void requestError(QString errorMessage, QString methodName);
-    void add ();
+    void downloaded ();
     void finishedGetApp();
     void decompressedFinished();
 

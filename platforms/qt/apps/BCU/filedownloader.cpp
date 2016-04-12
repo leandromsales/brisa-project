@@ -34,9 +34,13 @@ void FileDownloader::fileDownloaded(QNetworkReply* pReply) {
         outFile.close();
         qDebug() << "BCU: get file" << m_filename << "png";
     } else if (url.endsWith(".compe", Qt::CaseInsensitive)) {
-        QFile file("../BCU/files/" + m_filename + ".compe");
+        QFile file("../BCU/files/" + m_filename + ".compe"); // importante esse caminho estar certo
         file.open(QIODevice::WriteOnly);
-        file.write(m_DownloadedData);
+        if (file.isOpen()) {
+            file.write(m_DownloadedData);
+        } else {
+            qDebug() << "BCU: wrong path to save downloaded files";
+        }
         file.close();
         qDebug() << "BCU: get file" << m_filename << "compe";
     } else {
