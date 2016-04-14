@@ -12,6 +12,8 @@
 #include <QQmlContext>
 #include <QQuickItem>
 
+#include <QElapsedTimer>
+
 #include "src/upnp/controlpoint/cpdevice.h"
 #include "src/upnp/controlpoint/eventproxy.h"
 #include "src/upnp/controlpoint/multicasteventreceiver.h"
@@ -240,6 +242,8 @@ private:
     Service * auxServ;
     DataObject *auxDO;
     QString auxAppURL, auxAppName;
+
+    QElapsedTimer timer;
 };
 
 }

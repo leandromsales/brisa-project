@@ -394,25 +394,32 @@ void ControlPointBCU::finishedGetApp()
 
 void ControlPointBCU::decompressedFinished()
 {
-    QQmlComponent window(&engine);
-    QString path = "../BCU/files/";
-    path.append(auxAppName);
-    path.append("/main.qml");
-    window.loadUrl(QUrl::fromLocalFile(path));
+    qDebug() << timer.elapsed()
+             << "milisegundos foi o tempo gasto do início até baixar o app"
+             << auxAppName << "<<<<<<<<<<<<<<<<<<<<<";
 
-    QQuickItem *object = qobject_cast<QQuickItem*>(window.create(engine.rootContext()));
-    object->setParentItem(qobject_cast<QQuickItem*>(engine.rootObjects()[0]->findChild<QObject *>("appExec")));
-    object->setParent(&engine);
+// COMENTADO PARA TESTES, DESCOMENTAR DEPOIS
+//    QQmlComponent window(&engine);
+//    QString path = "../BCU/files/";
+//    path.append(auxAppName);
+//    path.append("/main.qml");
+//    window.loadUrl(QUrl::fromLocalFile(path));
 
-    QObject *loader = engine.rootObjects()[0]->findChild<QObject*>("loader");
-    loader->setProperty("source", "");
+//    QQuickItem *object = qobject_cast<QQuickItem*>(window.create(engine.rootContext()));
+//    object->setParentItem(qobject_cast<QQuickItem*>(engine.rootObjects()[0]->findChild<QObject *>("appExec")));
+//    object->setParent(&engine);
 
-    QObject *stack = engine.rootObjects()[0]->findChild<QObject *>("stack");
-    QMetaObject::invokeMethod(stack,"pushObject");
+//    QObject *loader = engine.rootObjects()[0]->findChild<QObject*>("loader");
+//    loader->setProperty("source", "");
+
+//    QObject *stack = engine.rootObjects()[0]->findChild<QObject *>("stack");
+//    QMetaObject::invokeMethod(stack,"pushObject");
 }
 
 void ControlPointBCU::decodeJsonList()
 {
+    timer.start();
+
     // decode JSON
     QString json = this->jsonMsg;
     QJsonParseError error;
@@ -443,6 +450,8 @@ void ControlPointBCU::decodeJsonList()
         auxDO = new DataObject(udn, name, info, url, QUrl(appUrl));
         // auxDO = new DataObject(udn, name, info, QUrl("qrc:/pics/qtlogo.png"), QUrl(appUrl));
         addAppOnDataList(udn, name, info, url, QUrl(appUrl));
+
+        this->run(appUrl, name); // PARA TESTES, REMOVER DAQUI DEPOIS
     }
 }
 }
