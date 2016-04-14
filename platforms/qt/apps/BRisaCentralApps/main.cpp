@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
     if(!dir.cd("apps"))
         qFatal(qPrintable("ERROR : COULDNT FIND apps directory. Current Directory : " + dir.absolutePath()));
     BCADevice *bcaDevice = new BCADevice(engine,dir.absolutePath().toLatin1());
+    bcaDevice->start();
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     return app.exec();

@@ -20,7 +20,6 @@ BCADevice::BCADevice(QQmlApplicationEngine &engine, QByteArray dirPath) : Device
     functions->setDescriptionFile(":/src/functions.xml");
 
     this->addService(functions);
-    this->start();
 
     this->listApps = this->getServiceByType("urn:schemas-upnp-org:service:Functions:1")->getVariable("ListApps");
     this->appInfo = this->getServiceByType("urn:schemas-upnp-org:service:Functions:1")->getVariable("AppInfo");

@@ -18,6 +18,9 @@ ApplicationWindow {
     height: 480
     visible: true
 
+    onWidthChanged: gridApps.calculateColumnCount(width,height)
+    onHeightChanged: console.log(width + " x " + height)
+
     C.Frame {
         anchors.fill: parent
         bottomBarHeightPercent: 0; topBarHeightPercent:8
@@ -54,11 +57,20 @@ ApplicationWindow {
             initialItem: Rectangle {
                 GridView {
                     id:gridApps
+
+                    function calculateColumnCount(w,h) {
+                        if((w/h)>=1) gridApps.cellWidth = JS.wpercent(20,this);
+                        else if((w/h)>=0.7) gridApps.cellWidth = JS.wpercent(25,this);
+                        else if((w/h)>=0.5) gridApps.cellWidth = JS.wpercent(33,this);
+                        else if((w/h)>=0.3) gridApps.cellWidth = JS.wpercent(50,this);
+                        else gridApps.cellWidth = JS.wpercent(100,this);
+                    }
+
                     anchors { fill : parent; margins: JS.wpercent(5,parent); leftMargin:JS.wpercent(7.5,parent) }
                     cellWidth: JS.wpercent(20,this); cellHeight: cellWidth
-                    model:manager.apps;
+                    model:manager.apps; clip:true
                     delegate: BRisaApplication {
-                        width:JS.wpercent(15,parent); height:width
+                        width:gridApps.cellWidth*0.75; height:width
                         iconPath:"file:///" + modelData.iconPath;
                         title:modelData.title;
                         description:modelData.description;
