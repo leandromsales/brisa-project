@@ -451,6 +451,8 @@ void ControlPointBCU::decodeJsonList()
         // auxDO = new DataObject(udn, name, info, QUrl("qrc:/pics/qtlogo.png"), QUrl(appUrl));
         addAppOnDataList(udn, name, info, url, QUrl(appUrl));
 
+        auxAppName = name;
+
         this->run(appUrl, name); // PARA TESTES, REMOVER DAQUI DEPOIS
     }
 }
