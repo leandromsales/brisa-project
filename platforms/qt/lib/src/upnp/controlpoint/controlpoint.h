@@ -69,7 +69,7 @@ class Service;
 class BRISA_UPNP_EXPORT ControlPoint: public QObject {
 Q_OBJECT
 
-private:
+protected:
     /*!
      *    \property http
      *    \brief Do the http request in event subscription.
