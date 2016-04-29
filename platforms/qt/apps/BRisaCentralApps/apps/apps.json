@@ -1,0 +1,34 @@
+{
+    "apps": [
+        {
+            "appName": "Calculator",
+            "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Calculator/description.json",
+            "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Calculator",
+            "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Calculator/icon.png"
+        },
+        {
+            "appName": "ColorPreview",
+            "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/ColorPreview/description.json",
+            "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/ColorPreview",
+            "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/ColorPreview/icon.png"
+        },
+        {
+            "appName": "Messenger",
+            "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Messenger/description.json",
+            "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Messenger",
+            "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Messenger/icon.png"
+        },
+        {
+            "appName": "Trello",
+            "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Trello/description.json",
+            "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Trello",
+            "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Trello/icon.png"
+        },
+        {
+            "appName": "Ufal",
+            "descriptionFile": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Ufal/description.json",
+            "dirPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Ufal",
+            "iconPath": "/home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/platforms/qt/apps/BRisaCentralApps/apps/Ufal/icon.png"
+        }
+    ]
+}
