@@ -2,14 +2,9 @@
     <qresource prefix="/pics">
         <file>back.png</file>
         <file>brisa-logo.png</file>
-        <file>Calculator.png</file>
-        <file>ColorPreview.png</file>
         <file>delete.png</file>
-        <file>Messenger.png</file>
         <file>qtlogo.png</file>
         <file>quit.png</file>
         <file>settings.png</file>
-        <file>Trello.png</file>
-        <file>Ufal.png</file>
     </qresource>
 </RCC>

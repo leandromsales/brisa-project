@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>AppIcon.qml</file>
+        <file>AppOptions.qml</file>
+        <file>AboutApp.qml</file>
+        <file>LoadApp.qml</file>
+        <file>Settings.qml</file>
+        <file>okMessage.qml</file>
+        <file>errorMessage.qml</file>
+        <file>AppLoader.qml</file>
+    </qresource>
+</RCC>

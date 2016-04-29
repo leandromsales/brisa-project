@@ -29,13 +29,18 @@
 #define CONTROLPOINT_H
 
 #include <QMap>
-#include <QNetworkAccessManager>
+#include <QtCore>
+#include <QtDebug>
 #include <QNetworkReply>
+#include <QNetworkAccessManager>
 
 #include "cpdevice.h"
 #include "eventproxy.h"
 #include "multicasteventreceiver.h"
 #include "../brisaglobal.h"
+#include "../../shared/webserver/webserversession.h"
+#include "../../shared/ssdp/ssdpclient.h"
+#include "msearchclientcp.h"
 
 QT_BEGIN_NAMESPACE
 

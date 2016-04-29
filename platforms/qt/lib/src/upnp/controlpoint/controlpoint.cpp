@@ -26,15 +26,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
-#include <QtCore>
-#include <QtDebug>
-#include <QNetworkAccessManager>
-
 #include "controlpoint.h"
-#include "msearchclientcp.h"
-#include "../../shared/ssdp/ssdpclient.h"
-#include "../../shared/webserver/webserversession.h"
 
 namespace brisa {
 
