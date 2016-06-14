@@ -6,6 +6,11 @@ Item {
     Connections {
         target:manager
         onDecompressed: {
+            console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            console.log(appPath)
+            console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++")
             qmlLoader.setSource(appPath)
             console.log("DECOMPRESS RECEIVED!")
         }

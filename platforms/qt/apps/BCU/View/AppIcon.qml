@@ -20,14 +20,12 @@ Rectangle {
     MouseArea {
         anchors.fill: parent
         onClicked: {
-            manager.run(appURL,name)
             stackPages.push(appLoaderComponent)
+            manager.run(appURL,name)
             dtS.name = name;
             dtS.info = info;
             dtS.iconURL = iconURL;
             dtS.appURL = appURL;
-            console.log (iconURL);
-            console.log (dtS.iconURL);
         }
     }
 
