@@ -27,3 +27,4 @@ SOURCES += Controller/main.cpp \
     Controller/folderCompressor.cpp \
     Controller/essencials/qqmlhelpers.cpp \
     Controller/essencials/qqmlobjectlistmodel.cpp
+
