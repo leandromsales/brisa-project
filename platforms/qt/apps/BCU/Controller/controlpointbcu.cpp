@@ -126,7 +126,7 @@ void ControlPointBCU::run(QString appURL, QString name)
 
     qDebug() << "STATUS CODE :: " << downloadStatus << " PATH :: "  <<  m_dir.absolutePath();
 
-    if (!downloadStatus) {
+    if (downloadStatus) {
         FileDownloader *fd = new FileDownloader(&m_dir,QUrl(appURL), name, this);
         connect(fd, SIGNAL(ready(QString)), this, SLOT (finishedGetApp(QString)),Qt::UniqueConnection);
     }
@@ -229,7 +229,7 @@ void ControlPointBCU::finishedGetApp(QString dirPath)
 void ControlPointBCU::decompressedFinished()
 {
     QString path = m_dir.absolutePath();
-    path.append( + "/" + auxAppName + "/main.qml");
+    path.append( + "/main.qml");
     QObject *appLoader = m_engine->rootObjects()[0]->findChild<QObject *>("appLoader");
     appLoader->setProperty("appPath","file://"+path);
     emit decompressed();

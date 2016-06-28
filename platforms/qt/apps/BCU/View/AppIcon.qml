@@ -1,20 +1,21 @@
 import QtQuick 2.3
 
-Rectangle {
-    width: 90
-    height: 90
-
+Item {
     Image {
         id: image
         source: iconURL
-        sourceSize.height: 72
+        sourceSize.height: parent.height
+        sourceSize.width: parent.width
         anchors.centerIn: parent;
     }
 
     Text {
         text: name
+        width: parent.width
         anchors.top: image.bottom
         anchors.horizontalCenter: parent.horizontalCenter
+        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+        fontSizeMode: Text.Fit
     }
 
     MouseArea {

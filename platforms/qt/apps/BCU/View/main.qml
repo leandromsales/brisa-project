@@ -59,13 +59,21 @@ ApplicationWindow {
                 id: containerGrid
                 width: parent.width; height: root.height*0.9
                 GridView {
-                    id: grid
-                    cellWidth: 90
-                    cellHeight: 110
-                    width: parent.width
-                    height: parent.height
+                    id: grid                    
+                    property int columns : 5
+                    property int rows : 5
+                    property real verticalSpacing : parent.height*0.05
+                    property real horizontalSpacing : parent.width*0.05
+                    anchors {
+                        fill:parent; leftMargin: horizontalSpacing; topMargin: verticalSpacing
+                    }
+                    cellWidth: width/columns
+                    cellHeight: height/rows
                     model: manager.apps
-                    delegate: AppIcon {}
+                    delegate: AppIcon {
+                        width:grid.cellWidth - grid.horizontalSpacing
+                        height: grid.cellHeight - grid.verticalSpacing
+                    }
                 }
             }
 

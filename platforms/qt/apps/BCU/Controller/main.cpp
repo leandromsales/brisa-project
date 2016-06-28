@@ -4,9 +4,9 @@
 #include <QQmlApplicationEngine>
 #include <QDebug>
 
-#ifdef QT_WEBVIEW_WEBENGINE_BACKEND
+#ifdef QT_WEBENGINE_BACKEND
 #include <QtWebEngine>
-#endif // QT_WEBVIEW_WEBENGINE_BACKEND
+#endif // QT_WEBENGINE_BACKEND
 
 #include "controlpointbcu.h"
 
@@ -14,9 +14,9 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-#ifdef QT_WEBVIEW_WEBENGINE_BACKEND
+#ifdef QT_WEBENGINE_BACKEND
     QtWebEngine::initialize();
-#endif // QT_WEBVIEW_WEBENGINE_BACKEND
+#endif // QT_WEBENGINE_BACKEND
 
     QQmlApplicationEngine engine;
 

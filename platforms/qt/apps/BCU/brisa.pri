@@ -4,9 +4,10 @@ BASEDIR_BRUNO = /home/bruno/Documentos/Workspaces/Qt_Projects/brisa-project/plat
 BASEDIR_MAC = /Users/compemac2/brisa-project/platforms/qt/build-brisa-iphonesimulator_clang_Qt_5_5_1_for_iOS-Debug/
 
 INCLUDEPATH += $$BASEDIR_BRUNO/include
+
 linux:!android {
     message("BRisa Unix config.")
-    QT += network xml
+    QT += network xml webview
     LIBS += -lbrisa
     LIBS += -L$$BASEDIR_BRUNO/../build-brisa
 }
