@@ -2,9 +2,9 @@ TEMPLATE = app
 
 QT += qml quick widgets xml
 
-qtHaveModule(webengine) {
-        QT += webengine
-        DEFINES += QT_WEBENGINE_BACKEND
+qtHaveModule(webview) {
+        QT += webview
+        DEFINES += QT_HAS_WEBVIEW_BACKEND
 }
 
 RESOURCES += View/qml.qrc \
