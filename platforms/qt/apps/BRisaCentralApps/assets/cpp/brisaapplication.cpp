@@ -84,10 +84,14 @@ bool BRisaApplication::createWebviewQML()
     QDir d(this->property("dir").toString());
     if(webViewFile.exists()) return true;
     if(!webViewFile.open(QIODevice::WriteOnly)) qFatal("CREATE WEBVIEW QML COULDNT BE OPENED!");
-    QString libs = "import QtQuick 2.4\nimport QtQuick.Controls 1.3\nimport QtWebEngine 1.1\n\n";
-    QString code = "Item {\n\tWebEngineView {\n\tanchors.fill:parent;\n\turl:\""
-            + this->property("url").toString() +
-            "\"\n\t}\n}";
+    QString libs = QString("import QtQuick 2.6\n") +
+                   QString("import QtQuick.Controls 2.0\n") +
+                   QString("import QtWebView 1.1\n\n");
+    QString code = QString("Item {\n")+
+                   QString("\tWebView {\n")+
+                   QString("\t\tanchors.fill:parent\n")+
+                   QString("\t\turl:Qt.resolvedUrl(\"" + this->property("url").toString()) +
+                   QString("\")\n\t}\n}");
     if(webViewFile.write((libs+code).toLatin1()) == -1) qFatal("CREATE WEBVIEW QML COULDNT WRITE IN THE FILE!");
     webViewFile.close();
     return true;

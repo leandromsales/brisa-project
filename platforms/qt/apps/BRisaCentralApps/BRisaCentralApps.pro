@@ -2,9 +2,9 @@ TEMPLATE = app
 
 QT += qml quick widgets network
 
-qtHaveModule(webengine) {
-        QT += webengine
-        DEFINES += QT_WEBVIEW_WEBENGINE_BACKEND
+qtHaveModule(webview) {
+        QT += webview
+        DEFINES += QT_HAS_WEBVIEW
 }
 
 # Additional import path used to resolve QML modules in Qt Creator's code model

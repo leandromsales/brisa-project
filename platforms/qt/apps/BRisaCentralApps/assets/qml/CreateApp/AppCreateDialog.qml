@@ -1,9 +1,10 @@
-import QtQuick 2.0
-import QtQuick.Controls 1.2
+import QtQuick 2.7
+import QtQuick.Controls 2.0
 
 import "qrc:/screen"
 import "qrc:/components" as C
 import "qrc:/components/functions.js" as JS
+
 C.PopUpWindow {
     color:"White"
     onImminentHide : destroyDialog();
@@ -15,21 +16,21 @@ C.PopUpWindow {
             topBarHeightPercent: 10
             topBarColor: "#09A"
             bottomBarVisible: false
-            stack.delegate: StackViewDelegate {
-                function transitionFinished(properties) { properties.exitItem.opacity = 1 }
-                pushTransition: StackViewTransition {
-                    PropertyAnimation {
-                        target: enterItem
-                        property: "opacity"
-                        from: 0; to: 1; duration: 100
-                    }
-                    PropertyAnimation {
-                        target: exitItem
-                        property: "opacity"
-                        from: 1; to: 0; duration: 100
-                    }
-                }
-            }
+//            stack.delegate: StackViewDelegate {
+//                function transitionFinished(properties) { properties.exitItem.opacity = 1 }
+//                pushTransition: StackViewTransition {
+//                    PropertyAnimation {
+//                        target: enterItem
+//                        property: "opacity"
+//                        from: 0; to: 1; duration: 100
+//                    }
+//                    PropertyAnimation {
+//                        target: exitItem
+//                        property: "opacity"
+//                        from: 1; to: 0; duration: 100
+//                    }
+//                }
+//            }
             topBarContent: Item{
                 anchors.fill: parent
                 Row {

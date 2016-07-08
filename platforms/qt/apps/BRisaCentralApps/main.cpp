@@ -3,16 +3,16 @@
 #include <QQmlContext>
 #include "assets/cpp/bcadevice.h"
 
-#ifdef QT_WEBVIEW_WEBENGINE_BACKEND
-#include <QtWebEngine>
+#ifdef QT_HAS_WEBVIEW
+#include <QtWebView/QtWebView>
 #endif // QT_WEBVIEW_WEBENGINE_BACKEND
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-#ifdef QT_WEBVIEW_WEBENGINE_BACKEND
-    QtWebEngine::initialize();
+#ifdef QT_HAS_WEBVIEW
+    QtWebView::initialize();
 #endif // QT_WEBVIEW_WEBENGINE_BACKEND
 
     QQmlApplicationEngine engine;

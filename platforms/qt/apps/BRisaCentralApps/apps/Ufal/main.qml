@@ -1,10 +1,10 @@
-import QtQuick 2.4
-import QtQuick.Controls 1.3
-import QtWebEngine 1.1
+import QtQuick 2.6
+import QtQuick.Controls 2.0
+import QtWebView 1.1
 
 Item {
-	WebEngineView {
-	anchors.fill:parent;
-url:"http://www.ufal.edu.br"
+	WebView {
+		anchors.fill:parent
+		url:Qt.resolvedUrl("http://www.ufal.edu.br/")
 	}
 }

@@ -94,7 +94,8 @@ ApplicationWindow {
                     action.onClicked : {
                         if(!wasClicked) {
                             dialog = Qt.createComponent("qrc:/createApp/AppCreateDialog.qml");
-                            dialog.createObject(parent).open();
+                            if(dialog.status == Component.Ready)
+                                dialog.createObject(parent).open();
                         }
                         wasClicked = true
                     }
