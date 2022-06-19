@@ -1,1 +1,0 @@
-SOURCES += brisalog.cpp

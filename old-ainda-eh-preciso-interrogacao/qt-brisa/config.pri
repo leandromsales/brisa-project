@@ -1,4 +1,0 @@
-CONFIG += silent
-DEFINES+=HAVE_Qt
-
-OTHER_FILES +=
